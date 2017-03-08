@@ -1,7 +1,7 @@
 //
 // Variables
 // --------------------------------------------------
-
+@version:                "0.0.1";
 
 //== Colors
 //
@@ -19,10 +19,10 @@
 @primary-text-color:    #fff;
 @secondary:             #f40;
 @secondary-text-color:  #fff;
-@inverse:               #000;
-@inverse-text-color:    #fff;
-@disabled:               #bbb;
-@disabled-text-color:    #777;
+@header:                #222;
+@header-text-color:     #fff;
+@disabled:              #bbb;
+@disabled-text-color:   #777;
 
 @shadow:                #ccc;
 @error:                 #f00;
@@ -42,7 +42,7 @@
 //** Background color for `<body>`.
 @body-bg:               @background;
 //** Global text color on `<body>`.
-@text-color:            @gray-dark;
+@text-color:            #000;
 
 //** Global textual link color.
 @link-color:            @primary;
@@ -90,11 +90,11 @@
 //## Specify custom location and filename of the included Glyphicons icon font. Useful for those including Bootstrap via Bower.
 
 //** Load fonts from this directory.
-@icon-font-path:          "../fonts/";
+@icon-font-path:          "../fonts";
 //** File name for all font files.
-@icon-font-name:          "glyphicons-halflings-regular";
+@icon-font-name:          "fontawesome-webfont";
 //** Element ID within SVG icon file.
-@icon-font-svg-id:        "glyphicons_halflingsregular";
+@icon-font-svg-id:        "fontawesomeregular";
 
 
 //== Components
@@ -141,15 +141,19 @@
 @table-condensed-cell-padding:  5px;
 
 //** Default background color used for all tables.
-@table-bg:                      transparent;
+@table-bg:                      @background;
+@table-header-bg:               @header;
+@table-header-color:            @header-text-color;
 //** Background color used for `.table-striped`.
 @table-bg-accent:               #f9f9f9;
 //** Background color used for `.table-hover`.
-@table-bg-hover:                #f5f5f5;
+@table-bg-hover:                @primary;
+@table-color-hover:             @primary-text-color;
 @table-bg-active:               @table-bg-hover;
+@table-color-active:            @table-color-hover;
 
 //** Border color for table and cell borders.
-@table-border-color:            #ddd;
+@table-border-color:            lighten(@header, 70%);
 
 
 //== Buttons
@@ -206,7 +210,7 @@
 //** Text color for `<input>`s
 @input-color:                    @text-color;
 //** `<input>` border
-@input-border-color:             @inverse;
+@input-border-color:             @text-color;
 @input-border-width:             0 1px 1px 1px;
 @input-border-style:             solid;
 @input-box-shadow:               none; // inset 0 1px 1px rgba(0,0,0,.075);
@@ -254,7 +258,7 @@
 //## Dropdown menu container and contents.
 
 //** Background for the dropdown menu.
-@dropdown-bg:                    #fff;
+@dropdown-bg:                    @background;
 //** Dropdown menu `border-color`.
 @dropdown-border:                rgba(0,0,0,.15);
 //** Dropdown menu `border-color` **for IE8**.
@@ -263,11 +267,11 @@
 @dropdown-divider-bg:            #e5e5e5;
 
 //** Dropdown link text color.
-@dropdown-link-color:            @gray-dark;
+@dropdown-link-color:            @text-color;
 //** Hover color for dropdown links.
-@dropdown-link-hover-color:      darken(@gray-dark, 5%);
+@dropdown-link-hover-color:      @primary-text-color;
 //** Hover background for dropdown links.
-@dropdown-link-hover-bg:         #f5f5f5;
+@dropdown-link-hover-bg:         @primary;
 
 //** Active dropdown menu item text color.
 @dropdown-link-active-color:     @component-active-color;
@@ -283,6 +287,14 @@
 //** Deprecated `@dropdown-caret-color` as of v3.1.0
 @dropdown-caret-color:           #000;
 
+@select-default-bg:              @header;//#ccc;
+@select-default-border:          @header;//#aaa;
+@select-default-color:           @header-text-color;
+@select-option-bg:               @background;
+@select-option-accent:           #f9f9f9;
+@select-option-border:           lighten(@header, 70%);
+@select-option-hover-bg:         @primary;
+@select-option-hover-color:      @primary-text-color;
 
 //-- Z-index master list
 //
@@ -386,18 +398,18 @@
 @navbar-padding-vertical:          ((@navbar-height - @line-height-computed) / 2);
 @navbar-collapse-max-height:       340px;
 
-@navbar-default-color:             #777;
-@navbar-default-bg:                #f8f8f8;
-@navbar-default-border:            darken(@navbar-default-bg, 6.5%);
+@navbar-default-color:             @header-text-color;
+@navbar-default-bg:                @header;
+@navbar-default-border:            @header;
 
 // Navbar links
-@navbar-default-link-color:                #777;
-@navbar-default-link-hover-color:          #333;
-@navbar-default-link-hover-bg:             transparent;
-@navbar-default-link-active-color:         #555;
-@navbar-default-link-active-bg:            darken(@navbar-default-bg, 6.5%);
-@navbar-default-link-disabled-color:       #ccc;
-@navbar-default-link-disabled-bg:          transparent;
+@navbar-default-link-color:                @header-text-color;
+@navbar-default-link-hover-color:          @secondary-text-color;
+@navbar-default-link-hover-bg:             @secondary;
+@navbar-default-link-active-color:         @primary-text-color;
+@navbar-default-link-active-bg:            @primary;
+@navbar-default-link-disabled-color:       @disabled-text-color;
+@navbar-default-link-disabled-bg:          @disabled;
 
 // Navbar brand label
 @navbar-default-brand-color:               @navbar-default-link-color;

@@ -1,0 +1,130 @@
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('@{icon-font-path}/fontawesome-webfont.eot?v=@{version}');
+  src: url('@{icon-font-path}/fontawesome-webfont.eot?#iefix&v=@{version}') format('embedded-opentype'),
+    url('@{icon-font-path}/fontawesome-webfont.woff2?v=@{version}') format('woff2'),
+    url('@{icon-font-path}/fontawesome-webfont.woff?v=@{version}') format('woff'),
+    url('@{icon-font-path}/fontawesome-webfont.ttf?v=@{version}') format('truetype'),
+    url('@{icon-font-path}/fontawesome-webfont.svg?v=@{version}#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon {
+  display: inline-block;
+  font: normal normal normal @font-size-base/@line-height-base FontAwesome; // shortening font declaration
+  font-size: inherit; // can't have font-size inherit on line above, so need to override
+  text-rendering: auto; // optimizelegibility throws things off #1094
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@icon-list:     
+add         "\f067",
+delete      "\f1f8",
+close       "\f00d",
+edit        "\f040",
+search      "\f002",
+about       "\f00e",
+import      "\f019",
+export      "\f093",
+save        "\f0c7",
+print       "\f02f",
+parameter   "\f013",
+info        "\f129",
+question    "\f128",
+link        "\f0c1",
+next        "\f178",
+previous    "\f177",
+exchange    "\f0ec",
+warning     "\f071",
+copy        "\f016",
+star        "\f005",
+archive     "\f187",
+date        "\f073",
+share       "\f064",
+back        "\f0e2",
+comment     "\f075",
+users       "\f0c0",
+user        "\f007",
+folder      "\f114",
+folder-open "\f115",
+stats       "\f200",
+sort-asc    "\f0de",
+sort-desc   "\f0dd",
+ticket      "\f145",
+lock        "\f023",
+unlock      "\f09c",
+show        "\f06e",
+hide        "\f070",
+fax         "\f1ac",
+home        "\f015",
+sign-in     "\f011",
+sign-out    "\f08b",
+purchase    "\f07a",
+file-pdf    "\f1c1",
+file-zip    "\f1c6",
+file-text   "\f0f6",
+list        "\f0cb";
+
+.iconify-all(@list; @counter: 1) when (@counter <= length(@list)) {
+  @icon: extract(@list, @counter);
+  @name: extract(@icon, 1);
+  @code: extract(@icon, 2);
+  .iconify(@name, @code);
+  .iconify-all(@list, (@counter + 1));
+}
+
+.iconify-all(@icon-list);
+
+
+
+
+
+
+// .iconify(add,        "\f067");
+// .iconify(delete,     "\f1f8");
+// .iconify(close,      "\f00d");
+// .iconify(edit,       "\f040");
+// .iconify(search,     "\f002");
+// .iconify(about,      "\f00e");
+// .iconify(import,     "\f019");
+// .iconify(export,     "\f093");
+// .iconify(save,       "\f0c7");
+// .iconify(print,      "\f02f");
+// .iconify(parameter,  "\f013");
+// .iconify(info,       "\f129");
+// .iconify(question,   "\f128");
+// .iconify(link,       "\f0c1");
+// .iconify(next,       "\f178");
+// .iconify(previous,   "\f177");
+// .iconify(exchange,   "\f0ec");
+// .iconify(warning,    "\f071");
+// .iconify(copy,       "\f016");
+// .iconify(star,       "\f005");
+// .iconify(archive,    "\f187");
+// .iconify(date,       "\f073");
+// .iconify(share,      "\f064");
+// .iconify(back,       "\f0e2");
+// .iconify(comment,    "\f075");
+// .iconify(users,      "\f0c0");
+// .iconify(user,       "\f007");
+// .iconify(folder,     "\f114");
+// .iconify(folder-open,"\f115");
+// .iconify(stats,      "\f200");
+// .iconify(sort-asc,   "\f0de");
+// .iconify(sort-desc,  "\f0dd");
+// .iconify(ticket,     "\f145");
+// .iconify(lock,       "\f023");
+// .iconify(unlock,     "\f09c");
+// .iconify(show,       "\f06e");
+// .iconify(hide,       "\f070");
+// .iconify(fax,        "\f1ac");
+// .iconify(home,       "\f015");
+// .iconify(sign-in,    "\f011");
+// .iconify(sign-out,   "\f08b");
+// .iconify(purchase,   "\f07a");
+// .iconify(file-pdf,   "\f1c1");
+// .iconify(file-zip,   "\f1c6");
+// .iconify(file-text,  "\f0f6");
+// .iconify(list,       "\f0cb");

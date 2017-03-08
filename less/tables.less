@@ -41,6 +41,8 @@ th {
   > thead > tr > th {
     vertical-align: bottom;
     border-bottom: 2px solid @table-border-color;
+    background: linear-gradient(lighten(@table-header-bg, 25%), @table-header-bg);
+    color: @table-header-color;
   }
   // Remove top border from thead by default
   > caption + thead,
@@ -123,7 +125,8 @@ th {
 
 .table-hover {
   > tbody > tr:hover {
-    background-color: @table-bg-hover;
+    background: @table-bg-hover;
+    color: @table-color-hover;
   }
 }
 
