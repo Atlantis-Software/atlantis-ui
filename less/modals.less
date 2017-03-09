@@ -148,3 +148,63 @@
 @media (min-width: @screen-md-min) {
   .modal-lg { width: @modal-lg; }
 }
+
+//modal-right
+.modal-right .modal-dialog{
+  position: fixed;
+  right:0;
+  top: 0;
+  bottom: 0;
+  margin: 0px;
+  .modal-content{
+    border: 0;
+    overflow-y:auto;
+    height:100%;
+  }
+}
+//animation right to left
+.modal-right.fade .modal-dialog {
+  .translate(25%, 0);
+  .transition-transform(~"0.3s ease-out");
+}
+.modal-right.in .modal-dialog {
+  .translate(0,0);
+}
+
+//modal-left
+.modal-left .modal-dialog{
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: 0px;
+  .modal-content{
+    border: 0;
+    overflow-y:auto;
+    height:100%;
+  }
+}
+//animation left to right
+.modal-left.fade .modal-dialog {
+  .translate(-25%, 0);
+  .transition-transform(~"0.3s ease-out");
+}
+.modal-left.in .modal-dialog {
+  .translate(0,0);
+}
+
+//Scale up the left and right modal
+@media (min-width: @screen-sm-min) {
+  // Automatically set modal's width for larger viewports
+  .modal-right .modal-dialog, .modal-left .modal-dialog {
+    width: @modal-md;
+    margin: 0px auto;
+  }
+}
+
+@media (max-width: @screen-sm-min) {
+  .modal-right .modal-dialog, .modal-left .modal-dialog {
+    width: 100%;
+    float: none;
+  }
+}

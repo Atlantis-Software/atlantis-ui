@@ -1,0 +1,120 @@
+.datepicker {
+    color: inherit;
+    background-color: @datepicker-bg;
+    padding: 4px;
+    margin-top: 1px;
+    .calendar{
+      display: none;
+      margin: 4px;
+      th, td{
+        white-space: nowrap;
+        text-align: center;
+        min-width: 32px;
+      }
+    }
+    .calendar-table{
+      border: 1px solid #fff;
+      padding: 5px;
+      border-radius: 0px;
+      background-color: #fff;
+      margin-bottom: 25px;
+    }
+    table{
+      width: 100%;
+      margin: 0;
+    }
+    td, th{
+      text-align: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    td.available:hover, th.available:hover{
+      background-color: @datepicker-hover-bg;
+      border-color: transparent;
+      color: inherit;
+    }
+    td.today.available:hover, th.today.available:hover{
+      background-color: @datepicker-hover-bg;
+      border-color: transparent;
+      color: inherit;
+    }
+    td.in-range{
+      background-color: @datepicker-in-range-bg;
+      border-color: transparent;
+      color: @datepicker-in-range-color;
+      border-radius: 0;
+    }
+    td.start-date, td.end-date, td.start-date.end-date{
+      border-radius: 0px 0 0 0px;
+    }
+    td.active, td.active:hover{
+      background-color: @datepicker-active-bg;
+      border-color: transparent;
+      color: @datepicker-active-color;
+    }
+    td.off.in-range, td.off.start-date, td.off.end-date{
+        background-color: @datepicker-off-bg;
+        border-color: transparent;
+        color: @datepicker-off-color;
+      }
+    td.today{
+      border: 2px solid orange;
+      font-weight: bold;
+    }
+    td.today.off{
+      background-color: #fff;
+      color : #000;
+      border: none;
+      font-weight: normal;
+    }
+    td.today.off.in-range{
+      color: @datepicker-off-color;
+    }
+    th.month{
+      width: auto;
+    }
+}
+
+.datepicker.show-calendar .calendar {
+    display: block;
+}
+
+.datepicker-header{
+  padding:15px;
+  position: fixed;
+  top: 0;
+  left: 0px;
+  right: 15px;
+  background-color: white;
+  z-index: @zindex-modal;
+}
+
+.datepicker-header-margin{
+  margin-bottom: 75px;
+}
+
+.inputdateform{
+  width: 60%;
+  float: left;
+  padding-right: 10px;
+}
+.selectdateform{
+  width: 40%;
+  float: left;
+}
+
+input[type="date"]{
+  &::-webkit-clear-button {
+    display:none;
+  }
+  &::-webkit-inner-spin-button{
+    display: none;
+  }
+  &::-webkit-calendar-picker-indicator{
+    display:none;
+  }
+}

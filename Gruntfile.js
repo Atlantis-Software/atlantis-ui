@@ -105,6 +105,11 @@ module.exports = function (grunt) {
       },
       atlantisUI: {
         src: [
+          'js/i18n.js',
+          'js/i18n/en.js',
+          'js/i18n/fr.js',
+          'js/i18n/de.js',
+          'js/i18n/es.js',
           'js/transition.js',
           'js/alert.js',
           'js/button.js',
@@ -112,6 +117,7 @@ module.exports = function (grunt) {
           'js/collapse.js',
           'js/dropdown.js',
           'js/modal.js',
+          'js/datepicker.js',
           'js/tooltip.js',
           'js/popover.js',
           'js/scrollspy.js',

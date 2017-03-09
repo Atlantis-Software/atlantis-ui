@@ -2477,6 +2477,18 @@ a.btn.disabled,
 fieldset[disabled] a.btn {
   pointer-events: none;
 }
+.btn-icon {
+  padding-left: 5px;
+}
+.btn-icon::before {
+  display: inline-block;
+  font: normal normal normal 14px/1.42857143 FontAwesome;
+  font-size: inherit;
+
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 .btn-default {
   color: #fff;
   background-color: #f40;
@@ -2925,6 +2937,128 @@ tbody.collapse.in {
   -webkit-transition-property: height, visibility;
        -o-transition-property: height, visibility;
           transition-property: height, visibility;
+}
+.datepicker {
+  padding: 4px;
+  margin-top: 1px;
+  color: inherit;
+  background-color: #1c58b2;
+}
+.datepicker .calendar {
+  display: none;
+  margin: 4px;
+}
+.datepicker .calendar th,
+.datepicker .calendar td {
+  min-width: 32px;
+  text-align: center;
+  white-space: nowrap;
+}
+.datepicker .calendar-table {
+  padding: 5px;
+  margin-bottom: 25px;
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 0;
+}
+.datepicker table {
+  width: 100%;
+  margin: 0;
+}
+.datepicker td,
+.datepicker th {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.datepicker td.available:hover,
+.datepicker th.available:hover {
+  color: inherit;
+  background-color: #eee;
+  border-color: transparent;
+}
+.datepicker td.today.available:hover,
+.datepicker th.today.available:hover {
+  color: inherit;
+  background-color: #eee;
+  border-color: transparent;
+}
+.datepicker td.in-range {
+  color: #000;
+  background-color: #ebf4f8;
+  border-color: transparent;
+  border-radius: 0;
+}
+.datepicker td.start-date,
+.datepicker td.end-date,
+.datepicker td.start-date.end-date {
+  border-radius: 0 0 0 0;
+}
+.datepicker td.active,
+.datepicker td.active:hover {
+  color: #fff;
+  background-color: #357ebd;
+  border-color: transparent;
+}
+.datepicker td.off.in-range,
+.datepicker td.off.start-date,
+.datepicker td.off.end-date {
+  color: #999;
+  background-color: #fff;
+  border-color: transparent;
+}
+.datepicker td.today {
+  font-weight: bold;
+  border: 2px solid orange;
+}
+.datepicker td.today.off {
+  font-weight: normal;
+  color: #000;
+  background-color: #fff;
+  border: none;
+}
+.datepicker td.today.off.in-range {
+  color: #999;
+}
+.datepicker th.month {
+  width: auto;
+}
+.datepicker.show-calendar .calendar {
+  display: block;
+}
+.datepicker-header {
+  position: fixed;
+  top: 0;
+  right: 15px;
+  left: 0;
+  z-index: 1050;
+  padding: 15px;
+  background-color: white;
+}
+.datepicker-header-margin {
+  margin-bottom: 75px;
+}
+.inputdateform {
+  float: left;
+  width: 60%;
+  padding-right: 10px;
+}
+.selectdateform {
+  float: left;
+  width: 40%;
+}
+input[type="date"]::-webkit-clear-button {
+  display: none;
+}
+input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
 }
 .caret {
   display: inline-block;
@@ -5558,6 +5692,74 @@ button.close {
 @media (min-width: 992px) {
   .modal-lg {
     width: 900px;
+  }
+}
+.modal-right .modal-dialog {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+}
+.modal-right .modal-dialog .modal-content {
+  height: 100%;
+  overflow-y: auto;
+  border: 0;
+}
+.modal-right.fade .modal-dialog {
+  -webkit-transition: -webkit-transform .3s ease-out;
+       -o-transition:      -o-transform .3s ease-out;
+          transition:         transform .3s ease-out;
+  -webkit-transform: translate(25%, 0);
+      -ms-transform: translate(25%, 0);
+       -o-transform: translate(25%, 0);
+          transform: translate(25%, 0);
+}
+.modal-right.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+       -o-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+.modal-left .modal-dialog {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+}
+.modal-left .modal-dialog .modal-content {
+  height: 100%;
+  overflow-y: auto;
+  border: 0;
+}
+.modal-left.fade .modal-dialog {
+  -webkit-transition: -webkit-transform .3s ease-out;
+       -o-transition:      -o-transform .3s ease-out;
+          transition:         transform .3s ease-out;
+  -webkit-transform: translate(-25%, 0);
+      -ms-transform: translate(-25%, 0);
+       -o-transform: translate(-25%, 0);
+          transform: translate(-25%, 0);
+}
+.modal-left.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+       -o-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+@media (min-width: 768px) {
+  .modal-right .modal-dialog,
+  .modal-left .modal-dialog {
+    width: 600px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 768px) {
+  .modal-right .modal-dialog,
+  .modal-left .modal-dialog {
+    float: none;
+    width: 100%;
   }
 }
 .tooltip {

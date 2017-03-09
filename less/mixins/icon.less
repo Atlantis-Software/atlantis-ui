@@ -5,3 +5,11 @@
     }
   }
 }
+
+.iconify-all(@list; @counter: 1) when (@counter <= length(@list)) {
+  @icon: extract(@list, @counter);
+  @name: extract(@icon, 1);
+  @code: extract(@icon, 2);
+  .iconify(@name, @code);
+  .iconify-all(@list, (@counter + 1));
+}
