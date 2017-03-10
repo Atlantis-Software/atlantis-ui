@@ -18,35 +18,30 @@
 
   var Dropdown = function (element) {
     var $self = this;
-    var $this = $(element)
-    var $options = $this.children()
-    var optionsString = '';
+    var $select = $(element)
+    var $options = $select.children('option')
+    var selectedOption = $select.find(":selected").text();
+    var linksDropdown = '';
     $options.each(function() {
-      optionsString += '<li>'
-                          +'<a href="#">'
-                            +$(this)[0].value
-                          +'</a>'
-                      +'</li>'
+      linksDropdown += '<li>' + '<a>' +$(this)[0].value  +'</a>' +'</li>';
     });
     var dropdownlList = $('<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'
-                            +'select'
+                            +selectedOption
                             +'<span class="caret"></span>'
                           +'</button>'  
                           +'<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">'
-                          +optionsString
+                          +linksDropdown
                           +'</ul>');
     dropdownlList.on('click.bs.dropdown', $self.toggle);
-    dropdownlList.insertAfter($this);  
+    dropdownlList.insertAfter($select);  
+    dropdownlList.children('li').on('click', '*', function() {
+      var $parentLi  = $(this).parents('.dropdown')
+      var $buttonDropdown = $parentLi.children('button')
+      $buttonDropdown.html($(this).html())
+      $select.val($(this).html())
+    });
+
     dropdownlList.wrapAll( '<div class="dropdown select"></div>');
-                 
-    /*$('<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'
-          +'select'
-          +'<span class="caret"></span>'
-        +'</button>'  
-        +'<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">'
-        +optionsString
-        +'</ul>').on('click.bs.dropdown', $self.toggle).wrap( "<div class='new'></div>")
-    .insertAfter($this);*/
   }
 
   Dropdown.VERSION = '3.3.7'
