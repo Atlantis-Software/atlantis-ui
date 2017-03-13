@@ -17,38 +17,33 @@
 
   var Dropdown = function (element) {
     var $self = this;
-    var $select = $(element)
+    var $select = $(element);
     // le select est caché
     $select.hide();
-    var $options = $select.children('option')
-    var selectedOption = $select.find(":selected").text();
+    var $options = $select.children('option');
     var $listValues = $('<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"/>');
     // on remplis les liens de la dropdown avec les options du select
-    $options.each(function() {
-      $listValues =  $listValues.append(
-                       $('<li>', {}).append(
-                          $('<a>').text(
-                            $(this)[0].value
-                          )
-                        )
-                      );
-    });
-    var $button = $('<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" />')
-                  .text(selectedOption) // par défaut la valeur du select au chargment de la page
-                  .click('click.bs.dropdown', $self.toggle)
-                  .append('<span class="caret"></span>');
 
-    var $dropdownlList = $( '<div class="dropdown select"></div>')
-                         .append( $button.add($listValues));
+    var $btn_txt = $('<span></span>').text($select.find(":selected").text());
+    var $button = $('<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" />')
+                  .append($btn_txt) // par défaut la valeur du select au chargment de la page
+                  .append('<span class="caret"></span>')
+                  .click($self.toggle);
+
+    var $dropdownlList = $('<div class="dropdown select"></div>').append($button).append($listValues);
+    // event lors de la selection d'une valeur dans le dropdown
+    $options.each(function() {
+      var value = $(this).val();
+      var text = $(this).text();
+      var opt = $('<li><a>' + text + '</a></li>');
+      opt.click(function() {
+        $select.val(value);
+        $btn_txt.text(text);
+      });
+      $listValues.append(opt);
+    });
 
     $dropdownlList.insertAfter($select);   // insertion du dropdown en dessous du select
-    // event lors de la selection d'une valeur dans le dropdown
-    $listValues.children('li').on('click', '*', function() {
-      // remplace la valeur du bouton du dropdown par celle selectionnée
-      $button.get(0).firstChild.nodeValue = $(this).html();
-      // remplace la valeur du select caché par celle selectionnée
-      $select.val($(this).html())
-    });
   }
 
   Dropdown.VERSION = '3.3.7'
