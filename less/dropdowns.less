@@ -65,14 +65,19 @@
   }
 
   // Links within the dropdown menu
-  > li > a {
-    display: block;
-    padding: 3px 20px;
-    clear: both;
-    font-weight: normal;
-    line-height: @line-height-base;
-    color: @dropdown-link-color;
-    white-space: nowrap; // prevent links from randomly breaking onto new lines
+  > li {
+    > div {
+      margin: 10px 20px;
+    }
+    > a {
+      display: block;
+      padding: 3px 20px;
+      clear: both;
+      font-weight: normal;
+      line-height: @line-height-base;
+      color: @dropdown-link-color;
+      white-space: nowrap; // prevent links from randomly breaking onto new lines
+    }
   }
 }
 

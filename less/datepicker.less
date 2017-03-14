@@ -1,3 +1,21 @@
+.datepicker-modal {
+  .modal-header {
+    padding:15px;
+    position: fixed;
+    top: 0;
+    left: 0px;
+    right: 15px;
+    background-color: @datepicker-bg;
+    z-index: @zindex-modal;
+  }
+  .modal-content {
+    background-color: @datepicker-bg;
+  }
+  .modal-body {
+    margin-top: 75px;
+  }
+}
+
 .datepicker {
     color: inherit;
     background-color: @datepicker-bg;
@@ -83,31 +101,7 @@
     display: block;
 }
 
-.datepicker-header{
-  padding:15px;
-  position: fixed;
-  top: 0;
-  left: 0px;
-  right: 15px;
-  background-color: white;
-  z-index: @zindex-modal;
-}
-
-.datepicker-header-margin{
-  margin-bottom: 75px;
-}
-
-.inputdateform{
-  width: 60%;
-  float: left;
-  padding-right: 10px;
-}
-.selectdateform{
-  width: 40%;
-  float: left;
-}
-
-input[type="date"]{
+input[type="date"] {
   &::-webkit-clear-button {
     display:none;
   }

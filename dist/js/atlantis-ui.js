@@ -139,6 +139,326 @@ if (typeof jQuery === 'undefined') {
 
 }(jQuery);
 
+/*
+	jQuery autocomplete v1.0.7
+    Copyright (c) 2014 Simon Steinberger / Pixabay
+    GitHub: https://github.com/Pixabay/jQuery-autoComplete
+	License: http://www.opensource.org/licenses/mit-license.php
+*/
+
++function($) {
+  $.fn.autocomplete = function(options) {
+    var opts = $.extend({}, $.fn.autocomplete.defaults, options);
+
+    // public methods
+    if (typeof options == 'string') {
+      this.each(function(){
+        var that = $(this).find('input');
+        if (options == 'destroy') {
+          $(window).off('resize.autocomplete-body', that.updateSC);
+          that.off('blur.autocomplete-body focus.autocomplete-body keydown.autocomplete-body keyup.autocomplete-body');
+          if (that.data('autocomplete')){
+            that.attr('autocomplete', that.data('autocomplete'));
+          } else {
+            that.removeAttr('autocomplete');
+          }
+          $(that.data('sc')).remove();
+          that.removeData('sc').removeData('autocomplete');
+        }
+      });
+      return this;
+    }
+
+    return this.each(function() {
+      var that = $(this).find('input.autocomplete-input');
+      that.container = $(this);
+      that.filter = that.container.find('.autocomplete-filter'); //Determine the filter for request to server
+      that.body = $('<div class="autocomplete-body"></div>'); //dom for the body of autocomplete
+      // sc = 'suggestions container'
+      that.sc = $('<div class="autocomplete-suggestions ' + opts.menuClass + '"></div>'); //dom for the suggestions of autocomplete
+      that.data('sc', that.sc).data('autocomplete', that.attr('autocomplete'));
+      that.attr('autocomplete', 'off');
+      that.cache = {};  //stock in cache if we want an precedent result
+      that.last_val = ''; //last value in input
+      that.last_key = ''; //last key pressed
+      that.nav = $('<div class="pagination-autocomplete"></div>');
+      that.currentPage = 1; //page actual
+      that.pagination = {
+        pageCount: opts.pageCount,
+        page: that.currentPage,
+        val: '',
+        pages: 0,
+        filter: {}
+      }; //data what are send to server
+
+      that.updateSC = function(resize, next) {
+        that.sc.css({
+          top: that.offset().top + that.outerHeight(),
+          left: that.offset().left,
+          width: that.container.width()
+        });
+        if (!resize) {
+          that.sc.show();
+          if (!that.sc.maxHeight) {
+            that.sc.maxHeight = parseInt(that.sc.css('max-height'));
+          }
+          if (!that.sc.suggestionHeight) {
+            that.sc.suggestionHeight = $('.autocomplete-suggestion', that.sc).first().outerHeight();
+          }
+          if (that.sc.suggestionHeight){
+            if (!next) {
+              that.sc.scrollTop(0);
+            } else {
+              var scrTop = that.sc.scrollTop(), selTop = next.offset().top - that.sc.offset().top;
+              if (selTop + that.sc.suggestionHeight - that.sc.maxHeight > 0) {
+                that.sc.scrollTop(selTop + that.sc.suggestionHeight + scrTop - that.sc.maxHeight);
+              } else if (selTop < 0) {
+                that.sc.scrollTop(selTop + scrTop);
+              }
+            }
+          }
+        }
+      };
+
+      that.updateNav = function(resize, next) {
+        that.nav.css({
+          top: that.sc.offset().top + parseInt(that.sc.css('height')),
+          left: that.sc.offset().left,
+          width: that.container.width()
+        });
+        if (!resize) {
+          that.nav.show();
+          if (!that.nav.maxHeight) {
+            that.nav.maxHeight = parseInt(that.nav.css('max-height'));
+          }
+          if (!that.nav.suggestionHeight) {
+            that.nav.suggestionHeight = $('.autocomplete-suggestion', that.nav).first().outerHeight();
+          }
+          if (that.nav.suggestionHeight){
+            if (!next) {
+              that.nav.scrollTop(0);
+            } else {
+              var scrTop = that.nav.scrollTop(), selTop = next.offset().top - that.nav.offset().top;
+              if (selTop + that.nav.suggestionHeight - that.nav.maxHeight > 0) {
+                that.nav.scrollTop(selTop + that.nav.suggestionHeight + scrTop - that.nav.maxHeight);
+              } else if (selTop < 0) {
+                that.nav.scrollTop(selTop + scrTop);
+              }
+            }
+          }
+        }
+      };
+
+      $(window).on('resize.autocomplete-body', that.updateSC);
+      $(window).on('resize.autocomplete-body', that.updateNav);
+      that.body.appendTo('body');
+      that.sc.appendTo(that.body);
+
+      that.sc.on('mouseleave', '.autocomplete-suggestion', function() {
+        $('.autocomplete-suggestion.selected').removeClass('selected');
+      });
+
+      that.sc.on('mouseenter', '.autocomplete-suggestion', function() {
+        $('.autocomplete-suggestion.selected').removeClass('selected');
+        $(this).addClass('selected');
+      });
+
+      that.sc.on('mousedown click', '.autocomplete-suggestion', function(e) {
+        var item = $(this), v = item.data('val');
+        if (v || item.hasClass('autocomplete-suggestion')) { // else outside click
+          that.val(v);
+          opts.onSelect(e, v, item);
+          that.sc.hide();
+          that.nav.hide();
+        }
+        return false;
+      });
+
+      that.nav.on('click', '.prev', $.proxy(clickPrev, this))
+             .on('click', '.first', $.proxy(clickFirst, this))
+             .on('click', '.next', $.proxy(clickNext, this))
+             .on('click', '.last', $.proxy(clickLast, this));
+
+      that.on('blur.autocomplete-body', function() {
+        try { over_sb = $('.autocomplete-suggestions:hover').length; } catch(e){ over_sb = 0; } // IE7 fix :hover
+        over_pb = $('.pagination-autocomplete:hover').length;
+        if (!over_sb && !over_pb) {
+          that.last_val = that.val();
+          that.sc.hide();
+          that.nav.hide();
+          setTimeout(function(){
+            that.sc.hide();
+            that.nav.hide();
+          }, 350); // hide suggestions on fast input
+
+        } else if (!that.is(':focus')) {
+          setTimeout(function(){
+            that.focus();
+          }, 20);
+        }
+      });
+
+      if (!opts.minChars) {
+        that.on('focus.autocomplete-body', function() {
+          that.last_val = '\n';
+          that.trigger('keyup.autocomplete-body');
+        });
+      }
+
+      function suggest(data) {
+        var val = that.val();
+        that.cache[val] = data;
+        if (data && data.list && data.list.length && (val.length >= opts.minChars || that.last_key == 13)) {
+          var nav = '';
+          that.pagination.pages = data.pages
+          if (data.pages > 1) {
+            nav += '<ul class="pagination">';
+            nav +=   '<li><a class="first">&laquo</a>';
+            nav +=   '<li><a class="prev">&lt;</a>';
+            nav +=   '<li><a class="page" data-val=' + data.page +' disabled>' + data.page + '/' + data.pages + '</a>';
+            nav +=   '<li><a class="next">&gt;</a>';
+            nav +=   '<li><a class="last">&raquo;</a>';
+            nav += '</ul>';
+          }
+          that.sc.html('');
+          for (var i=0; i < data.list.length; i++) {
+            that.sc.append(opts.renderItem(data.list[i], val));
+          }
+          that.nav.html(nav);
+          that.nav.css({
+            top: that.sc.offset().top + that.outerHeight() + that.sc.height()
+          });
+          that.nav.appendTo(that.body);
+          that.updateSC(0);
+          that.updateNav(0);
+        } else {
+          that.sc.hide();
+          that.nav.hide();
+        }
+      }
+
+      function clickPrev() {
+        if (that.currentPage>1) {
+          goToPage(+that.currentPage - 1);
+        }
+      }
+
+      function clickNext() {
+        if (that.currentPage<that.pagination.pages) {
+          goToPage(+that.currentPage + 1);
+        }
+      }
+
+      function clickFirst() {
+        if (that.currentPage != 1) {
+          goToPage(1);
+        }
+      }
+
+      function clickLast() {
+        if (that.currentPage != that.pagination.pages) {
+          goToPage(that.pagination.pages);
+        }
+      }
+
+      function goToPage(e) {
+        if (typeof e === "object") {
+          that.currentPage = $(e.target).attr("data-val");
+        } else {
+          that.currentPage = e;
+        }
+        that.pagination.page = that.currentPage;
+        opts.source(that.pagination, suggest);
+        that.nav.find('.active').removeClass('active');
+        that.nav.find('.page' + that.currentPage).parent().addClass('active');
+      }
+
+      that.on('keydown.autocomplete-body', function(e) {
+        // esc
+        if (e.which == 27) {
+          that.val(that.last_val).sc.hide();
+          that.nav.hide();
+        }
+        // enter or tab
+        else if (e.which == 13 || e.which == 9) {
+          var sel = $('.autocomplete-suggestion.selected', that.sc);
+          if (sel.length && that.sc.is(':visible')) {
+            opts.onSelect(e, sel.data('val'), sel);
+            setTimeout(function() {
+              that.sc.hide(); that.nav.hide();
+            }, 20);
+          }
+        }
+        that.last_key = e.which;
+      });
+
+      that.on('keyup.autocomplete-body', function(e) {
+        if (!~$.inArray(e.which, [16, 27, 35, 36, 37, 38, 39, 40])) {
+          var val = that.val();
+          if ((val.length >= opts.minChars || that.last_key == 13) && val.length >0 ) {
+            that.pagination.filter = {};
+            /*that.filter.find("input[type='checkbox']:checked").each(function() {
+              that.pagination.filter.push($(this).val());
+            });*/
+            var values = that.filter.find('input').serializeArray();
+            values.forEach(function(obj) {
+              if (obj.name.endsWith('[]')) {
+                var name = obj.name.slice(0, -2);
+                that.pagination.filter[name] = that.pagination.filter[name] || [];
+                that.pagination.filter[name].push(obj.value);
+              } else {
+                that.pagination.filter[obj.name] = obj.value;
+              }
+
+            });
+            if (that.last_key !== 13) {
+              that.currentPage = 1;
+            }
+            that.last_val = val;
+            that.pagination.currentPage = that.currentPage;
+            that.pagination.val = val;
+            clearTimeout(that.timer);
+            if (opts.cache) {
+              if (val in that.cache) {
+                suggest(that.cache[val]); return;
+              }
+              // no requests if previous suggestions were empty
+              for (var i = 1; i < val.length-opts.minChars; i++) {
+                var part = val.slice(0, val.length - i);
+                if (part in that.cache && !that.cache[part].list.length) {
+                  suggest([]); return;
+                }
+              }
+            }
+            that.timer = setTimeout(function() {
+              opts.source(that.pagination, suggest)
+            }, opts.delay);
+          } else {
+            that.sc.hide();
+            that.nav.hide();
+          }
+        }
+      });
+    });
+  }
+
+  $.fn.autocomplete.defaults = {
+    source: 0,
+    minChars: 3,
+    delay: 150,
+    cache: 1,
+    menuClass: '',
+    pageCount: 10,
+    renderItem: function(item, search) {
+      // escape special characters
+      search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+      var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+      return $('<div class="autocomplete-suggestion" data-val="' + item + '">' + item.replace(re, "<b>$1</b>") + '</div>');
+    },
+    onSelect: function(e, term, item) {}
+  };
+}(jQuery);
+
 /* ========================================================================
  * Bootstrap: alert.js v3.3.7
  * http://getbootstrap.com/javascript/#alerts
@@ -1325,50 +1645,47 @@ if (typeof jQuery === 'undefined') {
   }
 
   var DATE_HEADER_TEMPLATE = '<button type="button" class="close" data-dismiss="modal"><span class="modal-close">&times;</span></button>';
-  DATE_HEADER_TEMPLATE +=    '<h4 class="modal-title"></h4>';
-  DATE_HEADER_TEMPLATE +=    '<div class="calendar-details container-fluid" data-date-type = "single">';
-  DATE_HEADER_TEMPLATE +=      '<div class= "input-group inputform inputdateform">';
+  DATE_HEADER_TEMPLATE +=    '<h4 class="modal-title">&nbsp;</h4>';
+  DATE_HEADER_TEMPLATE +=    '<div class="calendar-details container-fluid" data-date-type="single">';
+  DATE_HEADER_TEMPLATE +=      '<div class= "input-group">';
   DATE_HEADER_TEMPLATE +=        '<input type="text" class="form-control"/>';
   DATE_HEADER_TEMPLATE +=        '<span class="input-group-addon sr-only"></span>';
   DATE_HEADER_TEMPLATE +=      '</div>';
   DATE_HEADER_TEMPLATE +=    '</div>';
 
   var DATE_RANGE_HEADER_TEMPLATE = '<button type="button" class="close" data-dismiss="modal"><span class="modal-close">&times;</span></button>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<h4 class="modal-title"></h4>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<div class="calendar-details container-fluid" data-date-type = "range">';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<div class="input-group inputform inputdateform">';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<input type="text" class="form-control"/>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<span class="input-group-addon">→</span>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<input type="text" class="form-control"/>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '</div>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<div class="selectdateform">';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<select class="form-control range">';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<option value="none"></option>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<option value="toDay"></option>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<option value="lastWeek"></option>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<option value="lastMonth"></option>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<option value="last7day"></option>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<option value="last30day"></option>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<option value="lastYear"></option>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '</select>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '</div>';
+  DATE_RANGE_HEADER_TEMPLATE +=    '<h4 class="modal-title">&nbsp;</h4>';
+  DATE_RANGE_HEADER_TEMPLATE +=    '<div class="calendar-details container-fluid" data-date-type="range">';
+  DATE_RANGE_HEADER_TEMPLATE +=      '<div class="row">';
+  DATE_RANGE_HEADER_TEMPLATE +=        '<div class="col-md-6">';    
+  DATE_RANGE_HEADER_TEMPLATE +=          '<div class="input-group">';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<input type="text" class="form-control"/>';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<span class="input-group-addon">→</span>';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<input type="text" class="form-control"/>';
+  DATE_RANGE_HEADER_TEMPLATE +=          '</div>';
+  DATE_RANGE_HEADER_TEMPLATE +=        '</div>';
+  DATE_RANGE_HEADER_TEMPLATE +=        '<div class="col-md-6">';       
+  DATE_RANGE_HEADER_TEMPLATE +=          '<select class="form-control range">';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<option value="none"></option>';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<option value="toDay"></option>';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<option value="lastWeek"></option>';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<option value="lastMonth"></option>';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<option value="last7day"></option>';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<option value="last30day"></option>';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<option value="lastYear"></option>';
+  DATE_RANGE_HEADER_TEMPLATE +=          '</select>';
+  DATE_RANGE_HEADER_TEMPLATE +=        '</div>';  
+  DATE_RANGE_HEADER_TEMPLATE +=      '</div>';
   DATE_RANGE_HEADER_TEMPLATE +=    '</div>';
 
-  var MODAL_TEMPLATE = '<div class="modal modal-right fade" id="dateWidget" tabindex="-1" role="dialog">';
-  MODAL_TEMPLATE +=    '<div class="modal-dialog" role = "document">';
-  MODAL_TEMPLATE +=    '<div class="modal-content">';
-  MODAL_TEMPLATE +=    '<div class="modal-header">';
-  MODAL_TEMPLATE +=    '<div class="datepicker-header">';
-  MODAL_TEMPLATE +=    '</div>';
-  MODAL_TEMPLATE +=    '<div class="datepicker-header-margin">';
-  MODAL_TEMPLATE +=    '</div>';
-  MODAL_TEMPLATE +=    '</div>';
-  MODAL_TEMPLATE +=    '<div class="modal-body container-fluid">';
-  MODAL_TEMPLATE +=    '</div>';
-  MODAL_TEMPLATE +=    '<div class="modal-footer">';
-  MODAL_TEMPLATE +=    '</div>';
-  MODAL_TEMPLATE +=    '</div><!-- modal-content -->';
-  MODAL_TEMPLATE +=    '</div><!-- modal-dialog -->';
+  var MODAL_TEMPLATE = '<div class="modal modal-right datepicker-modal fade" id="dateWidget" tabindex="-1" role="dialog">';
+  MODAL_TEMPLATE +=      '<div class="modal-dialog" role="document">';
+  MODAL_TEMPLATE +=        '<div class="modal-content">';
+  MODAL_TEMPLATE +=          '<div class="modal-header"></div>';
+  MODAL_TEMPLATE +=          '<div class="modal-body"></div>';
+  MODAL_TEMPLATE +=          '<div class="modal-footer"></div>';
+  MODAL_TEMPLATE +=        '</div><!-- modal-content -->';
+  MODAL_TEMPLATE +=      '</div><!-- modal-dialog -->';
   MODAL_TEMPLATE +=    '</div>';
 
   var DatePicker = function(element, options) {
@@ -1477,408 +1794,397 @@ if (typeof jQuery === 'undefined') {
     this.updateView();
   };
 
-  DatePicker.prototype = {
-    constructor : DatePicker,
+  /**
+   * Defines startdate, updateView, Element and InputsForms
+   * @param {String_Object} startDate the date use for modify startDate in datepicker
+   */
+  DatePicker.prototype.setStartDate = function (startDate) {
+    if (typeof startDate === 'string') {
+      this.startDate = moment(startDate, this.locale.format)
+    }
+    if (typeof startDate === 'object') {
+      this.startDate = moment(startDate);
+    }
+    this.startDate = this.startDate.startOf('day');
 
-    /**
-     * Defines startdate, updateView, Element and InputsForms
-     * @param {String_Object} startDate the date use for modify startDate in datepicker
-     */
-    setStartDate: function (startDate) {
-      if (typeof startDate === 'string') {
-        this.startDate = moment(startDate, this.locale.format)
-      }
-      if (typeof startDate === 'object') {
-        this.startDate = moment(startDate);
-      }
-      this.startDate = this.startDate.startOf('day');
+    this.updateView();
+    this.updateElement();
+    this.updateFormInputs();
+  };
 
-      this.updateView();
-      this.updateElement();
-      this.updateFormInputs();
-    },
+  /**
+   * Get StartDate,
+   * @return {object} startDate
+   */
+  DatePicker.prototype.getStartDate = function() {
+    return this.startDate
+  };
 
-    /**
-     * Get StartDate,
-     * @return {object} startDate
-     */
-    getStartDate: function() {
-      return this.startDate
-    },
+  /**
+   * Defines endDate, updateView, Element and InputsForms
+   * @param {String_Object} endDate The date use for modify endDate in datepicker
+   */
+  DatePicker.prototype.setEndDate = function(endDate) {
+    if (typeof endDate === 'string') {
+      this.endDate = moment(endDate, this.locale.format)
+    }
+    if (typeof endDate === 'object') {
+      this.endDate = moment(endDate);
+    }
+    if (this.endDate.isBefore(this.startDate)) {
+      this.endDate = this.startDate.clone();
+    }
+    this.startDate = this.startDate.startOf('day');
 
-    /**
-     * Defines endDate, updateView, Element and InputsForms
-     * @param {String_Object} endDate The date use for modify endDate in datepicker
-     */
-    setEndDate: function(endDate) {
-      if (typeof endDate === 'string') {
-        this.endDate = moment(endDate, this.locale.format)
-      }
-      if (typeof endDate === 'object') {
-        this.endDate = moment(endDate);
-      }
-      if (this.endDate.isBefore(this.startDate)) {
-        this.endDate = this.startDate.clone();
-      }
-      this.startDate = this.startDate.startOf('day');
+    this.previousRightTime = this.endDate.clone();
+    this.updateView();
+    this.updateElement();
+    this.updateFormInputs();
+  };
 
-      this.previousRightTime = this.endDate.clone();
-      this.updateView();
-      this.updateElement();
-      this.updateFormInputs();
-    },
+  /**
+   * Get endDate,
+   * @return {object} endDate
+   */
+  DatePicker.prototype.getEndDate = function() {
+    return this.endDate
+  };
 
-    /**
-     * Get endDate,
-     * @return {object} endDate
-     */
-    getEndDate: function() {
-      return this.endDate
-    },
+  //
+  //function to update view
+  //argument: none
+  //return: none
+  //update months and calendars
+  DatePicker.prototype.updateView = function() {
+    this.updateMonthsInView();
+    this.updateCalendars();
+  };
 
-    //
-    //function to update view
-    //argument: none
-    //return: none
-    //update months and calendars
-    updateView: function() {
-      this.updateMonthsInView();
-      this.updateCalendars();
-    },
+  //
+  //function to update month
+  //arguments: none
+  //return: none
+  //update month when the day selected was not in the first calendar
 
-    //
-    //function to update month
-    //arguments: none
-    //return: none
-    //update month when the day selected was not in the first calendar
+  DatePicker.prototype.updateMonthsInView = function() {
+    if (this.endDate) {
+      //Si aucune modification ne fait rien
+      if (!this.singleDatePicker && this.calendar[0].month &&
+        (this.startDate.format('YYYY-MM') == this.calendar[0].month.format('YYYY-MM'))) {
+        for (var i = 1; i<this.numberOfMonths; i++ ) {
+          if (this.calendar[i].month &&
+          (this.endDate.format('YYYY-MM') == this.calendar[i].month.format('YYYY-MM'))) {
+            return;
 
-    updateMonthsInView: function() {
-      if (this.endDate) {
-        //Si aucune modification ne fait rien
-        if (!this.singleDatePicker && this.calendar[0].month &&
-          (this.startDate.format('YYYY-MM') == this.calendar[0].month.format('YYYY-MM'))) {
-          for (var i = 1; i<this.numberOfMonths; i++ ) {
-            if (this.calendar[i].month &&
-            (this.endDate.format('YYYY-MM') == this.calendar[i].month.format('YYYY-MM'))) {
-              return;
-
-            }
           }
         }
+      }
 
+      this.calendar[0].month = this.startDate.clone().date(2);
+      for (var i = 1; i< this.numberOfMonths; i++ ) {
+        this.calendar[i].month = this.startDate.clone().date(2).add(i, 'month');
+      }
+      this.positionEl.parent().scrollTop(0);
+    } else {
+      if (this.calendar[0].month.format('YYYY-MM') != this.startDate.format('YYYY-MM')){
         this.calendar[0].month = this.startDate.clone().date(2);
         for (var i = 1; i< this.numberOfMonths; i++ ) {
-          this.calendar[i].month = this.startDate.clone().date(2).add(i, 'month');
+          this.calendar[i].month = this.startDate.clone().date(2).add(i , 'month');
         }
         this.positionEl.parent().scrollTop(0);
-      } else {
-        if (this.calendar[0].month.format('YYYY-MM') != this.startDate.format('YYYY-MM')){
-          this.calendar[0].month = this.startDate.clone().date(2);
-          for (var i = 1; i< this.numberOfMonths; i++ ) {
-            this.calendar[i].month = this.startDate.clone().date(2).add(i , 'month');
-          }
-          this.positionEl.parent().scrollTop(0);
-        }
       }
-    },
+    }
+  };
+
+  //
+  //Function to update Calendars one par one
+  //argument: none
+  //return: none
+
+  DatePicker.prototype.updateCalendars = function() {
+    for (var i = 0; i< this.numberOfMonths; i++) {
+      this.renderCalendar(i);
+    }
+    if (this.endDate == null) {
+      return;
+    }
+  };
+
+  //
+  //function to create and display calendar in dom
+  //argument: nbrCalendar (int)
+  //return: none
+
+  DatePicker.prototype.renderCalendar = function(nbrCalendar) {
+    var calendar = this.calendar[nbrCalendar];
+    var month = calendar.month.month();
+    var year = calendar.month.year();
+    var daysInMonth = moment([year, month]).daysInMonth();
+    var firstDay = moment([year, month, 1]);
+    var lastDay = moment([year, month, daysInMonth]);
+    var lastMonth = moment(firstDay).subtract(1, 'month').month();
+    var lastYear = moment(firstDay).subtract(1, 'month').year();
+    var daysInLastMonth = moment([lastYear, lastMonth]).daysInMonth();
+    var dayOfWeek = firstDay.day();
+
+    //initialize a 6 rows x 7 columns array for the calendar
+    var calendar = [];
+    calendar.firstDay = firstDay;
+    calendar.lastDay = lastDay;
+
+    //Clean old calendar;
+    for (var i = 0; i < 6; i++) {
+      calendar[i] = [];
+    }
+
+    //populate the calendar with date objects
+    var startDay = daysInLastMonth - dayOfWeek + this.locale.firstDay + 1;
+    if (startDay > daysInLastMonth) {
+      startDay -= 7;
+    }
+
+    if (dayOfWeek == this.locale.firstDay) {
+      startDay = daysInLastMonth - 6;
+    }
+
+    var curDate = moment([lastYear, lastMonth, startDay, 12]);
+
+    var col, row;
+    for (var i = 0, col = 0, row = 0; i < 42; i++, col++, curDate = moment(curDate).add(24, 'hour')) {
+      if (i > 0 && col % 7 === 0) {
+          col = 0;
+          row++;
+      }
+      calendar[row][col] = curDate.clone()
+      curDate.hour(12);
+    }
+
+    //make the calendar object available to hoverDate/clickDate
+    this.calendar[nbrCalendar].calendar = calendar;
 
     //
-    //Function to update Calendars one par one
-    //argument: none
-    //return: none
-
-    updateCalendars: function() {
-      for (var i = 0; i< this.numberOfMonths; i++) {
-        this.renderCalendar(i);
-      }
-      if (this.endDate == null) {
-        return;
-      }
-    },
-
+    // Display the calendar
     //
-    //function to create and display calendar in dom
-    //argument: nbrCalendar (int)
-    //return: none
 
-    renderCalendar: function(nbrCalendar) {
-      var calendar = this.calendar[nbrCalendar];
-      var month = calendar.month.month();
-      var year = calendar.month.year();
-      var daysInMonth = moment([year, month]).daysInMonth();
-      var firstDay = moment([year, month, 1]);
-      var lastDay = moment([year, month, daysInMonth]);
-      var lastMonth = moment(firstDay).subtract(1, 'month').month();
-      var lastYear = moment(firstDay).subtract(1, 'month').year();
-      var daysInLastMonth = moment([lastYear, lastMonth]).daysInMonth();
-      var dayOfWeek = firstDay.day();
+    var html = '<table class="table-condensed">';
+    html += '<thead>';
+    html += '<tr>';
 
-      //initialize a 6 rows x 7 columns array for the calendar
-      var calendar = [];
-      calendar.firstDay = firstDay;
-      calendar.lastDay = lastDay;
 
-      //Clean old calendar;
-      for (var i = 0; i < 6; i++) {
-          calendar[i] = [];
-      }
+    if (nbrCalendar == 0) {
+        html += '<th class="prev available"><i>←</i></th>';
+    } else {
+        html += '<th></th>';
+    }
 
-      //populate the calendar with date objects
-      var startDay = daysInLastMonth - dayOfWeek + this.locale.firstDay + 1;
-      if (startDay > daysInLastMonth)
-          startDay -= 7;
+    var dateHtml = this.locale.monthNames[calendar[1][1].month()] + calendar[1][1].format(" YYYY");
 
-      if (dayOfWeek == this.locale.firstDay)
-          startDay = daysInLastMonth - 6;
+    html += '<th colspan="5" class="month">' + dateHtml + '</th>';
+    if (nbrCalendar == 0) {
+        html += '<th class="next available"><i>→</i></th>';
+    } else {
+        html += '<th></th>';
+    }
 
-      var curDate = moment([lastYear, lastMonth, startDay, 12]);
+    html += '</tr>';
+    html += '<tr>';
 
-      var col, row;
-      for (var i = 0, col = 0, row = 0; i < 42; i++, col++, curDate = moment(curDate).add(24, 'hour')) {
-          if (i > 0 && col % 7 === 0) {
-              col = 0;
-              row++;
-          }
-          calendar[row][col] = curDate.clone()
-          curDate.hour(12);
 
-      }
 
-      //make the calendar object available to hoverDate/clickDate
-      this.calendar[nbrCalendar].calendar = calendar;
+    $.each(this.locale.daysOfWeek, function(index, dayOfWeek) {
+        html += '<th>' + dayOfWeek + '</th>';
+    });
 
-      //
-      // Display the calendar
-      //
+    html += '</tr>';
+    html += '</thead>';
+    html += '<tbody>';
 
-      var html = '<table class="table-condensed">';
-      html += '<thead>';
+    for (var row = 0; row < 6; row++) {
       html += '<tr>';
-
-
-      if (nbrCalendar == 0) {
-          html += '<th class="prev available"><i>←</i></th>';
-      } else {
-          html += '<th></th>';
-      }
-
-      var dateHtml = this.locale.monthNames[calendar[1][1].month()] + calendar[1][1].format(" YYYY");
-
-      html += '<th colspan="5" class="month">' + dateHtml + '</th>';
-      if (nbrCalendar == 0) {
-          html += '<th class="next available"><i>→</i></th>';
-      } else {
-          html += '<th></th>';
-      }
-
-      html += '</tr>';
-      html += '<tr>';
-
-
-
-      $.each(this.locale.daysOfWeek, function(index, dayOfWeek) {
-          html += '<th>' + dayOfWeek + '</th>';
-      });
-
-      html += '</tr>';
-      html += '</thead>';
-      html += '<tbody>';
-
-      for (var row = 0; row < 6; row++) {
-          html += '<tr>';
-
-          for (var col = 0; col < 7; col++) {
-
-              var classes = [];
-
-              //highlight today's date
-              if (calendar[row][col].isSame(new Date(), "day")) {
-                  classes.push('today');
-                }
-              //highlight weekends
-              if (calendar[row][col].isoWeekday() > 5) {
-                  classes.push('weekend');
-                }
-
-              //grey out the dates in other months displayed at beginning and end of this calendar
-              if (calendar[row][col].month() != calendar[1][1].month()) {
-                  classes.push('off');
-                }
-
-              //highlight the currently selected start date
-              if (calendar[row][col].format('YYYY-MM-DD') == this.startDate.format('YYYY-MM-DD')) {
-                  classes.push('active', 'start-date');
-                }
-
-              //highlight the currently selected end date
-              if (this.endDate != null && calendar[row][col].format('YYYY-MM-DD') == this.endDate.format('YYYY-MM-DD')) {
-                  classes.push('active', 'end-date');
-                }
-
-              //highlight dates in-between the selected dates
-              if (this.endDate != null && calendar[row][col] > this.startDate && calendar[row][col] < this.endDate) {
-                  classes.push('in-range');
-                }
-
-              var cname = '', disabled = false;
-              for (var i = 0; i < classes.length; i++) {
-                  cname += classes[i] + ' ';
-                  if (classes[i] == 'disabled')
-                      disabled = true;
-              }
-              if (!disabled) {
-                  cname += 'available';
-                }
-              html += '<td class="' + cname.replace(/^\s+|\s+$/g, '') + '" data-title="' + 'r' + row + 'c' + col + '">' + calendar[row][col].date() + '</td>';
-
+      for (var col = 0; col < 7; col++) {
+        var classes = [];
+        //highlight today's date
+        if (calendar[row][col].isSame(new Date(), "day")) {
+          classes.push('today');
+        }
+        //highlight weekends
+        if (calendar[row][col].isoWeekday() > 5) {
+          classes.push('weekend');
+        }
+        //grey out the dates in other months displayed at beginning and end of this calendar
+        if (calendar[row][col].month() != calendar[1][1].month()) {
+          classes.push('off');
+        }
+        //highlight the currently selected start date
+        if (calendar[row][col].format('YYYY-MM-DD') == this.startDate.format('YYYY-MM-DD')) {
+          classes.push('active', 'start-date');
+        }
+        //highlight the currently selected end date
+        if (this.endDate != null && calendar[row][col].format('YYYY-MM-DD') == this.endDate.format('YYYY-MM-DD')) {
+          classes.push('active', 'end-date');
+        }
+        //highlight dates in-between the selected dates
+        if (this.endDate != null && calendar[row][col] > this.startDate && calendar[row][col] < this.endDate) {
+          classes.push('in-range');
+        }
+        var cname = '';
+        var disabled = false;
+        for (var i = 0; i < classes.length; i++) {
+          cname += classes[i] + ' ';
+          if (classes[i] == 'disabled') {
+            disabled = true;
           }
-          html += '</tr>';
-      }
-
-      html += '</tbody>';
-      html += '</table>';
-      var classCalendar = "calendar"+ nbrCalendar;
-      this.container.find('.calendar.'+ classCalendar + ' .calendar-table').html(html);
-
-
-    },
-
-    //
-    //function to display previous month
-    //argument: events click
-    //return: none
-    //update all calendars with -1 months
-
-    clickPrev: function(e) {
-      for (var i = 0; i< this.numberOfMonths; i++) {
-        this.calendar[i].month.subtract(1, 'month');
-      }
-      this.updateCalendars();
-    },
-
-    //
-    //
-    //function to display next month
-    //argument: events click
-    //return: none
-    //update all calendars with +1 months
-
-
-    clickNext: function(e){
-      for (var i = 0; i< this.numberOfMonths; i++) {
-        this.calendar[i].month.add(1, 'month');
-      }
-      this.updateCalendars();
-    },
-
-    //
-    //function click on date, update view, original element, inputs forms
-    //argument: event click
-    //return: none
-    //modify calendars and view when a event click is done on a date
-
-    clickDate: function(e){
-      var title = $(e.target).attr('data-title');
-      var row = title.substr(1, 1);
-      var col = title.substr(3, 1);
-      var cal = $(e.target).parents('.calendar');
-      var date;
-      for (var i = 0; i< this.numberOfMonths; i++) {
-        if (cal.hasClass('calendar'+i)) {
-          date = this.calendar[i].calendar[row][col];
         }
-      }
-      if (this.endDate || date.isBefore(this.startDate, 'day')) {
-        this.endDate = null;
-        this.setStartDate(date.clone());
-      } else if (!this.endDate && date.isBefore(this.startDate)) {
-        this.setEndDate(this.startDate.clone());
-      } else {
-        this.setEndDate(date.clone())
-      }
-      if (this.singleDatePicker) {
-        this.setEndDate(this.startDate);
-      }
-      this.updateView();
-      this.updateFormInputs();
-      if (this.endDate) {
-        this.updateElement();
-      }
-      e.stopPropagation();
-    },
-
-    //
-    //Update inputs forms
-    //argument: none
-    //return: none
-    //after clickDate function and setstart/endDate Modify the inputs form
-
-    updateFormInputs: function() {
-      if (this.inputform && this.inputform.hasClass('inputform')) {
-        this.inputform.find('input').first().val(this.startDate.format(this.locale.format));
-        if (this.endDate) {
-          this.inputform.find('input').last().val(this.endDate.format(this.locale.format));
+        if (!disabled) {
+          cname += 'available';
         }
-      } else if (this.inputform) {
-        this.inputform.find('input').first().val(this.startDate.format(this.locale.format));
-      }
-    },
+        html += '<td class="' + cname.replace(/^\s+|\s+$/g, '') + '" data-title="' + 'r' + row + 'c' + col + '">' + calendar[row][col].date() + '</td>';
 
-    //
-    // Update view if inputs forms changed
-    //argument: none
-    //return: none
-    // If inputs form change, execute setStart/endDate and update view and element
-
-    formInputsChanged: function() {
-      if (this.inputform && this.inputform.hasClass('inputform')) {
-        var start = moment(this.inputform.find('input').first().val(), this.locale.format);
-        var end = moment(this.inputform.find('input').last().val(), this.locale.format);
-        if (start.isValid() && end.isValid()) {
-          if (!this.singleDatePicker && end.isBefore(start)) {
-            start = end.clone();
-          }
-          this.setStartDate(start);
-          this.setEndDate(end);
-        }
       }
-      this.updateView();
+      html += '</tr>';
+    }
+
+    html += '</tbody>';
+    html += '</table>';
+    var classCalendar = "calendar"+ nbrCalendar;
+    this.container.find('.calendar.'+ classCalendar + ' .calendar-table').html(html);
+  };
+
+  //
+  //function to display previous month
+  //argument: events click
+  //return: none
+  //update all calendars with -1 months
+
+  DatePicker.prototype.clickPrev = function(e) {
+    for (var i = 0; i< this.numberOfMonths; i++) {
+      this.calendar[i].month.subtract(1, 'month');
+    }
+    this.updateCalendars();
+  };
+
+  //
+  //
+  //function to display next month
+  //argument: events click
+  //return: none
+  //update all calendars with +1 months
+
+
+  DatePicker.prototype.clickNext = function(e) {
+    for (var i = 0; i< this.numberOfMonths; i++) {
+      this.calendar[i].month.add(1, 'month');
+    }
+    this.updateCalendars();
+  };
+
+  //
+  //function click on date, update view, original element, inputs forms
+  //argument: event click
+  //return: none
+  //modify calendars and view when a event click is done on a date
+
+  DatePicker.prototype.clickDate = function(e) {
+    var title = $(e.target).attr('data-title');
+    var row = title.substr(1, 1);
+    var col = title.substr(3, 1);
+    var cal = $(e.target).parents('.calendar');
+    var date;
+    for (var i = 0; i< this.numberOfMonths; i++) {
+      if (cal.hasClass('calendar'+i)) {
+        date = this.calendar[i].calendar[row][col];
+      }
+    }
+    if (this.endDate || date.isBefore(this.startDate, 'day')) {
+      this.endDate = null;
+      this.setStartDate(date.clone());
+    } else if (!this.endDate && date.isBefore(this.startDate)) {
+      this.setEndDate(this.startDate.clone());
+    } else {
+      this.setEndDate(date.clone())
+    }
+    if (this.singleDatePicker) {
+      this.setEndDate(this.startDate);
+    }
+    this.updateView();
+    this.updateFormInputs();
+    if (this.endDate) {
       this.updateElement();
-    },
+    }
+    e.stopPropagation();
+  };
 
-    //
-    //update Original Element
-    //argument: none
-    //return: none
-    //update the original element when an action modify the calendars or the input forms
+  //
+  //Update inputs forms
+  //argument: none
+  //return: none
+  //after clickDate function and setstart/endDate Modify the inputs form
 
-    updateElement: function(){
-      if (this.element.is('input') && this.singleDatePicker) {
-        this.element.val(this.startDate.format("YYYY-MM-DD"));
-        this.element.trigger('change');
-      } else if (this.element.is('input') && !this.singleDatePicker) {
-        this.element.val(this.startDate.format("YYYY-MM-DD") + this.locale.separator + this.endDate.format("YYYY-MM-DD"));
-        this.element.trigger('change');
-      } else if (this.element.hasClass('input-group') && !this.singleDatePicker) {
-        this.element.find('input').first().val(this.startDate.format("YYYY-MM-DD"))
-        if (this.endDate) {
-          this.element.find('input').last().val(this.endDate.format("YYYY-MM-DD"))
-        }
-      } else if (this.element.hasClass('input-group')) {
-        this.element.find('input').first().val(this.startDate.format("YYYY-MM-DD"))
+  DatePicker.prototype.updateFormInputs = function() {
+    console.log('updateFormInputs', this.inputform)
+    if (this.inputform && this.inputform.length === 2) {
+      this.inputform.first().val(this.startDate.format(this.locale.format));
+      if (this.endDate) {
+        this.inputform.last().val(this.endDate.format(this.locale.format));
       }
-    },
+    } else if (this.inputform) {
+      this.inputform.val(this.startDate.format(this.locale.format));
+    }
+  };
 
-    //
-    //Delete Datepicker
-    //
+  //
+  // Update view if inputs forms changed
+  //argument: none
+  //return: none
+  // If inputs form change, execute setStart/endDate and update view and element
 
-    remove: function(){
-      this.container.remove();
-      this.element.off('.datepicker');
-      this.element.removeData();
-    },
+  DatePicker.prototype.formInputsChanged = function() {
+    if (this.inputform) {
+      var start = moment(this.inputform.first().val(), this.locale.format);
+      var end = moment(this.inputform.last().val(), this.locale.format);
+      if (start.isValid() && end.isValid()) {
+        if (!this.singleDatePicker && end.isBefore(start)) {
+          start = end.clone();
+        }
+        this.setStartDate(start);
+        this.setEndDate(end);
+      }
+    }
+    this.updateView();
+    this.updateElement();
+  };
 
+  //
+  //update Original Element
+  //argument: none
+  //return: none
+  //update the original element when an action modify the calendars or the input forms
+
+  DatePicker.prototype.updateElement = function() {
+    if (this.element.is('input') && this.singleDatePicker) {
+      this.element.val(this.startDate.format("YYYY-MM-DD"));
+      this.element.trigger('change');
+    } else if (this.element.is('input') && !this.singleDatePicker) {
+      this.element.val(this.startDate.format("YYYY-MM-DD") + this.locale.separator + this.endDate.format("YYYY-MM-DD"));
+      this.element.trigger('change');
+    } else if (this.element.hasClass('input-group') && !this.singleDatePicker) {
+      this.element.find('input').first().val(this.startDate.format("YYYY-MM-DD"));
+      if (this.endDate) {
+        this.element.find('input').last().val(this.endDate.format("YYYY-MM-DD"));
+      }
+    } else if (this.element.hasClass('input-group')) {
+      this.element.find('input').first().val(this.startDate.format("YYYY-MM-DD"));
+    }
+  };
+
+  //
+  //Delete Datepicker
+  //
+
+  DatePicker.prototype.remove = function(){
+    this.container.remove();
+    this.element.off('.datepicker');
+    this.element.removeData();
   };
 
   $.fn.datepicker = function(options, callback) {
@@ -1897,7 +2203,7 @@ if (typeof jQuery === 'undefined') {
     if ($(this).parent().hasClass("input-group")){
       $this = $(this).parent();
     }
-    var title = $("label[for='" + $this.attr("id") + "']").text() || "";
+    var title = $("label[for='" + $this.attr("id") + "']").text();
     var href = $this.attr('href');
     e.preventDefault();
 
@@ -1906,17 +2212,22 @@ if (typeof jQuery === 'undefined') {
 
     // check if datepicker require a single date or range
     if ($this.find('input').length !== 2) {
-      $modal.find(".datepicker-header").html(DATE_HEADER_TEMPLATE);
-      $modal.find(".modal-title").text(title);
+      var $header = $(DATE_HEADER_TEMPLATE);
+      $modal.find(".modal-header").append($header);
+      if (title) {
+        $modal.find(".modal-title").text(title);
+      }
       $this.datepicker({
         singleDatePicker: true,
         numberOfMonths : 3,
-        positionEl : $(".modal-body"),
-        inputform: $(".inputform")
+        positionEl : $modal.find(".modal-body"),
+        inputform: $header.find("input")
       });
     } else {
       var $header = $(DATE_RANGE_HEADER_TEMPLATE);
-      $header.find(".modal-title").text(title);
+      if (title) {
+        $modal.find(".modal-title").text(title);
+      }
       var lang = $.fn.i18n.language;
       $header.find('.range option[value="none"]').text($.fn.i18n.langs[lang].define);
       $header.find('.range option[value="toDay"]').text($.fn.i18n.langs[lang].today);
@@ -1926,16 +2237,14 @@ if (typeof jQuery === 'undefined') {
       $header.find('.range option[value="last30day"]').text($.fn.i18n.langs[lang].last30day);
       $header.find('.range option[value="lastYear"]').text($.fn.i18n.langs[lang].lastYear);
 
-      $modal.find(".datepicker-header").html($header);
+      $modal.find(".modal-header").html($header);
       var $calendar = $this.datepicker({
         numberOfMonths: 6,
-        positionEl: $(".modal-body"),
-        inputform: $(".inputform")
+        positionEl: $modal.find(".modal-body"),
+        inputform: $header.find("input")
       });
       var $range = $header.find(".range");
-      console.log('range', $range);
       $range.on('change', function() {
-        console.log('change');
         var startDate, endDate
         switch($range.val()) {
           case "toDay":

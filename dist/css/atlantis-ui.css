@@ -2477,9 +2477,6 @@ a.btn.disabled,
 fieldset[disabled] a.btn {
   pointer-events: none;
 }
-.btn-icon {
-  padding-left: 5px;
-}
 .btn-icon::before {
   display: inline-block;
   font: normal normal normal 14px/1.42857143 FontAwesome;
@@ -2938,6 +2935,21 @@ tbody.collapse.in {
        -o-transition-property: height, visibility;
           transition-property: height, visibility;
 }
+.datepicker-modal .modal-header {
+  position: fixed;
+  top: 0;
+  right: 15px;
+  left: 0;
+  z-index: 1050;
+  padding: 15px;
+  background-color: #1c58b2;
+}
+.datepicker-modal .modal-content {
+  background-color: #1c58b2;
+}
+.datepicker-modal .modal-body {
+  margin-top: 75px;
+}
 .datepicker {
   padding: 4px;
   margin-top: 1px;
@@ -3030,27 +3042,6 @@ tbody.collapse.in {
 .datepicker.show-calendar .calendar {
   display: block;
 }
-.datepicker-header {
-  position: fixed;
-  top: 0;
-  right: 15px;
-  left: 0;
-  z-index: 1050;
-  padding: 15px;
-  background-color: white;
-}
-.datepicker-header-margin {
-  margin-bottom: 75px;
-}
-.inputdateform {
-  float: left;
-  width: 60%;
-  padding-right: 10px;
-}
-.selectdateform {
-  float: left;
-  width: 40%;
-}
 input[type="date"]::-webkit-clear-button {
   display: none;
 }
@@ -3112,6 +3103,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin: 9px 0;
   overflow: hidden;
   background-color: #e5e5e5;
+}
+.dropdown-menu > li > div {
+  margin: 10px 20px;
 }
 .dropdown-menu > li > a {
   display: block;
@@ -5570,6 +5564,62 @@ button.close {
   cursor: pointer;
   background: transparent;
   border: 0;
+}
+.autocomplete-suggestions {
+  /* core styles should not be changed */
+  position: absolute;
+  z-index: 9999;
+  display: none;
+  min-width: 500px;
+  max-height: 254px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+  overflow-y: auto;
+  text-align: left;
+  cursor: default;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-top: 0;
+  -webkit-box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
+          box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
+}
+.pagination-autocomplete {
+  position: absolute;
+  z-index: 9999;
+  /* core styles should not be changed */
+  display: none;
+  min-width: 500px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+  overflow-y: auto;
+  text-align: left;
+  cursor: default;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-top: 0;
+  -webkit-box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
+          box-shadow: -1px 1px 3px rgba(0, 0, 0, .1);
+}
+.autocomplete-suggestion {
+  position: relative;
+  padding: 0 .6em;
+  overflow: hidden;
+  font-size: 1.02em;
+  line-height: 23px;
+  color: #333;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.autocomplete-suggestion b {
+  font-weight: normal;
+  color: #1f8dd6;
+}
+.autocomplete-suggestion.selected {
+  background: #f0f0f0;
 }
 .modal-open {
   overflow: hidden;

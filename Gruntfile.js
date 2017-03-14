@@ -111,6 +111,7 @@ module.exports = function (grunt) {
           'js/i18n/de.js',
           'js/i18n/es.js',
           'js/transition.js',
+          'js/autocomplete.js',
           'js/alert.js',
           'js/button.js',
           'js/carousel.js',

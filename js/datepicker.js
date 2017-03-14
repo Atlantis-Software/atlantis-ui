@@ -6,50 +6,47 @@
   }
 
   var DATE_HEADER_TEMPLATE = '<button type="button" class="close" data-dismiss="modal"><span class="modal-close">&times;</span></button>';
-  DATE_HEADER_TEMPLATE +=    '<h4 class="modal-title"></h4>';
-  DATE_HEADER_TEMPLATE +=    '<div class="calendar-details container-fluid" data-date-type = "single">';
-  DATE_HEADER_TEMPLATE +=      '<div class= "input-group inputform inputdateform">';
+  DATE_HEADER_TEMPLATE +=    '<h4 class="modal-title">&nbsp;</h4>';
+  DATE_HEADER_TEMPLATE +=    '<div class="calendar-details container-fluid" data-date-type="single">';
+  DATE_HEADER_TEMPLATE +=      '<div class= "input-group">';
   DATE_HEADER_TEMPLATE +=        '<input type="text" class="form-control"/>';
   DATE_HEADER_TEMPLATE +=        '<span class="input-group-addon sr-only"></span>';
   DATE_HEADER_TEMPLATE +=      '</div>';
   DATE_HEADER_TEMPLATE +=    '</div>';
 
   var DATE_RANGE_HEADER_TEMPLATE = '<button type="button" class="close" data-dismiss="modal"><span class="modal-close">&times;</span></button>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<h4 class="modal-title"></h4>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<div class="calendar-details container-fluid" data-date-type = "range">';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<div class="input-group inputform inputdateform">';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<input type="text" class="form-control"/>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<span class="input-group-addon">→</span>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<input type="text" class="form-control"/>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '</div>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<div class="selectdateform">';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<select class="form-control range">';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<option value="none"></option>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<option value="toDay"></option>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<option value="lastWeek"></option>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<option value="lastMonth"></option>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<option value="last7day"></option>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<option value="last30day"></option>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '<option value="lastYear"></option>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '</select>';
-  DATE_RANGE_HEADER_TEMPLATE +=    '</div>';
+  DATE_RANGE_HEADER_TEMPLATE +=    '<h4 class="modal-title">&nbsp;</h4>';
+  DATE_RANGE_HEADER_TEMPLATE +=    '<div class="calendar-details container-fluid" data-date-type="range">';
+  DATE_RANGE_HEADER_TEMPLATE +=      '<div class="row">';
+  DATE_RANGE_HEADER_TEMPLATE +=        '<div class="col-md-6">';    
+  DATE_RANGE_HEADER_TEMPLATE +=          '<div class="input-group">';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<input type="text" class="form-control"/>';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<span class="input-group-addon">→</span>';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<input type="text" class="form-control"/>';
+  DATE_RANGE_HEADER_TEMPLATE +=          '</div>';
+  DATE_RANGE_HEADER_TEMPLATE +=        '</div>';
+  DATE_RANGE_HEADER_TEMPLATE +=        '<div class="col-md-6">';       
+  DATE_RANGE_HEADER_TEMPLATE +=          '<select class="form-control range">';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<option value="none"></option>';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<option value="toDay"></option>';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<option value="lastWeek"></option>';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<option value="lastMonth"></option>';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<option value="last7day"></option>';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<option value="last30day"></option>';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<option value="lastYear"></option>';
+  DATE_RANGE_HEADER_TEMPLATE +=          '</select>';
+  DATE_RANGE_HEADER_TEMPLATE +=        '</div>';  
+  DATE_RANGE_HEADER_TEMPLATE +=      '</div>';
   DATE_RANGE_HEADER_TEMPLATE +=    '</div>';
 
-  var MODAL_TEMPLATE = '<div class="modal modal-right fade" id="dateWidget" tabindex="-1" role="dialog">';
-  MODAL_TEMPLATE +=    '<div class="modal-dialog" role = "document">';
-  MODAL_TEMPLATE +=    '<div class="modal-content">';
-  MODAL_TEMPLATE +=    '<div class="modal-header">';
-  MODAL_TEMPLATE +=    '<div class="datepicker-header">';
-  MODAL_TEMPLATE +=    '</div>';
-  MODAL_TEMPLATE +=    '<div class="datepicker-header-margin">';
-  MODAL_TEMPLATE +=    '</div>';
-  MODAL_TEMPLATE +=    '</div>';
-  MODAL_TEMPLATE +=    '<div class="modal-body container-fluid">';
-  MODAL_TEMPLATE +=    '</div>';
-  MODAL_TEMPLATE +=    '<div class="modal-footer">';
-  MODAL_TEMPLATE +=    '</div>';
-  MODAL_TEMPLATE +=    '</div><!-- modal-content -->';
-  MODAL_TEMPLATE +=    '</div><!-- modal-dialog -->';
+  var MODAL_TEMPLATE = '<div class="modal modal-right datepicker-modal fade" id="dateWidget" tabindex="-1" role="dialog">';
+  MODAL_TEMPLATE +=      '<div class="modal-dialog" role="document">';
+  MODAL_TEMPLATE +=        '<div class="modal-content">';
+  MODAL_TEMPLATE +=          '<div class="modal-header"></div>';
+  MODAL_TEMPLATE +=          '<div class="modal-body"></div>';
+  MODAL_TEMPLATE +=          '<div class="modal-footer"></div>';
+  MODAL_TEMPLATE +=        '</div><!-- modal-content -->';
+  MODAL_TEMPLATE +=      '</div><!-- modal-dialog -->';
   MODAL_TEMPLATE +=    '</div>';
 
   var DatePicker = function(element, options) {
@@ -158,408 +155,397 @@
     this.updateView();
   };
 
-  DatePicker.prototype = {
-    constructor : DatePicker,
+  /**
+   * Defines startdate, updateView, Element and InputsForms
+   * @param {String_Object} startDate the date use for modify startDate in datepicker
+   */
+  DatePicker.prototype.setStartDate = function (startDate) {
+    if (typeof startDate === 'string') {
+      this.startDate = moment(startDate, this.locale.format)
+    }
+    if (typeof startDate === 'object') {
+      this.startDate = moment(startDate);
+    }
+    this.startDate = this.startDate.startOf('day');
 
-    /**
-     * Defines startdate, updateView, Element and InputsForms
-     * @param {String_Object} startDate the date use for modify startDate in datepicker
-     */
-    setStartDate: function (startDate) {
-      if (typeof startDate === 'string') {
-        this.startDate = moment(startDate, this.locale.format)
-      }
-      if (typeof startDate === 'object') {
-        this.startDate = moment(startDate);
-      }
-      this.startDate = this.startDate.startOf('day');
+    this.updateView();
+    this.updateElement();
+    this.updateFormInputs();
+  };
 
-      this.updateView();
-      this.updateElement();
-      this.updateFormInputs();
-    },
+  /**
+   * Get StartDate,
+   * @return {object} startDate
+   */
+  DatePicker.prototype.getStartDate = function() {
+    return this.startDate
+  };
 
-    /**
-     * Get StartDate,
-     * @return {object} startDate
-     */
-    getStartDate: function() {
-      return this.startDate
-    },
+  /**
+   * Defines endDate, updateView, Element and InputsForms
+   * @param {String_Object} endDate The date use for modify endDate in datepicker
+   */
+  DatePicker.prototype.setEndDate = function(endDate) {
+    if (typeof endDate === 'string') {
+      this.endDate = moment(endDate, this.locale.format)
+    }
+    if (typeof endDate === 'object') {
+      this.endDate = moment(endDate);
+    }
+    if (this.endDate.isBefore(this.startDate)) {
+      this.endDate = this.startDate.clone();
+    }
+    this.startDate = this.startDate.startOf('day');
 
-    /**
-     * Defines endDate, updateView, Element and InputsForms
-     * @param {String_Object} endDate The date use for modify endDate in datepicker
-     */
-    setEndDate: function(endDate) {
-      if (typeof endDate === 'string') {
-        this.endDate = moment(endDate, this.locale.format)
-      }
-      if (typeof endDate === 'object') {
-        this.endDate = moment(endDate);
-      }
-      if (this.endDate.isBefore(this.startDate)) {
-        this.endDate = this.startDate.clone();
-      }
-      this.startDate = this.startDate.startOf('day');
+    this.previousRightTime = this.endDate.clone();
+    this.updateView();
+    this.updateElement();
+    this.updateFormInputs();
+  };
 
-      this.previousRightTime = this.endDate.clone();
-      this.updateView();
-      this.updateElement();
-      this.updateFormInputs();
-    },
+  /**
+   * Get endDate,
+   * @return {object} endDate
+   */
+  DatePicker.prototype.getEndDate = function() {
+    return this.endDate
+  };
 
-    /**
-     * Get endDate,
-     * @return {object} endDate
-     */
-    getEndDate: function() {
-      return this.endDate
-    },
+  //
+  //function to update view
+  //argument: none
+  //return: none
+  //update months and calendars
+  DatePicker.prototype.updateView = function() {
+    this.updateMonthsInView();
+    this.updateCalendars();
+  };
 
-    //
-    //function to update view
-    //argument: none
-    //return: none
-    //update months and calendars
-    updateView: function() {
-      this.updateMonthsInView();
-      this.updateCalendars();
-    },
+  //
+  //function to update month
+  //arguments: none
+  //return: none
+  //update month when the day selected was not in the first calendar
 
-    //
-    //function to update month
-    //arguments: none
-    //return: none
-    //update month when the day selected was not in the first calendar
+  DatePicker.prototype.updateMonthsInView = function() {
+    if (this.endDate) {
+      //Si aucune modification ne fait rien
+      if (!this.singleDatePicker && this.calendar[0].month &&
+        (this.startDate.format('YYYY-MM') == this.calendar[0].month.format('YYYY-MM'))) {
+        for (var i = 1; i<this.numberOfMonths; i++ ) {
+          if (this.calendar[i].month &&
+          (this.endDate.format('YYYY-MM') == this.calendar[i].month.format('YYYY-MM'))) {
+            return;
 
-    updateMonthsInView: function() {
-      if (this.endDate) {
-        //Si aucune modification ne fait rien
-        if (!this.singleDatePicker && this.calendar[0].month &&
-          (this.startDate.format('YYYY-MM') == this.calendar[0].month.format('YYYY-MM'))) {
-          for (var i = 1; i<this.numberOfMonths; i++ ) {
-            if (this.calendar[i].month &&
-            (this.endDate.format('YYYY-MM') == this.calendar[i].month.format('YYYY-MM'))) {
-              return;
-
-            }
           }
         }
+      }
 
+      this.calendar[0].month = this.startDate.clone().date(2);
+      for (var i = 1; i< this.numberOfMonths; i++ ) {
+        this.calendar[i].month = this.startDate.clone().date(2).add(i, 'month');
+      }
+      this.positionEl.parent().scrollTop(0);
+    } else {
+      if (this.calendar[0].month.format('YYYY-MM') != this.startDate.format('YYYY-MM')){
         this.calendar[0].month = this.startDate.clone().date(2);
         for (var i = 1; i< this.numberOfMonths; i++ ) {
-          this.calendar[i].month = this.startDate.clone().date(2).add(i, 'month');
+          this.calendar[i].month = this.startDate.clone().date(2).add(i , 'month');
         }
         this.positionEl.parent().scrollTop(0);
-      } else {
-        if (this.calendar[0].month.format('YYYY-MM') != this.startDate.format('YYYY-MM')){
-          this.calendar[0].month = this.startDate.clone().date(2);
-          for (var i = 1; i< this.numberOfMonths; i++ ) {
-            this.calendar[i].month = this.startDate.clone().date(2).add(i , 'month');
-          }
-          this.positionEl.parent().scrollTop(0);
-        }
       }
-    },
+    }
+  };
+
+  //
+  //Function to update Calendars one par one
+  //argument: none
+  //return: none
+
+  DatePicker.prototype.updateCalendars = function() {
+    for (var i = 0; i< this.numberOfMonths; i++) {
+      this.renderCalendar(i);
+    }
+    if (this.endDate == null) {
+      return;
+    }
+  };
+
+  //
+  //function to create and display calendar in dom
+  //argument: nbrCalendar (int)
+  //return: none
+
+  DatePicker.prototype.renderCalendar = function(nbrCalendar) {
+    var calendar = this.calendar[nbrCalendar];
+    var month = calendar.month.month();
+    var year = calendar.month.year();
+    var daysInMonth = moment([year, month]).daysInMonth();
+    var firstDay = moment([year, month, 1]);
+    var lastDay = moment([year, month, daysInMonth]);
+    var lastMonth = moment(firstDay).subtract(1, 'month').month();
+    var lastYear = moment(firstDay).subtract(1, 'month').year();
+    var daysInLastMonth = moment([lastYear, lastMonth]).daysInMonth();
+    var dayOfWeek = firstDay.day();
+
+    //initialize a 6 rows x 7 columns array for the calendar
+    var calendar = [];
+    calendar.firstDay = firstDay;
+    calendar.lastDay = lastDay;
+
+    //Clean old calendar;
+    for (var i = 0; i < 6; i++) {
+      calendar[i] = [];
+    }
+
+    //populate the calendar with date objects
+    var startDay = daysInLastMonth - dayOfWeek + this.locale.firstDay + 1;
+    if (startDay > daysInLastMonth) {
+      startDay -= 7;
+    }
+
+    if (dayOfWeek == this.locale.firstDay) {
+      startDay = daysInLastMonth - 6;
+    }
+
+    var curDate = moment([lastYear, lastMonth, startDay, 12]);
+
+    var col, row;
+    for (var i = 0, col = 0, row = 0; i < 42; i++, col++, curDate = moment(curDate).add(24, 'hour')) {
+      if (i > 0 && col % 7 === 0) {
+          col = 0;
+          row++;
+      }
+      calendar[row][col] = curDate.clone()
+      curDate.hour(12);
+    }
+
+    //make the calendar object available to hoverDate/clickDate
+    this.calendar[nbrCalendar].calendar = calendar;
 
     //
-    //Function to update Calendars one par one
-    //argument: none
-    //return: none
-
-    updateCalendars: function() {
-      for (var i = 0; i< this.numberOfMonths; i++) {
-        this.renderCalendar(i);
-      }
-      if (this.endDate == null) {
-        return;
-      }
-    },
-
+    // Display the calendar
     //
-    //function to create and display calendar in dom
-    //argument: nbrCalendar (int)
-    //return: none
 
-    renderCalendar: function(nbrCalendar) {
-      var calendar = this.calendar[nbrCalendar];
-      var month = calendar.month.month();
-      var year = calendar.month.year();
-      var daysInMonth = moment([year, month]).daysInMonth();
-      var firstDay = moment([year, month, 1]);
-      var lastDay = moment([year, month, daysInMonth]);
-      var lastMonth = moment(firstDay).subtract(1, 'month').month();
-      var lastYear = moment(firstDay).subtract(1, 'month').year();
-      var daysInLastMonth = moment([lastYear, lastMonth]).daysInMonth();
-      var dayOfWeek = firstDay.day();
+    var html = '<table class="table-condensed">';
+    html += '<thead>';
+    html += '<tr>';
 
-      //initialize a 6 rows x 7 columns array for the calendar
-      var calendar = [];
-      calendar.firstDay = firstDay;
-      calendar.lastDay = lastDay;
 
-      //Clean old calendar;
-      for (var i = 0; i < 6; i++) {
-          calendar[i] = [];
-      }
+    if (nbrCalendar == 0) {
+        html += '<th class="prev available"><i>←</i></th>';
+    } else {
+        html += '<th></th>';
+    }
 
-      //populate the calendar with date objects
-      var startDay = daysInLastMonth - dayOfWeek + this.locale.firstDay + 1;
-      if (startDay > daysInLastMonth)
-          startDay -= 7;
+    var dateHtml = this.locale.monthNames[calendar[1][1].month()] + calendar[1][1].format(" YYYY");
 
-      if (dayOfWeek == this.locale.firstDay)
-          startDay = daysInLastMonth - 6;
+    html += '<th colspan="5" class="month">' + dateHtml + '</th>';
+    if (nbrCalendar == 0) {
+        html += '<th class="next available"><i>→</i></th>';
+    } else {
+        html += '<th></th>';
+    }
 
-      var curDate = moment([lastYear, lastMonth, startDay, 12]);
+    html += '</tr>';
+    html += '<tr>';
 
-      var col, row;
-      for (var i = 0, col = 0, row = 0; i < 42; i++, col++, curDate = moment(curDate).add(24, 'hour')) {
-          if (i > 0 && col % 7 === 0) {
-              col = 0;
-              row++;
-          }
-          calendar[row][col] = curDate.clone()
-          curDate.hour(12);
 
-      }
 
-      //make the calendar object available to hoverDate/clickDate
-      this.calendar[nbrCalendar].calendar = calendar;
+    $.each(this.locale.daysOfWeek, function(index, dayOfWeek) {
+        html += '<th>' + dayOfWeek + '</th>';
+    });
 
-      //
-      // Display the calendar
-      //
+    html += '</tr>';
+    html += '</thead>';
+    html += '<tbody>';
 
-      var html = '<table class="table-condensed">';
-      html += '<thead>';
+    for (var row = 0; row < 6; row++) {
       html += '<tr>';
-
-
-      if (nbrCalendar == 0) {
-          html += '<th class="prev available"><i>←</i></th>';
-      } else {
-          html += '<th></th>';
-      }
-
-      var dateHtml = this.locale.monthNames[calendar[1][1].month()] + calendar[1][1].format(" YYYY");
-
-      html += '<th colspan="5" class="month">' + dateHtml + '</th>';
-      if (nbrCalendar == 0) {
-          html += '<th class="next available"><i>→</i></th>';
-      } else {
-          html += '<th></th>';
-      }
-
-      html += '</tr>';
-      html += '<tr>';
-
-
-
-      $.each(this.locale.daysOfWeek, function(index, dayOfWeek) {
-          html += '<th>' + dayOfWeek + '</th>';
-      });
-
-      html += '</tr>';
-      html += '</thead>';
-      html += '<tbody>';
-
-      for (var row = 0; row < 6; row++) {
-          html += '<tr>';
-
-          for (var col = 0; col < 7; col++) {
-
-              var classes = [];
-
-              //highlight today's date
-              if (calendar[row][col].isSame(new Date(), "day")) {
-                  classes.push('today');
-                }
-              //highlight weekends
-              if (calendar[row][col].isoWeekday() > 5) {
-                  classes.push('weekend');
-                }
-
-              //grey out the dates in other months displayed at beginning and end of this calendar
-              if (calendar[row][col].month() != calendar[1][1].month()) {
-                  classes.push('off');
-                }
-
-              //highlight the currently selected start date
-              if (calendar[row][col].format('YYYY-MM-DD') == this.startDate.format('YYYY-MM-DD')) {
-                  classes.push('active', 'start-date');
-                }
-
-              //highlight the currently selected end date
-              if (this.endDate != null && calendar[row][col].format('YYYY-MM-DD') == this.endDate.format('YYYY-MM-DD')) {
-                  classes.push('active', 'end-date');
-                }
-
-              //highlight dates in-between the selected dates
-              if (this.endDate != null && calendar[row][col] > this.startDate && calendar[row][col] < this.endDate) {
-                  classes.push('in-range');
-                }
-
-              var cname = '', disabled = false;
-              for (var i = 0; i < classes.length; i++) {
-                  cname += classes[i] + ' ';
-                  if (classes[i] == 'disabled')
-                      disabled = true;
-              }
-              if (!disabled) {
-                  cname += 'available';
-                }
-              html += '<td class="' + cname.replace(/^\s+|\s+$/g, '') + '" data-title="' + 'r' + row + 'c' + col + '">' + calendar[row][col].date() + '</td>';
-
+      for (var col = 0; col < 7; col++) {
+        var classes = [];
+        //highlight today's date
+        if (calendar[row][col].isSame(new Date(), "day")) {
+          classes.push('today');
+        }
+        //highlight weekends
+        if (calendar[row][col].isoWeekday() > 5) {
+          classes.push('weekend');
+        }
+        //grey out the dates in other months displayed at beginning and end of this calendar
+        if (calendar[row][col].month() != calendar[1][1].month()) {
+          classes.push('off');
+        }
+        //highlight the currently selected start date
+        if (calendar[row][col].format('YYYY-MM-DD') == this.startDate.format('YYYY-MM-DD')) {
+          classes.push('active', 'start-date');
+        }
+        //highlight the currently selected end date
+        if (this.endDate != null && calendar[row][col].format('YYYY-MM-DD') == this.endDate.format('YYYY-MM-DD')) {
+          classes.push('active', 'end-date');
+        }
+        //highlight dates in-between the selected dates
+        if (this.endDate != null && calendar[row][col] > this.startDate && calendar[row][col] < this.endDate) {
+          classes.push('in-range');
+        }
+        var cname = '';
+        var disabled = false;
+        for (var i = 0; i < classes.length; i++) {
+          cname += classes[i] + ' ';
+          if (classes[i] == 'disabled') {
+            disabled = true;
           }
-          html += '</tr>';
-      }
-
-      html += '</tbody>';
-      html += '</table>';
-      var classCalendar = "calendar"+ nbrCalendar;
-      this.container.find('.calendar.'+ classCalendar + ' .calendar-table').html(html);
-
-
-    },
-
-    //
-    //function to display previous month
-    //argument: events click
-    //return: none
-    //update all calendars with -1 months
-
-    clickPrev: function(e) {
-      for (var i = 0; i< this.numberOfMonths; i++) {
-        this.calendar[i].month.subtract(1, 'month');
-      }
-      this.updateCalendars();
-    },
-
-    //
-    //
-    //function to display next month
-    //argument: events click
-    //return: none
-    //update all calendars with +1 months
-
-
-    clickNext: function(e){
-      for (var i = 0; i< this.numberOfMonths; i++) {
-        this.calendar[i].month.add(1, 'month');
-      }
-      this.updateCalendars();
-    },
-
-    //
-    //function click on date, update view, original element, inputs forms
-    //argument: event click
-    //return: none
-    //modify calendars and view when a event click is done on a date
-
-    clickDate: function(e){
-      var title = $(e.target).attr('data-title');
-      var row = title.substr(1, 1);
-      var col = title.substr(3, 1);
-      var cal = $(e.target).parents('.calendar');
-      var date;
-      for (var i = 0; i< this.numberOfMonths; i++) {
-        if (cal.hasClass('calendar'+i)) {
-          date = this.calendar[i].calendar[row][col];
         }
-      }
-      if (this.endDate || date.isBefore(this.startDate, 'day')) {
-        this.endDate = null;
-        this.setStartDate(date.clone());
-      } else if (!this.endDate && date.isBefore(this.startDate)) {
-        this.setEndDate(this.startDate.clone());
-      } else {
-        this.setEndDate(date.clone())
-      }
-      if (this.singleDatePicker) {
-        this.setEndDate(this.startDate);
-      }
-      this.updateView();
-      this.updateFormInputs();
-      if (this.endDate) {
-        this.updateElement();
-      }
-      e.stopPropagation();
-    },
-
-    //
-    //Update inputs forms
-    //argument: none
-    //return: none
-    //after clickDate function and setstart/endDate Modify the inputs form
-
-    updateFormInputs: function() {
-      if (this.inputform && this.inputform.hasClass('inputform')) {
-        this.inputform.find('input').first().val(this.startDate.format(this.locale.format));
-        if (this.endDate) {
-          this.inputform.find('input').last().val(this.endDate.format(this.locale.format));
+        if (!disabled) {
+          cname += 'available';
         }
-      } else if (this.inputform) {
-        this.inputform.find('input').first().val(this.startDate.format(this.locale.format));
-      }
-    },
+        html += '<td class="' + cname.replace(/^\s+|\s+$/g, '') + '" data-title="' + 'r' + row + 'c' + col + '">' + calendar[row][col].date() + '</td>';
 
-    //
-    // Update view if inputs forms changed
-    //argument: none
-    //return: none
-    // If inputs form change, execute setStart/endDate and update view and element
-
-    formInputsChanged: function() {
-      if (this.inputform && this.inputform.hasClass('inputform')) {
-        var start = moment(this.inputform.find('input').first().val(), this.locale.format);
-        var end = moment(this.inputform.find('input').last().val(), this.locale.format);
-        if (start.isValid() && end.isValid()) {
-          if (!this.singleDatePicker && end.isBefore(start)) {
-            start = end.clone();
-          }
-          this.setStartDate(start);
-          this.setEndDate(end);
-        }
       }
-      this.updateView();
+      html += '</tr>';
+    }
+
+    html += '</tbody>';
+    html += '</table>';
+    var classCalendar = "calendar"+ nbrCalendar;
+    this.container.find('.calendar.'+ classCalendar + ' .calendar-table').html(html);
+  };
+
+  //
+  //function to display previous month
+  //argument: events click
+  //return: none
+  //update all calendars with -1 months
+
+  DatePicker.prototype.clickPrev = function(e) {
+    for (var i = 0; i< this.numberOfMonths; i++) {
+      this.calendar[i].month.subtract(1, 'month');
+    }
+    this.updateCalendars();
+  };
+
+  //
+  //
+  //function to display next month
+  //argument: events click
+  //return: none
+  //update all calendars with +1 months
+
+
+  DatePicker.prototype.clickNext = function(e) {
+    for (var i = 0; i< this.numberOfMonths; i++) {
+      this.calendar[i].month.add(1, 'month');
+    }
+    this.updateCalendars();
+  };
+
+  //
+  //function click on date, update view, original element, inputs forms
+  //argument: event click
+  //return: none
+  //modify calendars and view when a event click is done on a date
+
+  DatePicker.prototype.clickDate = function(e) {
+    var title = $(e.target).attr('data-title');
+    var row = title.substr(1, 1);
+    var col = title.substr(3, 1);
+    var cal = $(e.target).parents('.calendar');
+    var date;
+    for (var i = 0; i< this.numberOfMonths; i++) {
+      if (cal.hasClass('calendar'+i)) {
+        date = this.calendar[i].calendar[row][col];
+      }
+    }
+    if (this.endDate || date.isBefore(this.startDate, 'day')) {
+      this.endDate = null;
+      this.setStartDate(date.clone());
+    } else if (!this.endDate && date.isBefore(this.startDate)) {
+      this.setEndDate(this.startDate.clone());
+    } else {
+      this.setEndDate(date.clone())
+    }
+    if (this.singleDatePicker) {
+      this.setEndDate(this.startDate);
+    }
+    this.updateView();
+    this.updateFormInputs();
+    if (this.endDate) {
       this.updateElement();
-    },
+    }
+    e.stopPropagation();
+  };
 
-    //
-    //update Original Element
-    //argument: none
-    //return: none
-    //update the original element when an action modify the calendars or the input forms
+  //
+  //Update inputs forms
+  //argument: none
+  //return: none
+  //after clickDate function and setstart/endDate Modify the inputs form
 
-    updateElement: function(){
-      if (this.element.is('input') && this.singleDatePicker) {
-        this.element.val(this.startDate.format("YYYY-MM-DD"));
-        this.element.trigger('change');
-      } else if (this.element.is('input') && !this.singleDatePicker) {
-        this.element.val(this.startDate.format("YYYY-MM-DD") + this.locale.separator + this.endDate.format("YYYY-MM-DD"));
-        this.element.trigger('change');
-      } else if (this.element.hasClass('input-group') && !this.singleDatePicker) {
-        this.element.find('input').first().val(this.startDate.format("YYYY-MM-DD"))
-        if (this.endDate) {
-          this.element.find('input').last().val(this.endDate.format("YYYY-MM-DD"))
-        }
-      } else if (this.element.hasClass('input-group')) {
-        this.element.find('input').first().val(this.startDate.format("YYYY-MM-DD"))
+  DatePicker.prototype.updateFormInputs = function() {
+    console.log('updateFormInputs', this.inputform)
+    if (this.inputform && this.inputform.length === 2) {
+      this.inputform.first().val(this.startDate.format(this.locale.format));
+      if (this.endDate) {
+        this.inputform.last().val(this.endDate.format(this.locale.format));
       }
-    },
+    } else if (this.inputform) {
+      this.inputform.val(this.startDate.format(this.locale.format));
+    }
+  };
 
-    //
-    //Delete Datepicker
-    //
+  //
+  // Update view if inputs forms changed
+  //argument: none
+  //return: none
+  // If inputs form change, execute setStart/endDate and update view and element
 
-    remove: function(){
-      this.container.remove();
-      this.element.off('.datepicker');
-      this.element.removeData();
-    },
+  DatePicker.prototype.formInputsChanged = function() {
+    if (this.inputform) {
+      var start = moment(this.inputform.first().val(), this.locale.format);
+      var end = moment(this.inputform.last().val(), this.locale.format);
+      if (start.isValid() && end.isValid()) {
+        if (!this.singleDatePicker && end.isBefore(start)) {
+          start = end.clone();
+        }
+        this.setStartDate(start);
+        this.setEndDate(end);
+      }
+    }
+    this.updateView();
+    this.updateElement();
+  };
 
+  //
+  //update Original Element
+  //argument: none
+  //return: none
+  //update the original element when an action modify the calendars or the input forms
+
+  DatePicker.prototype.updateElement = function() {
+    if (this.element.is('input') && this.singleDatePicker) {
+      this.element.val(this.startDate.format("YYYY-MM-DD"));
+      this.element.trigger('change');
+    } else if (this.element.is('input') && !this.singleDatePicker) {
+      this.element.val(this.startDate.format("YYYY-MM-DD") + this.locale.separator + this.endDate.format("YYYY-MM-DD"));
+      this.element.trigger('change');
+    } else if (this.element.hasClass('input-group') && !this.singleDatePicker) {
+      this.element.find('input').first().val(this.startDate.format("YYYY-MM-DD"));
+      if (this.endDate) {
+        this.element.find('input').last().val(this.endDate.format("YYYY-MM-DD"));
+      }
+    } else if (this.element.hasClass('input-group')) {
+      this.element.find('input').first().val(this.startDate.format("YYYY-MM-DD"));
+    }
+  };
+
+  //
+  //Delete Datepicker
+  //
+
+  DatePicker.prototype.remove = function(){
+    this.container.remove();
+    this.element.off('.datepicker');
+    this.element.removeData();
   };
 
   $.fn.datepicker = function(options, callback) {
@@ -578,7 +564,7 @@
     if ($(this).parent().hasClass("input-group")){
       $this = $(this).parent();
     }
-    var title = $("label[for='" + $this.attr("id") + "']").text() || "";
+    var title = $("label[for='" + $this.attr("id") + "']").text();
     var href = $this.attr('href');
     e.preventDefault();
 
@@ -587,17 +573,22 @@
 
     // check if datepicker require a single date or range
     if ($this.find('input').length !== 2) {
-      $modal.find(".datepicker-header").html(DATE_HEADER_TEMPLATE);
-      $modal.find(".modal-title").text(title);
+      var $header = $(DATE_HEADER_TEMPLATE);
+      $modal.find(".modal-header").append($header);
+      if (title) {
+        $modal.find(".modal-title").text(title);
+      }
       $this.datepicker({
         singleDatePicker: true,
         numberOfMonths : 3,
-        positionEl : $(".modal-body"),
-        inputform: $(".inputform")
+        positionEl : $modal.find(".modal-body"),
+        inputform: $header.find("input")
       });
     } else {
       var $header = $(DATE_RANGE_HEADER_TEMPLATE);
-      $header.find(".modal-title").text(title);
+      if (title) {
+        $modal.find(".modal-title").text(title);
+      }
       var lang = $.fn.i18n.language;
       $header.find('.range option[value="none"]').text($.fn.i18n.langs[lang].define);
       $header.find('.range option[value="toDay"]').text($.fn.i18n.langs[lang].today);
@@ -607,11 +598,11 @@
       $header.find('.range option[value="last30day"]').text($.fn.i18n.langs[lang].last30day);
       $header.find('.range option[value="lastYear"]').text($.fn.i18n.langs[lang].lastYear);
 
-      $modal.find(".datepicker-header").html($header);
+      $modal.find(".modal-header").html($header);
       var $calendar = $this.datepicker({
         numberOfMonths: 6,
-        positionEl: $(".modal-body"),
-        inputform: $(".inputform")
+        positionEl: $modal.find(".modal-body"),
+        inputform: $header.find("input")
       });
       var $range = $header.find(".range");
       $range.on('change', function() {
