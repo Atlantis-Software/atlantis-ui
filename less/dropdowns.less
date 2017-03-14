@@ -81,55 +81,6 @@
   }
 }
 
-.select {
-  width: 100%;
-  > button.btn {
-    width: 100%;
-    background: linear-gradient(lighten(@select-default-bg, 25%), @select-default-bg);
-    border: 1px solid @select-default-border;
-    color: @select-default-color;
-    .caret {
-      position: absolute;
-      top: 45%;
-      right: 10px;
-    }
-  }
-  > .dropdown-menu {
-    width: 100%;
-    border-radius: 0;
-    margin-top: 0;
-    padding: 0;
-    border: 1px solid @select-default-border;
-    border-top: 0;
-    > li > a {
-      padding: 3px 10px;
-      background-color: @select-option-bg;
-      border-bottom: solid 1px @select-option-border;
-      .transition(all 0.6s ease-out);
-      &:hover,
-      &:focus {
-        background-color: @select-option-hover-bg;
-        color: @select-option-hover-color;
-        padding-left: 20px;
-      }
-    }
-    > li:nth-of-type(odd) > a {
-      background-color: @select-option-accent;
-      &:hover,
-      &:focus {
-        background-color: @select-option-hover-bg;
-        padding-left: 30px;
-      }
-    }
-  }
-}
-
-.select.open > .dropdown-toggle.btn-default {
-  background: linear-gradient(lighten(@select-default-bg, 25%), @select-default-bg);
-  color: @select-default-color;
-  border: 1px solid @select-default-border;
-}
-
 // Hover/Focus state
 .dropdown-menu > li > a {
   &:hover,
