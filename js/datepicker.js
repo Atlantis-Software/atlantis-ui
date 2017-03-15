@@ -21,7 +21,7 @@
   DATE_RANGE_HEADER_TEMPLATE +=        '<div class="col-md-6">';    
   DATE_RANGE_HEADER_TEMPLATE +=          '<div class="input-group">';
   DATE_RANGE_HEADER_TEMPLATE +=            '<input type="text" class="form-control"/>';
-  DATE_RANGE_HEADER_TEMPLATE +=            '<span class="input-group-addon">→</span>';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<span class="input-group-addon"><i class="icon icon-next"></i></span>';
   DATE_RANGE_HEADER_TEMPLATE +=            '<input type="text" class="form-control"/>';
   DATE_RANGE_HEADER_TEMPLATE +=          '</div>';
   DATE_RANGE_HEADER_TEMPLATE +=        '</div>';
@@ -35,7 +35,7 @@
   DATE_RANGE_HEADER_TEMPLATE +=            '<option value="last30day"></option>';
   DATE_RANGE_HEADER_TEMPLATE +=            '<option value="lastYear"></option>';
   DATE_RANGE_HEADER_TEMPLATE +=          '</select>';
-  DATE_RANGE_HEADER_TEMPLATE +=        '</div>';  
+  DATE_RANGE_HEADER_TEMPLATE +=        '</div>';
   DATE_RANGE_HEADER_TEMPLATE +=      '</div>';
   DATE_RANGE_HEADER_TEMPLATE +=    '</div>';
 
@@ -333,7 +333,7 @@
 
 
     if (nbrCalendar == 0) {
-        html += '<th class="prev available"><i>←</i></th>';
+        html += '<th class="prev available"><i class="icon icon-prev"></i></th>';
     } else {
         html += '<th></th>';
     }
@@ -342,7 +342,7 @@
 
     html += '<th colspan="5" class="month">' + dateHtml + '</th>';
     if (nbrCalendar == 0) {
-        html += '<th class="next available"><i>→</i></th>';
+        html += '<th class="next available"><i class="icon icon-next"></i></th>';
     } else {
         html += '<th></th>';
     }
@@ -605,6 +605,7 @@
         inputform: $header.find("input")
       });
       var $range = $header.find(".range");
+      $range.selectpicker();
       $range.on('change', function() {
         var startDate, endDate
         switch($range.val()) {

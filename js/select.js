@@ -51,6 +51,7 @@
     $select.insertAfter($element);   // insert select generated below origin
     $select.on('change.bs.select', function(e, value) {
       $element.val(value);
+      $element.change();
     });
   }
 

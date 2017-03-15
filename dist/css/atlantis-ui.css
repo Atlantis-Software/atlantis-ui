@@ -3116,61 +3116,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: #000;
   white-space: nowrap;
 }
-.select {
-  width: 100%;
-}
-.select > button.btn {
-  width: 100%;
-  color: #fff;
-  background: -webkit-gradient(linear, left top, left bottom, from(#626262), to(#222));
-  background: -webkit-linear-gradient(#626262, #222);
-  background:      -o-linear-gradient(#626262, #222);
-  background:         linear-gradient(#626262, #222);
-  border: 1px solid #222;
-}
-.select > button.btn .caret {
-  position: absolute;
-  top: 45%;
-  right: 10px;
-}
-.select > .dropdown-menu {
-  width: 100%;
-  padding: 0;
-  margin-top: 0;
-  border: 1px solid #222;
-  border-top: 0;
-  border-radius: 0;
-}
-.select > .dropdown-menu > li > a {
-  padding: 3px 10px;
-  background-color: #fff;
-  border-bottom: solid 1px #d4d4d4;
-  -webkit-transition: all .6s ease-out;
-       -o-transition: all .6s ease-out;
-          transition: all .6s ease-out;
-}
-.select > .dropdown-menu > li > a:hover,
-.select > .dropdown-menu > li > a:focus {
-  padding-left: 20px;
-  color: #fff;
-  background-color: #15c;
-}
-.select > .dropdown-menu > li:nth-of-type(odd) > a {
-  background-color: #f9f9f9;
-}
-.select > .dropdown-menu > li:nth-of-type(odd) > a:hover,
-.select > .dropdown-menu > li:nth-of-type(odd) > a:focus {
-  padding-left: 30px;
-  background-color: #15c;
-}
-.select.open > .dropdown-toggle.btn-default {
-  color: #fff;
-  background: -webkit-gradient(linear, left top, left bottom, from(#626262), to(#222));
-  background: -webkit-linear-gradient(#626262, #222);
-  background:      -o-linear-gradient(#626262, #222);
-  background:         linear-gradient(#626262, #222);
-  border: 1px solid #222;
-}
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
   color: #fff;
@@ -3254,6 +3199,124 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     right: auto;
     left: 0;
   }
+}
+.select {
+  position: relative;
+  width: 100%;
+}
+.select > button.btn {
+  width: 100%;
+  color: #fff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#626262), to(#222));
+  background: -webkit-linear-gradient(#626262, #222);
+  background:      -o-linear-gradient(#626262, #222);
+  background:         linear-gradient(#626262, #222);
+  border: 1px solid #222;
+}
+.select > button.btn .caret {
+  position: absolute;
+  top: 45%;
+  right: 10px;
+}
+.select > .select-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  width: 100%;
+  min-width: 160px;
+  height: auto;
+  max-height: 200px;
+  padding: 5px 0;
+  padding: 0;
+  margin: 2px 0 0;
+  margin-top: 0;
+  overflow-x: hidden;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, .15);
+  border: 1px solid #222;
+  border-top: 0;
+  border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+.select > .select-options.pull-right {
+  right: 0;
+  left: auto;
+}
+.select > .select-options .divider {
+  height: 1px;
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: #e5e5e5;
+}
+.select > .select-options > li > div {
+  margin: 10px 20px;
+}
+.select > .select-options > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.42857143;
+  color: #000;
+  white-space: nowrap;
+}
+.select > .select-options > li > a {
+  padding: 3px 10px;
+  background-color: #fff;
+  border-bottom: solid 1px #d4d4d4;
+  -webkit-transition: all .6s ease-out;
+       -o-transition: all .6s ease-out;
+          transition: all .6s ease-out;
+}
+.select > .select-options > li > a:hover {
+  padding-left: 20px;
+  color: #fff;
+  background-color: #15c;
+}
+.select > .select-options > li > a:focus {
+  color: #fff;
+  background-color: #15c;
+}
+.select > .select-options > li:nth-of-type(odd) > a {
+  background-color: #f9f9f9;
+}
+.select > .select-options > li:nth-of-type(odd) > a:hover {
+  padding-left: 20px;
+  color: #fff;
+  background-color: #15c;
+}
+.select > .select-options > li:nth-of-type(odd) > a:focus {
+  color: #fff;
+  background-color: #15c;
+}
+.select > .select-options > li.selected > a {
+  color: #fff;
+  background-color: #15c;
+}
+.select.open > .select-options {
+  display: block;
+}
+.select.open > a {
+  outline: 0;
+}
+.select.open > .select-toggle.btn-default {
+  color: #fff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#626262), to(#222));
+  background: -webkit-linear-gradient(#626262, #222);
+  background:      -o-linear-gradient(#626262, #222);
+  background:         linear-gradient(#626262, #222);
+  border: 1px solid #222;
 }
 .btn-group,
 .btn-group-vertical {
@@ -5744,17 +5807,42 @@ button.close {
     width: 900px;
   }
 }
-.modal-right .modal-dialog {
+.modal-right .modal-dialog,
+.modal-left .modal-dialog,
+.modal-top .modal-dialog,
+.modal-bottom .modal-dialog {
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
   margin: 0;
 }
-.modal-right .modal-dialog .modal-content {
+.modal-right .modal-dialog .modal-content,
+.modal-left .modal-dialog .modal-content,
+.modal-top .modal-dialog .modal-content,
+.modal-bottom .modal-dialog .modal-content {
   height: 100%;
   overflow-y: auto;
   border: 0;
+}
+.modal-left .modal-dialog {
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+.modal-right .modal-dialog {
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+.modal-top .modal-dialog {
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+}
+.modal-bottom .modal-dialog {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 .modal-right.fade .modal-dialog {
   -webkit-transition: -webkit-transform .3s ease-out;
@@ -5771,18 +5859,6 @@ button.close {
        -o-transform: translate(0, 0);
           transform: translate(0, 0);
 }
-.modal-left .modal-dialog {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  margin: 0;
-}
-.modal-left .modal-dialog .modal-content {
-  height: 100%;
-  overflow-y: auto;
-  border: 0;
-}
 .modal-left.fade .modal-dialog {
   -webkit-transition: -webkit-transform .3s ease-out;
        -o-transition:      -o-transform .3s ease-out;
@@ -5793,6 +5869,36 @@ button.close {
           transform: translate(-25%, 0);
 }
 .modal-left.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+       -o-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+.modal-top.fade .modal-dialog {
+  -webkit-transition: -webkit-transform .3s ease-out;
+       -o-transition:      -o-transform .3s ease-out;
+          transition:         transform .3s ease-out;
+  -webkit-transform: translate(0, -25%);
+      -ms-transform: translate(0, -25%);
+       -o-transform: translate(0, -25%);
+          transform: translate(0, -25%);
+}
+.modal-top.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+       -o-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+.modal-bottom.fade .modal-dialog {
+  -webkit-transition: -webkit-transform .3s ease-out;
+       -o-transition:      -o-transform .3s ease-out;
+          transition:         transform .3s ease-out;
+  -webkit-transform: translate(0, 25%);
+      -ms-transform: translate(0, 25%);
+       -o-transform: translate(0, 25%);
+          transform: translate(0, 25%);
+}
+.modal-bottom.in .modal-dialog {
   -webkit-transform: translate(0, 0);
       -ms-transform: translate(0, 0);
        -o-transform: translate(0, 0);

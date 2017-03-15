@@ -150,19 +150,47 @@
 }
 
 //modal-right
-.modal-right .modal-dialog{
+.modal-right .modal-dialog,
+.modal-left .modal-dialog,
+.modal-top .modal-dialog,
+.modal-bottom .modal-dialog {
   position: fixed;
-  right:0;
-  top: 0;
-  bottom: 0;
   margin: 0px;
   .modal-content{
     border: 0;
-    overflow-y:auto;
-    height:100%;
+    overflow-y: auto;
+    height: 100%;
   }
 }
-//animation right to left
+
+//modal-left
+.modal-left .modal-dialog {
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.modal-right .modal-dialog {
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.modal-top .modal-dialog {
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+.modal-bottom .modal-dialog {
+  left: 0;
+  right:0;
+  bottom: 0;
+  width: 100%;
+}
+
+//animation right
 .modal-right.fade .modal-dialog {
   .translate(25%, 0);
   .transition-transform(~"0.3s ease-out");
@@ -171,20 +199,7 @@
   .translate(0,0);
 }
 
-//modal-left
-.modal-left .modal-dialog{
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  margin: 0px;
-  .modal-content{
-    border: 0;
-    overflow-y:auto;
-    height:100%;
-  }
-}
-//animation left to right
+//animation left
 .modal-left.fade .modal-dialog {
   .translate(-25%, 0);
   .transition-transform(~"0.3s ease-out");
@@ -192,6 +207,26 @@
 .modal-left.in .modal-dialog {
   .translate(0,0);
 }
+
+
+//animation top
+.modal-top.fade .modal-dialog {
+  .translate(0, -25%);
+  .transition-transform(~"0.3s ease-out");
+}
+.modal-top.in .modal-dialog {
+  .translate(0,0);
+}
+
+//animation bottom
+.modal-bottom.fade .modal-dialog {
+  .translate(0, 25%);
+  .transition-transform(~"0.3s ease-out");
+}
+.modal-bottom.in .modal-dialog {
+  .translate(0,0);
+}
+
 
 //Scale up the left and right modal
 @media (min-width: @screen-sm-min) {
