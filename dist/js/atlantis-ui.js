@@ -1644,7 +1644,7 @@ if (typeof jQuery === 'undefined') {
     return;
   }
 
-  var DATE_HEADER_TEMPLATE = '<button type="button" class="close" data-dismiss="modal"><span class="modal-close">&times;</span></button>';
+  var DATE_HEADER_TEMPLATE = '<button type="button" class="close" data-dismiss="modal"><i class="modal-close icon icon-close"></i></button>';
   DATE_HEADER_TEMPLATE +=    '<h4 class="modal-title">&nbsp;</h4>';
   DATE_HEADER_TEMPLATE +=    '<div class="calendar-details container-fluid" data-date-type="single">';
   DATE_HEADER_TEMPLATE +=      '<div class= "input-group">';
@@ -1653,7 +1653,7 @@ if (typeof jQuery === 'undefined') {
   DATE_HEADER_TEMPLATE +=      '</div>';
   DATE_HEADER_TEMPLATE +=    '</div>';
 
-  var DATE_RANGE_HEADER_TEMPLATE = '<button type="button" class="close" data-dismiss="modal"><span class="modal-close">&times;</span></button>';
+  var DATE_RANGE_HEADER_TEMPLATE = '<button type="button" class="close" data-dismiss="modal"><i class="modal-close icon icon-close"></i></button>';
   DATE_RANGE_HEADER_TEMPLATE +=    '<h4 class="modal-title">&nbsp;</h4>';
   DATE_RANGE_HEADER_TEMPLATE +=    '<div class="calendar-details container-fluid" data-date-type="range">';
   DATE_RANGE_HEADER_TEMPLATE +=      '<div class="row">';
@@ -1972,7 +1972,7 @@ if (typeof jQuery === 'undefined') {
 
 
     if (nbrCalendar == 0) {
-        html += '<th class="prev available"><i class="icon icon-prev"></i></th>';
+        html += '<th class="prev available"><i class="icon icon-previous"></i></th>';
     } else {
         html += '<th></th>';
     }
@@ -3497,19 +3497,22 @@ if (typeof jQuery === 'undefined') {
       if (e && e.target && $(e.target).is('.select-options li a')) {
         e.preventDefault();
         e.stopPropagation();
+        //$(e.target).blur();
+        $parent.find(toggle).focus();
+
         var li = $(e.target).parent();
         if ($parent.attr('aria-multiple') === 'true') {
-          li.toggleClass('selected');
+          li.toggleClass('active');
           updateText($parent);
           var values = [];
-          $parent.find('.select-options li.selected').each(function() {
+          $parent.find('.select-options li.active').each(function() {
             values.push($(this).attr('aria-option-value'));
           });
           $parent.trigger($.Event('change.bs.select'), [values]);
           return;
         } else {
-          li.parent().find('li').removeClass('selected');
-          li.addClass('selected');
+          li.parent().find('li').removeClass('active');
+          li.addClass('active');
           updateText($parent);
           $parent.trigger($.Event('change.bs.select'), [li.attr('aria-option-value')]);
         }
@@ -3530,7 +3533,7 @@ if (typeof jQuery === 'undefined') {
   function updateText($parent) {
     var text = $parent.find('.select-text');
     var selection = '';
-    $parent.find('.select-options li.selected a').each(function() {
+    $parent.find('.select-options li.active a').each(function() {
       if (selection !== '') {
         selection += ', ';
       }

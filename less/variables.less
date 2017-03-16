@@ -16,8 +16,10 @@
 
 @background:            #fff;
 @primary:               #15c;
+@primary-light:         lighten(@primary, 13.5%);
+@primary-lighter:       lighten(@primary, 20%);
 @primary-text-color:    #fff;
-@secondary:             #f40;
+@secondary:             #C42B01; // #f40;
 @secondary-text-color:  #fff;
 @header:                #222;
 @header-text-color:     #fff;
@@ -137,7 +139,7 @@
 
 //** Padding for `<th>`s and `<td>`s.
 @table-cell-padding:            8px;
-//** Padding for cells in `.table-condensed`.
+//** Padding for cells in `.table-condensed`.@headings-line-height
 @table-condensed-cell-padding:  5px;
 
 //** Default background color used for all tables.
@@ -164,7 +166,7 @@
 
 @btn-default-color:              @secondary-text-color;
 @btn-default-bg:                 @secondary;
-@btn-default-border:             darken(@btn-default-bg, 50%);
+@btn-default-border:             darken(@btn-default-bg, 5%);
 
 @btn-primary-color:              #fff;
 @btn-primary-bg:                 @brand-primary;
@@ -209,8 +211,10 @@
 
 //** Text color for `<input>`s
 @input-color:                    @text-color;
+@input-color-disabled:           @disabled-text-color;
+
 //** `<input>` border
-@input-border-color:             @text-color;
+@input-border-color:             #999;
 @input-border-width:             0 1px 1px 1px;
 @input-border-style:             solid;
 @input-box-shadow:               none; // inset 0 1px 1px rgba(0,0,0,.075);
@@ -245,9 +249,9 @@
 @legend-border-color:            #e5e5e5;
 
 //** Background color for textual input addons
-@input-group-addon-bg:           @gray-lighter;
+@input-group-addon-bg:           transparent;
 //** Border color for textual input addons
-@input-group-addon-border-color: @input-border-color;
+@input-group-addon-border-color: transparent;
 
 //** Disabled cursor for form controls and buttons.
 @cursor-disabled:                not-allowed;
@@ -266,19 +270,19 @@
 //## Datepicker container and contents.
 
 //** background-color
-@datepicker-bg:                  #1c58b2;
+@datepicker-bg:                  @primary;
 //** hover
-@datepicker-hover-bg:            #eee;
-@datepicker-hover-color:         grey;
+@datepicker-hover-bg:            @primary;
+@datepicker-hover-color:         @primary-text-color;
 //** selected between active day
 @datepicker-in-range-bg:         #ebf4f8;
 @datepicker-in-range-color:      #000;
 //** selected day
-@datepicker-active-bg:           #357ebd;
-@datepicker-active-color:        #fff;
+@datepicker-active-bg:           @primary;
+@datepicker-active-color:        @primary-text-color;
 //** the begin and end day of every month in other month
-@datepicker-off-bg:              #fff;
-@datepicker-off-color:           #999;
+@datepicker-off-bg:              @disabled;
+@datepicker-off-color:           @disabled-text-color;
 //** today date
 @datepicker-today-bg:            #357ebd;
 @datepicker-today-color:         #fff;
@@ -317,14 +321,16 @@
 //** Deprecated `@dropdown-caret-color` as of v3.1.0
 @dropdown-caret-color:           #000;
 
-@select-default-bg:              @header;//#ccc;
-@select-default-border:          @header;//#aaa;
-@select-default-color:           @header-text-color;
+@select-default-bg:              #ccc;
+@select-default-border:          #aaa;
+@select-default-color:           @text-color;
 @select-option-bg:               @background;
 @select-option-accent:           #f9f9f9;
 @select-option-border:           lighten(@header, 70%);
-@select-option-hover-bg:         @primary;
+@select-option-hover-bg:         @primary-light;
 @select-option-hover-color:      @primary-text-color;
+@select-option-active-bg:        @primary;
+@select-option-active-color:     @primary-text-color;
 
 //-- Z-index master list
 //
@@ -435,7 +441,7 @@
 // Navbar links
 @navbar-default-link-color:                @header-text-color;
 @navbar-default-link-hover-color:          @secondary-text-color;
-@navbar-default-link-hover-bg:             @secondary;
+@navbar-default-link-hover-bg:             lighten(@secondary, 10%);
 @navbar-default-link-active-color:         @primary-text-color;
 @navbar-default-link-active-bg:            @primary;
 @navbar-default-link-disabled-color:       @disabled-text-color;
@@ -511,21 +517,21 @@
 //
 //##
 
-@pagination-color:                     @link-color;
-@pagination-bg:                        #fff;
+@pagination-color:                     @text-color;
+@pagination-bg:                        @background;
 @pagination-border:                    #ddd;
 
-@pagination-hover-color:               @link-hover-color;
-@pagination-hover-bg:                  @gray-lighter;
-@pagination-hover-border:              #ddd;
+@pagination-hover-color:               @primary-text-color;
+@pagination-hover-bg:                  @primary-lighter;
+@pagination-hover-border:              @primary-light;
 
-@pagination-active-color:              #fff;
-@pagination-active-bg:                 @brand-primary;
-@pagination-active-border:             @brand-primary;
+@pagination-active-color:              @primary-text-color;
+@pagination-active-bg:                 @primary;
+@pagination-active-border:             @primary;
 
-@pagination-disabled-color:            @gray-light;
-@pagination-disabled-bg:               #fff;
-@pagination-disabled-border:           #ddd;
+@pagination-disabled-color:            @disabled-text-color;
+@pagination-disabled-bg:               @disabled;
+@pagination-disabled-border:           @disabled;
 
 
 //== Pager
@@ -925,6 +931,9 @@
 @blockquote-border-color:     @gray-lighter;
 //** Page header border color
 @page-header-border-color:    @gray-lighter;
+
+@title-color:                 @primary;
+
 //** Width of horizontal description list titles
 @dl-horizontal-offset:        @component-offset-horizontal;
 //** Point at which .dl-horizontal becomes horizontal

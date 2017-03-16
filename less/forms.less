@@ -129,7 +129,7 @@ output {
   .transition(@input-transition);
 
   // Customize the `:focus` state to imitate native WebKit styles.
-  .form-control-focus(@primary);
+  .form-control-focus(@input-border-focus);
 
   // Placeholder
   .placeholder();
@@ -149,6 +149,7 @@ output {
   &[readonly],
   fieldset[disabled] & {
     background-color: @input-bg-disabled;
+    color: @input-color-disabled;
     opacity: 1; // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655
   }
 
@@ -239,7 +240,7 @@ input[type="search"] {
   left: 0px;
   width: 16px;
   height: 16px;
-  border: 1px solid @text-color;
+  border: 1px solid @input-border-color;
 }
 
 .checkbox input[type="checkbox"]:checked + label:before,
@@ -247,15 +248,15 @@ input[type="search"] {
   font-family: "FontAwesome";
   content: "\f00c";
   color: @background;
-  background-color: @primary;
+  background-color: @input-border-focus;
   border-width: 0px;
   line-height: 16px;
 }
 
 .checkbox input[type="checkbox"]:disabled + label:before,
 .checkbox-inline input[type="checkbox"]:disabled + label:before {
-  background-color: @disabled;
-  color: @disabled-text-color;
+  background-color: @input-bg-disabled;
+  color: @input-color-disabled;
   border-width: 0px;
   line-height: 16px; 
 }
@@ -270,20 +271,20 @@ input[type="search"] {
   content: "";
   border-width: 1px;
   border-style: solid;
-  border-color: @text-color;
+  border-color: @input-border-color;
   border-radius: 6px;
 }
 
 .radio input[type="radio"]:checked + label:before,
 .radio-inline input[type="radio"]:checked + label:before {
   border-width: 4px;
-  border-color: @primary;
+  border-color: @input-border-focus;
 }
 
 .radio input[type="radio"]:disabled + label:before,
 .radio-inline input[type="radio"]:disabled + label:before {
-  border-color: @disabled;
-  background-color: @disabled;
+  border-color: @input-bg-disabled;
+  background-color: @input-bg-disabled;
 }
 
 .radio,

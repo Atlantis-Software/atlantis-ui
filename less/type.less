@@ -150,6 +150,140 @@ mark,
   border-bottom: 1px solid @page-header-border-color;
 }
 
+// title
+// -------------------------
+
+.title1 {
+  color: @title-color;
+  display: flex;
+  flex-direction: row;
+  flex: 1 auto;
+  font-size: @font-size-h1;
+  line-height: @headings-line-height;
+  font-weight: bold;
+  white-space: nowrap;
+  margin: 10px 0;
+  &::after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, @title-color, transparent);
+    align-self: flex-end;
+    margin-left: 10px;
+    margin-bottom:  floor((floor(@font-size-h1 * @headings-line-height) / 5));
+  }
+}
+
+
+.title2 {
+  color: @title-color;
+  display: flex;
+  flex-direction: row;
+  flex: 1 auto;
+  font-size: @font-size-h2;
+  line-height: @headings-line-height;
+  font-weight: bold;
+  white-space: nowrap;
+  margin: 10px 0;
+  &::after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, @title-color, transparent);
+    align-self: flex-end;
+    margin-left: 10px;
+    margin-bottom:  floor((floor(@font-size-h2 * @headings-line-height) / 5));
+  }
+}
+
+.title3 {
+  color: @title-color;
+  display: flex;
+  flex-direction: row;
+  flex: 1 auto;
+  font-size: @font-size-h3;
+  line-height: @headings-line-height;
+  font-weight: bold;
+  white-space: nowrap;
+  margin: 10px 0;
+  &::after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, @title-color, transparent);
+    align-self: flex-end;
+    margin-left: 10px;
+    margin-bottom:  floor((floor(@font-size-h3 * @headings-line-height) / 5));
+  }
+}
+
+.title4 {
+  color: @title-color;
+  display: flex;
+  flex-direction: row;
+  flex: 1 auto;
+  font-size: @font-size-h4;
+  line-height: @headings-line-height;
+  font-weight: bold;
+  white-space: nowrap;
+  margin: 10px 0;
+  &::after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, @title-color, transparent);
+    align-self: flex-end;
+    margin-left: 10px;
+    margin-bottom:  floor((floor(@font-size-h4 * @headings-line-height) / 5));
+  }
+}
+
+.title5 {
+  color: @title-color;
+  display: flex;
+  flex-direction: row;
+  flex: 1 auto;
+  font-size: @font-size-h5;
+  line-height: @headings-line-height;
+  font-weight: bold;
+  white-space: nowrap;
+  margin: 10px 0;  
+  &::after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, @title-color, transparent);
+    align-self: flex-end;
+    margin-left: 10px;
+    margin-bottom:  floor((floor(@font-size-h5 * @headings-line-height) / 5));
+  }
+}
+
+.title6 {
+  color: @title-color;
+  display: flex;
+  flex-direction: row;
+  flex: 1 auto;
+  font-size: @font-size-h6;
+  line-height: @headings-line-height;
+  font-weight: bold;
+  white-space: nowrap;
+  margin: 10px 0;  
+  &::after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, @title-color, transparent);
+    align-self: flex-end;
+    margin-left: 10px;
+    margin-bottom:  floor((floor(@font-size-h6 * @headings-line-height) / 5));
+  }
+}
+
+
+
+
+
 
 // Lists
 // -------------------------

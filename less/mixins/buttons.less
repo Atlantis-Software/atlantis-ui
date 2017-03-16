@@ -5,9 +5,12 @@
 
 .button-variant(@color; @background; @border) {
   color: @color;
-  background-color: @background;
+  background: linear-gradient(lighten(@background, 10%), @background);
   border-color: @border;
 
+  &::before {
+    border-color: @border;
+  }
   &:focus,
   &.focus {
     color: @color;
@@ -48,6 +51,9 @@
       background-color: @btn-disabled-bg;
           border-color: @btn-disabled-border;
                  color: @btn-disabled-color;
+    }
+    &::before {
+      border-color: @btn-disabled-border;
     }
   }
 

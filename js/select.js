@@ -84,19 +84,22 @@
       if (e && e.target && $(e.target).is('.select-options li a')) {
         e.preventDefault();
         e.stopPropagation();
+        //$(e.target).blur();
+        $parent.find(toggle).focus();
+
         var li = $(e.target).parent();
         if ($parent.attr('aria-multiple') === 'true') {
-          li.toggleClass('selected');
+          li.toggleClass('active');
           updateText($parent);
           var values = [];
-          $parent.find('.select-options li.selected').each(function() {
+          $parent.find('.select-options li.active').each(function() {
             values.push($(this).attr('aria-option-value'));
           });
           $parent.trigger($.Event('change.bs.select'), [values]);
           return;
         } else {
-          li.parent().find('li').removeClass('selected');
-          li.addClass('selected');
+          li.parent().find('li').removeClass('active');
+          li.addClass('active');
           updateText($parent);
           $parent.trigger($.Event('change.bs.select'), [li.attr('aria-option-value')]);
         }
@@ -117,7 +120,7 @@
   function updateText($parent) {
     var text = $parent.find('.select-text');
     var selection = '';
-    $parent.find('.select-options li.selected a').each(function() {
+    $parent.find('.select-options li.active a').each(function() {
       if (selection !== '') {
         selection += ', ';
       }
