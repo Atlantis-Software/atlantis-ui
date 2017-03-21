@@ -3592,7 +3592,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .select > .select-options > li:nth-of-type(odd) > a {
   background-color: #f9f9f9;
 }
-.select > .select-options > li.active > a {
+.select > .select-options > li[aria-selected="true"] > a {
   color: #fff;
   background-color: #15c;
 }

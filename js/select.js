@@ -84,22 +84,23 @@
       if (e && e.target && $(e.target).is('.select-options li a')) {
         e.preventDefault();
         e.stopPropagation();
-        //$(e.target).blur();
         $parent.find(toggle).focus();
 
         var li = $(e.target).parent();
         if ($parent.attr('aria-multiple') === 'true') {
-          li.toggleClass('active');
+          li.attr('aria-selected', function(index, attr) {
+            return attr === "true"? "false" : "true";
+          });
           updateText($parent);
           var values = [];
-          $parent.find('.select-options li.active').each(function() {
+          $parent.find('.select-options li[aria-selected="true"]').each(function() {
             values.push($(this).attr('aria-option-value'));
           });
           $parent.trigger($.Event('change.bs.select'), [values]);
           return;
         } else {
-          li.parent().find('li').removeClass('active');
-          li.addClass('active');
+          li.parent().find('li').attr('aria-selected','false');
+          li.attr('aria-selected','true');
           updateText($parent);
           $parent.trigger($.Event('change.bs.select'), [li.attr('aria-option-value')]);
         }
@@ -120,7 +121,7 @@
   function updateText($parent) {
     var text = $parent.find('.select-text');
     var selection = '';
-    $parent.find('.select-options li.active a').each(function() {
+    $parent.find('.select-options li[aria-selected="true"] a').each(function() {
       if (selection !== '') {
         selection += ', ';
       }
@@ -135,18 +136,18 @@
 
   Select.prototype.toggle = function (e) {
     var $this = $(this)
-    if ($this.is('.disabled, :disabled')) return
-
-    var $parent  = getParent($this)
-    var isActive = $parent.hasClass('open')
+    if ($this.is('.disabled, :disabled')) {
+      return;
+    }
+    var $parent  = getParent($this);
     clearMenus();
-    if (!isActive) {
+    if (!$parent.hasClass('open')) {
       if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
         // if mobile we use a backdrop because click events don't delegate
         $(document.createElement('div'))
           .addClass('select-backdrop')
           .insertAfter($(this))
-          .on('click', clearMenus)
+          .on('click', clearMenus);
       }
 
       var relatedTarget = { relatedTarget: this }
@@ -177,9 +178,9 @@
     if ($this.is('.disabled, :disabled')) return
 
     var $parent  = getParent($this)
-    var isActive = $parent.hasClass('open')
+    var isOpen = $parent.hasClass('open')
 
-    if (!isActive && e.which != 27 || isActive && e.which == 27) {
+    if (!isOpen && e.which != 27 || isOpen && e.which == 27) {
       if (e.which == 27) $parent.find(toggle).trigger('focus')
       return $this.trigger('click')
     }
