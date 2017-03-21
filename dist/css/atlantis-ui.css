@@ -63,10 +63,10 @@
   content: "\f0c1";
 }
 .icon-next::before {
-  content: "\f178";
+  content: "\f054";
 }
 .icon-previous::before {
-  content: "\f177";
+  content: "\f053";
 }
 .icon-exchange::before {
   content: "\f0ec";
@@ -3510,6 +3510,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .select > button.btn {
   width: 100%;
+  min-height: 34px;
   color: #000;
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
   background: -webkit-linear-gradient(#fff, #ccc);
