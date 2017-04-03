@@ -18,14 +18,14 @@
   DATE_RANGE_HEADER_TEMPLATE +=    '<h4 class="modal-title">&nbsp;</h4>';
   DATE_RANGE_HEADER_TEMPLATE +=    '<div class="calendar-details container-fluid" data-date-type="range">';
   DATE_RANGE_HEADER_TEMPLATE +=      '<div class="row">';
-  DATE_RANGE_HEADER_TEMPLATE +=        '<div class="col-md-6">';    
+  DATE_RANGE_HEADER_TEMPLATE +=        '<div class="col-md-6">';
   DATE_RANGE_HEADER_TEMPLATE +=          '<div class="input-group">';
   DATE_RANGE_HEADER_TEMPLATE +=            '<input type="text" class="form-control"/>';
   DATE_RANGE_HEADER_TEMPLATE +=            '<span class="input-group-addon"><i class="icon icon-next"></i></span>';
   DATE_RANGE_HEADER_TEMPLATE +=            '<input type="text" class="form-control"/>';
   DATE_RANGE_HEADER_TEMPLATE +=          '</div>';
   DATE_RANGE_HEADER_TEMPLATE +=        '</div>';
-  DATE_RANGE_HEADER_TEMPLATE +=        '<div class="col-md-6">';       
+  DATE_RANGE_HEADER_TEMPLATE +=        '<div class="col-md-6">';
   DATE_RANGE_HEADER_TEMPLATE +=          '<select class="form-control range">';
   DATE_RANGE_HEADER_TEMPLATE +=            '<option value="none"></option>';
   DATE_RANGE_HEADER_TEMPLATE +=            '<option value="toDay"></option>';
@@ -482,7 +482,6 @@
   //after clickDate function and setstart/endDate Modify the inputs form
 
   DatePicker.prototype.updateFormInputs = function() {
-    console.log('updateFormInputs', this.inputform)
     if (this.inputform && this.inputform.length === 2) {
       this.inputform.first().val(this.startDate.format(this.locale.format));
       if (this.endDate) {
