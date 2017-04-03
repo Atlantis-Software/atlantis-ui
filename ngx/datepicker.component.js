@@ -12,7 +12,7 @@ export default class datePickerComponent {
 		return [
 			new Component({
         selector: 'datepicker',
-        template: `<input  type="date" class="form-control datepicker" [ngModel]="val" (change)="valueChange($event)"/>`,
+        template: `<input  type="date" class="form-control" [ngModel]="val" (change)="valueChange($event)"/>`,
         inputs: ['val'],
         providers: [{
           provide: NG_VALUE_ACCESSOR,
