@@ -14,13 +14,15 @@
   "homepage": "https://github.com/Atlantis-Software/atlantis-ui",
   "author": "Atlantis-software",
   "scripts": {
+    "webpack": "webpack --progress",
     "change-version": "node grunt/change-version.js",
     "update-shrinkwrap": "npm shrinkwrap --dev && shx mv ./npm-shrinkwrap.json ./grunt/npm-shrinkwrap.json",
     "test": "grunt test"
   },
   "style": "dist/css/atlantis-ui.css",
   "less": "less/atlantis-ui.less",
-  "main": "./dist/js/npm",
+  "main": "./dist/js/altantis-ui.js",
+  "alias": "./dist/js/ngxAtlantis-ui.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/Atlantis-Software/atlantis-ui.git"
@@ -85,7 +87,8 @@
     "js/*.js",
     "less/**/*.less",
     "Gruntfile.js",
-    "LICENSE"
+    "LICENSE",
+    "ngx"
   ],
   "jspm": {
     "main": "js/atlantis-ui",
