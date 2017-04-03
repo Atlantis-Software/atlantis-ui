@@ -14,7 +14,8 @@
   "homepage": "https://github.com/Atlantis-Software/atlantis-ui",
   "author": "Atlantis-software",
   "scripts": {
-    "build": "webpack --progress"
+    "build": "webpack --progress",
+    "prepublish": "npm install && npm run build"
   },
   "style": "dist/css/atlantis-ui.css",
   "less": "less/atlantis-ui.less",
