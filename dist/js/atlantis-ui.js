@@ -1700,7 +1700,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   //after clickDate function and setstart/endDate Modify the inputs form
 
   DatePicker.prototype.updateFormInputs = function () {
-    console.log('updateFormInputs', this.inputform);
     if (this.inputform && this.inputform.length === 2) {
       this.inputform.first().val(this.startDate.format(this.locale.format));
       if (this.endDate) {

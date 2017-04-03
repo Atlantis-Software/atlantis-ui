@@ -374,7 +374,7 @@ var datePickerComponent = function () {
     get: function get() {
       return [new _core.Component({
         selector: 'datepicker',
-        template: '<input  type="date" class="form-control datepicker" [ngModel]="val" (change)="valueChange($event)"/>',
+        template: '<input  type="date" class="form-control" [ngModel]="val" (change)="valueChange($event)"/>',
         inputs: ['val'],
         providers: [{
           provide: _forms.NG_VALUE_ACCESSOR,
