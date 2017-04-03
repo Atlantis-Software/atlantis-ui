@@ -6,7 +6,7 @@
   </button>
   <ul  class="select-options">
     <li *ngFor="let option of options;">
-      <input type="checkbox" class="option-status" [(atlmodel)]="option.selected" />
+      <input type="checkbox" class="option-status sr-only" [(atlmodel)]="option.selected" />
       <a [innerHTML]="option.elementRef.nativeElement.innerHTML"></a>
     </li>
   </ul>
