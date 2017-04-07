@@ -26,8 +26,8 @@
     var $button = $('<button class="btn btn-default select-toggle" type="button" data-toggle="select"/>')
                   .append(this.$text) // default value button
                   .append('<span class="caret"></span>');
-
-    var $select = $('<div class="select"></div>').append($button).append($options);
+    var $input = $('<input type="hidden" class="select-value" />');
+    var $select = $('<div class="select"></div>').append($input).append($button).append($options);
 
     if ($element.attr('multiple')) {
       $select.attr('aria-multiple', 'true');
@@ -49,7 +49,7 @@
     });
 
     $select.insertAfter($element);   // insert select generated below origin
-    $select.on('change.bs.select', function(e, value) {
+    $input.change(function(e, value) {
       $element.val(value);
       $element.change();
     });
@@ -87,22 +87,50 @@
         $parent.find(toggle).focus();
 
         var li = $(e.target).parent();
+        var customEvent = document.createEvent('Event');  
+        customEvent.initEvent('change', true, true);
+
         if ($parent.attr('aria-multiple') === 'true') {
+          var checkbox = li.find('input:checkbox.option-status');
+          checkbox.prop('checked', !checkbox.prop('checked'));
           li.attr('aria-selected', function(index, attr) {
-            return attr === "true"? "false" : "true";
+            return (!attr || attr === "false") ? "true" : "false";
           });
+          if (checkbox[0]) {
+            var optionChangeEvent = document.createEvent('Event');  
+            optionChangeEvent.initEvent('change', true, true);
+            checkbox[0].dispatchEvent(optionChangeEvent);
+          }
+
           updateText($parent);
+          // update select value
           var values = [];
           $parent.find('.select-options li[aria-selected="true"]').each(function() {
             values.push($(this).attr('aria-option-value'));
           });
-          $parent.trigger($.Event('change.bs.select'), [values]);
+          $parent.find('.select-value').val([values])[0].dispatchEvent(customEvent);
+          // do not close options on multiple select
           return;
         } else {
-          li.parent().find('li').attr('aria-selected','false');
-          li.attr('aria-selected','true');
+          li.parent().find('li').each(function() {
+            var checkbox = $(this).find('input:checkbox.option-status');
+            // is it the clicked element ?
+            if ($(this).is(li)) {
+              $(this).attr('aria-selected','true');
+              checkbox.prop('checked', true);
+            } else {
+              $(this).attr('aria-selected','false');
+              checkbox.prop('checked', false);
+            }
+            if (checkbox[0]) {
+              var optionChangeEvent = document.createEvent('Event');  
+              optionChangeEvent.initEvent('change', true, true);
+              checkbox[0].dispatchEvent(optionChangeEvent);
+            }
+          });
           updateText($parent);
-          $parent.trigger($.Event('change.bs.select'), [li.attr('aria-option-value')]);
+          // update select value
+          $parent.find('.select-value').val([li.attr('aria-option-value')])[0].dispatchEvent(customEvent);
         }
       }
       if (e && e.type == 'click' && /input|textarea/i.test(e.target.tagName) && $.contains($parent[0], e.target)) {
@@ -131,6 +159,24 @@
       text.html('&nbsp;');
     } else {
       text.text(selection);
+    }
+  }
+
+
+  function updatevalue(e) {
+    console.log('updatevalue', e);
+    if (!e || !e.target) {
+      return;
+    }
+    var selected = $(e.target).prop('checked');
+    var li = $(e.target).parent();
+    console.log('li', li);
+    if (selected) {
+      console.log('selected');
+      li.prop('aria-selected', 'true');
+    } else {
+      console.log('not selected');
+      li.prop('aria-selected', 'false');
     }
   }
 
@@ -237,5 +283,6 @@
     .on('click.bs.select.data-api', toggle, Select.prototype.toggle)
     .on('keydown.bs.select.data-api', toggle, Select.prototype.keydown)
     .on('keydown.bs.select.data-api', '.select-options', Select.prototype.keydown)
+    .on('change.bs.select.data-api', '.option-status', updatevalue);
 
 }(jQuery);

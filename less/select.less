@@ -26,9 +26,13 @@
     padding: 0;
     border: 1px solid @select-default-border;
     border-top: 0;
+    > li > input.option-status[type="checkbox"] {
+      display: none;
+    }
     > li > a {
       padding: 3px 10px;
       background-color: @select-option-bg;
+      color: @select-option-color;
       border-bottom: solid 1px @select-option-border;
       .transition(all 0.6s ease-out);
     }
