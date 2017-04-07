@@ -523,10 +523,18 @@
   DatePicker.prototype.updateElement = function() {
     if (this.element.is('input') && this.singleDatePicker) {
       this.element.val(this.startDate.format("YYYY-MM-DD"));
-      this.element.trigger('change');
+      if (this.element[0]) {
+        var dateChangeEvent = document.createEvent('Event');  
+        dateChangeEvent.initEvent('change', true, true);
+        this.element[0].dispatchEvent(dateChangeEvent);
+      }
     } else if (this.element.is('input') && !this.singleDatePicker) {
       this.element.val(this.startDate.format("YYYY-MM-DD") + this.locale.separator + this.endDate.format("YYYY-MM-DD"));
-      this.element.trigger('change');
+      if (this.element[0]) {
+        var dateChangeEvent = document.createEvent('Event');  
+        dateChangeEvent.initEvent('change', true, true);
+        this.element[0].dispatchEvent(dateChangeEvent);
+      }
     } else if (this.element.hasClass('input-group') && !this.singleDatePicker) {
       this.element.find('input').first().val(this.startDate.format("YYYY-MM-DD"));
       if (this.endDate) {
