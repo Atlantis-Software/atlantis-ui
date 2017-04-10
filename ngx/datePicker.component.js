@@ -11,9 +11,9 @@ export default class datePickerComponent {
 	static get annotations() {
 		return [
 			new Component({
-        selector: 'datepicker',
-        template: `<input  type="date" class="form-control" [ngModel]="val" (change)="valueChange($event)"/>`,
-        inputs: ['val'],
+        selector: 'myDatePicker',
+        template: require('./datePicker.html'),
+        // necessary to use ngModel
         providers: [{
           provide: NG_VALUE_ACCESSOR,
           useExisting: forwardRef(() => datePickerComponent),
@@ -45,8 +45,11 @@ export default class datePickerComponent {
     this.onModelTouched = fn;
   }
 
+  // event on change value
   valueChange(event) {
+    // change the value
     this.val = event.target.value ;
+    // emit the change
     this.onModelChange(this.val);
   }
 }
