@@ -18,5 +18,5 @@ require("./js/scrollspy.js")
 require("./js/tab.js")
 require("./js/affix.js")
 require("./js/select.js")
-
+require("./js/slidepicker.js")
 require("./less/atlantis-ui.less")

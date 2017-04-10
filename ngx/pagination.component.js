@@ -50,7 +50,7 @@ export default class pagination {
   }
 
   //initialize local variable with @Input
-  ngOnChanges(changes){
+  ngOnChanges(){
     this.pageChoose = this.page;
     this.pageCount = this.createArray(this.pages);
     //verify if number of page total is inferior to numberpageShow and if true show all pages
@@ -81,6 +81,7 @@ export default class pagination {
 
   //Send event to function pass in output with page we want
   changePage(e, index){
+    e.preventDefault();
     if (!this.changingPage) {
       if (index > this.pages) {
         index = this.pages;
@@ -105,6 +106,7 @@ export default class pagination {
 
   //show 5 next page when click on next arrow
   nextPage(e){
+    e.preventDefault();
     if (!this.changingPage) {
       e.preventDefault();
       if (this.page < this.pages ) {
