@@ -540,8 +540,18 @@
       if (this.endDate) {
         this.element.find('input').last().val(this.endDate.format("YYYY-MM-DD"));
       }
+      if (this.element[0]) {
+        var dateChangeEvent = document.createEvent('Event');
+        dateChangeEvent.initEvent('change', true, true);
+        this.element[0].dispatchEvent(dateChangeEvent);
+      }
     } else if (this.element.hasClass('input-group')) {
       this.element.find('input').first().val(this.startDate.format("YYYY-MM-DD"));
+      if (this.element[0]) {
+        var dateChangeEvent = document.createEvent('Event');
+        dateChangeEvent.initEvent('change', true, true);
+        this.element[0].dispatchEvent(dateChangeEvent);
+      }
     }
   };
 
