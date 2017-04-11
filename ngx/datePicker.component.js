@@ -11,8 +11,8 @@ export default class datePickerComponent {
 	static get annotations() {
 		return [
 			new Component({
-        selector: 'myDatePicker',
-        template: require('./datePicker.html'),
+        selector: 'datepicker',
+        template: '<input  type="date" class="form-control" [ngModel]="val" (change)="valueChange($event)"/>',
         // necessary to use ngModel
         providers: [{
           provide: NG_VALUE_ACCESSOR,
