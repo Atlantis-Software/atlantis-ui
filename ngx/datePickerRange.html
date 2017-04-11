@@ -1,5 +1,5 @@
-<div class="input-group" id="rangeDatePicker" class="input-group" (change)="getDates($event)">
-  <input class="form-control" [ngModel]="dateStart" type="date"/>
+<div class="input-group" id="rangeDatePicker" class="input-group">
+  <input class="form-control start" [ngModel]="start" (change)="setStart($event)" type="date"/>
   <span class="input-group-addon"></span>
-  <input class="form-control" [ngModel]="dateEnd" type="date"/>
+  <input class="form-control end" [ngModel]="end" (change)="setEnd($event)" type="date"/>
 </div>

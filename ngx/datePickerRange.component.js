@@ -2,29 +2,32 @@ import { Component, EventEmitter } from '@angular/core';
 
 export default class datePickerRangeComponent {
   constructor () {
-    this.datesChange = new EventEmitter();
-    this.resultDateStartChange = new EventEmitter();
-    this.resultDateEndChange = new EventEmitter();
+    this.startChange = new EventEmitter();
+    this.endChange = new EventEmitter();
   }
 	static get annotations() {
 		return [
 			new Component({
-        selector: 'myDatePickerRange',
+        selector: 'datepicker-range',
         template: require('./datePickerRange.html'), 
-        inputs: ['dateStart', 'dateEnd'], 
-        outputs: ['datesChange: getDates', 'resultDateStartChange: dateStartChange', 'resultDateEndChange: dateEndChange']
+        inputs: ['start', 'end'], 
+        outputs: ['startChange', 'endChange']
 	  	})
 		];
 	}
 
-  // event change emit by the datepicker atlantis ui
-  getDates(event){
-    this.dateEnd = event.target.lastElementChild.value;
-    this.dateStart = event.target.firstElementChild.value;
-    this.datesChange.emit(event);
-    // emit change value on dateStart and dateEnd
-    this.resultDateStartChange.emit(this.dateStart);
-    this.resultDateEndChange.emit(this.dateEnd);
+  // event start change emit by the datepicker atlantis ui
+  setStart(event){
+    this.start = event.target.value;
+    // emit change value on startChange
+    this.startChange.emit(this.start);
+  }
+
+  // event end change emit by the datepicker atlantis ui
+  setEnd(event){
+    this.end = event.target.value;
+    // emit change value on endChange
+    this.endChange.emit(this.end);
   }
 }
 
