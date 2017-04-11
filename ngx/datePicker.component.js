@@ -8,9 +8,10 @@ export default class datePickerComponent {
     this.val = '';
     this.elementRef = elementRef;
   }
-	static get annotations() {
-		return [
-			new Component({
+
+  static get annotations() {
+    return [
+      new Component({
         selector: 'datepicker',
         template: '<input  type="date" class="form-control" [ngModel]="val" (change)="valueChange($event)"/>',
         // necessary to use ngModel
@@ -19,9 +20,9 @@ export default class datePickerComponent {
           useExisting: forwardRef(() => datePickerComponent),
           multi: true
         }]
-	  	})
-		];
-	}
+      })
+    ];
+  }
 
   get value() {
     return this.val;

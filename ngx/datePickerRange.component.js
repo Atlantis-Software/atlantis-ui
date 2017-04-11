@@ -5,16 +5,17 @@ export default class datePickerRangeComponent {
     this.startChange = new EventEmitter();
     this.endChange = new EventEmitter();
   }
-	static get annotations() {
-		return [
-			new Component({
+
+  static get annotations() {
+    return [
+      new Component({
         selector: 'datepicker-range',
         template: require('./datePickerRange.html'), 
         inputs: ['start', 'end'], 
         outputs: ['startChange', 'endChange']
-	  	})
-		];
-	}
+      })
+    ];
+  }
 
   // event start change emit by the datepicker atlantis ui
   setStart(event){
