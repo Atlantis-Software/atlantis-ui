@@ -526,7 +526,7 @@
   //return: none
   //update the original element when an action modify the calendars or the input forms
 
-  DatePicker.prototype.updateElement = function() {
+  DatePicker.prototype.updateElement = function(input, date) {
     input.val(date.format("YYYY-MM-DD"));
     if (input[0]) {
       var dateChangeEvent = document.createEvent('Event');
