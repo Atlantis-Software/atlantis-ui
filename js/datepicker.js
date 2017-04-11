@@ -169,7 +169,7 @@
     this.startDate = this.startDate.startOf('day');
 
     this.updateView();
-    if (this.element.is('input') && this.singleDatePicker) {
+    if (this.element.is('input')) {
       this.updateElement(this.element, this.startDate);
     } else {
        var start = this.element.find("input.start"); 
@@ -204,9 +204,8 @@
 
     this.previousRightTime = this.endDate.clone();
     this.updateView();
-    if (this.element.is('input') && this.singleDatePicker) {
-      this.updateElement(this.element, this.endDate);
-    } else {
+    // only datepicker range has a end date
+    if (this.element.is('div')) {
        var end = this.element.find("input.end"); 
        this.updateElement(end, this.endDate);
     }
