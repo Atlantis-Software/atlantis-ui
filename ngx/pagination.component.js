@@ -96,8 +96,8 @@ export default class pagination {
 
   //show 5 previous page when click on previous arrow
   previousPage(e){
+    e.preventDefault();
     if (!this.changingPage) {
-      e.preventDefault();
       if (this.page > 1) {
         this.changePage(e, this.page - this.numberPageShow);
       }
@@ -108,7 +108,6 @@ export default class pagination {
   nextPage(e){
     e.preventDefault();
     if (!this.changingPage) {
-      e.preventDefault();
       if (this.page < this.pages ) {
         this.changePage(e, this.page + this.numberPageShow);
       }
