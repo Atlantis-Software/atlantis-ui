@@ -81,6 +81,7 @@ export default class pagination {
 
   //Send event to function pass in output with page we want
   changePage(e, index){
+    e.preventDefault();
     if (!this.changingPage) {
       if (index > this.pages) {
         index = this.pages;
@@ -95,8 +96,8 @@ export default class pagination {
 
   //show 5 previous page when click on previous arrow
   previousPage(e){
+    e.preventDefault();
     if (!this.changingPage) {
-      e.preventDefault();
       if (this.page > 1) {
         this.changePage(e, this.page - this.numberPageShow);
       }
@@ -105,8 +106,8 @@ export default class pagination {
 
   //show 5 next page when click on next arrow
   nextPage(e){
+    e.preventDefault();
     if (!this.changingPage) {
-      e.preventDefault();
       if (this.page < this.pages ) {
         this.changePage(e, this.page + this.numberPageShow);
       }
