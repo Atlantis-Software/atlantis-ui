@@ -1,6 +1,6 @@
 import { Component, EventEmitter } from '@angular/core';
 
-export default class datePickerRangeComponent {
+export default class datepickerrangeComponent {
   constructor () {
     this.startChange = new EventEmitter();
     this.endChange = new EventEmitter();
@@ -10,7 +10,7 @@ export default class datePickerRangeComponent {
     return [
       new Component({
         selector: 'datepicker-range',
-        template: require('./datePickerRange.html'), 
+        template: require('./datepicker-range.html'), 
         inputs: ['start', 'end'], 
         outputs: ['startChange', 'endChange']
       })
@@ -32,4 +32,4 @@ export default class datePickerRangeComponent {
   }
 }
 
-datePickerRangeComponent.parameters = [];
+datepickerrangeComponent.parameters = [];
