@@ -1,7 +1,7 @@
 import { Component, ContentChildren, forwardRef, ElementRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-export default class datePickerComponent {
+export default class datepickerComponent {
   constructor (elementRef) {
     this.onModelTouched = function() {};
     this.onModelChange = function() {};
@@ -17,7 +17,7 @@ export default class datePickerComponent {
         // necessary to use ngModel
         providers: [{
           provide: NG_VALUE_ACCESSOR,
-          useExisting: forwardRef(() => datePickerComponent),
+          useExisting: forwardRef(() => datepickerComponent),
           multi: true
         }]
       })
@@ -55,4 +55,4 @@ export default class datePickerComponent {
   }
 }
 
-datePickerComponent.parameters = [ElementRef];
+datepickerComponent.parameters = [ElementRef];
