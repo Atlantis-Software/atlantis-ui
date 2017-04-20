@@ -602,9 +602,12 @@
       });
       var $range = $header.find(".range");
       $range.selectpicker();
-      $range.on('change', function() {
-        var startDate, endDate
-        switch($range.val()) {
+      $range.change(function() {
+        var optionSelected = $modal.find(".select-value").val();
+        var startDate;
+        var endDate;
+
+        switch(optionSelected) {
           case "toDay":
             startDate = moment();
             endDate = startDate;
