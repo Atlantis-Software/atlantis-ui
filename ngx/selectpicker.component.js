@@ -1,12 +1,14 @@
-import { Component, ContentChildren, forwardRef } from '@angular/core';
+import { Component, ContentChildren, forwardRef, ChangeDetectorRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import selectpickeroptionComponent from './selectpicker-option.component';
 
 export default class selectpickerComponent {
-  constructor () {
+  constructor (changeDetectorRef) {
     this.onModelTouched = function() {};
     this.onModelChange = function() {};
+    this.cdr = changeDetectorRef;
     this.val = '';
+
   }
 	static get annotations() {
 		return [
@@ -75,6 +77,7 @@ export default class selectpickerComponent {
         }
       });
     }
+    this.cdr.detectChanges();
   }
 
   valueChange() {
@@ -97,4 +100,4 @@ export default class selectpickerComponent {
   }
 }
 
-selectpickerComponent.parameters = [];
+selectpickerComponent.parameters = [ChangeDetectorRef];

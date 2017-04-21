@@ -164,20 +164,22 @@
 
 
   function updatevalue(e) {
-    console.log('updatevalue', e);
     if (!e || !e.target) {
       return;
     }
     var selected = $(e.target).prop('checked');
     var li = $(e.target).parent();
-    console.log('li', li);
     if (selected) {
-      console.log('selected');
-      li.prop('aria-selected', 'true');
+      li.attr('aria-selected', 'true');
     } else {
-      console.log('not selected');
-      li.prop('aria-selected', 'false');
+      li.attr('aria-selected', 'false');
     }
+    // update select text
+    var $checkbox     = $(this);
+    var $li           = getParent($checkbox);
+    var $ul           = getParent($li);
+    var $select       = getParent($ul);
+    updateText($select);
   }
 
   Select.prototype.toggle = function (e) {
