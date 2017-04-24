@@ -26,21 +26,21 @@
       countlabel : countLabel
     })
 
-    var label = $(".slidepicker-label div")[0]
-    var initialPos = $(label).position()
+    var initialLabel = $(".slidepicker-label div")[0]
+    var initialPos = $(initialLabel).position()
 
     if (this.data.vertical){
       this.data.trackHeight = this.data.$track.innerHeight();
       this.data.handleHeight = this.data.$handle.innerHeight();
       this.data.increment = this.data.trackHeight / 1000;
       initialPos = initialPos.top;
-      this.data.handleAdjustment = +$(label).css('margin-top').split("px")[0] + 5;
+      this.data.handleAdjustment = +$(initialLabel).css('margin-top').split("px")[0] + 5;
     } else {
       this.data.trackWidth = this.data.$track.outerWidth();
 			this.data.handleWidth = this.data.$handle.outerWidth();
 			this.data.increment = this.data.trackWidth / 1000;
       initialPos = initialPos.left;
-      this.data.handleAdjustment = +$(label).css('margin-left').split("px")[0] + 8;
+      this.data.handleAdjustment = +$(initialLabel).css('margin-left').split("px")[0] + 8;
     }
 
 
