@@ -20,9 +20,9 @@
   DATE_RANGE_HEADER_TEMPLATE +=      '<div class="row">';
   DATE_RANGE_HEADER_TEMPLATE +=        '<div class="col-md-6">';
   DATE_RANGE_HEADER_TEMPLATE +=          '<div class="input-group">';
-  DATE_RANGE_HEADER_TEMPLATE +=            '<input type="text" class="form-control"/>';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<input type="text" class="form-control start"/>';
   DATE_RANGE_HEADER_TEMPLATE +=            '<span class="input-group-addon"><i class="icon icon-next"></i></span>';
-  DATE_RANGE_HEADER_TEMPLATE +=            '<input type="text" class="form-control"/>';
+  DATE_RANGE_HEADER_TEMPLATE +=            '<input type="text" class="form-control end"/>';
   DATE_RANGE_HEADER_TEMPLATE +=          '</div>';
   DATE_RANGE_HEADER_TEMPLATE +=        '</div>';
   DATE_RANGE_HEADER_TEMPLATE +=        '<div class="col-md-6">';
@@ -169,7 +169,12 @@
     this.startDate = this.startDate.startOf('day');
 
     this.updateView();
-    this.updateElement();
+    if (this.element.is('input')) {
+      this.updateElement(this.element, this.startDate);
+    } else {
+       var start = this.element.find("input.start"); 
+       this.updateElement(start, this.startDate);
+    }
     this.updateFormInputs();
   };
 
@@ -199,7 +204,11 @@
 
     this.previousRightTime = this.endDate.clone();
     this.updateView();
-    this.updateElement();
+    // only datepicker range has a end date
+    if (this.element.is('div')) {
+       var end = this.element.find("input.end"); 
+       this.updateElement(end, this.endDate);
+    }
     this.updateFormInputs();
   };
 
@@ -469,9 +478,6 @@
     }
     this.updateView();
     this.updateFormInputs();
-    if (this.endDate) {
-      this.updateElement();
-    }
     e.stopPropagation();
   };
 
@@ -511,7 +517,6 @@
       }
     }
     this.updateView();
-    this.updateElement();
   };
 
   //
@@ -520,28 +525,12 @@
   //return: none
   //update the original element when an action modify the calendars or the input forms
 
-  DatePicker.prototype.updateElement = function() {
-    if (this.element.is('input') && this.singleDatePicker) {
-      this.element.val(this.startDate.format("YYYY-MM-DD"));
-      if (this.element[0]) {
-        var dateChangeEvent = document.createEvent('Event');  
-        dateChangeEvent.initEvent('change', true, true);
-        this.element[0].dispatchEvent(dateChangeEvent);
-      }
-    } else if (this.element.is('input') && !this.singleDatePicker) {
-      this.element.val(this.startDate.format("YYYY-MM-DD") + this.locale.separator + this.endDate.format("YYYY-MM-DD"));
-      if (this.element[0]) {
-        var dateChangeEvent = document.createEvent('Event');  
-        dateChangeEvent.initEvent('change', true, true);
-        this.element[0].dispatchEvent(dateChangeEvent);
-      }
-    } else if (this.element.hasClass('input-group') && !this.singleDatePicker) {
-      this.element.find('input').first().val(this.startDate.format("YYYY-MM-DD"));
-      if (this.endDate) {
-        this.element.find('input').last().val(this.endDate.format("YYYY-MM-DD"));
-      }
-    } else if (this.element.hasClass('input-group')) {
-      this.element.find('input').first().val(this.startDate.format("YYYY-MM-DD"));
+  DatePicker.prototype.updateElement = function(input, date) {
+    input.val(date.format("YYYY-MM-DD"));
+    if (input[0]) {
+      var dateChangeEvent = document.createEvent('Event');
+      dateChangeEvent.initEvent('change', true, true);
+      input[0].dispatchEvent(dateChangeEvent);
     }
   };
 
@@ -613,9 +602,12 @@
       });
       var $range = $header.find(".range");
       $range.selectpicker();
-      $range.on('change', function() {
-        var startDate, endDate
-        switch($range.val()) {
+      $range.change(function() {
+        var optionSelected = $modal.find(".select-value").val();
+        var startDate;
+        var endDate;
+
+        switch(optionSelected) {
           case "toDay":
             startDate = moment();
             endDate = startDate;

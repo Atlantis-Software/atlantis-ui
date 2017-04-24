@@ -1,27 +1,28 @@
 import { Component, ContentChildren, forwardRef, ElementRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-export default class datePickerComponent {
+export default class datepickerComponent {
   constructor (elementRef) {
     this.onModelTouched = function() {};
     this.onModelChange = function() {};
     this.val = '';
     this.elementRef = elementRef;
   }
-	static get annotations() {
-		return [
-			new Component({
+
+  static get annotations() {
+    return [
+      new Component({
         selector: 'datepicker',
-        template: `<input  type="date" class="form-control" [ngModel]="val" (change)="valueChange($event)"/>`,
-        inputs: ['val'],
+        template: '<input  type="date" class="form-control" [ngModel]="val" (change)="valueChange($event)"/>',
+        // necessary to use ngModel
         providers: [{
           provide: NG_VALUE_ACCESSOR,
-          useExisting: forwardRef(() => datePickerComponent),
+          useExisting: forwardRef(() => datepickerComponent),
           multi: true
         }]
-	  	})
-		];
-	}
+      })
+    ];
+  }
 
   get value() {
     return this.val;
@@ -45,10 +46,13 @@ export default class datePickerComponent {
     this.onModelTouched = fn;
   }
 
+  // event on change value
   valueChange(event) {
+    // change the value
     this.val = event.target.value ;
+    // emit the change
     this.onModelChange(this.val);
   }
 }
 
-datePickerComponent.parameters = [ElementRef];
+datepickerComponent.parameters = [ElementRef];
