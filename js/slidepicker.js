@@ -6,9 +6,10 @@
     var $element = element,
       $track = $element.find(".slidepicker-track"),
       $handle = $element.find(".slidepicker-handle"),
-      $label = $element.find(".slidepicker-label");
+      $label = $element.find(".slidepicker-label"),
+      $input = $element.find(".slidepicker-input");
 
-    var countLabel = $label.find("li").length
+    var countLabel = $label.find("div").length;
 
     if ($element.hasClass("vertical")){
       options.vertical = true;
@@ -21,30 +22,39 @@
       $track: $track,
 			$handle: $handle,
       $label : $label,
-      countlabel : countLabel,
-      trackWidth : $track.outerWidth(),
-      handleWidth: $handle.outerWidth()
+      $input : $input,
+      countlabel : countLabel
     })
 
+    var label = $(".slidepicker-label div")[0]
+    var initialPos = $(label).position()
+
     if (this.data.vertical){
-      this.data.trackHeight = this.data.$track.outerHeight()
-      this.data.handleHeight = this.data.$handle.outerHeight()
+      this.data.trackHeight = this.data.$track.innerHeight();
+      this.data.handleHeight = this.data.$handle.innerHeight();
       this.data.increment = this.data.trackHeight / 1000;
+      initialPos = initialPos.top;
+      this.data.handleAdjustment = +$(label).css('margin-top').split("px")[0] + 5;
     } else {
       this.data.trackWidth = this.data.$track.outerWidth();
 			this.data.handleWidth = this.data.$handle.outerWidth();
 			this.data.increment = this.data.trackWidth / 1000;
+      initialPos = initialPos.left;
+      this.data.handleAdjustment = +$(label).css('margin-left').split("px")[0] + 8;
     }
+
+
+    this.data.$handle.css((this.data.vertical) ? "top" : "left", (initialPos + this.data.handleAdjustment) + "px");
+
     $element.on("touchstart.slidepicker mousedown.slidepicker", ".slidepicker-track", $.proxy(this.TrackDown, this))
       .on("touchstart.slidepicker mousedown.slidepicker", ".slidepicker-handle", $.proxy(this.HandleDown, this))
-      .on("touch.slidepicker click.slidepicker", ".slidepicker-label li", $.proxy(this.clickLabel, this));
+      .on("touch.slidepicker click.slidepicker", ".slidepicker-label div", $.proxy(this.clickLabel, this));
 
   }
 
   SlidePicker.prototype.TrackDown = function(e) {
     e.preventDefault();
     e.stopPropagation();
-
 
     this.MouseMove(e);
 
@@ -69,62 +79,72 @@
     e.stopPropagation();
 
     var originalE = e.originalEvent,
-      offset = this.data.$track.offset(),
-      perc = 0;
+      offset = this.data.$track.offset();
 
     if (this.data.vertical) {
       var pageY = (typeof originalE.targetTouches !== "undefined") ? originalE.targetTouches[0].pageY : e.pageY;
-			perc = (pageY - offset.top) / this.data.trackHeight;
+			this.perc = (pageY - offset.top) / this.data.trackHeight;
     } else {
       var pageX = (typeof originalE.targetTouches !== "undefined") ? originalE.targetTouches[0].pageX : e.pageX;
-			perc = (pageX - offset.left) / this.data.trackWidth;
+			this.perc = (pageX - offset.left) / this.data.trackWidth;
     }
 
-    this.position(perc);
+    this.positionperc();
   }
 
   SlidePicker.prototype.MouseUp = function(e){
     e.preventDefault();
     e.stopPropagation();
+
     this.data.$element.removeClass("focus");
 
     var originalE = e.originalEvent,
       offset = this.data.$track.offset(),
-      perc = 0;
+      numberLabel = Math.round(this.perc * (this.data.countlabel-1)),
+      label = $(".slidepicker-label div")[numberLabel];
+
+    this.changeActive(label);
+
+    var posLabel = $(label).position()
     if (this.data.vertical) {
-      var pageY = (typeof originalE.targetTouches !== "undefined") ? originalE.targetTouches[0].pageY : e.pageY;
-			perc = (pageY - offset.top) / this.data.trackHeight;
+      posLabel = posLabel.top;
     } else {
-      var pageX = (typeof originalE.targetTouches !== "undefined") ? originalE.targetTouches[0].pageX : e.pageX;
-			perc = (pageX - offset.left) / this.data.trackWidth;
+      posLabel = posLabel.left;
     }
 
-    perc = 1 / (this.data.countlabel-1) * (Math.round(perc*(this.data.countlabel-1)));
-
-    this.position(perc);
+    this.positionReal(posLabel);
 
     $("body").off(".slidepicker");
   }
 
-  SlidePicker.prototype.position = function(perc){
+  SlidePicker.prototype.positionReal = function(posLabel) {
+
+    this.data.$handle.css((this.data.vertical) ? "top" : "left", (posLabel + this.data.handleAdjustment) + "px");
+    if (this.data.$input[0]){
+      var slideChangeEvent = document.createEvent('Event');
+      slideChangeEvent.initEvent('change', true, true);
+      this.data.$input[0].dispatchEvent(slideChangeEvent);
+    }
+  }
+
+  SlidePicker.prototype.positionperc = function(){
     if (this.data.increment > 1) {
 			if (this.data.vertical) {
-				perc = (Math.round(perc * 1000) * this.data.increment) / this.data.trackHeight;
+				this.perc = (Math.round(this.perc * 1000) * this.data.increment) / this.data.trackHeight;
 			} else {
-				perc = (Math.round(perc * 1000) * this.data.increment) / this.data.trackWidth;
+				this.perc = (Math.round(this.perc * 1000) * this.data.increment) / this.data.trackWidth;
 			}
 		}
 
-		if (perc < 0) {
-			perc = 0;
+		if (this.perc < 0) {
+			this.perc = 0;
 		}
-		if (perc > 1) {
-			perc = 1;
+		if (this.perc > 1) {
+			this.perc = 1;
 		}
 
-    console.log(perc);
 
-		this.data.$handle.css((this.data.vertical) ? "top" : "left", (perc * 100) + "%");
+		this.data.$handle.css((this.data.vertical) ? "top" : "left", (this.perc * 100) + "%");
 
   }
 
@@ -132,18 +152,24 @@
     e.preventDefault();
     e.stopPropagation();
 
-    this.data.$label.find("li").removeClass("active");
-    $(e.target).addClass("active");
+    this.changeActive(e.target);
 
-    var perc = 0;
-
+    var posLabel = $(e.target).position()
     if (this.data.vertical) {
-			perc = 1 / (this.data.countlabel-1) *this.data.$label.children(".active").index() ;
+      posLabel = posLabel.top;
     } else {
-			perc = 1/(this.data.countlabel-1);
+      posLabel = posLabel.left;
     }
 
-    this.position(perc);
+    this.positionReal(posLabel);
+  }
+
+  SlidePicker.prototype.changeActive = function(target){
+
+    this.data.$label.find("div").removeClass("active");
+    $(target).addClass("active")
+    this.data.$input.val($(target).text());
+
   }
 
   $.fn.slidepicker = function(options){
