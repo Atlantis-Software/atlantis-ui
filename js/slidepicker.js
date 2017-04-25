@@ -9,9 +9,9 @@
       $label = $element.find(".slidepicker-label"),
       $input = $element.find(".slidepicker-input");
 
-    var countLabel = $label.find("div").length;
+    var countLabel = $label.find("li").length;
 
-    if ($element.hasClass("vertical")){
+    if ($element.hasClass("slidepicker-vertical")){
       options.vertical = true;
     } else {
       options.vertical = false;
@@ -26,18 +26,16 @@
       countlabel : countLabel
     })
 
-    var initialLabel = $(".slidepicker-label div")[0]
+    var initialLabel = $(".slidepicker-label li")[0]
     var initialPos = $(initialLabel).position()
 
     if (this.data.vertical){
       this.data.trackHeight = this.data.$track.innerHeight();
-      this.data.handleHeight = this.data.$handle.innerHeight();
       this.data.increment = this.data.trackHeight / 1000;
       initialPos = initialPos.top;
       this.data.handleAdjustment = +$(initialLabel).css('margin-top').split("px")[0] + 5;
     } else {
       this.data.trackWidth = this.data.$track.outerWidth();
-			this.data.handleWidth = this.data.$handle.outerWidth();
 			this.data.increment = this.data.trackWidth / 1000;
       initialPos = initialPos.left;
       this.data.handleAdjustment = +$(initialLabel).css('margin-left').split("px")[0] + 8;
@@ -48,103 +46,152 @@
 
     $element.on("touchstart.slidepicker mousedown.slidepicker", ".slidepicker-track", $.proxy(this.TrackDown, this))
       .on("touchstart.slidepicker mousedown.slidepicker", ".slidepicker-handle", $.proxy(this.HandleDown, this))
-      .on("touch.slidepicker click.slidepicker", ".slidepicker-label div", $.proxy(this.clickLabel, this));
+      .on("touch.slidepicker click.slidepicker", ".slidepicker-label li", $.proxy(this.clickLabel, this));
 
   }
+
+  SlidePicker.version = "0.0.1";
 
   SlidePicker.prototype.TrackDown = function(e) {
     e.preventDefault();
     e.stopPropagation();
 
-    this.MouseMove(e);
+    var $parent = $(e.target).parent(".slidepicker")
 
-    this.data.$element.addClass("focus");
+    MouseMove(e, $parent);
 
-    $("body").on("touchmove.slidepicker mousemove.slidepicker", $.proxy(this.MouseMove, this))
-      .one("touchend.slidepicker touchcancel.slidepicker mouseup.slidepicker",$.proxy(this.MouseUp, this))
+    $parent.addClass("focus");
+
+    $("body").on("touchmove.slidepicker mousemove.slidepicker", $.proxy(MouseMove, $parent))
+      .one("touchend.slidepicker touchcancel.slidepicker mouseup.slidepicker",$.proxy(MouseUp, $parent))
   }
 
   SlidePicker.prototype.HandleDown = function(e) {
     e.preventDefault();
 		e.stopPropagation();
 
-    this.data.$element.addClass("focus")
+    var $parent = $(e.target).parent().parent(".slidepicker")
 
-    $("body").on("touchmove.slidepicker mousemove.slidepicker", $.proxy(this.MouseMove, this))
-      .one("touchend.slidepicker touchcancel.slidepicker mouseup.slidepicker",$.proxy(this.MouseUp, this))
+    $parent.addClass("focus")
+
+    $("body").on("touchmove.slidepicker mousemove.slidepicker", $.proxy(MouseMove, $parent))
+      .one("touchend.slidepicker touchcancel.slidepicker mouseup.slidepicker",$.proxy(MouseUp, $parent))
   }
 
-  SlidePicker.prototype.MouseMove = function(e){
+  function MouseMove(e, $parent){
     e.preventDefault();
     e.stopPropagation();
-
+    $parent = $parent || this
+    // var $parent = $(e.target).parent(".slidepicker")
+    var $track = $parent.find(".slidepicker-track")
+    var vertical;
     var originalE = e.originalEvent,
-      offset = this.data.$track.offset();
+      offset = $track.offset();
 
-    if (this.data.vertical) {
-      var pageY = (typeof originalE.targetTouches !== "undefined") ? originalE.targetTouches[0].pageY : e.pageY;
-			this.perc = (pageY - offset.top) / this.data.trackHeight;
+    var trackSize = {trackHeight : $track.innerHeight(), trackWidth : $track.innerWidth()}
+    if ($parent.hasClass("slidepicker-vertical")){
+      vertical = true;
     } else {
-      var pageX = (typeof originalE.targetTouches !== "undefined") ? originalE.targetTouches[0].pageX : e.pageX;
-			this.perc = (pageX - offset.left) / this.data.trackWidth;
+      vertical = false;
     }
 
-    this.positionperc();
+    if (vertical) {
+      var pageY = (typeof originalE.targetTouches !== "undefined") ? originalE.targetTouches[0].pageY : e.pageY;
+			var perc = (pageY - offset.top) / trackSize.trackHeight;
+    } else {
+      var pageX = (typeof originalE.targetTouches !== "undefined") ? originalE.targetTouches[0].pageX : e.pageX;
+			var perc = (pageX - offset.left) / trackSize.trackWidth;
+    }
+
+    positionperc(perc, $parent, vertical, $track, trackSize);
   }
 
-  SlidePicker.prototype.MouseUp = function(e){
+  function MouseUp(e){
     e.preventDefault();
     e.stopPropagation();
 
-    this.data.$element.removeClass("focus");
+    this.removeClass("focus");
+    var $track = this.find(".slidepicker-track");
+    var countlabel = this.find(".slidepicker-label").find("li").length;
+    var vertical, perc, handleAdjustment;
+    var trackSize = {trackHeight : $track.innerHeight(), trackWidth : $track.innerWidth()};
+    var originalE = e.originalEvent;
+    var offset = $track.offset();
+    var $label = this.find(".slidepicker-label li")[0];
 
-    var originalE = e.originalEvent,
-      offset = this.data.$track.offset(),
-      numberLabel = Math.round(this.perc * (this.data.countlabel-1)),
-      label = $(".slidepicker-label div")[numberLabel];
 
-    this.changeActive(label);
+    if (this.hasClass("slidepicker-vertical")){
+      vertical = true;
+      var pageY = (typeof originalE.targetTouches !== "undefined") ? originalE.targetTouches[0].pageY : e.pageY;
+
+			perc = (pageY - offset.top) / trackSize.trackHeight;
+      var increment = trackSize.trackHeight / 1000;
+
+      perc = (Math.round(perc * 1000) * increment) / trackSize.trackHeight;
+      handleAdjustment = +$($label).css('margin-top').split("px")[0] + 5;
+    } else {
+      vertical = false;
+      var pageX = (typeof originalE.targetTouches !== "undefined") ? originalE.targetTouches[0].pageX : e.pageX;
+
+      perc = (pageX - offset.left) / trackSize.trackWidth;
+      var increment = trackSize.trackWidth / 1000;
+
+      perc = (Math.round(perc * 1000) * increment) / trackSize.trackWidth;
+      handleAdjustment = +$($label).css('margin-left').split("px")[0] + 5;
+    }
+
+    var offset = $track.offset(),
+      numberLabel = Math.round(perc * (countlabel-1)),
+      label = $(".slidepicker-label li")[numberLabel];
+
+    changeActive(label, this);
 
     var posLabel = $(label).position()
-    if (this.data.vertical) {
+    if (vertical) {
       posLabel = posLabel.top;
     } else {
       posLabel = posLabel.left;
     }
 
-    this.positionReal(posLabel);
+    positionReal(posLabel, this, vertical, handleAdjustment);
 
     $("body").off(".slidepicker");
   }
 
-  SlidePicker.prototype.positionReal = function(posLabel) {
+  function positionReal(posLabel, $parent, vertical, handleAdjustment) {
 
-    this.data.$handle.css((this.data.vertical) ? "top" : "left", (posLabel + this.data.handleAdjustment) + "px");
-    if (this.data.$input[0]){
+    var $handle = $parent.find(".slidepicker-handle");
+    var $input = $parent.find(".slidepicker-input");
+    $handle.css((vertical) ? "top" : "left", (posLabel + handleAdjustment) + "px");
+    if ($input[0]){
       var slideChangeEvent = document.createEvent('Event');
       slideChangeEvent.initEvent('change', true, true);
-      this.data.$input[0].dispatchEvent(slideChangeEvent);
+      $input[0].dispatchEvent(slideChangeEvent);
     }
   }
 
-  SlidePicker.prototype.positionperc = function(){
-    if (this.data.increment > 1) {
-			if (this.data.vertical) {
-				this.perc = (Math.round(this.perc * 1000) * this.data.increment) / this.data.trackHeight;
-			} else {
-				this.perc = (Math.round(this.perc * 1000) * this.data.increment) / this.data.trackWidth;
-			}
-		}
+  function positionperc(perc, $parent, vertical, $track, trackSize){
 
-		if (this.perc < 0) {
-			this.perc = 0;
-		}
-		if (this.perc > 1) {
-			this.perc = 1;
-		}
+    var $handle = $parent.find(".slidepicker-handle");
+
+    if (vertical){
+      var increment = trackSize.trackHeight / 1000;
+      perc = (Math.round(perc * 1000) * increment) / trackSize.trackHeight;
+
+    } else {
+			var increment = trackSize.trackWidth / 1000;
+      perc = (Math.round(perc * 1000) * increment) / trackSize.trackWidth;
+    }
 
 
-		this.data.$handle.css((this.data.vertical) ? "top" : "left", (this.perc * 100) + "%");
+		if (perc < 0) {
+	    perc = 0;
+		}
+		if (perc > 1) {
+			perc = 1;
+		}
+
+		$handle.css((vertical) ? "top" : "left", (perc * 100) + "%");
 
   }
 
@@ -152,24 +199,34 @@
     e.preventDefault();
     e.stopPropagation();
 
-    this.changeActive(e.target);
+    var $parent = $(e.target).parent().parent(".slidepicker")
+    var vertical;
+    var handleAdjustment;
+    if ($parent.hasClass("slidepicker-vertical")){
+      vertical = true;
+      handleAdjustment = +$(e.target).css('margin-top').split("px")[0] + 5;
+    } else {
+      vertical = false;
+      handleAdjustment = +$(e.target).css('margin-left').split("px")[0] + 5;
+    }
+    changeActive(e.target, $parent);
 
     var posLabel = $(e.target).position()
-    if (this.data.vertical) {
+    if (vertical) {
       posLabel = posLabel.top;
     } else {
       posLabel = posLabel.left;
     }
 
-    this.positionReal(posLabel);
+    positionReal(posLabel, $parent, vertical, handleAdjustment);
   }
 
-  SlidePicker.prototype.changeActive = function(target){
-
-    this.data.$label.find("div").removeClass("active");
+  function changeActive(target, $parent){
+    var $label = $parent.find(".slidepicker-label");
+    var $input = $parent.find(".slidepicker-input");
+    $label.find("li").removeClass("active");
     $(target).addClass("active")
-    this.data.$input.val($(target).text());
-
+    $input.val($(target).text().trim());
   }
 
   $.fn.slidepicker = function(options){
@@ -184,5 +241,10 @@
 
     return this;
   }
+
+  $(document)
+    .on("touchstart.slidepicker mousedown.slidepicker", ".slidepicker-track", $.proxy(SlidePicker.prototype.TrackDown, this))
+    .on("touchstart.slidepicker mousedown.slidepicker", ".slidepicker-handle", $.proxy(SlidePicker.prototype.HandleDown, this))
+    .on("touch.slidepicker click.slidepicker", ".slidepicker-label li", $.proxy(SlidePicker.prototype.clickLabel, this));
 
 }(jQuery);
