@@ -1,14 +1,15 @@
-import { Component, EventEmitter, ContentChildren, forwardRef, ChangeDetectorRef} from '@angular/core';
+import { Component, EventEmitter, ContentChildren, forwardRef, ChangeDetectorRef, ElementRef} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import slidepickeroptionComponent from './slidepicker-option.component';
 
 export default class slidepickercomponent {
-  constructor (changeDetectorRef) {
+  constructor (changeDetectorRef, elementRef) {
     this.val = '';
     this.onModelTouched = function() {};
     this.onModelChange = function() {};
     this.cdr = changeDetectorRef;
     this.index = 0;
+    this.elementRef = elementRef;
   }
 
   static get annotations() {
@@ -54,14 +55,22 @@ export default class slidepickercomponent {
   }
 
   writeValue(val) {
+    var self = this;
     if (val !== this.val) {
-      var input = document.getElementsByClassName("slidepicker-input");
-      var inputChangeEvent = document.createEvent('Event');
-      inputChangeEvent.initEvent('change', true, true);
-      input.dispatchEvent(inputChangeEvent);
       this.val = val;
-      // this.updateOptions();
       this.onModelChange(val);
+      if (this.options) {
+
+        //Transform from angular queries object (this.options) to flat array.
+        var options = this.options.toArray();
+        options.forEach(function(element, index) {
+          // Check index value.
+          if (element.value === self.val) {
+            self.index = index;
+            self.updateHandlerPosition();
+          }
+        });
+      }
     }
   }
 
@@ -73,21 +82,27 @@ export default class slidepickercomponent {
     this.onModelTouched = fn;
   }
 
-  ngAfterViewInit() {
-    // this.setValue();
-  }
-
-
   // event slide value change emit by the slidepicker atlantis ui
   setValue(event){
     var self = this;
-    this.index = event.target.value;
-    this.val = this.options.toArray()[this.index].value;
-    this.onModelChange(this.val);
-    // this.valueSlide = event.target.value;
-    // // emit change value on valueSlideChange
-    // this.valueSlideChange.emit(this.valueSlide);
+    if (event.target.value !== "" && this.index !== event.target.value) {
+      this.index = event.target.value;
+      if (this.options) {
+        this.val = this.options.toArray()[this.index].value;
+        this.onModelChange(this.val);
+      }
+    }
+  }
+
+  // Send value to jquery to update curser position
+  updateHandlerPosition(){
+    var input = this.elementRef.nativeElement.getElementsByClassName("slidepicker-input");
+    input[0].value = this.index;
+    var inputChangeEvent = document.createEvent('Event');
+    inputChangeEvent.initEvent('change', true, true);
+    input[0].dispatchEvent(inputChangeEvent);
+    this.cdr.detectChanges();
   }
 }
 
-slidepickercomponent.parameters = [ChangeDetectorRef];
+slidepickercomponent.parameters = [ChangeDetectorRef, ElementRef];

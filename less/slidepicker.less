@@ -29,13 +29,27 @@
     margin-top : 20px; //Position label in bottom tracker
 
     li{
-      &.active {
-          color: blue;
-      }
+
       float : left;
       display: block;
       margin-left: 28px;
       margin-right: 28px;
+      &.active {
+        a{
+          color: blue;
+          font-weight: bold;
+        }
+      }
+      a{
+        display : block;
+        clear : both;
+        font-weight: normal;
+        color : #000;
+        white-space: nowrap;
+        cursor: pointer;
+        text-decoration: none;
+
+      }
     }
   }
 
@@ -72,6 +86,21 @@
         display: block;
         margin-left : 0px;
         margin-right: 0px;
+        &.active {
+          a{
+            color : blue;
+            font-weight: bold;
+          }
+        }
+        a{
+          display : block;
+          clear : both;
+          font-weight: normal;
+          color : #000;
+          white-space: nowrap;
+          cursor: pointer;
+          text-decoration: none;
+        }
       }
       &.small li{
         margin-top: 29px;
