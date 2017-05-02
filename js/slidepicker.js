@@ -56,7 +56,7 @@
     e.preventDefault();
     e.stopPropagation();
 
-    var $parent = $(e.target).parent(".slidepicker")
+    var $parent = $(e.target).parents(".slidepicker")
 
     MouseMove(e, $parent);
 
@@ -70,7 +70,7 @@
     e.preventDefault();
 		e.stopPropagation();
 
-    var $parent = $(e.target).parent().parent(".slidepicker")
+    var $parent = $(e.target).parents(".slidepicker")
 
     $parent.addClass("focus")
 
@@ -82,7 +82,6 @@
     e.preventDefault();
     e.stopPropagation();
     $parent = $parent || this
-    // var $parent = $(e.target).parent(".slidepicker")
     var $track = $parent.find(".slidepicker-track")
     var vertical;
     var originalE = e.originalEvent,
@@ -137,12 +136,14 @@
       var increment = trackSize.trackWidth / 1000;
 
       perc = (Math.round(perc * 1000) * increment) / trackSize.trackWidth;
-      handleAdjustment = +$($label).css('margin-left').split("px")[0] + 5;
+      handleAdjustment = +$($label).css('margin-left').split("px")[0] + 10;
     }
+
+    $label = this.find(".slidepicker-label li");
 
     var offset = $track.offset(),
       numberLabel = Math.round(perc * (countlabel-1)),
-      label = $(".slidepicker-label li")[numberLabel];
+      label = $label[numberLabel];
 
     changeActive(label, this);
 
@@ -199,19 +200,20 @@
     e.preventDefault();
     e.stopPropagation();
 
-    var $parent = $(e.target).parent().parent(".slidepicker")
+    var $parent = $(e.target).parents(".slidepicker")
+    var $label = $(e.target).parent();
     var vertical;
     var handleAdjustment;
     if ($parent.hasClass("slidepicker-vertical")){
       vertical = true;
-      handleAdjustment = +$(e.target).css('margin-top').split("px")[0] + 5;
+      handleAdjustment = +$label.css('margin-top').split("px")[0] + 5;
     } else {
       vertical = false;
-      handleAdjustment = +$(e.target).css('margin-left').split("px")[0] + 5;
+      handleAdjustment = +$label.css('margin-left').split("px")[0] + $label.innerWidth()/2;
     }
-    changeActive(e.target, $parent);
+    changeActive($label, $parent);
 
-    var posLabel = $(e.target).position()
+    var posLabel = $label.position()
     if (vertical) {
       posLabel = posLabel.top;
     } else {
@@ -221,12 +223,36 @@
     positionReal(posLabel, $parent, vertical, handleAdjustment);
   }
 
+  SlidePicker.prototype.changeInputs = function(e){
+    var $parent = $(this).parent();
+    var labelIndex = $(this).val()
+    var label = $parent.find(".slidepicker-label li")[labelIndex];
+    var $label = $(label)
+    var $handle = $parent.find(".slidepicker-handle");
+    var $input = $parent.find(".slidepicker-input");
+    var posLabel = $label.position();
+    var vertical, handleAdjustment;
+    if ($parent.hasClass("slidepicker-vertical")){
+      vertical = true;
+      handleAdjustment = +$label.css('margin-top').split("px")[0] + 5;
+      posLabel = posLabel.top;
+    } else {
+      vertical = false;
+      handleAdjustment = +$label.css('margin-left').split("px")[0] + $label.innerWidth()/2;
+      posLabel = posLabel.left;
+    }
+
+    $handle.css((vertical) ? "top" : "left", (posLabel + handleAdjustment) + "px");
+
+  }
+
   function changeActive(target, $parent){
     var $label = $parent.find(".slidepicker-label");
     var $input = $parent.find(".slidepicker-input");
     $label.find("li").removeClass("active");
     $(target).addClass("active")
-    $input.val($(target).text().trim());
+    var labelIndex = $label.find("li").index(target)
+    $input.val(labelIndex);
   }
 
   $.fn.slidepicker = function(options){
@@ -245,6 +271,7 @@
   $(document)
     .on("touchstart.slidepicker mousedown.slidepicker", ".slidepicker-track", $.proxy(SlidePicker.prototype.TrackDown, this))
     .on("touchstart.slidepicker mousedown.slidepicker", ".slidepicker-handle", $.proxy(SlidePicker.prototype.HandleDown, this))
-    .on("touch.slidepicker click.slidepicker", ".slidepicker-label li", $.proxy(SlidePicker.prototype.clickLabel, this));
+    .on("touch.slidepicker click.slidepicker", ".slidepicker-label a", $.proxy(SlidePicker.prototype.clickLabel, this))
+    .on("change.slidepicker", ".slidepicker-input", SlidePicker.prototype.changeInputs);
 
 }(jQuery);

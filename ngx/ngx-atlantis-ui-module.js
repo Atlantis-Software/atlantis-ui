@@ -8,6 +8,7 @@ import selectpickerComponent from './selectpicker.component.js';
 import atlModelDirective from './atlmodel.directive.js';
 import selectpickeroptionComponent from './selectpicker-option.component.js';
 import slidepickercomponent from './slidepicker.component.js';
+import slidepickeroptioncomponent from './slidepicker-option.component.js';
 
 
 export var ngxAtlUiModule = function() {};
@@ -15,7 +16,7 @@ export var ngxAtlUiModule = function() {};
 ngxAtlUiModule.annotations = [
   new NgModule({
     imports: [CommonModule, FormsModule],
-    declarations: [pagination, datepickerComponent, datepickerrangeComponent, atlModelDirective, selectpickerComponent, selectpickeroptionComponent, slidepickercomponent],
-    exports : [pagination, datepickerComponent, datepickerrangeComponent, atlModelDirective, selectpickerComponent, selectpickeroptionComponent, slidepickercomponent]
+    declarations: [pagination, datepickerComponent, datepickerrangeComponent, atlModelDirective, selectpickerComponent, selectpickeroptionComponent, slidepickercomponent, slidepickeroptioncomponent],
+    exports : [pagination, datepickerComponent, datepickerrangeComponent, atlModelDirective, selectpickerComponent, selectpickeroptionComponent, slidepickercomponent, slidepickeroptioncomponent]
   })
 ];
