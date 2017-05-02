@@ -527,7 +527,6 @@
 
   DatePicker.prototype.updateElement = function(input, date) {
     input.val(date.format("YYYY-MM-DD"));
-    console.log(input);
     if (input[0]) {
       var dateChangeEvent = document.createEvent('Event');
       dateChangeEvent.initEvent('change', true, true);
