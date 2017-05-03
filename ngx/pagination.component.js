@@ -50,7 +50,7 @@ export default class pagination {
   }
 
   //initialize local variable with @Input
-  ngOnChanges(changes){
+  ngOnChanges(){
     this.pageChoose = this.page;
     this.pageCount = this.createArray(this.pages);
     //verify if number of page total is inferior to numberpageShow and if true show all pages
