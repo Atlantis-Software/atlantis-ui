@@ -3,50 +3,6 @@
 
 
   var SlidePicker = function(element, options) {
-    var $element = element,
-      $track = $element.find(".slidepicker-track"),
-      $handle = $element.find(".slidepicker-handle"),
-      $label = $element.find(".slidepicker-label"),
-      $input = $element.find(".slidepicker-input");
-
-    var countLabel = $label.find("li").length;
-
-    if ($element.hasClass("slidepicker-vertical")){
-      options.vertical = true;
-    } else {
-      options.vertical = false;
-    }
-
-    this.data = $.extend({}, options, {
-      $element : $element,
-      $track: $track,
-			$handle: $handle,
-      $label : $label,
-      $input : $input,
-      countlabel : countLabel
-    })
-
-    var initialLabel = $(".slidepicker-label li")[0]
-    var initialPos = $(initialLabel).position()
-
-    if (this.data.vertical){
-      this.data.trackHeight = this.data.$track.innerHeight();
-      this.data.increment = this.data.trackHeight / 1000;
-      initialPos = initialPos.top;
-      this.data.handleAdjustment = +$(initialLabel).css('margin-top').split("px")[0] + 5;
-    } else {
-      this.data.trackWidth = this.data.$track.outerWidth();
-			this.data.increment = this.data.trackWidth / 1000;
-      initialPos = initialPos.left;
-      this.data.handleAdjustment = +$(initialLabel).css('margin-left').split("px")[0] + 8;
-    }
-
-
-    this.data.$handle.css((this.data.vertical) ? "top" : "left", (initialPos + this.data.handleAdjustment) + "px");
-
-    $element.on("touchstart.slidepicker mousedown.slidepicker", ".slidepicker-track", $.proxy(this.TrackDown, this))
-      .on("touchstart.slidepicker mousedown.slidepicker", ".slidepicker-handle", $.proxy(this.HandleDown, this))
-      .on("touch.slidepicker click.slidepicker", ".slidepicker-label li", $.proxy(this.clickLabel, this));
   }
 
   SlidePicker.version = "0.0.1";
@@ -57,6 +13,7 @@
 
     var $parent = $(e.target).parents(".slidepicker");
 
+    //Position the handle where click are done
     MouseMove(e, $parent);
 
     $parent.addClass("focus");
@@ -70,7 +27,7 @@
 		e.stopPropagation();
 
     var $parent = $(e.target).parents(".slidepicker");
-
+    $(e.target).stop(true);
     $parent.addClass("focus");
 
     $("body").on("touchmove.slidepicker mousemove.slidepicker", $.proxy(MouseMove, $parent))
@@ -95,6 +52,7 @@
     }
 
     if (vertical) {
+      //save pageY or pageX of mouse and calculate perc with track size and mouse position
       var pageY = (typeof originalE.targetTouches !== "undefined") ? originalE.targetTouches[0].pageY : e.pageY;
 			var perc = (pageY - offset.top) / trackSize.trackHeight;
     } else {
@@ -121,7 +79,7 @@
     var offset = $track.offset();
     var $label = this.find(".slidepicker-label li")[0];
 
-
+    //calcul perc for retrieve label's index
     if (this.hasClass("slidepicker-vertical")) {
       vertical = true;
       var pageY = (typeof originalE.targetTouches !== "undefined") ? originalE.targetTouches[0].pageY : e.pageY;
@@ -130,7 +88,7 @@
       var increment = trackSize.trackHeight / 1000;
 
       perc = (Math.round(perc * 1000) * increment) / trackSize.trackHeight;
-      handleAdjustment = +$($label).css('margin-top').split("px")[0] + 5;
+      handleAdjustment = +$($label).css('padding-top').split("px")[0] + 5;
     } else {
       vertical = false;
       var pageX = (typeof originalE.targetTouches !== "undefined") ? originalE.targetTouches[0].pageX : e.pageX;
@@ -139,18 +97,29 @@
       var increment = trackSize.trackWidth / 1000;
 
       perc = (Math.round(perc * 1000) * increment) / trackSize.trackWidth;
-      handleAdjustment = +$($label).css('margin-left').split("px")[0] + 10;
+      handleAdjustment = +$($label).css('padding-left').split("px")[0] + $label.innerWidth()/2;
     }
+
+    if (perc < 0) {
+	    perc = 0;
+		}
+		if (perc > 1) {
+			perc = 1;
+		}
 
     $label = this.find(".slidepicker-label li");
 
     var offset = $track.offset(),
-      numberLabel = Math.round(perc * (countlabel-1)),
-      label = $label[numberLabel];
+      numberLabel = Math.floor(perc * (countlabel));
 
+    if (numberLabel >= countlabel) {
+      numberLabel = countlabel-1;
+    }
+    var label = $label[numberLabel];
     changeActive(label, this);
 
     var posLabel = $(label).position();
+
     if (vertical) {
       posLabel = posLabel.top;
     } else {
@@ -162,15 +131,20 @@
     $("body").off(".slidepicker");
   }
 
+
+  //Calculate real position in px for handle
   function positionReal(posLabel, $parent, vertical, handleAdjustment) {
 
     var $handle = $parent.find(".slidepicker-handle");
     var $input = $parent.find(".slidepicker-input");
+
     if (vertical) {
-      $handle.stop(1, 0)["animate"]({"top" : posLabel + handleAdjustment + "px"}, 1000);
+      $handle.stop(1, 0).animate({"top" : posLabel + handleAdjustment + "px"}, 1000);
     } else {
-      $handle.stop(1, 1)["animate"]({"left" : posLabel + handleAdjustment + "px"}, 500);
+      $handle.stop(1, 1).animate({"left" : posLabel + handleAdjustment + "px"}, 500);
     }
+
+    //Send event of input value to angular for correct binding
     if ($input[0]) {
       var slideChangeEvent = document.createEvent('Event');
       slideChangeEvent.initEvent('change', true, true);
@@ -179,6 +153,8 @@
 
   }
 
+
+  //calcul position with perc when we don't release handle
   function positionperc(perc, $parent, vertical, $track, trackSize){
 
     var $handle = $parent.find(".slidepicker-handle");
@@ -214,10 +190,10 @@
     var handleAdjustment;
     if ($parent.hasClass("slidepicker-vertical")) {
       vertical = true;
-      handleAdjustment = +$label.css('margin-top').split("px")[0] + 5;
+      handleAdjustment = +$label.css('padding-top').split("px")[0] + 5;
     } else {
       vertical = false;
-      handleAdjustment = +$label.css('margin-left').split("px")[0] + $label.innerWidth()/2;
+      handleAdjustment = +$label.css('padding-left').split("px")[0] + $label.innerWidth()/2;
     }
     changeActive($label, $parent);
 
@@ -242,13 +218,14 @@
     var vertical, handleAdjustment;
     if ($parent.hasClass("slidepicker-vertical")){
       vertical = true;
-      handleAdjustment = +$label.css('margin-top').split("px")[0] + 5;
+      handleAdjustment = +$label.css('padding-top').split("px")[0] + 5;
       posLabel = posLabel.top;
     } else {
       vertical = false;
-      handleAdjustment = +$label.css('margin-left').split("px")[0] + $label.innerWidth()/2;
+      handleAdjustment = +$label.css('padding-left').split("px")[0] + $label.innerWidth()/2;
       posLabel = posLabel.left;
     }
+    changeActive($label, $parent);
     $handle.css((vertical) ? "top" : "left", (posLabel + handleAdjustment) + "px");
 
   }
@@ -275,6 +252,7 @@
     return this;
   }
 
+  //link event with function
   $(document)
     .on("touchstart.slidepicker mousedown.slidepicker", ".slidepicker-track", $.proxy(SlidePicker.prototype.TrackDown, this))
     .on("touchstart.slidepicker mousedown.slidepicker", ".slidepicker-handle", $.proxy(SlidePicker.prototype.HandleDown, this))

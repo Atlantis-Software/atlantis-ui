@@ -1,6 +1,7 @@
 .slidepicker {
-  position : absolute;
 
+
+  //slidepicker vertical
   .slidepicker-track {
     background: #fbfbfb;
     border: 1px solid #ddd;
@@ -52,67 +53,41 @@
       }
     }
   }
-
+  //slidepicker-vertical
   &.slidepicker-vertical {
     width: 14px;
-    position: absolute;
-
 
     .slidepicker-track {
-        background: #fbfbfb;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        float: left;
         height: 100%;
-        position: absolute;
         width: 8px;
     }
     .slidepicker-handle {
-        display: block;
+        //Position of handler, center with tracker
         left: -4px;
         top: 33px;
-        position: absolute;
-        background: blue;
-        cursor: pointer;
         height: 10px;
         width: 25px;
     }
     .slidepicker-label {
       margin : 0px;
-      padding : 0px;
       margin-left: 20px;
+
+      //adapt li with different input sizing
+      //use padding for no collapsing margins
       li {
-        float: left;
-        display: block;
+        float: none;
         margin-left : 0px;
         margin-right: 0px;
-        &.active {
-          a{
-            color : blue;
-            font-weight: bold;
-          }
-        }
-        a{
-          display : block;
-          clear : both;
-          font-weight: normal;
-          color : #000;
-          white-space: nowrap;
-          cursor: pointer;
-          text-decoration: none;
-        }
+        padding-top: 27px;
+        padding-bottom: 27px;
       }
-      &.small li{
-        margin-top: 29px;
-        margin-bottom: 29px;
+      &.sm li{
+        padding-top: 25px;
+        padding-bottom: 25px;
       }
-      &.medium li{
-        margin-top : 58px;
-        margin-bottom : 58px;
-      }
-      &.large li{
-        margin-top : 87px;
-        margin-bottom : 87px;
+      &.lg li{
+        padding-top : 33px;
+        padding-bottom : 33px;
       }
     }
   }

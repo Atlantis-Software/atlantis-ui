@@ -17,7 +17,6 @@ export default class slidepickercomponent {
       new Component({
         selector: 'slidepicker',
         template: `
-        <div class="slidepicker slidepicker-vertical">
           <div class="slidepicker-track">
             <span class="slidepicker-handle"></span>
           </div>
@@ -27,10 +26,7 @@ export default class slidepickercomponent {
               <a [innerHTML]="option.elementRef.nativeElement.innerHTML"></a>
             </li>
           </ul>
-          <input type="hidden" class="slidepicker-input" [(ngModel)]="index" (change)="setValue($event)"/>
-        </div>`,
-        // inputs: ['valueSlide', 'slidepickerValues'],
-        // outputs: ['valueSlideChange'],
+          <input type="hidden" class="slidepicker-input" [(ngModel)]="index" (change)="setValue($event)"/>`,
         queries: {
           options: new ContentChildren(slidepickeroptionComponent)
         },
@@ -63,13 +59,19 @@ export default class slidepickercomponent {
 
         //Transform from angular queries object (this.options) to flat array.
         var options = this.options.toArray();
+        var isInOptions = false;
         options.forEach(function(element, index) {
           // Check index value.
           if (element.value === self.val) {
+            isInOptions = true;
             self.index = index;
             self.updateHandlerPosition();
           }
         });
+        if (!isInOptions){
+          self.index = 0;
+          self.updateHandlerPosition();
+        }
       }
     }
   }
