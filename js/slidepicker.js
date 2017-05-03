@@ -24,7 +24,7 @@
 
   SlidePicker.prototype.HandleDown = function(e) {
     e.preventDefault();
-		e.stopPropagation();
+    e.stopPropagation();
 
     var $parent = $(e.target).parents(".slidepicker");
     $(e.target).stop(true);
