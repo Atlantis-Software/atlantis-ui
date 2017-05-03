@@ -38,13 +38,16 @@
     e.preventDefault();
     e.stopPropagation();
 
-    $parent = $parent || this
+    $parent = $parent || this;
     var $track = $parent.find(".slidepicker-track");
     var vertical;
     var originalE = e.originalEvent,
       offset = $track.offset();
 
-    var trackSize = {trackHeight : $track.innerHeight(), trackWidth : $track.innerWidth()}
+    var trackSize = {
+      trackHeight : $track.innerHeight(),
+      trackWidth : $track.innerWidth()
+    };
     if ($parent.hasClass("slidepicker-vertical")) {
       vertical = true;
     } else {
@@ -209,9 +212,9 @@
 
   SlidePicker.prototype.updateHandlerPosition = function(e){
     var $parent = $(this).parent();
-    var labelIndex = $(this).val()
+    var labelIndex = $(this).val();
     var label = $parent.find(".slidepicker-label li")[labelIndex];
-    var $label = $(label)
+    var $label = $(label);
     var $handle = $parent.find(".slidepicker-handle");
     var $input = $parent.find(".slidepicker-input");
     var posLabel = $label.position();
