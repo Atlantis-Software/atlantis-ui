@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var less = require('less');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var WebpackShellPlugin = require('webpack-shell-plugin');
+var fse = require('fs-extra');
 
 module.exports = {
   context: __dirname,
@@ -72,4 +73,8 @@ module.exports = {
     /^\@angular\//,
     /^rxjs\//
   ]
-};
+}
+
+fse.copy('./dist/', './docs/', function(err) {
+  if (err) return console.log('ERROR DIST CREATE FILE : ', err)
+});
