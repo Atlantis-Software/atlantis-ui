@@ -126,22 +126,18 @@
 
   // Toggles
   .icon-previous,
-  .icon-next,
-  .glyphicon-chevron-left,
-  .glyphicon-chevron-right {
+  .icon-next{
     position: absolute;
     top: 50%;
     margin-top: -10px;
     z-index: 5;
     display: inline-block;
   }
-  .icon-previous,
-  .glyphicon-chevron-left {
+  .icon-previous{
     left: 50%;
     margin-left: -10px;
   }
-  .icon-next,
-  .glyphicon-chevron-right {
+  .icon-next{
     right: 50%;
     margin-right: -10px;
   }
@@ -225,8 +221,6 @@
 
   // Scale up the controls a smidge
   .carousel-control {
-    .glyphicon-chevron-left,
-    .glyphicon-chevron-right,
     .icon-previous,
     .icon-next {
       width: (@carousel-control-font-size * 1.5);
@@ -234,11 +228,9 @@
       margin-top: (@carousel-control-font-size / -2);
       font-size: (@carousel-control-font-size * 1.5);
     }
-    .glyphicon-chevron-left,
     .icon-previous {
       margin-left: (@carousel-control-font-size / -2);
     }
-    .glyphicon-chevron-right,
     .icon-next {
       margin-right: (@carousel-control-font-size / -2);
     }
