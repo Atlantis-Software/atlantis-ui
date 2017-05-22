@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 var less = require('less');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+var WebpackShellPlugin = require('webpack-shell-plugin');
 
 module.exports = {
   context: __dirname,
@@ -58,9 +58,11 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin("css/atlantis-ui.css"),
-    new CopyWebpackPlugin([
-      {from : './dist', to : '../docs/dist/'}
-    ])
+    new WebpackShellPlugin({
+      onBuildEnd: [
+        'cp -r dist/ docs/'
+      ]
+    })
   ],
   externals: [
     {
