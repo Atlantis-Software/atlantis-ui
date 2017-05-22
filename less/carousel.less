@@ -125,7 +125,7 @@
   }
 
   // Toggles
-  .icon-prev,
+  .icon-previous,
   .icon-next,
   .glyphicon-chevron-left,
   .glyphicon-chevron-right {
@@ -135,7 +135,7 @@
     z-index: 5;
     display: inline-block;
   }
-  .icon-prev,
+  .icon-previous,
   .glyphicon-chevron-left {
     left: 50%;
     margin-left: -10px;
@@ -145,25 +145,13 @@
     right: 50%;
     margin-right: -10px;
   }
-  .icon-prev,
+  .icon-previous,
   .icon-next {
     width:  20px;
     height: 20px;
     line-height: 1;
-    font-family: serif;
   }
 
-
-  .icon-prev {
-    &:before {
-      content: '\2039';// SINGLE LEFT-POINTING ANGLE QUOTATION MARK (U+2039)
-    }
-  }
-  .icon-next {
-    &:before {
-      content: '\203a';// SINGLE RIGHT-POINTING ANGLE QUOTATION MARK (U+203A)
-    }
-  }
 }
 
 // Optional indicator pips
@@ -239,7 +227,7 @@
   .carousel-control {
     .glyphicon-chevron-left,
     .glyphicon-chevron-right,
-    .icon-prev,
+    .icon-previous,
     .icon-next {
       width: (@carousel-control-font-size * 1.5);
       height: (@carousel-control-font-size * 1.5);
@@ -247,7 +235,7 @@
       font-size: (@carousel-control-font-size * 1.5);
     }
     .glyphicon-chevron-left,
-    .icon-prev {
+    .icon-previous {
       margin-left: (@carousel-control-font-size / -2);
     }
     .glyphicon-chevron-right,

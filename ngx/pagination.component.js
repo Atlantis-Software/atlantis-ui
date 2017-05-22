@@ -20,10 +20,10 @@ export default class pagination {
             </a>
           </li>
           <li *ngIf="page <= pages - (numberPageShowPrevious+1) && pages > numberPageShow">
-            <a *ngIf="!changingPage" href="#" (click)="choosePage($event, null)">
+            <a *ngIf="!changingPage" href="#" (click)="inputPage($event)">
               ...
             </a>
-            <input [(ngModel)]="pageChoose" *ngIf="changingPage" type="number" [value]="page" (blur)="choosePage($event ,pageChoose)" (keyup.enter)="choosePage($event ,pageChoose)"/>
+            <input [(ngModel)]="pageChoose" *ngIf="changingPage" type="number" [value]="page" (blur)="choosePage($event ,pageChoose)" (keyup.enter)="choosePage($event ,pageChoose)" style="width:5em; border"/>
           </li>
           <li *ngIf="page <= pages - numberPageShowPrevious && pages > numberPageShow" (click)="changePage($event, pages)">
             <a href="#">
@@ -114,15 +114,25 @@ export default class pagination {
     }
   }
 
-  //change button ... to input for choose page we want
-  choosePage(e, pageChoose){
+  inputPage(e){
     e.preventDefault();
     this.changingPage = !this.changingPage;
+  }
+
+  //change button ... to input for choose page we want
+  choosePage(e, pageChoose){
+    var self = this;
+    e.preventDefault();
+    if(this.changingPage == true){
+      this.changingPage = !this.changingPage;
+    }
     if (pageChoose != null) {
-      if(pageChoose === 0) {
+      if(pageChoose === 0 || pageChoose > this.pages) {
         pageChoose = 1;
       }
-      this.changePage(e, +pageChoose);
+      setTimeout(function(){
+        self.changePage(e, +pageChoose);
+      }, 1);
     }
   }
 }
