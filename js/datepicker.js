@@ -172,7 +172,7 @@
     if (this.element.is('input')) {
       this.updateElement(this.element, this.startDate);
     } else {
-       var start = this.element.find("input.start"); 
+       var start = this.element.find("input.start");
        this.updateElement(start, this.startDate);
     }
     this.updateFormInputs();
@@ -206,7 +206,7 @@
     this.updateView();
     // only datepicker range has a end date
     if (this.element.is('div')) {
-       var end = this.element.find("input.end"); 
+       var end = this.element.find("input.end");
        this.updateElement(end, this.endDate);
     }
     this.updateFormInputs();
