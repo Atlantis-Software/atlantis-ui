@@ -23,7 +23,7 @@ export default class pagination {
             <a *ngIf="!changingPage" href="#" (click)="inputPage($event)">
               ...
             </a>
-            <input [(ngModel)]="pageChoose" *ngIf="changingPage" type="number" [value]="page" (blur)="choosePage($event ,pageChoose)" (keyup.enter)="choosePage($event ,pageChoose)" style="width:5em; border"/>
+            <input class="pagination-input form-control" *ngIf="changingPage" type="number" (blur)="choosePage($event)" (keyup.enter)="choosePage($event)" focus/>
           </li>
           <li *ngIf="page <= pages - numberPageShowPrevious && pages > numberPageShow" (click)="changePage($event, pages)">
             <a href="#">
@@ -120,16 +120,18 @@ export default class pagination {
   }
 
   //change button ... to input for choose page we want
-  choosePage(e, pageChoose){
+  choosePage(e, ){
     var self = this;
     e.preventDefault();
     if(this.changingPage == true){
       this.changingPage = !this.changingPage;
     }
+    var pageChoose = e.target.value;
     if (pageChoose != null) {
       if(pageChoose === 0 || pageChoose > this.pages) {
         pageChoose = 1;
       }
+      pageChoose = Math.floor(pageChoose);
       setTimeout(function(){
         self.changePage(e, +pageChoose);
       }, 1);

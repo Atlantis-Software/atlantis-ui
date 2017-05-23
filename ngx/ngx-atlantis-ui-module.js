@@ -10,13 +10,14 @@ import selectpickeroptionComponent from './selectpicker-option.component.js';
 import slidepickercomponent from './slidepicker.component.js';
 import slidepickeroptioncomponent from './slidepicker-option.component.js';
 
+import focusDirective from './focus.directive.js';
 
 export var ngxAtlUiModule = function() {};
 
 ngxAtlUiModule.annotations = [
   new NgModule({
     imports: [CommonModule, FormsModule],
-    declarations: [pagination, datepickerComponent, datepickerrangeComponent, atlModelDirective, selectpickerComponent, selectpickeroptionComponent, slidepickercomponent, slidepickeroptioncomponent],
+    declarations: [pagination, datepickerComponent, datepickerrangeComponent, atlModelDirective, selectpickerComponent, selectpickeroptionComponent, slidepickercomponent, slidepickeroptioncomponent, focusDirective],
     exports : [pagination, datepickerComponent, datepickerrangeComponent, atlModelDirective, selectpickerComponent, selectpickeroptionComponent, slidepickercomponent, slidepickeroptioncomponent]
   })
 ];

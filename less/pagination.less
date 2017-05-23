@@ -32,6 +32,21 @@
         transform: skewX(-30deg);
       }
     }
+    .pagination-input {
+      -moz-appearance:textfield;
+      border-right: 0;
+      border-left: 0;
+      width: 4em;
+      left:-10px;
+      padding-left: 20px;
+      padding-right: 0px;
+      background-color: transparent;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button{
+        -webkit-appearance : none;
+        margin: 0;
+      }
+    }
     &:first-child {
       > a,
       > span {
@@ -40,6 +55,8 @@
         &::before {
           border-width: 0;
         }
+        padding-top: 5px;
+        padding-bottom: 5px;
       }
     }
     &:last-child {
@@ -49,6 +66,8 @@
         &::before {
           border-width: 0;
         }
+        padding-top: 5px;
+        padding-bottom: 5px;
       }
     }
   }
