@@ -17,9 +17,26 @@ export default  class SelectpickerComponent {
     </selectpicker>`
 
     this.Display = "Example";
-    this.Selectpicker2 = "A"
-    this.Selectpicker4 = ["A", "B"]
+    this.Selectpicker3 = [];
+    this.Selectpicker2 = "A";
+    this.Selectpicker4 = ["A", "B"];
   }
+
+  changeBinding(binding, value){
+    var self = this;
+    var temp = this[binding];
+    var valuePresent = false;
+    temp.forEach(function(valueBinding, index){
+      if (valueBinding === value){
+        self[binding].splice(self[binding].indexOf(value),1);
+        valuePresent = true;
+      }
+    })
+    if (!valuePresent){
+      this[binding].push(value)
+    }
+  }
+
 }
 
 

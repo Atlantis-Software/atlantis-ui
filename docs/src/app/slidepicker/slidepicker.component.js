@@ -20,6 +20,11 @@ export default  class SlidepickerComponent {
     this.Display = "Example"
     this.slidepicker2 = "test2"
   }
+
+  changeBinding(binding, value){
+    this[binding] = value;
+  }
+
 }
 
 
