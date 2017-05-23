@@ -14,7 +14,7 @@ Using the latest changes from master is also possible
 
 ### Getting started/ Docs
 
-See our [Getting Started or docs][https://Atlantis-Software.github.io/atlantis-ui/#/icon]
+See our [Getting Started or docs](https://Atlantis-Software.github.io/atlantis-ui/)
 
 ### Principe
 
