@@ -13,7 +13,7 @@ module.exports = {
     atlantis: path.join(__dirname, 'src', 'index.js')
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'compiled'),
     filename: '[name].js',
     chunkFilename: '[chunkhash].js'
   },
