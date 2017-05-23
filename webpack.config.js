@@ -47,11 +47,11 @@ module.exports = {
           minimize: true
         }
       }, {
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
-        loader: "url-loader?limit=10000&mimetype=application/font-woff&name=../fonts/[name].[ext]"
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]&publicPath=../&outputPath=fonts/"
       }, {
-        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
-        loader: "file-loader?name=../fonts/[name].[ext]"
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "file-loader?name=[name].[ext]&publicPath=../&outputPath=fonts/"
       }
     ]
   },

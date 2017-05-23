@@ -1,0 +1,123 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a (click)="Display = 'Example'">
+            Example
+          </a>
+        </li>
+        <li>
+          <a (click)="Display = 'Api'">
+            How to use and api
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div [ngSwitch]= "Display">
+
+  <div class="container" *ngSwitchCase="'Example'">
+
+    <div class="row">
+      <label for="navbar1">Example</label>
+      <div class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">Test</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  Menu A
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a>Sub-menu A</a></li>
+                  <li><a>Sub-menu B</a></li>
+                  <li><a>Sub-menu C</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a>Sub-menu separated A</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a>Sub-menu separated B</a></li>
+                </ul>
+              </li>
+              <li><a>Menu B</a></li>
+              <li class="dropdown disabled">
+                <a class="dropdown-toggle disabled" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  Menu C
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="">Sub-menu A</a></li>
+                </ul>
+              </li>
+              <li><a>Menu D</a></li>
+              <li class="disabled"><a>Menu E</a></li>
+            </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+      </div>
+    </div>
+
+  </div>
+
+  <div class="container" *ngSwitchCase="'Api'">
+    <h3>
+      For an navbar use :
+    </h3>
+    <pre>
+      {{navbarHtml}}
+    </pre>
+    <h4>
+      Specification :
+    </h4>
+    <p>
+      We can use a dropdown menu directly in the navbar, like any dropdown
+    </p>
+    <p>
+      Don't forget to use .navbar class
+    </p>
+    <h4>
+      Class css :
+    </h4>
+    <ul>
+      <li>
+        .navbar-default : Use the classic color for navbar
+      </li>
+      <li>
+        .navbar-header : Define the navbar header, use for an 'hamburger' menu on small screen and for display a link to the index.
+      </li>
+      <li>
+        .collapse, .navbar-collapse : Use for hide the menu on small screen, to use withe .navbar-header
+      </li>
+      <li>
+        .disabled : disable a link.
+      </li>
+    </ul>
+  </div>
+
+</div>

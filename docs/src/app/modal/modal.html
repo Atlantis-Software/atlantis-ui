@@ -1,0 +1,206 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a (click)="Display = 'Example'">
+            Example
+          </a>
+        </li>
+        <li>
+          <a (click)="Display = 'Api'">
+            How to use and api
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div [ngSwitch]= "Display">
+
+  <div class="container" *ngSwitchCase="'Example'">
+
+    <div class="row">
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalLeft">
+        modal-left
+      </button>
+
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#Modal">
+        modal
+      </button>
+
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalRight">
+        modal-right
+      </button>
+
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalTop">
+        modal-top
+      </button>
+
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalBottom">
+        modal-bottom
+      </button>
+    </div>
+
+  </div>
+
+  <div class="modal modal-left fade" id="ModalLeft" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="icon icon-close"></span></button>
+                  <h4 class="modal-title">Modal title</h4>
+              </div>
+              <div class="modal-body">
+                  <p>One fine body&hellip;</p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+  <div class="modal fade" id="Modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="icon icon-close"></span></button>
+                  <h4 class="modal-title">Modal title</h4>
+              </div>
+              <div class="modal-body">
+                  <p>One fine body&hellip;</p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+  <div class="modal modal-right fade" id="ModalRight" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="icon icon-close"></span></button>
+                  <h4 class="modal-title">Modal title</h4>
+              </div>
+              <div class="modal-body">
+                  <p>One fine body&hellip;</p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+  <div class="modal modal-top fade" id="ModalTop" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="icon icon-close"></span></button>
+                  <h4 class="modal-title">Modal title</h4>
+              </div>
+              <div class="modal-body">
+                  <p>One fine body&hellip;</p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+  <div class="modal modal-bottom fade" id="ModalBottom" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="icon icon-close"></span></button>
+                  <h4 class="modal-title">Modal title</h4>
+              </div>
+              <div class="modal-body">
+                  <p>One fine body&hellip;</p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+  <div class="container" *ngSwitchCase="'Api'">
+    <h3>
+      For an modal use :
+    </h3>
+    <pre>
+      {{modalHtml}}
+    </pre>
+    <h4>
+      Precision :
+    </h4>
+    <p>
+      we can add an id to the modal for create a modal paste to a border :
+    </p>
+    <ul>
+      <li>
+        ModalBottom : create a modal to bottom
+      </li>
+      <li>
+        ModalLeft : create a modal to left
+      </li>
+      <li>
+        ModalRight : create a modal to right
+      </li>
+      <li>
+        ModalTop : create a modal to top
+      </li>
+    </ul>
+    <h4>
+      Class css :
+    </h4>
+    <ul>
+      <li>
+        .modal-dialog : contains all the modal
+      </li>
+      <li>
+        .modal-header : define a header where we can put a title or button like close button
+      </li>
+      <li>
+        .modal-title : define the title of the modal
+      </li>
+      <li>
+        .modal-body : define the body of the modal, where we put all information we want
+      </li>
+      <li>
+        .modal-footer : define the footer of the modal, where we can put different button or other things
+      </li>
+    </ul>
+  </div>
+
+</div>
