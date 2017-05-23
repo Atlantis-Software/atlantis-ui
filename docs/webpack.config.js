@@ -13,7 +13,7 @@ module.exports = {
     atlantis: path.join(__dirname, 'src', 'index.js')
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'compiled'),
     filename: '[name].js',
     chunkFilename: '[chunkhash].js'
   },
@@ -49,10 +49,10 @@ module.exports = {
       },
       {
        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-       loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]&publicPath=../&outputPath=fonts/"
+       loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]&publicPath=compiled/&outputPath=fonts/"
       }, {
        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-       loader: "file-loader?name=[name].[ext]&publicPath=../&outputPath=fonts/"
+       loader: "file-loader?name=[name].[ext]&publicPath=compiled/&outputPath=fonts/"
       },
       {
       test: /\.less$/,
@@ -60,7 +60,7 @@ module.exports = {
       loader: 'style-loader!css-loader!less-loader'
       },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
-      { test: /\.jpg$/, loader: "file-loader?name=[name].[ext]&publicPath=dist/&outputPath=img/"}
+      { test: /\.jpg$/, loader: "file-loader?name=[name].[ext]&publicPath=compiled/&outputPath=img/"}
     ]
   }
 }
