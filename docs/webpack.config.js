@@ -60,7 +60,7 @@ module.exports = {
       loader: 'style-loader!css-loader!less-loader'
       },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
-      { test: /\.jpg$/, loader: "file-loader?name=[name].[ext]&publicPath=dist/&outputPath=img/"}
+      { test: /\.jpg$/, loader: "file-loader?name=[name].[ext]&publicPath=compiled/&outputPath=img/"}
     ]
   }
 }
