@@ -1,9 +1,8 @@
-+function($){
++ function($) {
   'use strict'
 
 
-  var SlidePicker = function(element, options) {
-  }
+  var SlidePicker = function(element, options) {}
 
   SlidePicker.version = "0.0.1";
 
@@ -19,7 +18,7 @@
     $parent.addClass("focus");
 
     $("body").on("touchmove.slidepicker mousemove.slidepicker", $.proxy(MouseMove, $parent))
-      .one("touchend.slidepicker touchcancel.slidepicker mouseup.slidepicker",$.proxy(MouseUp, $parent));
+      .one("touchend.slidepicker touchcancel.slidepicker mouseup.slidepicker", $.proxy(MouseUp, $parent));
   }
 
   SlidePicker.prototype.HandleDown = function(e) {
@@ -31,10 +30,10 @@
     $parent.addClass("focus");
 
     $("body").on("touchmove.slidepicker mousemove.slidepicker", $.proxy(MouseMove, $parent))
-      .one("touchend.slidepicker touchcancel.slidepicker mouseup.slidepicker",$.proxy(MouseUp, $parent));
+      .one("touchend.slidepicker touchcancel.slidepicker mouseup.slidepicker", $.proxy(MouseUp, $parent));
   }
 
-  function MouseMove(e, $parent){
+  function MouseMove(e, $parent) {
     e.preventDefault();
     e.stopPropagation();
 
@@ -45,8 +44,8 @@
       offset = $track.offset();
 
     var trackSize = {
-      trackHeight : $track.innerHeight(),
-      trackWidth : $track.innerWidth()
+      trackHeight: $track.innerHeight(),
+      trackWidth: $track.innerWidth()
     };
     if ($parent.hasClass("slidepicker-vertical")) {
       vertical = true;
@@ -57,16 +56,16 @@
     if (vertical) {
       //save pageY or pageX of mouse and calculate perc with track size and mouse position
       var pageY = (typeof originalE.targetTouches !== "undefined") ? originalE.targetTouches[0].pageY : e.pageY;
-			var perc = (pageY - offset.top) / trackSize.trackHeight;
+      var perc = (pageY - offset.top) / trackSize.trackHeight;
     } else {
       var pageX = (typeof originalE.targetTouches !== "undefined") ? originalE.targetTouches[0].pageX : e.pageX;
-			var perc = (pageX - offset.left) / trackSize.trackWidth;
+      var perc = (pageX - offset.left) / trackSize.trackWidth;
     }
 
     positionperc(perc, $parent, vertical, $track, trackSize);
   }
 
-  function MouseUp(e){
+  function MouseUp(e) {
     e.preventDefault();
     e.stopPropagation();
 
@@ -75,8 +74,8 @@
     var countlabel = this.find(".slidepicker-label").find("li").length;
     var vertical, perc, handleAdjustment;
     var trackSize = {
-      trackHeight : $track.innerHeight(),
-      trackWidth : $track.innerWidth()
+      trackHeight: $track.innerHeight(),
+      trackWidth: $track.innerWidth()
     };
     var originalE = e.originalEvent;
     var offset = $track.offset();
@@ -87,7 +86,7 @@
       vertical = true;
       var pageY = (typeof originalE.targetTouches !== "undefined") ? originalE.targetTouches[0].pageY : e.pageY;
 
-			perc = (pageY - offset.top) / trackSize.trackHeight;
+      perc = (pageY - offset.top) / trackSize.trackHeight;
       var increment = trackSize.trackHeight / 1000;
 
       perc = (Math.round(perc * 1000) * increment) / trackSize.trackHeight;
@@ -100,15 +99,15 @@
       var increment = trackSize.trackWidth / 1000;
 
       perc = (Math.round(perc * 1000) * increment) / trackSize.trackWidth;
-      handleAdjustment = +$($label).css('padding-left').split("px")[0] + $label.innerWidth()/2;
+      handleAdjustment = +$($label).css('padding-left').split("px")[0] + $label.innerWidth() / 2;
     }
 
     if (perc < 0) {
-	    perc = 0;
-		}
-		if (perc > 1) {
-			perc = 1;
-		}
+      perc = 0;
+    }
+    if (perc > 1) {
+      perc = 1;
+    }
 
     $label = this.find(".slidepicker-label li");
 
@@ -116,7 +115,7 @@
       numberLabel = Math.floor(perc * (countlabel));
 
     if (numberLabel >= countlabel) {
-      numberLabel = countlabel-1;
+      numberLabel = countlabel - 1;
     }
     var label = $label[numberLabel];
     changeActive(label, this);
@@ -142,9 +141,13 @@
     var $input = $parent.find(".slidepicker-input");
 
     if (vertical) {
-      $handle.stop(1, 0).animate({"top" : posLabel + handleAdjustment + "px"}, 1000);
+      $handle.stop(1, 0).animate({
+        "top": posLabel + handleAdjustment + "px"
+      }, 1000);
     } else {
-      $handle.stop(1, 1).animate({"left" : posLabel + handleAdjustment + "px"}, 500);
+      $handle.stop(1, 1).animate({
+        "left": posLabel + handleAdjustment + "px"
+      }, 500);
     }
 
     //Send event of input value to angular for correct binding
@@ -158,7 +161,7 @@
 
 
   //calcul position with perc when we don't release handle
-  function positionperc(perc, $parent, vertical, $track, trackSize){
+  function positionperc(perc, $parent, vertical, $track, trackSize) {
 
     var $handle = $parent.find(".slidepicker-handle");
 
@@ -166,23 +169,23 @@
       var increment = trackSize.trackHeight / 1000;
       perc = (Math.round(perc * 1000) * increment) / trackSize.trackHeight;
     } else {
-			var increment = trackSize.trackWidth / 1000;
+      var increment = trackSize.trackWidth / 1000;
       perc = (Math.round(perc * 1000) * increment) / trackSize.trackWidth;
     }
 
 
-		if (perc < 0) {
-	    perc = 0;
-		}
-		if (perc > 1) {
-			perc = 1;
-		}
+    if (perc < 0) {
+      perc = 0;
+    }
+    if (perc > 1) {
+      perc = 1;
+    }
 
-		$handle.css((vertical) ? "top" : "left", (perc * 100) + "%");
+    $handle.css((vertical) ? "top" : "left", (perc * 100) + "%");
 
   }
 
-  SlidePicker.prototype.clickLabel = function(e){
+  SlidePicker.prototype.clickLabel = function(e) {
     e.preventDefault();
     e.stopPropagation();
 
@@ -196,7 +199,7 @@
       handleAdjustment = +$label.css('padding-top').split("px")[0] + 5;
     } else {
       vertical = false;
-      handleAdjustment = +$label.css('padding-left').split("px")[0] + $label.innerWidth()/2;
+      handleAdjustment = +$label.css('padding-left').split("px")[0] + $label.innerWidth() / 2;
     }
     changeActive($label, $parent);
 
@@ -210,7 +213,7 @@
     positionReal(posLabel, $parent, vertical, handleAdjustment);
   }
 
-  SlidePicker.prototype.updateHandlerPosition = function(e){
+  SlidePicker.prototype.updateHandlerPosition = function(e) {
     var $parent = $(this).parent();
     var labelIndex = $(this).val();
     var label = $parent.find(".slidepicker-label li")[labelIndex];
@@ -219,13 +222,13 @@
     var $input = $parent.find(".slidepicker-input");
     var posLabel = $label.position();
     var vertical, handleAdjustment;
-    if ($parent.hasClass("slidepicker-vertical")){
+    if ($parent.hasClass("slidepicker-vertical")) {
       vertical = true;
       handleAdjustment = +$label.css('padding-top').split("px")[0] + 5;
       posLabel = posLabel.top;
     } else {
       vertical = false;
-      handleAdjustment = +$label.css('padding-left').split("px")[0] + $label.innerWidth()/2;
+      handleAdjustment = +$label.css('padding-left').split("px")[0] + $label.innerWidth() / 2;
       posLabel = posLabel.left;
     }
     changeActive($label, $parent);
@@ -233,7 +236,7 @@
 
   }
 
-  function changeActive(target, $parent){
+  function changeActive(target, $parent) {
     var $label = $parent.find(".slidepicker-label");
     var $input = $parent.find(".slidepicker-input");
     $label.find("li").removeClass("active");
@@ -242,9 +245,9 @@
     $input.val(labelIndex);
   }
 
-  $.fn.slidepicker = function(options){
+  $.fn.slidepicker = function(options) {
 
-    this.each(function(){
+    this.each(function() {
       var el = $(this);
       if (el.data('slidepicker')) {
         el.data('slidepicker').remove();
