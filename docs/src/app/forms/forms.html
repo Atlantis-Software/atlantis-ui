@@ -1,0 +1,84 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a (click)="Display = 'Example'">
+            Example
+          </a>
+        </li>
+        <li>
+          <a (click)="Display = 'Api'">
+            Api
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div [ngSwitch]= "Display">
+
+  <div class="container" *ngSwitchCase="'Example'">
+
+    <div class="row">
+      <form>
+        <div class="form-group">
+          <label for="ExampleUsername">Username</label>
+          <input type="text" class="form-control" id="ExampleUsername" placeholder="Username" [(ngModel)]="person.username" name="ExampleUsername"/>
+        </div>
+        <div class="form-group">
+          <label for="ExamplePassword">Password</label>
+          <input type="password" class="form-control" id="ExamplePassword" placeholder="Password" [(ngModel)]="person.password" name="ExamplePassword"/>
+        </div>
+        <div class="form-group">
+          <label for="ExampleGender">Gender</label>
+          <input type="radio" [(ngModel)]="person.Gender" value="male" name="ExampleGender">Male
+          <input type="radio" [(ngModel)]="person.Gender" value="female" name="ExampleGender">Female
+        </div>
+        <div class="form-group">
+          <label for="ExampleLanguage">Language</label>
+          <selectpicker [(ngModel)]="person.Language" multiple="true" name="ExampleLanguage">
+            <selectpicker-option value="English">English</selectpicker-option>
+            <selectpicker-option value="French">French</selectpicker-option>
+            <selectpicker-option value="Spanish">Spanish</selectpicker-option>
+          </selectpicker>
+        </div>
+        <div class="form-group">
+          <label for="ExampleBirthday">Birthday</label>
+          <datepicker [(ngModel)]="person.birthday" name="ExampleBirthday"></datepicker>
+        </div>
+
+        <div class="btn-group">
+          <button type="submit" class="btn btn-default">Submit</button>
+          <button type="reset" class="btn btn-default">Reset</button>
+        </div>
+
+      </form>
+    </div>
+
+
+  </div>
+
+  <div class="container" *ngSwitchCase="'Api'">
+    <pre>
+      {{navbarHtml}}
+    </pre>
+    <p>
+      Class css li: </br>
+      -dropdown : Allow to create a dropdown into the navbar for add another link like a menu </br>
+      -disabled : deactivate the li.
+    </p>
+
+  </div>
+
+</div>

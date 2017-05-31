@@ -13,112 +13,267 @@
       <ul class="nav navbar-nav">
         <li>
           <a (click)="Display = 'Example'">
-            Example and binding
+            Example
           </a>
         </li>
         <li>
           <a (click)="Display = 'Api'">
-            How to use and api
+            Api
           </a>
         </li>
       </ul>
     </div>
-
   </div>
 </nav>
 
-<div [ngSwitch]= "Display">
+<div [ngSwitch]="Display">
 
   <div class="container" *ngSwitchCase="'Example'">
 
+    <h3>
+      Example :
+    </h3>
     <div class="row">
-      <div class="col-md-4">
-        <slidepicker [(ngModel)]="slidepicker1" class="slidepicker slidepicker-vertical">
-          <slidepicker-option value="test1">test1</slidepicker-option>
-          <slidepicker-option value="test2">test2</slidepicker-option>
-          <slidepicker-option value="test3">test3</slidepicker-option>
-          <slidepicker-option value="test4">test4</slidepicker-option>
-        </slidepicker>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="Binding1">Binding</label>
-          <input name="Binding1" class="form-control" type="text" [(ngModel)]="slidepicker1" disabled></input>
+      <div class="form-group">
+
+        <div class="col-md-4">
+
+          <div class="slidepicker slidepicker-vertical">
+            <div class="slidepicker-track">
+              <span class="slidepicker-handle" style="top: 32px;"></span>
+            </div>
+            <ul class="slidepicker-label">
+              <li class="active">
+                <a>
+                  C++
+                </a>
+              </li>
+              <li class="">
+                <a>
+                  Python
+                </a>
+              </li>
+              <li class="">
+                <a>
+                  Javascript
+                </a>
+              </li>
+            </ul>
+            <input type="hidden" class="slidepicker-input" value="0">
+          </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+          <div class="slidepicker slidepicker-vertical slidepicker-sm">
+            <div class="slidepicker-track">
+              <span class="slidepicker-handle" style="top: 32px;"></span>
+            </div>
+            <ul class="slidepicker-label">
+              <li class="active">
+                <a>
+                  C++
+                </a>
+              </li>
+              <li class="">
+                <a>
+                  Python
+                </a>
+              </li>
+              <li class="">
+                <a>
+                  Javascript
+                </a>
+              </li>
+            </ul>
+            <input type="hidden" class="slidepicker-input" value="0">
+          </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+          <div class="slidepicker slidepicker-vertical slidepicker-lg">
+            <div class="slidepicker-track">
+              <span class="slidepicker-handle" style="top: 32px;"></span>
+            </div>
+            <ul class="slidepicker-label">
+              <li class="active">
+                <a>
+                  C++
+                </a>
+              </li>
+              <li class="">
+                <a>
+                  Python
+                </a>
+              </li>
+              <li class="">
+                <a>
+                  Javascript
+                </a>
+              </li>
+            </ul>
+            <input type="hidden" class="slidepicker-input" value="0">
+          </div>
+
         </div>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-md-4">
-        <slidepicker [(ngModel)]="slidepicker2" class="slidepicker slidepicker-vertical">
-          <slidepicker-option value="test1">test1</slidepicker-option>
-          <slidepicker-option value="test2">test2</slidepicker-option>
-          <slidepicker-option value="test3">test3</slidepicker-option>
-          <slidepicker-option value="test4">test4</slidepicker-option>
-        </slidepicker>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="Binding2">Binding</label>
-          <input name="Binding2" class="form-control" type="text" [(ngModel)]="slidepicker2" disabled></input>
-          <label for="ButtonA">Select test1</label>
-          <button class="btn btn-block" (click)="changeBinding('slidepicker2', 'test1')">Select test1</button>
-          <label for="ButtonA">Select test2</label>
-          <button class="btn btn-block" (click)="changeBinding('slidepicker2', 'test2')">Select test2</button>
-          <label for="ButtonA">Select test3</label>
-          <button class="btn btn-block" (click)="changeBinding('slidepicker2', 'test3')">Select test3</button>
-
-        </div>
-      </div>
-    </div>
-
   </div>
-
   <div class="container" *ngSwitchCase="'Api'">
     <h3>
-      For an slidepicker use :
+    For a slidepicker use :
     </h3>
     <pre>
       {{slidepickerHtml}}
     </pre>
-    <h4>
-      Parameters
-    </h4>
+    <h3>
+      Class css :
+    </h3>
     <table class="table table-striped table-bordered table-hover">
       <thead>
         <tr>
           <th>
-            Parameter
+            Class
           </th>
           <th>
-            Type
+            Tag
           </th>
           <th>
             Description
+          </th>
+          <th>
+            Info
           </th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>
-            value
+            .slidepicker
           </td>
           <td>
-            Anything
+            div
           </td>
           <td>
-            Value use to bind into ngModel
+            Define the slidepicker
+          </td>
+          <td>
+            Warning : Don't forget to add .slidepicker-vertical. The slidepicker-horizontal don't work for the time being
           </td>
         </tr>
         <tr>
           <td>
-            ngModel
+            .slidepicker-vertical
           </td>
           <td>
-            type of parameter value
+            div
           </td>
           <td>
-            Value send to parent component
+            Define a vertical slidepicker
+          </td>
+          <td>
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .slidepicker-sm
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            Define a small slidepicker
+          </td>
+          <td>
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .slidepicker-lg
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            define a large slidepicker
+          </td>
+          <td>
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .slidepicker-track
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            Define the track
+          </td>
+          <td>
+            The height of the track is define with the number of option
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .slidepicker-handle
+          </td>
+          <td>
+            span
+          </td>
+          <td>
+            Define the handle
+          </td>
+          <td>
+            Warning : add a style="top : number px" with the height of the first options
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .slidepicker-label
+          </td>
+          <td>
+            ul
+          </td>
+          <td>
+            Define the option
+          </td>
+          <td>
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .active
+          </td>
+          <td>
+            li
+          </td>
+          <td>
+            Active the li.
+          </td>
+          <td>
+            
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .slidepicker-input
+          </td>
+          <td>
+            input
+          </td>
+          <td>
+            Define the input that contain the value choice
+          </td>
+          <td>
+
           </td>
         </tr>
       </tbody>

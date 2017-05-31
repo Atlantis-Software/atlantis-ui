@@ -56,7 +56,16 @@ export default  class navbarComponent {
             <li><a>Menu D</a></li>
             <li class="disabled"><a>Menu E</a></li>
           </ul>
-
+          <form class="navbar-form navbar-left">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Action">
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <button type="button" class="btn btn-default navbar-btn">Action A</button>
+            <p class="navbar-text">Test text</p>
+          </ul>
         </div>
 
       </div>

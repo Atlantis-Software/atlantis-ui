@@ -9,22 +9,34 @@ export default  class SlidepickerComponent {
     ]
   }
   constructor(){
+
     this.slidepickerHtml = `
-    <slidepicker [(ngModel)]="slidepicker2" class="slidepicker slidepicker-vertical">
-      <slidepicker-option value="test1">test1</slidepicker-option>
-      <slidepicker-option value="test2">test2</slidepicker-option>
-      <slidepicker-option value="test3">test3</slidepicker-option>
-      <slidepicker-option value="test4">test4</slidepicker-option>
-    </slidepicker>`
+    <div class="slidepicker slidepicker-vertical">
+      <div class="slidepicker-track">
+        <span class="slidepicker-handle" style="top: 32px;"></span>
+      </div>
+      <ul class="slidepicker-label">
+        <li class="active">
+          <a>
+            C++
+          </a>
+        </li>
+        <li class="">
+          <a>
+            Python
+          </a>
+        </li>
+        <li class="">
+          <a>
+            Javascript
+          </a>
+        </li>
+      </ul>
+      <input type="hidden" class="slidepicker-input" value="0">
+    </div>`
 
-    this.Display = "Example"
-    this.slidepicker2 = "test2"
+    this.Display = "Example";
   }
-
-  changeBinding(binding, value){
-    this[binding] = value;
-  }
-
 }
 
 
