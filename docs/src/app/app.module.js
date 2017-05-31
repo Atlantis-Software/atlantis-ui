@@ -21,6 +21,7 @@ import InputComponent from './input/input.component.js';
 import ButtonComponent from './button/button.component.js';
 import IconComponent from './icon/icon.component.js';
 import ModalComponent from './modal/modal.component.js';
+import ModalAngularComponent from './modalAngular/modal.component.js';
 import TableComponent from './table/table.component.js';
 import CarouselComponent from './carousel/carousel.component.js';
 import PopoverComponent from './popover/popover.component.js';
@@ -56,6 +57,7 @@ AppModule.annotations = [
       ButtonComponent,
       IconComponent,
       ModalComponent,
+      ModalAngularComponent,
       TableComponent,
       CarouselComponent,
       PopoverComponent,
