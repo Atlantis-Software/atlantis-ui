@@ -32,21 +32,25 @@
 
     <div class="row">
 
-      <!-- <modal id="exampleModal" options="object">
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#test">
+        Launch demo modal
+      </button>
 
-        <modal-header title="Test" options="object">
+      <modal [options]="modalOptions">
+
+        <modal-header title="Test" [options]="modalHeaderOptions">
 
         </modal-header>
 
-        <modal-body options="object">
-          <p>One fine body&hellip;</p>
+        <modal-body>
+          ...
         </modal-body>
 
-        <modal-booter options="object">
+        <modal-footer>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </modal-booter>
+        </modal-footer>
 
-      </modal> -->
+      </modal>
 
     </div>
 
@@ -62,40 +66,6 @@
     <h3>
       Modal :
     </h3>
-    <h4>
-      Attribut :
-    </h4>
-    <table class="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>
-          <th>
-            Attribut
-          </th>
-          <th>
-            Description
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            id
-          </td>
-          <td>
-            Define the id of modal, use the same for buton or action will open modal
-          </td>
-        </tr>
-        <tr>
-          <td>
-            options
-          </td>
-          <td>
-            Allow to send options to modal.
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
     <h4>
       Options
     </h4>
@@ -128,7 +98,7 @@
             String
           </td>
           <td>
-            Modify the modal to link to a border
+            Modify the modal to stick to a border
           </td>
           <td>
             left, bottom, right, top
@@ -171,8 +141,107 @@
             Per default : false
           </td>
         </tr>
+        <tr>
+          <td>
+            backdrop
+          </td>
+          <td>
+            string
+          </td>
+          <td>
+            Define if the backdrop is present
+          </td>
+          <td>
+            true, false, static
+          </td>
+          <td>
+            Per default : true. If define to static the modal not close when we click to backdrop
+          </td>
+        </tr>
       </tbody>
     </table>
+
+    <h3>
+      modal-header
+    </h3>
+    <h4>
+      Attribut
+    </h4>
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>
+            Attribut
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            title
+          </td>
+          <td>
+            Define the title of the modal, necessary
+          </td>
+        </tr>
+        <tr>
+          <td>
+            options
+          </td>
+          <td>
+            Allow to send options to modal.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>
+      Options
+    </h4>
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>
+            Parameters
+          </th>
+          <th>
+            Type
+          </th>
+          <th>
+            Description
+          </th>
+          <th>
+            Value
+          </th>
+          <th>
+            Info
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            closable
+          </td>
+          <td>
+            boolean
+          </td>
+          <td>
+            Define if we can close the modal with a cross
+          </td>
+          <td>
+            true, false
+          </td>
+          <td>
+            Per default : true
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
   </div>
 
 </div>

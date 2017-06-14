@@ -17,15 +17,25 @@ export default  class ModalAngularComponent {
 
       </modal-header>
 
-      <modal-body options="object">
+      <modal-body>
         <p>One fine body&hellip;</p>
       </modal-body>
 
-      <modal-booter options="object">
+      <modal-footer>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </modal-booter>
+      </modal-footer>
 
     </modal>`
+
+    this.modalOptions = {
+      size : "large",
+      fade : true,
+      show : true
+    }
+
+    this.modalHeaderOptions = {
+      close : true
+    }
 
     this.Display = "Example";
   }
