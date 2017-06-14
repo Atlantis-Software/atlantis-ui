@@ -29,8 +29,7 @@ export default  class ModalAngularComponent {
 
     this.modalOptions = {
       size : "large",
-      fade : true,
-      show : true
+      fade : true
     }
 
     this.modalHeaderOptions = {

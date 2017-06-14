@@ -26,7 +26,7 @@
   </div>
 </nav>
 
-<div [ngSwitch]= "Display">
+<div [ngSwitch]="Display">
 
   <div class="container" *ngSwitchCase="'Example'">
 
@@ -36,7 +36,7 @@
         Launch demo modal
       </button>
 
-      <modal [options]="modalOptions">
+      <modal idModal="test" [options]="modalOptions">
 
         <modal-header title="Test" [options]="modalHeaderOptions">
 

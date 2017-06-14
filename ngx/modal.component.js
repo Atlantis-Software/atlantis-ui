@@ -14,7 +14,7 @@ export default class modalComponent {
               </div>
 						</div>
 				  </div>`,
-        inputs: ['options']
+        inputs: ['options', "idModal"]
 	  	})
 		];
 	}
@@ -22,7 +22,6 @@ export default class modalComponent {
   constructor(elementRef, jquery) {
     this.elementRef = elementRef;
 		this.jq = jquery;
-		this.idModal = "modal" + Math.floor(Math.random() * (10000000000 - 0));
   }
 
 	ngOnDestroy() {
@@ -33,6 +32,11 @@ export default class modalComponent {
 	}
 
   ngOnInit() {
+
+		if (this.idModal === "" || typeof this.idModal === "undefined"){
+			this.idModal = "modal" + Math.floor(Math.random() * (10000000000 - 0));
+		}
+
 
 		this.modal = this.elementRef.nativeElement.getElementsByClassName("modal")[0];
 
@@ -72,8 +76,6 @@ export default class modalComponent {
 
 		if (this.options.show !== "" && typeof this.options.show !== "undefined" && this.options.show !== 0 && this.options.show !== null) {
 			this.jq(this.modal).modal('show');
-		} else {
-			this.jq(this.modal).modal('hide');
 		}
 
   }
@@ -82,8 +84,6 @@ export default class modalComponent {
 		if (this.modal) {
 			if (this.options.show !== "" && typeof this.options.show !== "undefined" && this.options.show !== 0 && this.options.show !== null) {
 				this.jq(this.modal).modal('show');
-			}else {
-				this.jq(this.modal).modal('hide');
 			}
 		}
 	}

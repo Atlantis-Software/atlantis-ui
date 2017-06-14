@@ -27,6 +27,17 @@ export default  class AccordionComponent {
     }
 
     this.Display = "Example";
+    this.changehours();
+  }
+
+  changehours(){
+    var self = this;
+
+    this.time = new Date();
+
+    setInterval(function(){
+      self.time = new Date();
+    },1000);
   }
 }
 

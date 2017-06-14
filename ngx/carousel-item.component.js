@@ -11,7 +11,6 @@ export default class carouselItemComponent {
         template: `
           <ng-content>
           </ng-content>`,
-        inputs: ["options"],
         host: {"class": "item"},
 	  	})
 		];

@@ -49,6 +49,10 @@ export default class dropdownComponent {
       if (actions[i].options && actions[i].options.type === "header") {
         var action = this.elementRef.nativeElement.getElementsByTagName("li")[i];
         action.innerText = actions[i].value;
+      } else if (!actions[i].options || !actions[i].options.type || actions[i].options.type !== 'divider' && actions[i].options.type !== 'header') {
+        var action = this.elementRef.nativeElement.getElementsByTagName("li")[i]
+        action = action.getElementsByTagName("a")[0];
+        action.innerText = actions[i].value;
       }
     }
   }
