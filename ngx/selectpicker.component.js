@@ -1,15 +1,13 @@
-import { Component, ContentChildren, forwardRef, ChangeDetectorRef, IterableDiffers} from '@angular/core';
+import { Component, ContentChildren, forwardRef, ChangeDetectorRef} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import selectpickeroptionComponent from './selectpicker-option.component';
 
 export default class selectpickerComponent {
-  constructor (changeDetectorRef, differs) {
+  constructor (changeDetectorRef) {
     this.onModelTouched = function() {};
     this.onModelChange = function() {};
     this.cdr = changeDetectorRef;
-    this.val = '';
-    this.differ = differs.find([]).create(null);
-
+    this.isOpen = false;
   }
 	static get annotations() {
 		return [
@@ -40,8 +38,21 @@ export default class selectpickerComponent {
   writeValue(val) {
     if (val !== this.val) {
       this.val = val;
-      this.updateOptions();
       this.onModelChange(val);
+      var self = this;
+      // iniliaze list with selected values
+      if (this.val) {
+        this.SelectedValuesText = [];
+        this.options.toArray().forEach(function(option){
+          var index = self.val.indexOf(option.value);
+          if (index > -1) {
+            option.selected = true;
+            self.SelectedValuesText.push(option.text);
+          }
+        })
+        // if not error
+        this.cdr.detectChanges();
+      }
     }
   }
 
@@ -52,68 +63,37 @@ export default class selectpickerComponent {
     this.onModelTouched = fn;
   }
 
-  //That check for every selectpicker widget's change.
-  ngDoCheck() {
-    //We use Array.isArray to verify if this.val is an array so we avoid a angular's error with IterableDiffers
-    if (Array.isArray(this.val)) {
-      var changes = this.differ.diff(this.val);
-      if (changes) {
-        this.updateOptions();
+  Open() {
+    this.isOpen = this.isOpen ? false : true;
+  }
+
+  selectOption(option){
+    if (!this.val) {
+      this.val = [];
+    }
+    if (!this.SelectedValuesText) {
+      this.SelectedValuesText = [];
+    }
+    if (option.selected) {
+      option.selected = false;
+      var index = this.val.indexOf(option.value);
+      var indexText = this.SelectedValuesText.indexOf(option.text);
+      if (index > -1) {
+        //this.val = this.val.splice(index, 1);
+        this.val.splice(index, 1);
       }
-    }
-  }
-
-  ngOnInit() {
-    this.updateOptions();
-  }
-
-  ngAfterViewInit() {
-    this.updateOptions();
-  }
-
-  updateOptions() {
-    if (!this.options) {
-      return;
-    }
-    var self = this;
-    if (this.multiple && Array.isArray(this.val)) {
-      this.options.forEach(function(option) {
-        if (self.val.indexOf(option.value) >= 0) {
-          option.selected = true;
-        } else {
-          option.selected = false;
-        }
-      });
+      if (indexText > -1) {
+        this.SelectedValuesText.splice(indexText, 1);
+      }
     } else {
-       this.options.forEach(function(option) {
-        if (self.val === option.value) {
-          option.selected = true;
-        } else {
-          option.selected = false;
-        }
-      });
+      option.selected = true;
+     //this.val = this.val.push(option.value);
+     this.val.push(option.value);
+     this.SelectedValuesText.push(option.text);
     }
-    this.cdr.detectChanges();
-  }
-
-  valueChange() {
-    var self = this;
-    var value = null;
-    if (self.multiple) {
-      value = [];
-    }
-    this.options.forEach(function(option) {
-      if (option.selected) {
-        if (self.multiple) {
-          value.push(option.value);
-        } else {
-          value = option.value;
-        }
-      }
-    });
-    this.val = value;
-    this.onModelChange(this.val);
+    //this.onModelChange(this.val.toArray());
+    this.onModelChange(this.val.slice(0));
   }
 }
 
-selectpickerComponent.parameters = [ChangeDetectorRef, IterableDiffers];
+selectpickerComponent.parameters = [ChangeDetectorRef];
