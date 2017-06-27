@@ -52,6 +52,9 @@ export default class selectpickerComponent {
   }
 
   updateOptions() {
+    if (!this.options) {
+      return;
+    }
     var self = this;
     if (this.multiple && Array.isArray(this.val)) {
       this.SelectedValuesText = [];
@@ -64,6 +67,16 @@ export default class selectpickerComponent {
           option.selected = false;
         }
       })
+    } else {
+      this.SelectedValuesText = null;
+      this.options.forEach(function(option) {
+        if (self.val === option.value) {
+          option.selected = true;
+          self.SelectedValuesText = option.text;
+        } else {
+          option.selected = false;
+        }
+      });
     }
     // if not error
     this.cdr.detectChanges();
@@ -95,6 +108,7 @@ export default class selectpickerComponent {
     }
   }
   //That check for every selectpicker widget's change.
+  // if this.val change we must update options
   ngDoCheck() {
     //We use Array.isArray to verify if this.val is an array so we avoid a angular's error with IterableDiffers
     if (Array.isArray(this.val)) {
@@ -106,28 +120,41 @@ export default class selectpickerComponent {
   }
 
   selectOption(option){
-    if (!this.val) {
-      this.val = [];
-    }
-    if (!this.SelectedValuesText) {
-      this.SelectedValuesText = [];
-    }
-    if (option.selected) {
-      option.selected = false;
-      var index = this.val.indexOf(option.value);
-      var indexText = this.SelectedValuesText.indexOf(option.text);
-      if (index > -1) {
-        this.val.splice(index, 1);
+    if (this.multiple) {
+      if (!this.val) {
+        this.val = [];
       }
-      if (indexText > -1) {
-        this.SelectedValuesText.splice(indexText, 1);
+      if (!this.SelectedValuesText) {
+        this.SelectedValuesText = [];
       }
+      if (option.selected) {
+        option.selected = false;
+        var index = this.val.indexOf(option.value);
+        var indexText = this.SelectedValuesText.indexOf(option.text);
+        if (index > -1) {
+          this.val.splice(index, 1);
+        }
+        if (indexText > -1) {
+          this.SelectedValuesText.splice(indexText, 1);
+        }
+      } else {
+        option.selected = true;
+      this.val.push(option.value);
+      this.SelectedValuesText.push(option.text);
+      }
+      //this.onChangeCallback(this.val.slice(0));
     } else {
-      option.selected = true;
-     this.val.push(option.value);
-     this.SelectedValuesText.push(option.text);
+      this.SelectedValuesText = null;
+      this.options.forEach(function(option) {
+         option.selected = false;
+       });
+      option.selected = true; 
+      this.val = option.value;
+      this.SelectedValuesText = option.text;
+
+      this.isOpen = false;
     }
-    this.onModelChange(this.val.slice(0));
+    this.onModelChange(this.val);
   }
 }
 
