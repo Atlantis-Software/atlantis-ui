@@ -144,7 +144,7 @@ export default class selectpickerComponent {
       if (!this.val) {
         this.val = [];
       }
-      if (!this.SelectedValuesText) {
+      if (!this.SelectedValuesText || this.val.length <= 0) {
         this.SelectedValuesText = [];
       }
       // delete all value not in the options
