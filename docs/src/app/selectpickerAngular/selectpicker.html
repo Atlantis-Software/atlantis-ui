@@ -1,225 +1,209 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a (click)="Display = 'Example'">
-            Example and binding
-          </a>
-        </li>
-        <li>
-          <a (click)="Display = 'Api'">
-            How to use and api
-          </a>
-        </li>
-      </ul>
-    </div>
-
-  </div>
-</nav>
-
 <div [ngSwitch]= "Display">
-
   <div class="container" *ngSwitchCase="'Example'">
+    <div class="mt-3">
+      <h4>
+        Selectpicker multiple
+      </h4>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="Selectpicker1">Example</label>
+            <selectpicker name="Selectpicker1" [(ngModel)]="Selectpicker1" multiple="true">
+              <selectpicker-option [value]="A">AAAA</selectpicker-option>
+              <selectpicker-option value="B">BBBB</selectpicker-option>
+              <selectpicker-option value="C">CCCC</selectpicker-option>
+              <selectpicker-option [value]="booleanFalse">boolean test</selectpicker-option>
+              <selectpicker-option [value]="un">11111</selectpicker-option>
+              <selectpicker-option [value]="arrayUnDeuxTrois">un, deux, trois</selectpicker-option>
+              <selectpicker-option [value]="objetTableau">objet javascript</selectpicker-option>
+            </selectpicker>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="Binding1">Binding</label>
+            <input name="Binding1" class="form-control" type="text" [(ngModel)]="Selectpicker1"></input>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <label>Code : </label>
+        </div> 
+      </div>
+      <pre>
+        {{selectpickerMultipleHtml}}
+      </pre>
+
+      <blockquote>
+        <p>Pour les Selectpicker multiple il faut ajouter l'attribut multiple="true".</p>
+      </blockquote>
+    
+      </br>
+      <div class="row">
+        <div class="col-md-4">
+          <h5> Selection valeur par clic bouton</h5>
+        </div> 
+        
+      </div>
+
+       <div class="row">
+        <div class="col-md-4">
+          <button (click)="AddRemoveA()">A</button> 
+          <button (click)="AddRemove1()">1</button> 
+          <button (click)="AddRemoveArray()">Array</button>    
+          <button (click)="AddRemoveObjet()">Objet</button> 
+          <button (click)="AddRemoveBoolean()">Boolean</button> 
+        </div>
+      </div> 
+
+      <blockquote>
+        <p>Si on selectionne une valeur dynamiquement par le code il faut que ce soit la même instance sinon cela ne fonctionne pas.<br />
+          Par exemple pour le bouton array : 
+        </p>
+      </blockquote>
+
+      <pre>
+          {{exempleBouttonMultiple}}
+      </pre>
+      </br>
+      <div class="row">
+        <div class="col-md-4">
+          <h5> Explication code</h5>
+        </div> 
+      </div>
+      <blockquote>
+        <p>Selectpicker1 est la valeur bindée. Si pas de valeur par defaut c'est un tableau vide : </p>
+      </blockquote>
+      <pre>
+        Selectpicker1 = [];
+      </pre>
+      <blockquote>
+        <p>sinon c'est un tableau de variables (il faut utiliser la même instance).Dans ce cas un , deux, trois et 11111 seront selectionnés par défaut.</p>
+      </blockquote>
+      <pre>
+        var arrayUnDeuxTrois = ["un", "deux", "trois"];
+        var un = 1;
+        Selectpicker1 = [arrayUnDeuxTrois, un];
+      </pre>
+      <blockquote>
+        <p>La valeur entre les balises selectpicker-option est du texte ou une valeur bindée 
+          et l'attribut value est une valeur bindée.</p>
+      </blockquote>
+      <pre>
+        {{selectpickerOptionHtml}}
+      </pre>    
+      <blockquote>
+        <p>
+          Si l'attribut value n'est pas défini il sera égal à la valeur du texte ( dans l'exemple ci-dessous la valeur de la variable AucuneValeur 
+          c'est à dire aucune valeur), 
+          donc quand pas de valeur pour la value , la valeur est celle du texte.
+        </p>
+      </blockquote>
+      <pre>
+        {{selectpickerOptionSansValueHtml}}
+      </pre>
+    </div>
+    </br></br>
     <h4>
-      Example :
+      Select simple
     </h4>
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
           <label for="Selectpicker1">Example SelectPicker simple</label>
-          <selectpicker name="Selectpicker1" [(ngModel)]="Selectpicker1" multiple="false">
-            <selectpicker-option value="A">A</selectpicker-option>
-            <selectpicker-option value="B">B</selectpicker-option>
-            <selectpicker-option value="C">C</selectpicker-option>
+          <selectpicker name="Selectpicker2" [(ngModel)]="Selectpicker2">
+            <selectpicker-option [value]="A">AAAA</selectpicker-option>
+            <selectpicker-option value="B">BBBB</selectpicker-option>
+            <selectpicker-option value="C">CCCC</selectpicker-option>
+            <selectpicker-option [value]="booleanFalse">boolean test</selectpicker-option>
+            <selectpicker-option [value]="un">11111</selectpicker-option>
+            <selectpicker-option [value]="arrayUnDeuxTrois">un, deux, trois</selectpicker-option>
+            <selectpicker-option [value]="objetTableau">objet javascript</selectpicker-option>
+            <selectpicker-option> {{ AucuneValeur }} </selectpicker-option>
           </selectpicker>
-        </div>
+        </div> 
       </div>
+
       <div class="col-md-4">
         <div class="form-group">
           <label for="Binding1">Binding</label>
-          <input name="Binding1" class="form-control" type="text" [(ngModel)]="Selectpicker1"></input>
-        </div>
-      </div>
-    </div>
+          <input name="Binding1" class="form-control" type="text" [(ngModel)]="Selectpicker2"></input>
+        </div>    
+      </div> 
+    </div>  
 
     <div class="row">
       <div class="col-md-4">
-        <div class="form-group">
-          <label for="Selectpicker2">Example SelectPicker with simple default value</label>
-          <selectpicker name="Selectpicker2" [(ngModel)]="Selectpicker2" multiple="false">
-            <selectpicker-option value="A">A</selectpicker-option>
-            <selectpicker-option value="B">B</selectpicker-option>
-            <selectpicker-option value="C">C</selectpicker-option>
-          </selectpicker>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="Binding2">Binding</label>
-          <input name="Binding2" class="form-control" type="text" [(ngModel)]="Selectpicker2"></input>
-        </div>
-      </div>
+        <label>Code : </label>
+      </div> 
     </div>
-
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="Selectpicker3">Example SelectPicker multiple </label>
-          <selectpicker name="Selectpicker3" [(ngModel)]="Selectpicker3" multiple="true">
-            <selectpicker-option value="A">A</selectpicker-option>
-            <selectpicker-option value="B">B</selectpicker-option>
-            <selectpicker-option value="C">C</selectpicker-option>
-          </selectpicker>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <label for="Binding3">Binding</label>
-          <p name="Binding3">{{Selectpicker3}}</p>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="btn-group">
-          <button class="btn btn-default" (click)="changeBinding('Selectpicker3', 'A')">Toggle A</button>
-          <button class="btn btn-default" (click)="changeBinding('Selectpicker3', 'B')">Toggle B</button>
-          <button class="btn btn-default" (click)="changeBinding('Selectpicker3', 'C')">Toggle C</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="Selectpicker4">Example SelectPicker multiple with default value</label>
-          <selectpicker name="Selectpicker=4" [(ngModel)]="Selectpicker4" multiple="true">
-            <selectpicker-option value="A">A</selectpicker-option>
-            <selectpicker-option value="B">B</selectpicker-option>
-            <selectpicker-option value="C">C</selectpicker-option>
-          </selectpicker>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="Binding4">Binding</label>
-          <p name="Binding4">{{Selectpicker4}}</p>
-        </div>
-      </div>
-    </div>
-
-    <h4>
-      Different size :
-    </h4>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="Selectpicker1">Example SelectPicker simple</label>
-          <selectpicker name="Selectpicker1" [(ngModel)]="Selectpicker5" multiple="false" class="selectpicker-sm">
-            <selectpicker-option value="A">A</selectpicker-option>
-          </selectpicker>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="Binding1">Binding</label>
-          <input name="Binding1" class="form-control input-sm" type="text" [(ngModel)]="Selectpicker5"></input>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="Selectpicker1">Example SelectPicker simple</label>
-          <selectpicker name="Selectpicker1" [(ngModel)]="Selectpicker6" multiple="false" class="selectpicker-lg">
-            <selectpicker-option value="A">A</selectpicker-option>
-          </selectpicker>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="Binding1">Binding</label>
-          <input name="Binding1" class="form-control input-lg" type="text" [(ngModel)]="Selectpicker6"></input>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="container" *ngSwitchCase="'Api'">
-    <h3>
-      For an selectpicker use :
-    </h3>
     <pre>
-      {{selectpickerHtml}}
+      {{selectpickerSimpleHtml}}
     </pre>
-    <h4>
-      Precision :
-    </h4>
-    <p>
-      We can define different size for the widget. For that just add a class to selectpicker tag like selectpicker-sm or selectpicker-lg
-    </p>
-    <h4>
-      Parameters
-    </h4>
-    <table class="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>
-          <th>
-            Parameter
-          </th>
-          <th>
-            Type
-          </th>
-          <th>
-            Description
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            value
-          </td>
-          <td>
-            Anything
-          </td>
-          <td>
-            Value use to bind into ngModel
-          </td>
-        </tr>
-        <tr>
-          <td>
-            ngModel
-          </td>
-          <td>
-            type of parameter value
-          </td>
-          <td>
-            Value send to parent component
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Multiple
-          </td>
-          <td>
-            boolean
-          </td>
-          <td>
-            Define if multiple selection is possible, if true ngModel become an array
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
 
+    <blockquote>
+      <p>Pour les Selectpicker simple il ne faut pas utiliser l'attribut multiple ou sinon multiple="false".</p>
+    </blockquote>
+
+    </br>
+    <div class="row">
+      <div class="col-md-4">
+        <h5> Selection valeur par clic bouton</h5>
+      </div> 
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <button (click)="ValueA()">A</button> 
+        <button (click)="Value1()">1</button> 
+        <button (click)="ValueArray()">Array</button>    
+        <button (click)="ValueObjet()">Objet</button> 
+        <button (click)="ValueBoolean()">Boolean</button> 
+        <button (click)="ValueAucuneValeur()">Value Aucune</button> 
+      </div>
+    </div> 
+
+    <div class="row">
+      <div class="col-md-4">
+        <label>Code pour le bouton Array : </label>
+      </div> 
+    </div>
+    <pre>
+        var arrayUnDeuxTrois = ["un", "deux", "trois"];
+        Selectpicker2 = this.arrayUnDeuxTrois;
+    </pre>
+    </br>
+    <div class="row">
+      <div class="col-md-4">
+        <h5> Explication code</h5>
+      </div> 
+    </div>
+    <p>Selectpicker2 est la valeur bindée. Si pas de valeur par défaut Selectpicker2 n'est pas défini: </p>
+    <blockquote>
+      <p>sinon on lui assigne la variable utilisée pour l'attribut value.</p>
+    </blockquote>
+    <pre>
+      var arrayUnDeuxTrois = ["un", "deux", "trois"];
+      Selectpicker2 = arrayUnDeuxTrois;
+    </pre>
+    <blockquote>
+      <p>La valeur entre les balises selectpicker-option est du texte ou une valeur bindée
+        et l'attribut value est une valeur bindée.</p>
+    </blockquote>
+    <pre>
+      {{selectpickerOptionHtml}}
+    </pre>    
+    <blockquote>
+      <p>
+        Si l'attribut value n'est pas défini il sera égale à la valeur du texte ( dans l'exemple ci-dessous la valeur de la variable AucuneValeur 
+        c'est à dire aucune valeur), 
+        donc quand pas de valeur pour la value , la valeur est celle du texte.
+      </p>
+    </blockquote>
+    <pre>
+      {{selectpickerOptionSansValueHtml}}
+    </pre>
+  </div> 
 </div>
