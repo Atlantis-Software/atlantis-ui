@@ -53,7 +53,6 @@ import FormsComponent from './forms/forms.component.js';
 
 import { ngxAtlUiModule } from 'atlantis-ui-ngx';
 
-import { gridConfig } from './grid.config.js'
 
 export var AppModule = function() {};
 
