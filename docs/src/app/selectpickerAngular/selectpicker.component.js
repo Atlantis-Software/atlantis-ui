@@ -39,7 +39,7 @@ export default  class SelectpickerAngularComponent {
     this.selectpickerOptionSansValueHtml = `
     var AucuneValeur = "aucune valeur";
     <selectpicker-option> {{ AucuneValeur }} </selectpicker-option>`;
-  
+
 
     this.exempleBouttonMultiple = `
     var arrayUnDeuxTrois = ["un", "deux", "trois"];
@@ -48,14 +48,10 @@ export default  class SelectpickerAngularComponent {
     if (index > -1 ) {
       Selectpicker1.splice(index, 1);
     } else {
-      Selectpicker1.push(this.arrayUnDeuxTrois); 
+      Selectpicker1.push(this.arrayUnDeuxTrois);
     }`
     this.Display = "Example";
     this.Selectpicker3 = [];
-<<<<<<< HEAD
-    this.Selectpicker2 = "A";
-    this.Selectpicker4 = ["A", "B","D"];
-=======
     this.Selectpicker1 = ["A", "B", "C", "D"];
     this.arrayUnDeuxTrois = ["un", "deux", "trois"];
     this.un = 1;
@@ -67,7 +63,6 @@ export default  class SelectpickerAngularComponent {
 
   ngOnInit() {
     this.AucuneValeur = "aucune valeur";
->>>>>>> d1d90d4dd281349e05e8a2c11e72eff4abaece8e
   }
 
   changeBinding(binding, value){
@@ -85,7 +80,7 @@ export default  class SelectpickerAngularComponent {
     if (index > -1 ) {
       this.Selectpicker1.splice(index, 1);
     } else {
-      this.Selectpicker1.push(this.A); 
+      this.Selectpicker1.push(this.A);
     }
   }
 
@@ -98,7 +93,7 @@ export default  class SelectpickerAngularComponent {
     if (index > -1 ) {
       this.Selectpicker1.splice(index, 1);
     } else {
-      this.Selectpicker1.push(this.un); 
+      this.Selectpicker1.push(this.un);
     }
   }
 
@@ -112,7 +107,7 @@ export default  class SelectpickerAngularComponent {
     if (index > -1 ) {
       this.Selectpicker1.splice(index, 1);
     } else {
-      this.Selectpicker1.push(this.arrayUnDeuxTrois); 
+      this.Selectpicker1.push(this.arrayUnDeuxTrois);
     }
   }
 
@@ -126,7 +121,7 @@ export default  class SelectpickerAngularComponent {
     if (index > -1 ) {
       this.Selectpicker1.splice(index, 1);
     } else {
-      this.Selectpicker1.push(this.objetTableau); 
+      this.Selectpicker1.push(this.objetTableau);
     }
   }
 
@@ -139,7 +134,7 @@ export default  class SelectpickerAngularComponent {
     if (index > -1 ) {
       this.Selectpicker1.splice(index, 1);
     } else {
-      this.Selectpicker1.push(this.booleanFalse); 
+      this.Selectpicker1.push(this.booleanFalse);
     }
   }
 

@@ -25,24 +25,26 @@ export default class gridComponent {
 		this.pipes = [];
 		this.types =  gridConfig;
 		this.types.forEach(function(type, i) {
-			if (Array.isArray(type.pipes) ) {
-				self.pipes[i] = [];
-				type.pipes.forEach(function(pipe, indexPipe) {
-					var options = type.optionsPipe[indexPipe] || [];
+			if ( type.pipes) {
+				if (Array.isArray(type.pipes) ) {
+					self.pipes[i] = [];
+					type.pipes.forEach(function(pipe, indexPipe) {
+						var options = type.optionsPipe[indexPipe] || [];
+						options = Array.isArray(options) ? options : options.split(':');
+						self.pipes[i][indexPipe] = {
+							pipe: pipe,
+							option: options || []
+						}
+					})
+					self.pipes[i].type = type.type
+				} else {
+					var options = type.optionsPipe[i] || [];
 					options = Array.isArray(options) ? options : options.split(':');
-					self.pipes[i][indexPipe] = {
-						pipe: pipe,
-						option: options || []
+					self.pipes[i] = {
+						pipe: self.pipes[i],
+						type: type.type,
+						option: options
 					}
-				})
-				self.pipes[i].type = type.type
-			} else {
-				var options = type.optionsPipe[i] || [];
-				options = Array.isArray(options) ? options : options.split(':');
-				self.pipes[i] = {
-					pipe: self.pipes[i],
-					type: type.type,
-					option: options
 				}
 			}
 		})

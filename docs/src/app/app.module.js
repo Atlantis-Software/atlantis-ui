@@ -64,6 +64,9 @@ var types = [
     alignment: "right",
     pipes: [DatePipe, UpperCasePipe],
     optionsPipe : ['shortDate:longDate', ["test", "test2"]]
+  },
+  {
+    type : 'number'
   }
 ]
 
