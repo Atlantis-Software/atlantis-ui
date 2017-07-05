@@ -33,8 +33,12 @@ import PopoverComponent from './popover/popover.component.js';
 import CollapseComponent from './collapse/collapse.component.js';
 import AccordionComponent from './accordion/accordion.component.js';
 
+import ProgressBarComponent from './progress-bar/progress-bar.component.js';
+
 import InputgroupComponent from './inputgroup/inputgroup.component.js';
 import GridComponent from './grid/grid.component.js';
+import GridAngularComponent from './gridAngular/grid.component.js';
+
 import ButtongroupsComponent from './buttongroups/buttongroups.component.js';
 import FormsComponent from './forms/forms.component.js';
 
@@ -76,8 +80,11 @@ export default [
   { path: 'collapse', component: CollapseComponent },
   { path: 'accordion', component: AccordionComponent },
 
+  { path: 'progressBar', component: ProgressBarComponent },
+
   { path: 'inputgroup', component: InputgroupComponent },
   { path: 'grid', component: GridComponent },
+  { path: 'gridAngular', component: GridAngularComponent },
   { path: 'buttongroups', component: ButtongroupsComponent },
   { path: 'forms', component: FormsComponent }
 

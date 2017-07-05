@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders, Provider } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -23,6 +23,14 @@ import modalHeaderComponent from './modal-header.component.js';
 import modalBodyComponent from './modal-body.component.js';
 import modalFooterComponent from './modal-footer.component.js';
 
+import gridComponent from './grid.component.js';
+import gridHeaderComponent from './grid-header.component.js';
+import gridBodyComponent from './grid-body.component.js';
+import gridFooterComponent from './grid-footer.component.js';
+import gridCellComponent from './grid-cell.component.js';
+import gridCellHeaderComponent from './grid-cell-header.component.js';
+import { gridConfig } from './grid.config.js';
+
 import carouselComponent from './carousel.component.js';
 import carouselItemComponent from './carousel-item.component.js';
 
@@ -31,15 +39,31 @@ import {accordionComponent, accordionPanelComponent} from './accordion.component
 import dropdownComponent from './dropdown.component.js';
 import dropdownOptionComponent from './dropdown-option.component.js';
 
-import focusDirective from './focus.directive.js';
+import circleProgessBarComponent from './circle-progress-bar.component.js';
 
-export var ngxAtlUiModule = function() {};
+import focusDirective from './focus.directive.js';
+import affixDirective from './affix.directive.js';
+
+import DynamicPipe from './dynamic.pipe.js';
+
+// export var ngxAtlUiModule = function() {};
+
+export class ngxAtlUiModule{
+  static forRoot(config){
+    return {
+      ngModule: ngxAtlUiModule,
+      providers : [
+        {provide: gridConfig, useValue : config}
+      ]
+    }
+  }
+}
 
 ngxAtlUiModule.annotations = [
   new NgModule({
     imports: [CommonModule, FormsModule],
-    declarations: [pagination, datepickerComponent, datepickerrangeComponent, atlModelDirective, selectpickerComponent, selectpickeroptionComponent, slidepickercomponent, slidepickeroptioncomponent, focusDirective, modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent, carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent],
-    exports : [pagination, datepickerComponent, datepickerrangeComponent, atlModelDirective, selectpickerComponent, selectpickeroptionComponent, slidepickercomponent, slidepickeroptioncomponent, focusDirective, modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent, carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent],
+    declarations: [pagination, datepickerComponent, datepickerrangeComponent, atlModelDirective, selectpickerComponent, selectpickeroptionComponent, slidepickercomponent, slidepickeroptioncomponent, focusDirective, modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent, carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent, circleProgessBarComponent, affixDirective, gridComponent, gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent],
+    exports : [pagination, datepickerComponent, datepickerrangeComponent, atlModelDirective, selectpickerComponent, selectpickeroptionComponent, slidepickercomponent, slidepickeroptioncomponent, focusDirective, modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent, carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent, circleProgessBarComponent, affixDirective, gridComponent, gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent],
     providers : [
       { provide : JQ_TOKEN, useValue : jQuery }
     ]

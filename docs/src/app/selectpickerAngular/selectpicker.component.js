@@ -19,7 +19,7 @@ export default  class SelectpickerAngularComponent {
     this.Display = "Example";
     this.Selectpicker3 = [];
     this.Selectpicker2 = "A";
-    this.Selectpicker4 = ["A", "B"];
+    this.Selectpicker4 = ["A", "B","D"];
   }
 
   changeBinding(binding, value){

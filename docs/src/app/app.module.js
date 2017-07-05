@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import AppComponent from './app.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, DatePipe, UpperCasePipe } from '@angular/common';
 
 
 import HomeComponent from './home/home.component.js';
@@ -42,16 +42,32 @@ import PopoverComponent from './popover/popover.component.js';
 import CollapseComponent from './collapse/collapse.component.js';
 import AccordionComponent from './accordion/accordion.component.js';
 
+import ProgressBarComponent from './progress-bar/progress-bar.component.js';
+
 import InputgroupComponent from './inputgroup/inputgroup.component.js';
 import GridComponent from './grid/grid.component.js';
+import GridAngularComponent from './gridAngular/grid.component.js';
+
 import ButtongroupsComponent from './buttongroups/buttongroups.component.js';
 import FormsComponent from './forms/forms.component.js';
 
 import { ngxAtlUiModule } from 'atlantis-ui-ngx';
 
+import { gridConfig } from './grid.config.js'
+
 export var AppModule = function() {};
 
 import route from './app.routes';
+
+var types = [
+  {
+    type: "date",
+    alignment: "right",
+    pipes: [DatePipe, UpperCasePipe],
+    optionsPipe : ['shortDate:longDate', ["test", "test2"]]
+  }
+]
+
 
 AppModule.annotations = [
   new NgModule({
@@ -83,15 +99,17 @@ AppModule.annotations = [
       InputgroupComponent,
       GridComponent,
       ButtongroupsComponent,
-      FormsComponent
+      FormsComponent,
+      ProgressBarComponent,
+      GridAngularComponent
     ],
     imports: [
       BrowserModule,
       FormsModule,
       RouterModule.forRoot(route),
-      ngxAtlUiModule
+      ngxAtlUiModule.forRoot(types)
     ],
     bootstrap: [ AppComponent ],
-    providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}]
+    providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, DatePipe, UpperCasePipe]
   })
 ];

@@ -34,7 +34,7 @@
 
       <accordion [options]="optionsAccordion">
         <accordion-panel [title]="'test1'">
-          {{time}}
+          {{time | date : 'shortDate'}}
         </accordion-panel>
         <accordion-panel [title]="'test2'">
           azertyuiop
@@ -58,24 +58,24 @@
       Accordion :
     </h3>
     <h4>
-      Options
+      Settings
     </h4>
     <table class="table table-striped table-bordered table-hover">
       <thead>
         <tr>
-          <th>
-            Parameters
+          <th class="col-md-2">
+            Setting
           </th>
-          <th>
+          <th class="col-md-1">
             Type
           </th>
-          <th>
+          <th class="col-md-3">
             Description
           </th>
-          <th>
-            Value
+          <th class="col-md-3">
+            value
           </th>
-          <th>
+          <th class="col-md-3">
             Info
           </th>
         </tr>
@@ -83,13 +83,13 @@
       <tbody>
         <tr>
           <td>
-            style
+            class
           </td>
           <td>
             String
           </td>
           <td>
-            Define the style we want.
+            Change style per default of any panel
           </td>
           <td>
             default, primary, success, info, warning, danger
@@ -98,6 +98,49 @@
             Per default : default
           </td>
         </tr>
+        <tr>
+          <td>
+            options
+          </td>
+          <td>
+            Object
+          </td>
+          <td>
+            Define options we want for accordion
+          </td>
+          <td>
+            See option's section
+          </td>
+          <td>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h4>
+      Options
+    </h4>
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="col-md-2">
+            Attribut
+          </th>
+          <th class="col-md-1">
+            Type
+          </th>
+          <th class="col-md-3">
+            Description
+          </th>
+          <th class="col-md-3">
+            value
+          </th>
+          <th class="col-md-3">
+            Info
+          </th>
+        </tr>
+      </thead>
+      <tbody>
         <tr>
           <td>
             openDefault
@@ -122,13 +165,13 @@
       Carousel-item
     </h3>
     <h4>
-      Parameters
+      Settings
     </h4>
     <table class="table table-striped table-bordered table-hover">
       <thead>
         <tr>
           <th>
-            Parameters
+            Setting
           </th>
           <th>
             Description
