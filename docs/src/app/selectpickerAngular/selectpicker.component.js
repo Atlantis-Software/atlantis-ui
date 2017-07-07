@@ -79,10 +79,6 @@ export default  class SelectpickerAngularComponent {
     this.A = "A";
    
     this.booleanFalse = false;
-
-    this.collection = [ { name: "montellimar", id: 2},{ name: "voirton", id: 4}];
-    this.collection2 = [ { name: "montellimar", id: 2},{ name: "voirton", id: 4}];
-    this.toto = "aaaa";
   }
 
   ngOnInit() {
