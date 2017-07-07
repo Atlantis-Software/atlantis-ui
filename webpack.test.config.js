@@ -57,13 +57,5 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin("css/atlantis-ui.css")
-  ],
-  externals: [
-    {
-      "moment" : "moment",
-      "jquery" : "jQuery"
-    },
-    /^\@angular\//,
-    /^rxjs\//
   ]
 };
