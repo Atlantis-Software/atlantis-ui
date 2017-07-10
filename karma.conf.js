@@ -23,6 +23,10 @@ module.exports = function (config) {
       noInfo: true,
     },
 
+    browsers : ['Chrome', 'Firefox'],
+
+    singleRun: true,
+
     reporters: ['mocha'],
     port: 9876,
     colors: true

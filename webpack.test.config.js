@@ -4,6 +4,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   context: __dirname,
+  devtool: 'inline-source-map',
   entry: {
     atlantis : './atlantis-ui.js',
     ngxAtlantis : './ngx-atlantis-ui.js'
