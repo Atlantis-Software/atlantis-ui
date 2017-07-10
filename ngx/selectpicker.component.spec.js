@@ -55,6 +55,7 @@ describe('selectpicker', function() {
   afterEach(function() {
     getTestBed().resetTestingModule();
   });
+  
 
   it('should render actual value and available options', function(done) {
     var fixture = TestBed.createComponent(selectpickerTestComponent);
