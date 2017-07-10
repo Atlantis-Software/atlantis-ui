@@ -1,0 +1,47 @@
+<input  type="date" class="form-control" [ngModel]="val" (click)="open($event)" (change)="valueChange($event)"/>
+<div class="modal modal-right datepicker-modal fade" id="dateWidget" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">    
+      <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <i class="modal-close icon icon-close"></i>
+        </button>
+        <h4 class="modal-title">&nbsp;</h4>
+        <div class="calendar-details container-fluid" data-date-type="single">
+          <div class="input-group">
+            <input type="text" class="form-control">
+            <span class="input-group-addon sr-only"></span>
+          </div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="datepicker show-calendar">
+            <div *ngFor="let item of createRange(numberOfMonths);let i=index" class="calendar calendar {{ i }}">
+              <div class="calendar-table">
+                <table class="table-condensed">
+                  <thead>
+                    <tr>
+                      <th class="prev available">
+                        <i class="icon icon-previous"></i>
+                      </th>
+                      <th colspan="5" class="month">{{ locale.monthNames[calendar[i].month()] + calendar[i].format(" YYYY") }}</th>
+                      <th class="next available">
+                        <i class="icon icon-next"></i>
+                      </th>
+                    </tr>  
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of createRange(6);let row=index">
+                      <td *ngFor="let item of createRange(7);let col=index" [ngClass]="classes[i][row][col]" data-title="r {{ row }} c {{ col }}">{{ calendar[i].calendar[row][col].date() }}</td>
+                    </tr>  
+                  </tbody>  
+                </table>
+              </div>
+            </div> 
+          </div>  
+        </div>
+        <div class="modal-footer"></div>
+      </div>
+   <div> 
+</div>    
+    
