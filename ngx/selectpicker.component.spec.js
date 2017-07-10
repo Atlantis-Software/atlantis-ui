@@ -12,36 +12,6 @@ import atlModelDirective from './atlmodel.directive.js';
 
 var assert = require('assert');
 
-describe('selectpicker', function() {
-  var testComponent;
-
-  beforeEach(function() {
-    TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule],
-      declarations: [selectpickerTestComponent, selectpickerComponent, selectpickeroptionComponent, atlModelDirective]
-    });
-    TestBed.compileComponents();
-  });
-
-  afterEach(function() {
-    getTestBed().resetTestingModule();
-  });
-
-  it('should render actual value and available options', function(done) {
-    var fixture = TestBed.createComponent(selectpickerTestComponent);
-    fixture.detectChanges();
-    testComponent = fixture.componentInstance;
-    var text = document.querySelector('.select-text');
-    var options = document.querySelectorAll('a');
-
-    assert.equal(options.length, 3, 'should render 3 options');
-    assert.equal(options[0].textContent, 'A', 'first option should contain `A`');
-    assert.equal(options[1].textContent, 'B', 'second option should contain `B`');
-    assert.equal(options[2].textContent, 'C', 'third option should contain `C`');
-    assert.equal(text.textContent, 'A');
-  });
-});
-
 class selectpickerTestComponent {
   constructor() {
     this.a = {
@@ -70,3 +40,33 @@ class selectpickerTestComponent {
 		];
 	}
 }
+
+describe('selectpicker', function() {
+  var testComponent;
+
+  beforeEach(function() {
+    TestBed.configureTestingModule({
+      imports: [CommonModule, FormsModule],
+      declarations: [selectpickerTestComponent, selectpickerComponent, selectpickeroptionComponent, atlModelDirective]
+    });
+    TestBed.compileComponents();
+  });
+
+  afterEach(function() {
+    getTestBed().resetTestingModule();
+  });
+
+  it('should render actual value and available options', function(done) {
+    var fixture = TestBed.createComponent(selectpickerTestComponent);
+    fixture.detectChanges();
+    testComponent = fixture.componentInstance;
+    var text = document.querySelector('.select-text');
+    var options = document.querySelectorAll('a');
+
+    assert.equal(options.length, 3, 'should render 3 options');
+    assert.equal(options[0].textContent, 'A', 'first option should contain `A`');
+    assert.equal(options[1].textContent, 'B', 'second option should contain `B`');
+    assert.equal(options[2].textContent, 'C', 'third option should contain `C`');
+    done();
+  });
+});
