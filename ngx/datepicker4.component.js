@@ -104,22 +104,15 @@ export default class datepicker4Component {
         }
            
       for (var col = 0; col < 7; col++) {
-          console.log("row", row); 
-          console.log("col", col)
           if (!this.classes[calendarNumber][row][col]) {
             this.classes[calendarNumber][row][col] = [];
           }
         
         //highlight today's date
-        console.log("new Date()", moment());
         
         //var calendardate = calendar[row][col].format('YYYY-MMM-D');
-        console.log("calendar[row][col] calendar[row][col] calendar[row][col]",calendar[row][col]);
         if ( calendar[row][col].isSame(moment(), 'day')) {
-          console.log("fdshdshfdshfskdhfkjsdhfkshfksdhfkdshfksh");
           this.classes[calendarNumber][row][col].push('today');
-          console.log(" row",  row);
-          console.log(" dsqdqsdqsdqsdqsd",  this.classes);
         }
         //highlight weekends
         if (calendar[row][col].isoWeekday() > 5) {
@@ -144,8 +137,6 @@ export default class datepicker4Component {
         this.classes[calendarNumber][row][col].push('available');
       }
     }
-   console.log("this.classes[row][col]", this.classes);
-
   }
   static get annotations() {
     return [
@@ -203,6 +194,12 @@ export default class datepicker4Component {
     // change the value
     this.val = event.target.value ;
     // emit the change
+    this.onModelChange(this.val);
+  }
+  selectDate(date, style){
+    this.elementRef.nativeElement.querySelector('.active').classList.remove('active');
+    style.push("active");
+    this.val = date.format('YYYY-MM-DD');
     this.onModelChange(this.val);
   }
 }

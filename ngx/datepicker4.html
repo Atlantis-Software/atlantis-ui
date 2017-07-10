@@ -9,7 +9,7 @@
         <h4 class="modal-title">&nbsp;</h4>
         <div class="calendar-details container-fluid" data-date-type="single">
           <div class="input-group">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [ngModel]="val | date: 'dd/MM/yyyy'" (change)="valueChange($event)">
             <span class="input-group-addon sr-only"></span>
           </div>
           </div>
@@ -32,7 +32,7 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let item of createRange(6);let row=index">
-                      <td *ngFor="let item of createRange(7);let col=index" [ngClass]="classes[i][row][col]" data-title="r {{ row }} c {{ col }}">{{ calendar[i].calendar[row][col].date() }}</td>
+                      <td *ngFor="let item of createRange(7);let col=index" [ngClass]="classes[i][row][col]" (click)="selectDate(calendar[i].calendar[row][col], classes[i][row][col])" data-title="r{{ row }}c{{ col }}">{{ calendar[i].calendar[row][col].date() }}</td>
                     </tr>  
                   </tbody>  
                 </table>
