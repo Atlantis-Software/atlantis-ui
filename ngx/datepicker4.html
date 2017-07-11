@@ -21,18 +21,24 @@
                 <table class="table-condensed">
                   <thead>
                     <tr>
-                      <th class="prev available">
+                      <th *ngIf="i === 0" class="prev available" (click)="clickPrev($event)">
                         <i class="icon icon-previous"></i>
                       </th>
+                      <th *ngIf="i != 0">
+                      </th>  
                       <th colspan="5" class="month">{{ locale.monthNames[calendar[i].month()] + calendar[i].format(" YYYY") }}</th>
-                      <th class="next available">
+                      <th *ngIf="i === 0" class="next available" (click)="clickNext($event)">
                         <i class="icon icon-next"></i>
                       </th>
+                      <th *ngIf="i != 0">
+                      </th> 
                     </tr>  
                   </thead>
                   <tbody>
                     <tr *ngFor="let item of createRange(6);let row=index">
-                      <td *ngFor="let item of createRange(7);let col=index" [ngClass]="classes[i][row][col]" (click)="selectDate(calendar[i].calendar[row][col], classes[i][row][col])" data-title="r{{ row }}c{{ col }}">{{ calendar[i].calendar[row][col].date() }}</td>
+                      <td *ngFor="let item of createRange(7);let col=index" [ngClass]="classes[i][row][col]" (click)="selectDate(calendar[i].calendar[row][col], classes[i][row][col])">
+                        {{ calendar[i].calendar[row][col].date() }}
+                      </td>
                     </tr>  
                   </tbody>  
                 </table>
