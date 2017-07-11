@@ -6,48 +6,30 @@ export default class datepicker4Component {
   constructor (elementRef, jquery) {
     this.onModelTouched = function() {};
     this.onModelChange = function() {};
-    this.val = '';
     this.elementRef = elementRef;
+    // to use jquery
     this.jq = jquery;
-   
   }
 
-
-  ngOnInit(){
-    this.classes = [];
-     moment.locale($.fn.i18n.language);          //Defines the language used by moment using users language
-    this.startDate = moment().startOf('day');   //Begin date
-    console.log("this.startDate ", this.startDate );
-    this.endDate = moment().endOf('day');       //End Date
-    this.locale= {                              //Locales used by moment
-      format: moment.localeData().longDateFormat('L'),
-      daysOfWeek: moment.weekdaysMin(),
-      monthNames: moment.monthsShort(),
-      firstDay: moment.localeData().firstDayOfWeek(),
-      separator: '-'
-    };
-    this.calendar = [];
-    this.numberOfMonths = 4;
-    //if (this.calendar[0].month.format('YYYY-MM') != this.startDate.format('YYYY-MM')){
-      console.log("this.numberOfMonths", this.numberOfMonths);
-      console.log("this.calendar[0]", this.calendar);
-      this.calendar[0] = {};
-      this.calendar[0] = this.startDate.clone().date(2);
-      for (var i = 1; i< this.numberOfMonths; i++ ) {
-        this.calendar[i] = {};
-        this.calendar[i] = this.startDate.clone().date(2).add(i , 'month');
-      }
-      for (var i = 0; i< this.numberOfMonths; i++) {
-        this.renderCalendar(i);
-      } 
-    
-    var month = this.locale.monthNames[this.calendar[1].month()] + this.calendar[1].format(" YYYY");
-    
+  static get annotations() {
+    return [
+      new Component({
+        selector: 'datepicker4',
+        template: require('./datepicker4.html'),
+        inputs: ['numberOfMonths'],
+        // necessary to use ngModel
+        providers: [{
+          provide: NG_VALUE_ACCESSOR,
+          useExisting: forwardRef(() => datepicker4Component),
+          multi: true
+        }]
+      })
+    ];
   }
 
-  renderCalendar(calendarNumber){
+  // render calendar in 6 rows and 7 cols
+  renderCalendar(calendarNumber, init = false){
     var calendar = this.calendar[calendarNumber];
-    console.log("calendar", calendar);
     var month = calendar.month();
     var year = calendar.year();
     var daysInMonth = moment([year, month]).daysInMonth();
@@ -94,23 +76,13 @@ export default class datepicker4Component {
 
     //make the calendar object available to hoverDate/clickDate
     this.calendar[calendarNumber].calendar = calendar;
-    if (!this.classes[calendarNumber]) {
-      this.classes[calendarNumber] = [];
-    }
-    
+    this.classes[calendarNumber] = [];
     for (var row = 0; row < 6; row++) {
-        if (!this.classes[calendarNumber][row]) {
-          this.classes[calendarNumber][row] = [];
-        }
-           
+      this.classes[calendarNumber][row] = [];     
       for (var col = 0; col < 7; col++) {
-          if (!this.classes[calendarNumber][row][col]) {
-            this.classes[calendarNumber][row][col] = [];
-          }
-        
+        // class for each date 
+        this.classes[calendarNumber][row][col] = [];
         //highlight today's date
-        
-        //var calendardate = calendar[row][col].format('YYYY-MMM-D');
         if ( calendar[row][col].isSame(moment(), 'day')) {
           this.classes[calendarNumber][row][col].push('today');
         }
@@ -119,54 +91,63 @@ export default class datepicker4Component {
           this.classes[calendarNumber][row][col].push('weekend');
         }
         //grey out the dates in other months displayed at beginning and end of this calendar
-        if (calendar[row][col].month() != calendar[1][1].month()) {
-          this.classes[calendarNumber][row][col].push('off');
+        if (calendar[row][col].month() != this.calendar[calendarNumber].month()) {
+          this.classes[calendarNumber][row][col].push('out-month');
         }
         //highlight the currently selected start date
-        if (calendar[row][col].format('YYYY-MM-DD') == this.startDate.format('YYYY-MM-DD')) {
-          this.classes[calendarNumber][row][col].push('active', 'start-date');
+        if (calendar[row][col].format('YYYY-MM-DD') == this.startDate.format('YYYY-MM-DD') && init) {
+          this.classes[calendarNumber][row][col].push('active');
         }
-        //highlight the currently selected end date
-        if (this.endDate != null && calendar[row][col].format('YYYY-MM-DD') == this.endDate.format('YYYY-MM-DD')) {
-          this.classes[calendarNumber][row][col].push('active', 'end-date');
-        }
-        //highlight dates in-between the selected dates
-        if (this.endDate != null && calendar[row][col] > this.startDate && calendar[row][col] < this.endDate) {
-          this.classes[calendarNumber][row][col].push('in-range');
-        }
+        // all dates are available
         this.classes[calendarNumber][row][col].push('available');
       }
     }
-  }
-  static get annotations() {
-    return [
-      new Component({
-        selector: 'datepicker4',
-        template: require('./datepicker4.html'),
-        inputs: ['numberOfMonths'],
-        // necessary to use ngModel
-        providers: [{
-          provide: NG_VALUE_ACCESSOR,
-          useExisting: forwardRef(() => datepicker4Component),
-          multi: true
-        }]
-      })
-    ];
   }
 
   get value() {
     return this.val;
   }
+
   set value(val) {
     if (val !== this.val) {
       this.val = val;
       this.onModelChange(val);
     }
   }
+
   writeValue(val) {
     if (val !== this.val) {
       this.val = val;
       this.onModelChange(val);
+      this.classes = [];
+      //Defines the language used by moment using users language
+      moment.locale($.fn.i18n.language);          
+      if (this.val) {
+        // if we have a default value
+        this.startDate = moment(this.val); 
+      } else {
+        // without default value, it's today
+        this.startDate = moment().startOf('day');   
+      }
+      this.locale= {                              //Locales used by moment
+        format: moment.localeData().longDateFormat('L'),
+        daysOfWeek: moment.weekdaysMin(),
+        monthNames: moment.monthsShort(),
+        firstDay: moment.localeData().firstDayOfWeek(),
+        separator: '-'
+      };
+      this.calendar = [];
+      this.calendar[0] = {};
+      this.calendar[0] = this.startDate.clone().date(2);
+      // create calendars depending on the number of the var numberOfMonths
+      for (var i = 1; i< this.numberOfMonths; i++ ) {
+        this.calendar[i] = {};
+        this.calendar[i] = this.startDate.clone().date(2).add(i , 'month');
+      }
+      // render each calender
+      for (var i = 0; i< this.numberOfMonths; i++) {
+        this.renderCalendar(i, true);
+      }
     }
   }
   registerOnChange(fn) {
@@ -175,6 +156,7 @@ export default class datepicker4Component {
   registerOnTouched(fn) {
     this.onModelTouched = fn;
   }
+  //use to do a for each in the template
   createRange(number){
     var items = [];
     for(var i = 1; i <= number; i++){
@@ -183,10 +165,33 @@ export default class datepicker4Component {
     return items;
   }
 
+  // open modal
   open(event) {
     this.modal = this.elementRef.nativeElement.getElementsByClassName("modal")[0];
     this.modal.classList.add("modal-right");
     this.jq(this.modal).modal('show');
+  }
+
+  clickPrev(event) {
+    // subtract one month to all calendars
+    for (var i = 0; i< this.numberOfMonths; i++) {
+      this.calendar[i].subtract(1, 'month');
+    }
+    // render each calendar
+    for (var i = 0; i< this.numberOfMonths; i++) {
+      this.renderCalendar(i);
+    }
+  }
+
+  clickNext(event) {
+    // add one month to all calendars
+    for (var i = 0; i< this.numberOfMonths; i++) {
+      this.calendar[i].add(1, 'month');
+    }
+    // render each calendar
+    for (var i = 0; i< this.numberOfMonths; i++) {
+      this.renderCalendar(i);
+    }
   }
 
   // event on change value
@@ -196,11 +201,25 @@ export default class datepicker4Component {
     // emit the change
     this.onModelChange(this.val);
   }
+
   selectDate(date, style){
-    this.elementRef.nativeElement.querySelector('.active').classList.remove('active');
-    style.push("active");
+    var self = this;
+    // if a date disabled return
+    var index = style.indexOf("out-month");
+    if (index > -1) {
+       return;
+    }
+    // unselect previous value by remove active class
+    if (this.elementRef.nativeElement.querySelector('.active')) {
+      this.elementRef.nativeElement.querySelector('.active').classList.remove('active');
+    }
+    // select selected value by add active class
+    style.push('active'); 
+    // modify this.val by the selected value
     this.val = date.format('YYYY-MM-DD');
     this.onModelChange(this.val);
+    // close modal
+    this.jq(this.modal).modal('toggle');
   }
 }
 
