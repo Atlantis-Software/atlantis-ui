@@ -1,6 +1,5 @@
 var webpack = require('webpack');
 var less = require('less');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   context: __dirname,
@@ -40,13 +39,10 @@ module.exports = {
         ]
       }, {
         test: /\.less$/,
-        loader: ExtractTextPlugin.extract({fallback: "style-loader", use: "css-loader!less-loader"})
+        loader: "css-loader!less-loader"
       }, {
         test: /\.css$/,
-        loader: 'style-loader!css-loader',
-        options: {
-          minimize: true
-        }
+        loader: 'style-loader!css-loader'
       }, {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]&publicPath=../&outputPath=fonts/"
@@ -56,7 +52,4 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new ExtractTextPlugin("css/atlantis-ui.css")
-  ]
 };
