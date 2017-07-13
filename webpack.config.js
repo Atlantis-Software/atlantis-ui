@@ -60,8 +60,7 @@ module.exports = {
   ],
   externals: [
     {
-      "moment" : "moment",
-      "jquery" : "jQuery"
+      "moment" : "moment"
     },
     /^\@angular\//,
     /^rxjs\//
