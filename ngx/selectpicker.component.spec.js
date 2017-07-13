@@ -1,4 +1,4 @@
-import { getTestBed, TestBed, async } from '@angular/core/testing';
+import { getTestBed, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { Component, ComponentFactoryResolver } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
@@ -31,7 +31,7 @@ class selectpickerTestComponent {
 			new Component({
         template: `
         <selectpicker [(ngModel)]="select">
-          <selectpicker-option *ngFor="let option of options" [value]="option.value">{{option.label}}</selectpicker-option>
+          <selectpicker-option *ngFor="let option of options" [value]="option">{{option.label}}</selectpicker-option>
         </selectpicker>
         `,
 	  	})
@@ -42,7 +42,7 @@ class selectpickerTestComponent {
 describe('selectpicker', function() {
   var testComponent;
 
-  beforeEach(async(function() {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule],
       declarations: [selectpickerTestComponent, selectpickerComponent, selectpickerOptionComponent]
@@ -54,10 +54,13 @@ describe('selectpicker', function() {
     getTestBed().resetTestingModule();
   });
 
-  it('should render default value and available options', function() {
+  it('should render default value and available options', fakeAsync(() => {
     var fixture = TestBed.createComponent(selectpickerTestComponent);
 
     fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
     var testComponent = fixture.componentInstance;
     var text = document.querySelector('.select-text');
     var binding = document.querySelector('#data');
@@ -71,24 +74,24 @@ describe('selectpicker', function() {
 
     var text = document.querySelector('.select-text');
     assert.equal(text.textContent, 'A');
-  });
+  }));
 
-  // it('should render actual value and available options', function() {
-  //   var fixture = TestBed.createComponent(selectpickerTestComponent);
-  //   fixture.detectChanges();
-  //   var testComponent = fixture.componentInstance;
-  //   var text = document.querySelector('.select-text');
-  //   var binding = document.querySelector('#data');
-  //   var button = document.querySelector('button');
-  //   var options = document.querySelectorAll('a');
-  //
-  //   button.click();
-  //   fixture.detectChanges();
-  //   options = document.querySelectorAll('a');
-  //
-  //   options[1].click();
-  //   fixture.detectChanges();
-  //   var text = document.querySelector('.select-text');
-  //   assert.equal(text.textContent, 'B');
-  // });
+  it('should render actual value and available options', function() {
+    var fixture = TestBed.createComponent(selectpickerTestComponent);
+    fixture.detectChanges();
+    var testComponent = fixture.componentInstance;
+    var text = document.querySelector('.select-text');
+    var binding = document.querySelector('#data');
+    var button = document.querySelector('button');
+    var options = document.querySelectorAll('a');
+
+    button.click();
+    fixture.detectChanges();
+    options = document.querySelectorAll('a');
+
+    options[1].click();
+    fixture.detectChanges();
+    var text = document.querySelector('.select-text');
+    assert.equal(text.textContent, 'B');
+  });
 });

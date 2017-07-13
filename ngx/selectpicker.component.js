@@ -37,12 +37,7 @@ export default class selectpickerComponent {
   get value() {
     return this.val;
   }
-  set value(val) {
-    if (val !== this.val) {
-      this.val = val;
-      this.onModelChange(val);
-    }
-  }
+
   writeValue(val) {
     if (val !== this.val) {
       this.val = val;
@@ -77,7 +72,7 @@ export default class selectpickerComponent {
       }
     } else { // select simple
       this.SelectedValuesText = null;
-      // update options according to thi.val value
+      // update options according to this.val value
       this.options.forEach(function(option) {
         if (self.val === option.value) {
           option.selected = true;
