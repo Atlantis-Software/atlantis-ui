@@ -2,7 +2,7 @@
   .dropdown;
   width: 100%;
   > button.btn {
-    min-height: (@line-height-computed + 14);
+    // min-height: (@line-height-computed + 14);
     width: 100%;
     background: linear-gradient(lighten(@select-default-bg, 25%), @select-default-bg);
     border: 1px solid @select-default-border;
@@ -47,7 +47,7 @@
       &:hover {
         background-color: @select-option-hover-bg;
         color: @select-option-hover-color;
-        padding-left: 20px; 
+        padding-left: 20px;
       }
       &:focus {
         background-color: @select-option-hover-bg;
@@ -56,7 +56,18 @@
     }
   }
 }
-
+selectpicker {
+  &.selectpicker-sm {
+    button.btn {
+      &:extend(.btn-sm);
+    }
+  }
+  &.selectpicker-lg {
+    button.btn {
+      &:extend(.btn-lg);
+    }
+  }
+}
 .select.open {
   > .select-options {
     display: block;

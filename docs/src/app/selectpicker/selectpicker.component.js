@@ -9,16 +9,57 @@ export default  class SelectpickerComponent {
     ]
   }
   constructor(){
-    this.selectpickerHtml = `
-    <selectpicker [(ngModel)]="mode" multiple="false">
-      <selectpicker-option value="A">A</selectpicker-option>
-      <selectpicker-option value="B">B</selectpicker-option>
-      <selectpicker-option value="C">C</selectpicker-option>
-    </selectpicker>`
+
+    this.selectpicker1Html = `
+    <div class="form-group">
+      <label for="select-html">html select simple</label>
+      <div id="select-html" class="select">
+        <button class="btn btn-default select-toggle" type="button" id="select-html" data-toggle="select">
+            <span class="select-text">&nbsp;</span>
+            <span class="caret"></span>
+          </button>
+        <ul class="select-options">
+          <li>
+            <a href="#">
+                Messages
+              </a>
+          </li>
+          <li>
+            <a href="#">
+                Another action
+              </a>
+          </li>
+          <li>
+            <a href="#">
+                Something else here
+              </a>
+          </li>
+          <li>
+            <a href="#">
+                Something else here
+              </a>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li>
+            <a href="#">
+                Separated link
+              </a>
+          </li>
+        </ul>
+      </div>
+    </div>`
+
+    this.selectpicker2Html = `
+    <div class="form-group">
+      <label for="select">dynamic select simple</label>
+      <select id="select" class="selectpicker">
+          <option value='1'>a</option>
+          <option>b</option>
+          <option>c</option>
+        </select>
+    </div>`
 
     this.Display = "Example";
-    this.Selectpicker2 = "A"
-    this.Selectpicker4 = ["A", "B"]
   }
 }
 

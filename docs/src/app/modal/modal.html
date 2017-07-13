@@ -31,7 +31,7 @@
   <div class="container" *ngSwitchCase="'Example'">
 
     <div class="row">
-      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalLeft">
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalLeft" data-backdrop="static">
         modal-left
       </button>
 
@@ -162,10 +162,10 @@
       {{modalHtml}}
     </pre>
     <h4>
-      Precision :
+      Info :
     </h4>
     <p>
-      we can add an id to the modal for create a modal paste to a border :
+      we can add an id to the modal for create a modal stick to a border :
     </p>
     <ul>
       <li>
@@ -181,26 +181,82 @@
         ModalTop : create a modal to top
       </li>
     </ul>
-    <h4>
+    <h3>
       Class css :
-    </h4>
-    <ul>
-      <li>
-        .modal-dialog : contains all the modal
-      </li>
-      <li>
-        .modal-header : define a header where we can put a title or button like close button
-      </li>
-      <li>
-        .modal-title : define the title of the modal
-      </li>
-      <li>
-        .modal-body : define the body of the modal, where we put all information we want
-      </li>
-      <li>
-        .modal-footer : define the footer of the modal, where we can put different button or other things
-      </li>
-    </ul>
+    </h3>
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>
+            Class
+          </th>
+          <th>
+            tag
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            .modal-dialog
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            Contains all the modal
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .modal-header
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            Define modal header
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .modal-title
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            Define modal title
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .modal-body
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            Define modal body
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .modal-footer
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            Define modal footer
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
   </div>
 
 </div>

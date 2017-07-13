@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-export default  class DatepickerComponent {
+export default  class DropdownComponent {
   static get annotations() {
     return [
       new Component({
@@ -10,20 +10,24 @@ export default  class DatepickerComponent {
   }
   constructor(){
     this.DatepickerRangeHtml = `
-    <datepicker-range [(start)]="start1" [(end)]="end1"></datepicker-range>`
+    <div class="form-group">
+      <label for="rangeDatePicker">datepicker range</label>
+      <div id="rangeDatePicker" class="input-group">
+        <input class="form-control start" type="date">
+        <span class="input-group-addon"></span>
+        <input class="form-control end" type="date">
+      </div>
+    </div>`
 
     this.DatepickerSimpleHtml = `
-    <datepicker [(ngModel)]="start3"></datepicker>`
-
-
-
+    <div class="form-group">
+        <label for="singleDatePicker">datepicker</label>
+        <input id="singleDatePicker" type="date" class="form-control">
+    </div>`
+    
     this.Display = "Example";
-
-    this.start2 = "2017-05-01";
-    this.end2 = "2017-05-22";
-    this.start4 = "2017-05-01";
   }
 }
 
 
-DatepickerComponent.parameters = [];
+DropdownComponent.parameters = [];

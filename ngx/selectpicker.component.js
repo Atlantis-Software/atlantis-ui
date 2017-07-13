@@ -1,14 +1,16 @@
-import { Component, ContentChildren, forwardRef, ChangeDetectorRef } from '@angular/core';
+import { Component, ContentChildren, forwardRef, ChangeDetectorRef, IterableDiffers, ElementRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import selectpickeroptionComponent from './selectpicker-option.component';
 
+
 export default class selectpickerComponent {
-  constructor (changeDetectorRef) {
+  constructor (changeDetectorRef, differs, elementRef) {
+    this.elementRef = elementRef;
     this.onModelTouched = function() {};
     this.onModelChange = function() {};
     this.cdr = changeDetectorRef;
-    this.val = '';
-
+    this.isOpen = false;
+    this.differ = differs.find([]).create(null);
   }
 	static get annotations() {
 		return [
@@ -23,9 +25,14 @@ export default class selectpickerComponent {
           provide: NG_VALUE_ACCESSOR,
           useExisting: forwardRef(() => selectpickerComponent),
           multi: true
-        }]
+        }],
+        // need click outsite component
+        host: {
+          '(document:click)': 'handleClick($event)',
+        }
 	  	})
 		];
+
 	}
   get value() {
     return this.val;
@@ -39,8 +46,50 @@ export default class selectpickerComponent {
   writeValue(val) {
     if (val !== this.val) {
       this.val = val;
-      this.updateOptions();
       this.onModelChange(val);
+      var self = this;
+      // iniliaze list with selected values
+      this.updateOptions();
+    }
+  }
+
+  updateOptions() {
+    if (!this.options) {
+      return;
+    }
+    var self = this;
+    // select mutiple
+    if (this.multiple && Array.isArray(this.val)) {
+      this.SelectedValuesText = [];
+      // update options according to thi.val value
+      this.options.forEach(function(option) {
+        var index = self.val.indexOf(option.value);
+        if (index > -1) {
+          option.selected = true;
+          self.SelectedValuesText.push(option.text);
+        } else {
+          option.selected = false;
+        }
+      });
+      // space html if empty array to avoid a small select
+      if (this.val.length <= 0) {
+        this.SelectedValuesText = "&nbsp;";
+      }
+    } else { // select simple
+      this.SelectedValuesText = null;
+      // update options according to thi.val value
+      this.options.forEach(function(option) {
+        if (self.val === option.value) {
+          option.selected = true;
+          self.SelectedValuesText = option.text;
+        } else {
+          option.selected = false;
+        }
+      });
+      // space html if empty array to avoid a small select
+      if (!this.SelectedValuesText || this.SelectedValuesText == "") {
+        this.SelectedValuesText = "&nbsp;";
+      }
     }
   }
 
@@ -51,53 +100,123 @@ export default class selectpickerComponent {
     this.onModelTouched = fn;
   }
 
-  ngAfterViewInit() {
-    this.updateOptions();
+  Open() {
+    this.isOpen = this.isOpen ? false : true;
   }
 
-  updateOptions() {
-    if (!this.options) {
-      return;
+  // click outsite component to close select
+  handleClick(event){
+    var clickedComponent = event.target;
+    var inside = false;
+    do {
+      if (clickedComponent === this.elementRef.nativeElement) {
+        inside = true;
+      }
+      clickedComponent = clickedComponent.parentNode;
+    } while (clickedComponent);
+    if(!inside){
+      this.isOpen = false;
     }
+  }
+
+  //That check for every selectpicker widget's change.
+  ngDoCheck() {
     var self = this;
-    if (this.multiple && Array.isArray(this.val)) {
-      this.options.forEach(function(option) {
-        if (self.val.indexOf(option.value) >= 0) {
-          option.selected = true;
-        } else {
-          option.selected = false;
-        }
-      });
-    } else {
-       this.options.forEach(function(option) {
-        if (self.val === option.value) {
-          option.selected = true;
-        } else {
-          option.selected = false;
-        }
-      });
+    // if this.val change we must update options
+    // only for the select multiple because detect change is not fired
+    // we must create a new instance to have a detect change
+    if (Array.isArray(this.val)) {
+      var changes = this.differ.diff(this.val);
+      if (changes) {
+        this.updateOptions();
+      }
     }
+  }
+
+  ngAfterViewInit() {
+    // Run change detection explicitly after the option.text change by selectpickeroptionComponent
+    // because ngAfterViewInit change binding but does not trigger a new round of change detection => error
     this.cdr.detectChanges();
   }
 
-  valueChange() {
+  selectOption(option) {
     var self = this;
-    var value = null;
-    if (self.multiple) {
-      value = [];
-    }
-    this.options.forEach(function(option) {
-      if (option.selected) {
-        if (self.multiple) {
-          value.push(option.value);
-        } else {
-          value = option.value;
-        }
+    // id select multiple
+    if (this.multiple) {
+      if (!this.val) {
+        this.val = [];
       }
-    });
-    this.val = value;
-    this.onModelChange(this.val);
+      if (!this.SelectedValuesText || this.val.length <= 0) {
+        this.SelectedValuesText = [];
+      }
+      // delete all value not in the options
+      var options = [];
+      this.options.forEach(function(option) {
+        options.push(option.value);
+      });
+      this.val.forEach(function(value) {
+        var index = options.indexOf(value);
+        if ( index <= -1) {
+          var index = self.val.indexOf(value);
+          self.val.splice(index, 1);
+        }
+      });
+      if (option.selected) {
+        // delete value
+        option.selected = false;
+        if (Array.isArray(this.val)) {
+          var index = this.val.indexOf(option.value);
+          if (index > -1) {
+            this.val.splice(index, 1);
+          }
+        }
+        if (Array.isArray(this.SelectedValuesText)) {
+          var indexText = this.SelectedValuesText.indexOf(option.text);
+          if (indexText > -1) {
+            this.SelectedValuesText.splice(indexText, 1);
+          }
+        }
+      } else {
+        // add value
+        option.selected = true;
+        this.val.push(option.value);
+        this.SelectedValuesText.push(option.text);
+      }
+      // if array empty text have html space if not the select is small
+      if (this.val.length <= 0) {
+        this.SelectedValuesText = '&nbsp;';
+      }
+      // detection du changement de valeur de this.val
+      this.onModelChange(this.val);
+
+    } else { // select simple
+      this.SelectedValuesText = null;
+      // toutes les valeurs sont déselectionnées
+      this.options.forEach(function(option) {
+         option.selected = false;
+       });
+       // on selectionne la valeur selectionnée
+      option.selected = true;
+      this.val = option.value;
+      // mise a jour du text
+      if (option.text && option.text != "") {
+        this.SelectedValuesText = option.text;
+      } else {
+        this.SelectedValuesText = "&nbsp;";
+      }
+      // on ferme la liste après avoir selectionné une valeur
+      this.isOpen = false;
+      // detection du changement de valeur de this.val
+      this.onModelChange(self.val);
+    }
+
+  }
+  // on hover item list the cursor is a pointer and indicates a link
+  onHover($event) {
+    this.cursor = $event.type == 'mouseover' ? 'pointer' : 'auto';
+    event.preventDefault();
+    event.stopPropagation();
   }
 }
 
-selectpickerComponent.parameters = [ChangeDetectorRef];
+selectpickerComponent.parameters = [ChangeDetectorRef, IterableDiffers, ElementRef];

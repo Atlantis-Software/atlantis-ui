@@ -26,25 +26,25 @@ class datepickerRangeTestComponent {
 	}
 }
 
-describe('datepicker-range', function() {
-  var testComponent;
-
-  beforeEach(function() {
-    TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule],
-      declarations: [datepickerRangeTestComponent, datepickerRangeComponent, atlModelDirective]
-    });
-    TestBed.compileComponents();
-  });
-
-  afterEach(function() {
-    getTestBed().resetTestingModule();
-  });
-
-  it('should render actual value and available options', function() {
-    var fixture = TestBed.createComponent(datepickerRangeTestComponent);
-    fixture.detectChanges();
-    testComponent = fixture.componentInstance;
-    var text = document.querySelector('#data');
-  });
-});
+// describe('datepicker-range', function() {
+//   var testComponent;
+//
+//   beforeEach(function() {
+//     TestBed.configureTestingModule({
+//       imports: [CommonModule, FormsModule],
+//       declarations: [datepickerRangeTestComponent, datepickerRangeComponent, atlModelDirective]
+//     });
+//     TestBed.compileComponents();
+//   });
+//
+//   afterEach(function() {
+//     getTestBed().resetTestingModule();
+//   });
+//
+//   it('should render actual value and available options', function() {
+//     var fixture = TestBed.createComponent(datepickerRangeTestComponent);
+//     fixture.detectChanges();
+//     testComponent = fixture.componentInstance;
+//     var text = document.querySelector('#data');
+//   });
+// });

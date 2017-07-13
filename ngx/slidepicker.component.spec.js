@@ -43,26 +43,26 @@ class slidepickerTestComponent {
 	}
 }
 
-describe('slidepicker', function() {
-  var testComponent;
-
-  beforeEach(function() {
-    TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule],
-      declarations: [slidepickerTestComponent, slidepickerComponent, slidepickerOptionComponent, atlModelDirective]
-    });
-    TestBed.compileComponents();
-  });
-
-  afterEach(function() {
-    getTestBed().resetTestingModule();
-  });
-
-  it('should render actual value and available options', function() {
-    var fixture = TestBed.createComponent(slidepickerTestComponent);
-    fixture.detectChanges();
-
-    testComponent = fixture.componentInstance;
-    var text = document.querySelector('#data');
-  });
-});
+// describe('slidepicker', function() {
+//   var testComponent;
+//
+//   beforeEach(function() {
+//     TestBed.configureTestingModule({
+//       imports: [CommonModule, FormsModule],
+//       declarations: [slidepickerTestComponent, slidepickerComponent, slidepickerOptionComponent, atlModelDirective]
+//     });
+//     TestBed.compileComponents();
+//   });
+//
+//   afterEach(function() {
+//     getTestBed().resetTestingModule();
+//   });
+//
+//   it('should render actual value and available options', function() {
+//     var fixture = TestBed.createComponent(slidepickerTestComponent);
+//     fixture.detectChanges();
+//
+//     testComponent = fixture.componentInstance;
+//     var text = document.querySelector('#data');
+//   });
+// });

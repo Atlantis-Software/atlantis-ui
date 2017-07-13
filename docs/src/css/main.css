@@ -1,0 +1,108 @@
+my-app {
+    height: 100%;
+}
+
+main {
+    position: relative;
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #000;
+}
+
+.sidebar-nav {
+    width: 250px;
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li h4 {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.show-grid {
+    margin-bottom: 15px;
+}
+
+.show-grid div {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #D3D3D3;
+    border: 1px solid #A9A9A9;
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+.form-control, 
+selectpicker > .select, 
+.dropdown, 
+input[type="radio"], 
+button, 
+.input-group > span.input-group-addon > input[type="radio"], 
+.input-group > span.input-group-addon > input[type="checkbox"], 
+.checkbox-inline, 
+.radio-inline {
+  margin-top: 25px;
+}
+
+label ~ .form-control, 
+label + .input-group > .form-control, 
+label + datepicker > .form-control, 
+label + datepicker-range > .input-group  > .form-control, 
+label + selectpicker > .select, 
+label + .dropdown, 
+label + input[type="radio"], 
+label + button, 
+selectpicker > .select > button, 
+.dropdown  > button, 
+label + .input-group > span.input-group-btn > button, 
+label + .input-group > span.input-group-addon > input[type="radio"], 
+label + .input-group > span.input-group-addon > input[type="checkbox"], 
+label + .checkbox-inline, 
+label + .radio-inline, 
+label +  .input-group  > .input-group-btn > button {
+  margin: 0;
+}
+
+label + .radio, 
+label + .checkbox {
+  margin-top: 0;
+}

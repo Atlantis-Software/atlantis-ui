@@ -26,25 +26,25 @@ class datepickerTestComponent {
 	}
 }
 
-describe('datepicker', function() {
-  var testComponent;
-
-  beforeEach(function() {
-    TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule],
-      declarations: [datepickerTestComponent, datepickerComponent, atlModelDirective]
-    });
-    TestBed.compileComponents();
-  });
-
-  afterEach(function() {
-    getTestBed().resetTestingModule();
-  });
-
-  it('should render actual value and available options', function() {
-    var fixture = TestBed.createComponent(datepickerTestComponent);
-    fixture.detectChanges();
-    testComponent = fixture.componentInstance;
-    var text = document.querySelector('#data');
-  });
-});
+// describe('datepicker', function() {
+//   var testComponent;
+//
+//   beforeEach(function() {
+//     TestBed.configureTestingModule({
+//       imports: [CommonModule, FormsModule],
+//       declarations: [datepickerTestComponent, datepickerComponent, atlModelDirective]
+//     });
+//     TestBed.compileComponents();
+//   });
+//
+//   afterEach(function() {
+//     getTestBed().resetTestingModule();
+//   });
+//
+//   it('should render actual value and available options', function() {
+//     var fixture = TestBed.createComponent(datepickerTestComponent);
+//     fixture.detectChanges();
+//     testComponent = fixture.componentInstance;
+//     var text = document.querySelector('#data');
+//   });
+// });

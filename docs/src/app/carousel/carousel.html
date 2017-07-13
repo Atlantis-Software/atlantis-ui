@@ -39,19 +39,19 @@
 
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img src="../../img/fondegrad.jpg" alt="">
+          <img class="img-responsive center-block" src="../../img/fondegrad.jpg" alt="">
           <div class="carousel-caption">
             Slide 1
           </div>
         </div>
         <div class="item">
-          <img src="../../img/fondegrad.jpg" alt="">
+          <img class="img-responsive center-block" src="../../img/fondegrad.jpg" alt="">
           <div class="carousel-caption">
             Slide2
           </div>
         </div>
         <div class="item">
-          <img src="../../img/fondegrad.jpg" alt="">
+          <img class="img-responsive center-block" src="../../img/fondegrad.jpg" alt="">
           <div class="carousel-caption">
             Slide3
           </div>
@@ -87,23 +87,114 @@
     <p>
       Don't forget to add data-slide="prev or next" to carousel-control
     </p>
-    <h4>
+    <h3>
       Class css :
-    </h4>
-    <ul>
-      <li>
-        .carousel-indicators : use for create indicator pips to bottom of carousel, optional
-      </li>
-      <li>
-        .carousel-inner : Is the information we want to display with carousel like image or text
-      </li>
-      <li>
-        .carousel-caption : Text to explain the slide, optional
-      </li>
-      <li>
-        .carousel-control : Allow to add controls to left and right of the carousel, for change slide
-      </li>
-    </ul>
+    </h3>
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>
+            Class
+          </th>
+          <th>
+            Tag
+          </th>
+          <th>
+            Description
+          </th>
+          <th>
+            Info
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            .carousel slide
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            Define the carousel
+          </td>
+          <td>
+            Warning : don't forget to add data-ride="carousel"
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .carousel-indicator
+          </td>
+          <td>
+            ol
+          </td>
+          <td>
+            Define the indicator pips to bottom of carousel
+          </td>
+          <td>
+            Optional <br>
+            Warning : Don't forget to add data-slide-to="number" for all li and to add the default .active
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .carousel-inner
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            The content of carousel
+          </td>
+          <td>
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .item
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            All the content of one slide
+          </td>
+          <td>
+            Warning : don't forget to add .active to the default item. Otherwise, the carousel don't be display
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .carousel-caption
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            Description of the slide
+          </td>
+          <td>
+            Optional
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .carousel-control .left/.right
+          </td>
+          <td>
+            a
+          </td>
+          <td>
+            Allow to controls the carousel, go next and previous
+          </td>
+          <td>
+            Warning : don't forget to add data-slide="prev/next" <br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
   </div>
 

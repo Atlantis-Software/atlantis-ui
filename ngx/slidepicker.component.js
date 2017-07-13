@@ -10,6 +10,8 @@ export default class slidepickercomponent {
     this.cdr = changeDetectorRef;
     this.index = 0;
     this.elementRef = elementRef;
+    this.slidepickerClassList = this.elementRef.nativeElement.classList;
+    this.slidepickerDom = this.elementRef.nativeElement.getElementsByClassName("slidepicker");
   }
 
   static get annotations() {
@@ -17,6 +19,7 @@ export default class slidepickercomponent {
       new Component({
         selector: 'slidepicker',
         template: `
+        <div class="slidepicker">
           <div class="slidepicker-track">
             <span class="slidepicker-handle"></span>
           </div>
@@ -26,7 +29,8 @@ export default class slidepickercomponent {
               <a [innerHTML]="option.elementRef.nativeElement.innerHTML"></a>
             </li>
           </ul>
-          <input type="hidden" class="slidepicker-input" [(ngModel)]="index" (change)="setValue($event)"/>`,
+          <input type="hidden" class="slidepicker-input" [(ngModel)]="index" (change)="setValue($event)"/>
+        </div>`,
         queries: {
           options: new ContentChildren(slidepickeroptionComponent)
         },
@@ -37,6 +41,15 @@ export default class slidepickercomponent {
         }]
       })
     ];
+  }
+
+  ngAfterViewInit(){
+    var self = this;
+    if(this.slidepickerClassList.length > 0){
+      this.slidepickerClassList.forEach(function(slidepickerClass){
+        self.slidepickerDom[0].classList.add(slidepickerClass)
+      })
+    }
   }
 
   get value() {
@@ -96,7 +109,7 @@ export default class slidepickercomponent {
     }
   }
 
-  // Send value to jquery to update curser position
+  // Update curser position
   updateHandlerPosition(){
     var input = this.elementRef.nativeElement.getElementsByClassName("slidepicker-input");
     input[0].value = this.index;

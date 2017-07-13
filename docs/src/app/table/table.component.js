@@ -13,30 +13,30 @@ export default  class TableComponent {
     <table class="table table-striped table-bordered table-hover">
         <thead>
             <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
+                <th>Number</th>
+                <th>Language</th>
+                <th>Fruit</th>
+                <th>Other</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <td>Javascript</td>
+                <td>Ananas</td>
+                <td>azert</td>
             </tr>
             <tr>
                 <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
+                <td>Python</td>
+                <td>Banana</td>
+                <td>qsdfg</td>
             </tr>
             <tr>
                 <td>3</td>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
+                <td>C++</td>
+                <td>Orange</td>
+                <td>wxcvb</td>
             </tr>
         </tbody>
     </table>`

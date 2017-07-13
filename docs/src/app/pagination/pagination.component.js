@@ -10,20 +10,54 @@ export default  class PaginationComponent {
   }
   constructor(){
 
-    this.PaginationHtml = `
-    <pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>`
+    this.PaginationHtml= `
+    <ul class="pagination">
+      <li>
+        <a href="#">
+          <i class="icon icon-previous"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#">1</a>
+      </li>
+      <li class="disabled">
+        <a href="#">
+          2
+        </a>
+      </li>
+      <li class="active">
+        <a href="#">
+          3
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          4
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          5
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          ...
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          399
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="icon icon-next"></i>
+        </a>
+      </li>
+    </ul>`
 
-    this.Display = "Example"
-    this.page = 4;
-    this.pages = 10;
-    this.result = [1,2,3,4,5]
-  }
-
-  testPagination(page){
-    this.page = page
-    for (var i=0; i<5; i++) {
-      this.result[i] = i+page*5-4
-    }
+    this.Display = "Example";
   }
 }
 
