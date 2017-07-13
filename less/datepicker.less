@@ -5,26 +5,91 @@
     top: 0;
     left: 0px;
     right: 15px;
-    background-color: @datepicker-bg;
     z-index: @zindex-modal;
     border-width: 0;
+    bottom: 823px;
   }
-  .modal-content {
+  .modal-header .date-and-close{
     background-color: @datepicker-bg;
   }
+  /*.modal-content {
+    background-color: @datepicker-bg;
+  }*/
   .modal-body {
-    margin-top: 75px;
+    background-color: @background;
+    margin-top: 198px;
   }
+}
+.dateText{
+  margin-top: -30px;
+}
+
+.dayText {
+  color: @primary-text-color;
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 0px;
+  margin-bottom: 12px;
+}
+
+.day {
+  color: @primary-text-color;
+  font-size: 90px;
+  line-height: 80px;
+}
+
+.monthYear{
+  color: @primary-text-color;
+  text-transform: capitalize;
+  font-size: 21px;
+  line-height: 0px;
+}
+
+.center-input {
+  width: 196px;
+  margin: auto;
+}
+
+.block-date{
+  background-color: white;
+  margin-top: 22px;
+}
+
+.blue{
+  color: @primary;
+}
+
+.dark{
+  color: @gray-dark;
+}
+.background-grey{
+  background-color: @shadow;
+}
+
+.calendar-details{
+  margin-top: 21px;
+  padding-bottom: 15px;
+  background-color: @background;
+}
+
+.calendar-details .arrow{
+  padding-top: 8px;
+  margin-top: 21px;
+  padding-bottom: 8px;;
+}
+.calendar-details .arrow:hover{
+   background-color: @secondary;
 }
 
 .datepicker {
     color: inherit;
-    background-color: @datepicker-bg;
     padding: 4px;
     margin-top: 1px;
     .calendar{
       display: none;
       margin: 4px;
+      border-bottom: 2px solid @datepicker-bg;
       th, td{
         white-space: nowrap;
         text-align: center;
@@ -42,7 +107,18 @@
       width: 100%;
       margin: 0;
     }
-    td, th{
+    thead .arrows{
+      background-color: @shadow;
+    }
+    th{
+      text-align: center;
+      width: 20px;
+      height: 20px;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    td{
       text-align: center;
       width: 20px;
       height: 20px;
@@ -51,7 +127,10 @@
       white-space: nowrap;
       cursor: pointer;
     }
-    td.available:hover, th.available:hover{
+    th.available .icon-next:hover{
+      color: @gray-dark;
+    }
+    td.available:hover{
       background-color: @datepicker-hover-bg;
       border-color: transparent;
       color: inherit;
@@ -74,6 +153,9 @@
       background-color: @datepicker-active-bg;
       border-color: transparent;
       color: @datepicker-active-color;
+    }
+    td.out-month{
+      color: @disabled;
     }
     td.off.in-range, td.off.start-date, td.off.end-date{
         background-color: @datepicker-off-bg;
