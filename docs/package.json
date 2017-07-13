@@ -15,7 +15,6 @@
     "@angular/platform-browser": "~4.2.4",
     "@angular/platform-browser-dynamic": "~4.2.4",
     "@angular/router": "~4.2.4",
-    "jquery": "3.1.1",
     "mathjs": "~3.5.3",
     "reflect-metadata": "~0.1.8",
     "rxjs": "5.0.0-rc.2",
