@@ -28,15 +28,23 @@ export default  class ModalAngularComponent {
     </modal>`
 
     this.modalOptions = {
-      size : "large",
+      size : "small",
       fade : true
     }
 
     this.modalHeaderOptions = {
       close : true
     }
+    this.show = false;
 
     this.Display = "Example";
+  }
+
+  openModal() {
+    this.show = true;
+  }
+  close() {
+    this.show = false;
   }
 }
 
