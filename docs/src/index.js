@@ -1,6 +1,4 @@
-global.$ = global.jQuery = global.jquery = require('jquery');
 global.moment = require('moment');
-require('atlantis-ui-js');
 require('atlantis-ui-css');
 require('./css/main.css');
 require('reflect-metadata');

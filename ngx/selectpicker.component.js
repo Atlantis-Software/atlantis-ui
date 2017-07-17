@@ -73,7 +73,6 @@ export default class selectpickerComponent {
       if (this.val.length <= 0) {
         this.SelectedValuesText = "&nbsp;";
       }
-      
     } else { // select simple
       this.SelectedValuesText = null;
       // update options according to thi.val value
@@ -120,6 +119,7 @@ export default class selectpickerComponent {
 
   //That check for every selectpicker widget's change.
   ngDoCheck() {
+    var self = this;
     // if this.val change we must update options
     // only for the select multiple because detect change is not fired
     // we must create a new instance to have a detect change
@@ -162,13 +162,17 @@ export default class selectpickerComponent {
       if (option.selected) {
         // delete value
         option.selected = false;
-        var index = this.val.indexOf(option.value);
-        var indexText = this.SelectedValuesText.indexOf(option.text);
-        if (index > -1) {
-          this.val.splice(index, 1);
+        if (Array.isArray(this.val)) {
+          var index = this.val.indexOf(option.value);
+          if (index > -1) {
+            this.val.splice(index, 1);
+          }
         }
-        if (indexText > -1) {
-          this.SelectedValuesText.splice(indexText, 1);
+        if (Array.isArray(this.SelectedValuesText)) {
+          var indexText = this.SelectedValuesText.indexOf(option.text);
+          if (indexText > -1) {
+            this.SelectedValuesText.splice(indexText, 1);
+          }
         }
       } else {
         // add value
@@ -182,6 +186,7 @@ export default class selectpickerComponent {
       }
       // detection du changement de valeur de this.val
       this.onModelChange(this.val);
+
     } else { // select simple
       this.SelectedValuesText = null;
       // toutes les valeurs sont déselectionnées
