@@ -1,5 +1,5 @@
-import { Component, ElementRef, Inject} from '@angular/core';
-import { JQ_TOKEN } from './jQuery.service';
+import { Component, ElementRef, Inject, forwardRef} from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms'; 
 
 export default class modalComponent {
 	static get annotations() {
@@ -7,21 +7,62 @@ export default class modalComponent {
 			new Component({
         selector: 'modal',
         template: `
-					<div class="modal" [id]="idModal">
+					<div class="modal" [id]="idModal" [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}" [ngClass]="{'in': visibleAnimate}">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <ng-content></ng-content>
               </div>
 						</div>
 				  </div>`,
-        inputs: ['options', "idModal"]
+        inputs: ['options', "idModal"], 
+         providers: [{
+          provide: NG_VALUE_ACCESSOR,
+          useExisting: forwardRef(() => modalComponent),
+          multi: true
+        }]
+        
 	  	})
 		];
 	}
 
-  constructor(elementRef, jquery) {
+  constructor(elementRef) {
     this.elementRef = elementRef;
-		this.jq = jquery;
+    this.onModelTouched = function() {};
+    this.onModelChange = function() {};
+  }
+
+  get value() {
+    return this.val;
+  }
+  set value(val) {
+    if (val !== this.val) {
+      this.val = val;
+      this.onModelChange(val);
+      if (this.val == true) {
+        this.open();
+      } else {
+        this.close();
+      }
+    }
+  }
+
+  writeValue(val) {
+    if (val !== this.val) {
+      this.val = val;
+      this.onModelChange(val);
+      if (this.val == true) {
+        this.open();
+      } else {
+        this.close();
+      }
+    }
+  }
+
+  registerOnChange(fn) {
+    this.onModelChange = fn;
+  }
+  registerOnTouched(fn) {
+    this.onModelTouched = fn;
   }
 
 	ngOnDestroy() {
@@ -31,12 +72,22 @@ export default class modalComponent {
 		}
 	}
 
-  ngOnInit() {
+  open() {
+    this.visible = true;
+    setTimeout(() => this.visibleAnimate = true, 100);
+  }
 
+  close() {
+    this.visibleAnimate = false;
+    setTimeout(() => this.visible = false, 300);
+    this.val = false;
+    this.onModelChange(this.val);
+  }
+
+  ngOnInit() {;
 		if (this.idModal === "" || typeof this.idModal === "undefined"){
 			this.idModal = "modal" + Math.floor(Math.random() * (10000000000 - 0));
 		}
-
 
 		this.modal = this.elementRef.nativeElement.getElementsByClassName("modal")[0];
 
@@ -61,10 +112,10 @@ export default class modalComponent {
 
     if (this.options.orientation === "" || typeof this.options.orientation === "undefined") {
       switch(this.options.size) {
-        case "large" :
+        case "small" :
 					this.modal.getElementsByClassName("modal-dialog")[0].classList.add("modal-sm");
         break;
-        case "small" :
+        case "large" :
 					this.modal.getElementsByClassName("modal-dialog")[0].classList.add("modal-lg");
         break;
       }
@@ -73,20 +124,7 @@ export default class modalComponent {
 		if (this.options.backdrop !== "true" && typeof this.options.backdrop !== "undefined") {
 			this.modal.setAttribute("data-backdrop", this.options.backdrop);
 		}
-
-		if (this.options.show !== "" && typeof this.options.show !== "undefined" && this.options.show !== 0 && this.options.show !== null) {
-			this.jq(this.modal).modal('show');
-		}
-
   }
-
-	ngOnChanges() {
-		if (this.modal) {
-			if (this.options.show !== "" && typeof this.options.show !== "undefined" && this.options.show !== 0 && this.options.show !== null) {
-				this.jq(this.modal).modal('show');
-			}
-		}
-	}
 }
 
-modalComponent.parameters = [ElementRef, [new Inject(JQ_TOKEN)]];
+modalComponent.parameters = [ElementRef];
