@@ -1,4 +1,3 @@
-require("./js/i18n.js")
 require("./js/i18n/en.js")
 require("./js/i18n/fr.js")
 require("./js/i18n/de.js")
