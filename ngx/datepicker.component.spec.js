@@ -7,7 +7,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import datepickerComponent from './datepicker.component.js';
-import atlModelDirective from './atlmodel.directive.js';
 
 var assert = require('assert');
 
@@ -26,25 +25,25 @@ class datepickerTestComponent {
 	}
 }
 
-// describe('datepicker', function() {
-//   var testComponent;
-//
-//   beforeEach(function() {
-//     TestBed.configureTestingModule({
-//       imports: [CommonModule, FormsModule],
-//       declarations: [datepickerTestComponent, datepickerComponent, atlModelDirective]
-//     });
-//     TestBed.compileComponents();
-//   });
-//
-//   afterEach(function() {
-//     getTestBed().resetTestingModule();
-//   });
-//
-//   it('should render actual value and available options', function() {
-//     var fixture = TestBed.createComponent(datepickerTestComponent);
-//     fixture.detectChanges();
-//     testComponent = fixture.componentInstance;
-//     var text = document.querySelector('#data');
-//   });
-// });
+describe('datepicker', function() {
+  var testComponent;
+
+  beforeEach(function() {
+    TestBed.configureTestingModule({
+      imports: [CommonModule, FormsModule],
+      declarations: [datepickerTestComponent, datepickerComponent]
+    });
+    TestBed.compileComponents();
+  });
+
+  afterEach(function() {
+    getTestBed().resetTestingModule();
+  });
+
+  // it('should render default value and available options', function() {
+  //   var fixture = TestBed.createComponent(datepickerTestComponent);
+  //   fixture.detectChanges();
+  //   testComponent = fixture.componentInstance;
+  //   var text = document.querySelector('#data');
+  // });
+});

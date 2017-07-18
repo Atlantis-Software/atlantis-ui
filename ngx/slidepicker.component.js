@@ -4,7 +4,7 @@ import slidepickeroptionComponent from './slidepicker-option.component';
 
 export default class slidepickercomponent {
   constructor (changeDetectorRef, elementRef) {
-    this.val = '';
+    this.val = null;
     this.onModelTouched = function() {};
     this.onModelChange = function() {};
     this.cdr = changeDetectorRef;
@@ -25,7 +25,6 @@ export default class slidepickercomponent {
           </div>
           <ul class="slidepicker-label">
             <li *ngFor="let option of options">
-              <input type="hidden" [(ngModel)]="option.value"/>
               <a [innerHTML]="option.elementRef.nativeElement.innerHTML"></a>
             </li>
           </ul>
@@ -43,12 +42,12 @@ export default class slidepickercomponent {
     ];
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     var self = this;
-    if(this.slidepickerClassList.length > 0){
-      this.slidepickerClassList.forEach(function(slidepickerClass){
-        self.slidepickerDom[0].classList.add(slidepickerClass)
-      })
+    if(this.slidepickerClassList.length > 0) {
+      this.slidepickerClassList.forEach(function(slidepickerClass) {
+        self.slidepickerDom[0].classList.add(slidepickerClass);
+      });
     }
   }
 
@@ -69,7 +68,6 @@ export default class slidepickercomponent {
       this.val = val;
       this.onModelChange(val);
       if (this.options) {
-
         //Transform from angular queries object (this.options) to flat array.
         var options = this.options.toArray();
         var isInOptions = false;
@@ -81,7 +79,7 @@ export default class slidepickercomponent {
             self.updateHandlerPosition();
           }
         });
-        if (!isInOptions){
+        if (!isInOptions) {
           self.index = 0;
           self.updateHandlerPosition();
         }
@@ -98,7 +96,7 @@ export default class slidepickercomponent {
   }
 
   // event slide value change emit by the slidepicker atlantis ui
-  setValue(event){
+  setValue(event) {
     var self = this;
     if (event.target.value !== "" && this.index !== event.target.value) {
       this.index = event.target.value;
@@ -110,7 +108,7 @@ export default class slidepickercomponent {
   }
 
   // Update curser position
-  updateHandlerPosition(){
+  updateHandlerPosition() {
     var input = this.elementRef.nativeElement.getElementsByClassName("slidepicker-input");
     input[0].value = this.index;
     var inputChangeEvent = document.createEvent('Event');

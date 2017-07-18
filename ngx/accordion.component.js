@@ -1,7 +1,4 @@
 import { Component, ContentChildren, ElementRef} from '@angular/core';
-// import accordionComponent from './accordion.component.js';
-// console.log(accordionComponent)
-
 
 export class accordionComponent {
 
@@ -47,45 +44,30 @@ export class accordionComponent {
     var panelsHTML = this.elementRef.nativeElement.getElementsByClassName("panel");
 
     for (var i = 0; i < panelsHTML.length; i++) {
-      switch (this.options.style) {
-        case "default":
-          panelsHTML[i].classList.add("panel-default");
-          break;
-        case "primary":
-          panelsHTML[i].classList.add("panel-primary");
-          break;
-        case "success":
-          panelsHTML[i].classList.add("panel-success");
-          break;
-        case "info":
-          panelsHTML[i].classList.add("panel-info");
-          break;
-        case "warning":
-          panelsHTML[i].classList.add("panel-warning");
-          break;
-        case "danger":
-          panelsHTML[i].classList.add("panel-danger");
-          break;
-        default:
-          panelsHTML[i].classList.add("panel-default");
+      if (this.options.style) {
+        panelsHTML[i].classList.add("panel-" + this.options.style);
+      } else {
+        panelsHTML[i].classList.add("panel-default");
       }
     }
 
 
-    if (this.options.openDefault !== "" && typeof this.options.openDefault === "number" && this.options.openDefault >= 0) {
+    if (this.options.openDefault >= 0) {
       if (this.options.openDefault === panelsHTML.length) {
         this.options.openDefault = panelsHTML.length - 1;
       } else if (this.options.openDefault > panelsHTML.length) {
         this.options.openDefault = 0;
       }
-      this.panels[this.options.openDefault].isOpen = true;
+      setTimeout(function() {
+        self.panels[self.options.openDefault].isOpen = true;
+      }, 0);
     }
-
   }
 
 }
 
 accordionComponent.parameters = [ElementRef];
+
 
 export class accordionPanelComponent {
   static get annotations() {
@@ -96,9 +78,7 @@ export class accordionPanelComponent {
         <div class="panel" [ngClass]="{'panel-open': isOpen}">
           <div class="panel-heading" (click)="toggleOpen($event)">
             <h4 class="panel-title">
-              <a role="button" href>
-              {{title}}
-              </a>
+              <a role="button">{{title}}</a>
             </h4>
           </div>
           <div class="panel-collapse collapse" [class.in]="isOpen">
@@ -115,7 +95,7 @@ export class accordionPanelComponent {
   constructor(elementRef, accordion) {
     this.accordion = accordion;
     this.accordion.addPanel(this);
-    this._isOpen = false;
+    this.isOpen = false;
   }
 
   ngOnDestroy() {
@@ -125,17 +105,9 @@ export class accordionPanelComponent {
   toggleOpen(e) {
     e.preventDefault();
     this.isOpen = !this.isOpen;
-  }
-
-  set isOpen(value) {
-    this._isOpen = value;
-    if(value){
+    if(this.isOpen) {
       this.accordion.closeOthers(this);
     }
-  }
-
-  get isOpen() {
-    return this._isOpen;
   }
 }
 
