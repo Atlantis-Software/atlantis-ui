@@ -1,7 +1,3 @@
-require("./js/i18n/en.js")
-require("./js/i18n/fr.js")
-require("./js/i18n/de.js")
-require("./js/i18n/es.js")
 require("./js/transition.js")
 require("./js/autocomplete.js")
 require("./js/alert.js")
