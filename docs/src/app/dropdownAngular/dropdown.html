@@ -31,12 +31,14 @@
   <div class="container" *ngSwitchCase="'Example'">
 
     <div class="row">
-      <dropdown title="test">
-        <dropdown-option></dropdown-option>
-        <dropdown-option [options]="options1">test1</dropdown-option>
-        <dropdown-option [options]="options2">test2</dropdown-option>
-        <dropdown-option>test3</dropdown-option>
-      </dropdown>
+      <div>
+        <dropdown title="test">
+          <dropdown-option></dropdown-option>
+          <dropdown-option [options]="options1">test1</dropdown-option>
+          <dropdown-option [options]="options2">test2</dropdown-option>
+          <dropdown-option>test3</dropdown-option>
+        </dropdown>
+      </div>
     </div>
 
   </div>

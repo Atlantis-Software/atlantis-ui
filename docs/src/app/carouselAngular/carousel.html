@@ -35,16 +35,33 @@
     <div class="row">
 
       <carousel [options]="optionsCarousel">
-        <carousel-item>
-          <img class="img-responsive center-block" src="../../img/fondegrad.jpg" alt="">
+        <carousel-item *ngIf="show1">
+          <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">
           <div class="carousel-caption">
             Slide 1
           </div>
         </carousel-item>
-        <carousel-item>
-          <img class="img-responsive center-block" src="../../img/fondegrad.jpg" alt="">
+        <carousel-item *ngIf="show2">
+          <img class="img-responsive center-block" src="../../img/carousel05.jpg" alt="">
+        </carousel-item>
+        <carousel-item *ngIf="show3">
+          <img class="img-responsive center-block" src="../../img/carousel06.jpg" alt="">
+          <div class="carousel-caption">
+            slide 3
+          </div>
         </carousel-item>
       </carousel>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label for="ButtonA">Toggle test2</label>
+        <button class="btn btn-block" (click)="toggle2()">toggle test2</button>
+        <label for="ButtonA">Toggle test3</label>
+        <button class="btn btn-block" (click)="toggle3()">toggle test3</button>
+        <label for="ButtonA">Toggle test1</label>
+        <button class="btn btn-block" (click)="toggle1()">toggle test1</button>
+      </div>
     </div>
 
   </div>

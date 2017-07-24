@@ -23,15 +23,31 @@ export default  class CarouselAngularComponent {
     this.person = {};
 
     this.optionsCarousel = {
-      pause: "hover",
-      indicator: true,
-      activeDefault : 2
+      slide: true,
+      indicator: true
     }
 
     this.test = "test"
 
+    this.show1 = true
+    this.show2 = true
+    this.show3 = true
+
 
     this.Display = "Example";
+  }
+
+  toggle2() {
+    this.show2 = !this.show2;
+  }
+
+  toggle3() {
+    this.show3 = !this.show3;
+  }
+
+  toggle1() {
+    this.show1 = !this.show1;
+    this.show2 = !this.show2;
   }
 }
 

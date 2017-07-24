@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import AppComponent from './app.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { LocationStrategy, HashLocationStrategy, DatePipe, UpperCasePipe } from '@angular/common';
 
 

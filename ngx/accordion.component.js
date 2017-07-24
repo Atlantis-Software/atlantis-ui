@@ -1,7 +1,4 @@
-import { Component, ContentChildren, ElementRef} from '@angular/core';
-// import accordionComponent from './accordion.component.js';
-// console.log(accordionComponent)
-
+import { Component, ElementRef} from '@angular/core';
 
 export class accordionComponent {
 

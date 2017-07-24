@@ -48,30 +48,22 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  Menu A
-                  <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a>Sub-menu A</a></li>
-                  <li><a>Sub-menu B</a></li>
-                  <li><a>Sub-menu C</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a>Sub-menu separated A</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a>Sub-menu separated B</a></li>
-                </ul>
+              <li>
+                <dropdown title="Menu A">
+                  <dropdown-option><a>Sub-menu A</a></dropdown-option>
+                  <dropdown-option><a>Sub-menu B</a></dropdown-option>
+                  <dropdown-option><a>Sub-menu C</a></dropdown-option>
+                  <dropdown-option options="{type: divider}"></dropdown-option>
+                  <dropdown-option><a>Sub-menu separated A</a></dropdown-option>
+                  <dropdown-option options="{type: divider}"></dropdown-option>
+                  <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
+                </dropdown>
               </li>
               <li><a>Menu B</a></li>
-              <li class="dropdown disabled">
-                <a class="dropdown-toggle disabled" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  Menu C
-                  <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="">Sub-menu A</a></li>
-                </ul>
+              <li class="disabled">
+                <dropdown title="Menu A">
+                  <dropdown-option><a>Sub-menu A</a></dropdown-option>
+                </dropdown>
               </li>
               <li><a>Menu D</a></li>
               <li class="disabled"><a>Menu E</a></li>
@@ -365,7 +357,7 @@
             Desactive a link
           </td>
           <td>
-            
+
           </td>
         </tr>
         <tr>

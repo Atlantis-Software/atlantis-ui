@@ -8,39 +8,57 @@ export default class dropdownComponent {
       new Component({
         selector: 'dropdown',
         template: `
-          <div class="">
-            <button type="button" data-toggle="dropdown">
-              {{title}}
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li *ngFor="let Action of Actions; let i = index" [class.disabled]="Action.options && Action.options.disabled" [class.divider]="Action.options && Action.options.type && Action.options.type === 'divider'" [class.dropdown-header]="Action.options && Action.options.type && Action.options.type === 'header'">
-                <a *ngIf="!Action.options || !Action.options.type || Action.options.type !== 'divider' && Action.options.type !== 'header'">{{Action.value}}</a>
-              </li>
-            </ul>
-          </div>`,
+          <button *ngIf="!parentIsLi" type="button" (click)="openDropdown()">
+            {{title}}
+            <span class="caret"></span>
+          </button>
+          <a *ngIf="parentIsLi" href="#" (click)="toggle($event)">
+            {{title}}
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li *ngFor="let Action of Actions; let i = index" [class.disabled]="Action.options && Action.options.disabled" [class.divider]="Action.options && Action.options.type && Action.options.type === 'divider'" [class.dropdown-header]="Action.options && Action.options.type && Action.options.type === 'header'" (click)="closeDropdown()">
+              <a *ngIf="!Action.options || !Action.options.type || Action.options.type !== 'divider' && Action.options.type !== 'header'">{{Action.value}}</a>
+            </li>
+          </ul>`,
         queries: {
           Actions: new ContentChildren(dropdownOptionComponent)
         },
-        inputs: ["title","options"]
+        inputs: ["title","options"],
+        host: {
+          "(focusout)": "closeDropdown()"
+        }
       })
     ];
   }
-  constructor(elementRef,) {
+  constructor(elementRef) {
+    this.open = false;
     this.elementRef = elementRef;
+    this.parentIsLi = false;
+    this.disabled = false;
   }
 
   ngAfterViewInit(){
-    var dropdown = this.elementRef.nativeElement.getElementsByTagName("div")[0];
+    this.dropdown = this.elementRef.nativeElement;
     var dropdownMenu = this.elementRef.nativeElement.getElementsByClassName("dropdown-menu")[0];
+
+    if (this.dropdown.parentElement.nodeName === "LI") {
+      this.parentIsLi = true;
+    }
+
+    if (this.dropdown.parentElement.classList.contains("disabled")) {
+      this.disabled = true;
+    }
+
+
     if (this.options && this.options.orientation === "up") {
-      dropdown.classList.add("dropup")
+      this.dropdown.classList.add("dropup");
     }else {
-      dropdown.classList.add("dropdown")
+      this.dropdown.classList.add("dropdown");
     }
 
     if (this.options && this.options.alignement === "right") {
-      dropdownMenu.classList.add("dropdown-menu-right")
+      dropdownMenu.classList.add("dropdown-menu-right");
     }
 
     var actions = this.Actions.toArray();
@@ -56,6 +74,28 @@ export default class dropdownComponent {
       }
     }
   }
+
+  openDropdown(){
+    if (!this.disabled){
+      this.open = true;
+      this.dropdown.classList.add("open");
+    }
+  }
+
+  toggle(e){
+    e.preventDefault();
+    if (!this.disabled){
+      this.open = !this.open;
+      this.dropdown.classList.toggle("open");
+    }
+
+  }
+
+  closeDropdown(){
+    this.open = false;
+    this.dropdown.classList.remove("open");
+  }
+
 }
 
 dropdownComponent.parameters = [ElementRef];

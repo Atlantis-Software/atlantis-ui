@@ -67,42 +67,19 @@ main {
 }
 
 .nopadding {
-   padding: 0 !important;
-   margin: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
-.form-control, 
-selectpicker > .select, 
-.dropdown, 
-input[type="radio"], 
-button, 
-.input-group > span.input-group-addon > input[type="radio"], 
-.input-group > span.input-group-addon > input[type="checkbox"], 
-.checkbox-inline, 
-.radio-inline {
-  margin-top: 25px;
+
+/*.form-control, selectpicker>.select input[type="radio"], button, .input-group>span.input-group-addon>input[type="radio"], .input-group>span.input-group-addon>input[type="checkbox"], .checkbox-inline, .radio-inline {
+    margin-top: 25px;
+}*/
+
+label~.form-control, label+.input-group>.form-control, label+datepicker>.form-control, label+datepicker-range>.input-group>.form-control, label+selectpicker>.select, label+.dropdown, label+input[type="radio"], label+button, selectpicker>.select>button, .dropdown>button, label+.input-group>span.input-group-btn>button, label+.input-group>span.input-group-addon>input[type="radio"], label+.input-group>span.input-group-addon>input[type="checkbox"], label+.checkbox-inline, label+.radio-inline, label+.input-group>.input-group-btn>button {
+    margin: 0;
 }
 
-label ~ .form-control, 
-label + .input-group > .form-control, 
-label + datepicker > .form-control, 
-label + datepicker-range > .input-group  > .form-control, 
-label + selectpicker > .select, 
-label + .dropdown, 
-label + input[type="radio"], 
-label + button, 
-selectpicker > .select > button, 
-.dropdown  > button, 
-label + .input-group > span.input-group-btn > button, 
-label + .input-group > span.input-group-addon > input[type="radio"], 
-label + .input-group > span.input-group-addon > input[type="checkbox"], 
-label + .checkbox-inline, 
-label + .radio-inline, 
-label +  .input-group  > .input-group-btn > button {
-  margin: 0;
-}
-
-label + .radio, 
-label + .checkbox {
-  margin-top: 0;
+label+.radio, label+.checkbox {
+    margin-top: 0;
 }
