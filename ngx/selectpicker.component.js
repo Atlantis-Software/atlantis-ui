@@ -1,13 +1,14 @@
-import { Component, ContentChildren, forwardRef, ChangeDetectorRef } from '@angular/core';
+import { Component, ContentChildren, forwardRef, ChangeDetectorRef, IterableDiffers} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import selectpickeroptionComponent from './selectpicker-option.component';
 
 export default class selectpickerComponent {
-  constructor (changeDetectorRef) {
+  constructor (changeDetectorRef, differs) {
     this.onModelTouched = function() {};
     this.onModelChange = function() {};
     this.cdr = changeDetectorRef;
     this.val = '';
+    this.differ = differs.find([]).create(null);
 
   }
 	static get annotations() {
@@ -49,6 +50,21 @@ export default class selectpickerComponent {
   }
   registerOnTouched(fn) {
     this.onModelTouched = fn;
+  }
+
+  //That check for every selectpicker widget's change.
+  ngDoCheck() {
+    //We use Array.isArray to verify if this.val is an array so we avoid a angular's error with IterableDiffers
+    if (Array.isArray(this.val)) {
+      var changes = this.differ.diff(this.val);
+      if (changes) {
+        this.updateOptions();
+      }
+    }
+  }
+
+  ngOnInit() {
+    this.updateOptions();
   }
 
   ngAfterViewInit() {
@@ -100,4 +116,4 @@ export default class selectpickerComponent {
   }
 }
 
-selectpickerComponent.parameters = [ChangeDetectorRef];
+selectpickerComponent.parameters = [ChangeDetectorRef, IterableDiffers];

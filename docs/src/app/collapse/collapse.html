@@ -116,14 +116,54 @@
     <h4>
       Class css :
     </h4>
-    <ul>
-      <li>
-        .collapse : Define the collapse and hide per default
-      </li>
-      <li>
-        .in : Define the collapse is showned per default
-      </li>
-    </ul>
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>
+            Class
+          </th>
+          <th>
+            Tag
+          </th>
+          <th>
+            Description
+          </th>
+          <th>
+            Info
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            .collapse
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            Define the collapse
+          </td>
+          <td>
+            Hide per default
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .in
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            Show the collapse per default
+          </td>
+          <td>
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
     <h3>
       For an accordion use :
     </h3>
@@ -131,34 +171,112 @@
       {{accordionHtml}}
     </pre>
     <h4>
-      Precision :
-    </h4>
-    <p>
-      Don't forget to add id="Nameyouwant" to main div, and for all link to add data-parent="#Nameyouwant"
-    </p>
-    <p>
-      For correct accordion, all link have href with the id of div we want to show
-    </p>
-    <h4>
       Class css :
     </h4>
-    <ul>
-      <li>
-        .panel-heading : Contains the header of one panel, the title and the link
-      </li>
-      <li>
-        .panel-title : Define the title of panel
-      </li>
-      <li>
-        .panel-collapse : Contain the body of the panel
-      </li>
-      <li>
-        .collapse : like standard collapse
-      </li>
-      <li>
-        .in : like standard collapse
-      </li>
-    </ul>
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>
+            Class
+          </th>
+          <th>
+            Tag
+          </th>
+          <th>
+            Description
+          </th>
+          <th>
+            Info
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            .panel-group
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            Define the accordion
+          </td>
+          <td>
+            Warning : don't forget to add a id
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .panel
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            Define a panel
+          </td>
+          <td>
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .panel-heading
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            Define the header of panel. That open the panel. It's always show
+          </td>
+          <td>
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .panel-title
+          </td>
+          <td>
+            h4 or other h
+          </td>
+          <td>
+            Define the title of panel.
+          </td>
+          <td>
+            Warning : don't forget to add correct data-toggle and data-parent to tag a or button, and for the a the correct href
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .panel-collapse
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            Define the content of panel when that's open
+          </td>
+          <td>
+            Warning : add .collapse. Add .in if a panel it's open per default
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .panel-body
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            Define the body of panel, the main content
+          </td>
+          <td>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
 </div>

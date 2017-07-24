@@ -13,96 +13,99 @@
       <ul class="nav navbar-nav">
         <li>
           <a (click)="Display = 'Example'">
-            Example and binding
+            Example
           </a>
         </li>
         <li>
           <a (click)="Display = 'Api'">
-            How to use and api
+            Api
           </a>
         </li>
       </ul>
     </div>
-
   </div>
 </nav>
 
 <div [ngSwitch]= "Display">
 
   <div class="container" *ngSwitchCase="'Example'">
-
+    <h3>
+      Example :
+    </h3>
     <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="Selectpicker1">Example SelectPicker simple</label>
-          <selectpicker name="Selectpicker1" [(ngModel)]="Selectpicker1" multiple="false">
-            <selectpicker-option value="A">A</selectpicker-option>
-            <selectpicker-option value="B">B</selectpicker-option>
-            <selectpicker-option value="C">C</selectpicker-option>
-          </selectpicker>
+      <div class="form-group">
+        <label for="select-html">html select simple</label>
+        <div id="select-html" class="select">
+          <button class="btn btn-default select-toggle" type="button" id="select-html" data-toggle="select">
+              <span class="select-text">&nbsp;</span>
+              <span class="caret"></span>
+            </button>
+          <ul class="select-options">
+            <li>
+              <a href="#">
+                  Messages
+                </a>
+            </li>
+            <li>
+              <a href="#">
+                  Another action
+                </a>
+            </li>
+            <li>
+              <a href="#">
+                  Something else here
+                </a>
+            </li>
+            <li>
+              <a href="#">
+                  Something else here
+                </a>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+              <a href="#">
+                  Separated link
+                </a>
+            </li>
+          </ul>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="Binding1">Binding</label>
-          <input name="Binding1" class="form-control" type="text" [(ngModel)]="Selectpicker1"></input>
-        </div>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="Selectpicker2">Example SelectPicker with simple default value</label>
-          <selectpicker name="Selectpicker2" [(ngModel)]="Selectpicker2" multiple="false">
-            <selectpicker-option value="A">A</selectpicker-option>
-            <selectpicker-option value="B">B</selectpicker-option>
-            <selectpicker-option value="C">C</selectpicker-option>
-          </selectpicker>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="Binding2">Binding</label>
-          <input name="Binding2" class="form-control" type="text" [(ngModel)]="Selectpicker2"></input>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="Selectpicker3">Example SelectPicker multiple </label>
-          <selectpicker name="Selectpicker3" [(ngModel)]="Selectpicker3" multiple="true">
-            <selectpicker-option value="A">A</selectpicker-option>
-            <selectpicker-option value="B">B</selectpicker-option>
-            <selectpicker-option value="C">C</selectpicker-option>
-          </selectpicker>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="Binding3">Binding</label>
-          <input name="Binding3" class="form-control" type="text" [(ngModel)]="Selectpicker3"></input>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="Selectpicker4">Example SelectPicker multiple with default value</label>
-          <selectpicker name="Selectpicker=4" [(ngModel)]="Selectpicker4" multiple="true">
-            <selectpicker-option value="A">A</selectpicker-option>
-            <selectpicker-option value="B">B</selectpicker-option>
-            <selectpicker-option value="C">C</selectpicker-option>
-          </selectpicker>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="Binding4">Binding</label>
-          <input name="Binding4" class="form-control" type="text" [(ngModel)]="Selectpicker4"></input>
+      <div class="form-group">
+        <label for="select-html-multi">html select multiple</label>
+        <div class="select" id="select-html-multi" aria-multiple="true">
+          <button class="btn btn-default select-toggle" type="button" data-toggle="select">
+              <span class="select-text">&nbsp;</span>
+              <span class="caret"></span>
+            </button>
+          <ul id="opts" class="select-options">
+            <li>
+              <a id="opts1" href="#">
+                  Messages
+                </a>
+            </li>
+            <li>
+              <a href="#">
+                  Another action
+                </a>
+            </li>
+            <li>
+              <a href="#">
+                  Something else here
+                </a>
+            </li>
+            <li>
+              <a href="#">
+                  Something else here
+                </a>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+              <a href="#">
+                  Separated link
+                </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -111,32 +114,182 @@
 
   <div class="container" *ngSwitchCase="'Api'">
     <h3>
-      For an selectpicker use :
+      For a selectpicker use :
     </h3>
+    <h4>
+      Method 1 :
+    </h4>
     <pre>
-      {{selectpickerHtml}}
+      {{selectpicker1Html}}
     </pre>
     <h4>
-      Parameters
+      Method 2 :
+    </h4>
+    <pre>
+      {{selectpicker2Html}}
+    </pre>
+    <h4>
+      Info
     </h4>
     <p>
-      We need 3 arguments for use selectpicker
+      The first method is for an static selectpicker
     </p>
     <p>
-      -Multiple : Select multiple if true, optional (if not present : false)
+      The second method is for an dynamic selectpicker. But need to be activate with javascript like :
     </p>
     <p>
-      -ngModel : Value to bind
+      $('select').selectpicker();
     </p>
-    <p>
-      a)String if multiple false
-    </p>
-    <p>
-      b)Array if multiple true
-    </p>
-    <p>
-      -Value : Option's value, per default take text in selectpicker-option tag
-    </p>
+    <h3>
+      Class css :
+    </h3>
+    <h4>
+      Method 1 :
+    </h4>
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="col-md-2">
+            Class
+          </th>
+          <th class="col-md-1">
+            Tag
+          </th>
+          <th>
+            Description
+          </th>
+          <th>
+            Info
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            .select
+          </td>
+          <td>
+            div
+          </td>
+          <td>
+            Define the selectpicker
+          </td>
+          <td>
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .select-toggle
+          </td>
+          <td>
+            button
+          </td>
+          <td>
+            Like dropdown, allow to open selectpicker
+          </td>
+          <td>
+            Warning : don't forget to add data-toggle="select"
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .select-text
+          </td>
+          <td>
+            span
+          </td>
+          <td>
+            Display the choice
+          </td>
+          <td>
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .select-options
+          </td>
+          <td>
+            ul
+          </td>
+          <td>
+            Define the different options
+          </td>
+          <td>
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .divider
+          </td>
+          <td>
+            li
+          </td>
+          <td>
+            Create a divider between option
+          </td>
+          <td>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h4>
+      Method 2 :
+    </h4>
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="col-md-2">
+            Class
+          </th>
+          <th class="col-md-1">
+            Tag
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            .selectpicker
+          </td>
+          <td>
+            select
+          </td>
+          <td>
+            Define the selectpicker
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .selectpicker-sm
+          </td>
+          <td>
+            select
+          </td>
+          <td>
+            Define a small selectpicker
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .selectpicker-lg
+          </td>
+          <td>
+            select
+          </td>
+          <td>
+            Define a large selectpicker
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
   </div>
 
 </div>

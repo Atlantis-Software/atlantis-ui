@@ -13,106 +13,56 @@
       <ul class="nav navbar-nav">
         <li>
           <a (click)="Display = 'Example'">
-            Example and binding
+            Example
           </a>
         </li>
         <li>
           <a (click)="Display = 'Api'">
-            How to use and api
+            Api
           </a>
         </li>
       </ul>
     </div>
-
   </div>
 </nav>
-
 
 <div [ngSwitch]= "Display">
 
   <div class="container" *ngSwitchCase="'Example'">
+    <h3>
+      Example :
+    </h3>
     <div class="row">
-
-      <div class="col-md-4">
-
-        <div class="form-group">
-          <label for="rangeDatePicker">Example Datepicker range</label>
-          <datepicker-range [(start)]="start1" [(end)]="end1"></datepicker-range>
-        </div>
-
-      </div>
-
-      <div class="col-md-4">
-        <label for="Binding1">Binding</label>
-        <div class="form-group input-group">
-          <input name="Binding1" class="form-control" type="text" [(ngModel)]="start1"></input>
+      <div class="form-group">
+        <label for="rangeDatePicker">datepicker range</label>
+        <div id="rangeDatePicker" class="input-group">
+          <input class="form-control start" type="date">
           <span class="input-group-addon"></span>
-          <input name="Binding1" class="form-control" type="text" [(ngModel)]="end1"></input>
+          <input class="form-control end" type="date">
         </div>
       </div>
-
+    </div>
+    <div class="row">
+      <div class="form-group">
+          <label for="singleDatePicker">datepicker</label>
+          <input id="singleDatePicker" type="date" class="form-control">
+      </div>
     </div>
 
+    <h3>
+      Different size :
+    </h3>
     <div class="row">
-
-      <div class="col-md-4">
-
-        <div class="form-group">
-          <label for="rangeDatePicker">Example Datepicker range with default value</label>
-          <datepicker-range [(start)]="start2" [(end)]="end2"></datepicker-range>
-        </div>
-
+      <div class="form-group">
+          <label for="singleDatePicker">datepicker</label>
+          <input id="singleDatePicker" type="date" class="form-control input-sm">
       </div>
-
-      <div class="col-md-4">
-        <label for="Binding1">Binding</label>
-        <div class="form-group input-group">
-          <input name="Binding2" class="form-control" type="text" [(ngModel)]="start2"></input>
-          <span class="input-group-addon"></span>
-          <input name="Binding2" class="form-control" type="text" [(ngModel)]="end2"></input>
-        </div>
-      </div>
-
     </div>
-
     <div class="row">
-
-      <div class="col-md-4">
-
-        <div class="form-group">
-          <label for="rangeDatePicker">Example Datepicker simple</label>
-          <datepicker [(ngModel)]="start3"></datepicker>
-        </div>
-
+      <div class="form-group">
+          <label for="singleDatePicker">datepicker</label>
+          <input id="singleDatePicker" type="date" class="form-control input-lg">
       </div>
-
-      <div class="col-md-4">
-        <label for="Binding1">Binding</label>
-        <div class="form-group">
-          <input name="Binding3" class="form-control" type="text" [(ngModel)]="start3"></input>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="row">
-
-      <div class="col-md-4">
-
-        <div class="form-group">
-          <label for="rangeDatePicker">Example Datepicker range</label>
-          <datepicker [(ngModel)]="start4"></datepicker>
-        </div>
-
-      </div>
-
-      <div class="col-md-4">
-        <label for="Binding1">Binding</label>
-        <div class="form-group">
-          <input name="Binding4" class="form-control" type="text" [(ngModel)]="start4"></input>
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -124,16 +74,10 @@
       {{DatepickerRangeHtml}}
     </pre>
     <h4>
-      Parameters :
+      Info :
     </h4>
     <p>
-      We use 2 parameters for range value :
-    </p>
-    <p>
-      -start : string, (YYYY-MM-DD), is start date we
-    </p>
-    <p>
-      -end : string, (YYYY-MM-DD), is end date we want
+      Warning : Don't forget to add .start and .end to input, to create a correct binding
     </p>
     <h3>
       For an datepicker simple use :
@@ -142,13 +86,10 @@
       {{DatepickerSimpleHtml}}
     </pre>
     <h4>
-      Parameters :
+      Info :
     </h4>
     <p>
-      We use ngModel for an simple value :
-    </p>
-    <p>
-      -ngModel : string, (YYYY-MM-DD), is the date we
+      To use different size, just add input-sm or input-lg to tag input
     </p>
 
   </div>
