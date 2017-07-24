@@ -8,8 +8,12 @@ export default class modalHeaderComponent {
         selector: 'modal-header',
         template: `
 				<div class="modal-header">
-	        <button *ngIf="options.close" type="button" class="close" (click)="close()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">{{this.title}}</h4>
+          <div class="row"> 
+          <div class="col-md-12">
+	          <button *ngIf="options.close" type="button" class="close" (click)="close()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          </div>
+	        <ng-content></ng-content>
 				</div>`,
         inputs: ['title', 'options']
 	  	})
