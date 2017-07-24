@@ -66,6 +66,10 @@ input[type="range"] {
   width: 100%;
 }
 
+input.active {
+  border-color: @input-border-focus;
+}
+
 // Make multiple select elements height not fixed
 select[multiple],
 select[size] {
@@ -163,6 +167,18 @@ output {
     height: auto;
   }
 }
+
+  input[type="date"] {
+    &::-webkit-clear-button {
+      display:none;
+    }
+    &::-webkit-inner-spin-button{
+      display: none;
+    }
+    &::-webkit-calendar-picker-indicator{
+      display:none;
+    }
+  }
 
 
 // Search inputs in iOS
