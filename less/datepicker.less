@@ -1,122 +1,87 @@
-
-datepicker {
+datepicker, datepicker-range {
   .modal-header {
-    background-color: @datepicker-bg;
-  }
-  .modal-header .date-and-close{
-    background-color: @datepicker-bg;
-    padding: 15px;
-    position: absolute;
-    top: 0;
-    left: 0px;
-    z-index: 1050;
-    border-width: 0;
-    right: 0;
-  }
+    background-color: @primary;
+    .withoutClose {
+      height: 14px;
+    }
+    .date-letter {
+      height: 120px;
+    }
+    .date-letter span:first-child {
+      color: @primary-text-color;
+      text-transform: uppercase;
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 0px;
+      margin-bottom: 12px;
+      display: inline-block;
+      width: 100%;
+    }
+    .date-letter span:nth-child(2) {
+      color: @primary-text-color;
+      font-size: 90px;
+      line-height: 80px;
+      display: inline-block;
+      width: 100%;
+    }
 
-  .modal-header  .calendar-choose{
-    background-color: @background;
-  }
-
-  .modal-header  .date-letter {
-    height: 104px;
-  }
-    /*.modal-content {
+    .date-letter span:nth-child(3) {
+      color: @primary-text-color;
+      text-transform: capitalize;
+      font-size: 21px;
+      line-height: 0px;
+      display: inline-block;
+      width: 100%;
+    }
+    .calendar-bg {
       background-color: @datepicker-bg;
-    }*/
+      padding-top: 5px;
+      .arrow .icon-next, .arrow .icon-previous{
+        color: @icon-color;
+        cursor: auto;
+      }
+      .arrow .icon-next, .arrow .icon-previous {
+        &:hover{
+          color: @icon-hover-color;
+          cursor: pointer;
+        }
+      }
+      .arrow {
+        margin-top: 24px;
+      }
+    }
+  }
+
   .modal-body {
     background-color: @background;
   }
-
-  .dateText{
-    margin-top: -30px;
-  }
-
-  .dayText {
-    color: @primary-text-color;
-    text-transform: uppercase;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 0px;
-    margin-bottom: 12px;
-  }
-
-  .day {
-    color: @primary-text-color;
-    font-size: 90px;
-    line-height: 80px;
-  }
-
-  .monthYear{
-    color: @primary-text-color;
-    text-transform: capitalize;
-    font-size: 21px;
-    line-height: 0px;
-  }
-
-  .center-input {
-    width: 196px;
-    margin: auto;
-  }
-
-  .block-date{
-    background-color: white;
-    margin-top: 22px;
-  }
-
-  .blue{
-    color: @primary;
-    cursor: auto;
-  }
-
-  .dark{
-    color: @secondary;
-    cursor: pointer;
-  }
-  .background-grey{
-    background-color: @shadow;
-  }
-
-  .calendar-choose .arrow{
-    padding-top: 6px;
-    margin-top: 25px;
-    padding-bottom: 6px;
-    /*padding-right: 20px;
-    padding-left: 13px;*/
-  }
- /* .calendar-choose .arrow:hover{
-    background-color: @secondary;
-  }*/
 
   .datepicker {
       color: inherit;
       padding: 4px;
       margin-top: 1px;
-      .calendar{
+      .calendar {
         display: none;
         margin: 4px;
         border-bottom: 2px solid @datepicker-bg;
-        th, td{
+        th, td {
           white-space: nowrap;
           text-align: center;
           min-width: 32px;
         }
       }
-      .calendar-table{
-        border: 1px solid #fff;
+      .calendar-table {
+        border: 1px solid @datepicker-border-color;
         padding: 5px;
         border-radius: 0px;
-        background-color: #fff;
+        background-color: @datepicker-bg;
         margin-bottom: 25px;
       }
-      table{
+      table {
         width: 100%;
         margin: 0;
       }
-      thead .arrows{
-        background-color: @shadow;
-      }
-      th{
+      th {
         text-align: center;
         width: 20px;
         height: 20px;
@@ -124,7 +89,7 @@ datepicker {
         white-space: nowrap;
         cursor: pointer;
       }
-      td{
+      td {
         text-align: center;
         width: 20px;
         height: 20px;
@@ -133,57 +98,47 @@ datepicker {
         white-space: nowrap;
         cursor: pointer;
       }
-      th.available .icon-next:hover{
-        color: @gray-dark;
+      td.available { 
+        &:hover {
+          background-color: @datepicker-hover-bg;
+          border-color: transparent;
+          color: @primary-text-color;
+        }
       }
-      td.available:hover{
-        background-color: @secondary;
-        border-color: transparent;
-        color: @primary-text-color;
-
+      td.today {
+        border: 2px solid @datepicker-today-border-color;
+        font-weight: bold; 
+        &:hover{
+          background-color: @datepicker-hover-bg;
+          border-color: transparent;
+          color: @primary-text-color;
+        }
       }
-      td.today.available:hover, th.today.available:hover{
-        background-color: @secondary;
-        border-color: transparent;
-        color: @primary-text-color;
-      }
-      td.in-range{
+      td.in-range {
         background-color: @datepicker-in-range-bg;
         border-color: transparent;
         color: @datepicker-in-range-color;
         border-radius: 0;
       }
-      td.start-date, td.end-date, td.start-date.end-date{
+      td.start-date, td.end-date, td.start-date.end-date {
         border-radius: 0px 0 0 0px;
       }
-      td.active, td.active:hover{
+      td.active {
         background-color: @datepicker-active-bg;
         border-color: transparent;
         color: @datepicker-active-color;
-      }
-      td.out-month{
-        color: @disabled;
-      }
-      td.off.in-range, td.off.start-date, td.off.end-date{
-          background-color: @datepicker-off-bg;
+        &:hover{
+          background-color: @datepicker-active-bg;
           border-color: transparent;
-          color: @datepicker-off-color;
+          color: @datepicker-active-color;
         }
-      td.today{
-        border: 2px solid orange;
-        font-weight: bold;
       }
-      td.today.off{
-        background-color: #fff;
-        color : #000;
+
+      td.off {
+        background-color: @datepicker-off-bg;
+        color :@datepicker-off-color;
         border: none;
         font-weight: normal;
-      }
-      td.today.off.in-range{
-        color: @datepicker-off-color;
-      }
-      th.month{
-        width: auto;
       }
   }
 
@@ -200,18 +155,6 @@ datepicker {
   datepicker.datepicker-lg {
     input {
       &:extend(.input-lg);
-    }
-  }
-
-  input[type="date"] {
-    &::-webkit-clear-button {
-      display:none;
-    }
-    &::-webkit-inner-spin-button{
-      display: none;
-    }
-    &::-webkit-calendar-picker-indicator{
-      display:none;
     }
   }
 }
