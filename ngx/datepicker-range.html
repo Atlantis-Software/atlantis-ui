@@ -34,14 +34,14 @@
         <div class="form-group" [ngClass]="{'has-error': hasErrorStart }">
           <label class="control-label" for="inputSuccess1">De</label>
           <input type="date" class="form-control input-md" [ngModel]="start" (ngModelChange)="setStart($event)" (focus)="selectInputDateStart()"
-          (keyup.enter)="close()" [ngClass]="{'focus': (focus === 'start') }">
+          (keyup.enter)="close()" [ngClass]="{'active': (focus === 'start') }">
         </div>
       </div>    
       <div class="col-md-3">
         <div class="form-group" [ngClass]="{'has-error': hasErrorEnd }">
           <label class="control-label" for="inputSuccess1">à</label>
           <input type="date" class="form-control input-md" [ngModel]="end" (ngModelChange)="setEnd($event)" (keyup.enter)="close()" 
-          (focus)="selectInputDateEnd()" [ngClass]="{'focus': (focus === 'end')}">
+          (focus)="selectInputDateEnd()" [ngClass]="{'active': (focus === 'end')}">
         </div>
       </div>
       <div class="col-md-4">
