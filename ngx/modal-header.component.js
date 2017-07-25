@@ -29,7 +29,7 @@ export default class modalHeaderComponent {
   }
 
   close(){
-    this.modal.close();
+    this.modal.show = false;
   }
 }
 
