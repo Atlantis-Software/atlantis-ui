@@ -120,7 +120,9 @@ export default class datepickerComponent {
         }
         
         // all dates are available
-        this.classes[calendarNumber][row][col].push('available');
+        if (this.classes[calendarNumber][row][col].indexOf("off") == -1) {
+          this.classes[calendarNumber][row][col].push('available');
+        }
         curDate = moment(curDate).add(24, 'hour');
       }
     }
@@ -275,49 +277,52 @@ export default class datepickerComponent {
 
   // on change value selectpicker predefined date
   onChange(event) {
+
     this.predefinedDate = event;
-    switch(this.predefinedDate) {
-      case "toDay":
-        this.startDate = moment();
-        this.endDate = this.startDate;
-        break;
-      case "lastWeek":
-        this.startDate = moment().subtract(1, 'weeks').startOf('isoweek');
-        this.endDate = moment().subtract(1, 'weeks').endOf('isoweek');
-        break;
-      case "lastMonth":
-        this.startDate = moment().subtract(1, 'months').startOf('month');
-        this.endDate =  moment().subtract(1, 'months').endOf('month');
-        break;
-      case "last7day":
-        this.startDate =  moment().subtract(1, 'weeks');
-        this.endDate = moment();
-        break;
-      case "last30day":
-        this.startDate =  moment().subtract(1, 'months');
-        this.endDate = moment();
-        break;
-      case "lastYear":
-        this.startDate =  moment().subtract(1, 'years').startOf('year');
-        this.endDate =  moment().subtract(1, 'years').endOf('year');
-        break;
-      default :
-        break;
-     }
-    this.start = this.startDate.format('YYYY-MM-DD');
-    this.end = this.endDate.format('YYYY-MM-DD');
-    this.calendar = [];
-    this.calendar[0] = {};
-    this.calendar[0] = this.startDate.clone().date(2);
-    // create calendars depending on the number of the var numberOfMonths
-    for (var i = 1; i< this.numberOfMonths; i++ ) {
-      this.calendar[i] = {};
-      this.calendar[i] = this.startDate.clone().date(2).add(i , 'month');
+    if (this.predefinedDate) {
+      switch(this.predefinedDate) {
+        case "toDay":
+          this.startDate = moment();
+          this.endDate = this.startDate;
+          break;
+        case "lastWeek":
+          this.startDate = moment().subtract(1, 'weeks').startOf('isoweek');
+          this.endDate = moment().subtract(1, 'weeks').endOf('isoweek');
+          break;
+        case "lastMonth":
+          this.startDate = moment().subtract(1, 'months').startOf('month');
+          this.endDate =  moment().subtract(1, 'months').endOf('month');
+          break;
+        case "last7day":
+          this.startDate =  moment().subtract(1, 'weeks');
+          this.endDate = moment();
+          break;
+        case "last30day":
+          this.startDate =  moment().subtract(1, 'months');
+          this.endDate = moment();
+          break;
+        case "lastYear":
+          this.startDate =  moment().subtract(1, 'years').startOf('year');
+          this.endDate =  moment().subtract(1, 'years').endOf('year');
+          break;
+        default :
+          break;
+      }
+      this.start = this.startDate.format('YYYY-MM-DD');
+      this.end = this.endDate.format('YYYY-MM-DD');
+      this.calendar = [];
+      this.calendar[0] = {};
+      this.calendar[0] = this.startDate.clone().date(2);
+      // create calendars depending on the number of the var numberOfMonths
+      for (var i = 1; i< this.numberOfMonths; i++ ) {
+        this.calendar[i] = {};
+        this.calendar[i] = this.startDate.clone().date(2).add(i , 'month');
+      }
+      this.refreshCalendar(); 
+      this.refreshTextDateStart();
+      this.refreshTextDateEnd();
+      this.close();
     }
-    this.refreshCalendar(); 
-    this.refreshTextDateStart();
-    this.refreshTextDateEnd();
-    this.close();
   }
 
   clickPrev(event) {
@@ -396,6 +401,7 @@ export default class datepickerComponent {
   selectDate(date, style){
     this.notActiveDateEnd = false;
     var self = this;
+    this.predefinedDate = null;
     // if a date disabled return
     var index = style.indexOf("off");
     if (index > -1) {
