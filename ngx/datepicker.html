@@ -1,22 +1,23 @@
 <input  type="date" class="form-control" [ngModel]="val" (click)="open()" (change)="valueChange($event)"/>
-<modal idModal="test" [options]="modalOptions" [(ngModel)]="show">
+<modal idModal="test" [options]="modalOptions" [(show)]="visible" >
   <modal-header [options]="modalHeaderOptions">
     <div class="row">
       <div class="col-md-12 text-center date-letter">
-        <div class="dayText">{{ before }}</div>
-        <div class="day">{{ day }}</div>
-        <div class="monthYear">{{ after }}</div>
+        <span>{{ before }}</span>
+        <span>{{ day }}</span>
+        <span>{{ after }}</span>
       </div>
     </div>
-    <div class="calendar-choose row" data-date-type="single">
+    <div class="calendar-bg row" data-date-type="single">
       <div class="col-md-12 text-center">
-        <div class="col-md-1">
-          <div class="prev arrow" (mouseover)="changeStyleIconPrev($event)"  (mouseout)="changeStyleIconPrev($event)" (click)="clickPrev($event)" >
-            <i [ngClass]="colorPrev" class="icon icon-previous primary"></i>
+        <div class="col-md-1 text-center">
+          <div class="prev arrow" (click)="clickPrev($event)" >
+            <i class="icon icon-previous icon-2x"></i>
           </div>
         </div>
         <div class="col-md-5">
-            <input type="date" class="form-control" [ngModel]="val" (ngModelChange)="valueChange($event)" (keyup.enter)="close()">
+            <input type="date" class="form-control" [ngModel]="val" (ngModelChange)="valueChange($event)" 
+            [ngClass]="{'active': true}" (keyup.enter)="close()">
         </div>
         <div class="col-md-5">
           <selectpicker name="selectPredefinedDate" [ngModel]="predefinedDate" (ngModelChange)="onChange($event)">
@@ -28,9 +29,9 @@
             <selectpicker-option value="lastYear">{{ i18n[language]["lastYear"] }}</selectpicker-option>
           </selectpicker>
         </div>  
-        <div class="col-md-1" >
-          <div class="next arrow" (mouseover)="changeStyleIconNext($event)"  (mouseout)="changeStyleIconNext($event)" (click)="clickNext($event)">
-            <i [ngClass]="colorNext" class="icon icon-next" ></i>
+        <div class="col-md-1 text-center" >
+          <div class="next arrow" (click)="clickNext($event)">
+            <i class="icon icon-next icon-2x"></i>
           </div>
         </div>
       </div>
@@ -58,6 +59,9 @@
               </tr>  
             </thead>
             <tbody>
+              <tr>
+                <td class="dayweek" *ngFor="let item of createRange(7);let col=index">{{ locale.weekdayNames[calendar[i].calendar[0][col].day()] }}</td>
+              </tr>
               <tr *ngFor="let item of createRange(6);let row=index">
                 <td *ngFor="let item of createRange(7);let col=index" [ngClass]="classes[i][row][col]" (click)="selectDate(calendar[i].calendar[row][col], classes[i][row][col])">
                   {{ calendar[i].calendar[row][col].date() }}
