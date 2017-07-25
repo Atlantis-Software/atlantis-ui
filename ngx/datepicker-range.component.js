@@ -1,4 +1,4 @@
-import { Component, ContentChildren, forwardRef, ElementRef, Inject, KeyValueDiffers, EventEmitter } from '@angular/core';
+import { Component, ContentChildren, forwardRef, ElementRef, Inject, KeyValueDiffers, EventEmitter , ChangeDetectorRef} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { language } from './locale.js';
 import { i18n } from './i18n.js';
@@ -7,14 +7,14 @@ const START  = 'start';
 const END = 'end'
 export default class datepickerComponent {
   
-  constructor (elementRef, differs) {
+  constructor (elementRef, differs, changeDetectorRef) {
     this.startChange = new EventEmitter();
     this.endChange = new EventEmitter();
     this.elementRef = elementRef;
     this.language = language;
     this.differ = differs.find([]).create(null);
     this.i18n = i18n;
-    this.show = false;
+    this.visible = false;
     this.modalOptions = {
       size : "small",
       fade : true, 
@@ -26,6 +26,7 @@ export default class datepickerComponent {
     }
     this.arrayRows = this.createRange(6);
     this.arrayCols = this.createRange(7);
+    this.cdr = changeDetectorRef;
   }
 
   static get annotations() {
@@ -109,12 +110,11 @@ export default class datepickerComponent {
         }
 
         //highlight the currently selected end date
-        if (calendar[row][col].format('YYYY-MM-DD') == moment(this.end).format('YYYY-MM-DD') && this.calendar[calendarNumber].month() == moment(this.end).month()
-        && !this.notActiveDateEnd) {
+        if (calendar[row][col].format('YYYY-MM-DD') == moment(this.end).format('YYYY-MM-DD') && this.calendar[calendarNumber].month() == moment(this.end).month()) {
           this.classes[calendarNumber][row][col].push('active', 'end-date');
         }
 
-        if (!this.notActiveDateEnd && calendar[row][col].isAfter(moment(this.start))
+        if (calendar[row][col].isAfter(moment(this.start))
         && calendar[row][col].isBefore(moment(this.end)) && this.classes[calendarNumber][row][col].indexOf("off") == -1) {
           this.classes[calendarNumber][row][col].push('in-range');
         }
@@ -168,8 +168,8 @@ export default class datepickerComponent {
       this.startDate = moment(this.start); 
     } else {
       // without default value, it's today
-      this.startDate = moment().startOf('day');  
-      // this.predefinedDate = "toDay";
+      this.startDate = moment();
+      this.start = this.startDate.format('YYYY-MM-DD');  
     }
 
     if (this.end) {
@@ -177,9 +177,8 @@ export default class datepickerComponent {
       this.endDate = moment(this.end); 
     } else {
       // without default value, it's today
-      this.endDate = moment().endOf('day'); 
-      this.end = moment().endOf('day'); 
-      //this.predefinedDate = "toDay";
+      this.endDate = moment();
+      this.end = this.endDate.format('YYYY-MM-DD');  
     }
     //Locales used by moment
     this.locale= {                              
@@ -188,11 +187,7 @@ export default class datepickerComponent {
       monthNames: moment.monthsShort(),
       weekdayNames: moment.weekdaysMin(),
       firstDay: moment.localeData().firstDayOfWeek(),
-      separator: '-', 
-      week : {
-        dow : 0, // Monday is the first day of the week.
-        doy : 4  // The week that contains Jan 4th is the first week of the year.
-      }
+      separator: '-'
     };
 
     this.calendar = [];
@@ -254,7 +249,7 @@ export default class datepickerComponent {
 
   // open modal
   open(input) {
-    this.show = true;
+    this.visible = true;
     if (input === "start") {
       this.focus = START;
     } else {
@@ -264,7 +259,7 @@ export default class datepickerComponent {
 
   // close modal
   close() {
-    this.show = false;
+    this.visible = false;
   }
 
   selectInputDateStart() {
@@ -273,6 +268,11 @@ export default class datepickerComponent {
 
   selectInputDateEnd() {
    this.focus = END;
+  }
+
+  // if not error on keypress event
+  ngAfterViewChecked(){
+    this.cdr.detectChanges();
   }
 
   // on change value selectpicker predefined date
@@ -349,6 +349,12 @@ export default class datepickerComponent {
     this.refreshCalendar()
   }
 
+  closeAfterCheck() {
+    if (!this.hasErrorEnd) {
+      this.close();
+    }
+  }
+
   setStart(event){
     if(moment(event).isValid()) {
       if (moment(event).isBefore(moment(this.end))) {
@@ -358,6 +364,7 @@ export default class datepickerComponent {
         this.hasErrorEnd = true;
         this.modalHeaderOptions.close = false;
       }
+
       this.start = event;
       this.startDate = moment(event);
       // emit change value on startChange
@@ -372,7 +379,6 @@ export default class datepickerComponent {
       }
       this.refreshCalendar();
       this.refreshTextDateStart();
- 
     }
   }
 
@@ -388,7 +394,6 @@ export default class datepickerComponent {
         this.endChange.emit(this.end);
         this.refreshCalendar();
         this.refreshTextDateEnd();
-        this.close();
       } else {
         this.hasErrorEnd = true;
         this.modalHeaderOptions.close = false;
@@ -397,9 +402,13 @@ export default class datepickerComponent {
 
   }
 
+  focusEnd(event, input){
+    this.focus = END;
+    input.focus();
+  }
+
   // on select value date
   selectDate(date, style){
-    this.notActiveDateEnd = false;
     var self = this;
     this.predefinedDate = null;
     // if a date disabled return
@@ -422,7 +431,6 @@ export default class datepickerComponent {
   }
 
   selectDateStart(date, style) {
-    this.notActiveDateEnd = true;
     var elementsActive = this.elementRef.nativeElement.querySelectorAll('.active');
     Array.prototype.forEach.call( elementsActive, function( node ) {
       node.classList.remove('active');
@@ -449,4 +457,4 @@ export default class datepickerComponent {
   }
 }
 
-datepickerComponent.parameters = [ElementRef, KeyValueDiffers];
+datepickerComponent.parameters = [ElementRef, KeyValueDiffers, ChangeDetectorRef];

@@ -5,7 +5,7 @@
 </div>
 
 <input  type="date" class="form-control" [ngModel]="val" (click)="open()"/>
-<modal idModal="test" [options]="modalOptions" [(ngModel)]="show">
+<modal idModal="test" [options]="modalOptions" [(show)]="visible">
   <modal-header [options]="modalHeaderOptions">
     <div *ngIf="!modalHeaderOptions.close" class="row withoutClose">
     </div>
@@ -34,13 +34,13 @@
         <div class="form-group" [ngClass]="{'has-error': hasErrorStart }">
           <label class="control-label" for="inputSuccess1">De</label>
           <input type="date" class="form-control input-md" [ngModel]="start" (ngModelChange)="setStart($event)" (focus)="selectInputDateStart()"
-          (keyup.enter)="close()" [ngClass]="{'active': (focus === 'start') }">
+          [ngClass]="{'active': (focus === 'start') }" (keyup.tab)="focusEnd($event, inputend)" (keyup.enter)="closeAfterCheck()" >
         </div>
       </div>    
       <div class="col-md-3">
         <div class="form-group" [ngClass]="{'has-error': hasErrorEnd }">
           <label class="control-label" for="inputSuccess1">à</label>
-          <input type="date" class="form-control input-md" [ngModel]="end" (ngModelChange)="setEnd($event)" (keyup.enter)="close()" 
+          <input #inputend type="date" class="form-control input-md" [ngModel]="end" (ngModelChange)="setEnd($event)" (keyup.enter)="closeAfterCheck()" 
           (focus)="selectInputDateEnd()" [ngClass]="{'active': (focus === 'end')}">
         </div>
       </div>
