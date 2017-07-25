@@ -97,6 +97,9 @@
 @icon-font-name:          "fontawesome-webfont";
 //** Element ID within SVG icon file.
 @icon-font-svg-id:        "fontawesomeregular";
+@icon-color:               @primary;
+@icon-hover-color:         @secondary;
+@icon-disabled-color:      @disabled;
 
 
 //== Components
@@ -230,7 +233,10 @@
 @input-border-radius-small:      @border-radius-small;
 
 //** Border color for inputs on focus
+@input-border-default:           @gray-base;
 @input-border-focus:             @primary;
+
+@input-border-error:             @error;
 
 //** Placeholder text color
 @input-color-placeholder:        @disabled;
@@ -270,22 +276,27 @@
 //## Datepicker container and contents.
 
 //** background-color
-@datepicker-bg:                  @primary;
+@datepicker-bg:                  @background;
+@datepicker-border-color:        @background;
 //** hover
-@datepicker-hover-bg:            @primary;
+@datepicker-hover-bg:            @secondary;
 @datepicker-hover-color:         @primary-text-color;
 //** selected between active day
-@datepicker-in-range-bg:         #ebf4f8;
+@datepicker-in-range-bg:         lighten(@primary, 50%);
 @datepicker-in-range-color:      #000;
 //** selected day
 @datepicker-active-bg:           @primary;
 @datepicker-active-color:        @primary-text-color;
 //** the begin and end day of every month in other month
-@datepicker-off-bg:              @disabled;
+@datepicker-off-bg:              @background;
 @datepicker-off-color:           @disabled-text-color;
 //** today date
 @datepicker-today-bg:            #357ebd;
 @datepicker-today-color:         #fff;
+@datepicker-today-border-color:  @secondary;
+// arrow prev and next
+@datepicker-arrow-color:        @primary;
+@datepicker-arrow-hover-color:  @secondary;
 
 //== Dropdowns
 //
