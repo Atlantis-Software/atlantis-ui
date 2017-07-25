@@ -19,6 +19,8 @@ export default  class DatepickerAngularComponent {
 
     this.Display = "Example";
 
+    this.start1 = "2017-05-01";
+    this.end1 = "2017-05-22";
     this.start2 = "2017-05-01";
     this.end2 = "2017-05-22";
     this.start4 = "2017-05-01";
