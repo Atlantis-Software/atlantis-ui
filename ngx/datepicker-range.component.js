@@ -12,7 +12,6 @@ export default class datepickerComponent {
     this.endChange = new EventEmitter();
     this.elementRef = elementRef;
     this.language = language;
-    //this.language = "en";
     this.differ = differs.find([]).create(null);
     this.i18n = i18n;
     this.show = false;
@@ -25,7 +24,6 @@ export default class datepickerComponent {
     this.modalHeaderOptions = {
       close : true
     }
-
     this.arrayRows = this.createRange(6);
     this.arrayCols = this.createRange(7);
   }
@@ -50,8 +48,8 @@ export default class datepickerComponent {
     var daysInMonth = moment([year, month]).daysInMonth();
     var firstDay = moment([year, month, 1]);
     var lastDay = moment([year, month, daysInMonth]);
-    var lastMonth = moment(firstDay).subtract(1, 'month').month();
-    var lastYear = moment(firstDay).subtract(1, 'month').year();
+    var lastMonth = moment(firstDay).subtract(1, 'months').month();
+    var lastYear = moment(firstDay).subtract(1, 'months').year();
     var daysInLastMonth = moment([lastYear, lastMonth]).daysInMonth();
     var dayOfWeek = firstDay.day();
      
@@ -66,15 +64,20 @@ export default class datepickerComponent {
     }
     //populate the calendar with date objects
     var startDay = daysInLastMonth - dayOfWeek + this.locale.firstDay + 1;
-    if (startDay > daysInLastMonth) {
-      startDay -= 7;
-    }
-
+  
     if (dayOfWeek == this.locale.firstDay) {
       startDay = daysInLastMonth - 6;
     }
-
+    // if not invalid date
+    if (startDay > daysInLastMonth) {
+      startDay -= 7;
+    }
     var curDate = moment([lastYear, lastMonth, startDay, 12]);
+
+    // if a full week in the last month, one week ahead 
+    if (startDay + 6 <= daysInLastMonth) {
+      curDate.add(7, 'days');
+    }
 
     var col, row;
 
@@ -83,7 +86,6 @@ export default class datepickerComponent {
     for (var row = 0; row < 6; row++) {
       this.classes[calendarNumber][row] = [];     
       for (var col = 0; col < 7; col++) {
-        curDate = moment(curDate).add(24, 'hour');
         calendar[row][col] = curDate.clone()
         this.calendar[calendarNumber].calendar = calendar;
         // class for each date 
@@ -102,7 +104,6 @@ export default class datepickerComponent {
           this.classes[calendarNumber][row][col].push('off');
         }
         //highlight the currently selected start date
-        console.log("start", this.start);
         if ( calendar[row][col].format('YYYY-MM-DD') == moment(this.start).format('YYYY-MM-DD') && this.calendar[calendarNumber].month() == moment(this.start).month()) {
           this.classes[calendarNumber][row][col].push('active', 'start-date');
         }
@@ -120,6 +121,7 @@ export default class datepickerComponent {
         
         // all dates are available
         this.classes[calendarNumber][row][col].push('available');
+        curDate = moment(curDate).add(24, 'hour');
       }
     }
   }
@@ -135,8 +137,7 @@ export default class datepickerComponent {
   // click outsite component to close select
   handleClick(event){
     var clickedComponent = event.target;
-    console.log("clickedComponent", clickedComponent);
-    console.log("this.elementRef.nativeElement", this.elementRef.nativeElement);
+
     var inside = false;
     do {
       if (clickedComponent === this.elementRef.nativeElement) {
@@ -145,10 +146,8 @@ export default class datepickerComponent {
       clickedComponent = clickedComponent.parentNode;
     } while (clickedComponent);
     if(!inside){
-      console.log("close");
       this.close();
     }
-    console.log("inside", inside);
   }
 
   // on load page
@@ -158,9 +157,6 @@ export default class datepickerComponent {
       this.numberOfMonths = 3;
     }
     this.arrayMonths = this.createRange(this.numberOfMonths)
-    // color arrows
-    this.colorPrev = "blue";
-    this.colorNext = "blue";
     this.classes = [];
 
     //Defines the language used by moment using users language
@@ -188,9 +184,15 @@ export default class datepickerComponent {
       format: moment.localeData().longDateFormat('L'),
       daysOfWeek: moment.weekdaysMin(),
       monthNames: moment.monthsShort(),
+      weekdayNames: moment.weekdaysMin(),
       firstDay: moment.localeData().firstDayOfWeek(),
-      separator: '-'
+      separator: '-', 
+      week : {
+        dow : 0, // Monday is the first day of the week.
+        doy : 4  // The week that contains Jan 4th is the first week of the year.
+      }
     };
+
     this.calendar = [];
     this.calendar[0] = {};
     this.calendar[0] = this.startDate.clone().date(2);
@@ -425,7 +427,6 @@ export default class datepickerComponent {
     this.startDate = date.format('YYYY-MM-DD');
     this.refreshTextDateStart();
     this.focus = END;
-    console.log("this.focus ", this.focus );
     this.refreshCalendar();
   }
 

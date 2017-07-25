@@ -16,7 +16,7 @@
         <span>{{ afterDayDateStart }}</span>
       </div>
       <div class="col-md-2 text-center">
-        <i class="icon icon-next icon-3 icon-disabled" ></i>
+        <i class="icon icon-next icon-4x icon-disabled" ></i>
       </div>  
       <div class="col-md-5 text-center date-letter">
         <span>{{ beforeDayDateEnd }}</span>
@@ -27,11 +27,10 @@
     <div class="calendar-bg row" data-date-type="single">
       <div class="col-md-1 text-center">
         <div class="prev arrow" (click)="clickPrev($event)" >
-          <i [ngClass]="colorPrev" class="icon icon-previous icon-3"></i>
+          <i class="icon icon-previous icon-2x"></i>
         </div>
       </div>
       <div class="col-md-3">
-        {{ focus }}
         <div class="form-group" [ngClass]="{'has-error': hasErrorStart }">
           <label class="control-label" for="inputSuccess1">De</label>
           <input type="date" class="form-control input-md" [ngModel]="start" (ngModelChange)="setStart($event)" (focus)="selectInputDateStart()"
@@ -57,7 +56,7 @@
       </div>  
       <div class="col-md-1 text-center" >
         <div class="next arrow" (click)="clickNext($event)">
-          <i [ngClass]="colorNext" class="icon icon-next icon-3" ></i>
+          <i class="icon icon-next icon-2x" ></i>
         </div>
       </div>
     </div>
@@ -75,6 +74,9 @@
               </tr>  
             </thead>
             <tbody>
+              <tr>
+                <td class="dayweek" *ngFor="let item of createRange(7);let col=index">{{ locale.weekdayNames[calendar[i].calendar[0][col].day()] }}</td>
+              </tr>   
               <tr *ngFor="let itemRow of arrayRows;let row = index;">
                 <td *ngFor="let itemCol of arrayCols;let col = index;" (click)="selectDate(calendar[i].calendar[row][col], classes[i][row][col])" [ngClass]="classes[i][row][col]">
                    {{ calendar[i].calendar[row][col].date() }}
@@ -89,5 +91,3 @@
   <modal-footer>
   </modal-footer>
 </modal>
-
-    
