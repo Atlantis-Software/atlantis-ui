@@ -1,5 +1,4 @@
-import { Component, ElementRef, Inject, forwardRef} from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms'; 
+import { Component, ElementRef, Inject, forwardRef, EventEmitter} from '@angular/core';
 
 export default class modalComponent {
 	static get annotations() {
@@ -8,61 +7,36 @@ export default class modalComponent {
         selector: 'modal',
         template: `
 					<div class="modal" [id]="idModal" [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}" [ngClass]="{'in': visibleAnimate}">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog" role="document" *ngIf="visible">
               <div class="modal-content">
                 <ng-content></ng-content>
               </div>
 						</div>
-				  </div>`,
-        inputs: ['options', "idModal"], 
-         providers: [{
-          provide: NG_VALUE_ACCESSOR,
-          useExisting: forwardRef(() => modalComponent),
-          multi: true
-        }]
+				  </div>
+          <div *ngIf="visible" class="overlay" (click)="close()"></div>
+          `,
+        inputs: ['options', "idModal", "show"], 
+        outputs: ['showChange'], 
+        // need click outsite component
+        host: {
+          '(document:click)': 'handleClick($event)',
+        }
         
 	  	})
 		];
 	}
 
   constructor(elementRef) {
+    this.showChange = new EventEmitter();
     this.elementRef = elementRef;
-    this.onModelTouched = function() {};
-    this.onModelChange = function() {};
   }
 
-  get value() {
-    return this.val;
-  }
-  set value(val) {
-    if (val !== this.val) {
-      this.val = val;
-      this.onModelChange(val);
-      if (this.val == true) {
-        this.open();
-      } else {
-        this.close();
-      }
+
+    // click outsite component to close select
+  handleClick(event){
+    if (event.target == this.elementRef.nativeElement.getElementsByClassName("modal")[0]) {
+      this.show = false;
     }
-  }
-
-  writeValue(val) {
-    if (val !== this.val) {
-      this.val = val;
-      this.onModelChange(val);
-      if (this.val == true) {
-        this.open();
-      } else {
-        this.close();
-      }
-    }
-  }
-
-  registerOnChange(fn) {
-    this.onModelChange = fn;
-  }
-  registerOnTouched(fn) {
-    this.onModelTouched = fn;
   }
 
 	ngOnDestroy() {
@@ -72,6 +46,20 @@ export default class modalComponent {
 		}
 	}
 
+  get show() {
+    return this.model;
+  }
+
+  set show(val) {
+    this.model = val;
+    if (this.model) {
+      this.open();
+    } else {
+      this.close();
+    }
+    this.showChange.emit(this.model);
+  }
+
   open() {
     this.visible = true;
     setTimeout(() => this.visibleAnimate = true, 100);
@@ -80,8 +68,6 @@ export default class modalComponent {
   close() {
     this.visibleAnimate = false;
     setTimeout(() => this.visible = false, 300);
-    this.val = false;
-    this.onModelChange(this.val);
   }
 
   ngOnInit() {;
@@ -114,10 +100,10 @@ export default class modalComponent {
       switch(this.options.size) {
         case "small" :
 					this.modal.getElementsByClassName("modal-dialog")[0].classList.add("modal-sm");
-        break;
+          break;
         case "large" :
 					this.modal.getElementsByClassName("modal-dialog")[0].classList.add("modal-lg");
-        break;
+          break;
       }
     }
 
