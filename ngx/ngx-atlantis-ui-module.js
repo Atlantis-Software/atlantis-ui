@@ -18,6 +18,7 @@ import modalComponent from './modal.component.js';
 import modalHeaderComponent from './modal-header.component.js';
 import modalBodyComponent from './modal-body.component.js';
 import modalFooterComponent from './modal-footer.component.js';
+import backdropComponent from './backdrop.component.js';
 
 import carouselComponent from './carousel.component.js';
 import carouselItemComponent from './carousel-item.component.js';
@@ -34,7 +35,8 @@ export var ngxAtlUiModule = function() {};
 ngxAtlUiModule.annotations = [
   new NgModule({
     imports: [CommonModule, FormsModule],
-    declarations: [pagination, datepickerComponent, datepickerrangeComponent, atlModelDirective, selectpickerComponent, selectpickeroptionComponent, slidepickercomponent, slidepickeroptioncomponent, focusDirective, modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent, carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent],
-    exports : [pagination, datepickerComponent, datepickerrangeComponent, atlModelDirective, selectpickerComponent, selectpickeroptionComponent, slidepickercomponent, slidepickeroptioncomponent, focusDirective, modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent, carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent]
+    declarations: [pagination, datepickerComponent, datepickerrangeComponent, atlModelDirective, selectpickerComponent, selectpickeroptionComponent, slidepickercomponent, slidepickeroptioncomponent, focusDirective, modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent, carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent, backdropComponent],
+    exports : [pagination, datepickerComponent, datepickerrangeComponent, atlModelDirective, selectpickerComponent, selectpickeroptionComponent, slidepickercomponent, slidepickeroptioncomponent, focusDirective, modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent, carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent, backdropComponent],
+    entryComponents : [backdropComponent]
   })
 ];
