@@ -15,7 +15,7 @@ export default class modalHeaderComponent {
           </div>
 	        <ng-content></ng-content>
 				</div>`,
-        inputs: ['title', 'options']
+        inputs: ['options']
 	  	})
 		];
 	}
@@ -26,6 +26,14 @@ export default class modalHeaderComponent {
 
 
   ngOnInit() {
+    if (typeof this.options === "undefined" || this.options === "" ){
+      this.options = {};
+    }
+
+     if (typeof this.options.close === "undefined" || this.options.close === "") {
+      this.options.close = true;
+    }
+
   }
 
   close(){
