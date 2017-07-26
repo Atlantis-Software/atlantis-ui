@@ -11,40 +11,87 @@ export default  class ModalAngularComponent {
   constructor(){
 
     this.modalHtml = `
-    <modal id="exampleModal" options="object">
-
-      <modal-header title="Test" options="object">
-
+    <modal idModal="test" [options]="modalOptionsLeft" [(show)]="showLeft">
+      <modal-header [options]="modalHeaderOptions">
+        <h4 class="modal-title">Modal Header</h4>
       </modal-header>
-
       <modal-body>
-        <p>One fine body&hellip;</p>
+        <p>Some text in the modal.</p>
       </modal-body>
-
       <modal-footer>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeLeft()">Close</button>
       </modal-footer>
-
     </modal>`
 
-    this.modalOptions = {
-      size : "small",
-      fade : true
+    this.modalVar = `
+    this.modalOptionsLeft = {
+      fade : true, 
+      orientation:"left"
     }
 
     this.modalHeaderOptions = {
       close : true
     }
-    this.show = false;
+
+    this.showLeft = false;
+
+    openLeft() {
+      this.showLeft = true;
+    }
+    closeLeft() {
+      this.showLeft = false;
+    }`
+
+    this.modalOptionsRight = {
+      fade : false, 
+      orientation:"right", 
+      backdrop: false
+    }
+
+    this.modalOptionsTop = {
+      fade : false, 
+      orientation:"top"
+    }
+
+    this.modalOptionsBottom = {
+      fade : true, 
+      orientation:"bottom", 
+      backdrop: true
+    }
+    this.showLeft = false;
+    this.showRight = false;
+    this.showTop = false;
+    this.showBottom = false;
 
     this.Display = "Example";
   }
 
-  openModal() {
-    this.show = true;
+  openLeft() {
+    this.showLeft = true;
   }
-  close() {
-    this.show = false;
+  closeLeft() {
+    this.showLeft = false;
+  }
+
+  openRight() {
+    this.showRight = true;
+  }
+  closeRight() {
+    this.showRight = false;
+  }
+
+  openTop() {
+    this.showTop = true;
+  }
+  closeTop() {
+    this.showTop = false;
+  }
+
+  openBottom() {
+    this.showBottom = true;
+  }
+  closeBottom() {
+    this.showBottom = false;
   }
 }
 

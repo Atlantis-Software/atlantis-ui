@@ -9,50 +9,232 @@
         <span class="icon-bar"></span>
       </button>
     </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a (click)="Display = 'Example'">
-            Example
-          </a>
-        </li>
-        <li>
-          <a (click)="Display = 'Api'">
-            Api
-          </a>
-        </li>
-      </ul>
-    </div>
   </div>
 </nav>
 
 <div [ngSwitch]="Display">
 
-  <div class="container" *ngSwitchCase="'Example'">
-
+  <div class="container">
+    <h4>
+      Modal
+    </h4>
     <div class="row">
+      <div class="col-md-3" >
+        <button type="button" class="btn btn-default btn-sm"  (click)="openLeft()">
+          orientation="left"</br> 
+          fade=true</br>
+          backdrop=true
+        </button>
+        <modal idModal="test" [options]="modalOptionsLeft" [(show)]="showLeft">
+          <modal-header [options]="modalHeaderOptions">
+            <h4 class="modal-title">Modal Header</h4>
+          </modal-header>
+          <modal-body>
+            <p>Some text in the modal.</p>
+          </modal-body>
+          <modal-footer>
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeLeft()">Close</button>
+          </modal-footer>
+        </modal>
+      </div>
+       <div class="col-md-3" >
+        <button type="button" class="btn btn-default btn-sm" (click)="openRight()">
+          orientation="right"</br>
+          fade=false</br> 
+          backdrop=false
+        </button>
+        <modal idModal="test" [options]="modalOptionsRight" [(show)]="showRight">
+          <modal-header [options]="modalHeaderOptions">
+            <h4 class="modal-title">Modal Header</h4>
+          </modal-header>
+          <modal-body>
+            <p>Some text in the modal.</p>
+          </modal-body>
+          <modal-footer>
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeRight()">Close</button>
+          </modal-footer>
+        </modal>
+      </div>
+      <div class="col-md-3" >
+        <button type="button" class="btn btn-default btn-sm"  (click)="openTop()">
+          orientation="top"</br>
+          fade=false</br>
+          backdrop=true
+        </button>
+        <modal idModal="test" [options]="modalOptionsTop" [(show)]="showTop">
+          <modal-header [options]="modalHeaderOptions">
+            <h4 class="modal-title">Modal Header</h4>
+          </modal-header>
+          <modal-body>
+            <p>Some text in the modal.</p>
+          </modal-body>
+          <modal-footer>
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeTop()">Close</button>
+          </modal-footer>
+        </modal>
+      </div>
 
-      <button type="button" class="btn btn-primary btn-lg" (click)="openModal()">
-        Launch demo modal
-      </button>
-      <modal idModal="test" [options]="modalOptions" [(ngModel)]="show">
-
-        <modal-header title="Test" [options]="modalHeaderOptions">
-
-        </modal-header>
-
-        <modal-body>
-          ...
-        </modal-body>
-
-        <modal-footer>
-          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="close()">Close</button>
-        </modal-footer>
-
-      </modal>
-
+      <div class="col-md-3" >
+        <button type="button" class="btn btn-default btn-sm" (click)="openBottom()">
+          orientation = bottom</br>
+          fade=true</br>
+          backdrop=true
+        </button>
+        <modal idModal="test" [options]="modalOptionsBottom" [(show)]="showBottom">
+          <modal-header [options]="modalHeaderOptions">
+            <h4 class="modal-title">Modal Header</h4>
+          </modal-header>
+          <modal-body>
+            <p>Some text in the modal.</p>
+          </modal-body>
+          <modal-footer>
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeBottom()">Close</button>
+          </modal-footer>
+        </modal>
+      </div>
     </div>
+    <h3>
+      For a modal use :
+    </h3>
+    <pre>
+      {{ modalHtml }}
+    </pre>
+    <h3>
+      with variables :
+    </h3>
+    <pre>
+      {{ modalVar }}
+    </pre>
+    <blockquote>
+      <p>
+        ShowLeft is a boolean, is used to open (true) or close (false) the modal.</br>
+        Test is use for the id modal, by default the value is modal + random number.</br>
+        ModalOptionsLeft is the options of the modal.</br>
+        ModalHeaderOptions is the options of the header modal.</br>
+      </p>
+    </blockquote>  
 
+    <h4>
+      modal options
+    </h4>
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>
+            Parameters
+          </th>
+          <th>
+            Type
+          </th>
+          <th>
+            Description
+          </th>
+          <th>
+            Value
+          </th>
+          <th>
+            Default value
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            orientation
+          </td>
+          <td>
+            String
+          </td>
+          <td>
+            Position of the modal 
+          </td>
+          <td>
+            left, bottom, right, top
+          </td>
+          <td>
+            left
+          </td>
+        </tr>
+        <tr>
+          <td>
+            fade
+          </td>
+          <td>
+            boolean
+          </td>
+          <td>
+            Define if we use animation or not
+          </td>
+          <td>
+            true, false
+          </td>
+          <td>
+            true
+          </td>
+        </tr>
+        <tr>
+          <td>
+            backdrop
+          </td>
+          <td>
+            string
+          </td>
+          <td>
+            Define if the backdrop is present
+          </td>
+          <td>
+            true, false
+          </td>
+          <td>
+            true.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>
+      modal-header option
+    </h4>
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>
+            Parameters
+          </th>
+          <th>
+            Type
+          </th>
+          <th>
+            Description
+          </th>
+          <th>
+            Value
+          </th>
+          <th>
+            Default value
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            close
+          </td>
+          <td>
+            boolean
+          </td>
+          <td>
+            Define if the button close is present
+          </td>
+          <td>
+            true, false
+          </td>
+          <td>
+            true
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="container" *ngSwitchCase="'Api'">
@@ -84,7 +266,7 @@
             Value
           </th>
           <th>
-            Info
+            Default value
           </th>
         </tr>
       </thead>
