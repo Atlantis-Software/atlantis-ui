@@ -1,4 +1,6 @@
-import { Component, ElementRef, Inject, forwardRef, EventEmitter} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Injector, ComponentFactoryResolver, ApplicationRef} from '@angular/core';
+import backdropComponent from './backdrop.component.js'
+
 
 export default class modalComponent {
 	static get annotations() {
@@ -6,78 +8,112 @@ export default class modalComponent {
 			new Component({
         selector: 'modal',
         template: `
-					<div class="modal" [id]="idModal" [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}" [ngClass]="{'in': visibleAnimate}">
+					<div (click)="close($event)" class="modal" [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}" [ngClass]="{'in': visibleAnimate}">
             <div class="modal-dialog" role="document" *ngIf="visible">
               <div class="modal-content">
                 <ng-content></ng-content>
               </div>
 						</div>
 				  </div>
-          <div *ngIf="visible" class="overlay" (click)="close()"></div>
           `,
-        inputs: ['options', "idModal", "show"], 
-        outputs: ['showChange'], 
-        // need click outsite component
-        host: {
-          '(document:click)': 'handleClick($event)',
-        }
-        
+        inputs: ['options', "show"], 
+        outputs: ['showChange']
 	  	})
 		];
 	}
 
-  constructor(elementRef) {
+  constructor(elementRef, Injector, ComponentFactoryResolver, ApplicationRef) {
     this.showChange = new EventEmitter();
     this.elementRef = elementRef;
+    // need to create backdrop later 
+    this.injector = Injector;
+    this.applicationRef = ApplicationRef;
+    this.backdropFactory =  ComponentFactoryResolver.resolveComponentFactory(backdropComponent);
   }
-
-
-    // click outsite component to close select
-  handleClick(event){
-    if (event.target == this.elementRef.nativeElement.getElementsByClassName("modal")[0]) {
-      this.show = false;
-    }
-  }
-
-	ngOnDestroy() {
-		var modalBackdrop = document.getElementsByClassName("modal-backdrop");
-		if (modalBackdrop.length > 0) {
-			document.body.removeChild(modalBackdrop[0]);
-		}
-	}
 
   get show() {
     return this.model;
   }
 
   set show(val) {
-    this.model = val;
-    if (this.model) {
-      this.open();
-    } else {
+    if (val !== this.model) {
+      this.model = val;
+      if (this.model) {
+        this.open();
+      } else {
       this.close();
+      }
     }
-    this.showChange.emit(this.model);
   }
 
   open() {
+    if (this.options && this.options.backdrop) {
+      // create backdrop dynamically
+      this.backdropRef = this.backdropFactory.create(this.injector);
+      this.applicationRef.attachView(this.backdropRef.hostView);
+      document.querySelector('body').appendChild(this.backdropRef.location.nativeElement);
+      this.backdropRef.changeDetectorRef.detectChanges();
+    }
+
+
+    this.model = true;
+    this.showChange.emit(this.model);
+
     this.visible = true;
     setTimeout(() => this.visibleAnimate = true, 100);
+    
   }
 
-  close() {
+  close(event) {
+    // if click inside modal
+    if (event && event.target !== this.elementRef.nativeElement.getElementsByClassName("modal")[0]) {
+      return;
+    }
+    this.model = false;
+    this.showChange.emit(this.model);
+
     this.visibleAnimate = false;
+    if (this.options && this.options.backdrop && this.backdropRef) {
+      // delete the backdrop
+      this.backdropRef.destroy();  
+    }
     setTimeout(() => this.visible = false, 300);
   }
 
   ngOnInit() {;
-		if (this.idModal === "" || typeof this.idModal === "undefined"){
+
+    if (typeof this.idModal === "undefined" || this.idModal === "" ){
 			this.idModal = "modal" + Math.floor(Math.random() * (10000000000 - 0));
 		}
 
-		this.modal = this.elementRef.nativeElement.getElementsByClassName("modal")[0];
+    this.modal = this.elementRef.nativeElement.getElementsByClassName("modal")[0];
 
-    if (this.options.fade=== true) {
+     // options by default
+    if (typeof this.options === "undefined" || this.options === "" ){
+      this.options = {};
+    }
+
+    if (typeof this.options.size === "undefined" || this.options.size === "") {
+      this.options.size = "small";
+    }
+
+    if ( typeof this.options.orientation === "undefined" || this.options.orientation === "") {
+      this.options.orientation = "left";
+    }	
+
+    if (typeof this.options.orientation === "undefined" || this.options.fade === "")  {
+      this.options.fade = true;
+    }
+
+    if (typeof this.options.backdrop === "undefined" || this.options.backdrop === "" )  {
+      this.options.backdrop = true;
+    }
+
+    if (typeof this.options.fade === "undefined" || this.options.fade === "" )  {
+      this.options.fade = true;
+    }
+
+    if (this.options.fade === true) {
       this.modal.classList.add("fade");
     }
 
@@ -95,22 +131,7 @@ export default class modalComponent {
         this.modal.classList.add("modal-bottom");
         break;
     }
-
-    if (this.options.orientation === "" || typeof this.options.orientation === "undefined") {
-      switch(this.options.size) {
-        case "small" :
-					this.modal.getElementsByClassName("modal-dialog")[0].classList.add("modal-sm");
-          break;
-        case "large" :
-					this.modal.getElementsByClassName("modal-dialog")[0].classList.add("modal-lg");
-          break;
-      }
-    }
-
-		if (this.options.backdrop !== "true" && typeof this.options.backdrop !== "undefined") {
-			this.modal.setAttribute("data-backdrop", this.options.backdrop);
-		}
   }
 }
 
-modalComponent.parameters = [ElementRef];
+modalComponent.parameters = [ElementRef, Injector, ComponentFactoryResolver, ApplicationRef];
