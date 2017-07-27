@@ -10,6 +10,8 @@ export default  class ModalAngularComponent {
   }
   constructor(){
 
+    this.time = new Date();
+
     this.modalHtml = `
     <modal idModal="test" [options]="modalOptionsLeft" [(show)]="showLeft">
       <modal-header [options]="modalHeaderOptions">

@@ -56,11 +56,11 @@
     <div class="row">
       <div class="col-md-4">
         <label for="slidepicker2">Slidepicker with default value</label>
-        <slidepicker [(ngModel)]="slidepicker2" class="slidepicker-vertical" name="slidepicker2">
-          <slidepicker-option value="test1">test1</slidepicker-option>
-          <slidepicker-option value="test2">test2</slidepicker-option>
-          <slidepicker-option value="test3">test3</slidepicker-option>
-          <slidepicker-option value="test4">test4</slidepicker-option>
+        <slidepicker [(ngModel)]= "slidepicker2" class="slidepicker-vertical" name="slidepicker2">
+          <slidepicker-option *ngIf="show1" value="test1">test1</slidepicker-option>
+          <slidepicker-option *ngIf="show2" value="test2">test2</slidepicker-option>
+          <slidepicker-option *ngIf="show3" value="test3">test3</slidepicker-option>
+          <slidepicker-option *ngIf="show4" value="test4">test4</slidepicker-option>
         </slidepicker>
       </div>
       <div class="col-md-4">
@@ -73,14 +73,19 @@
           <button class="btn btn-block" (click)="changeBinding('slidepicker2', 'test2')">Select test2</button>
           <label for="ButtonA">Select test3</label>
           <button class="btn btn-block" (click)="changeBinding('slidepicker2', 'test3')">Select test3</button>
-
+          <label for="ButtonA">Toggle test2</label>
+          <button class="btn btn-block" (click)="toggle2()">toggle test2</button>
+          <label for="ButtonA">Toggle test4</label>
+          <button class="btn btn-block" (click)="toggle4()">toggle test4</button>
+          <label for="ButtonA">Toggle test1</label>
+          <button class="btn btn-block" (click)="toggle1()">toggle test1</button>
         </div>
       </div>
     </div>
     <h4>
       Different sizes :
     </h4>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-md-4">
         <slidepicker [(ngModel)]="slidepicker2" class="slidepicker-vertical slidepicker-sm">
           <slidepicker-option value="test1">test1</slidepicker-option>
@@ -105,7 +110,7 @@
           <slidepicker-option value="test4">test4</slidepicker-option>
         </slidepicker>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <div class="container" *ngSwitchCase="'Api'">

@@ -23,8 +23,17 @@ export default  class PopoverComponent {
     </script>
     `
 
+    this.time = new Date();
+    setInterval(()=>{
+      this.time = new Date();
+    },1000);
+
     this.Display = "Example";
   }
+
+  // time() {
+  //   return new Date().toString();
+  // }
 }
 
 

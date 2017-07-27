@@ -1,7 +1,4 @@
-import { Component, ContentChildren, ElementRef} from '@angular/core';
-// import accordionComponent from './accordion.component.js';
-// console.log(accordionComponent)
-
+import { Component, ElementRef, ChangeDetectorRef} from '@angular/core';
 
 export class accordionComponent {
 
@@ -18,9 +15,10 @@ export class accordionComponent {
       })
     ];
   }
-  constructor(elementRef) {
+  constructor(elementRef, ChangeDetectorRef) {
     this.elementRef = elementRef;
     this.panels = [];
+    this.cdr = ChangeDetectorRef
   }
 
   addPanel(panel) {
@@ -44,48 +42,31 @@ export class accordionComponent {
 
   ngAfterViewInit() {
     var self = this;
-    var panelsHTML = this.elementRef.nativeElement.getElementsByClassName("panel");
-
-    for (var i = 0; i < panelsHTML.length; i++) {
-      switch (this.options.style) {
-        case "default":
-          panelsHTML[i].classList.add("panel-default");
-          break;
-        case "primary":
-          panelsHTML[i].classList.add("panel-primary");
-          break;
-        case "success":
-          panelsHTML[i].classList.add("panel-success");
-          break;
-        case "info":
-          panelsHTML[i].classList.add("panel-info");
-          break;
-        case "warning":
-          panelsHTML[i].classList.add("panel-warning");
-          break;
-        case "danger":
-          panelsHTML[i].classList.add("panel-danger");
-          break;
-        default:
-          panelsHTML[i].classList.add("panel-default");
-      }
+    this.panelsHTML = this.elementRef.nativeElement.getElementsByClassName("panel");
+    this.style = this.elementRef.nativeElement.classList;
+    for (var i = 0; i < this.panelsHTML.length; i++) {
+      self.panelsHTML[i].classList.add("panel-default")
+      this.style.forEach( function(style){
+        self.panelsHTML[i].classList.add(style);
+      })
     }
 
 
     if (this.options.openDefault !== "" && typeof this.options.openDefault === "number" && this.options.openDefault >= 0) {
-      if (this.options.openDefault === panelsHTML.length) {
-        this.options.openDefault = panelsHTML.length - 1;
-      } else if (this.options.openDefault > panelsHTML.length) {
+      if (this.options.openDefault === this.panelsHTML.length) {
+        this.options.openDefault = this.panelsHTML.length - 1;
+      } else if (this.options.openDefault > this.panelsHTML.length) {
         this.options.openDefault = 0;
       }
       this.panels[this.options.openDefault].isOpen = true;
     }
+    this.cdr.detectChanges();
 
   }
 
 }
 
-accordionComponent.parameters = [ElementRef];
+accordionComponent.parameters = [ElementRef, ChangeDetectorRef];
 
 export class accordionPanelComponent {
   static get annotations() {
@@ -112,10 +93,11 @@ export class accordionPanelComponent {
     ];
   }
 
-  constructor(elementRef, accordion) {
+  constructor(elementRef, accordion, ChangeDetectorRef) {
     this.accordion = accordion;
     this.accordion.addPanel(this);
     this._isOpen = false;
+    this.cdr = ChangeDetectorRef
   }
 
   ngOnDestroy() {
@@ -129,7 +111,8 @@ export class accordionPanelComponent {
 
   set isOpen(value) {
     this._isOpen = value;
-    if(value){
+    this.cdr.detectChanges()
+    if (value) {
       this.accordion.closeOthers(this);
     }
   }
@@ -139,4 +122,4 @@ export class accordionPanelComponent {
   }
 }
 
-accordionPanelComponent.parameters = [ElementRef, accordionComponent];
+accordionPanelComponent.parameters = [ElementRef, accordionComponent, ChangeDetectorRef];

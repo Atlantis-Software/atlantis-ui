@@ -232,7 +232,8 @@
 .navbar-nav {
   margin: (@navbar-padding-vertical / 2) -@navbar-padding-horizontal;
 
-  > li > a {
+  > li > a,
+  > li > dropdown > a {
     padding-top:    10px;
     padding-bottom: 10px;
     line-height: @line-height-computed;
@@ -252,7 +253,8 @@
       .dropdown-header {
         padding: 5px 15px 5px 25px;
       }
-      > li > a {
+      > li > a,
+      > li > dropdown > a {
         line-height: @line-height-computed;
         &:hover,
         &:focus {
@@ -324,12 +326,12 @@
 // Dropdown menus
 
 // Menu position and menu carets
-.navbar-nav > li > .dropdown-menu {
+.navbar-nav > li > dropdown > .dropdown-menu {
   margin-top: 0;
   .border-top-radius(0);
 }
 // Menu position and menu caret support for dropups via extra dropup class
-.navbar-fixed-bottom .navbar-nav > li > .dropdown-menu {
+.navbar-fixed-bottom .navbar-nav > li > dropdown > .dropdown-menu {
   margin-bottom: 0;
   .border-top-radius(@navbar-border-radius);
   .border-bottom-radius(0);
@@ -410,7 +412,8 @@
   }
 
   .navbar-nav {
-    > li > a {
+    > li > a,
+    > li > dropdown > a {
       color: @navbar-default-link-color;
       padding: 15px 15px;
       z-index: 0;
@@ -438,7 +441,8 @@
         }
       }
     }
-    > .active > a {
+    > .active > a,
+    > .active > dropdown > a {
       &,
       &:hover,
       &:focus {
@@ -448,7 +452,8 @@
         }
       }
     }
-    > .disabled > a {
+    > .disabled > a,
+    > .disabled > dropdown > a {
       &,
       &:hover,
       &:focus {
@@ -479,7 +484,7 @@
   // Dropdown menu items
   .navbar-nav {
     // Remove background color from open dropdown
-    > .open > a {
+    > .open > dropdown > a {
       &,
       &:hover,
       &:focus {
@@ -580,7 +585,8 @@
   }
 
   .navbar-nav {
-    > li > a {
+    > li > a,
+    > li > dropdown > a {
       color: @navbar-inverse-link-color;
 
       &:hover,
@@ -591,7 +597,8 @@
         }
       }
     }
-    > .active > a {
+    > .active > a,
+    > .active > dropdown > a {
       &,
       &:hover,
       &:focus {
@@ -601,7 +608,8 @@
         }
       }
     }
-    > .disabled > a {
+    > .disabled > a,
+    > .disabled > dropdown > a {
       &,
       &:hover,
       &:focus {
@@ -632,7 +640,8 @@
 
   // Dropdowns
   .navbar-nav {
-    > .open > a {
+    > .open > a,
+    > .open > dropdown > a {
       &,
       &:hover,
       &:focus {
@@ -652,7 +661,8 @@
         .divider {
           background-color: @navbar-inverse-border;
         }
-        > li > a {
+        > li > a,
+        > li > dropdown > a {
           color: @navbar-inverse-link-color;
           &:hover,
           &:focus {
@@ -662,7 +672,8 @@
             }
           }
         }
-        > .active > a {
+        > .active > a,
+        > .active > dropdown > a {
           &,
           &:hover,
           &:focus {
@@ -672,7 +683,8 @@
             }
           }
         }
-        > .disabled > a {
+        > .disabled > a,
+        > .disabled > dropdown > a {
           &,
           &:hover,
           &:focus {

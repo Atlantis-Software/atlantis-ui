@@ -1,10 +1,10 @@
-.slidepicker {
+slidepicker {
   position: relative;
-
+  display: block;
   //slidepicker vertical
   .slidepicker-track {
-    background: #fbfbfb;
-    border: 1px solid #ddd;
+    background: @slidepicker-track-bg;
+    border: 1px solid @slidepicker-track-border-color;
     border-radius: 4px;
     float: left;
     height: 8px;
@@ -16,8 +16,7 @@
       display: block;
       position: absolute;
       top: -5px;
-      left : 33px;
-      background: blue;
+      background: @slidepicker-handle-bg;
       cursor: pointer;
       height: 25px;
       margin: -4px 0 0 -6px;
@@ -29,7 +28,7 @@
     padding : 0px;
     margin-top : 20px; //Position label in bottom tracker
 
-    li{
+    slidepicker-option{
 
       float : left;
       display: block;
@@ -37,7 +36,7 @@
       margin-right: 28px;
       &.active {
         a{
-          color: blue;
+          color: @slidepicker-a-active;
           font-weight: bold;
         }
       }
@@ -45,7 +44,7 @@
         display : block;
         clear : both;
         font-weight: normal;
-        color : #000;
+        color : @slidepicker-a;
         white-space: nowrap;
         cursor: pointer;
         text-decoration: none;
@@ -64,7 +63,6 @@
     .slidepicker-handle {
         //Position of handler, center with tracker
         left: -4px;
-        top: 33px;
         height: 10px;
         width: 25px;
     }
@@ -74,32 +72,32 @@
 
       //adapt li with different input sizing
       //use padding for no collapsing margins
-      li {
+      slidepicker-option {
         float: none;
         margin-left : 0px;
         margin-right: 0px;
         padding-top: 27px;
         padding-bottom: 27px;
       }
-      &.sm li{
+      &.sm slidepicker-option{
         padding-top: 25px;
         padding-bottom: 25px;
       }
-      &.lg li{
+      &.lg slidepicker-option{
         padding-top : 33px;
         padding-bottom : 33px;
       }
     }
 
     &.slidepicker-sm {
-      li {
+      slidepicker-option {
         padding-top: 25px;
         padding-bottom: 25px;
       }
     }
 
     &.slidepicker-lg {
-      li {
+      slidepicker-option {
         padding-top : 33px;
         padding-bottom : 33px;
       }

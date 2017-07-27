@@ -39,7 +39,7 @@ export default  class SelectpickerAngularComponent {
     this.selectpickerOptionWithoutValueHtml = `
     var NoneValue = "none value";
     <selectpicker-option> {{ NoneValue }} </selectpicker-option>`;
-  
+
 
     this.exempleButtonArray = `
     var arrayOneTwoThree = ["one", "two", "three"];
@@ -48,7 +48,7 @@ export default  class SelectpickerAngularComponent {
     if (index > -1 ) {
       Selectpicker1.splice(index, 1);
     } else {
-      Selectpicker1.push(this.arrayOneTwoThree); 
+      Selectpicker1.push(this.arrayOneTwoThree);
     }`;
 
     this.exempleDynamicSelect = `
@@ -56,7 +56,7 @@ export default  class SelectpickerAngularComponent {
         <selectpicker-option *ngFor="let option of optionsSelect" [value]="option.value">{{ option.text}}</selectpicker-option>
       </selectpicker>
 
-      with : 
+      with :
       optionArrayOneTwoThree = {value: arrayOneTwoThree, text: "arrayOneTwoThree"};
       optionOne = {value: one, text: "one"};
       optionObjetWithArray = {value: objetWithArray, text: "objetWithArray"};
@@ -77,7 +77,7 @@ export default  class SelectpickerAngularComponent {
     this.Selectpicker3 = [this.one, this.objetWithArray, "D"];
 
     this.A = "A";
-   
+
     this.booleanFalse = false;
   }
 
@@ -100,7 +100,7 @@ export default  class SelectpickerAngularComponent {
     if (index > -1 ) {
       this.Selectpicker3.splice(index, 1);
     } else {
-      this.Selectpicker3.push(this.A); 
+      this.Selectpicker3.push(this.A);
     }
   }
 
@@ -113,7 +113,7 @@ export default  class SelectpickerAngularComponent {
     if (index > -1 ) {
       this.Selectpicker3.splice(index, 1);
     } else {
-      this.Selectpicker3.push(this.one); 
+      this.Selectpicker3.push(this.one);
     }
   }
 
@@ -122,7 +122,8 @@ export default  class SelectpickerAngularComponent {
     if (index > -1 ) {
       this.Selectpicker1.splice(index, 1);
     } else {
-      this.Selectpicker1.push(this.one); 
+
+      this.Selectpicker1.push(this.one);
     }
   }
 
@@ -136,7 +137,7 @@ export default  class SelectpickerAngularComponent {
     if (index > -1 ) {
       this.Selectpicker1.splice(index, 1);
     } else {
-      this.Selectpicker1.push(this.arrayOneTwoThree); 
+      this.Selectpicker1.push(this.arrayOneTwoThree);
     }
   }
 
@@ -146,7 +147,7 @@ export default  class SelectpickerAngularComponent {
     if (index > -1 ) {
       this.Selectpicker3.splice(index, 1);
     } else {
-      this.Selectpicker3.push(this.arrayOneTwoThree); 
+      this.Selectpicker3.push(this.arrayOneTwoThree);
     }
   }
 
@@ -160,7 +161,8 @@ export default  class SelectpickerAngularComponent {
     if (index > -1 ) {
       this.Selectpicker1.splice(index, 1);
     } else {
-      this.Selectpicker1.push(this.objetWithArray); 
+
+      this.Selectpicker1.push(this.objetWithArray);
     }
   }
 
@@ -170,7 +172,7 @@ export default  class SelectpickerAngularComponent {
     if (index > -1 ) {
       this.Selectpicker3.splice(index, 1);
     } else {
-      this.Selectpicker3.push(this.objetWithArray); 
+      this.Selectpicker3.push(this.objetWithArray);
     }
   }
 
@@ -183,7 +185,8 @@ export default  class SelectpickerAngularComponent {
     if (index > -1 ) {
       this.Selectpicker3.splice(index, 1);
     } else {
-      this.Selectpicker3.push(this.booleanFalse); 
+
+      this.Selectpicker3.push(this.booleanFalse);
     }
   }
 

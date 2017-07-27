@@ -16,13 +16,30 @@ export default  class SlidepickerAngularComponent {
       <slidepicker-option value="test3">test3</slidepicker-option>
       <slidepicker-option value="test4">test4</slidepicker-option>
     </slidepicker>`
-
+    this.show1 = true;
+    this.show2 = true;
+    this.show3 = true;
+    this.show4 = true;
     this.Display = "Example"
     this.slidepicker2 = "test2"
   }
 
   changeBinding(binding, value){
     this[binding] = value;
+  }
+
+  toggle2() {
+    this.show2 = !this.show2;
+  }
+
+  toggle4() {
+    this.show4 = !this.show4;
+  }
+
+  toggle1() {
+    this.show1 = !this.show1;
+    this.show2 = !this.show2;
+    this.show3 = !this.show3;
   }
 
 }
