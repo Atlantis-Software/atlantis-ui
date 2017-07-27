@@ -1,4 +1,4 @@
-import { Component, ElementRef} from '@angular/core';
+import { Component, ElementRef, ChangeDetectorRef} from '@angular/core';
 
 export class accordionComponent {
 
@@ -15,9 +15,10 @@ export class accordionComponent {
       })
     ];
   }
-  constructor(elementRef) {
+  constructor(elementRef, ChangeDetectorRef) {
     this.elementRef = elementRef;
     this.panels = [];
+    this.cdr = ChangeDetectorRef
   }
 
   addPanel(panel) {
@@ -59,12 +60,13 @@ export class accordionComponent {
       }
       this.panels[this.options.openDefault].isOpen = true;
     }
+    this.cdr.detectChanges();
 
   }
 
 }
 
-accordionComponent.parameters = [ElementRef];
+accordionComponent.parameters = [ElementRef, ChangeDetectorRef];
 
 export class accordionPanelComponent {
   static get annotations() {
@@ -91,10 +93,11 @@ export class accordionPanelComponent {
     ];
   }
 
-  constructor(elementRef, accordion) {
+  constructor(elementRef, accordion, ChangeDetectorRef) {
     this.accordion = accordion;
     this.accordion.addPanel(this);
     this._isOpen = false;
+    this.cdr = ChangeDetectorRef
   }
 
   ngOnDestroy() {
@@ -108,6 +111,7 @@ export class accordionPanelComponent {
 
   set isOpen(value) {
     this._isOpen = value;
+    this.cdr.detectChanges()
     if (value) {
       this.accordion.closeOthers(this);
     }
@@ -118,4 +122,4 @@ export class accordionPanelComponent {
   }
 }
 
-accordionPanelComponent.parameters = [ElementRef, accordionComponent];
+accordionPanelComponent.parameters = [ElementRef, accordionComponent, ChangeDetectorRef];

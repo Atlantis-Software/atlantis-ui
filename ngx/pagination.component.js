@@ -1,4 +1,4 @@
-import { Component, EventEmitter, ElementRef } from '@angular/core';
+import { Component, EventEmitter, ElementRef, ChangeDetectorRef} from '@angular/core';
 
 export default class pagination {
   static get annotations() {
@@ -41,7 +41,7 @@ export default class pagination {
   }
 
   //Initialize numberPageShow, after and previous for calculate how many page we want after and previous actual page
-  constructor(elementRef){
+  constructor(elementRef, ChangeDetectorRef){
     this.elementRef = elementRef;
     this.paginationClassList = this.elementRef.nativeElement.classList;
     this.paginationDom = this.elementRef.nativeElement.getElementsByClassName("pagination");
@@ -51,6 +51,7 @@ export default class pagination {
     this.changingPage = false;
     this.pagechange = new EventEmitter();
     this.size = "";
+    this.cdr = ChangeDetectorRef;
   }
 
   ngAfterViewInit(){
@@ -105,6 +106,7 @@ export default class pagination {
         this.pagechange.emit(index);
       }
     }
+    this.cdr.detectChanges()
   }
 
   //show 5 previous page when click on previous arrow
@@ -145,11 +147,9 @@ export default class pagination {
         pageChoose = 1;
       }
       pageChoose = Math.floor(pageChoose);
-      setTimeout(function(){
-        self.changePage(e, +pageChoose);
-      }, 1);
+      self.changePage(e, +pageChoose);
     }
   }
 }
 
-pagination.parameters = [ElementRef];
+pagination.parameters = [ElementRef, ChangeDetectorRef];
