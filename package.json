@@ -14,7 +14,7 @@
   "homepage": "https://github.com/Atlantis-Software/atlantis-ui",
   "author": "Atlantis-software",
   "scripts": {
-    "postinstall": "npm run build",
+    "bouh": "npm run build",
     "build": "webpack --progress; cd docs; npm install",
     "prepublish": "npm run build",
     "test:karma": "karma start --single-run",

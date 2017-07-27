@@ -1,5 +1,5 @@
 import { Component, ContentChildren, ElementRef } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations'
+// import { trigger, state, style, animate, transition } from '@angular/animations'
 
 
 export class carouselComponent {
@@ -62,9 +62,13 @@ export class carouselComponent {
       if (this.options.activeDefault > this.items.length - 1) {
         this.options.activeDefault = 0;
       }
-      this.changeItem(items[this.options.activeDefault], "none")
+      setTimeout(()=>{
+        this.changeItem(items[this.options.activeDefault], "none")
+      }, 0)
     } else {
-      this.changeItem(this.items.first, "none");
+      setTimeout(()=>{
+        this.changeItem(this.items.first, "none");
+      }, 0)
     }
 
     if (this.options && this.options.interval) {
@@ -143,14 +147,13 @@ export class carouselComponent {
       }, 600);
     } else {
       this.activeItem = indexNewActive;
-      setTimeout(()=>{
-        itemActive.isActive = true;
-      }, 0)
+      itemActive.isActive = true;
       this.items.forEach((item) => {
         if (item !== itemActive) {
           item.isActive = false;
         }
       });
+      this.click = false;
     }
   }
 
@@ -193,25 +196,23 @@ export class carouselItemComponent {
 			new Component({
         selector: 'carousel-item',
         template: `
-        <div [@itemState]="state">
           <ng-content >
-          </ng-content>
-        </div>`,
+          </ng-content>`,
         host: {
           "class": "item",
           "[class.active]": "isActive"
         },
-        animations: [
-          trigger('itemState', [
-            state('active', style({transform: 'translateX(0)'})),
-            state('right', style({transform: 'translateX(100%)'})),
-            state('left', style({transform: 'translateX(-100%)'})),
-            transition('active <=> left, active <=> right', animate('600ms')),
-            transition('* => active', animate('600ms')),
-            transition('* => right', animate('600ms')),
-            transition('* => left', animate('600ms')),
-          ])
-        ]
+        // animations: [
+        //   trigger('itemState', [
+        //     state('active', style({transform: 'translateX(0)'})),
+        //     state('right', style({transform: 'translateX(100%)'})),
+        //     state('left', style({transform: 'translateX(-100%)'})),
+        //     transition('active <=> left, active <=> right', animate('600ms')),
+        //     transition('* => active', animate('600ms')),
+        //     transition('* => right', animate('600ms')),
+        //     transition('* => left', animate('600ms')),
+        //   ])
+        // ]
 	  	})
 		];
 	}

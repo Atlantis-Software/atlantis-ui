@@ -23,7 +23,6 @@ export default  class CarouselAngularComponent {
     this.person = {};
 
     this.optionsCarousel = {
-      slide: true,
       indicator: true
     }
 

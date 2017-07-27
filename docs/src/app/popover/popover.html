@@ -30,23 +30,23 @@
 
   <div class="container" *ngSwitchCase="'Example'">
     <h3>
-      Example (Don't run because we need to use jquery function to use)
+      Example
     </h3>
     <div class="row">
 
-      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+      <button type="button" class="btn btn-default" popover popoverDirection="left" popoverTitle="test" [popoverContent]="time">
         Popover on left
       </button>
 
-      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+      <button type="button" class="btn btn-default" popover popoverDirection="top" popoverTitle="test" popoverContent="testetstestsetest">
         Popover on top
       </button>
 
-      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+      <button type="button" class="btn btn-default" popover popoverDirection="bottom" popoverTitle="test" popoverContent="testetstestsetest">
         Popover on bottom
       </button>
 
-      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+      <button type="button" class="btn btn-default" tooltip tooltipDirection="right" tooltipContent="testetstestsetest">
         Popover on right
       </button>
 

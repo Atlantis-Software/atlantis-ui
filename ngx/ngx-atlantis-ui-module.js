@@ -36,6 +36,8 @@ import dropdownComponent from './dropdown.component.js';
 import dropdownOptionComponent from './dropdown-option.component.js';
 
 import circleProgessBarComponent from './circle-progress-bar.component.js';
+import { popoverComponent, popoverDirective} from './popover.component.js';
+import { tooltipComponent, tooltipDirective } from './tooltip.component.js';
 
 import focusDirective from './focus.directive.js';
 import affixDirective from './affix.directive.js';
@@ -59,8 +61,8 @@ ngxAtlUiModule.annotations = [
   new NgModule({
     imports: [CommonModule, FormsModule],
 
-    declarations: [pagination, datepickerComponent, datepickerrangeComponent, atlModelDirective, selectpickerComponent, selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective, modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent, carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent, circleProgessBarComponent, affixDirective, gridComponent, gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent],
-    exports : [pagination, datepickerComponent, datepickerrangeComponent, atlModelDirective, selectpickerComponent, selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective, modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent, carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent, circleProgessBarComponent, affixDirective, gridComponent, gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent],
-
+    declarations: [pagination, datepickerComponent, datepickerrangeComponent, atlModelDirective, selectpickerComponent, selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective, modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent, carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent, circleProgessBarComponent, affixDirective, gridComponent, gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent, popoverComponent, popoverDirective, tooltipComponent, tooltipDirective],
+    exports : [pagination, datepickerComponent, datepickerrangeComponent, atlModelDirective, selectpickerComponent, selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective, modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent, carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent, circleProgessBarComponent, affixDirective, gridComponent, gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent, popoverComponent, popoverDirective, tooltipComponent, tooltipDirective],
+    entryComponents: [tooltipComponent, popoverComponent]
   })
 ];
