@@ -136,22 +136,6 @@ export default class datepickerComponent {
     return items;
   }
 
-  // click outsite component to close select
-  handleClick(event){
-    var clickedComponent = event.target;
-
-    var inside = false;
-    do {
-      if (clickedComponent === this.elementRef.nativeElement) {
-        inside = true;
-      }
-      clickedComponent = clickedComponent.parentNode;
-    } while (clickedComponent);
-    if(!inside){
-      this.close();
-    }
-  }
-
   // on load page
   ngOnInit() {
     var self = this;
@@ -162,24 +146,7 @@ export default class datepickerComponent {
     this.classes = [];
 
     //Defines the language used by moment using users language
-    moment.locale(this.language);         
-    if (this.start) {
-      // if we have a default value
-      this.startDate = moment(this.start); 
-    } else {
-      // without default value, it's today
-      this.startDate = moment();
-      this.start = this.startDate.format('YYYY-MM-DD');  
-    }
-
-    if (this.end) {
-      // if we have a default value
-      this.endDate = moment(this.end); 
-    } else {
-      // without default value, it's today
-      this.endDate = moment();
-      this.end = this.endDate.format('YYYY-MM-DD');  
-    }
+    moment.locale(this.language);       
     //Locales used by moment
     this.locale= {                              
       format: moment.localeData().longDateFormat('L'),
@@ -188,7 +155,32 @@ export default class datepickerComponent {
       weekdayNames: moment.weekdaysMin(),
       firstDay: moment.localeData().firstDayOfWeek(),
       separator: '-'
-    };
+    };  
+    if (this.start) {
+      // if we have a default value
+      this.startDate = moment(this.start); 
+    } else {
+      this.startDate = moment();
+      // without default value, it's today
+      setTimeout(() => { // it not setTimeout error
+        this.start = this.startDate.format('YYYY-MM-DD');
+        this.startChange.emit(this.start);
+      });
+    }
+
+    if (this.end) {
+      // if we have a default value
+      this.endDate = moment(this.end); 
+    } else {
+      this.endDate = moment();
+      // without default value, it's today
+      setTimeout(() => { // it not setTimeout error
+        this.end = this.endDate.format('YYYY-MM-DD');  
+        this.endChange.emit(this.end);
+      });
+     
+    }
+
 
     this.calendar = [];
     this.calendar[0] = {};
@@ -321,6 +313,8 @@ export default class datepickerComponent {
       this.refreshCalendar(); 
       this.refreshTextDateStart();
       this.refreshTextDateEnd();
+      this.startChange.emit(this.start);
+      this.endChange.emit(this.end);
       this.close();
     }
   }
@@ -441,6 +435,7 @@ export default class datepickerComponent {
     this.startDate = date.format('YYYY-MM-DD');
     this.refreshTextDateStart();
     this.focus = END;
+    this.startChange.emit(this.start);
     this.refreshCalendar();
   }
 
@@ -453,6 +448,7 @@ export default class datepickerComponent {
     this.end = date.format('YYYY-MM-DD');
     this.refreshTextDateEnd();
     this.hasErrorEnd = false;
+    this.endChange.emit(this.end);
     this.close();
   }
 }
