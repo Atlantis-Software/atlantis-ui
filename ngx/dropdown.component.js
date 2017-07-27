@@ -1,4 +1,4 @@
-import { Component, ContentChildren, ElementRef} from '@angular/core';
+import { Component, ContentChildren, ElementRef, ChangeDetectorRef} from '@angular/core';
 import dropdownOptionComponent from './dropdown-option.component';
 
 export default class dropdownComponent {
@@ -8,11 +8,11 @@ export default class dropdownComponent {
       new Component({
         selector: 'dropdown',
         template: `
-          <button *ngIf="!parentIsLi" type="button" (click)="openDropdown()">
+          <button *ngIf="!parentIsLi" class="btn btn-default" type="button" (click)="openDropdown()">
             {{title}}
             <span class="caret"></span>
           </button>
-          <a *ngIf="parentIsLi" href="#" (click)="toggle($event)">
+          <a *ngIf="parentIsLi" class="btn btn-default" href="#" (click)="toggle($event)">
             {{title}}
             <span class="caret"></span>
           </a>
@@ -31,11 +31,12 @@ export default class dropdownComponent {
       })
     ];
   }
-  constructor(elementRef) {
+  constructor(elementRef, ChangeDetectorRef) {
     this.open = false;
     this.elementRef = elementRef;
     this.parentIsLi = false;
     this.disabled = false;
+    this.cdr = ChangeDetectorRef;
   }
 
   ngAfterViewInit(){
@@ -73,6 +74,7 @@ export default class dropdownComponent {
         action.innerText = actions[i].value;
       }
     }
+    this.cdr.detectChanges();
   }
 
   openDropdown(){
@@ -98,4 +100,4 @@ export default class dropdownComponent {
 
 }
 
-dropdownComponent.parameters = [ElementRef];
+dropdownComponent.parameters = [ElementRef, ChangeDetectorRef];
