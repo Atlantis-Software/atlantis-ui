@@ -9,250 +9,92 @@
         <span class="icon-bar"></span>
       </button>
     </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a (click)="Display = 'Example'">
-            Example and binding
-          </a>
-        </li>
-        <li>
-          <a (click)="Display = 'Api'">
-            How to use and api
-          </a>
-        </li>
-      </ul>
-    </div>
-
   </div>
 </nav>
 
-
-<div [ngSwitch]="Display">
-
-  <div class="container" *ngSwitchCase="'Example'">
-    <div class="row">
-      <h4>
-        Example :
-      </h4>
-       <div class="col-md-4">
-        <div class="form-group">
-          <label for="rangeDatePicker">Example Datepicker 5</label>
-          <datepicker [(ngModel)]="start8" [numberOfMonths]="5"></datepicker>
-        </div>
-      </div>
-      <div class="col-md-4">
-
-        <div class="form-group">
-          <label for="rangeDatePicker">Example Datepicker range 4</label>
-          <datepicker-range [(start)]="start1" [(end)]="end1"></datepicker-range>
-        </div>
-
-      </div>
-
-      <div class="col-md-4">
-        <label for="Binding1">Binding</label>
-        <div class="form-group input-group">
-          <input name="Binding1" class="form-control" type="text" [(ngModel)]="start1"></input>
-          <span class="input-group-addon"></span>
-          <input name="Binding1" class="form-control" type="text" [(ngModel)]="end1"></input>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="row">
-
-      <div class="col-md-4">
-
-        <div class="form-group">
-          <label for="rangeDatePicker">Example Datepicker range with default value</label>
-          <datepicker-range [(start)]="start2" [(end)]="end2"></datepicker-range>
-        </div>
-
-      </div>
-
-      <div class="col-md-4">
-        <label for="Binding1">Binding</label>
-        <div class="form-group input-group">
-          <input name="Binding2" class="form-control" type="text" [(ngModel)]="start2"></input>
-          <span class="input-group-addon"></span>
-          <input name="Binding2" class="form-control" type="text" [(ngModel)]="end2"></input>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="row">
-
-      <div class="col-md-4">
-
-        <div class="form-group">
-          <label for="rangeDatePicker">Example Datepicker simple</label>
-          <datepicker [(ngModel)]="start3"></datepicker>
-        </div>
-
-      </div>
-
-      <div class="col-md-4">
-        <label for="Binding1">Binding</label>
-        <div class="form-group">
-          <input name="Binding3" class="form-control" type="text" [(ngModel)]="start3"></input>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="row">
-
-      <div class="col-md-4">
-
-        <div class="form-group">
-          <label for="rangeDatePicker">Example Datepicker range</label>
-          <datepicker [(ngModel)]="start4"></datepicker>
-        </div>
-
-      </div>
-
-      <div class="col-md-4">
-        <label for="Binding1">Binding</label>
-        <div class="form-group">
-          <input name="Binding4" class="form-control" type="text" [(ngModel)]="start4"></input>
-        </div>
-      </div>
-
-    </div>
-
+<div class="container">
+  <div class="row">
     <h4>
-      Different size :
+      Simple datepicker :
     </h4>
-
-    <div class="row">
-
-      <div class="col-md-4">
-
-        <div class="form-group">
-          <label for="rangeDatePicker">Example Datepicker small</label>
-          <datepicker class="datepicker-sm" [(ngModel)]="start5"></datepicker>
-        </div>
-
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="rangeDatePicker">Example</label>
+        <datepicker [(ngModel)]="valueDatePicker" [numberOfMonths]="5"></datepicker>
       </div>
-
-      <div class="col-md-4">
-
-        <div class="form-group">
-          <label for="rangeDatePicker">Example Datepicker Medium</label>
-          <datepicker [(ngModel)]="start6"></datepicker>
-        </div>
-
-      </div>
-
-      <div class="col-md-4">
-
-        <div class="form-group">
-          <label for="rangeDatePicker">Example Datepicker Large</label>
-          <datepicker class="datepicker-lg" [(ngModel)]="start7"></datepicker>
-        </div>
-
-      </div>
-
     </div>
-
+    <div class="col-md-6">
+      <label for="Binding1">Binding</label>
+      <input name="Binding1" class="form-control" type="text" [(ngModel)]="valueDatePicker"></input>
+    </div>
   </div>
 
-  <div class="container" *ngSwitchCase="'Api'">
-    <h3>
-      For an datepicker range use :
-    </h3>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Code : </label>
+    </div> 
+  </div>   
+  <pre>
+    {{DatepickerSimpleHtml}}
+  </pre>
+
+  <div class="row">
+    <div class="col-md-4">
+      <label>Variable : </label>
+    </div> 
+  </div>   
+  <pre>
+    this.valueDatePicker = "2017-05-01";
+  </pre>
+
+  <blockquote>
+    <p>valueDatePicker is the binded value, if you no put value by default it will be today.</br>
+       numberOfMonths is the number of month in the calendar, if you no put value by default it will 3.</p>
+  </blockquote>
+   
+
+
+  <div class="row">
+    <h4>
+      Datepicker range:
+    </h4>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="rangeDatePicker">Example</label>
+        <datepicker-range [(start)]="start1" [(end)]="end1"></datepicker-range>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="Binding1">Binding</label>
+      <div class="form-group input-group">
+        <input name="Binding1" class="form-control" type="text" [(ngModel)]="start1"></input>
+        <span class="input-group-addon"></span>
+        <input name="Binding1" class="form-control" type="text" [(ngModel)]="end1"></input>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <label>Code : </label>
+      </div> 
+    </div>   
     <pre>
       {{DatepickerRangeHtml}}
     </pre>
-    <h4>
-      Precision :
-    </h4>
-    <p>
-      We can define different size for the widget. For that just add a class to datepicker tag like datepicker-sm or datepicker-lg
-    </p>
-    <h4>
-      Parameters :
-    </h4>
-    <table class="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>
-          <th>
-            Parameter
-          </th>
-          <th>
-            Type
-          </th>
-          <th>
-            Description
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            start
-          </td>
-          <td>
-            string (YYYY-MM-DD)
-          </td>
-          <td>
-            start date
-          </td>
-        </tr>
-        <tr>
-          <td>
-            end
-          </td>
-          <td>
-            string (YYYY-MM-DD)
-          </td>
-          <td>
-            end date
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <h3>
-      For an datepicker simple use :
-    </h3>
+  
+    <div class="row">
+      <div class="col-md-4">
+        <label>Variable : </label>
+      </div> 
+    </div>   
     <pre>
-      {{DatepickerSimpleHtml}}
+      this.start1 = "2017-05-01";
+      this.end1 = "2017-05-22";
     </pre>
-    <h4>
-      Parameters :
-    </h4>
-    <table class="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>
-          <th>
-            Parameter
-          </th>
-          <th>
-            Type
-          </th>
-          <th>
-            Description
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            ngModel
-          </td>
-          <td>
-            string (YYYY-MM-DD)
-          </td>
-          <td>
-            date
-          </td>
-        </tr>
-      </tbody>
-    </table>
 
+    <blockquote>
+      <p>start1 et end1 are the binded value, if you no put value by default it will be today 
+        for the 2 dates.</br>
+        numberOfMonths is the number of month in the calendar, if you no put value by default it will 3.</p>
+    </blockquote>
   </div>
-
 </div> 
