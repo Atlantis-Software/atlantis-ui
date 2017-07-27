@@ -1,7 +1,6 @@
 import HomeComponent from './home/home.component';
 import DatepickerAngularComponent from './datepickerAngular/datepicker.component';
 
-import PaginationComponent from './pagination/pagination.component';
 import PaginationAngularComponent from './paginationAngular/pagination.component';
 
 import SelectpickerAngularComponent from './selectpickerAngular/selectpicker.component';
@@ -41,7 +40,6 @@ export default [
 
   { path: 'datepickerAngular', component: DatepickerAngularComponent },
 
-  { path: 'pagination', component: PaginationComponent },
   { path: 'paginationAngular', component: PaginationAngularComponent },
 
   { path: 'selectpickerAngular', component: SelectpickerAngularComponent },
