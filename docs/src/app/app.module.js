@@ -11,7 +11,6 @@ import HomeComponent from './home/home.component.js';
 
 import DatepickerAngularComponent from './datepickerAngular/datepicker.component';
 
-import PaginationComponent from './pagination/pagination.component.js';
 import PaginationAngularComponent from './paginationAngular/pagination.component.js';
 
 import SelectpickerAngularComponent from './selectpickerAngular/selectpicker.component.js';
@@ -71,7 +70,6 @@ AppModule.annotations = [
       AppComponent,
       HomeComponent,
       DatepickerAngularComponent,
-      PaginationComponent,
       PaginationAngularComponent,
       SelectpickerAngularComponent,
       SlidepickerAngularComponent,
