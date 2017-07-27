@@ -1,158 +1,122 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a (click)="Display = 'Example'">
-            Example
-          </a>
-        </li>
-        <li>
-          <a (click)="Display = 'Api'">
-            Api
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div [ngSwitch]="Display">
-
-  <div class="container" *ngSwitchCase="'Example'">
-    <h3>
-      Example :
-    </h3>
-    <div class="row">
-
-      <carousel [options]="optionsCarousel">
-        <carousel-item *ngIf="show1">
-          <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">
-          <div class="carousel-caption">
-            Slide 1
-          </div>
-        </carousel-item>
-        <carousel-item *ngIf="show2">
-          <img class="img-responsive center-block" src="../../img/carousel05.jpg" alt="">
-        </carousel-item>
-        <carousel-item *ngIf="show3">
-          <img class="img-responsive center-block" src="../../img/carousel06.jpg" alt="">
-          <div class="carousel-caption">
-            slide 3
-          </div>
-        </carousel-item>
-      </carousel>
-    </div>
-
-    <div class="row">
-      <div class="form-group">
-        <label for="ButtonA">Toggle test2</label>
-        <button class="btn btn-block" (click)="toggle2()">toggle test2</button>
-        <label for="ButtonA">Toggle test3</label>
-        <button class="btn btn-block" (click)="toggle3()">toggle test3</button>
-        <label for="ButtonA">Toggle test1</label>
-        <button class="btn btn-block" (click)="toggle1()">toggle test1</button>
-      </div>
-    </div>
-
+<div class="container">
+  <h3>
+    Example :
+  </h3>
+  <div class="row container-fluid">
+    <carousel [options]="optionsCarousel">
+      <carousel-item *ngIf="show1">
+        <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">
+        <div class="carousel-caption">
+          Slide 1
+        </div>
+      </carousel-item>
+      <carousel-item *ngIf="show2">
+        <img class="img-responsive center-block" src="../../img/carousel05.jpg" alt="">
+      </carousel-item>
+      <carousel-item *ngIf="show3">
+        <img class="img-responsive center-block" src="../../img/carousel06.jpg" alt="">
+        <div class="carousel-caption">
+          slide 3
+        </div>
+      </carousel-item>
+    </carousel>
   </div>
 
-  <div class="container" *ngSwitchCase="'Api'">
-    <h3>
-      For a carousel use :
-    </h3>
-    <pre>
-      {{carouselHtml}}
-    </pre>
-    <h3>
-      Carousel :
-    </h3>
-    <h4>
-      Options
-    </h4>
-    <table class="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>
-          <th>
-            Attribut
-          </th>
-          <th>
-            Type
-          </th>
-          <th>
-            Description
-          </th>
-          <th>
-            Value
-          </th>
-          <th>
-            Info
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            indicator
-          </td>
-          <td>
-            boolean
-          </td>
-          <td>
-            Define if we want indicator in bottom of carousel
-          </td>
-          <td>
-            true, false
-          </td>
-          <td>
-            Per default : false
-          </td>
-        </tr>
-        <tr>
-          <td>
-            interval
-          </td>
-          <td>
-            number
-          </td>
-          <td>
-            Modify the time between slide
-          </td>
-          <td>
-            2000 - infinite
-          </td>
-          <td>
-
-          </td>
-        </tr>
-        <tr>
-          <td>
-            pause
-          </td>
-          <td>
-            String | null
-          </td>
-          <td>
-            Define if we want pauses the cycling on mouseenter
-          </td>
-          <td>
-            hover, null
-          </td>
-          <td>
-            Per default : hover
-          </td>
-        </tr>
-      </tbody>
-    </table
+  <div class="row container-fluid">
+    <div class="form-group">
+      <label for="ButtonA">Toggle test2</label>
+      <button class="btn btn-block" (click)="toggle2()">toggle test2</button>
+      <label for="ButtonA">Toggle test3</label>
+      <button class="btn btn-block" (click)="toggle3()">toggle test3</button>
+      <label for="ButtonA">Toggle test1</label>
+      <button class="btn btn-block" (click)="toggle1()">toggle test1</button>
+    </div>
   </div>
 
+  <h3>
+    For a carousel use :
+  </h3>
+  <pre>
+    {{carouselHtml}}
+  </pre>
+  <h3>
+    Carousel :
+  </h3>
+  <h4>
+    Options
+  </h4>
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>
+          Attribut
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Value
+        </th>
+        <th>
+          Info
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          indicator
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          Define if we want indicator in bottom of carousel
+        </td>
+        <td>
+          true, false
+        </td>
+        <td>
+          Per default : false
+        </td>
+      </tr>
+      <tr>
+        <td>
+          interval
+        </td>
+        <td>
+          number
+        </td>
+        <td>
+          Modify the time between slide
+        </td>
+        <td>
+          2000 - infinite
+        </td>
+        <td>
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          pause
+        </td>
+        <td>
+          String | null
+        </td>
+        <td>
+          Define if we want pauses the cycling on mouseenter
+        </td>
+        <td>
+          hover, null
+        </td>
+        <td>
+          Per default : hover
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
