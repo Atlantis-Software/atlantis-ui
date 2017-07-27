@@ -1,4 +1,4 @@
-import { Component, ElementRef, forwardRef, ContentChildren } from '@angular/core';
+import { Component, ElementRef, forwardRef, ContentChildren} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export class slidepickerComponent {
@@ -31,6 +31,7 @@ export class slidepickerComponent {
     this.onModelTouched = function() {};
     this.onModelChange = function() {};
     this.handleClick = false;
+    this.oneActive = true;
   }
 
   writeValue(val) {
@@ -59,16 +60,22 @@ export class slidepickerComponent {
     this.onModelTouched = fn;
   }
 
-  ngAfterViewInit() {
-    this.lastNumberLabels = this.labels.length;
 
+  ngAfterViewInit() {
     var labelsChanges = this.labels.changes.subscribe(labels => {
-      if (this.lastNumberLabels === 0 ) {
-        setTimeout(()=>  {
-          this.changeActive(labels.first);
-        },0)
+      if (labels.length > 0 ) {
+        var oneActive = false;
+        labels.forEach((label)=>{
+          if (label.isActive) {
+            oneActive = true;
+          }
+        })
+        if (!oneActive) {
+          setTimeout(()=>{
+            this.changeActive(this.labels.first)
+          },0);
+        }
       }
-      this.lastNumberLabels = labels.length;
     })
 
     this.slidepickerClassList = this.elementRef.nativeElement.classList;
@@ -273,32 +280,11 @@ export class slidepickeroptionComponent {
   constructor (elementRef, slidepicker) {
     this.elementRef = elementRef;
     this.slidepicker = slidepicker;
-    // this.slidepicker.addLabel(this);
     this.isActive = false;
   }
 
-  ngOnDestroy() {
-    var self = this;
-    if (this.isActive) {
-      var labels = this.slidepicker.labels.toArray()
-      if (this === this.slidepicker.labels.first) {
-        setTimeout(function(){
-          self.slidepicker.changeActive(labels[1])
-        },0)
-      } else {
-        setTimeout(function(){
-          self.slidepicker.changeActive(self.slidepicker.labels.first);
-        },0);
-      }
-    } else {
-      this.slidepicker.labels.forEach(function(label){
-        if (label.isActive) {
-          setTimeout(function(){
-            self.slidepicker.changeActive(label)
-          }, 0)
-        }
-      })
-    }
+  ngOnDestroy(){
+
   }
 
   toggleActive(e) {
