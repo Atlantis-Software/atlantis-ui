@@ -1,194 +1,158 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a (click)="Display = 'Example'">
-            Example
-          </a>
-        </li>
-        <li>
-          <a (click)="Display = 'Api'">
-            Api
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div [ngSwitch]= "Display">
-
-  <div class="container" *ngSwitchCase="'Example'">
-
-    <div class="row">
-
-      <accordion [options]="optionsAccordion">
-        <accordion-panel [title]="'test1'">
-          {{time | date : 'shortDate'}}
-        </accordion-panel>
-        <accordion-panel [title]="'test2'">
-          azertyuiop
-          <button type="button" class="btn btn-block">Basic</button>
-        </accordion-panel>
-      </accordion>
-      {{time}}
-
-    </div>
-
+<div class="container">
+  <h3>
+    Example :
+  </h3>
+  <div class="row container-fluid">
+    <accordion [options]="optionsAccordion">
+      <accordion-panel [title]="'test1'">
+        {{time | date : 'shortDate'}}
+      </accordion-panel>
+      <accordion-panel [title]="'test2'">
+        azertyuiop
+        <button type="button" class="btn btn-block">Basic</button>
+      </accordion-panel>
+    </accordion>
   </div>
 
-  <div class="container" *ngSwitchCase="'Api'">
-    <h3>
-      For a accordion use :
-    </h3>
-    <pre>
-      {{accordionHtml}}
-    </pre>
-    <h3>
-      Accordion :
-    </h3>
-    <h4>
-      Settings
-    </h4>
-    <table class="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>
-          <th class="col-md-2">
-            Setting
-          </th>
-          <th class="col-md-1">
-            Type
-          </th>
-          <th class="col-md-3">
-            Description
-          </th>
-          <th class="col-md-3">
-            value
-          </th>
-          <th class="col-md-3">
-            Info
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            class
-          </td>
-          <td>
-            String
-          </td>
-          <td>
-            Change style per default of any panel
-          </td>
-          <td>
-            default, primary, success, info, warning, danger
-          </td>
-          <td>
-            Per default : default
-          </td>
-        </tr>
-        <tr>
-          <td>
-            options
-          </td>
-          <td>
-            Object
-          </td>
-          <td>
-            Define options we want for accordion
-          </td>
-          <td>
-            See option's section
-          </td>
-          <td>
+  <h3>
+    For a accordion use :
+  </h3>
+  <pre>
+    {{accordionHtml}}
+  </pre>
+  <h3>
+    Accordion :
+  </h3>
+  <h4>
+    Settings
+  </h4>
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th class="col-md-2">
+          Setting
+        </th>
+        <th class="col-md-1">
+          Type
+        </th>
+        <th class="col-md-3">
+          Description
+        </th>
+        <th class="col-md-3">
+          value
+        </th>
+        <th class="col-md-3">
+          Info
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          class
+        </td>
+        <td>
+          String
+        </td>
+        <td>
+          Change style per default of any panel
+        </td>
+        <td>
+          default, primary, success, info, warning, danger
+        </td>
+        <td>
+          Per default : default
+        </td>
+      </tr>
+      <tr>
+        <td>
+          options
+        </td>
+        <td>
+          Object
+        </td>
+        <td>
+          Define options we want for accordion
+        </td>
+        <td>
+          See option's section
+        </td>
+        <td>
 
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <h4>
-      Options
-    </h4>
-    <table class="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>
-          <th class="col-md-2">
-            Attribut
-          </th>
-          <th class="col-md-1">
-            Type
-          </th>
-          <th class="col-md-3">
-            Description
-          </th>
-          <th class="col-md-3">
-            value
-          </th>
-          <th class="col-md-3">
-            Info
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            openDefault
-          </td>
-          <td>
-            number
-          </td>
-          <td>
-            Define if we want a panel open by default
-          </td>
-          <td>
-            any
-          </td>
-          <td>
-            if no value, all panel will be close
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h4>
+    Options
+  </h4>
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th class="col-md-2">
+          Attribut
+        </th>
+        <th class="col-md-1">
+          Type
+        </th>
+        <th class="col-md-3">
+          Description
+        </th>
+        <th class="col-md-3">
+          value
+        </th>
+        <th class="col-md-3">
+          Info
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          openDefault
+        </td>
+        <td>
+          number
+        </td>
+        <td>
+          Define if we want a panel open by default
+        </td>
+        <td>
+          any
+        </td>
+        <td>
+          if no value, all panel will be close
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-    <h3>
-      Carousel-item
-    </h3>
-    <h4>
-      Settings
-    </h4>
-    <table class="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>
-          <th>
-            Setting
-          </th>
-          <th>
-            Description
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            title
-          </td>
-          <td>
-            Define the title of a panel
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
+  <h3>
+    Carousel-item
+  </h3>
+  <h4>
+    Settings
+  </h4>
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>
+          Setting
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          title
+        </td>
+        <td>
+          Define the title of a panel
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
