@@ -136,7 +136,6 @@ export default class datepickerComponent {
         this.numberOfMonths = 3;
       }
       this.val = val;
-      this.onModelChange(val);
       this.classes = [];
 
       //Defines the language used by moment using users language
@@ -168,6 +167,7 @@ export default class datepickerComponent {
       }
       this.refreshCalendar(); 
       this.refreshText();
+      this.onModelChange(this.val);
     }
   }
 
@@ -251,6 +251,7 @@ export default class datepickerComponent {
           break;
       }
       this.val = this.startDate.format('YYYY-MM-DD');
+      this.onModelChange(this.val);
       this.calendar = [];
       this.calendar[0] = {};
       this.calendar[0] = this.startDate.clone().date(2);
@@ -293,6 +294,7 @@ export default class datepickerComponent {
   valueChange(event) {
     if (moment(event).isValid()) {
       this.val = event;
+      this.onModelChange(this.val);
       this.startDate = moment(event);
       this.calendar = [];
       this.calendar[0] = {};
