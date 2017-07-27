@@ -1,143 +1,107 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a (click)="Display = 'Example'">
-            Example
-          </a>
-        </li>
-        <li>
-          <a (click)="Display = 'Api'">
-            Api
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div [ngSwitch]= "Display">
-
-  <div class="container" *ngSwitchCase="'Example'">
-    <h3>
-      Example
-    </h3>
-
-    <div class="row">
-      <label for="percent">Type a percent!</label>
-      <input id="percent" name="percent" type="number" [(ngModel)]="test">
-    </div>
-    <div class="row">
-      <h4>
-        Different size
-      </h4>
-      <label for="cpb-sm">Small circle-progress-bar</label>
-      <circle-progress-bar-sm affix="50" [value]="test" name="cpb-sm">
-      </circle-progress-bar-sm>
-      <label for="cpb-md">Default/medium circle-progress-bar</label>
-      <circle-progress-bar [value]="test"  name="cpb-md">
-      </circle-progress-bar>
-      <label for="cpb-lg">Large circle-progress-bar</label>
-      <circle-progress-bar-lg [value]="test"  name="cpb-lg">
-      </circle-progress-bar-lg>
-    </div>
-    <div class="row">
-
-      <h4>
-        Different style
-      </h4>
-      <label for="cpb-success">Success circle-progress-bar</label>
-      <circle-progress-bar class="circle-progress-bar-success" [value]="test">
-      </circle-progress-bar>
-      <label for="cpb-info">Info circle-progress-bar</label>
-      <circle-progress-bar class="circle-progress-bar-info" [value]="test">
-      </circle-progress-bar>
-      <label for="cpb-warning">Warning circle-progress-bar</label>
-      <circle-progress-bar class="circle-progress-bar-warning" [value]="test">
-      </circle-progress-bar>
-      <label for="cpb-danger">Danger circle-progress-bar</label>
-      <circle-progress-bar class="circle-progress-bar-danger" [value]="test">
-      </circle-progress-bar>
-    </div>
+<div class="container">
+  <h3>
+    Example
+  </h3>
+  <div class="row container-fluid">
+    <label for="percent">Type a percent!</label>
+    <input id="percent" name="percent" type="number" [(ngModel)]="test">
   </div>
 
-  <div class="container" *ngSwitchCase="'Api'">
-    <h3>
-      For an circle-progress-bar use :
-    </h3>
-    <pre>
-      {{circleProgressBarHtml}}
-    </pre>
+  <div class="row container-fluid">
     <h4>
-      Precision :
+      Different size
     </h4>
-    <p>
-      We can define different size for the widget. For that just add a class to pagination tag like pagination-sm or pagination-lg
-    </p>
-    <h4>
-      Settings :
-    </h4>
-    <table class="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>
-          <th>
-            Setting
-          </th>
-          <th>
-            Type
-          </th>
-          <th>
-            Description
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            page
-          </td>
-          <td>
-            number
-          </td>
-          <td>
-            Current page
-          </td>
-        </tr>
-        <tr>
-          <td>
-            pages
-          </td>
-          <td>
-            number
-          </td>
-          <td>
-            Total pages
-          </td>
-        </tr>
-        <tr>
-          <td>
-            pagechange
-          </td>
-          <td>
-            string
-          </td>
-          <td>
-            An expression
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
+    <label for="cpb-sm">Small circle-progress-bar</label>
+    <circle-progress-bar-sm affix="50" [value]="test" name="cpb-sm">
+    </circle-progress-bar-sm>
+    <label for="cpb-md">Default/medium circle-progress-bar</label>
+    <circle-progress-bar [value]="test"  name="cpb-md">
+    </circle-progress-bar>
+    <label for="cpb-lg">Large circle-progress-bar</label>
+    <circle-progress-bar-lg [value]="test"  name="cpb-lg">
+    </circle-progress-bar-lg>
   </div>
 
+  <div class="row container-fluid">
+    <h4>
+      Different style
+    </h4>
+    <label for="cpb-success">Success circle-progress-bar</label>
+    <circle-progress-bar class="circle-progress-bar-success" [value]="test">
+    </circle-progress-bar>
+    <label for="cpb-info">Info circle-progress-bar</label>
+    <circle-progress-bar class="circle-progress-bar-info" [value]="test">
+    </circle-progress-bar>
+    <label for="cpb-warning">Warning circle-progress-bar</label>
+    <circle-progress-bar class="circle-progress-bar-warning" [value]="test">
+    </circle-progress-bar>
+    <label for="cpb-danger">Danger circle-progress-bar</label>
+    <circle-progress-bar class="circle-progress-bar-danger" [value]="test">
+    </circle-progress-bar>
+  </div>
+  <h3>
+    For an circle-progress-bar use :
+  </h3>
+  <pre>
+    {{circleProgressBarHtml}}
+  </pre>
+  <h4>
+    Precision :
+  </h4>
+  <p>
+    We can define different size for the widget. For that just add a class to pagination tag like pagination-sm or pagination-lg
+  </p>
+  <h4>
+    Settings :
+  </h4>
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>
+          Setting
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          page
+        </td>
+        <td>
+          number
+        </td>
+        <td>
+          Current page
+        </td>
+      </tr>
+      <tr>
+        <td>
+          pages
+        </td>
+        <td>
+          number
+        </td>
+        <td>
+          Total pages
+        </td>
+      </tr>
+      <tr>
+        <td>
+          pagechange
+        </td>
+        <td>
+          string
+        </td>
+        <td>
+          An expression
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
