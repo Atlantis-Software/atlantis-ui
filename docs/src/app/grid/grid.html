@@ -1,188 +1,153 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
+<div class="container">
+  <h4>
+    Classic grid
+  </h4>
 
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a (click)="Display = 'Example'">
-            Example
-          </a>
-        </li>
-        <li>
-          <a (click)="Display = 'Api'">
-            Api
-          </a>
-        </li>
-      </ul>
-    </div>
+  <div class="row show-grid container">
+    <div class="col-md-12">.col-md-12</div>
   </div>
-</nav>
-
-<div [ngSwitch]= "Display">
-
-  <div class="container" *ngSwitchCase="'Example'">
-    <h4>
-      Classic grid
-    </h4>
-
-    <div class="row show-grid">
-      <div class="col-md-12">.col-md-12</div>
-    </div>
-    <div class="row show-grid">
-      <div class="col-md-8">.col-md-8</div>
-    </div>
-    <div class="row show-grid">
-      <div class="col-md-6">.col-md-6</div>
-    </div>
-    <div class="row show-grid">
-      <div class="col-md-4">.col-md-4</div>
-    </div>
-    <div class="row show-grid">
-      <div class="col-md-2">.col-md-2</div>
-    </div>
-    <div class="row show-grid">
-      <div class="col-md-1">.col-md-1</div>
-    </div>
-
-    <h4>
-      Mobile, tablet and desktop grid
-    </h4>
-    <div class="row show-grid">
-      <div class="col-xs-12 col-sm-4 col-md-4">.col-xs-12 .col-sm-4 .col-md-4</div>
-      <div class="col-xs-8 col-sm-8 col-md-2">.col-xs-8 .col-sm-8 .col-md-6</div>
-      <div class="col-xs-4 col-sm-12 col-md-6">.col-xs-4 .col-sm-12 .col-md-2</div>
-    </div>
-
-    <h4>
-      Offset columns
-    </h4>
-
-    <div class="row show-grid">
-      <div class="col-md-3">.col-md-3</div>
-      <div class="col-md-2 col-md-offset-2">.col-md-2 .col-md-offset-1</div>
-      <div class="col-md-3 col-md-offset-2">.col-md-2 .col-md-offset-1</div>
-    </div>
-    <div class="row show-grid">
-      <div class="col-md-4 col-md-offset-4">.col-md-4 .col-md-offset-3</div>
-      <div class="col-md-2 col-md-offset-2">.col-md-2 .col-md-offset-1</div>
-    </div>
+  <div class="row show-grid container">
+    <div class="col-md-8">.col-md-8</div>
+  </div>
+  <div class="row show-grid container">
+    <div class="col-md-6">.col-md-6</div>
+  </div>
+  <div class="row show-grid container">
+    <div class="col-md-4">.col-md-4</div>
+  </div>
+  <div class="row show-grid container">
+    <div class="col-md-2">.col-md-2</div>
+  </div>
+  <div class="row show-grid container">
+    <div class="col-md-1">.col-md-1</div>
   </div>
 
-  <div class="container" *ngSwitchCase="'Api'">
-    <h4>
-      For a grid use :
-    </h4>
-    <pre>
-      {{GridHtml}}
-    </pre>
-    <h4>
-      Precision :
-    </h4>
-    <p>
-      We can use different grid for different screen size :
-    </p>
-    <table class="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>
-          <th>
-            Name
-          </th>
-          <th>
-            Screen size
-          </th>
-          <th>
-            Container width
-          </th>
-          <th>
-            Class css
-          </th>
-          <th>
-            Column width
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            Extra small devices like phones
-          </td>
-          <td>
-            &lt;768px
-          </td>
-          <td>
-            Auto
-          </td>
-          <td>
-            .col-xs-
-          </td>
-          <td>
-            Auto
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Small devices like Tablets
-          </td>
-          <td>
-            &ge;768px
-          </td>
-          <td>
-            750px
-          </td>
-          <td>
-            .col-sm-
-          </td>
-          <td>
-            ~62px
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Medium devices like Desktops
-          </td>
-          <td>
-            &ge;992px
-          </td>
-          <td>
-            970px
-          </td>
-          <td>
-            .col-md-
-          </td>
-          <td>
-            ~81px
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Large devices like Desktops
-          </td>
-          <td>
-            &ge;1200px
-          </td>
-          <td>
-            1170px
-          </td>
-          <td>
-            .col-lg-
-          </td>
-          <td>
-            ~97px
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <p>
-      If we don't have enougth space for all column, the div exceed the 12 columns go to a new line
-    </p>
+  <h4>
+    Mobile, tablet and desktop grid
+  </h4>
+  <div class="row show-grid container">
+    <div class="col-xs-12 col-sm-4 col-md-4">.col-xs-12 .col-sm-4 .col-md-4</div>
+    <div class="col-xs-8 col-sm-8 col-md-2">.col-xs-8 .col-sm-8 .col-md-6</div>
+    <div class="col-xs-4 col-sm-12 col-md-6">.col-xs-4 .col-sm-12 .col-md-2</div>
   </div>
 
+  <h4>
+    Offset columns
+  </h4>
+
+  <div class="row show-grid container">
+    <div class="col-md-3">.col-md-3</div>
+    <div class="col-md-2 col-md-offset-2">.col-md-2 .col-md-offset-1</div>
+    <div class="col-md-3 col-md-offset-2">.col-md-2 .col-md-offset-1</div>
+  </div>
+  <div class="row show-grid container">
+    <div class="col-md-4 col-md-offset-4">.col-md-4 .col-md-offset-3</div>
+    <div class="col-md-2 col-md-offset-2">.col-md-2 .col-md-offset-1</div>
+  </div>
+      <h4>
+    For a grid use :
+  </h4>
+  <pre>
+    {{GridHtml}}
+  </pre>
+  <h4>
+    Precision :
+  </h4>
+  <p>
+    We can use different grid for different screen size :
+  </p>
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Screen size
+        </th>
+        <th>
+          Container width
+        </th>
+        <th>
+          Class css
+        </th>
+        <th>
+          Column width
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Extra small devices like phones
+        </td>
+        <td>
+          &lt;768px
+        </td>
+        <td>
+          Auto
+        </td>
+        <td>
+          .col-xs-
+        </td>
+        <td>
+          Auto
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Small devices like Tablets
+        </td>
+        <td>
+          &ge;768px
+        </td>
+        <td>
+          750px
+        </td>
+        <td>
+          .col-sm-
+        </td>
+        <td>
+          ~62px
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Medium devices like Desktops
+        </td>
+        <td>
+          &ge;992px
+        </td>
+        <td>
+          970px
+        </td>
+        <td>
+          .col-md-
+        </td>
+        <td>
+          ~81px
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Large devices like Desktops
+        </td>
+        <td>
+          &ge;1200px
+        </td>
+        <td>
+          1170px
+        </td>
+        <td>
+          .col-lg-
+        </td>
+        <td>
+          ~97px
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    If we don't have enougth space for all column, the div exceed the 12 columns go to a new line
+  </p>
 </div>
