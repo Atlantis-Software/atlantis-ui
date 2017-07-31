@@ -68,9 +68,14 @@ export class slidepickerComponent {
         labels.forEach((label)=>{
           if (label.isActive) {
             oneActive = true;
+            setTimeout(()=>{
+              this.changeActive(label);
+            },0)
           }
         })
-        if (!oneActive) {
+        if(oneActive) {
+          return;
+        } else {
           setTimeout(()=>{
             this.changeActive(this.labels.first)
           },0);

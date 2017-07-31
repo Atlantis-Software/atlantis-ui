@@ -83,7 +83,7 @@ export class carouselComponent {
         this.options.interval = 2000
       }
       setInterval(() => {
-        if(this.items.length > 1 && !this.hover) {
+        if(this.items.length > 1 && !this.hover && this.options.pause === "hover") {
           var nextActive = this.activeItem + 1;
           if (nextActive >= this.items.length) {
             nextActive = 0;
