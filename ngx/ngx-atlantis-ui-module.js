@@ -42,8 +42,7 @@ import focusDirective from './focus.directive.js';
 import affixDirective from './affix.directive.js';
 
 import DynamicPipe from './dynamic.pipe.js';
-
-// export var ngxAtlUiModule = function() {};
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export class ngxAtlUiModule{
   static forRoot(config){
@@ -59,7 +58,7 @@ export class ngxAtlUiModule{
 
 ngxAtlUiModule.annotations = [
   new NgModule({
-    imports: [CommonModule, FormsModule],
+    imports: [CommonModule, FormsModule, BrowserAnimationsModule],
     declarations: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent, selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective, modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent, carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent, circleProgessBarComponent, affixDirective, gridComponent, gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent, popoverComponent, popoverDirective, tooltipComponent, tooltipDirective, backdropComponent],
     exports : [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent, selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective, modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent, carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent, circleProgessBarComponent, affixDirective, gridComponent, gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent, popoverComponent, popoverDirective, tooltipComponent, tooltipDirective, backdropComponent],
     entryComponents: [tooltipComponent, popoverComponent, backdropComponent]
