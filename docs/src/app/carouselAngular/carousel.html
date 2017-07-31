@@ -4,33 +4,22 @@
   </h3>
   <div class="row container-fluid">
     <carousel [options]="optionsCarousel">
-      <carousel-item *ngIf="show1">
+      <carousel-item>
         <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">
         <div class="carousel-caption">
           Slide 1
         </div>
       </carousel-item>
-      <carousel-item *ngIf="show2">
+      <carousel-item >
         <img class="img-responsive center-block" src="../../img/carousel05.jpg" alt="">
       </carousel-item>
-      <carousel-item *ngIf="show3">
+      <carousel-item>
         <img class="img-responsive center-block" src="../../img/carousel06.jpg" alt="">
         <div class="carousel-caption">
           slide 3
         </div>
       </carousel-item>
     </carousel>
-  </div>
-
-  <div class="row container-fluid">
-    <div class="form-group">
-      <label for="ButtonA">Toggle test2</label>
-      <button class="btn btn-block" (click)="toggle2()">toggle test2</button>
-      <label for="ButtonA">Toggle test3</label>
-      <button class="btn btn-block" (click)="toggle3()">toggle test3</button>
-      <label for="ButtonA">Toggle test1</label>
-      <button class="btn btn-block" (click)="toggle1()">toggle test1</button>
-    </div>
   </div>
 
   <h3>
@@ -119,4 +108,50 @@
       </tr>
     </tbody>
   </table>
+
+  <h4>
+    Exemple with add and suppress slide
+  </h4>
+
+  <div class="row container-fluid">
+    <carousel [options]="optionsCarousel">
+      <carousel-item *ngIf="show1">
+        <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">
+        <div class="carousel-caption">
+          Slide 1
+        </div>
+      </carousel-item>
+      <carousel-item *ngIf="show2">
+        <img class="img-responsive center-block" src="../../img/carousel05.jpg" alt="">
+      </carousel-item>
+      <carousel-item *ngIf="show3">
+        <img class="img-responsive center-block" src="../../img/carousel06.jpg" alt="">
+        <div class="carousel-caption">
+          slide 3
+        </div>
+      </carousel-item>
+    </carousel>
+  </div>
+
+  <div class="row container-fluid">
+    <div class="form-group">
+      <label for="ButtonA">Toggle test1</label>
+      <button class="btn btn-block" (click)="toggle1()">toggle test1</button>
+      <label for="ButtonA">Toggle test2</label>
+      <button class="btn btn-block" (click)="toggle2()">toggle test2</button>
+      <label for="ButtonA">Toggle test3</label>
+      <button class="btn btn-block" (click)="toggle3()">toggle test3</button>
+    </div>
+  </div>
+
+  <blockquote>
+    <p>
+      We can use ngIf for carousel-item to add or suppress slide, if active is suppress, the first slide will be the new active slide
+    </p>
+  </blockquote>
+
+  <pre>
+    {{carrouselSlideNgIf}}
+  </pre>
+
 </div>

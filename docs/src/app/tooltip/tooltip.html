@@ -1,0 +1,30 @@
+<div class="container">
+  <h3>
+    Example
+  </h3>
+  <div class="row container-fluid">
+    <button class="btn btn-default" tooltip tooltipDirection="left" [tooltipContent]="time">
+      Tooltip on left
+    </button>
+
+    <button type="button" class="btn btn-default" tooltip tooltipDirection="top" tooltipContent="testetstestsetest">
+      Tooltip on top
+    </button>
+
+    <button type="button" class="btn btn-default" tooltip tooltipDirection="bottom" tooltipContent="testetstestsetest">
+      Tooltip on bottom
+    </button>
+
+    <button type="button" class="btn btn-default" tooltip tooltipDirection="right" tooltipContent="testetstestsetest">
+      Tooltip on right
+    </button>
+  </div>
+  <pre>
+    {{tooltipHtml}}
+  </pre>
+  <blockquote>
+    <p>
+      We can apply tooltip on any type of tag (a, h, div, p, input)
+    </p>
+  </blockquote>
+</div>

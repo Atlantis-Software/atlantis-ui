@@ -22,6 +22,7 @@ import TableComponent from './table/table.component.js';
 import CarouselAngularComponent from './carouselAngular/carousel.component.js';
 
 import PopoverComponent from './popover/popover.component.js';
+import TooltipComponent from './tooltip/tooltip.component.js';
 
 import AccordionComponent from './accordion/accordion.component.js';
 
@@ -61,6 +62,7 @@ export default [
   { path: 'carouselAngular', component: CarouselAngularComponent },
 
   { path: 'popover', component: PopoverComponent },
+  { path: 'tooltip', component: TooltipComponent },
 
   { path: 'accordion', component: AccordionComponent },
 

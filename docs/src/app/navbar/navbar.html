@@ -19,13 +19,13 @@
           <ul class="nav navbar-nav">
             <li>
               <dropdown title="Menu A">
-                <dropdown-option><a>Sub-menu A</a></dropdown-option>
-                <dropdown-option><a>Sub-menu B</a></dropdown-option>
-                <dropdown-option><a>Sub-menu C</a></dropdown-option>
-                <dropdown-option options="{type: divider}"></dropdown-option>
-                <dropdown-option><a>Sub-menu separated A</a></dropdown-option>
-                <dropdown-option options="{type: divider}"></dropdown-option>
-                <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
+                <dropdown-option>Sub-menu A</dropdown-option>
+                <dropdown-option>Sub-menu B</dropdown-option>
+                <dropdown-option>Sub-menu C</dropdown-option>
+                <dropdown-option [options]="{type: 'divider'}"></dropdown-option>
+                <dropdown-option>Sub-menu separated A</dropdown-option>
+                <dropdown-option [options]="{type: 'divider'}"></dropdown-option>
+                <dropdown-option>Sub-menu separated B</dropdown-option>
               </dropdown>
             </li>
             <li><a>Menu B</a></li>
@@ -53,21 +53,17 @@
       <!-- /.container-fluid -->
     </div>
   </div>
-    <h3>
-    For an navbar use :
-  </h3>
   <pre>
     {{navbarHtml}}
   </pre>
-  <h4>
-    Specification :
-  </h4>
-  <p>
-    We can use a dropdown menu directly in the navbar, like any dropdown
-  </p>
-  <p>
-    Don't forget to use .navbar class
-  </p>
+  <blockquote>
+    <p>
+      We can use a dropdown menu directly in the navbar, like any dropdown
+    </p>
+    <p>
+      Don't forget to use .navbar class
+    </p>
+  </blockquote>
   <h3>
     How to use :
   </h3>

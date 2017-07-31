@@ -9,6 +9,21 @@
 
   <div class="row container-fluid">
     <h4>
+      Exemple :
+    </h4>
+
+    <label for="cpb-md">Basic circle-progress-bar</label>
+    <circle-progress-bar [value]="test"  name="cpb-md">
+    </circle-progress-bar>
+
+  </div>
+
+  <pre>
+    {{circleProgressBarHtml}}
+  </pre>
+
+  <div class="row container-fluid">
+    <h4>
       Different size
     </h4>
     <label for="cpb-sm">Small circle-progress-bar</label>
@@ -21,6 +36,10 @@
     <circle-progress-bar-lg [value]="test"  name="cpb-lg">
     </circle-progress-bar-lg>
   </div>
+
+  <pre>
+    {{circleProgressBarSize}}
+  </pre>
 
   <div class="row container-fluid">
     <h4>
@@ -39,69 +58,9 @@
     <circle-progress-bar class="circle-progress-bar-danger" [value]="test">
     </circle-progress-bar>
   </div>
-  <h3>
-    For an circle-progress-bar use :
-  </h3>
+
   <pre>
-    {{circleProgressBarHtml}}
+    {{circleProgressBarStyle}}
   </pre>
-  <h4>
-    Precision :
-  </h4>
-  <p>
-    We can define different size for the widget. For that just add a class to pagination tag like pagination-sm or pagination-lg
-  </p>
-  <h4>
-    Settings :
-  </h4>
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-        <th>
-          Setting
-        </th>
-        <th>
-          Type
-        </th>
-        <th>
-          Description
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          page
-        </td>
-        <td>
-          number
-        </td>
-        <td>
-          Current page
-        </td>
-      </tr>
-      <tr>
-        <td>
-          pages
-        </td>
-        <td>
-          number
-        </td>
-        <td>
-          Total pages
-        </td>
-      </tr>
-      <tr>
-        <td>
-          pagechange
-        </td>
-        <td>
-          string
-        </td>
-        <td>
-          An expression
-        </td>
-      </tr>
-    </tbody>
-  </table>
+
 </div>

@@ -59,7 +59,7 @@ main {
     margin-bottom: 15px;
 }
 
-.show-grid div {
+.show-grid [class^="col-"] {
     padding-top: 10px;
     padding-bottom: 10px;
     background-color: #D3D3D3;

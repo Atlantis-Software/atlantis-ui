@@ -12,7 +12,7 @@ export default class dropdownComponent {
             {{title}}
             <span class="caret"></span>
           </button>
-          <a *ngIf="parentIsLi" class="btn btn-default" href="#" (click)="toggle($event)">
+          <a *ngIf="parentIsLi" href="#" (click)="toggle($event)">
             {{title}}
             <span class="caret"></span>
           </a>

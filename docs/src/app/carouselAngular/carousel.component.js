@@ -12,18 +12,26 @@ export default  class CarouselAngularComponent {
 
     this.carouselHtml = `
     <carousel [idCarousel]="'test'" [options]="optionsCarousel">
-      <carousel-item [options]="optionsItem1">
-        test1
+      <carousel-item>
+        <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">
+        <div class="carousel-caption">
+          Slide 1
+        </div>
       </carousel-item>
       <carousel-item [options]="optionsItem2">
         test2
       </carousel-item>
     </carousel>`
-
-    this.person = {};
-
+    this.carrouselSlideNgIf= `
+    <carousel-item *ngIf="show1">
+      <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">
+      <div class="carousel-caption">
+        Slide 1
+      </div>
+    </carousel-item>`
     this.optionsCarousel = {
-      indicator: true
+      indicator: true,
+      interval: 4000
     }
 
     this.test = "test"
@@ -33,7 +41,6 @@ export default  class CarouselAngularComponent {
     this.show3 = true
 
 
-    this.Display = "Example";
   }
 
   toggle2() {
@@ -46,7 +53,6 @@ export default  class CarouselAngularComponent {
 
   toggle1() {
     this.show1 = !this.show1;
-    this.show2 = !this.show2;
   }
 }
 

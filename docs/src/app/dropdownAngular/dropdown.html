@@ -1,22 +1,73 @@
 <div class="container">
   <h4>Exemple : </h4>
-  <div class="row container-fluid">
-    <div>
-      <dropdown title="test">
-        <dropdown-option></dropdown-option>
-        <dropdown-option [options]="options1">test1</dropdown-option>
-        <dropdown-option [options]="options2">test2</dropdown-option>
-        <dropdown-option>test3</dropdown-option>
+  <div class="form-group">
+    <div class="row container-fluid">
+      <dropdown title="Menu A">
+        <dropdown-option>Sub-menu A</dropdown-option>
+        <dropdown-option>Sub-menu B</dropdown-option>
+        <dropdown-option [options]="{type: 'divider'}"></dropdown-option>
+        <dropdown-option>Sub-menu separated A</dropdown-option>
+        <dropdown-option [options]="{type: 'header'}">Menu</dropdown-option>
+        <dropdown-option>Sub-menu separated B</dropdown-option>
+      </dropdown>
+    </div>
+  </div>
+  <pre>
+    {{dropdownHtml}}
+  </pre>
+
+  <h4>
+    Dropup
+  </h4>
+  <div class="form-group">
+    <div class="row container-fluid">
+      <dropdown [options]="{orientation:'up'}" title="Menu A">
+        <dropdown-option>Sub-menu A</dropdown-option>
+        <dropdown-option>Sub-menu B</dropdown-option>
+        <dropdown-option [options]="{type: 'divider'}"></dropdown-option>
+        <dropdown-option>Sub-menu separated A</dropdown-option>
+        <dropdown-option [options]="{type: 'header'}">Menu</dropdown-option>
+        <dropdown-option>Sub-menu separated B</dropdown-option>
+      </dropdown>
+    </div>
+  </div>
+  <blockquote>
+    Just add to options the attribute orientation with value 'up'
+  </blockquote>
+
+  <pre>
+    {{dropup}}
+  </pre>
+
+  <h4>
+    Alignement
+  </h4>
+
+  <div class="form-group">
+    <div class="row container-fluid">
+      <dropdown class="form-group" [options]="{alignement:'left'}" title="Menu A">
+        <dropdown-option>Sub-menu A</dropdown-option>
+        <dropdown-option>Sub-menu B</dropdown-option>
+        <dropdown-option [options]="{type: 'divider'}"></dropdown-option>
+        <dropdown-option>Sub-menu separated A</dropdown-option>
+        <dropdown-option [options]="{type: 'header'}">Menu</dropdown-option>
+        <dropdown-option>Sub-menu separated B</dropdown-option>
+      </dropdown>
+      <dropdown [options]="{alignement:'right'}" title="Menu A">
+        <dropdown-option>Sub-menu A</dropdown-option>
+        <dropdown-option>Sub-menu B</dropdown-option>
+        <dropdown-option [options]="{type: 'divider'}"></dropdown-option>
+        <dropdown-option>Sub-menu separated A</dropdown-option>
+        <dropdown-option [options]="{type: 'header'}">Menu</dropdown-option>
+        <dropdown-option>Sub-menu separated B</dropdown-option>
       </dropdown>
     </div>
   </div>
 
-  <h3>
-    For a dropdown use :
-  </h3>
   <pre>
-    {{dropdownHtml}}
+    {{dropdownAlignement}}
   </pre>
+
   <h3>
     Dropdown :
   </h3>

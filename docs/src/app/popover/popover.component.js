@@ -11,17 +11,21 @@ export default  class PopoverComponent {
   constructor(){
 
     this.PopoverHtml = `
-    <button type="button" class="btn btn-default" data-container="body" data-toggle="popover"
-    data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+    <button type="button" class="btn btn-default" popover popoverDirection="left" popoverTitle="test" [popoverContent]="time">
       Popover on left
     </button>
-    ...
-    <script>
-    $(document).ready(function(){
-        $('[data-toggle="popover"]').popover();
-    });
-    </script>
-    `
+
+    <button type="button" class="btn btn-default" popover popoverDirection="top" popoverTitle="test" popoverContent="testetstestsetest">
+      Popover on top
+    </button>
+
+    <button type="button" class="btn btn-default" popover popoverDirection="bottom" popoverTitle="test" popoverContent="testetstestsetest">
+      Popover on bottom
+    </button>
+
+    <button type="button" class="btn btn-default" popover popoverDirection="right" popoverTitle="test" popoverContent="testetstestsetest">
+      Popover on right
+    </button>`;
 
     this.time = new Date();
     setInterval(()=>{
@@ -30,10 +34,6 @@ export default  class PopoverComponent {
 
     this.Display = "Example";
   }
-
-  // time() {
-  //   return new Date().toString();
-  // }
 }
 
 

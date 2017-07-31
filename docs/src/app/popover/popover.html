@@ -3,7 +3,7 @@
     Example
   </h3>
   <div class="row container-fluid">
-    <button type="button" class="btn btn-default" popover popoverDirection="left" popoverTitle="test" [popoverContent]="time">
+    <button class="btn btn-default" popover popoverDirection="left" popoverTitle="test" [popoverContent]="time">
       Popover on left
     </button>
 
@@ -15,23 +15,16 @@
       Popover on bottom
     </button>
 
-    <button type="button" class="btn btn-default" tooltip tooltipDirection="right" tooltipContent="testetstestsetest">
+    <button type="button" class="btn btn-default" popover popoverDirection="right" popoverTitle="test" popoverContent="testetstestsetest">
       Popover on right
     </button>
   </div>
-  <h3>
-    For an popover use :
-  </h3>
   <pre>
     {{PopoverHtml}}
   </pre>
-  <h4>
-    Precision :
-  </h4>
-  <p>
-    We can place popover where we want with the data-placement (top, bottom, left, right)
-  </p>
-  <p>
-    Data-content contain the text we want to display
-  </p>
+  <blockquote>
+    <p>
+      We can apply popover on any type of tag (a, h, div, p, input)
+    </p>
+  </blockquote>
 </div>

@@ -11,9 +11,11 @@ export default  class PaginationAngularComponent {
   constructor(){
 
     this.PaginationHtml = `
-    <pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>`
+    <pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>`;
+    this.paginationSize = `
+    <pagination class="pagination-sm" [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>
+    <pagination class="pagination-lg" [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>`;
 
-    this.Display = "Example"
     this.page = 4;
     this.pages = 10;
     this.result = [1,2,3,4,5]

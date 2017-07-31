@@ -32,6 +32,7 @@ import TableComponent from './table/table.component.js';
 import CarouselAngularComponent from './carouselAngular/carousel.component.js';
 
 import PopoverComponent from './popover/popover.component.js';
+import TooltipComponent from './tooltip/tooltip.component.js';
 
 import AccordionComponent from './accordion/accordion.component.js';
 
@@ -82,6 +83,7 @@ AppModule.annotations = [
       TableComponent,
       CarouselAngularComponent,
       PopoverComponent,
+      TooltipComponent,
       AccordionComponent,
       InputgroupComponent,
       GridComponent,

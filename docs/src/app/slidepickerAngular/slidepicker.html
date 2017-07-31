@@ -24,32 +24,19 @@
     <div class="col-md-4">
       <label for="slidepicker2">Slidepicker with default value</label>
       <slidepicker [(ngModel)]= "slidepicker2" class="slidepicker-vertical" name="slidepicker2">
-        <slidepicker-option *ngIf="show1" value="test1">test1</slidepicker-option>
-        <slidepicker-option *ngIf="show2" value="test2">test2</slidepicker-option>
-        <slidepicker-option *ngIf="show3" value="test3">test3</slidepicker-option>
-        <slidepicker-option *ngIf="show4" value="test4">test4</slidepicker-option>
+        <slidepicker-option value="test1">test1</slidepicker-option>
+        <slidepicker-option value="test2">test2</slidepicker-option>
+        <slidepicker-option value="test3">test3</slidepicker-option>
       </slidepicker>
     </div>
     <div class="col-md-4">
       <div class="form-group">
         <label for="Binding2">Binding</label>
         <input name="Binding2" class="form-control" type="text" [(ngModel)]="slidepicker2" disabled></input>
-        <label for="ButtonA">Select test1</label>
-        <button class="btn btn-block" (click)="changeBinding('slidepicker2', 'test1')">Select test1</button>
-        <label for="ButtonA">Select test2</label>
-        <button class="btn btn-block" (click)="changeBinding('slidepicker2', 'test2')">Select test2</button>
-        <label for="ButtonA">Select test3</label>
-        <button class="btn btn-block" (click)="changeBinding('slidepicker2', 'test3')">Select test3</button>
-        <label for="ButtonA">Toggle test2</label>
-        <button class="btn btn-block" (click)="toggle2()">toggle test2</button>
-        <label for="ButtonA">Toggle test4</label>
-        <button class="btn btn-block" (click)="toggle4()">toggle test4</button>
-        <label for="ButtonA">Toggle test1</label>
-        <button class="btn btn-block" (click)="toggle1()">toggle test1</button>
       </div>
     </div>
   </div>
-  
+
   <h3>
     For an slidepicker use :
   </h3>
@@ -104,4 +91,93 @@
       </tr>
     </tbody>
   </table>
+
+  <h4>
+    Select Value and add/suppress value with parent component
+  </h4>
+
+  <div class="row">
+    <div class="col-md-4">
+      <label for="slidepicker3">Slidepicker</label>
+      <slidepicker [(ngModel)]= "slidepicker3" class="slidepicker-vertical" name="slidepicker3">
+        <slidepicker-option *ngIf="show1" value="test1">test1</slidepicker-option>
+        <slidepicker-option *ngIf="show2" value="test2">test2</slidepicker-option>
+        <slidepicker-option *ngIf="show3" value="test3">test3</slidepicker-option>
+      </slidepicker>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="Binding2">Binding</label>
+        <input name="Binding2" class="form-control" type="text" [(ngModel)]="slidepicker3" disabled></input>
+        <label for="ButtonA">Select test1</label>
+        <button class="btn btn-block" (click)="changeBinding('slidepicker3', 'test1')">Select test1</button>
+        <label for="ButtonA">Select test2</label>
+        <button class="btn btn-block" (click)="changeBinding('slidepicker3', 'test2')">Select test2</button>
+        <label for="ButtonA">Select test3</label>
+        <button class="btn btn-block" (click)="changeBinding('slidepicker3', 'test3')">Select test3</button>
+        <label for="ButtonA">Toggle test1</label>
+        <button class="btn btn-block" (click)="toggle1()">toggle test1</button>
+        <label for="ButtonA">Toggle test2</label>
+        <button class="btn btn-block" (click)="toggle2()">toggle test2</button>
+        <label for="ButtonA">Toggle test3</label>
+        <button class="btn btn-block" (click)="toggle3()">toggle test3</button>
+        <label for="ButtonA">Toggle all</label>
+        <button class="btn btn-block" (click)="toggleAll()">toggle all</button>
+      </div>
+    </div>
+  </div>
+
+  <blockquote >
+    <p>
+      If we add or suppress a value with *ngIf in tag slidepicker-option, the component will change active or replace correctly the handle
+    </p>
+  </blockquote>
+  <pre>
+    {{slidepickerOptionNgIf}}
+  </pre>
+
+  <h4>
+    Different size :
+  </h4>
+
+  <div class="row">
+    <div class="col-md-4">
+      <label for="slidepicker1">Slidepicker small</label>
+      <slidepicker [(ngModel)]="slidepicker1" class="slidepicker-vertical slidepicker-sm" name="slidepicker1">
+        <slidepicker-option value="test1">test1</slidepicker-option>
+        <slidepicker-option value="test2">test2</slidepicker-option>
+        <slidepicker-option value="test3">test3</slidepicker-option>
+        <slidepicker-option value="test4">test4</slidepicker-option>
+      </slidepicker>
+    </div>
+    <div class="col-md-4">
+      <label for="slidepicker1">Slidepicker medium</label>
+      <slidepicker [(ngModel)]="slidepicker1" class="slidepicker-vertical" name="slidepicker1">
+        <slidepicker-option value="test1">test1</slidepicker-option>
+        <slidepicker-option value="test2">test2</slidepicker-option>
+        <slidepicker-option value="test3">test3</slidepicker-option>
+        <slidepicker-option value="test4">test4</slidepicker-option>
+      </slidepicker>
+    </div>
+    <div class="col-md-4">
+      <label for="slidepicker1">Slidepicker large</label>
+      <slidepicker [(ngModel)]="slidepicker1" class="slidepicker-vertical slidepicker-lg" name="slidepicker1">
+        <slidepicker-option value="test1">test1</slidepicker-option>
+        <slidepicker-option value="test2">test2</slidepicker-option>
+        <slidepicker-option value="test3">test3</slidepicker-option>
+        <slidepicker-option value="test4">test4</slidepicker-option>
+      </slidepicker>
+    </div>
+  </div>
+
+  <blockquote>
+    <p>
+      If we want different size we just need to add class to slidepicker
+    </p>
+  </blockquote>
+
+  <pre>
+    {{slidepickerSizeHtml}}
+  </pre>
+
 </div>
