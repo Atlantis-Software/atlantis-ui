@@ -3,6 +3,5 @@ require('atlantis-ui-css');
 require('./css/main.css');
 require('reflect-metadata');
 require('zone.js');
-require('mathjs');
 
 require('./main.js');

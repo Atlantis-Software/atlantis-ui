@@ -12,6 +12,8 @@ require('zone.js/dist/async-test');
 require('zone.js/dist/fake-async-test');
 require('zone.js/dist/mocha-patch');
 
+require('./less/atlantis-ui.less');
+require('./dist/css/atlantis-ui.css');
 
 var appContext = require.context('./ngx', true, /\.spec\.js/);
 

@@ -1,6 +1,7 @@
-import { Component, ContentChildren, forwardRef, ChangeDetectorRef, IterableDiffers, ElementRef} from '@angular/core';
+import { Component, ContentChildren, forwardRef, ChangeDetectorRef, IterableDiffers, ElementRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import selectpickeroptionComponent from './selectpicker-option.component';
+
 
 export default class selectpickerComponent {
   constructor (changeDetectorRef, differs, elementRef) {
@@ -24,23 +25,19 @@ export default class selectpickerComponent {
           provide: NG_VALUE_ACCESSOR,
           useExisting: forwardRef(() => selectpickerComponent),
           multi: true
-        }], 
+        }],
         // need click outsite component
         host: {
           '(document:click)': 'handleClick($event)',
         }
 	  	})
 		];
+
 	}
   get value() {
     return this.val;
   }
-  set value(val) {
-    if (val !== this.val) {
-      this.val = val;
-      this.onModelChange(val);
-    }
-  }
+
   writeValue(val) {
     if (val !== this.val) {
       this.val = val;
@@ -60,7 +57,7 @@ export default class selectpickerComponent {
     if (this.multiple && Array.isArray(this.val)) {
       this.SelectedValuesText = [];
       // update options according to thi.val value
-      this.options.forEach(function(option){
+      this.options.forEach(function(option) {
         var index = self.val.indexOf(option.value);
         if (index > -1) {
           option.selected = true;
@@ -68,14 +65,14 @@ export default class selectpickerComponent {
         } else {
           option.selected = false;
         }
-      })
+      });
       // space html if empty array to avoid a small select
       if (this.val.length <= 0) {
         this.SelectedValuesText = "&nbsp;";
       }
     } else { // select simple
       this.SelectedValuesText = null;
-      // update options according to thi.val value
+      // update options according to this.val value
       this.options.forEach(function(option) {
         if (self.val === option.value) {
           option.selected = true;
@@ -87,7 +84,7 @@ export default class selectpickerComponent {
       // space html if empty array to avoid a small select
       if (!this.SelectedValuesText || this.SelectedValuesText == "") {
         this.SelectedValuesText = "&nbsp;";
-      } 
+      }
     }
   }
 
@@ -137,7 +134,7 @@ export default class selectpickerComponent {
     this.cdr.detectChanges();
   }
 
-  selectOption(option){
+  selectOption(option) {
     var self = this;
     // id select multiple
     if (this.multiple) {
@@ -194,7 +191,7 @@ export default class selectpickerComponent {
          option.selected = false;
        });
        // on selectionne la valeur selectionnée
-      option.selected = true; 
+      option.selected = true;
       this.val = option.value;
       // mise a jour du text
       if (option.text && option.text != "") {
@@ -207,7 +204,7 @@ export default class selectpickerComponent {
       // detection du changement de valeur de this.val
       this.onModelChange(self.val);
     }
-    
+
   }
   // on hover item list the cursor is a pointer and indicates a link
   onHover($event) {

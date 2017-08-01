@@ -1,5 +1,6 @@
 import { Component, ElementRef, ChangeDetectorRef} from '@angular/core';
 
+
 export class accordionComponent {
 
   static get annotations() {
@@ -42,24 +43,27 @@ export class accordionComponent {
 
   ngAfterViewInit() {
     var self = this;
-    this.panelsHTML = this.elementRef.nativeElement.getElementsByClassName("panel");
-    for (var i = 0; i < this.panelsHTML.length; i++) {
+    var panelsHTML = this.elementRef.nativeElement.getElementsByClassName("panel");
+
+    for (var i = 0; i < panelsHTML.length; i++) {
       if (this.options.style) {
-        self.panelsHTML[i].classList.add("panel-"+this.options.style);
+        panelsHTML[i].classList.add("panel-" + this.options.style);
       } else {
-        self.panelsHTML[i].classList.add("panel-default")
+        panelsHTML[i].classList.add("panel-default");
       }
     }
 
-
-    if (this.options.openDefault !== "" && typeof this.options.openDefault === "number" && this.options.openDefault >= 0) {
-      if (this.options.openDefault === this.panelsHTML.length) {
-        this.options.openDefault = this.panelsHTML.length - 1;
-      } else if (this.options.openDefault > this.panelsHTML.length) {
+    if (this.options.openDefault >= 0) {
+      if (this.options.openDefault === panelsHTML.length) {
+        this.options.openDefault = panelsHTML.length - 1;
+      } else if (this.options.openDefault > panelsHTML.length) {
         this.options.openDefault = 0;
       }
-      this.panels[this.options.openDefault].isOpen = true;
+      setTimeout(function() {
+        self.panels[self.options.openDefault].isOpen = true;
+      }, 0);
     }
+
     this.cdr.detectChanges();
 
   }
@@ -67,6 +71,7 @@ export class accordionComponent {
 }
 
 accordionComponent.parameters = [ElementRef, ChangeDetectorRef];
+
 
 export class accordionPanelComponent {
   static get annotations() {
@@ -77,9 +82,7 @@ export class accordionPanelComponent {
         <div class="panel" [ngClass]="{'panel-open': isOpen}">
           <div class="panel-heading" (click)="toggleOpen($event)">
             <h4 class="panel-title">
-              <a role="button" href>
-              {{title}}
-              </a>
+              <a role="button">{{title}}</a>
             </h4>
           </div>
           <div class="panel-collapse collapse" [class.in]="isOpen">
@@ -107,18 +110,9 @@ export class accordionPanelComponent {
   toggleOpen(e) {
     e.preventDefault();
     this.isOpen = !this.isOpen;
-  }
-
-  set isOpen(value) {
-    this._isOpen = value;
-    this.cdr.detectChanges()
-    if (value) {
+    if(this.isOpen) {
       this.accordion.closeOthers(this);
     }
-  }
-
-  get isOpen() {
-    return this._isOpen;
   }
 }
 
