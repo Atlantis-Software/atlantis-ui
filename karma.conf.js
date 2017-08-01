@@ -25,7 +25,7 @@ module.exports = function (config) {
 
     browsers : ['Chrome', 'Firefox'],
 
-    singleRun: true,
+    singleRun: false,
 
     reporters: ['mocha'],
     port: 9876,
