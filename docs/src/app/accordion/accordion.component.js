@@ -19,7 +19,30 @@ export default  class AccordionComponent {
         azertyuiop
         <button type="button" class="btn btn-block">Basic</button>
       </accordion-panel>
-    </accordion>`
+    </accordion>`;
+
+    this.accordionNgFor= `
+    <accordion [options]="{style: 'danger'}">
+      <accordion-panel *ngFor="let panel of panels" [title]="panel.title">
+        {{panel.content}}
+      </accordion-panel>
+    </accordion>`;
+
+    this.accordionNgForPanel = `
+    this.panels = [
+      {
+        title: "test1",
+        content: "azertyuiop"
+      },
+      {
+        title: "test2",
+        content: "qsdfghjklm"
+      },
+      {
+        title: "test3",
+        content: "wxcvbn"
+      }
+    ]`
 
     this.optionsAccordion= {
       openDefault: 2,
@@ -28,6 +51,21 @@ export default  class AccordionComponent {
 
     this.Display = "Example";
     this.changehours();
+
+    this.panels = [
+      {
+        title: "test1",
+        content: "azertyuiop"
+      },
+      {
+        title: "test2",
+        content: "qsdfghjklm"
+      },
+      {
+        title: "test3",
+        content: "wxcvbn"
+      }
+    ]
   }
 
   changehours(){

@@ -43,12 +43,12 @@ export class accordionComponent {
   ngAfterViewInit() {
     var self = this;
     this.panelsHTML = this.elementRef.nativeElement.getElementsByClassName("panel");
-    this.style = this.elementRef.nativeElement.classList;
     for (var i = 0; i < this.panelsHTML.length; i++) {
-      self.panelsHTML[i].classList.add("panel-default")
-      this.style.forEach( function(style){
-        self.panelsHTML[i].classList.add(style);
-      })
+      if (this.options.style) {
+        self.panelsHTML[i].classList.add("panel-"+this.options.style);
+      } else {
+        self.panelsHTML[i].classList.add("panel-default")
+      }
     }
 
 

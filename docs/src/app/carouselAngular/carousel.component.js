@@ -28,11 +28,47 @@ export default  class CarouselAngularComponent {
       <div class="carousel-caption">
         Slide 1
       </div>
-    </carousel-item>`
+    </carousel-item>`;
+
+    this.carouselNgFor= `
+    <carousel [options]="optionsCarousel">
+      <carousel-item *ngFor="let carouselItem of carouselItems">
+        <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">
+        <div class="carousel-caption">
+          {{carouselItem.label}}
+        </div>
+      </carousel-item>
+    </carousel>`;
+
+    this.carouselNgForItems = `
+    this.carouselItems = [
+      {
+        label: "slide1",
+      },
+      {
+        label: "slide2",
+      },
+      {
+        label: ""
+      }
+    ]`
+
     this.optionsCarousel = {
       indicator: true,
       interval: 4000
     }
+
+    this.carouselItems = [
+      {
+        label: "slide1",
+      },
+      {
+        label: "slide2",
+      },
+      {
+        label: ""
+      }
+    ]
 
     this.test = "test"
 

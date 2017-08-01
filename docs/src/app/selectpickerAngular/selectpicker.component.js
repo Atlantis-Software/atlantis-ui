@@ -75,10 +75,80 @@ export default  class SelectpickerAngularComponent {
     this.optionsSelect = [ this.optionArrayOneTwoThree , this.optionOne , this.optionObjetWithArray ];
     this.Selectpicker1 = [this.optionArrayOneTwoThree.value];
     this.Selectpicker3 = [this.one, this.objetWithArray, "D"];
-
+    this.booleanFalse = false;
     this.A = "A";
 
-    this.booleanFalse = false;
+    this.selectpickerNgForOptions = `
+    this.options = [
+      {
+        value: this.A,
+        label: "AAAA"
+      },
+      {
+        value: "B",
+        label: "BBBB"
+      },
+      {
+        value: "C",
+        label: "CCCC"
+      },
+      {
+        value: this.booleanFalse,
+        label: "boolean test"
+      },
+      {
+        value: this.one,
+        label: "11111"
+      },
+      {
+        value: this.arrayOneTwoThree,
+        label: "one, two, three"
+      },
+      {
+        value: this.objetWithArray,
+        label: "object javascript"
+      }
+    ]`;
+
+    this.selectpickerNgFor = `
+    <selectpicker name="Selectpicker10" [(ngModel)]="Selectpicker10" multiple="true">
+      <selectpicker-option *ngFor="let option of options" [value]="option.value">
+        {{option.label}}
+      </selectpicker-option>
+    </selectpicker>`;
+
+    this.options = [
+      {
+        value: this.A,
+        label: "AAAA"
+      },
+      {
+        value: "B",
+        label: "BBBB"
+      },
+      {
+        value: "C",
+        label: "CCCC"
+      },
+      {
+        value: this.booleanFalse,
+        label: "boolean test"
+      },
+      {
+        value: this.one,
+        label: "11111"
+      },
+      {
+        value: this.arrayOneTwoThree,
+        label: "one, two, three"
+      },
+      {
+        value: this.objetWithArray,
+        label: "object javascript"
+      }
+    ]
+
+
   }
 
   ngOnInit() {

@@ -28,7 +28,96 @@ export default  class SlidepickerAngularComponent {
     this.show1 = true;
     this.show2 = true;
     this.show3 = true;
-    this.slidepicker2 = "test2"
+    this.slidepicker2 = "test2";
+
+
+    this.arrayOneTwoThree = ["un", "deux", "trois"];
+    this.one = 1;
+    this.objetWithArray  = { fsdfds: 1, array: [1,2,3], texte: "test"};
+    this.optionOne = {value: this.one, text: "one"};
+    this.booleanFalse = false;
+    this.A = "A";
+
+    this.slidepickerValue = `
+    <slidepicker class="slidepicker-vertical" [(ngModel)]="slidepicker5">
+      <slidepicker-option [value]="A">AAAA</slidepicker-option>
+      <slidepicker-option value="B">BBBB</slidepicker-option>
+      <slidepicker-option value="C">CCCC</slidepicker-option>
+      <slidepicker-option [value]="booleanFalse">boolean test</slidepicker-option>
+      <slidepicker-option [value]="one">11111</slidepicker-option>
+      <slidepicker-option [value]="arrayOneTwoThree">one, two, three</slidepicker-option>
+      <slidepicker-option [value]="objetWithArray">objet javascript</slidepicker-option>
+    </slidepicker>`
+
+    this.options = [
+      {
+        value: this.A,
+        label: "AAAA"
+      },
+      {
+        value: "B",
+        label: "BBBB"
+      },
+      {
+        value: "C",
+        label: "CCCC"
+      },
+      {
+        value: this.booleanFalse,
+        label: "boolean test"
+      },
+      {
+        value: this.one,
+        label: "11111"
+      },
+      {
+        value: this.arrayOneTwoThree,
+        label: "one, two, three"
+      },
+      {
+        value: this.objetWithArray,
+        label: "object javascript"
+      }
+    ]
+
+    this.slidepickerNgFor = `
+    <slidepicker [(ngModel)]="slidepicker4" class="slidepicker-vertical" name="slidepicker4">
+      <slidepicker-option *ngFor="let option of options" [value]="option.value">
+        {{option.label}}
+      </slidepicker-option>
+    </slidepicker>`;
+
+    this.slidepickerNgForOptions= `
+    this.options = [
+      {
+        value: this.A,
+        label: "AAAA"
+      },
+      {
+        value: "B",
+        label: "BBBB"
+      },
+      {
+        value: "C",
+        label: "CCCC"
+      },
+      {
+        value: this.booleanFalse,
+        label: "boolean test"
+      },
+      {
+        value: this.one,
+        label: "11111"
+      },
+      {
+        value: this.arrayOneTwoThree,
+        label: "one, two, three"
+      },
+      {
+        value: this.objetWithArray,
+        label: "object javascript"
+      }
+    ]`
   }
 
   changeBinding(binding, value){

@@ -15,7 +15,7 @@ export default  class ModalAngularComponent {
     this.modalHtml = `
     <modal idModal="test" [options]="modalOptionsLeft" [(show)]="showLeft">
       <modal-header [options]="modalHeaderOptions">
-        <h4 class="modal-title">Modal Header</h4>
+        <h3 class="modal-title">Modal Header</h3>
       </modal-header>
       <modal-body>
         <p>Some text in the modal.</p>

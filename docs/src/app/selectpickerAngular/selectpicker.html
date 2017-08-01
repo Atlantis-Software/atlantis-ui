@@ -1,9 +1,8 @@
-<div [ngSwitch]= "Display">
-  <div class="container" *ngSwitchCase="'Example'">
+  <div class="container">
     <div class="mt-3">
-      <h4>
+      <h3>
         Multiple selectpicker
-      </h4>
+      </h3>
 
        <div class="row">
         <div class="col-md-4">
@@ -26,14 +25,14 @@
             <ul>
               <li *ngFor="let value of Selectpicker3">{{ value }}</li>
             </ul>
-          </div>    
+          </div>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-4">
           <label>Code : </label>
-        </div> 
+        </div>
       </div>
       <pre>
         {{selectpickerMultipleHtml}}
@@ -42,28 +41,28 @@
       <blockquote>
         <p>For the multiple selectpickers, we must add multiple="true" attribute.</p>
       </blockquote>
-    
+
       </br>
       <div class="row">
         <div class="col-md-4">
           <h5> Select value when clicking on button.</h5>
-        </div> 
-        
+        </div>
+
       </div>
 
        <div class="row">
         <div class="col-md-4">
-          <button (click)="AddRemoveASelectPicker3()">A</button> 
-          <button (click)="AddRemove1SelectPicker3()">1</button> 
-          <button (click)="AddRemoveArraySelectPicker3()">Array</button>    
-          <button (click)="AddRemoveObjetSelectPicker3()">Objet</button> 
-          <button (click)="AddRemoveBooleanSlectPicker3()">Boolean</button> 
+          <button (click)="AddRemoveASelectPicker3()">A</button>
+          <button (click)="AddRemove1SelectPicker3()">1</button>
+          <button (click)="AddRemoveArraySelectPicker3()">Array</button>
+          <button (click)="AddRemoveObjetSelectPicker3()">Objet</button>
+          <button (click)="AddRemoveBooleanSlectPicker3()">Boolean</button>
         </div>
-      </div> 
+      </div>
 
       <blockquote>
         <p>If we select value dynamically by code , it is necessary to be the same instance otherwise it does not work.<br />
-          For example, for the array button : 
+          For example, for the array button :
         </p>
       </blockquote>
 
@@ -74,7 +73,7 @@
       <div class="row">
         <div class="col-md-4">
           <h5> Explanation code</h5>
-        </div> 
+        </div>
       </div>
       <blockquote>
         <p>Selectpicker1 is the bind value. If not value by default it's a empty array : </p>
@@ -95,7 +94,7 @@
       </blockquote>
       <pre>
         {{selectpickerOptionHtml}}
-      </pre>    
+      </pre>
       <blockquote>
         <p>
           If value attribute is not defined , it will be equal to the value of the text ( in the exemple below the value of the variable NoneValue that is to say none value), so when none value for attribute value, the value is that of the text.
@@ -107,9 +106,9 @@
     </div>
     </br></br>
 
-    <h4>
+    <h3>
       Multiple dynamic selectpicker
-    </h4>
+    </h3>
 
     <div class="row">
       <div class="col-md-4">
@@ -126,14 +125,14 @@
           <ul>
             <li *ngFor="let value of Selectpicker1">{{ value }}</li>
           </ul>
-        </div>    
+        </div>
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-4">
         <label>Code : </label>
-      </div> 
+      </div>
     </div>
     <pre>
       {{exempleDynamicSelect}}
@@ -147,18 +146,18 @@
 
       <div class="row">
       <div class="col-md-4">
-        <button style="margin:0;" (click)="AddRemove1()">1</button> 
-        <button style="margin:0;" (click)="AddRemoveArray()">Array</button>    
-        <button style="margin:0;" (click)="AddRemoveObjet()">Objet</button> 
+        <button style="margin:0;" (click)="AddRemove1()">1</button>
+        <button style="margin:0;" (click)="AddRemoveArray()">Array</button>
+        <button style="margin:0;" (click)="AddRemoveObjet()">Objet</button>
       </div>
     </div>
     <br />
 
-     
+
     </br></br>
-    <h4>
+    <h3>
       Simple select
-    </h4>
+    </h3>
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
@@ -173,21 +172,21 @@
             <selectpicker-option [value]="objetWithArray">objet javascript</selectpicker-option>
             <selectpicker-option> {{ NoneValue }} </selectpicker-option>
           </selectpicker>
-        </div> 
+        </div>
       </div>
 
       <div class="col-md-4">
         <div class="form-group">
           <label for="Binding1">Binding</label>
           <input name="Binding1" class="form-control" type="text" [(ngModel)]="Selectpicker2"></input>
-        </div>    
-      </div> 
-    </div>  
+        </div>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-md-4">
         <label>Code : </label>
-      </div> 
+      </div>
     </div>
     <pre>
       {{selectpickerSimpleHtml}}
@@ -201,23 +200,23 @@
     <div class="row">
       <div class="col-md-4">
         <h5> Select value per click button</h5>
-      </div> 
+      </div>
     </div>
     <div class="row">
       <div class="col-md-4">
-        <button (click)="ValueA()">A</button> 
-        <button (click)="Value1()">1</button> 
-        <button (click)="ValueArray()">Array</button>    
-        <button (click)="ValueObjet()">Objet</button> 
-        <button (click)="ValueBoolean()">Boolean</button> 
-        <button (click)="ValueNoneValue()">None Value</button> 
+        <button (click)="ValueA()">A</button>
+        <button (click)="Value1()">1</button>
+        <button (click)="ValueArray()">Array</button>
+        <button (click)="ValueObjet()">Objet</button>
+        <button (click)="ValueBoolean()">Boolean</button>
+        <button (click)="ValueNoneValue()">None Value</button>
       </div>
-    </div> 
+    </div>
 
     <div class="row">
       <div class="col-md-4">
         <label>Code for array button : </label>
-      </div> 
+      </div>
     </div>
     <pre>
         var arrayOneTwoThree = ["one", "two", "three"];
@@ -227,7 +226,7 @@
     <div class="row">
       <div class="col-md-4">
         <h5> Explanation code</h5>
-      </div> 
+      </div>
     </div>
     <p>Selectpicker2 is the bind value. If not default value Selectpicker2 is not set : </p>
     <blockquote>
@@ -242,7 +241,7 @@
     </blockquote>
     <pre>
       {{selectpickerOptionHtml}}
-    </pre>    
+    </pre>
     <blockquote>
       <p>
         If value attribute is not defined , it will be equal to the value of the text ( in the exemple below the value of the variable NoneValue that is to say none value),
@@ -252,5 +251,35 @@
     <pre>
       {{selectpickerOptionWithoutValueHtml}}
     </pre>
-  </div> 
-</div>
+
+    <h3>
+      Exemple with ngFor
+    </h3>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="Selectpicker10">Example</label>
+          <selectpicker name="Selectpicker10" [(ngModel)]="Selectpicker10" multiple="true">
+            <selectpicker-option *ngFor="let option of options" [value]="option.value">{{option.label}}</selectpicker-option>
+          </selectpicker>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group" style="height:140px">
+          <label for="Binding1">Binding</label>
+          <ul>
+            <li *ngFor="let value of Selectpicker10">{{ value }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <pre>
+        {{selectpickerNgFor}}
+      </pre>
+
+      <pre>
+        {{selectpickerNgForOptions}}
+      </pre>
+    </div>
+  </div>

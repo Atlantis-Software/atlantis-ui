@@ -82,8 +82,8 @@ export class carouselComponent {
       if (this.options.interval < 0) {
         this.options.interval = 2000
       }
-      setInterval(() => {
-        if(this.items.length > 1 && !this.hover && this.options.pause === "hover") {
+      this.slide = setInterval(() => {
+        if(this.items.length > 1 && !this.hover || this.options.pause === "none") {
           var nextActive = this.activeItem + 1;
           if (nextActive >= this.items.length) {
             nextActive = 0;
@@ -93,6 +93,10 @@ export class carouselComponent {
       }, this.options.interval)
     }
     this.click = false;
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.slide);
   }
 
   getDirection(newActive, oldActive) {

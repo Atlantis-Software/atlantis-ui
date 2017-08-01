@@ -2,7 +2,7 @@
   <h3>
     Example :
   </h3>
-  <div class="row container-fluid">
+  <div class="row container-fluid form-group">
     <carousel [options]="optionsCarousel">
       <carousel-item>
         <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">
@@ -22,18 +22,15 @@
     </carousel>
   </div>
 
-  <h3>
-    For a carousel use :
-  </h3>
   <pre>
     {{carouselHtml}}
   </pre>
   <h3>
     Carousel :
   </h3>
-  <h4>
+  <h3>
     Options
-  </h4>
+  </h3>
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
@@ -109,11 +106,11 @@
     </tbody>
   </table>
 
-  <h4>
+  <h3>
     Exemple with add and suppress slide
-  </h4>
+  </h3>
 
-  <div class="row container-fluid">
+  <div class="row container-fluid form-group">
     <carousel [options]="optionsCarousel">
       <carousel-item *ngIf="show1">
         <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">
@@ -152,6 +149,28 @@
 
   <pre>
     {{carrouselSlideNgIf}}
+  </pre>
+
+  <h3>
+    Exemple with ngFor
+  </h3>
+
+  <div class="row container-fluid form-group">
+    <carousel [options]="optionsCarousel">
+      <carousel-item *ngFor="let carouselItem of carouselItems">
+        <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">
+        <div class="carousel-caption">
+          {{carouselItem.label}}
+        </div>
+      </carousel-item>
+    </carousel>
+  </div>
+
+  <pre>
+    {{carouselNgFor}}
+  </pre>
+  <pre>
+    {{carouselNgForItems}}
   </pre>
 
 </div>

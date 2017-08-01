@@ -38,6 +38,63 @@ export default  class DropdownAngularComponent {
       type: "divider"
     }
 
+    this.dropdownoptions = [
+      {
+        label: "Sub-menu A"
+      },{
+        label: "Sub-menu B"
+      },{
+        label: "",
+        options : {
+          type : "divider"
+        }
+      },{
+        label: "Sub-menu separated A"
+      },{
+        label: "",
+        options : {
+          type : "header"
+        }
+      },{
+        label: "Sub-menu separated B"
+      }
+    ];
+
+    this.dropdownNgForJS = `
+    this.dropdownoptions = [
+      {
+        label: "Sub-menu A"
+      },
+      {
+        label: "Sub-menu B"
+      },
+      {
+        label: "",
+        options : {
+          type : "divider"
+        }
+      },
+      {
+        label: "Sub-menu separated A"
+      },
+      {
+        label: "",
+        options : {
+          type : "header"
+        }
+      },
+      {
+        label: "Sub-menu separated B"
+      }
+    ];`
+
+    this.dropdownNgFor = `
+    <dropdown class="form-group" [options]="{alignement:'left'}" title="Menu A">
+      <dropdown-option *ngFor="let dropdownoption of dropdownoptions" [options]="dropdownoption.options">
+        {{dropdownoption.label}}
+      </dropdown-option>
+    </dropdown>`
+
     this.Display = "Example";
   }
 }

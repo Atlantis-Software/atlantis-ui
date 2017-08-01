@@ -1,5 +1,5 @@
 <div class="container">
-  <h4>Exemple : </h4>
+  <h3>Exemple : </h3>
   <div class="form-group">
     <div class="row container-fluid">
       <dropdown title="Menu A">
@@ -16,9 +16,9 @@
     {{dropdownHtml}}
   </pre>
 
-  <h4>
+  <h3>
     Dropup
-  </h4>
+  </h3>
   <div class="form-group">
     <div class="row container-fluid">
       <dropdown [options]="{orientation:'up'}" title="Menu A">
@@ -39,9 +39,9 @@
     {{dropup}}
   </pre>
 
-  <h4>
+  <h3>
     Alignement
-  </h4>
+  </h3>
 
   <div class="form-group">
     <div class="row container-fluid">
@@ -69,11 +69,30 @@
   </pre>
 
   <h3>
+    Dropdown options with ngFor
+  </h3>
+
+  <div class="form-group">
+    <div class="row container-fluid">
+      <dropdown class="form-group" [options]="{alignement:'left'}" title="Menu A">
+        <dropdown-option *ngFor="let dropdownoption of dropdownoptions" [options]="dropdownoption.options">{{dropdownoption.label}}</dropdown-option>
+      </dropdown>
+    </div>
+  </div>
+
+  <pre>
+    {{dropdownNgFor}}
+  </pre>
+  <pre>
+    {{dropdownNgForJS}}
+  </pre>
+
+  <h3>
     Dropdown :
   </h3>
-  <h4>
+  <h3>
     Settings
-  </h4>
+  </h3>
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
@@ -104,9 +123,9 @@
       </tr>
     </tbody>
   </table>
-  <h4>
+  <h3>
     Options
-  </h4>
+  </h3>
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
@@ -168,9 +187,9 @@
   <h3>
     Dropdown-option :
   </h3>
-  <h4>
+  <h3>
     Options
-  </h4>
+  </h3>
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
