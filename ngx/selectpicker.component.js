@@ -158,40 +158,66 @@ export default class selectpickerComponent {
           var index = self.val.indexOf(value);
           self.val.splice(index, 1);
         }
-      });
-      if (option.selected) {
-        // delete value
-        option.selected = false;
-        if (Array.isArray(this.val)) {
-          var index = this.val.indexOf(option.value);
-          if (index > -1) {
-            this.val.splice(index, 1);
-          }
-        }
-        if (Array.isArray(this.SelectedValuesText)) {
-          var indexText = this.SelectedValuesText.indexOf(option.text);
-          if (indexText > -1) {
-            this.SelectedValuesText.splice(indexText, 1);
-          }
-        }
-      } else {
-        // add value
-        option.selected = true;
-        this.val.push(option.value);
-        this.SelectedValuesText.push(option.text);
-      }
-      // if array empty text have html space if not the select is small
-      if (this.val.length <= 0) {
-        this.SelectedValuesText = '&nbsp;';
-      }
-      // if key press shift
-      if(event.shiftKey) {
+      })
+      // key press ctrl
+      if(event.ctrlKey) {
+        // option already selected , unselect value
         if (option.selected) {
-          if (typeof this.selectedIndex != "undefined" && this.selectedIndex != null) {
+          // delete value
+          option.selected = false;
+          if (Array.isArray(this.val)) {
+            var index = this.val.indexOf(option.value);
+            if (index > -1) {
+              this.val.splice(index, 1);
+            }
+          }
+          // delete value in list text
+          if (Array.isArray(this.SelectedValuesText)) {
+            var indexText = this.SelectedValuesText.indexOf(option.text);
+            if (indexText > -1) {
+              this.SelectedValuesText.splice(indexText, 1);
+            }
+          }
+        } else {  // option not selected , select value
+          // add value
+          var index = options.indexOf(option.value);
+          this.previousSelectedIndex = index;
+          this.previousSelectedValue = option.value;
+          option.selected = true;
+          //selected value
+          this.val.push(option.value);
+          this.SelectedValuesText.push(option.text);
+          this.ctrlKey = true;
+        }
+      } else if(event.shiftKey) { // if key press shift
+        if (!option.selected) {
+          var indexOption;
+          var currentIndexVal;
+          var currentIndexOption;
+          var previousIndexVal;
+          // if we have a previous value
+          if (typeof this.previousSelectedIndex != "undefined" && this.previousSelectedIndex != null) {
+            this.val = [];
             this.options.forEach(function(option4) {
-              var index = options.indexOf(option4.value);
-              var currentIndex = options.indexOf(option.value);
-              if ( index < currentIndex && index > self.selectedIndex) {
+              indexOption = options.indexOf(option4.value);
+              currentIndexVal = self.val.indexOf(option.value);
+              currentIndexOption =  options.indexOf(option.value);
+              // if current value is not selected, we select current value
+              if (currentIndexVal <= -1) {
+                self.val.push(option.value);
+              }
+              previousIndexVal = self.val.indexOf(self.previousSelectedValue);
+              //if previous value is not selected , we select previous value
+              if (previousIndexVal <= -1) {
+                self.val.push(self.previousSelectedValue);
+              }
+              // we select value between previous Value and current value 
+              if ( indexOption < currentIndexOption && indexOption > self.previousSelectedIndex) {
+                var index = self.val.indexOf(option4.value);
+                if (index <= -1) {
+                  self.val.push(option4.value);
+                }
+              } else if (indexOption > currentIndexOption && indexOption < self.previousSelectedIndex ) {
                 var index = self.val.indexOf(option4.value);
                 if (index <= -1) {
                   self.val.push(option4.value);
@@ -199,11 +225,13 @@ export default class selectpickerComponent {
               }
             });
           }
-        } else {
+        } else { 
             this.options.forEach(function(option4) {
               var index = options.indexOf(option4.value);
               var currentIndex = options.indexOf(option.value);
-            if ( index > currentIndex) {
+              // if not key press ctrl delete all item below value selected
+              // if key press ctrl before delete all item above value selected 
+              if ( !self.ctrlKey && index > currentIndex || self.ctrlKey &&  index < currentIndex ) {
               var index = self.val.indexOf(option4.value);
               if (index > -1) {
                 self.val.splice(index, 1);
@@ -211,9 +239,19 @@ export default class selectpickerComponent {
             }
           });
         }
-      } else {
+      } else { // click on value
         var index = options.indexOf(option.value);
-        this.selectedIndex = index;
+        this.previousSelectedIndex = index;
+        this.previousSelectedValue = option.value;
+        option.selected = true;
+        this.val = [];
+        this.val.push(option.value);
+        this.SelectedValuesText.push(option.text);
+        this.ctrlKey = false;
+      }
+      // if array empty text have html space if not the select is small
+      if (this.val.length <= 0) {
+        this.SelectedValuesText = '&nbsp;';
       }
       // detection du changement de valeur de this.val
       this.onModelChange(this.val);
