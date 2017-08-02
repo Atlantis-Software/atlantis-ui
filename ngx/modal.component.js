@@ -16,7 +16,7 @@ export default class modalComponent {
 						</div>
 				  </div>
           `,
-        inputs: ['options', "show"], 
+        inputs: ['options', "show"],
         outputs: ['showChange']
 	  	})
 		];
@@ -25,7 +25,7 @@ export default class modalComponent {
   constructor(elementRef, Injector, ComponentFactoryResolver, ApplicationRef) {
     this.showChange = new EventEmitter();
     this.elementRef = elementRef;
-    // need to create backdrop later 
+    // need to create backdrop later
     this.injector = Injector;
     this.applicationRef = ApplicationRef;
     this.backdropFactory =  ComponentFactoryResolver.resolveComponentFactory(backdropComponent);
@@ -60,8 +60,9 @@ export default class modalComponent {
     this.showChange.emit(this.model);
 
     this.visible = true;
-    setTimeout(() => this.visibleAnimate = true, 100);
-    
+		this.visibleAnimate = true;
+    // setTimeout(() => this.visibleAnimate = true, 100);
+
   }
 
   close(event) {
@@ -75,9 +76,10 @@ export default class modalComponent {
     this.visibleAnimate = false;
     if (this.options && this.options.backdrop && this.backdropRef) {
       // delete the backdrop
-      this.backdropRef.destroy();  
+      this.backdropRef.destroy();
     }
-    setTimeout(() => this.visible = false, 300);
+		this.visible = false;
+    // setTimeout(() => this.visible = false, 300);
   }
 
   ngOnInit() {;
@@ -99,7 +101,7 @@ export default class modalComponent {
 
     if ( typeof this.options.orientation === "undefined" || this.options.orientation === "") {
       this.options.orientation = "left";
-    }	
+    }
 
     if (typeof this.options.orientation === "undefined" || this.options.fade === "")  {
       this.options.fade = true;

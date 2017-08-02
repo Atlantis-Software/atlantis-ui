@@ -15,6 +15,8 @@ require('zone.js/dist/mocha-patch');
 require('./less/atlantis-ui.less');
 require('./dist/css/atlantis-ui.css');
 
+global.moment = require('moment');
+
 var appContext = require.context('./ngx', true, /\.spec\.js/);
 
 appContext.keys().forEach(appContext);

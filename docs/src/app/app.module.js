@@ -6,7 +6,6 @@ import { BrowserModule } from '@angular/platform-browser';
 // import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { LocationStrategy, HashLocationStrategy, DatePipe, UpperCasePipe } from '@angular/common';
 
-
 import HomeComponent from './home/home.component.js';
 
 import DatepickerAngularComponent from './datepickerAngular/datepicker.component';
@@ -44,7 +43,7 @@ import GridAngularComponent from './gridAngular/grid.component.js';
 
 import ButtongroupsComponent from './buttongroups/buttongroups.component.js';
 import FormsComponent from './forms/forms.component.js';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ngxAtlUiModule } from 'atlantis-ui-ngx';
 
 
@@ -96,7 +95,8 @@ AppModule.annotations = [
       BrowserModule,
       FormsModule,
       RouterModule.forRoot(route),
-      ngxAtlUiModule.forRoot(types)
+      ngxAtlUiModule.forRoot(types), 
+      BrowserAnimationsModule
     ],
     bootstrap: [ AppComponent ],
     providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, DatePipe, UpperCasePipe]

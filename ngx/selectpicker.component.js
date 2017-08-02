@@ -134,7 +134,7 @@ export default class selectpickerComponent {
     this.cdr.detectChanges();
   }
 
-  selectOption(option) {
+  selectOption(option, event){
     var self = this;
     // id select multiple
     if (this.multiple) {
@@ -180,6 +180,37 @@ export default class selectpickerComponent {
       // if array empty text have html space if not the select is small
       if (this.val.length <= 0) {
         this.SelectedValuesText = '&nbsp;';
+      }
+      // if key press shift
+      if(event.shiftKey) {
+        if (option.selected) {
+          if (typeof this.selectedIndex != "undefined" && this.selectedIndex != null) {
+            this.options.forEach(function(option4) {
+              var index = options.indexOf(option4.value);
+              var currentIndex = options.indexOf(option.value);
+              if ( index < currentIndex && index > self.selectedIndex) {
+                var index = self.val.indexOf(option4.value);
+                if (index <= -1) {
+                  self.val.push(option4.value);
+                }
+              }
+            });
+          }
+        } else {
+            this.options.forEach(function(option4) {
+              var index = options.indexOf(option4.value);
+              var currentIndex = options.indexOf(option.value);
+            if ( index > currentIndex) {
+              var index = self.val.indexOf(option4.value);
+              if (index > -1) {
+                self.val.splice(index, 1);
+              }
+            }
+          });
+        }
+      } else {
+        var index = options.indexOf(option.value);
+        this.selectedIndex = index;
       }
       // detection du changement de valeur de this.val
       this.onModelChange(this.val);

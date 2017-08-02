@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="col-md-5">
-            <input type="date" class="form-control" [ngModel]="val" (ngModelChange)="valueChange($event)" 
+            <input type="date" class="form-control" [ngModel]="val" (ngModelChange)="valueChange($event)"
             [ngClass]="{'active': true}" (keyup.enter)="close()">
         </div>
         <div class="col-md-5">
@@ -28,7 +28,7 @@
             <selectpicker-option value="last30day">{{ i18n[language]["last30day"] }}</selectpicker-option>
             <selectpicker-option value="lastYear">{{ i18n[language]["lastYear"] }}</selectpicker-option>
           </selectpicker>
-        </div>  
+        </div>
         <div class="col-md-1 text-center" >
           <div class="next arrow" (click)="clickNext($event)">
             <i class="icon icon-next icon-2x"></i>
@@ -49,14 +49,14 @@
                 <th colspan="5" class="month">{{ locale.monthNames[calendar[i].month()] + calendar[i].format(" YYYY") }}</th>
                 <th>
                 </th>
-              </tr>  
+              </tr>
             </thead>
-            <thead *ngIf="i != 0"> 
+            <thead *ngIf="i != 0">
               <tr>
-                <th></th>  
+                <th></th>
                 <th colspan="5" class="month">{{ locale.monthNames[calendar[i].month()] + calendar[i].format(" YYYY") }}</th>
-                <th></th> 
-              </tr>  
+                <th></th>
+              </tr>
             </thead>
             <tbody>
               <tr>
@@ -66,14 +66,13 @@
                 <td *ngFor="let item of createRange(7);let col=index" [ngClass]="classes[i][row][col]" (click)="selectDate(calendar[i].calendar[row][col], classes[i][row][col])">
                   {{ calendar[i].calendar[row][col].date() }}
                 </td>
-              </tr>  
-            </tbody>  
+              </tr>
+            </tbody>
           </table>
         </div>
-      </div> 
-    </div> 
+      </div>
+    </div>
   </modal-body>
   <modal-footer>
   </modal-footer>
 </modal>
-    

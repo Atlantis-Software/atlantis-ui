@@ -7,7 +7,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import datepickerRangeComponent from './datepicker-range.component.js';
-import atlModelDirective from './atlmodel.directive.js';
 
 var assert = require('assert');
 

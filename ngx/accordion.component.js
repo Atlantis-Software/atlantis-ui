@@ -19,7 +19,7 @@ export class accordionComponent {
   constructor(elementRef, ChangeDetectorRef) {
     this.elementRef = elementRef;
     this.panels = [];
-    this.cdr = ChangeDetectorRef
+    this.cdr = ChangeDetectorRef;
   }
 
   addPanel(panel) {

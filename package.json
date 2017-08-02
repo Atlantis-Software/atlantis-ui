@@ -49,6 +49,8 @@
     "extract-text-webpack-plugin": "2.1.0",
     "file-loader": "~0.11.0",
     "html-loader": "~0.4.5",
+    "@angular/animations": "~4.2.5",
+    "rxjs": "5.4.2",
     "jsdom": "^9.8.3",
     "karma": "^1.2.0",
     "karma-chrome-launcher": "^2.2.0",
@@ -65,7 +67,8 @@
     "style-loader": "~0.13.1",
     "url-loader": "~0.5.8",
     "webpack": "~2.3.2",
-    "zone.js": "0.8.12"
+    "zone.js": "0.8.12",
+    "moment": "~2.18.1"
   },
   "files": [
     "dist",

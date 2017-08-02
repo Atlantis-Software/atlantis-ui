@@ -42,8 +42,7 @@ import focusDirective from './focus.directive.js';
 import affixDirective from './affix.directive.js';
 
 import DynamicPipe from './dynamic.pipe.js';
-
-// export var ngxAtlUiModule = function() {};
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export class ngxAtlUiModule{
   static forRoot(config){

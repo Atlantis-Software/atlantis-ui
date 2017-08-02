@@ -5,8 +5,8 @@
     <span class="caret"></span>
   </button>
   <ul  class="select-options">
-      <li *ngFor="let option of options" (click)="selectOption(option)" [attr.aria-selected]="option.selected">
-        <a [ngStyle]="{'cursor': cursor}" (mouseover)="onHover($event)">{{ option.text }}</a>
+      <li *ngFor="let option of options" (click)="selectOption(option, $event)" [attr.aria-selected]="option.selected">
+        <a [ngStyle]="{'cursor': cursor}" (mouseover)="onHover($event)" class="noselect">{{ option.text }}</a>
       </li>
   </ul>
 </div>
