@@ -14,7 +14,7 @@ export default class datepickerComponent {
     this.visible = false;
     this.modalOptions = {
       size : "small",
-      fade : true, 
+      fade : true,
       orientation: "right"
     }
     this.modalHeaderOptions = {
@@ -52,7 +52,7 @@ export default class datepickerComponent {
     var lastYear = moment(firstDay).subtract(1, 'months').year();
     var daysInLastMonth = moment([lastYear, lastMonth]).daysInMonth();
     var dayOfWeek = firstDay.day();
-     
+
     //initialize a 6 rows x 7 columns array for the calendar
     var calendar = [];
     calendar.firstDay = firstDay;
@@ -64,7 +64,7 @@ export default class datepickerComponent {
     }
     //populate the calendar with date objects
     var startDay = daysInLastMonth - dayOfWeek + this.locale.firstDay + 1;
-  
+
     if (dayOfWeek == this.locale.firstDay) {
       startDay = daysInLastMonth - 6;
     }
@@ -74,7 +74,7 @@ export default class datepickerComponent {
     }
     var curDate = moment([lastYear, lastMonth, startDay, 12]);
 
-    // if a full week in the last month, one week ahead 
+    // if a full week in the last month, one week ahead
     if (startDay + 6 <= daysInLastMonth) {
       curDate.add(7, 'days');
     }
@@ -84,13 +84,13 @@ export default class datepickerComponent {
     //make the calendar object available to hoverDate/clickDate
     this.classes[calendarNumber] = [];
     for (var row = 0; row < 6; row++) {
-      this.classes[calendarNumber][row] = [];     
+      this.classes[calendarNumber][row] = [];
       for (var col = 0; col < 7; col++) {
         calendar[row][col] = curDate.clone()
         this.calendar[calendarNumber].calendar = calendar;
-        // class for each date 
+        // class for each date
         this.classes[calendarNumber][row][col] = [];
-     
+
         //highlight today's date
         if ( calendar[row][col].isSame(moment(), 'day')) {
           this.classes[calendarNumber][row][col].push('today');
@@ -107,7 +107,7 @@ export default class datepickerComponent {
         if ( calendar[row][col].format('YYYY-MM-DD') == moment(this.val).format('YYYY-MM-DD') && this.calendar[calendarNumber].month() == moment(this.val).month()) {
           this.classes[calendarNumber][row][col].push('active', 'start-date');
         }
-        
+
         // all dates are available
         if (this.classes[calendarNumber][row][col].indexOf("off") == -1) {
           this.classes[calendarNumber][row][col].push('available');
@@ -139,17 +139,18 @@ export default class datepickerComponent {
       this.classes = [];
 
       //Defines the language used by moment using users language
-      moment.locale(this.language);         
+      moment.locale(this.language);
       if (this.val) {
         // if we have a default value
-        this.startDate = moment(this.val); 
+        this.startDate = moment(this.val);
+        this.val = this.startDate.format('YYYY-MM-DD')
       } else {
         // without default value, it's today
-        this.startDate = moment();  
+        this.startDate = moment();
         this.val = this.startDate.format('YYYY-MM-DD');
       }
       //Locales used by moment
-      this.locale= {                              
+      this.locale= {
         format: moment.localeData().longDateFormat('L'),
         daysOfWeek: moment.weekdaysMin(),
         monthNames: moment.monthsShort(),
@@ -165,7 +166,7 @@ export default class datepickerComponent {
         this.calendar[i] = {};
         this.calendar[i] = this.startDate.clone().date(2).add(i , 'month');
       }
-      this.refreshCalendar(); 
+      this.refreshCalendar();
       this.refreshText();
       this.onModelChange(this.val);
     }
@@ -173,15 +174,15 @@ export default class datepickerComponent {
 
   // refresh text date
   refreshText(){
-    if (moment(this.start).isValid()) {
+    if (moment(this.startDate).isValid()) {
       var localeData = moment.localeData();
       var dateFormat = localeData.longDateFormat('LLLL');
       this.array = dateFormat.split("D");
-      this.day = moment(this.start).format("Do");
+      this.day = moment(this.startDate).format("Do");
       // text before day
-      this.before = moment(this.start).format(this.array[0]);
+      this.before = moment(this.startDate).format(this.array[0]);
       // text after day without hours
-      this.after = moment(this.start).format(this.array[1]).replace(moment(this.start).format('LT'), '').replace(/^,/,"");
+      this.after = moment(this.startDate).format(this.array[1]).replace(moment(this.startDate).format('LT'), '').replace(/^,/,"");
     } else { // if date is not valid , text empty
       this.day = "";
       this.before = "";
@@ -260,7 +261,7 @@ export default class datepickerComponent {
         this.calendar[i] = {};
         this.calendar[i] = this.startDate.clone().date(2).add(i , 'month');
       }
-      this.refreshCalendar(); 
+      this.refreshCalendar();
       this.refreshText();
       this.close();
     }
@@ -271,7 +272,7 @@ export default class datepickerComponent {
     for (var i = 0; i< this.numberOfMonths; i++) {
       this.calendar[i].subtract(1, 'month');
     }
-    this.refreshCalendar(); 
+    this.refreshCalendar();
   }
 
   refreshCalendar(){
@@ -314,7 +315,7 @@ export default class datepickerComponent {
     var self = this;
     this.predefinedDate = null;
     // if a date disabled return
-    var index = style.indexOf("out-month");
+    var index = style.indexOf("off");
     if (index > -1) {
        return;
     }
@@ -324,7 +325,7 @@ export default class datepickerComponent {
       node.classList.remove('active');
     });
     // select selected value by add active class
-    style.push('active'); 
+    style.push('active');
     // modify this.val by the selected value
     this.val = date.format('YYYY-MM-DD');
     this.onModelChange(this.val);
