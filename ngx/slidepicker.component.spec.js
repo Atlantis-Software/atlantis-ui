@@ -65,173 +65,173 @@ class slidepickerTestComponent {
 	}
 }
 
-// describe('slidepicker', function() {
-//   var testComponent;
-//
-//   beforeEach(async(function() {
-//     TestBed.configureTestingModule({
-//       imports: [CommonModule, FormsModule, ngxAtlUiModule.forRoot({})],
-//       declarations: [slidepickerTestComponent]
-//     });
-//     TestBed.compileComponents();
-//   }));
-//
-//   afterEach(function() {
-//     getTestBed().resetTestingModule();
-//   });
-//
-//   it('should render default value and available options', fakeAsync(() => {
-//     var fixture = TestBed.createComponent(slidepickerTestComponent);
-//
-//     fixture.detectChanges();
-//     tick();
-//     fixture.detectChanges();
-//
-//     var testComponent = fixture.componentInstance;
-//     var options = document.querySelectorAll('a');
-//
-//     assert.strictEqual(options.length, 7);
-//     assert.strictEqual(options[0].textContent, 'AAAA');
-//     assert.strictEqual(options[1].textContent, 'BBBB');
-//     assert.strictEqual(options[2].textContent, 'CCCC');
-//     assert.strictEqual(options[3].textContent, 'boolean test');
-//     assert.strictEqual(options[4].textContent, '11111');
-//     assert.strictEqual(options[5].textContent, 'one, two, three');
-//     assert.strictEqual(options[6].textContent, 'object javascript');
-//
-//     var text = document.querySelector('#selected');
-//
-//     assert.strictEqual(testComponent.slide.value, 'B');
-//     assert.strictEqual(testComponent.slide.label, 'BBBB');
-//     assert.strictEqual(text.textContent, 'BBBB');
-//   }));
-//
-//   it('should render selected value, string', fakeAsync(() => {
-//     var fixture = TestBed.createComponent(slidepickerTestComponent);
-//
-//     fixture.detectChanges();
-//     tick();
-//     fixture.detectChanges();
-//
-//     var testComponent = fixture.componentInstance;
-//     var options = document.querySelectorAll('a');
-//
-//     options[0].click();
-//     tick();
-//     fixture.detectChanges();
-//
-//     var text = document.querySelector('#selected');
-//
-//     assert.strictEqual(testComponent.slide.value, 'A');
-//     assert.strictEqual(testComponent.slide.label, 'AAAA');
-//     assert.strictEqual(text.textContent, 'AAAA');
-//   }));
-//
-//   it('should render selected value, boolean', fakeAsync(() => {
-//     var fixture = TestBed.createComponent(slidepickerTestComponent);
-//
-//     fixture.detectChanges();
-//     tick();
-//     fixture.detectChanges();
-//
-//     var testComponent = fixture.componentInstance;
-//     var options = document.querySelectorAll('a');
-//
-//     options[3].click();
-//     tick();
-//     fixture.detectChanges();
-//
-//     var text = document.querySelector('#selected');
-//
-//     assert.strictEqual(testComponent.slide.value, false);
-//     assert.strictEqual(testComponent.slide.label, 'boolean test');
-//     assert.strictEqual(text.textContent, 'boolean test');
-//   }));
-//
-//   it('should render selected value, number', fakeAsync(() => {
-//     var fixture = TestBed.createComponent(slidepickerTestComponent);
-//
-//     fixture.detectChanges();
-//     tick();
-//     fixture.detectChanges();
-//
-//     var testComponent = fixture.componentInstance;
-//     var options = document.querySelectorAll('a');
-//
-//     options[4].click();
-//     tick();
-//     fixture.detectChanges();
-//
-//     var text = document.querySelector('#selected');
-//
-//     assert.strictEqual(testComponent.slide.value, 1);
-//     assert.strictEqual(testComponent.slide.label, '11111');
-//     assert.strictEqual(text.textContent, '11111');
-//   }));
-//
-//   it('should render selected value, array', fakeAsync(() => {
-//     var fixture = TestBed.createComponent(slidepickerTestComponent);
-//
-//     fixture.detectChanges();
-//     tick();
-//     fixture.detectChanges();
-//
-//     var testComponent = fixture.componentInstance;
-//     var options = document.querySelectorAll('a');
-//
-//     options[5].click();
-//     tick();
-//     fixture.detectChanges();
-//
-//     var text = document.querySelector('#selected');
-//
-//     assert.strictEqual(testComponent.slide.value, testComponent.arrayOneTwoThree);
-//     assert.strictEqual(testComponent.slide.label, 'one, two, three');
-//     assert.strictEqual(text.textContent, 'one, two, three');
-//   }));
-//
-//   it('should render selected value, object', fakeAsync(() => {
-//     var fixture = TestBed.createComponent(slidepickerTestComponent);
-//
-//     fixture.detectChanges();
-//     tick();
-//     fixture.detectChanges();
-//
-//     var testComponent = fixture.componentInstance;
-//     var options = document.querySelectorAll('a');
-//
-//     options[6].click();
-//     tick();
-//     fixture.detectChanges();
-//
-//     var text = document.querySelector('#selected');
-//
-//     assert.strictEqual(testComponent.slide.value, testComponent.objetWithArray);
-//     assert.strictEqual(testComponent.slide.label, 'object javascript');
-//     assert.strictEqual(text.textContent, 'object javascript');
-//   }));
-//
-//   it('should render selected value when handle click and mouse up', fakeAsync(() => {
-//     var fixture = TestBed.createComponent(slidepickerTestComponent);
-//
-//     fixture.detectChanges();
-//     tick();
-//     fixture.detectChanges();
-//
-//     var testComponent = fixture.componentInstance;
-//     var handle = fixture.debugElement.query(By.css('.slidepicker-handle'));
-//
-//     handle.triggerEventHandler("mousedown", {});
-//     tick();
-//     fixture.detectChanges();
-//     handle.triggerEventHandler("mousemove", {pageX: 0, pageY: 74});
-//     tick();
-//     fixture.detectChanges();
-//     handle.triggerEventHandler("mouseup", {});
-//     var text = document.querySelector('#selected');
-//
-//     assert.strictEqual(testComponent.slide.value, testComponent.objetWithArray);
-//     assert.strictEqual(testComponent.slide.label, 'object javascript');
-//     assert.strictEqual(text.textContent, 'object javascript');
-//   }));
-// });
+describe('slidepicker', function() {
+  var testComponent;
+
+  beforeEach(async(function() {
+    TestBed.configureTestingModule({
+      imports: [CommonModule, FormsModule, ngxAtlUiModule.forRoot({})],
+      declarations: [slidepickerTestComponent]
+    });
+    TestBed.compileComponents();
+  }));
+
+  afterEach(function() {
+    getTestBed().resetTestingModule();
+  });
+
+  it('should render default value and available options', fakeAsync(() => {
+    var fixture = TestBed.createComponent(slidepickerTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var testComponent = fixture.componentInstance;
+    var options = document.querySelectorAll('a');
+
+    assert.strictEqual(options.length, 7);
+    assert.strictEqual(options[0].textContent, 'AAAA');
+    assert.strictEqual(options[1].textContent, 'BBBB');
+    assert.strictEqual(options[2].textContent, 'CCCC');
+    assert.strictEqual(options[3].textContent, 'boolean test');
+    assert.strictEqual(options[4].textContent, '11111');
+    assert.strictEqual(options[5].textContent, 'one, two, three');
+    assert.strictEqual(options[6].textContent, 'object javascript');
+
+    var text = document.querySelector('#selected');
+
+    assert.strictEqual(testComponent.slide.value, 'B');
+    assert.strictEqual(testComponent.slide.label, 'BBBB');
+    assert.strictEqual(text.textContent, 'BBBB');
+  }));
+
+  it('should render selected value, string', fakeAsync(() => {
+    var fixture = TestBed.createComponent(slidepickerTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var testComponent = fixture.componentInstance;
+    var options = document.querySelectorAll('a');
+
+    options[0].click();
+    tick();
+    fixture.detectChanges();
+
+    var text = document.querySelector('#selected');
+
+    assert.strictEqual(testComponent.slide.value, 'A');
+    assert.strictEqual(testComponent.slide.label, 'AAAA');
+    assert.strictEqual(text.textContent, 'AAAA');
+  }));
+
+  it('should render selected value, boolean', fakeAsync(() => {
+    var fixture = TestBed.createComponent(slidepickerTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var testComponent = fixture.componentInstance;
+    var options = document.querySelectorAll('a');
+
+    options[3].click();
+    tick();
+    fixture.detectChanges();
+
+    var text = document.querySelector('#selected');
+
+    assert.strictEqual(testComponent.slide.value, false);
+    assert.strictEqual(testComponent.slide.label, 'boolean test');
+    assert.strictEqual(text.textContent, 'boolean test');
+  }));
+
+  it('should render selected value, number', fakeAsync(() => {
+    var fixture = TestBed.createComponent(slidepickerTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var testComponent = fixture.componentInstance;
+    var options = document.querySelectorAll('a');
+
+    options[4].click();
+    tick();
+    fixture.detectChanges();
+
+    var text = document.querySelector('#selected');
+
+    assert.strictEqual(testComponent.slide.value, 1);
+    assert.strictEqual(testComponent.slide.label, '11111');
+    assert.strictEqual(text.textContent, '11111');
+  }));
+
+  it('should render selected value, array', fakeAsync(() => {
+    var fixture = TestBed.createComponent(slidepickerTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var testComponent = fixture.componentInstance;
+    var options = document.querySelectorAll('a');
+
+    options[5].click();
+    tick();
+    fixture.detectChanges();
+
+    var text = document.querySelector('#selected');
+
+    assert.strictEqual(testComponent.slide.value, testComponent.arrayOneTwoThree);
+    assert.strictEqual(testComponent.slide.label, 'one, two, three');
+    assert.strictEqual(text.textContent, 'one, two, three');
+  }));
+
+  it('should render selected value, object', fakeAsync(() => {
+    var fixture = TestBed.createComponent(slidepickerTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var testComponent = fixture.componentInstance;
+    var options = document.querySelectorAll('a');
+
+    options[6].click();
+    tick();
+    fixture.detectChanges();
+
+    var text = document.querySelector('#selected');
+
+    assert.strictEqual(testComponent.slide.value, testComponent.objetWithArray);
+    assert.strictEqual(testComponent.slide.label, 'object javascript');
+    assert.strictEqual(text.textContent, 'object javascript');
+  }));
+
+  // it('should render selected value when handle click and mouse up', fakeAsync(() => {
+  //   var fixture = TestBed.createComponent(slidepickerTestComponent);
+  //
+  //   fixture.detectChanges();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var testComponent = fixture.componentInstance;
+  //   var handle = fixture.debugElement.query(By.css('.slidepicker-handle'));
+  //
+  //   handle.triggerEventHandler("mousedown", {});
+  //   tick();
+  //   fixture.detectChanges();
+  //   handle.triggerEventHandler("mousemove", {pageX: 0, pageY: 74});
+  //   tick();
+  //   fixture.detectChanges();
+  //   handle.triggerEventHandler("mouseup", {});
+  //   var text = document.querySelector('#selected');
+  //
+  //   assert.strictEqual(testComponent.slide.value, testComponent.objetWithArray);
+  //   assert.strictEqual(testComponent.slide.label, 'object javascript');
+  //   assert.strictEqual(text.textContent, 'object javascript');
+  // }));
+});
