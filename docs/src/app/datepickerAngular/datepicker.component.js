@@ -15,6 +15,7 @@ export default  class DatepickerAngularComponent {
     this.DatepickerSimpleHtml = `
     <datepicker [(ngModel)]="valueDatePicker" [numberOfMonths]="5"></datepicker>`
 
+    this.valueDatePicker = new Date("2004-02-03");
     this.start1 = "2017-05-01";
     this.end1 = "2017-05-22";
   }
