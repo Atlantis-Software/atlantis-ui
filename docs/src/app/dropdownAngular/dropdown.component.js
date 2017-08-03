@@ -11,13 +11,13 @@ export default  class DropdownAngularComponent {
   constructor(){
 
     this.dropdownHtml = `
-    <dropdown title="Menu A">
-      <dropdown-option>Sub-menu A</dropdown-option>
-      <dropdown-option>Sub-menu B</dropdown-option>
-      <dropdown-option>Sub-menu C</dropdown-option>
-      <dropdown-option options="{type:'divider'}"></dropdown-option>
-      <dropdown-option options="{type:'header'}"></dropdown-option>
-      <dropdown-option>Sub-menu separated B</dropdown-option>
+    <dropdown [options]="{orientation:'up'}" title="Menu A">
+      <dropdown-option><a>Sub-menu A</a></dropdown-option>
+      <dropdown-option><a>Sub-menu B</a></dropdown-option>
+      <dropdown-divider></dropdown-divider>
+      <dropdown-option><a>Sub-menu separated A</a></dropdown-option>
+      <dropdown-header>Menu</dropdown-header>
+      <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
     </dropdown>`;
 
     this.dropup = `

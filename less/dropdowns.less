@@ -27,6 +27,14 @@
   outline: 0;
 }
 
+dropdown-option, dropdown-header, dropdown-divider {
+  display:list-item;
+}
+
+dropdown-option {
+  cursor : pointer;
+}
+
 // The dropdown menu (ul)
 .dropdown-menu {
   position: absolute;
@@ -65,7 +73,7 @@
   }
 
   // Links within the dropdown menu
-  > li {
+  > dropdown-option, dropdown-divider, dropdown-header {
     > div {
       margin: 10px 20px;
     }
@@ -82,7 +90,7 @@
 }
 
 // Hover/Focus state
-.dropdown-menu > li > a {
+.dropdown-menu > dropdown-option > a {
   &:hover,
   &:focus {
     text-decoration: none;

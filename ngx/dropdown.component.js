@@ -1,5 +1,4 @@
 import { Component, ContentChildren, ElementRef, ChangeDetectorRef} from '@angular/core';
-import dropdownOptionComponent from './dropdown-option.component';
 
 export default class dropdownComponent {
 
@@ -16,14 +15,10 @@ export default class dropdownComponent {
             {{title}}
             <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu">
-            <li *ngFor="let Action of Actions; let i = index" [class.disabled]="Action.options && Action.options.disabled" [class.divider]="Action.options && Action.options.type && Action.options.type === 'divider'" [class.dropdown-header]="Action.options && Action.options.type && Action.options.type === 'header'" (click)="closeDropdown()">
-              <a *ngIf="!Action.options || !Action.options.type || Action.options.type !== 'divider' && Action.options.type !== 'header'">{{Action.value}}</a>
-            </li>
-          </ul>`,
-        queries: {
-          Actions: new ContentChildren(dropdownOptionComponent)
-        },
+          <div class="dropdown-menu">
+            <ng-content>
+            </ng-content>
+          </div>`,
         inputs: ["title","options"],
         host: {
           "(focusout)": "closeDropdown()"
@@ -62,19 +57,6 @@ export default class dropdownComponent {
       dropdownMenu.classList.add("dropdown-menu-right");
     }
 
-    var actions = this.Actions.toArray();
-
-    for (var i = 0; i < actions.length; i++) {
-      if (actions[i].options && actions[i].options.type === "header") {
-        var action = this.elementRef.nativeElement.getElementsByTagName("li")[i];
-        action.innerText = actions[i].value;
-      } else if (!actions[i].options || !actions[i].options.type || actions[i].options.type !== 'divider' && actions[i].options.type !== 'header') {
-        var action = this.elementRef.nativeElement.getElementsByTagName("li")[i]
-        action = action.getElementsByTagName("a")[0];
-        action.innerText = actions[i].value;
-      }
-    }
-    this.cdr.detectChanges();
   }
 
   openDropdown(){

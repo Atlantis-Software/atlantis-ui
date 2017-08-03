@@ -1,25 +1,28 @@
-import { Component, ElementRef} from '@angular/core';
+import { Component} from '@angular/core';
+import dropdownComponent from './dropdown.component.js';
 
 export default class dropdownOptionComponent {
-  constructor (elementRef) {
-    this.elementRef = elementRef;
+  constructor (dropdownComponent) {
+    this.dropdown = dropdownComponent;
   }
 	static get annotations() {
 		return [
 			new Component({
         selector: 'dropdown-option',
-        template: `
-          <ng-content></ng-content>`,
-        inputs: ["options"]
+        template: `<ng-content></ng-content>`,
+        host: {
+          "(click)":"close()"
+        }
 	  	})
 		];
 	}
 
   ngAfterViewInit(){
-    if (!this.value) {
-      this.value = this.elementRef.nativeElement.innerText.trim();
-    }
+  }
+
+  close(){
+    this.dropdown.closeDropdown();
   }
 }
 
-dropdownOptionComponent.parameters = [ElementRef];
+dropdownOptionComponent.parameters = [dropdownComponent];

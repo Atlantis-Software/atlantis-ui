@@ -3,12 +3,12 @@
   <div class="form-group">
     <div class="row container-fluid">
       <dropdown title="Menu A">
-        <dropdown-option>Sub-menu A</dropdown-option>
-        <dropdown-option>Sub-menu B</dropdown-option>
-        <dropdown-option [options]="{type: 'divider'}"></dropdown-option>
-        <dropdown-option>Sub-menu separated A</dropdown-option>
-        <dropdown-option [options]="{type: 'header'}">Menu</dropdown-option>
-        <dropdown-option>Sub-menu separated B</dropdown-option>
+        <dropdown-option><a>Sub-menu A</a></dropdown-option>
+        <dropdown-option><a>Sub-menu B</a></dropdown-option>
+        <dropdown-divider></dropdown-divider>
+        <dropdown-option><a>Sub-menu separated A</a></dropdown-option>
+        <dropdown-header>Menu</dropdown-header>
+        <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
       </dropdown>
     </div>
   </div>
@@ -22,12 +22,12 @@
   <div class="form-group">
     <div class="row container-fluid">
       <dropdown [options]="{orientation:'up'}" title="Menu A">
-        <dropdown-option>Sub-menu A</dropdown-option>
-        <dropdown-option>Sub-menu B</dropdown-option>
-        <dropdown-option [options]="{type: 'divider'}"></dropdown-option>
-        <dropdown-option>Sub-menu separated A</dropdown-option>
-        <dropdown-option [options]="{type: 'header'}">Menu</dropdown-option>
-        <dropdown-option>Sub-menu separated B</dropdown-option>
+        <dropdown-option><a>Sub-menu A</a></dropdown-option>
+        <dropdown-option><a>Sub-menu B</a></dropdown-option>
+        <dropdown-divider></dropdown-divider>
+        <dropdown-option><a>Sub-menu separated A</a></dropdown-option>
+        <dropdown-header>Menu</dropdown-header>
+        <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
       </dropdown>
     </div>
   </div>
@@ -46,20 +46,20 @@
   <div class="form-group">
     <div class="row container-fluid">
       <dropdown class="form-group" [options]="{alignement:'left'}" title="Menu A">
-        <dropdown-option>Sub-menu A</dropdown-option>
-        <dropdown-option>Sub-menu B</dropdown-option>
-        <dropdown-option [options]="{type: 'divider'}"></dropdown-option>
-        <dropdown-option>Sub-menu separated A</dropdown-option>
-        <dropdown-option [options]="{type: 'header'}">Menu</dropdown-option>
-        <dropdown-option>Sub-menu separated B</dropdown-option>
+        <dropdown-option><a>Sub-menu A</a></dropdown-option>
+        <dropdown-option><a>Sub-menu B</a></dropdown-option>
+        <dropdown-divider></dropdown-divider>
+        <dropdown-option><a>Sub-menu separated A</a></dropdown-option>
+        <dropdown-header>Menu</dropdown-header>
+        <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
       </dropdown>
       <dropdown [options]="{alignement:'right'}" title="Menu A">
-        <dropdown-option>Sub-menu A</dropdown-option>
-        <dropdown-option>Sub-menu B</dropdown-option>
-        <dropdown-option [options]="{type: 'divider'}"></dropdown-option>
-        <dropdown-option>Sub-menu separated A</dropdown-option>
-        <dropdown-option [options]="{type: 'header'}">Menu</dropdown-option>
-        <dropdown-option>Sub-menu separated B</dropdown-option>
+        <dropdown-option><a>Sub-menu A</a></dropdown-option>
+        <dropdown-option><a>Sub-menu B</a></dropdown-option>
+        <dropdown-divider></dropdown-option>
+        <dropdown-option><a>Sub-menu separated A</a></dropdown-option>
+        <dropdown-header>Menu</dropdown-header>
+        <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
       </dropdown>
     </div>
   </div>
@@ -72,13 +72,13 @@
     Dropdown options with ngFor
   </h3>
 
-  <div class="form-group">
+  <!-- <div class="form-group">
     <div class="row container-fluid">
       <dropdown class="form-group" [options]="{alignement:'left'}" title="Menu A">
         <dropdown-option *ngFor="let dropdownoption of dropdownoptions" [options]="dropdownoption.options">{{dropdownoption.label}}</dropdown-option>
       </dropdown>
     </div>
-  </div>
+  </div> -->
 
   <pre>
     {{dropdownNgFor}}
