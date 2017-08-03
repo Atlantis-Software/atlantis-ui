@@ -1,4 +1,4 @@
-import { getTestBed, TestBed } from '@angular/core/testing';
+import { getTestBed, TestBed, fakeAsync, async, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import atlantisUI from './ngx-atlantis-ui-module.js';
 import { Component } from '@angular/core';
@@ -52,22 +52,22 @@ class selectpickerTestComponent {
     ]
     this.select1 = this.options[1];
     this.select2 = [this.options[1], this.options[2]]
+    this.select3;
   }
 	static get annotations() {
 		return [
 			new Component({
-        template: `<selectpicker [(ngModel)]="select">
+        template: `<selectpicker [(ngModel)]="select1">
           <selectpicker-option *ngFor="let option of options" [value]="option">{{option.label}}</selectpicker-option>
         </selectpicker>
-        <span id="selected">{{slide.label}}</span>
+        <span id="selected">{{select1.label}}</span>
         <selectpicker [(ngModel)]="select2" multiple="true">
           <selectpicker-option *ngFor="let option of options" [value]="option">{{option.label}}</selectpicker-option>
         </selectpicker>
-        <span id="selected">{{slide.label}}</span>
-        <selectpicker [(ngModel)]="select3">
-          <selectpicker-option *ngFor="let option of options" [value]="option">{{option.label}}</selectpicker-option>
+        <span id="selected2">{{select2.label}}</span>
+        <selectpicker [(ngModel)]="select3" multiple="true">
+          <selectpicker-option class="multipleEmpty" *ngFor="let option of options" [value]="option">{{option.label}}</selectpicker-option>
         </selectpicker>
-        <span id="selected">{{slide.label}}</span>
         `
 	  	})
 		];
@@ -99,7 +99,8 @@ describe('selectpicker', function() {
     testComponent = fixture.componentInstance;
 
     var text = document.querySelector('.select-text');
-    var options = document.querySelectorAll('a');
+    var select = document.querySelector('selectpicker')
+    var options = select.querySelectorAll('a');
 
     assert.strictEqual(options.length, 7);
     assert.strictEqual(options[0].textContent, 'AAAA');
@@ -112,10 +113,209 @@ describe('selectpicker', function() {
 
     var text = document.querySelector('#selected');
 
-    assert.strictEqual(testComponent.slide.value, 'B');
-    assert.strictEqual(testComponent.slide.label, 'BBBB');
+    assert.strictEqual(testComponent.select1.value, 'B');
+    assert.strictEqual(testComponent.select1.label, 'BBBB');
     assert.strictEqual(text.textContent, 'BBBB');
+    assert.strictEqual(testComponent.select2[0].value, 'B');
+    assert.strictEqual(testComponent.select2[0].label, 'BBBB');
+    assert.strictEqual(testComponent.select2[1].value, 'C');
+    assert.strictEqual(testComponent.select2[1].label, 'CCCC');
   }));
+
+  it('should open on click and close on reclick', fakeAsync(()=>{
+    var fixture = TestBed.createComponent(selectpickerTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var testComponent = fixture.componentInstance;
+    var button = document.querySelector('.select-toggle');
+
+    button.click();
+    tick();
+    fixture.detectChanges();
+
+    var select = document.querySelector('.select');
+
+    assert.strictEqual(select.classList[1], 'open');
+
+    button.click();
+    tick();
+    fixture.detectChanges();
+
+    assert.strictEqual(select.classList[1], void 0);
+
+  }))
+
+  it('should render selected value, string', fakeAsync(() => {
+    var fixture = TestBed.createComponent(selectpickerTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var testComponent = fixture.componentInstance;
+    var options = document.querySelectorAll('a');
+
+    options[0].click();
+    tick();
+    fixture.detectChanges();
+
+    var text = document.querySelector('#selected');
+
+    assert.strictEqual(testComponent.select1.value, 'A');
+    assert.strictEqual(testComponent.select1.label, 'AAAA');
+    assert.strictEqual(text.textContent, 'AAAA');
+  }));
+
+  it('should render selected value, boolean', fakeAsync(() => {
+    var fixture = TestBed.createComponent(selectpickerTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var testComponent = fixture.componentInstance;
+    var options = document.querySelectorAll('a');
+
+    options[3].click();
+    tick();
+    fixture.detectChanges();
+
+    var text = document.querySelector('#selected');
+
+    assert.strictEqual(testComponent.select1.value, false);
+    assert.strictEqual(testComponent.select1.label, 'boolean test');
+    assert.strictEqual(text.textContent, 'boolean test');
+  }));
+
+  it('should render selected value, number', fakeAsync(() => {
+    var fixture = TestBed.createComponent(selectpickerTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var testComponent = fixture.componentInstance;
+    var options = document.querySelectorAll('a');
+
+    options[4].click();
+    tick();
+    fixture.detectChanges();
+
+    var text = document.querySelector('#selected');
+
+    assert.strictEqual(testComponent.select1.value, 1);
+    assert.strictEqual(testComponent.select1.label, '11111');
+    assert.strictEqual(text.textContent, '11111');
+  }));
+
+  it('should render selected value, array', fakeAsync(() => {
+    var fixture = TestBed.createComponent(selectpickerTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var testComponent = fixture.componentInstance;
+    var options = document.querySelectorAll('a');
+
+    options[5].click();
+    tick();
+    fixture.detectChanges();
+
+    var text = document.querySelector('#selected');
+
+    assert.strictEqual(testComponent.select1.value, testComponent.arrayOneTwoThree);
+    assert.strictEqual(testComponent.select1.label, 'one, two, three');
+    assert.strictEqual(text.textContent, 'one, two, three');
+  }));
+
+  it('should render selected value, object', fakeAsync(() => {
+    var fixture = TestBed.createComponent(selectpickerTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var testComponent = fixture.componentInstance;
+    var options = document.querySelectorAll('a');
+
+    options[6].click();
+    tick();
+    fixture.detectChanges();
+
+    var text = document.querySelector('#selected');
+
+    assert.strictEqual(testComponent.select1.value, testComponent.objetWithArray);
+    assert.strictEqual(testComponent.select1.label, 'object javascript');
+    assert.strictEqual(text.textContent, 'object javascript');
+  }));
+
+  it('should render selected value, multiple selection', fakeAsync(() => {
+    var fixture = TestBed.createComponent(selectpickerTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var testComponent = fixture.componentInstance;
+    var select = document.querySelectorAll('selectpicker')
+    var options = select[1].querySelectorAll('a');
+
+    options[0].click();
+    tick();
+    fixture.detectChanges();
+
+    var text = document.querySelector('#selected2');
+
+    assert.strictEqual(testComponent.select2[0].value, "B");
+    assert.strictEqual(testComponent.select2[0].label, 'BBBB');
+    assert.strictEqual(testComponent.select2[1].value, "C");
+    assert.strictEqual(testComponent.select2[1].label, 'CCCC');
+    assert.strictEqual(testComponent.select2[2].value, "A");
+    assert.strictEqual(testComponent.select2[2].label, 'AAAA');
+  }));
+
+
+  // TODO: Shift key
+
+  // it('should render selected value, multiple selection with shift key', fakeAsync(() => {
+  //   var fixture = TestBed.createComponent(selectpickerTestComponent);
+  //
+  //   fixture.detectChanges();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var testComponent = fixture.componentInstance;
+  //
+  //   var button = document.querySelectorAll('.select-toggle');
+  //
+  //   button[2].click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var selectpicker = fixture.debugElement.queryAll(By.css("selectpicker"))
+  //   var options = selectpicker[2].queryAll(By.css("a"));
+  //   options[0].triggerEventHandler("selectOption", {});
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   assert.strictEqual(testComponent.select3[0].value, "A");
+  //   assert.strictEqual(testComponent.select3[0].label, 'AAAA');
+  //
+  //   options[2].triggerEventHandler("click",{shiftkey: true});
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   assert.strictEqual(testComponent.select3[0].value, "A");
+  //   assert.strictEqual(testComponent.select3[0].label, 'AAAA');
+  //   assert.strictEqual(testComponent.select3[1].value, "B");
+  //   assert.strictEqual(testComponent.select3[1].label, 'BBBB');
+  //   assert.strictEqual(testComponent.select3[2].value, "C");
+  //   assert.strictEqual(testComponent.select3[2].label, 'CCCC');
+  // }));
 
 
 });
