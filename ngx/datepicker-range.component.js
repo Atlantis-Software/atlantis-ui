@@ -6,7 +6,7 @@ import { i18n } from './i18n.js';
 const START  = 'start';
 const END = 'end'
 export default class datepickerComponent {
-  
+
   constructor (elementRef, differs, changeDetectorRef) {
     this.startChange = new EventEmitter();
     this.endChange = new EventEmitter();
@@ -17,7 +17,7 @@ export default class datepickerComponent {
     this.visible = false;
     this.modalOptions = {
       size : "small",
-      fade : true, 
+      fade : true,
       orientation: "right"
     }
 
@@ -35,7 +35,7 @@ export default class datepickerComponent {
         selector: 'datepicker-range',
         template: require('./datepicker-range.html'),
         inputs: ['numberOfMonths', 'start', 'end'],
-        outputs: ['startChange', 'endChange'], 
+        outputs: ['startChange', 'endChange'],
       })
     ];
   }
@@ -53,7 +53,7 @@ export default class datepickerComponent {
     var lastYear = moment(firstDay).subtract(1, 'months').year();
     var daysInLastMonth = moment([lastYear, lastMonth]).daysInMonth();
     var dayOfWeek = firstDay.day();
-     
+
     //initialize a 6 rows x 7 columns array for the calendar
     var calendar = [];
     calendar.firstDay = firstDay;
@@ -65,7 +65,7 @@ export default class datepickerComponent {
     }
     //populate the calendar with date objects
     var startDay = daysInLastMonth - dayOfWeek + this.locale.firstDay + 1;
-  
+
     if (dayOfWeek == this.locale.firstDay) {
       startDay = daysInLastMonth - 6;
     }
@@ -75,7 +75,7 @@ export default class datepickerComponent {
     }
     var curDate = moment([lastYear, lastMonth, startDay, 12]);
 
-    // if a full week in the last month, one week ahead 
+    // if a full week in the last month, one week ahead
     if (startDay + 6 <= daysInLastMonth) {
       curDate.add(7, 'days');
     }
@@ -85,13 +85,13 @@ export default class datepickerComponent {
     //make the calendar object available to hoverDate/clickDate
     this.classes[calendarNumber] = [];
     for (var row = 0; row < 6; row++) {
-      this.classes[calendarNumber][row] = [];     
+      this.classes[calendarNumber][row] = [];
       for (var col = 0; col < 7; col++) {
         calendar[row][col] = curDate.clone()
         this.calendar[calendarNumber].calendar = calendar;
-        // class for each date 
+        // class for each date
         this.classes[calendarNumber][row][col] = [];
-     
+
         //highlight today's date
         if ( calendar[row][col].isSame(moment(), 'day')) {
           this.classes[calendarNumber][row][col].push('today');
@@ -118,7 +118,7 @@ export default class datepickerComponent {
         && calendar[row][col].isBefore(moment(this.end)) && this.classes[calendarNumber][row][col].indexOf("off") == -1) {
           this.classes[calendarNumber][row][col].push('in-range');
         }
-        
+
         // all dates are available
         if (this.classes[calendarNumber][row][col].indexOf("off") == -1) {
           this.classes[calendarNumber][row][col].push('available');
@@ -146,23 +146,24 @@ export default class datepickerComponent {
     this.classes = [];
 
     //Defines the language used by moment using users language
-    moment.locale(this.language);       
+    moment.locale(this.language);
     //Locales used by moment
-    this.locale= {                              
+    this.locale= {
       format: moment.localeData().longDateFormat('L'),
       daysOfWeek: moment.weekdaysMin(),
       monthNames: moment.monthsShort(),
       weekdayNames: moment.weekdaysMin(),
       firstDay: moment.localeData().firstDayOfWeek(),
       separator: '-'
-    };  
+    };
     if (this.start) {
       // if we have a default value
-      this.startDate = moment(this.start); 
+      this.startDate = moment(this.start);
+      this.start = this.startDate.format('YYYY-MM-DD')
     } else {
       this.startDate = moment();
       // without default value, it's today
-      setTimeout(() => { // it not setTimeout error
+      setTimeout(() => { // if not setTimeout error
         this.start = this.startDate.format('YYYY-MM-DD');
         this.startChange.emit(this.start);
       });
@@ -170,15 +171,16 @@ export default class datepickerComponent {
 
     if (this.end) {
       // if we have a default value
-      this.endDate = moment(this.end); 
+      this.endDate = moment(this.end);
+      this.end = this.endDate.format('YYYY-MM-DD')
     } else {
       this.endDate = moment();
       // without default value, it's today
       setTimeout(() => { // it not setTimeout error
-        this.end = this.endDate.format('YYYY-MM-DD');  
+        this.end = this.endDate.format('YYYY-MM-DD');
         this.endChange.emit(this.end);
       });
-     
+
     }
 
 
@@ -190,7 +192,7 @@ export default class datepickerComponent {
       this.calendar[i] = {};
       this.calendar[i] = this.startDate.clone().date(2).add(i , 'month');
     }
-    this.refreshCalendar(); 
+    this.refreshCalendar();
     this.refreshTextDateStart();
     this.refreshTextDateEnd();
   }
@@ -310,7 +312,7 @@ export default class datepickerComponent {
         this.calendar[i] = {};
         this.calendar[i] = this.startDate.clone().date(2).add(i , 'month');
       }
-      this.refreshCalendar(); 
+      this.refreshCalendar();
       this.refreshTextDateStart();
       this.refreshTextDateEnd();
       this.startChange.emit(this.start);
@@ -324,7 +326,7 @@ export default class datepickerComponent {
     for (var i = 0; i< this.numberOfMonths; i++) {
       this.calendar[i].subtract(1, 'month');
     }
-    this.refreshCalendar(); 
+    this.refreshCalendar();
   }
 
   refreshCalendar(){
