@@ -15,20 +15,14 @@ export default class pagination {
             </a>
           </li>
           <li [class.active]="pageSh === page" *ngFor="let pageSh of pageShow; let i = index" (click)="changePage($event, pageSh)">
-            <a href="#">
-              {{pageSh}}
-            </a>
+            <a href="#">{{pageSh}}</a>
           </li>
           <li *ngIf="page <= pages - (numberPageShowPrevious+1) && pages > numberPageShow">
-            <a *ngIf="!changingPage" href="#" (click)="inputPage($event)">
-              ...
-            </a>
+            <a *ngIf="!changingPage" href="#" (click)="inputPage($event)">...</a>
             <input class="pagination-input form-control" *ngIf="changingPage" type="number" (blur)="choosePage($event)" (keyup.enter)="choosePage($event)" focus/>
           </li>
           <li *ngIf="page <= pages - numberPageShowPrevious && pages > numberPageShow" (click)="changePage($event, pages)">
-            <a href="#">
-              {{pages}}
-            </a>
+            <a href="#">{{pages}}</a>
           </li>
           <li (click)="nextPage($event)" [class.disabled]="page === pages">
             <a href="#">
@@ -135,7 +129,7 @@ export default class pagination {
   }
 
   //change button ... to input for choose page we want
-  choosePage(e, ){
+  choosePage(e){
     var self = this;
     e.preventDefault();
     if(this.changingPage == true){
