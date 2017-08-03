@@ -103,171 +103,357 @@ describe('modal', function() {
     }
   });
 
-  it('should render correct modal', fakeAsync(function() {
-    var fixture = TestBed.createComponent(modalTestComponent);
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-    testComponent = fixture.componentInstance;
-    var modal = document.querySelectorAll('.modal');
+  // it('should render correct modal', fakeAsync(function() {
+  //   var fixture = TestBed.createComponent(modalTestComponent);
+  //   fixture.detectChanges();
+  //   tick();
+  //   fixture.detectChanges();
+  //   testComponent = fixture.componentInstance;
+  //   var modal = document.querySelectorAll('.modal');
+  //
+  //   assert.strictEqual(modal[0].classList[2], "modal-left");
+  //   assert.strictEqual(modal[1].classList[1], "modal-right");
+  //   assert.strictEqual(modal[2].classList[1], "modal-top");
+  //   assert.strictEqual(modal[3].classList[2], "modal-bottom");
+  //
+  // }));
 
-    assert.strictEqual(modal[0].classList[2], "modal-left");
-    assert.strictEqual(modal[1].classList[1], "modal-right");
-    assert.strictEqual(modal[2].classList[1], "modal-top");
-    assert.strictEqual(modal[3].classList[2], "modal-bottom");
-
-  }));
-
-  it('should show on button click, left modal', fakeAsync(function(){
-    var fixture = TestBed.createComponent(modalTestComponent);
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-    testComponent = fixture.componentInstance;
-    var button = document.querySelector('#openLeft');
-    button.click();
-    tick();
-    fixture.detectChanges();
-
-    var modal = document.querySelector('.modal-left');
-
-    assert.strictEqual(modal.classList[3], "in");
-  }));
-
-  it('should close on close button, left modal', fakeAsync(function(){
-    var fixture = TestBed.createComponent(modalTestComponent);
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-    testComponent = fixture.componentInstance;
-    var button = document.querySelector('#openLeft');
-    button.click();
-    tick();
-    fixture.detectChanges();
-
-    var closeButton = document.querySelector("#closeLeft");
-    closeButton.click();
-    tick();
-    fixture.detectChanges();
-
-    var modal = document.querySelector('.modal-left');
-
-    assert.strictEqual(modal.classList[3], void 0);
-  }));
-
-  it('should show on button click, right modal', fakeAsync(function(){
-
-    var fixture = TestBed.createComponent(modalTestComponent);
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-    testComponent = fixture.componentInstance;
-    var button = document.querySelector('#openRight');
-    button.click();
-    tick();
-    fixture.detectChanges();
-
-    var modal = document.querySelector('.modal-right');
-
-    assert.strictEqual(modal.classList[2], "in");
-  }));
-
-  it('should close on close button, right modal', fakeAsync(function(){
-    var fixture = TestBed.createComponent(modalTestComponent);
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-    testComponent = fixture.componentInstance;
-    var button = document.querySelector('#openRight');
-    button.click();
-    tick();
-    fixture.detectChanges();
-
-    var closeButton = document.querySelector("#closeRight");
-    closeButton.click();
-    tick();
-    fixture.detectChanges();
-
-    var modal = document.querySelector('.modal-right');
-
-    assert.strictEqual(modal.classList[2], void 0);
-  }));
-
-  it('should show on button click, top modal', fakeAsync(function(){
-
-    var fixture = TestBed.createComponent(modalTestComponent);
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-    testComponent = fixture.componentInstance;
-    var button = document.querySelector('#openTop');
-    button.click();
-    tick();
-    fixture.detectChanges();
-
-    var modal = document.querySelector('.modal-top');
-
-    assert.strictEqual(modal.classList[2], "in");
-    assert.strictEqual(testComponent.show, true);
-  }));
-
-  it('should close on close button, top modal', fakeAsync(function(){
-    var fixture = TestBed.createComponent(modalTestComponent);
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-    testComponent = fixture.componentInstance;
-    var button = document.querySelector('#openTop');
-    button.click();
-    tick();
-    fixture.detectChanges();
-
-    var closeButton = document.querySelector("#closeTop");
-    closeButton.click();
-    tick();
-    fixture.detectChanges();
-
-    var modal = document.querySelector('.modal-top');
-
-    assert.strictEqual(modal.classList[3], void 0);
-  }));
-
-  it('should show on button click, bottom modal', fakeAsync(function(){
-
-    var fixture = TestBed.createComponent(modalTestComponent);
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-    testComponent = fixture.componentInstance;
-    var button = document.querySelector('#openBottom');
-    button.click();
-    tick();
-    fixture.detectChanges();
-
-    var modal = document.querySelector('.modal-bottom');
-
-    assert.strictEqual(modal.classList[3], "in");
-  }));
-
-  it('should close on close button, bottom modal', fakeAsync(function(){
-    var fixture = TestBed.createComponent(modalTestComponent);
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-    testComponent = fixture.componentInstance;
-    var button = document.querySelector('#openBottom');
-    button.click();
-    tick();
-    fixture.detectChanges();
-
-    var closeButton = document.querySelector("#closeBottom");
-    closeButton.click();
-    tick();
-    fixture.detectChanges();
-
-    var modal = document.querySelector('.modal-bottom');
-
-    assert.strictEqual(modal.classList[3], void 0);
-  }));
+  // it('should show on button click then close on close button click, left modal', fakeAsync(function(){
+  //   var fixture = TestBed.createComponent(modalTestComponent);
+  //   fixture.detectChanges();
+  //   tick();
+  //   fixture.detectChanges();
+  //   testComponent = fixture.componentInstance;
+  //   var button = document.querySelector('#openLeft');
+  //   button.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-left');
+  //
+  //   assert.strictEqual(modal.classList[3], "in");
+  //   assert.strictEqual(testComponent.showLeft, true);
+  //
+  //   var closeButton = document.querySelector("#closeLeft");
+  //   closeButton.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-left');
+  //
+  //   assert.strictEqual(modal.classList[3], void 0);
+  //   assert.strictEqual(testComponent.showLeft, false);
+  // }));
+  //
+  // it('should show on button click then close on close button click, right modal', fakeAsync(function(){
+  //
+  //   var fixture = TestBed.createComponent(modalTestComponent);
+  //   fixture.detectChanges();
+  //   tick();
+  //   fixture.detectChanges();
+  //   testComponent = fixture.componentInstance;
+  //   var button = document.querySelector('#openRight');
+  //   button.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-right');
+  //
+  //   assert.strictEqual(modal.classList[2], "in");
+  //   assert.strictEqual(testComponent.showRight, true);
+  //
+  //   var closeButton = document.querySelector("#closeRight");
+  //   closeButton.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-right');
+  //
+  //   assert.strictEqual(modal.classList[2], void 0);
+  //   assert.strictEqual(testComponent.showRight, false);
+  //
+  // }));
+  //
+  // it('should show on button click then close on close button click, top modal', fakeAsync(function(){
+  //
+  //   var fixture = TestBed.createComponent(modalTestComponent);
+  //   fixture.detectChanges();
+  //   tick();
+  //   fixture.detectChanges();
+  //   testComponent = fixture.componentInstance;
+  //   var button = document.querySelector('#openTop');
+  //   button.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-top');
+  //
+  //   assert.strictEqual(modal.classList[2], "in");
+  //   assert.strictEqual(testComponent.showTop, true);
+  //
+  //   var closeButton = document.querySelector("#closeTop");
+  //   closeButton.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-top');
+  //
+  //   assert.strictEqual(modal.classList[2], void 0);
+  //   assert.strictEqual(testComponent.showTop, false);
+  // }));
+  //
+  // it('should show on button click then close on close button click, bottom modal', fakeAsync(function(){
+  //
+  //   var fixture = TestBed.createComponent(modalTestComponent);
+  //   fixture.detectChanges();
+  //   tick();
+  //   fixture.detectChanges();
+  //   testComponent = fixture.componentInstance;
+  //   var button = document.querySelector('#openBottom');
+  //   button.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-bottom');
+  //
+  //   assert.strictEqual(modal.classList[3], "in");
+  //   assert.strictEqual(testComponent.showBottom, true);
+  //
+  //   var closeButton = document.querySelector("#closeBottom");
+  //   closeButton.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-bottom');
+  //
+  //   assert.strictEqual(modal.classList[3], void 0);
+  //   assert.strictEqual(testComponent.showBottom, false);
+  //
+  // }));
+  //
+  // it('should close on cross click, left modal', fakeAsync(function(){
+  //   var fixture = TestBed.createComponent(modalTestComponent);
+  //   fixture.detectChanges();
+  //   tick();
+  //   fixture.detectChanges();
+  //   testComponent = fixture.componentInstance;
+  //   var button = document.querySelector('#openLeft');
+  //   button.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-left');
+  //
+  //   assert.strictEqual(modal.classList[3], "in");
+  //   assert.strictEqual(testComponent.showLeft, true);
+  //
+  //   var closeButton = document.querySelector(".close");
+  //   closeButton.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-left');
+  //
+  //   assert.strictEqual(modal.classList[3], void 0);
+  //   assert.strictEqual(testComponent.showLeft, false);
+  // }));
+  //
+  // it('should close on cross click, right modal', fakeAsync(function(){
+  //
+  //   var fixture = TestBed.createComponent(modalTestComponent);
+  //   fixture.detectChanges();
+  //   tick();
+  //   fixture.detectChanges();
+  //   testComponent = fixture.componentInstance;
+  //   var button = document.querySelector('#openRight');
+  //   button.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-right');
+  //
+  //   assert.strictEqual(modal.classList[2], "in");
+  //   assert.strictEqual(testComponent.showRight, true);
+  //
+  //   var closeButton = document.querySelector(".close");
+  //   closeButton.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-right');
+  //
+  //   assert.strictEqual(modal.classList[2], void 0);
+  //   assert.strictEqual(testComponent.showRight, false);
+  //
+  // }));
+  //
+  // it('should close on cross click, top modal', fakeAsync(function(){
+  //
+  //   var fixture = TestBed.createComponent(modalTestComponent);
+  //   fixture.detectChanges();
+  //   tick();
+  //   fixture.detectChanges();
+  //   testComponent = fixture.componentInstance;
+  //   var button = document.querySelector('#openTop');
+  //   button.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-top');
+  //
+  //   assert.strictEqual(modal.classList[2], "in");
+  //   assert.strictEqual(testComponent.showTop, true);
+  //
+  //   var closeButton = document.querySelector(".close");
+  //   closeButton.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-top');
+  //
+  //   assert.strictEqual(modal.classList[2], void 0);
+  //   assert.strictEqual(testComponent.showTop, false);
+  // }));
+  //
+  // it('should close on cross click, bottom modal', fakeAsync(function(){
+  //
+  //   var fixture = TestBed.createComponent(modalTestComponent);
+  //   fixture.detectChanges();
+  //   tick();
+  //   fixture.detectChanges();
+  //   testComponent = fixture.componentInstance;
+  //   var button = document.querySelector('#openBottom');
+  //   button.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-bottom');
+  //
+  //   assert.strictEqual(modal.classList[3], "in");
+  //   assert.strictEqual(testComponent.showBottom, true);
+  //
+  //   var closeButton = document.querySelector(".close");
+  //   closeButton.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-bottom');
+  //
+  //   assert.strictEqual(modal.classList[3], void 0);
+  //   assert.strictEqual(testComponent.showBottom, false);
+  //
+  // }));
+  //
+  // it('should close on out modal click, left modal', fakeAsync(function(){
+  //
+  //   var fixture = TestBed.createComponent(modalTestComponent);
+  //   fixture.detectChanges();
+  //   tick();
+  //   fixture.detectChanges();
+  //   testComponent = fixture.componentInstance;
+  //   var button = document.querySelector('#openLeft');
+  //   button.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-left');
+  //
+  //   assert.strictEqual(modal.classList[3], "in");
+  //   assert.strictEqual(testComponent.showLeft, true);
+  //
+  //   modal.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-left');
+  //
+  //   assert.strictEqual(modal.classList[3], void 0);
+  //   assert.strictEqual(testComponent.showLeft, false);
+  //
+  // }));
+  //
+  // it('should close on out modal click, right modal', fakeAsync(function(){
+  //
+  //   var fixture = TestBed.createComponent(modalTestComponent);
+  //   fixture.detectChanges();
+  //   tick();
+  //   fixture.detectChanges();
+  //   testComponent = fixture.componentInstance;
+  //   var button = document.querySelector('#openRight');
+  //   button.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-right');
+  //
+  //   assert.strictEqual(modal.classList[2], "in");
+  //   assert.strictEqual(testComponent.showRight, true);
+  //
+  //   modal.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-right');
+  //
+  //   assert.strictEqual(modal.classList[2], void 0);
+  //   assert.strictEqual(testComponent.showRight, false);
+  //
+  // }));
+  //
+  // it('should close on out modal click, top modal', fakeAsync(function(){
+  //
+  //   var fixture = TestBed.createComponent(modalTestComponent);
+  //   fixture.detectChanges();
+  //   tick();
+  //   fixture.detectChanges();
+  //   testComponent = fixture.componentInstance;
+  //   var button = document.querySelector('#openTop');
+  //   button.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-top');
+  //
+  //   assert.strictEqual(modal.classList[2], "in");
+  //   assert.strictEqual(testComponent.showTop, true);
+  //
+  //   modal.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-top');
+  //
+  //   assert.strictEqual(modal.classList[2], void 0);
+  //   assert.strictEqual(testComponent.showTop, false);
+  //
+  // }));
+  //
+  // it('should close on out modal click, left modal', fakeAsync(function(){
+  //
+  //   var fixture = TestBed.createComponent(modalTestComponent);
+  //   fixture.detectChanges();
+  //   tick();
+  //   fixture.detectChanges();
+  //   testComponent = fixture.componentInstance;
+  //   var button = document.querySelector('#openBottom');
+  //   button.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-bottom');
+  //
+  //   assert.strictEqual(modal.classList[3], "in");
+  //   assert.strictEqual(testComponent.showBottom, true);
+  //
+  //   modal.click();
+  //   tick();
+  //   fixture.detectChanges();
+  //
+  //   var modal = document.querySelector('.modal-bottom');
+  //
+  //   assert.strictEqual(modal.classList[3], void 0);
+  //   assert.strictEqual(testComponent.showBottom, false);
+  //
+  // }));
 
 });
