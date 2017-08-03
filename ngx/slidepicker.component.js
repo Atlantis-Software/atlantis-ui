@@ -268,9 +268,7 @@ export class slidepickeroptionComponent {
 			new Component({
         selector: 'slidepicker-option',
         template: `
-          <a (click)="clickLabel($event)">
-            <ng-content></ng-content>
-          </a>`,
+          <a (click)="clickLabel($event)"><ng-content></ng-content></a>`,
         inputs: ['value'],
         styles : [
           ":host { display: list-item; }"
