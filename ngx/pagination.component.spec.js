@@ -92,7 +92,7 @@ describe('pagination', function() {
     assert.strictEqual(testComponent.pages, 100);
   }));
 
-  it('should render new value when click on right arrow', fakeAsync(function() {
+  it('should render new value when click on other page', fakeAsync(function() {
     var fixture = TestBed.createComponent(paginationTestComponent);
     fixture.detectChanges();
     tick();
