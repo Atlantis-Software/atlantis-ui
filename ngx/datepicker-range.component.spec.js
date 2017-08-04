@@ -1,4 +1,4 @@
-import { getTestBed, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
+import { getTestBed, TestBed, async, fakeAsync, tick} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import atlantisUI from './ngx-atlantis-ui-module.js';
 import { Component } from '@angular/core';
@@ -14,8 +14,8 @@ class datepickerRangeTestComponent {
   constructor() {
     var date = new Date('02/03/2004');
     this.startDate = date;
-    var date2 = new Date('02/10/2004')
-    this.endDate = date2
+    var date2 = new Date('02/10/2004');
+    this.endDate = date2;
   }
 	static get annotations() {
 		return [
@@ -30,6 +30,7 @@ class datepickerRangeTestComponent {
 		];
 	}
 }
+
 
 describe('datepicker-range', function() {
   var testComponent;
@@ -492,8 +493,8 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(datepickerStart.textContent).format('YYYY-MM-DD'), moment("2004-02-03").format('YYYY-MM-DD'));
-    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'), moment("2004-02-10").format('YYYY-MM-DD'));
+    assert.strictEqual(moment(new Date(datepickerStart.textContent)).format('YYYY-MM-DD'), moment("2004-02-03").format('YYYY-MM-DD'));
+    assert.strictEqual(moment(new Date(datepickerEnd.textContent)).format('YYYY-MM-DD'), moment("2004-02-10").format('YYYY-MM-DD'));
 
     assert.strictEqual(modal.classList[3], "in");
 
@@ -524,7 +525,7 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(datepickerStart.textContent).format('YYYY-MM-DD'), moment("2004-02-03").format('YYYY-MM-DD'));
+    assert.strictEqual(moment(new Date(datepickerStart.textContent)).format('YYYY-MM-DD'), moment("2004-02-03").format('YYYY-MM-DD'));
     assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'), moment("2004-02-07").format('YYYY-MM-DD'));
 
     assert.strictEqual(modal.classList[3], void 0);
@@ -543,13 +544,15 @@ describe('datepicker-range', function() {
     fixture.detectChanges();
 
     var endInput = document.querySelectorAll('input')[3];
-    endInput.focus();
+
+    endInput.dispatchEvent(new Event('focus'));
     tick();
     fixture.detectChanges();
 
+
     var newEnd = document.querySelectorAll(".available")[6];
     newEnd.click();
-    tick()
+    tick();
     fixture.detectChanges();
 
     var datepickerStart = document.querySelector('#dataStart');
@@ -557,7 +560,10 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(datepickerStart.textContent).format('YYYY-MM-DD'), moment("2004-02-03").format('YYYY-MM-DD'));
+    console.log(datepickerStart.textContent);
+    console.log(datepickerEnd.textContent);
+
+    assert.strictEqual(moment(new Date(datepickerStart.textContent)).format('YYYY-MM-DD'), moment("2004-02-03").format('YYYY-MM-DD'));
     assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'), moment("2004-02-07").format('YYYY-MM-DD'));
     assert.strictEqual(modal.classList[3], void 0);
 
