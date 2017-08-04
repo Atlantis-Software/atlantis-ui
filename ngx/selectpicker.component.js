@@ -243,10 +243,6 @@ export default class selectpickerComponent {
     event.preventDefault();
     event.stopPropagation();
   }
-
-  click(){
-    console.log("test")
-  }
 }
 
 selectpickerComponent.parameters = [ChangeDetectorRef, IterableDiffers, ElementRef];
