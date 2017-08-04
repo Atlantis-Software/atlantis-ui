@@ -208,7 +208,7 @@ export default class selectpickerComponent {
               if (previousIndexVal <= -1) {
                 self.val.push(self.previousSelectedValue);
               }
-              // we select value between previous Value and current value 
+              // we select value between previous Value and current value
               if ( indexOption < currentIndexOption && indexOption > self.previousSelectedIndex) {
                 var index = self.val.indexOf(option4.value);
                 if (index <= -1) {
@@ -222,12 +222,12 @@ export default class selectpickerComponent {
               }
             });
           }
-        } else { 
+        } else {
             this.options.forEach(function(option4) {
               var index = options.indexOf(option4.value);
               var currentIndex = options.indexOf(option.value);
               // if not key press ctrl delete all item below value selected
-              // if key press ctrl before delete all item above value selected 
+              // if key press ctrl before delete all item above value selected
               if ( !self.ctrlKey && index > currentIndex || self.ctrlKey &&  index < currentIndex ) {
               var index = self.val.indexOf(option4.value);
               if (index > -1) {
