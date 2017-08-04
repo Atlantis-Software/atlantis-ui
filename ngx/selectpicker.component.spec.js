@@ -281,41 +281,45 @@ describe('selectpicker', function() {
 
   // TODO: Shift key
 
-  // it('should render selected value, multiple selection with shift key', fakeAsync(() => {
-  //   var fixture = TestBed.createComponent(selectpickerTestComponent);
-  //
-  //   fixture.detectChanges();
-  //   tick();
-  //   fixture.detectChanges();
-  //
-  //   var testComponent = fixture.componentInstance;
-  //
-  //   var button = document.querySelectorAll('.select-toggle');
-  //
-  //   button[2].click();
-  //   tick();
-  //   fixture.detectChanges();
-  //
-  //   var selectpicker = fixture.debugElement.queryAll(By.css("selectpicker"))
-  //   var options = selectpicker[2].queryAll(By.css("a"));
-  //   options[0].triggerEventHandler("selectOption", {});
-  //   tick();
-  //   fixture.detectChanges();
-  //
-  //   assert.strictEqual(testComponent.select3[0].value, "A");
-  //   assert.strictEqual(testComponent.select3[0].label, 'AAAA');
-  //
-  //   options[2].triggerEventHandler("click",{shiftkey: true});
-  //   tick();
-  //   fixture.detectChanges();
-  //
-  //   assert.strictEqual(testComponent.select3[0].value, "A");
-  //   assert.strictEqual(testComponent.select3[0].label, 'AAAA');
-  //   assert.strictEqual(testComponent.select3[1].value, "B");
-  //   assert.strictEqual(testComponent.select3[1].label, 'BBBB');
-  //   assert.strictEqual(testComponent.select3[2].value, "C");
-  //   assert.strictEqual(testComponent.select3[2].label, 'CCCC');
-  // }));
+  it('should render selected value, multiple selection with shift key', fakeAsync(() => {
+    var fixture = TestBed.createComponent(selectpickerTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var testComponent = fixture.componentInstance;
+
+    var button = document.querySelectorAll('.select-toggle');
+
+    button[2].click();
+    tick();
+    fixture.detectChanges();
+
+    var selectpicker = document.querySelectorAll("selectpicker")
+    var options = selectpicker[2].querySelectorAll("a");
+
+    options[0].click()
+    tick();
+    fixture.detectChanges();
+
+    assert.strictEqual(testComponent.select3[0].value, "A");
+    assert.strictEqual(testComponent.select3[0].label, 'AAAA');
+
+    var click = new Event("click", {'bubbles': true});
+    click.shiftKey = true;
+
+    options[2].dispatchEvent(click);
+    tick();
+    fixture.detectChanges();
+
+    assert.strictEqual(testComponent.select3[0].value, "A");
+    assert.strictEqual(testComponent.select3[0].label, 'AAAA');
+    assert.strictEqual(testComponent.select3[1].value, "C");
+    assert.strictEqual(testComponent.select3[1].label, 'CCCC');
+    assert.strictEqual(testComponent.select3[2].value, "B");
+    assert.strictEqual(testComponent.select3[2].label, 'BBBB');
+  }));
 
 
 });
