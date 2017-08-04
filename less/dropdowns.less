@@ -73,7 +73,7 @@ dropdown-option {
   }
 
   // Links within the dropdown menu
-  > dropdown-option, dropdown-divider, dropdown-header {
+  > dropdown-option, dropdown-divider, dropdown-header, li{
     > div {
       margin: 10px 20px;
     }
@@ -90,7 +90,8 @@ dropdown-option {
 }
 
 // Hover/Focus state
-.dropdown-menu > dropdown-option > a {
+.dropdown-menu > dropdown-option > a,
+.dropdown-menu > li > a {
   &:hover,
   &:focus {
     text-decoration: none;
