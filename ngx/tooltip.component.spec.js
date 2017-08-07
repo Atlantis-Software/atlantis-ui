@@ -76,7 +76,7 @@ describe('tooltip', function() {
     assert.strictEqual(content[3].textContent, 'test4');
   }));
 
-  it('should open on mouse enter then close on mouse leave', fakeAsync(() => {
+  it('should open on mouseenter then close on mouseleave', fakeAsync(() => {
     var fixture = TestBed.createComponent(tooltipTestComponent);
 
     fixture.detectChanges();
@@ -87,44 +87,28 @@ describe('tooltip', function() {
     var button = fixture.debugElement.queryAll(By.css('button'));
     var tooltip = document.querySelectorAll('tooltipcomponent');
     button[0].triggerEventHandler("mouseenter", {});
-    tick();
-    fixture.detectChanges();
-    assert.strictEqual(tooltip[0].classList[3], 'in');
-
     button[1].triggerEventHandler("mouseenter", {});
-    tick();
-    fixture.detectChanges();
-    assert.strictEqual(tooltip[1].classList[3], 'in');
-
     button[2].triggerEventHandler("mouseenter", {});
-    tick();
-    fixture.detectChanges();
-    assert.strictEqual(tooltip[2].classList[3], 'in');
-
     button[3].triggerEventHandler("mouseenter", {});
     tick();
     fixture.detectChanges();
+
+    assert.strictEqual(tooltip[0].classList[3], 'in');
+    assert.strictEqual(tooltip[1].classList[3], 'in');
+    assert.strictEqual(tooltip[2].classList[3], 'in');
     assert.strictEqual(tooltip[3].classList[3], 'in');
 
 
     button[0].triggerEventHandler("mouseleave", {});
-    tick();
-    fixture.detectChanges();
-    assert.strictEqual(tooltip[0].classList[3], void 0);
-
     button[1].triggerEventHandler("mouseleave", {});
-    tick();
-    fixture.detectChanges();
-    assert.strictEqual(tooltip[1].classList[3], void 0);
-
     button[2].triggerEventHandler("mouseleave", {});
-    tick();
-    fixture.detectChanges();
-    assert.strictEqual(tooltip[2].classList[3], void 0);
-
     button[3].triggerEventHandler("mouseleave", {});
     tick();
     fixture.detectChanges();
+
+    assert.strictEqual(tooltip[0].classList[3], void 0);
+    assert.strictEqual(tooltip[1].classList[3], void 0);
+    assert.strictEqual(tooltip[2].classList[3], void 0);
     assert.strictEqual(tooltip[3].classList[3], void 0);
 
   }));
