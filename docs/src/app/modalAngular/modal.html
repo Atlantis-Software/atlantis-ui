@@ -3,9 +3,9 @@
     Modal
   </h3>
   <div class="row">
-    <div class="col-md-3" >
+    <div class="col-md-2 col-md-offset-1" >
       <button type="button" class="btn btn-default btn-sm"  (click)="openLeft()">
-        orientation="left"</br> 
+        orientation="left"</br>
         fade=true</br>
         backdrop=true
       </button>
@@ -21,10 +21,10 @@
         </modal-footer>
       </modal>
     </div>
-      <div class="col-md-3" >
+      <div class="col-md-2" >
       <button type="button" class="btn btn-default btn-sm" (click)="openRight()">
         orientation="right"</br>
-        fade=false</br> 
+        fade=false</br>
         backdrop=false
       </button>
       <modal idModal="test" [options]="modalOptionsRight" [(show)]="showRight">
@@ -39,7 +39,7 @@
         </modal-footer>
       </modal>
     </div>
-    <div class="col-md-3" >
+    <div class="col-md-2" >
       <button type="button" class="btn btn-default btn-sm"  (click)="openTop()">
         orientation="top"</br>
         fade=false</br>
@@ -58,7 +58,7 @@
       </modal>
     </div>
 
-    <div class="col-md-3" >
+    <div class="col-md-2" >
       <button type="button" class="btn btn-default btn-sm" (click)="openBottom()">
         orientation = bottom</br>
         fade=true</br>
@@ -73,6 +73,23 @@
         </modal-body>
         <modal-footer>
           <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeBottom()">Close</button>
+        </modal-footer>
+      </modal>
+    </div>
+
+    <div class="col-md-2" >
+      <button type="button" class="btn btn-default btn-sm"  (click)="openStandard()">
+        No Options defined
+      </button>
+      <modal idModal="test" [(show)]="showStandard">
+        <modal-header [options]="modalHeaderOptions">
+          <h3 class="modal-title">Modal Header</h3>
+        </modal-header>
+        <modal-body>
+          <p>Some text in the modal.</p>
+        </modal-body>
+        <modal-footer>
+          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeStandard()">Close</button>
         </modal-footer>
       </modal>
     </div>
@@ -96,7 +113,7 @@
       ModalOptionsLeft is the options of the modal.</br>
       ModalHeaderOptions is the options of the header modal.</br>
     </p>
-  </blockquote>  
+  </blockquote>
 
   <h3>
     modal options
@@ -130,7 +147,7 @@
           String
         </td>
         <td>
-          Position of the modal 
+          Position of the modal
         </td>
         <td>
           left, bottom, right, top

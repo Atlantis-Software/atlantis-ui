@@ -27,7 +27,7 @@ export default  class ModalAngularComponent {
 
     this.modalVar = `
     this.modalOptionsLeft = {
-      fade : true, 
+      fade : true,
       orientation:"left"
     }
 
@@ -45,25 +45,32 @@ export default  class ModalAngularComponent {
     }`
 
     this.modalOptionsRight = {
-      fade : false, 
-      orientation:"right", 
+      fade : false,
+      orientation:"right",
       backdrop: false
     }
 
     this.modalOptionsTop = {
-      fade : false, 
+      fade : false,
       orientation:"top"
     }
 
     this.modalOptionsBottom = {
-      fade : true, 
-      orientation:"bottom", 
+      fade : true,
+      orientation:"bottom",
+      backdrop: true
+    }
+
+    this.modalOptionsLeft = {
+      fade : true,
+      orientation:"left",
       backdrop: true
     }
     this.showLeft = false;
     this.showRight = false;
     this.showTop = false;
     this.showBottom = false;
+    this.showStandard = false;
 
     this.Display = "Example";
   }
@@ -94,6 +101,13 @@ export default  class ModalAngularComponent {
   }
   closeBottom() {
     this.showBottom = false;
+  }
+
+  openStandard() {
+    this.showStandard = true;
+  }
+  closeStandard() {
+    this.showStandard = false;
   }
 }
 
