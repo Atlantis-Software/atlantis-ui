@@ -26,7 +26,7 @@ module.exports = function (config) {
 
     browsers : ['Chrome', 'Firefox'],
 
-    singleRun: false,
+    singleRun: true,
 
     autoWatch: true,
     autoWatchBatchDelay: 5000,
