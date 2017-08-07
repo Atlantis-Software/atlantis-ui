@@ -19,22 +19,47 @@
     }
   }
   > .select-options {
-    .dropdown-menu;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: @zindex-dropdown;
+    display: none; // none by default, but block on "open" of the menu
+    float: left;
+    min-width: 160px;
+    height: auto;
+    overflow-x: hidden;
+    max-height: 200px;
+    list-style: none;
+    font-size: @font-size-base;
+    text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
+    background-color: @dropdown-bg;
+    .box-shadow(0 6px 12px rgba(0,0,0,.175));
+    background-clip: padding-box;
+
     width: 100%;
     border-radius: 0;
     margin-top: 0;
     padding: 0;
     border: 1px solid @select-default-border;
     border-top: 0;
+
+
     > li > input.option-status[type="checkbox"] {
       display: none;
     }
     > li > a {
+      display: block;
+      clear: both;
+      font-weight: normal;
+      line-height: @line-height-base;
+      white-space: nowrap; // prevent links from randomly breaking onto new lines
+
       padding: 3px 10px;
       background-color: @select-option-bg;
       color: @select-option-color;
       border-bottom: solid 1px @select-option-border;
       .transition(all 0.6s ease-out);
+
     }
     > li:nth-of-type(odd) > a {
       background-color: @select-option-accent;
