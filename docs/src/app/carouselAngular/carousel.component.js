@@ -13,7 +13,7 @@ export default  class CarouselAngularComponent {
     this.carouselHtml = `
     <carousel [idCarousel]="'test'" [options]="optionsCarousel">
       <carousel-item>
-        <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">
+        <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">
         <div class="carousel-caption">
           Slide 1
         </div>
@@ -24,7 +24,7 @@ export default  class CarouselAngularComponent {
     </carousel>`
     this.carrouselSlideNgIf= `
     <carousel-item *ngIf="show1">
-      <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">
+      <img class="img-responsive center-block" src="../../img/carousel02.jpg" alt="">
       <div class="carousel-caption">
         Slide 1
       </div>
@@ -33,7 +33,7 @@ export default  class CarouselAngularComponent {
     this.carouselNgFor= `
     <carousel [options]="optionsCarousel">
       <carousel-item *ngFor="let carouselItem of carouselItems">
-        <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">
+        <img class="img-responsive center-block" src="../../img/carousel03.jpg" alt="">
         <div class="carousel-caption">
           {{carouselItem.label}}
         </div>

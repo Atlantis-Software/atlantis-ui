@@ -37352,7 +37352,7 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.3.3'
 /* 14 */
 /***/ (function(module, exports) {
 
-module.exports = "compiled/img/carousel04.jpg";
+module.exports = "compiled/img/carousel01.jpg";
 
 /***/ }),
 /* 15 */
@@ -38033,10 +38033,10 @@ var CarouselAngularComponent = function () {
   function CarouselAngularComponent() {
     _classCallCheck(this, CarouselAngularComponent);
 
-    this.carouselHtml = '\n    <carousel [idCarousel]="\'test\'" [options]="optionsCarousel">\n      <carousel-item>\n        <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">\n        <div class="carousel-caption">\n          Slide 1\n        </div>\n      </carousel-item>\n      <carousel-item [options]="optionsItem2">\n        test2\n      </carousel-item>\n    </carousel>';
-    this.carrouselSlideNgIf = '\n    <carousel-item *ngIf="show1">\n      <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">\n      <div class="carousel-caption">\n        Slide 1\n      </div>\n    </carousel-item>';
+    this.carouselHtml = '\n    <carousel [idCarousel]="\'test\'" [options]="optionsCarousel">\n      <carousel-item>\n        <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">\n        <div class="carousel-caption">\n          Slide 1\n        </div>\n      </carousel-item>\n      <carousel-item [options]="optionsItem2">\n        test2\n      </carousel-item>\n    </carousel>';
+    this.carrouselSlideNgIf = '\n    <carousel-item *ngIf="show1">\n      <img class="img-responsive center-block" src="../../img/carousel02.jpg" alt="">\n      <div class="carousel-caption">\n        Slide 1\n      </div>\n    </carousel-item>';
 
-    this.carouselNgFor = '\n    <carousel [options]="optionsCarousel">\n      <carousel-item *ngFor="let carouselItem of carouselItems">\n        <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">\n        <div class="carousel-caption">\n          {{carouselItem.label}}\n        </div>\n      </carousel-item>\n    </carousel>';
+    this.carouselNgFor = '\n    <carousel [options]="optionsCarousel">\n      <carousel-item *ngFor="let carouselItem of carouselItems">\n        <img class="img-responsive center-block" src="../../img/carousel03.jpg" alt="">\n        <div class="carousel-caption">\n          {{carouselItem.label}}\n        </div>\n      </carousel-item>\n    </carousel>';
 
     this.carouselNgForItems = '\n    this.carouselItems = [\n      {\n        label: "slide1",\n      },\n      {\n        label: "slide2",\n      },\n      {\n        label: ""\n      }\n    ]';
 
@@ -39376,13 +39376,13 @@ module.exports = "compiled/fonts/fontawesome-webfont.eot";
 /* 48 */
 /***/ (function(module, exports) {
 
-module.exports = "compiled/img/carousel05.jpg";
+module.exports = "compiled/img/carousel02.jpg";
 
 /***/ }),
 /* 49 */
 /***/ (function(module, exports) {
 
-module.exports = "compiled/img/carousel06.jpg";
+module.exports = "compiled/img/carousel03.jpg";
 
 /***/ }),
 /* 50 */

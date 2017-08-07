@@ -28,15 +28,15 @@ class carouselTestComponent {
         template: `
         <carousel [options]="optionsCarousel">
         <carousel-item *ngIf="show1">
-          <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">
+          <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">
           <div class="carousel-caption">slide1</div>
         </carousel-item>
         <carousel-item *ngIf="show2">
-          <img class="img-responsive center-block" src="../../img/carousel05.jpg" alt="">
+          <img class="img-responsive center-block" src="../../img/carousel02.jpg" alt="">
           <div class="carousel-caption">slide2</div>
         </carousel-item>
         <carousel-item *ngIf="show3">
-          <img class="img-responsive center-block" src="../../img/carousel06.jpg" alt="">
+          <img class="img-responsive center-block" src="../../img/carousel03.jpg" alt="">
           <div class="carousel-caption"></div>
         </carousel-item>
         </carousel>`

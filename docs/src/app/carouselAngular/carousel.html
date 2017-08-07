@@ -5,16 +5,16 @@
   <div class="row container-fluid form-group">
     <carousel [options]="optionsCarousel">
       <carousel-item>
-        <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">
+        <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">
         <div class="carousel-caption">
           Slide 1
         </div>
       </carousel-item>
       <carousel-item >
-        <img class="img-responsive center-block" src="../../img/carousel05.jpg" alt="">
+        <img class="img-responsive center-block" src="../../img/carousel02.jpg" alt="">
       </carousel-item>
       <carousel-item>
-        <img class="img-responsive center-block" src="../../img/carousel06.jpg" alt="">
+        <img class="img-responsive center-block" src="../../img/carousel03.jpg" alt="">
         <div class="carousel-caption">
           slide 3
         </div>
@@ -113,16 +113,16 @@
   <div class="row container-fluid form-group">
     <carousel [options]="optionsCarousel">
       <carousel-item *ngIf="show1">
-        <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">
+        <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">
         <div class="carousel-caption">
           Slide 1
         </div>
       </carousel-item>
       <carousel-item *ngIf="show2">
-        <img class="img-responsive center-block" src="../../img/carousel05.jpg" alt="">
+        <img class="img-responsive center-block" src="../../img/carousel02.jpg" alt="">
       </carousel-item>
       <carousel-item *ngIf="show3">
-        <img class="img-responsive center-block" src="../../img/carousel06.jpg" alt="">
+        <img class="img-responsive center-block" src="../../img/carousel03.jpg" alt="">
         <div class="carousel-caption">
           slide 3
         </div>
@@ -158,7 +158,7 @@
   <div class="row container-fluid form-group">
     <carousel [options]="optionsCarousel">
       <carousel-item *ngFor="let carouselItem of carouselItems">
-        <img class="img-responsive center-block" src="../../img/carousel04.jpg" alt="">
+        <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">
         <div class="carousel-caption">
           {{carouselItem.label}}
         </div>
