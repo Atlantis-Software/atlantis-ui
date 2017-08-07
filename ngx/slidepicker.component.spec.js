@@ -211,27 +211,38 @@ describe('slidepicker', function() {
     assert.strictEqual(text.textContent, 'object javascript');
   }));
 
-  // it('should render selected value when handle click and mouse up', fakeAsync(() => {
-  //   var fixture = TestBed.createComponent(slidepickerTestComponent);
-  //
-  //   fixture.detectChanges();
-  //   tick();
-  //   fixture.detectChanges();
-  //
-  //   var testComponent = fixture.componentInstance;
-  //   var handle = fixture.debugElement.query(By.css('.slidepicker-handle'));
-  //
-  //   handle.triggerEventHandler("mousedown", {});
-  //   tick();
-  //   fixture.detectChanges();
-  //   handle.triggerEventHandler("mousemove", {pageX: 0, pageY: 74});
-  //   tick();
-  //   fixture.detectChanges();
-  //   handle.triggerEventHandler("mouseup", {});
-  //   var text = document.querySelector('#selected');
-  //
-  //   assert.strictEqual(testComponent.slide.value, testComponent.objetWithArray);
-  //   assert.strictEqual(testComponent.slide.label, 'object javascript');
-  //   assert.strictEqual(text.textContent, 'object javascript');
-  // }));
+  it('should render selected value when handle click and mouse up', fakeAsync(() => {
+    var fixture = TestBed.createComponent(slidepickerTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var testComponent = fixture.componentInstance;
+    var handle = document.querySelector('.slidepicker-handle');
+
+    var mousedown = new Event('mousedown', {'bubbles': true});
+
+    handle.dispatchEvent(mousedown);
+    tick();
+    fixture.detectChanges();
+
+    var mouseMove = new Event('mousemove', {'bubbles': true});
+    mouseMove.pageY = 20;
+
+    handle.dispatchEvent(mouseMove);
+    tick();
+    fixture.detectChanges();
+
+    var mouseUp = new Event('mouseup', {'bubbles' : true});
+    handle.dispatchEvent(mouseUp);
+    tick();
+    fixture.detectChanges();
+
+    var text = document.querySelector('#selected');
+
+    assert.strictEqual(testComponent.slide.value, "A");
+    assert.strictEqual(testComponent.slide.label, 'AAAA');
+    assert.strictEqual(text.textContent, 'AAAA');
+  }));
 });
