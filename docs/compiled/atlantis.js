@@ -277,7 +277,7 @@
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵu", function() { return DebugContext; });
 
 /**
- * @license Angular v4.2.6
+ * @license Angular v4.3.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -1073,7 +1073,7 @@ var Version = (function () {
 /**
  * \@stable
  */
-var VERSION = new Version('4.2.6');
+var VERSION = new Version('4.3.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -4186,7 +4186,7 @@ function forkInnerZoneWithAngularBehavior(zone) {
         },
         onHandleError: function (delegate, current, target, error) {
             delegate.handleError(target, error);
-            zone.onError.emit(error);
+            zone.runOutsideAngular(function () { return zone.onError.emit(error); });
             return false;
         }
     });
@@ -4674,15 +4674,16 @@ var PlatformRef = (function () {
 }());
 /**
  * @param {?} errorHandler
+ * @param {?} ngZone
  * @param {?} callback
  * @return {?}
  */
-function _callAndReportToErrorHandler(errorHandler, callback) {
+function _callAndReportToErrorHandler(errorHandler, ngZone, callback) {
     try {
         var /** @type {?} */ result = callback();
         if (isPromise(result)) {
             return result.catch(function (e) {
-                errorHandler.handleError(e);
+                ngZone.runOutsideAngular(function () { return errorHandler.handleError(e); });
                 // rethrow as the exception handler might not do it
                 throw e;
             });
@@ -4690,7 +4691,7 @@ function _callAndReportToErrorHandler(errorHandler, callback) {
         return result;
     }
     catch (e) {
-        errorHandler.handleError(e);
+        ngZone.runOutsideAngular(function () { return errorHandler.handleError(e); });
         // rethrow as the exception handler might not do it
         throw e;
     }
@@ -4776,8 +4777,8 @@ var PlatformRef_ = (function (_super) {
                 throw new Error('No ErrorHandler. Is platform module (BrowserModule) included?');
             }
             moduleRef.onDestroy(function () { return remove(_this._modules, moduleRef); }); /** @type {?} */
-            ((ngZone)).onError.subscribe({ next: function (error) { exceptionHandler.handleError(error); } });
-            return _callAndReportToErrorHandler(exceptionHandler, function () {
+            ((ngZone)).runOutsideAngular(function () { return ((ngZone)).onError.subscribe({ next: function (error) { exceptionHandler.handleError(error); } }); });
+            return _callAndReportToErrorHandler(exceptionHandler, /** @type {?} */ ((ngZone)), function () {
                 var /** @type {?} */ initStatus = moduleRef.injector.get(ApplicationInitStatus);
                 initStatus.runInitializers();
                 return initStatus.donePromise.then(function () {
@@ -5073,6 +5074,7 @@ var ApplicationRef_ = (function (_super) {
      * @return {?}
      */
     ApplicationRef_.prototype.tick = function () {
+        var _this = this;
         if (this._runningTick) {
             throw new Error('ApplicationRef.tick is called recursively');
         }
@@ -5086,7 +5088,7 @@ var ApplicationRef_ = (function (_super) {
         }
         catch (e) {
             // Attention: Don't rethrow as it could cancel subscriptions to Observables!
-            this._exceptionHandler.handleError(e);
+            this._zone.runOutsideAngular(function () { return _this._exceptionHandler.handleError(e); });
         }
         finally {
             this._runningTick = false;
@@ -6174,7 +6176,7 @@ var ChangeDetectorRef = (function () {
      * class Cmp {
      *   numberOfTicks = 0;
      *
-     *   constructor(ref: ChangeDetectorRef) {
+     *   constructor(private ref: ChangeDetectorRef) {
      *     setInterval(() => {
      *       this.numberOfTicks ++
      *       // the following is required, otherwise the view will not be updated
@@ -14123,24 +14125,25 @@ var NgModuleFactory_ = (function (_super) {
  */
 /**
  * `trigger` is an animation-specific function that is designed to be used inside of Angular's
- * animation DSL language. If this information is new, please navigate to the {\@link
- * Component#animations component animations metadata page} to gain a better understanding of
- * how animations in Angular are used.
+ * animation DSL language. If this information is new, please navigate to the
+ * {\@link Component#animations component animations metadata page} to gain a better
+ * understanding of how animations in Angular are used.
  *
- * `trigger` Creates an animation trigger which will a list of {\@link state state} and {\@link
- * transition transition} entries that will be evaluated when the expression bound to the trigger
- * changes.
+ * `trigger` Creates an animation trigger which will a list of {\@link state state} and
+ * {\@link transition transition} entries that will be evaluated when the expression
+ * bound to the trigger changes.
  *
- * Triggers are registered within the component annotation data under the {\@link
- * Component#animations animations section}. An animation trigger can be placed on an element
- * within a template by referencing the name of the trigger followed by the expression value that the
+ * Triggers are registered within the component annotation data under the
+ * {\@link Component#animations animations section}. An animation trigger can be placed on an element
+ * within a template by referencing the name of the trigger followed by the expression value that
+ * the
  * trigger is bound to (in the form of `[\@triggerName]="expression"`.
  *
  * ### Usage
  *
  * `trigger` will create an animation trigger reference based on the provided `name` value. The
- * provided `animation` value is expected to be an array consisting of {\@link state state} and {\@link
- * transition transition} declarations.
+ * provided `animation` value is expected to be an array consisting of {\@link state state} and
+ * {\@link transition transition} declarations.
  *
  * ```typescript
  * \@Component({
@@ -14166,9 +14169,65 @@ var NgModuleFactory_ = (function (_super) {
  * ```html
  * <!-- somewhere inside of my-component-tpl.html -->
  * <div [\@myAnimationTrigger]="myStatusExp">...</div>
- * tools/gulp-tasks/validate-commit-message.js ```
+ * ```
  *
- * {\@example core/animation/ts/dsl/animation_example.ts region='Component'}
+ * ## Disable Child Animations
+ * A special animation control binding called `\@.disabled` can be placed on an element which will
+ * then disable animations for any inner animation triggers situated within the element.
+ *
+ * When true, the `\@.disabled` binding will prevent inner animations from rendering. The example
+ * below shows how to use this feature:
+ *
+ * ```ts
+ * \@Component({
+ *   selector: 'my-component',
+ *   template: `
+ *     <div [\@.disabled]="isDisabled">
+ *       <div [\@childAnimation]="exp"></div>
+ *     </div>
+ *   `,
+ *   animations: [
+ *     trigger("childAnimation", [
+ *       // ...
+ *     ])
+ *   ]
+ * })
+ * class MyComponent {
+ *   isDisabled = true;
+ *   exp = '...';
+ * }
+ * ```
+ *
+ * The `\@childAnimation` trigger will not animate because `\@.disabled` prevents it from happening
+ * (when true).
+ *
+ * Note that `\@.disbled` will only disable inner animations (any animations running on the same
+ * element will not be disabled).
+ *
+ * ### Disabling Animations Application-wide
+ * When an area of the template is set to have animations disabled, **all** inner components will
+ * also have their animations disabled as well. This means that all animations for an angular
+ * application can be disabled by placing a host binding set on `\@.disabled` on the topmost Angular
+ * component.
+ *
+ * ```ts
+ * import {Component, HostBinding} from '\@angular/core';
+ *
+ * \@Component({
+ *   selector: 'app-component',
+ *   templateUrl: 'app.component.html',
+ * })
+ * class AppComponent {
+ *   \@HostBinding('\@.disabled')
+ *   public animationsDisabled = true;
+ * }
+ * ```
+ *
+ * ### What about animations that us `query()` and `animateChild()`?
+ * Despite inner animations being disabled, a parent animation can {\@link query query} for inner
+ * elements located in disabled areas of the template and still animate them as it sees fit. This is
+ * also the case for when a sub animation is queried by a parent and then later animated using {\@link
+ * animateChild animateChild}.
  *
  * \@experimental Animation support is experimental.
  * @param {?} name
@@ -15762,6 +15821,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgLocaleLocalization", function() { return NgLocaleLocalization; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgLocalization", function() { return NgLocalization; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵparseCookieValue", function() { return parseCookieValue; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CommonModule", function() { return CommonModule; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgClass", function() { return NgClass; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgFor", function() { return NgFor; });
@@ -15810,7 +15870,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵb", function() { return COMMON_PIPES; });
 
 /**
- * @license Angular v4.2.6
+ * @license Angular v4.3.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -16957,6 +17017,28 @@ function getPluralCase(locale, nLike) {
         default:
             return Plural.Other;
     }
+}
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ * @param {?} cookieStr
+ * @param {?} name
+ * @return {?}
+ */
+function parseCookieValue(cookieStr, name) {
+    name = encodeURIComponent(name);
+    for (var _i = 0, _a = cookieStr.split(';'); _i < _a.length; _i++) {
+        var cookie = _a[_i];
+        var /** @type {?} */ eqIndex = cookie.indexOf('=');
+        var _b = eqIndex == -1 ? [cookie, ''] : [cookie.slice(0, eqIndex), cookie.slice(eqIndex + 1)], cookieName = _b[0], cookieValue = _b[1];
+        if (cookieName.trim() === name) {
+            return decodeURIComponent(cookieValue);
+        }
+    }
+    return null;
 }
 /**
  * @license
@@ -19731,7 +19813,7 @@ function isPlatformWorkerUi(platformId) {
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.2.6');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.3.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -19846,7 +19928,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵe", function() { return DomSanitizerImpl; });
 
 /**
- * @license Angular v4.2.6
+ * @license Angular v4.3.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -21593,7 +21675,7 @@ var BrowserDomAdapter = (function (_super) {
      * @param {?} name
      * @return {?}
      */
-    BrowserDomAdapter.prototype.getCookie = function (name) { return parseCookieValue(document.cookie, name); };
+    BrowserDomAdapter.prototype.getCookie = function (name) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_common__["ɵparseCookieValue"])(document.cookie, name); };
     /**
      * @param {?} name
      * @param {?} value
@@ -21634,23 +21716,6 @@ function relativePath(url) {
         '/' + urlParsingNode.pathname;
 }
 /**
- * @param {?} cookieStr
- * @param {?} name
- * @return {?}
- */
-function parseCookieValue(cookieStr, name) {
-    name = encodeURIComponent(name);
-    for (var _i = 0, _a = cookieStr.split(';'); _i < _a.length; _i++) {
-        var cookie = _a[_i];
-        var /** @type {?} */ eqIndex = cookie.indexOf('=');
-        var _b = eqIndex == -1 ? [cookie, ''] : [cookie.slice(0, eqIndex), cookie.slice(eqIndex + 1)], cookieName = _b[0], cookieValue = _b[1];
-        if (cookieName.trim() === name) {
-            return decodeURIComponent(cookieValue);
-        }
-    }
-    return null;
-}
-/**
  * @license
  * Copyright Google Inc. All Rights Reserved.
  *
@@ -21663,7 +21728,7 @@ function parseCookieValue(cookieStr, name) {
  * Note: Document might not be available in the Application Context when Application and Rendering
  * Contexts are not the same (e.g. when running the application into a Web Worker).
  *
- * \@deprecated, import from `\@angular/common` instead.
+ * @deprecated import from `\@angular/common` instead.
  */
 var DOCUMENT$1 = __WEBPACK_IMPORTED_MODULE_1__angular_common__["DOCUMENT"];
 /**
@@ -24270,7 +24335,7 @@ var By = (function () {
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.2.6');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.3.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -24879,7 +24944,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵr", function() { return REQUIRED_VALIDATOR; });
 
 /**
- * @license Angular v4.2.6
+ * @license Angular v4.3.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -25391,7 +25456,7 @@ var CheckboxControlValueAccessor = (function () {
      * @return {?}
      */
     CheckboxControlValueAccessor.prototype.writeValue = function (value) {
-        this._renderer.setElementProperty(this._elementRef.nativeElement, 'checked', value);
+        this._renderer.setProperty(this._elementRef.nativeElement, 'checked', value);
     };
     /**
      * @param {?} fn
@@ -25408,7 +25473,7 @@ var CheckboxControlValueAccessor = (function () {
      * @return {?}
      */
     CheckboxControlValueAccessor.prototype.setDisabledState = function (isDisabled) {
-        this._renderer.setElementProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
+        this._renderer.setProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
     };
     return CheckboxControlValueAccessor;
 }());
@@ -25423,7 +25488,7 @@ CheckboxControlValueAccessor.decorators = [
  * @nocollapse
  */
 CheckboxControlValueAccessor.ctorParameters = function () { return [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer"], },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer2"], },
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ElementRef"], },
 ]; };
 /**
@@ -25489,7 +25554,7 @@ var DefaultValueAccessor = (function () {
      */
     DefaultValueAccessor.prototype.writeValue = function (value) {
         var /** @type {?} */ normalizedValue = value == null ? '' : value;
-        this._renderer.setElementProperty(this._elementRef.nativeElement, 'value', normalizedValue);
+        this._renderer.setProperty(this._elementRef.nativeElement, 'value', normalizedValue);
     };
     /**
      * @param {?} fn
@@ -25506,7 +25571,7 @@ var DefaultValueAccessor = (function () {
      * @return {?}
      */
     DefaultValueAccessor.prototype.setDisabledState = function (isDisabled) {
-        this._renderer.setElementProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
+        this._renderer.setProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
     };
     /**
      * @param {?} value
@@ -25550,7 +25615,7 @@ DefaultValueAccessor.decorators = [
  * @nocollapse
  */
 DefaultValueAccessor.ctorParameters = function () { return [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer"], },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer2"], },
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ElementRef"], },
     { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"], args: [COMPOSITION_BUFFER_MODE,] },] },
 ]; };
@@ -25624,7 +25689,7 @@ var NumberValueAccessor = (function () {
     NumberValueAccessor.prototype.writeValue = function (value) {
         // The value needs to be normalized for IE9, otherwise it is set to 'null' when null
         var /** @type {?} */ normalizedValue = value == null ? '' : value;
-        this._renderer.setElementProperty(this._elementRef.nativeElement, 'value', normalizedValue);
+        this._renderer.setProperty(this._elementRef.nativeElement, 'value', normalizedValue);
     };
     /**
      * @param {?} fn
@@ -25643,7 +25708,7 @@ var NumberValueAccessor = (function () {
      * @return {?}
      */
     NumberValueAccessor.prototype.setDisabledState = function (isDisabled) {
-        this._renderer.setElementProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
+        this._renderer.setProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
     };
     return NumberValueAccessor;
 }());
@@ -25662,7 +25727,7 @@ NumberValueAccessor.decorators = [
  * @nocollapse
  */
 NumberValueAccessor.ctorParameters = function () { return [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer"], },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer2"], },
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ElementRef"], },
 ]; };
 /**
@@ -25864,7 +25929,7 @@ var RadioControlValueAccessor = (function () {
      */
     RadioControlValueAccessor.prototype.writeValue = function (value) {
         this._state = value === this.value;
-        this._renderer.setElementProperty(this._elementRef.nativeElement, 'checked', this._state);
+        this._renderer.setProperty(this._elementRef.nativeElement, 'checked', this._state);
     };
     /**
      * @param {?} fn
@@ -25893,7 +25958,7 @@ var RadioControlValueAccessor = (function () {
      * @return {?}
      */
     RadioControlValueAccessor.prototype.setDisabledState = function (isDisabled) {
-        this._renderer.setElementProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
+        this._renderer.setProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
     };
     /**
      * @return {?}
@@ -25924,7 +25989,7 @@ RadioControlValueAccessor.decorators = [
  * @nocollapse
  */
 RadioControlValueAccessor.ctorParameters = function () { return [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer"], },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer2"], },
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ElementRef"], },
     { type: RadioControlRegistry, },
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injector"], },
@@ -25971,7 +26036,7 @@ var RangeValueAccessor = (function () {
      * @return {?}
      */
     RangeValueAccessor.prototype.writeValue = function (value) {
-        this._renderer.setElementProperty(this._elementRef.nativeElement, 'value', parseFloat(value));
+        this._renderer.setProperty(this._elementRef.nativeElement, 'value', parseFloat(value));
     };
     /**
      * @param {?} fn
@@ -25990,7 +26055,7 @@ var RangeValueAccessor = (function () {
      * @return {?}
      */
     RangeValueAccessor.prototype.setDisabledState = function (isDisabled) {
-        this._renderer.setElementProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
+        this._renderer.setProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
     };
     return RangeValueAccessor;
 }());
@@ -26009,7 +26074,7 @@ RangeValueAccessor.decorators = [
  * @nocollapse
  */
 RangeValueAccessor.ctorParameters = function () { return [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer"], },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer2"], },
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ElementRef"], },
 ]; };
 /**
@@ -26148,10 +26213,10 @@ var SelectControlValueAccessor = (function () {
         this.value = value;
         var /** @type {?} */ id = this._getOptionId(value);
         if (id == null) {
-            this._renderer.setElementProperty(this._elementRef.nativeElement, 'selectedIndex', -1);
+            this._renderer.setProperty(this._elementRef.nativeElement, 'selectedIndex', -1);
         }
         var /** @type {?} */ valueString = _buildValueString(id, value);
-        this._renderer.setElementProperty(this._elementRef.nativeElement, 'value', valueString);
+        this._renderer.setProperty(this._elementRef.nativeElement, 'value', valueString);
     };
     /**
      * @param {?} fn
@@ -26174,7 +26239,7 @@ var SelectControlValueAccessor = (function () {
      * @return {?}
      */
     SelectControlValueAccessor.prototype.setDisabledState = function (isDisabled) {
-        this._renderer.setElementProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
+        this._renderer.setProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
     };
     /**
      * \@internal
@@ -26216,7 +26281,7 @@ SelectControlValueAccessor.decorators = [
  * @nocollapse
  */
 SelectControlValueAccessor.ctorParameters = function () { return [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer"], },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer2"], },
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ElementRef"], },
 ]; };
 SelectControlValueAccessor.propDecorators = {
@@ -26278,7 +26343,7 @@ var NgSelectOption = (function () {
      * @return {?}
      */
     NgSelectOption.prototype._setElementValue = function (value) {
-        this._renderer.setElementProperty(this._element.nativeElement, 'value', value);
+        this._renderer.setProperty(this._element.nativeElement, 'value', value);
     };
     /**
      * @return {?}
@@ -26299,7 +26364,7 @@ NgSelectOption.decorators = [
  */
 NgSelectOption.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ElementRef"], },
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer"], },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer2"], },
     { type: SelectControlValueAccessor, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Host"] },] },
 ]; };
 NgSelectOption.propDecorators = {
@@ -26461,7 +26526,7 @@ var SelectMultipleControlValueAccessor = (function () {
      * @return {?}
      */
     SelectMultipleControlValueAccessor.prototype.setDisabledState = function (isDisabled) {
-        this._renderer.setElementProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
+        this._renderer.setProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
     };
     /**
      * \@internal
@@ -26508,7 +26573,7 @@ SelectMultipleControlValueAccessor.decorators = [
  * @nocollapse
  */
 SelectMultipleControlValueAccessor.ctorParameters = function () { return [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer"], },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer2"], },
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ElementRef"], },
 ]; };
 SelectMultipleControlValueAccessor.propDecorators = {
@@ -26578,7 +26643,7 @@ var NgSelectMultipleOption = (function () {
      * @return {?}
      */
     NgSelectMultipleOption.prototype._setElementValue = function (value) {
-        this._renderer.setElementProperty(this._element.nativeElement, 'value', value);
+        this._renderer.setProperty(this._element.nativeElement, 'value', value);
     };
     /**
      * \@internal
@@ -26586,7 +26651,7 @@ var NgSelectMultipleOption = (function () {
      * @return {?}
      */
     NgSelectMultipleOption.prototype._setSelected = function (selected) {
-        this._renderer.setElementProperty(this._element.nativeElement, 'selected', selected);
+        this._renderer.setProperty(this._element.nativeElement, 'selected', selected);
     };
     /**
      * @return {?}
@@ -26607,7 +26672,7 @@ NgSelectMultipleOption.decorators = [
  */
 NgSelectMultipleOption.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ElementRef"], },
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer"], },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer2"], },
     { type: SelectMultipleControlValueAccessor, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Host"] },] },
 ]; };
 NgSelectMultipleOption.propDecorators = {
@@ -30728,7 +30793,7 @@ FormBuilder.ctorParameters = function () { return []; };
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.2.6');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.3.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -30918,24 +30983,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_operator_every___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_operator_every__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_operator_first__ = __webpack_require__(127);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_operator_first___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_operator_first__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_reduce__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_reduce___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_operator_reduce__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_Observable__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs_operator_catch__ = __webpack_require__(122);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_rxjs_operator_catch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_rxjs_operator_concatAll__ = __webpack_require__(123);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_rxjs_operator_concatAll___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_rxjs_operator_concatAll__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_rxjs_util_EmptyError__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_rxjs_util_EmptyError___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_rxjs_util_EmptyError__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_rxjs_observable_fromPromise__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_rxjs_observable_fromPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_rxjs_observable_fromPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_rxjs_operator_last__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_rxjs_operator_last___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18_rxjs_operator_last__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_last__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_last___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_rxjs_operator_last__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_operator_reduce__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_operator_reduce___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_rxjs_operator_reduce__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs_Observable__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_rxjs_operator_catch__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_rxjs_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_rxjs_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_rxjs_operator_concatAll__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_rxjs_operator_concatAll___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_rxjs_operator_concatAll__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_rxjs_util_EmptyError__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_rxjs_util_EmptyError___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_rxjs_util_EmptyError__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_rxjs_observable_fromPromise__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_rxjs_observable_fromPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18_rxjs_observable_fromPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_rxjs_operator_mergeAll__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_rxjs_operator_mergeAll___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19_rxjs_operator_mergeAll__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_platform_browser__ = __webpack_require__(7);
@@ -30945,10 +31010,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RouterLinkWithHref", function() { return RouterLinkWithHref; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RouterLinkActive", function() { return RouterLinkActive; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RouterOutlet", function() { return RouterOutlet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GuardsCheckEnd", function() { return GuardsCheckEnd; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GuardsCheckStart", function() { return GuardsCheckStart; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavigationCancel", function() { return NavigationCancel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavigationEnd", function() { return NavigationEnd; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavigationError", function() { return NavigationError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavigationStart", function() { return NavigationStart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResolveEnd", function() { return ResolveEnd; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResolveStart", function() { return ResolveStart; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RouteConfigLoadEnd", function() { return RouteConfigLoadEnd; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RouteConfigLoadStart", function() { return RouteConfigLoadStart; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RoutesRecognized", function() { return RoutesRecognized; });
@@ -30994,7 +31063,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵl", function() { return TreeNode; });
 
 /**
- * @license Angular v4.2.6
+ * @license Angular v4.3.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -31182,6 +31251,116 @@ var RouteConfigLoadEnd = (function () {
      */
     RouteConfigLoadEnd.prototype.toString = function () { return "RouteConfigLoadEnd(path: " + this.route.path + ")"; };
     return RouteConfigLoadEnd;
+}());
+/**
+ * \@whatItDoes Represents the start of the Guard phase of routing.
+ *
+ * \@experimental
+ */
+var GuardsCheckStart = (function () {
+    /**
+     * @param {?} id
+     * @param {?} url
+     * @param {?} urlAfterRedirects
+     * @param {?} state
+     */
+    function GuardsCheckStart(id, url, urlAfterRedirects, state) {
+        this.id = id;
+        this.url = url;
+        this.urlAfterRedirects = urlAfterRedirects;
+        this.state = state;
+    }
+    /**
+     * @return {?}
+     */
+    GuardsCheckStart.prototype.toString = function () {
+        return "GuardsCheckStart(id: " + this.id + ", url: '" + this.url + "', urlAfterRedirects: '" + this.urlAfterRedirects + "', state: " + this.state + ")";
+    };
+    return GuardsCheckStart;
+}());
+/**
+ * \@whatItDoes Represents the end of the Guard phase of routing.
+ *
+ * \@experimental
+ */
+var GuardsCheckEnd = (function () {
+    /**
+     * @param {?} id
+     * @param {?} url
+     * @param {?} urlAfterRedirects
+     * @param {?} state
+     * @param {?} shouldActivate
+     */
+    function GuardsCheckEnd(id, url, urlAfterRedirects, state, shouldActivate) {
+        this.id = id;
+        this.url = url;
+        this.urlAfterRedirects = urlAfterRedirects;
+        this.state = state;
+        this.shouldActivate = shouldActivate;
+    }
+    /**
+     * @return {?}
+     */
+    GuardsCheckEnd.prototype.toString = function () {
+        return "GuardsCheckEnd(id: " + this.id + ", url: '" + this.url + "', urlAfterRedirects: '" + this.urlAfterRedirects + "', state: " + this.state + ", shouldActivate: " + this.shouldActivate + ")";
+    };
+    return GuardsCheckEnd;
+}());
+/**
+ * \@whatItDoes Represents the start of the Resolve phase of routing. The timing of this
+ * event may change, thus it's experimental. In the current iteration it will run
+ * in the "resolve" phase whether there's things to resolve or not. In the future this
+ * behavior may change to only run when there are things to be resolved.
+ *
+ * \@experimental
+ */
+var ResolveStart = (function () {
+    /**
+     * @param {?} id
+     * @param {?} url
+     * @param {?} urlAfterRedirects
+     * @param {?} state
+     */
+    function ResolveStart(id, url, urlAfterRedirects, state) {
+        this.id = id;
+        this.url = url;
+        this.urlAfterRedirects = urlAfterRedirects;
+        this.state = state;
+    }
+    /**
+     * @return {?}
+     */
+    ResolveStart.prototype.toString = function () {
+        return "ResolveStart(id: " + this.id + ", url: '" + this.url + "', urlAfterRedirects: '" + this.urlAfterRedirects + "', state: " + this.state + ")";
+    };
+    return ResolveStart;
+}());
+/**
+ * \@whatItDoes Represents the end of the Resolve phase of routing. See note on
+ * {\@link ResolveStart} for use of this experimental API.
+ *
+ * \@experimental
+ */
+var ResolveEnd = (function () {
+    /**
+     * @param {?} id
+     * @param {?} url
+     * @param {?} urlAfterRedirects
+     * @param {?} state
+     */
+    function ResolveEnd(id, url, urlAfterRedirects, state) {
+        this.id = id;
+        this.url = url;
+        this.urlAfterRedirects = urlAfterRedirects;
+        this.state = state;
+    }
+    /**
+     * @return {?}
+     */
+    ResolveEnd.prototype.toString = function () {
+        return "ResolveEnd(id: " + this.id + ", url: '" + this.url + "', urlAfterRedirects: '" + this.urlAfterRedirects + "', state: " + this.state + ")";
+    };
+    return ResolveEnd;
 }());
 /**
  * @license
@@ -31492,7 +31671,7 @@ function waitForMap(obj, fn) {
     var /** @type {?} */ waitTail = [];
     var /** @type {?} */ res = {};
     forEach(obj, function (a, k) {
-        var /** @type {?} */ mapped = __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(fn(k, a), function (r) { return res[k] = r; });
+        var /** @type {?} */ mapped = __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(fn(k, a), function (r) { return res[k] = r; });
         if (k === PRIMARY_OUTLET) {
             waitHead.push(mapped);
         }
@@ -31500,9 +31679,9 @@ function waitForMap(obj, fn) {
             waitTail.push(mapped);
         }
     });
-    var /** @type {?} */ concat$ = __WEBPACK_IMPORTED_MODULE_15_rxjs_operator_concatAll__["concatAll"].call(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"].apply(void 0, waitHead.concat(waitTail)));
-    var /** @type {?} */ last$ = __WEBPACK_IMPORTED_MODULE_18_rxjs_operator_last__["last"].call(concat$);
-    return __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(last$, function () { return res; });
+    var /** @type {?} */ concat$ = __WEBPACK_IMPORTED_MODULE_16_rxjs_operator_concatAll__["concatAll"].call(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"].apply(void 0, waitHead.concat(waitTail)));
+    var /** @type {?} */ last$ = __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_last__["last"].call(concat$);
+    return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(last$, function () { return res; });
 }
 /**
  * @param {?} observables
@@ -31525,7 +31704,7 @@ function wrapIntoObservable(value) {
         // Use `Promise.resolve()` to wrap promise-like instances.
         // Required ie when a Resolver returns a AngularJS `$q` promise to correctly trigger the
         // change detection.
-        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_17_rxjs_observable_fromPromise__["fromPromise"])(Promise.resolve(value));
+        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_18_rxjs_observable_fromPromise__["fromPromise"])(Promise.resolve(value));
     }
     return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(value);
 }
@@ -32254,28 +32433,28 @@ var AbsoluteRedirect = (function () {
  * @return {?}
  */
 function noMatch(segmentGroup) {
-    return new __WEBPACK_IMPORTED_MODULE_13_rxjs_Observable__["Observable"](function (obs) { return obs.error(new NoMatch(segmentGroup)); });
+    return new __WEBPACK_IMPORTED_MODULE_14_rxjs_Observable__["Observable"](function (obs) { return obs.error(new NoMatch(segmentGroup)); });
 }
 /**
  * @param {?} newTree
  * @return {?}
  */
 function absoluteRedirect(newTree) {
-    return new __WEBPACK_IMPORTED_MODULE_13_rxjs_Observable__["Observable"](function (obs) { return obs.error(new AbsoluteRedirect(newTree)); });
+    return new __WEBPACK_IMPORTED_MODULE_14_rxjs_Observable__["Observable"](function (obs) { return obs.error(new AbsoluteRedirect(newTree)); });
 }
 /**
  * @param {?} redirectTo
  * @return {?}
  */
 function namedOutletsRedirect(redirectTo) {
-    return new __WEBPACK_IMPORTED_MODULE_13_rxjs_Observable__["Observable"](function (obs) { return obs.error(new Error("Only absolute redirects can have named outlets. redirectTo: '" + redirectTo + "'")); });
+    return new __WEBPACK_IMPORTED_MODULE_14_rxjs_Observable__["Observable"](function (obs) { return obs.error(new Error("Only absolute redirects can have named outlets. redirectTo: '" + redirectTo + "'")); });
 }
 /**
  * @param {?} route
  * @return {?}
  */
 function canLoadFails(route) {
-    return new __WEBPACK_IMPORTED_MODULE_13_rxjs_Observable__["Observable"](function (obs) { return obs.error(navigationCancelingError("Cannot load children because the guard of the route \"path: '" + route.path + "'\" returned false")); });
+    return new __WEBPACK_IMPORTED_MODULE_14_rxjs_Observable__["Observable"](function (obs) { return obs.error(navigationCancelingError("Cannot load children because the guard of the route \"path: '" + route.path + "'\" returned false")); });
 }
 /**
  * Returns the `UrlTree` with the redirection applied.
@@ -32313,8 +32492,8 @@ var ApplyRedirects = (function () {
     ApplyRedirects.prototype.apply = function () {
         var _this = this;
         var /** @type {?} */ expanded$ = this.expandSegmentGroup(this.ngModule, this.config, this.urlTree.root, PRIMARY_OUTLET);
-        var /** @type {?} */ urlTrees$ = __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(expanded$, function (rootSegmentGroup) { return _this.createUrlTree(rootSegmentGroup, _this.urlTree.queryParams, /** @type {?} */ ((_this.urlTree.fragment))); });
-        return __WEBPACK_IMPORTED_MODULE_14_rxjs_operator_catch__["_catch"].call(urlTrees$, function (e) {
+        var /** @type {?} */ urlTrees$ = __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(expanded$, function (rootSegmentGroup) { return _this.createUrlTree(rootSegmentGroup, _this.urlTree.queryParams, /** @type {?} */ ((_this.urlTree.fragment))); });
+        return __WEBPACK_IMPORTED_MODULE_15_rxjs_operator_catch__["_catch"].call(urlTrees$, function (e) {
             if (e instanceof AbsoluteRedirect) {
                 // after an absolute redirect we do not apply any more redirects!
                 _this.allowRedirects = false;
@@ -32334,8 +32513,8 @@ var ApplyRedirects = (function () {
     ApplyRedirects.prototype.match = function (tree) {
         var _this = this;
         var /** @type {?} */ expanded$ = this.expandSegmentGroup(this.ngModule, this.config, tree.root, PRIMARY_OUTLET);
-        var /** @type {?} */ mapped$ = __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(expanded$, function (rootSegmentGroup) { return _this.createUrlTree(rootSegmentGroup, tree.queryParams, /** @type {?} */ ((tree.fragment))); });
-        return __WEBPACK_IMPORTED_MODULE_14_rxjs_operator_catch__["_catch"].call(mapped$, function (e) {
+        var /** @type {?} */ mapped$ = __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(expanded$, function (rootSegmentGroup) { return _this.createUrlTree(rootSegmentGroup, tree.queryParams, /** @type {?} */ ((tree.fragment))); });
+        return __WEBPACK_IMPORTED_MODULE_15_rxjs_operator_catch__["_catch"].call(mapped$, function (e) {
             if (e instanceof NoMatch) {
                 throw _this.noMatchError(e);
             }
@@ -32371,7 +32550,7 @@ var ApplyRedirects = (function () {
      */
     ApplyRedirects.prototype.expandSegmentGroup = function (ngModule, routes, segmentGroup, outlet) {
         if (segmentGroup.segments.length === 0 && segmentGroup.hasChildren()) {
-            return __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(this.expandChildren(ngModule, routes, segmentGroup), function (children) { return new UrlSegmentGroup([], children); });
+            return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(this.expandChildren(ngModule, routes, segmentGroup), function (children) { return new UrlSegmentGroup([], children); });
         }
         return this.expandSegment(ngModule, segmentGroup, routes, segmentGroup.segments, outlet, true);
     };
@@ -32397,19 +32576,19 @@ var ApplyRedirects = (function () {
     ApplyRedirects.prototype.expandSegment = function (ngModule, segmentGroup, routes, segments, outlet, allowRedirects) {
         var _this = this;
         var /** @type {?} */ routes$ = __WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"].apply(void 0, routes);
-        var /** @type {?} */ processedRoutes$ = __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(routes$, function (r) {
+        var /** @type {?} */ processedRoutes$ = __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(routes$, function (r) {
             var /** @type {?} */ expanded$ = _this.expandSegmentAgainstRoute(ngModule, segmentGroup, routes, r, segments, outlet, allowRedirects);
-            return __WEBPACK_IMPORTED_MODULE_14_rxjs_operator_catch__["_catch"].call(expanded$, function (e) {
+            return __WEBPACK_IMPORTED_MODULE_15_rxjs_operator_catch__["_catch"].call(expanded$, function (e) {
                 if (e instanceof NoMatch) {
                     return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(null);
                 }
                 throw e;
             });
         });
-        var /** @type {?} */ concattedProcessedRoutes$ = __WEBPACK_IMPORTED_MODULE_15_rxjs_operator_concatAll__["concatAll"].call(processedRoutes$);
+        var /** @type {?} */ concattedProcessedRoutes$ = __WEBPACK_IMPORTED_MODULE_16_rxjs_operator_concatAll__["concatAll"].call(processedRoutes$);
         var /** @type {?} */ first$ = __WEBPACK_IMPORTED_MODULE_9_rxjs_operator_first__["first"].call(concattedProcessedRoutes$, function (s) { return !!s; });
-        return __WEBPACK_IMPORTED_MODULE_14_rxjs_operator_catch__["_catch"].call(first$, function (e, _) {
-            if (e instanceof __WEBPACK_IMPORTED_MODULE_16_rxjs_util_EmptyError__["EmptyError"]) {
+        return __WEBPACK_IMPORTED_MODULE_15_rxjs_operator_catch__["_catch"].call(first$, function (e, _) {
+            if (e instanceof __WEBPACK_IMPORTED_MODULE_17_rxjs_util_EmptyError__["EmptyError"]) {
                 if (_this.noLeftoversInUrl(segmentGroup, segments, outlet)) {
                     return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(new UrlSegmentGroup([], {}));
                 }
@@ -32477,7 +32656,7 @@ var ApplyRedirects = (function () {
         if (((route.redirectTo)).startsWith('/')) {
             return absoluteRedirect(newTree);
         }
-        return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__["mergeMap"].call(this.lineralizeSegments(route, newTree), function (newSegments) {
+        return __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__["mergeMap"].call(this.lineralizeSegments(route, newTree), function (newSegments) {
             var /** @type {?} */ group = new UrlSegmentGroup(newSegments, {});
             return _this.expandSegment(ngModule, group, routes, newSegments, outlet, false);
         });
@@ -32500,7 +32679,7 @@ var ApplyRedirects = (function () {
         if (((route.redirectTo)).startsWith('/')) {
             return absoluteRedirect(newTree);
         }
-        return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__["mergeMap"].call(this.lineralizeSegments(route, newTree), function (newSegments) {
+        return __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__["mergeMap"].call(this.lineralizeSegments(route, newTree), function (newSegments) {
             return _this.expandSegment(ngModule, segmentGroup, routes, newSegments.concat(segments.slice(lastChild)), outlet, false);
         });
     };
@@ -32515,7 +32694,7 @@ var ApplyRedirects = (function () {
         var _this = this;
         if (route.path === '**') {
             if (route.loadChildren) {
-                return __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(this.configLoader.load(ngModule.injector, route), function (cfg) {
+                return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(this.configLoader.load(ngModule.injector, route), function (cfg) {
                     route._loadedConfig = cfg;
                     return new UrlSegmentGroup(segments, {});
                 });
@@ -32527,19 +32706,19 @@ var ApplyRedirects = (function () {
             return noMatch(rawSegmentGroup);
         var /** @type {?} */ rawSlicedSegments = segments.slice(lastChild);
         var /** @type {?} */ childConfig$ = this.getChildConfig(ngModule, route);
-        return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__["mergeMap"].call(childConfig$, function (routerConfig) {
+        return __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__["mergeMap"].call(childConfig$, function (routerConfig) {
             var /** @type {?} */ childModule = routerConfig.module;
             var /** @type {?} */ childConfig = routerConfig.routes;
             var _a = split(rawSegmentGroup, consumedSegments, rawSlicedSegments, childConfig), segmentGroup = _a.segmentGroup, slicedSegments = _a.slicedSegments;
             if (slicedSegments.length === 0 && segmentGroup.hasChildren()) {
                 var /** @type {?} */ expanded$_1 = _this.expandChildren(childModule, childConfig, segmentGroup);
-                return __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(expanded$_1, function (children) { return new UrlSegmentGroup(consumedSegments, children); });
+                return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(expanded$_1, function (children) { return new UrlSegmentGroup(consumedSegments, children); });
             }
             if (childConfig.length === 0 && slicedSegments.length === 0) {
                 return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(new UrlSegmentGroup(consumedSegments, {}));
             }
             var /** @type {?} */ expanded$ = _this.expandSegment(childModule, segmentGroup, childConfig, slicedSegments, PRIMARY_OUTLET, true);
-            return __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(expanded$, function (cs) { return new UrlSegmentGroup(consumedSegments.concat(cs.segments), cs.children); });
+            return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(expanded$, function (cs) { return new UrlSegmentGroup(consumedSegments.concat(cs.segments), cs.children); });
         });
     };
     /**
@@ -32558,9 +32737,9 @@ var ApplyRedirects = (function () {
             if (route._loadedConfig !== undefined) {
                 return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(route._loadedConfig);
             }
-            return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__["mergeMap"].call(runCanLoadGuard(ngModule.injector, route), function (shouldLoad) {
+            return __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__["mergeMap"].call(runCanLoadGuard(ngModule.injector, route), function (shouldLoad) {
                 if (shouldLoad) {
-                    return __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(_this.configLoader.load(ngModule.injector, route), function (cfg) {
+                    return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(_this.configLoader.load(ngModule.injector, route), function (cfg) {
                         route._loadedConfig = cfg;
                         return cfg;
                     });
@@ -32696,7 +32875,7 @@ function runCanLoadGuard(moduleInjector, route) {
     var /** @type {?} */ canLoad = route.canLoad;
     if (!canLoad || canLoad.length === 0)
         return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(true);
-    var /** @type {?} */ obs = __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__["from"])(canLoad), function (injectionToken) {
+    var /** @type {?} */ obs = __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__["from"])(canLoad), function (injectionToken) {
         var /** @type {?} */ guard = moduleInjector.get(injectionToken);
         return wrapIntoObservable(guard.canLoad ? guard.canLoad(route) : guard(route));
     });
@@ -33134,7 +33313,7 @@ var ActivatedRoute = (function () {
          */
         get: function () {
             if (!this._paramMap) {
-                this._paramMap = __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(this.params, function (p) { return convertToParamMap(p); });
+                this._paramMap = __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(this.params, function (p) { return convertToParamMap(p); });
             }
             return this._paramMap;
         },
@@ -33148,7 +33327,7 @@ var ActivatedRoute = (function () {
         get: function () {
             if (!this._queryParamMap) {
                 this._queryParamMap =
-                    __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(this.queryParams, function (p) { return convertToParamMap(p); });
+                    __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(this.queryParams, function (p) { return convertToParamMap(p); });
             }
             return this._queryParamMap;
         },
@@ -33949,7 +34128,7 @@ var Recognizer = (function () {
             return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(routeState);
         }
         catch (e) {
-            return new __WEBPACK_IMPORTED_MODULE_13_rxjs_Observable__["Observable"](function (obs) { return obs.error(e); });
+            return new __WEBPACK_IMPORTED_MODULE_14_rxjs_Observable__["Observable"](function (obs) { return obs.error(e); });
         }
     };
     /**
@@ -34099,7 +34278,8 @@ function match$1(segmentGroup, route, segments) {
         throw new NoMatch$1();
     var /** @type {?} */ posParams = {};
     forEach(/** @type {?} */ ((res.posParams)), function (v, k) { posParams[k] = v.path; });
-    var /** @type {?} */ parameters = Object.assign({}, posParams, res.consumed[res.consumed.length - 1].parameters);
+    var /** @type {?} */ parameters = res.consumed.length > 0 ? Object.assign({}, posParams, res.consumed[res.consumed.length - 1].parameters) :
+        posParams;
     return { consumedSegments: res.consumed, lastChild: res.consumed.length, parameters: parameters };
 }
 /**
@@ -34393,7 +34573,7 @@ var RouterConfigLoader = (function () {
             this.onLoadStartListener(route);
         }
         var /** @type {?} */ moduleFactory$ = this.loadModuleFactory(/** @type {?} */ ((route.loadChildren)));
-        return __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(moduleFactory$, function (factory) {
+        return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(moduleFactory$, function (factory) {
             if (_this.onLoadEndListener) {
                 _this.onLoadEndListener(route);
             }
@@ -34408,15 +34588,15 @@ var RouterConfigLoader = (function () {
     RouterConfigLoader.prototype.loadModuleFactory = function (loadChildren) {
         var _this = this;
         if (typeof loadChildren === 'string') {
-            return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_17_rxjs_observable_fromPromise__["fromPromise"])(this.loader.load(loadChildren));
+            return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_18_rxjs_observable_fromPromise__["fromPromise"])(this.loader.load(loadChildren));
         }
         else {
-            return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__["mergeMap"].call(wrapIntoObservable(loadChildren()), function (t) {
+            return __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__["mergeMap"].call(wrapIntoObservable(loadChildren()), function (t) {
                 if (t instanceof __WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModuleFactory"]) {
                     return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(t);
                 }
                 else {
-                    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_17_rxjs_observable_fromPromise__["fromPromise"])(_this.compiler.compileModuleAsync(t));
+                    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_18_rxjs_observable_fromPromise__["fromPromise"])(_this.compiler.compileModuleAsync(t));
                 }
             });
         }
@@ -34669,6 +34849,7 @@ var Router = (function () {
     Router.prototype.resetConfig = function (config) {
         validateConfig(config);
         this.config = config;
+        this.navigated = false;
     };
     /**
      * \@docsNotRequired
@@ -34959,8 +35140,8 @@ var Router = (function () {
             if (!precreatedState) {
                 var /** @type {?} */ moduleInjector = _this.ngModule.injector;
                 var /** @type {?} */ redirectsApplied$ = applyRedirects(moduleInjector, _this.configLoader, _this.urlSerializer, url, _this.config);
-                urlAndSnapshot$ = __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__["mergeMap"].call(redirectsApplied$, function (appliedUrl) {
-                    return __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(recognize(_this.rootComponentType, _this.config, appliedUrl, _this.serializeUrl(appliedUrl)), function (snapshot) {
+                urlAndSnapshot$ = __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__["mergeMap"].call(redirectsApplied$, function (appliedUrl) {
+                    return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(recognize(_this.rootComponentType, _this.config, appliedUrl, _this.serializeUrl(appliedUrl)), function (snapshot) {
                         _this.routerEvents.next(new RoutesRecognized(id, _this.serializeUrl(url), _this.serializeUrl(appliedUrl), snapshot));
                         return { appliedUrl: appliedUrl, snapshot: snapshot };
                     });
@@ -34969,12 +35150,12 @@ var Router = (function () {
             else {
                 urlAndSnapshot$ = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])({ appliedUrl: url, snapshot: precreatedState });
             }
-            var /** @type {?} */ beforePreactivationDone$ = __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__["mergeMap"].call(urlAndSnapshot$, function (p) {
-                return __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(_this.hooks.beforePreactivation(p.snapshot), function () { return p; });
+            var /** @type {?} */ beforePreactivationDone$ = __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__["mergeMap"].call(urlAndSnapshot$, function (p) {
+                return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(_this.hooks.beforePreactivation(p.snapshot), function () { return p; });
             });
             // run preactivation: guards and data resolvers
             var /** @type {?} */ preActivation;
-            var /** @type {?} */ preactivationTraverse$ = __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(beforePreactivationDone$, function (_a) {
+            var /** @type {?} */ preactivationTraverse$ = __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(beforePreactivationDone$, function (_a) {
                 var appliedUrl = _a.appliedUrl, snapshot = _a.snapshot;
                 var /** @type {?} */ moduleInjector = _this.ngModule.injector;
                 preActivation =
@@ -34982,30 +35163,36 @@ var Router = (function () {
                 preActivation.traverse(_this.rootContexts);
                 return { appliedUrl: appliedUrl, snapshot: snapshot };
             });
-            var /** @type {?} */ preactivationCheckGuards$ = __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__["mergeMap"].call(preactivationTraverse$, function (_a) {
+            var /** @type {?} */ preactivationCheckGuards$ = __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__["mergeMap"].call(preactivationTraverse$, function (_a) {
                 var appliedUrl = _a.appliedUrl, snapshot = _a.snapshot;
                 if (_this.navigationId !== id)
                     return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(false);
-                return __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(preActivation.checkGuards(), function (shouldActivate) {
+                _this.triggerEvent(new GuardsCheckStart(id, _this.serializeUrl(url), appliedUrl, snapshot));
+                return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(preActivation.checkGuards(), function (shouldActivate) {
+                    _this.triggerEvent(new GuardsCheckEnd(id, _this.serializeUrl(url), appliedUrl, snapshot, shouldActivate));
                     return { appliedUrl: appliedUrl, snapshot: snapshot, shouldActivate: shouldActivate };
                 });
             });
-            var /** @type {?} */ preactivationResolveData$ = __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__["mergeMap"].call(preactivationCheckGuards$, function (p) {
+            var /** @type {?} */ preactivationResolveData$ = __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__["mergeMap"].call(preactivationCheckGuards$, function (p) {
                 if (_this.navigationId !== id)
                     return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(false);
-                if (p.shouldActivate) {
-                    return __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(preActivation.resolveData(), function () { return p; });
+                if (p.shouldActivate && preActivation.isActivating()) {
+                    _this.triggerEvent(new ResolveStart(id, _this.serializeUrl(url), p.appliedUrl, p.snapshot));
+                    return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(preActivation.resolveData(), function () {
+                        _this.triggerEvent(new ResolveEnd(id, _this.serializeUrl(url), p.appliedUrl, p.snapshot));
+                        return p;
+                    });
                 }
                 else {
                     return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(p);
                 }
             });
-            var /** @type {?} */ preactivationDone$ = __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__["mergeMap"].call(preactivationResolveData$, function (p) {
-                return __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(_this.hooks.afterPreactivation(p.snapshot), function () { return p; });
+            var /** @type {?} */ preactivationDone$ = __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__["mergeMap"].call(preactivationResolveData$, function (p) {
+                return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(_this.hooks.afterPreactivation(p.snapshot), function () { return p; });
             });
             // create router state
             // this operation has side effects => route state is being affected
-            var /** @type {?} */ routerState$ = __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(preactivationDone$, function (_a) {
+            var /** @type {?} */ routerState$ = __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(preactivationDone$, function (_a) {
                 var appliedUrl = _a.appliedUrl, snapshot = _a.snapshot, shouldActivate = _a.shouldActivate;
                 if (shouldActivate) {
                     var /** @type {?} */ state = createRouterState(_this.routeReuseStrategy, snapshot, _this.currentRouterState);
@@ -35141,23 +35328,31 @@ var PreActivation = (function () {
      */
     PreActivation.prototype.checkGuards = function () {
         var _this = this;
-        if (this.canDeactivateChecks.length === 0 && this.canActivateChecks.length === 0) {
+        if (!this.isDeactivating() && !this.isActivating()) {
             return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(true);
         }
         var /** @type {?} */ canDeactivate$ = this.runCanDeactivateChecks();
-        return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__["mergeMap"].call(canDeactivate$, function (canDeactivate) { return canDeactivate ? _this.runCanActivateChecks() : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(false); });
+        return __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__["mergeMap"].call(canDeactivate$, function (canDeactivate) { return canDeactivate ? _this.runCanActivateChecks() : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(false); });
     };
     /**
      * @return {?}
      */
     PreActivation.prototype.resolveData = function () {
         var _this = this;
-        if (this.canActivateChecks.length === 0)
+        if (!this.isActivating())
             return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(null);
         var /** @type {?} */ checks$ = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__["from"])(this.canActivateChecks);
         var /** @type {?} */ runningChecks$ = __WEBPACK_IMPORTED_MODULE_7_rxjs_operator_concatMap__["concatMap"].call(checks$, function (check) { return _this.runResolve(check.route); });
-        return __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_reduce__["reduce"].call(runningChecks$, function (_, __) { return _; });
+        return __WEBPACK_IMPORTED_MODULE_13_rxjs_operator_reduce__["reduce"].call(runningChecks$, function (_, __) { return _; });
     };
+    /**
+     * @return {?}
+     */
+    PreActivation.prototype.isDeactivating = function () { return this.canDeactivateChecks.length !== 0; };
+    /**
+     * @return {?}
+     */
+    PreActivation.prototype.isActivating = function () { return this.canActivateChecks.length !== 0; };
     /**
      * @param {?} futureNode
      * @param {?} currNode
@@ -35189,10 +35384,9 @@ var PreActivation = (function () {
         var /** @type {?} */ context = parentContexts ? parentContexts.getContext(futureNode.value.outlet) : null;
         // reusing the node
         if (curr && future._routeConfig === curr._routeConfig) {
-            if (this.shouldRunGuardsAndResolvers(curr, future, /** @type {?} */ ((future._routeConfig)).runGuardsAndResolvers)) {
+            var /** @type {?} */ shouldRunGuardsAndResolvers = this.shouldRunGuardsAndResolvers(curr, future, /** @type {?} */ ((future._routeConfig)).runGuardsAndResolvers);
+            if (shouldRunGuardsAndResolvers) {
                 this.canActivateChecks.push(new CanActivate(futurePath));
-                var /** @type {?} */ outlet = ((((context)).outlet));
-                this.canDeactivateChecks.push(new CanDeactivate(outlet.component, curr));
             }
             else {
                 // we need to set the data
@@ -35206,6 +35400,10 @@ var PreActivation = (function () {
             }
             else {
                 this.traverseChildRoutes(futureNode, currNode, parentContexts, futurePath);
+            }
+            if (shouldRunGuardsAndResolvers) {
+                var /** @type {?} */ outlet = ((((context)).outlet));
+                this.canDeactivateChecks.push(new CanDeactivate(outlet.component, curr));
             }
         }
         else {
@@ -35277,7 +35475,7 @@ var PreActivation = (function () {
     PreActivation.prototype.runCanDeactivateChecks = function () {
         var _this = this;
         var /** @type {?} */ checks$ = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__["from"])(this.canDeactivateChecks);
-        var /** @type {?} */ runningChecks$ = __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__["mergeMap"].call(checks$, function (check) { return _this.runCanDeactivate(check.component, check.route); });
+        var /** @type {?} */ runningChecks$ = __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__["mergeMap"].call(checks$, function (check) { return _this.runCanDeactivate(check.component, check.route); });
         return __WEBPACK_IMPORTED_MODULE_8_rxjs_operator_every__["every"].call(runningChecks$, function (result) { return result === true; });
     };
     /**
@@ -35286,7 +35484,7 @@ var PreActivation = (function () {
     PreActivation.prototype.runCanActivateChecks = function () {
         var _this = this;
         var /** @type {?} */ checks$ = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__["from"])(this.canActivateChecks);
-        var /** @type {?} */ runningChecks$ = __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__["mergeMap"].call(checks$, function (check) { return andObservables(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__["from"])([_this.runCanActivateChild(check.path), _this.runCanActivate(check.route)])); });
+        var /** @type {?} */ runningChecks$ = __WEBPACK_IMPORTED_MODULE_7_rxjs_operator_concatMap__["concatMap"].call(checks$, function (check) { return andObservables(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__["from"])([_this.runCanActivateChild(check.path), _this.runCanActivate(check.route)])); });
         return __WEBPACK_IMPORTED_MODULE_8_rxjs_operator_every__["every"].call(runningChecks$, function (result) { return result === true; });
     };
     /**
@@ -35298,7 +35496,7 @@ var PreActivation = (function () {
         var /** @type {?} */ canActivate = future._routeConfig ? future._routeConfig.canActivate : null;
         if (!canActivate || canActivate.length === 0)
             return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(true);
-        var /** @type {?} */ obs = __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__["from"])(canActivate), function (c) {
+        var /** @type {?} */ obs = __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__["from"])(canActivate), function (c) {
             var /** @type {?} */ guard = _this.getToken(c, future);
             var /** @type {?} */ observable;
             if (guard.canActivate) {
@@ -35322,8 +35520,8 @@ var PreActivation = (function () {
             .reverse()
             .map(function (p) { return _this.extractCanActivateChild(p); })
             .filter(function (_) { return _ !== null; });
-        return andObservables(__WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__["from"])(canActivateChildGuards), function (d) {
-            var /** @type {?} */ obs = __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__["from"])(d.guards), function (c) {
+        return andObservables(__WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__["from"])(canActivateChildGuards), function (d) {
+            var /** @type {?} */ obs = __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__["from"])(d.guards), function (c) {
                 var /** @type {?} */ guard = _this.getToken(c, d.node);
                 var /** @type {?} */ observable;
                 if (guard.canActivateChild) {
@@ -35357,7 +35555,7 @@ var PreActivation = (function () {
         var /** @type {?} */ canDeactivate = curr && curr._routeConfig ? curr._routeConfig.canDeactivate : null;
         if (!canDeactivate || canDeactivate.length === 0)
             return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(true);
-        var /** @type {?} */ canDeactivate$ = __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__["mergeMap"].call(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__["from"])(canDeactivate), function (c) {
+        var /** @type {?} */ canDeactivate$ = __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__["mergeMap"].call(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__["from"])(canDeactivate), function (c) {
             var /** @type {?} */ guard = _this.getToken(c, curr);
             var /** @type {?} */ observable;
             if (guard.canDeactivate) {
@@ -35377,7 +35575,7 @@ var PreActivation = (function () {
      */
     PreActivation.prototype.runResolve = function (future) {
         var /** @type {?} */ resolve = future._resolve;
-        return __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__["map"].call(this.resolveNode(resolve, future), function (resolvedData) {
+        return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(this.resolveNode(resolve, future), function (resolvedData) {
             future._resolvedData = resolvedData;
             future.data = Object.assign({}, future.data, inheritedParamsDataResolve(future).resolve);
             return null;
@@ -35390,11 +35588,35 @@ var PreActivation = (function () {
      */
     PreActivation.prototype.resolveNode = function (resolve, future) {
         var _this = this;
-        return waitForMap(resolve, function (k, v) {
-            var /** @type {?} */ resolver = _this.getToken(v, future);
-            return resolver.resolve ? wrapIntoObservable(resolver.resolve(future, _this.future)) :
-                wrapIntoObservable(resolver(future, _this.future));
+        var /** @type {?} */ keys = Object.keys(resolve);
+        if (keys.length === 0) {
+            return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])({});
+        }
+        if (keys.length === 1) {
+            var /** @type {?} */ key_1 = keys[0];
+            return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(this.getResolver(resolve[key_1], future), function (value) {
+                return _a = {}, _a[key_1] = value, _a;
+                var _a;
+            });
+        }
+        var /** @type {?} */ data = {};
+        var /** @type {?} */ runningResolvers$ = __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__["mergeMap"].call(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__["from"])(keys), function (key) {
+            return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(_this.getResolver(resolve[key], future), function (value) {
+                data[key] = value;
+                return value;
+            });
         });
+        return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__["map"].call(__WEBPACK_IMPORTED_MODULE_10_rxjs_operator_last__["last"].call(runningResolvers$), function () { return data; });
+    };
+    /**
+     * @param {?} injectionToken
+     * @param {?} future
+     * @return {?}
+     */
+    PreActivation.prototype.getResolver = function (injectionToken, future) {
+        var /** @type {?} */ resolver = this.getToken(injectionToken, future);
+        return resolver.resolve ? wrapIntoObservable(resolver.resolve(future, this.future)) :
+            wrapIntoObservable(resolver(future, this.future));
     };
     /**
      * @param {?} token
@@ -35754,7 +35976,7 @@ var RouterLink = (function () {
         this.route = route;
         this.commands = [];
         if (tabIndex == null) {
-            renderer.setElementAttribute(el.nativeElement, 'tabindex', '0');
+            renderer.setAttribute(el.nativeElement, 'tabindex', '0');
         }
     }
     Object.defineProperty(RouterLink.prototype, "routerLink", {
@@ -35828,7 +36050,7 @@ RouterLink.ctorParameters = function () { return [
     { type: Router, },
     { type: ActivatedRoute, },
     { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["Attribute"], args: ['tabindex',] },] },
-    { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["Renderer"], },
+    { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["Renderer2"], },
     { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["ElementRef"], },
 ]; };
 RouterLink.propDecorators = {
@@ -36124,7 +36346,14 @@ var RouterLinkActive = (function () {
         var /** @type {?} */ hasActiveLinks = this.hasActiveLinks();
         // react only when status has changed to prevent unnecessary dom updates
         if (this.active !== hasActiveLinks) {
-            this.classes.forEach(function (c) { return _this.renderer.setElementClass(_this.element.nativeElement, c, hasActiveLinks); });
+            this.classes.forEach(function (c) {
+                if (hasActiveLinks) {
+                    _this.renderer.addClass(_this.element.nativeElement, c);
+                }
+                else {
+                    _this.renderer.removeClass(_this.element.nativeElement, c);
+                }
+            });
             Promise.resolve(hasActiveLinks).then(function (active) { return _this.active = active; });
         }
     };
@@ -36157,7 +36386,7 @@ RouterLinkActive.decorators = [
 RouterLinkActive.ctorParameters = function () { return [
     { type: Router, },
     { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["ElementRef"], },
-    { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["Renderer"], },
+    { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["Renderer2"], },
     { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["ChangeDetectorRef"], },
 ]; };
 RouterLinkActive.propDecorators = {
@@ -36542,7 +36771,7 @@ var PreloadAllModules = (function () {
      * @return {?}
      */
     PreloadAllModules.prototype.preload = function (route, fn) {
-        return __WEBPACK_IMPORTED_MODULE_14_rxjs_operator_catch__["_catch"].call(fn(), function () { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(null); });
+        return __WEBPACK_IMPORTED_MODULE_15_rxjs_operator_catch__["_catch"].call(fn(), function () { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(null); });
     };
     return PreloadAllModules;
 }());
@@ -36648,7 +36877,7 @@ var RouterPreloader = (function () {
         var _this = this;
         return this.preloadingStrategy.preload(route, function () {
             var /** @type {?} */ loaded$ = _this.loader.load(ngModule.injector, route);
-            return __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__["mergeMap"].call(loaded$, function (config) {
+            return __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__["mergeMap"].call(loaded$, function (config) {
                 route._loadedConfig = config;
                 return _this.processRoutes(config.module, config.routes);
             });
@@ -37084,7 +37313,7 @@ function provideRouterInitializer() {
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.2.6');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.3.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -37617,7 +37846,7 @@ exports.isArray = Array.isArray || (function (x) { return x && typeof x.length =
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return AnimationGroupPlayer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return ɵPRE_STYLE; });
 /**
- * @license Angular v4.2.6
+ * @license Angular v4.3.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -37704,24 +37933,25 @@ var AnimationFactory = (function () {
 var AUTO_STYLE = '*';
 /**
  * `trigger` is an animation-specific function that is designed to be used inside of Angular's
- * animation DSL language. If this information is new, please navigate to the {\@link
- * Component#animations component animations metadata page} to gain a better understanding of
- * how animations in Angular are used.
+ * animation DSL language. If this information is new, please navigate to the
+ * {\@link Component#animations component animations metadata page} to gain a better
+ * understanding of how animations in Angular are used.
  *
- * `trigger` Creates an animation trigger which will a list of {\@link state state} and {\@link
- * transition transition} entries that will be evaluated when the expression bound to the trigger
- * changes.
+ * `trigger` Creates an animation trigger which will a list of {\@link state state} and
+ * {\@link transition transition} entries that will be evaluated when the expression
+ * bound to the trigger changes.
  *
- * Triggers are registered within the component annotation data under the {\@link
- * Component#animations animations section}. An animation trigger can be placed on an element
- * within a template by referencing the name of the trigger followed by the expression value that the
+ * Triggers are registered within the component annotation data under the
+ * {\@link Component#animations animations section}. An animation trigger can be placed on an element
+ * within a template by referencing the name of the trigger followed by the expression value that
+ * the
  * trigger is bound to (in the form of `[\@triggerName]="expression"`.
  *
  * ### Usage
  *
  * `trigger` will create an animation trigger reference based on the provided `name` value. The
- * provided `animation` value is expected to be an array consisting of {\@link state state} and {\@link
- * transition transition} declarations.
+ * provided `animation` value is expected to be an array consisting of {\@link state state} and
+ * {\@link transition transition} declarations.
  *
  * ```typescript
  * \@Component({
@@ -37747,9 +37977,65 @@ var AUTO_STYLE = '*';
  * ```html
  * <!-- somewhere inside of my-component-tpl.html -->
  * <div [\@myAnimationTrigger]="myStatusExp">...</div>
- * tools/gulp-tasks/validate-commit-message.js ```
+ * ```
  *
- * {\@example core/animation/ts/dsl/animation_example.ts region='Component'}
+ * ## Disable Child Animations
+ * A special animation control binding called `\@.disabled` can be placed on an element which will
+ * then disable animations for any inner animation triggers situated within the element.
+ *
+ * When true, the `\@.disabled` binding will prevent inner animations from rendering. The example
+ * below shows how to use this feature:
+ *
+ * ```ts
+ * \@Component({
+ *   selector: 'my-component',
+ *   template: `
+ *     <div [\@.disabled]="isDisabled">
+ *       <div [\@childAnimation]="exp"></div>
+ *     </div>
+ *   `,
+ *   animations: [
+ *     trigger("childAnimation", [
+ *       // ...
+ *     ])
+ *   ]
+ * })
+ * class MyComponent {
+ *   isDisabled = true;
+ *   exp = '...';
+ * }
+ * ```
+ *
+ * The `\@childAnimation` trigger will not animate because `\@.disabled` prevents it from happening
+ * (when true).
+ *
+ * Note that `\@.disbled` will only disable inner animations (any animations running on the same
+ * element will not be disabled).
+ *
+ * ### Disabling Animations Application-wide
+ * When an area of the template is set to have animations disabled, **all** inner components will
+ * also have their animations disabled as well. This means that all animations for an angular
+ * application can be disabled by placing a host binding set on `\@.disabled` on the topmost Angular
+ * component.
+ *
+ * ```ts
+ * import {Component, HostBinding} from '\@angular/core';
+ *
+ * \@Component({
+ *   selector: 'app-component',
+ *   templateUrl: 'app.component.html',
+ * })
+ * class AppComponent {
+ *   \@HostBinding('\@.disabled')
+ *   public animationsDisabled = true;
+ * }
+ * ```
+ *
+ * ### What about animations that us `query()` and `animateChild()`?
+ * Despite inner animations being disabled, a parent animation can {\@link query query} for inner
+ * elements located in disabled areas of the template and still animate them as it sees fit. This is
+ * also the case for when a sub animation is queried by a parent and then later animated using {\@link
+ * animateChild animateChild}.
  *
  * \@experimental Animation support is experimental.
  * @param {?} name
@@ -38804,6 +39090,16 @@ var AnimationGroupPlayer = (function () {
         enumerable: true,
         configurable: true
     });
+    /**
+     * @return {?}
+     */
+    AnimationGroupPlayer.prototype.beforeDestroy = function () {
+        this.players.forEach(function (player) {
+            if (player.beforeDestroy) {
+                player.beforeDestroy();
+            }
+        });
+    };
     return AnimationGroupPlayer;
 }());
 /**
@@ -58553,7 +58849,7 @@ Zone.__load_patch('util', function (global, Zone, api) {
 /* unused harmony export ɵWebAnimationsPlayer */
 
 /**
- * @license Angular v4.2.6
+ * @license Angular v4.3.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -58589,15 +58885,20 @@ function normalizeKeyframes(driver, normalizer, element, keyframes, preStyles, p
         Object.keys(kf).forEach(function (prop) {
             var normalizedProp = prop;
             var normalizedValue = kf[prop];
-            if (normalizedValue == __WEBPACK_IMPORTED_MODULE_1__angular_animations__["f" /* ɵPRE_STYLE */]) {
-                normalizedValue = preStyles[prop];
-            }
-            else if (normalizedValue == __WEBPACK_IMPORTED_MODULE_1__angular_animations__["g" /* AUTO_STYLE */]) {
-                normalizedValue = postStyles[prop];
-            }
-            else if (prop != 'offset') {
-                normalizedProp = normalizer.normalizePropertyName(prop, errors);
-                normalizedValue = normalizer.normalizeStyleValue(prop, normalizedProp, kf[prop], errors);
+            if (prop !== 'offset') {
+                normalizedProp = normalizer.normalizePropertyName(normalizedProp, errors);
+                switch (normalizedValue) {
+                    case __WEBPACK_IMPORTED_MODULE_1__angular_animations__["f" /* ɵPRE_STYLE */]:
+                        normalizedValue = preStyles[prop];
+                        break;
+                    case __WEBPACK_IMPORTED_MODULE_1__angular_animations__["g" /* AUTO_STYLE */]:
+                        normalizedValue = postStyles[prop];
+                        break;
+                    default:
+                        normalizedValue =
+                            normalizer.normalizeStyleValue(prop, normalizedProp, normalizedValue, errors);
+                        break;
+                }
             }
             normalizedKeyframe[normalizedProp] = normalizedValue;
         });
@@ -61408,6 +61709,9 @@ var TimelineAnimationEngine = (function () {
  * found in the LICENSE file at https://angular.io/license
  */
 var QUEUED_CLASSNAME = 'ng-animate-queued';
+var QUEUED_SELECTOR = '.ng-animate-queued';
+var DISABLED_CLASSNAME = 'ng-animate-disabled';
+var DISABLED_SELECTOR = '.ng-animate-disabled';
 var EMPTY_PLAYER_ARRAY = [];
 var NULL_REMOVAL_STATE = {
     namespaceId: '',
@@ -61859,6 +62163,7 @@ var TransitionAnimationEngine = (function () {
         this.playersByElement = new Map();
         this.playersByQueriedElement = new Map();
         this.statesByElement = new Map();
+        this.disabledNodes = new Set();
         this.totalAnimations = 0;
         this.totalQueuedPlayers = 0;
         this._namespaceLookup = {};
@@ -62041,6 +62346,23 @@ var TransitionAnimationEngine = (function () {
      */
     TransitionAnimationEngine.prototype.collectEnterElement = function (element) { this.collectedEnterElements.push(element); };
     /**
+     * @param {?} element
+     * @param {?} value
+     * @return {?}
+     */
+    TransitionAnimationEngine.prototype.markElementAsDisabled = function (element, value) {
+        if (value) {
+            if (!this.disabledNodes.has(element)) {
+                this.disabledNodes.add(element);
+                addClass(element, DISABLED_CLASSNAME);
+            }
+        }
+        else if (this.disabledNodes.has(element)) {
+            this.disabledNodes.delete(element);
+            removeClass(element, DISABLED_CLASSNAME);
+        }
+    };
+    /**
      * @param {?} namespaceId
      * @param {?} element
      * @param {?} context
@@ -62155,6 +62477,7 @@ var TransitionAnimationEngine = (function () {
      * @return {?}
      */
     TransitionAnimationEngine.prototype.processLeaveNode = function (element) {
+        var _this = this;
         var /** @type {?} */ details = (element[REMOVAL_FLAG]);
         if (details && details.setForRemoval) {
             // this will prevent it from removing it twice
@@ -62168,6 +62491,12 @@ var TransitionAnimationEngine = (function () {
             }
             this._onRemovalComplete(element, details.setForRemoval);
         }
+        if (this.driver.matchesElement(element, DISABLED_SELECTOR)) {
+            this.markElementAsDisabled(element, false);
+        }
+        this.driver.query(element, DISABLED_SELECTOR, true).forEach(function (node) {
+            _this.markElementAsDisabled(element, false);
+        });
     };
     /**
      * @param {?=} microtaskId
@@ -62232,6 +62561,13 @@ var TransitionAnimationEngine = (function () {
         var /** @type {?} */ queriedElements = new Map();
         var /** @type {?} */ allPreStyleElements = new Map();
         var /** @type {?} */ allPostStyleElements = new Map();
+        var /** @type {?} */ disabledElementsSet = new Set();
+        this.disabledNodes.forEach(function (node) {
+            var /** @type {?} */ nodesThatAreDisabled = _this.driver.query(node, QUEUED_SELECTOR, true);
+            for (var /** @type {?} */ i = 0; i < nodesThatAreDisabled.length; i++) {
+                disabledElementsSet.add(nodesThatAreDisabled[i]);
+            }
+        });
         var /** @type {?} */ bodyNode = getBodyNode();
         var /** @type {?} */ allEnterNodes = this.collectedEnterElements.length ?
             this.collectedEnterElements.filter(createIsRootFilterFn(this.collectedEnterElements)) :
@@ -62363,6 +62699,10 @@ var TransitionAnimationEngine = (function () {
             // this means that it was never consumed by a parent animation which
             // means that it is independent and therefore should be set for animation
             if (subTimelines.has(element)) {
+                if (disabledElementsSet.has(element)) {
+                    skippedPlayers.push(player);
+                    return;
+                }
                 var /** @type {?} */ innerPlayer = _this._buildAnimation(player.namespaceId, instruction, allPreviousPlayersMap, skippedPlayersMap, preStylesMap, postStylesMap);
                 player.setRealPlayer(innerPlayer);
                 var /** @type {?} */ parentHasPriority = null;
@@ -62584,7 +62924,7 @@ var TransitionAnimationEngine = (function () {
             if (details && details.removedBeforeQueried)
                 return new __WEBPACK_IMPORTED_MODULE_1__angular_animations__["d" /* NoopAnimationPlayer */]();
             var /** @type {?} */ isQueriedElement = element !== rootElement;
-            var /** @type {?} */ previousPlayers = (allPreviousPlayersMap.get(element) || EMPTY_PLAYER_ARRAY).map(function (p) { return p.getRealPlayer(); });
+            var /** @type {?} */ previousPlayers = flattenGroupPlayers((allPreviousPlayersMap.get(element) || EMPTY_PLAYER_ARRAY).map(function (p) { return p.getRealPlayer(); }));
             var /** @type {?} */ preStyles = preStylesMap.get(element);
             var /** @type {?} */ postStyles = postStylesMap.get(element);
             var /** @type {?} */ keyframes = normalizeKeyframes(_this.driver, _this._normalizer, element, timelineInstruction.keyframes, preStyles, postStyles);
@@ -62964,6 +63304,31 @@ function removeNodesAfterAnimationDone(engine, element, players) {
     optimizeGroupPlayer(players).onDone(function () { return engine.processLeaveNode(element); });
 }
 /**
+ * @param {?} players
+ * @return {?}
+ */
+function flattenGroupPlayers(players) {
+    var /** @type {?} */ finalPlayers = [];
+    _flattenGroupPlayersRecur(players, finalPlayers);
+    return finalPlayers;
+}
+/**
+ * @param {?} players
+ * @param {?} finalPlayers
+ * @return {?}
+ */
+function _flattenGroupPlayersRecur(players, finalPlayers) {
+    for (var /** @type {?} */ i = 0; i < players.length; i++) {
+        var /** @type {?} */ player = players[i];
+        if (player instanceof __WEBPACK_IMPORTED_MODULE_1__angular_animations__["e" /* ɵAnimationGroupPlayer */]) {
+            _flattenGroupPlayersRecur(player.players, finalPlayers);
+        }
+        else {
+            finalPlayers.push(/** @type {?} */ (player));
+        }
+    }
+}
+/**
  * @license
  * Copyright Google Inc. All Rights Reserved.
  *
@@ -63042,21 +63407,29 @@ var AnimationEngine = (function () {
         this._transitionEngine.removeNode(namespaceId, element, context);
     };
     /**
+     * @param {?} element
+     * @param {?} disable
+     * @return {?}
+     */
+    AnimationEngine.prototype.disableAnimations = function (element, disable) {
+        this._transitionEngine.markElementAsDisabled(element, disable);
+    };
+    /**
      * @param {?} namespaceId
      * @param {?} element
      * @param {?} property
      * @param {?} value
      * @return {?}
      */
-    AnimationEngine.prototype.setProperty = function (namespaceId, element, property, value) {
-        // @@property
+    AnimationEngine.prototype.process = function (namespaceId, element, property, value) {
         if (property.charAt(0) == '@') {
             var _a = parseTimelineCommand(property), id = _a[0], action = _a[1];
             var /** @type {?} */ args = (value);
             this._timelineEngine.command(id, element, action, args);
-            return false;
         }
-        return this._transitionEngine.trigger(namespaceId, element, property, value);
+        else {
+            this._transitionEngine.trigger(namespaceId, element, property, value);
+        }
     };
     /**
      * @param {?} namespaceId
@@ -63515,6 +63888,7 @@ function supportsWebAnimations() {
 /* unused harmony export Statement */
 /* unused harmony export EmitterVisitorContext */
 /* unused harmony export ViewCompiler */
+/* unused harmony export getParseErrors */
 /* unused harmony export isSyntaxError */
 /* unused harmony export syntaxError */
 /* unused harmony export TextAst */
@@ -63551,7 +63925,6 @@ function supportsWebAnimations() {
 /* unused harmony export viewClassName */
 /* unused harmony export rendererTypeName */
 /* unused harmony export hostViewClassName */
-/* unused harmony export dirWrapperClassName */
 /* unused harmony export componentFactoryName */
 /* unused harmony export CompileSummaryKind */
 /* unused harmony export tokenName */
@@ -63696,7 +64069,7 @@ function supportsWebAnimations() {
 /* unused harmony export removeSummaryDuplicates */
 
 /**
- * @license Angular v4.2.6
+ * @license Angular v4.3.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -63716,7 +64089,7 @@ function supportsWebAnimations() {
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.2.6');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.3.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -65379,20 +65752,31 @@ var SyncAsync = {
 };
 /**
  * @param {?} msg
+ * @param {?=} parseErrors
  * @return {?}
  */
-function syntaxError(msg) {
+function syntaxError(msg, parseErrors) {
     var /** @type {?} */ error = Error(msg);
     ((error))[ERROR_SYNTAX_ERROR] = true;
+    if (parseErrors)
+        ((error))[ERROR_PARSE_ERRORS] = parseErrors;
     return error;
 }
 var ERROR_SYNTAX_ERROR = 'ngSyntaxError';
+var ERROR_PARSE_ERRORS = 'ngParseErrors';
 /**
  * @param {?} error
  * @return {?}
  */
 function isSyntaxError(error) {
     return ((error))[ERROR_SYNTAX_ERROR];
+}
+/**
+ * @param {?} error
+ * @return {?}
+ */
+function getParseErrors(error) {
+    return ((error))[ERROR_PARSE_ERRORS] || [];
 }
 /**
  * @param {?} s
@@ -65659,13 +66043,6 @@ function rendererTypeName(compType) {
  */
 function hostViewClassName(compType) {
     return "HostView_" + identifierName({ reference: compType });
-}
-/**
- * @param {?} dirType
- * @return {?}
- */
-function dirWrapperClassName(dirType) {
-    return "Wrapper_" + identifierName({ reference: dirType });
 }
 /**
  * @param {?} compType
@@ -69440,11 +69817,16 @@ var ParseError = (function () {
     /**
      * @return {?}
      */
-    ParseError.prototype.toString = function () {
+    ParseError.prototype.contextualMessage = function () {
         var /** @type {?} */ ctx = this.span.start.getContext(100, 3);
-        var /** @type {?} */ contextStr = ctx ? " (\"" + ctx.before + "[" + ParseErrorLevel[this.level] + " ->]" + ctx.after + "\")" : '';
+        return ctx ? " (\"" + ctx.before + "[" + ParseErrorLevel[this.level] + " ->]" + ctx.after + "\")" : '';
+    };
+    /**
+     * @return {?}
+     */
+    ParseError.prototype.toString = function () {
         var /** @type {?} */ details = this.span.details ? ", " + this.span.details : '';
-        return "" + this.msg + contextStr + ": " + this.span.start + details;
+        return "" + this.msg + this.contextualMessage() + ": " + this.span.start + details;
     };
     return ParseError;
 }());
@@ -70684,7 +71066,7 @@ function isExpansionFormStart(input, offset, interpolationConfig) {
  * @return {?}
  */
 function isExpansionCaseStart(peek) {
-    return peek === $EQ || isAsciiLetter(peek);
+    return peek === $EQ || isAsciiLetter(peek) || isDigit(peek);
 }
 /**
  * @param {?} code1
@@ -70984,11 +71366,9 @@ var _TreeBuilder = (function () {
      * @return {?}
      */
     _TreeBuilder.prototype._closeVoidElement = function () {
-        if (this._elementStack.length > 0) {
-            var /** @type {?} */ el = this._elementStack[this._elementStack.length - 1];
-            if (this.getTagDefinition(el.name).isVoid) {
-                this._elementStack.pop();
-            }
+        var /** @type {?} */ el = this._getParentElement();
+        if (el && this.getTagDefinition(el.name).isVoid) {
+            this._elementStack.pop();
         }
     };
     /**
@@ -71032,11 +71412,9 @@ var _TreeBuilder = (function () {
      * @return {?}
      */
     _TreeBuilder.prototype._pushElement = function (el) {
-        if (this._elementStack.length > 0) {
-            var /** @type {?} */ parentEl = this._elementStack[this._elementStack.length - 1];
-            if (this.getTagDefinition(parentEl.name).isClosedByChild(el.name)) {
-                this._elementStack.pop();
-            }
+        var /** @type {?} */ parentEl = this._getParentElement();
+        if (parentEl && this.getTagDefinition(parentEl.name).isClosedByChild(el.name)) {
+            this._elementStack.pop();
         }
         var /** @type {?} */ tagDef = this.getTagDefinition(el.name);
         var _a = this._getParentElementSkippingContainers(), parent = _a.parent, container = _a.container;
@@ -71118,7 +71496,7 @@ var _TreeBuilder = (function () {
             }
             container = this._elementStack[i];
         }
-        return { parent: this._elementStack[this._elementStack.length - 1], container: container };
+        return { parent: null, container: container };
     };
     /**
      * @param {?} node
@@ -73125,7 +73503,7 @@ var Xliff = (function (_super) {
                 contextTags.push(new CR(8), contextGroupTag);
             });
             var /** @type {?} */ transUnit = new Tag(_UNIT_TAG, { id: message.id, datatype: 'html' });
-            (_a = transUnit.children).push.apply(_a, [new CR(8), new Tag(_SOURCE_TAG, {}, visitor.serialize(message.nodes)), new CR(8), new Tag(_TARGET_TAG)].concat(contextTags));
+            (_a = transUnit.children).push.apply(_a, [new CR(8), new Tag(_SOURCE_TAG, {}, visitor.serialize(message.nodes))].concat(contextTags));
             if (message.description) {
                 transUnit.children.push(new CR(8), new Tag('note', { priority: '1', from: 'description' }, [new Text$2(message.description)]));
             }
@@ -73628,8 +74006,9 @@ var _WriteVisitor$1 = (function () {
      * @return {?}
      */
     _WriteVisitor$1.prototype.visitPlaceholder = function (ph, context) {
+        var /** @type {?} */ idStr = (this._nextPlaceholderId++).toString();
         return [new Tag(_PLACEHOLDER_TAG$1, {
-                id: (this._nextPlaceholderId++).toString(),
+                id: idStr,
                 equiv: ph.name,
                 disp: "{{" + ph.value + "}}",
             })];
@@ -73640,7 +74019,9 @@ var _WriteVisitor$1 = (function () {
      * @return {?}
      */
     _WriteVisitor$1.prototype.visitIcuPlaceholder = function (ph, context) {
-        return [new Tag(_PLACEHOLDER_TAG$1, { id: (this._nextPlaceholderId++).toString() })];
+        var /** @type {?} */ cases = Object.keys(ph.value.cases).map(function (value) { return value + ' {...}'; }).join(' ');
+        var /** @type {?} */ idStr = (this._nextPlaceholderId++).toString();
+        return [new Tag(_PLACEHOLDER_TAG$1, { id: idStr, equiv: ph.name, disp: "{" + ph.value.expression + ", " + ph.value.type + ", " + cases + "}" })];
     };
     /**
      * @param {?} nodes
@@ -76495,7 +76876,7 @@ var TemplateParser = (function () {
         }
         if (errors.length > 0) {
             var /** @type {?} */ errorString = errors.join('\n');
-            throw syntaxError("Template parse errors:\n" + errorString);
+            throw syntaxError("Template parse errors:\n" + errorString, errors);
         }
         return { template: /** @type {?} */ ((result.templateAst)), pipes: /** @type {?} */ ((result.usedPipes)) };
     };
@@ -83824,11 +84205,13 @@ var OBJECT = 'object';
 //
 // =================================================================================================
 var SCHEMA = [
-    '[Element]|textContent,%classList,className,id,innerHTML,*beforecopy,*beforecut,*beforepaste,*copy,*cut,*paste,*search,*selectstart,*webkitfullscreenchange,*webkitfullscreenerror,*wheel,outerHTML,#scrollLeft,#scrollTop',
-    '[HTMLElement]^[Element]|accessKey,contentEditable,dir,!draggable,!hidden,innerText,lang,*abort,*beforecopy,*beforecut,*beforepaste,*blur,*cancel,*canplay,*canplaythrough,*change,*click,*close,*contextmenu,*copy,*cuechange,*cut,*dblclick,*drag,*dragend,*dragenter,*dragleave,*dragover,*dragstart,*drop,*durationchange,*emptied,*ended,*error,*focus,*input,*invalid,*keydown,*keypress,*keyup,*load,*loadeddata,*loadedmetadata,*loadstart,*message,*mousedown,*mouseenter,*mouseleave,*mousemove,*mouseout,*mouseover,*mouseup,*mousewheel,*mozfullscreenchange,*mozfullscreenerror,*mozpointerlockchange,*mozpointerlockerror,*paste,*pause,*play,*playing,*progress,*ratechange,*reset,*resize,*scroll,*search,*seeked,*seeking,*select,*selectstart,*show,*stalled,*submit,*suspend,*timeupdate,*toggle,*volumechange,*waiting,*webglcontextcreationerror,*webglcontextlost,*webglcontextrestored,*webkitfullscreenchange,*webkitfullscreenerror,*wheel,outerText,!spellcheck,%style,#tabIndex,title,!translate',
-    'abbr,address,article,aside,b,bdi,bdo,cite,code,dd,dfn,dt,em,figcaption,figure,footer,header,i,kbd,main,mark,nav,noscript,rb,rp,rt,rtc,ruby,s,samp,section,small,strong,sub,sup,u,var,wbr^[HTMLElement]|accessKey,contentEditable,dir,!draggable,!hidden,innerText,lang,*abort,*beforecopy,*beforecut,*beforepaste,*blur,*cancel,*canplay,*canplaythrough,*change,*click,*close,*contextmenu,*copy,*cuechange,*cut,*dblclick,*drag,*dragend,*dragenter,*dragleave,*dragover,*dragstart,*drop,*durationchange,*emptied,*ended,*error,*focus,*input,*invalid,*keydown,*keypress,*keyup,*load,*loadeddata,*loadedmetadata,*loadstart,*message,*mousedown,*mouseenter,*mouseleave,*mousemove,*mouseout,*mouseover,*mouseup,*mousewheel,*mozfullscreenchange,*mozfullscreenerror,*mozpointerlockchange,*mozpointerlockerror,*paste,*pause,*play,*playing,*progress,*ratechange,*reset,*resize,*scroll,*search,*seeked,*seeking,*select,*selectstart,*show,*stalled,*submit,*suspend,*timeupdate,*toggle,*volumechange,*waiting,*webglcontextcreationerror,*webglcontextlost,*webglcontextrestored,*webkitfullscreenchange,*webkitfullscreenerror,*wheel,outerText,!spellcheck,%style,#tabIndex,title,!translate',
-    'media^[HTMLElement]|!autoplay,!controls,%crossOrigin,#currentTime,!defaultMuted,#defaultPlaybackRate,!disableRemotePlayback,!loop,!muted,*encrypted,#playbackRate,preload,src,%srcObject,#volume',
-    ':svg:^[HTMLElement]|*abort,*blur,*cancel,*canplay,*canplaythrough,*change,*click,*close,*contextmenu,*cuechange,*dblclick,*drag,*dragend,*dragenter,*dragleave,*dragover,*dragstart,*drop,*durationchange,*emptied,*ended,*error,*focus,*input,*invalid,*keydown,*keypress,*keyup,*load,*loadeddata,*loadedmetadata,*loadstart,*mousedown,*mouseenter,*mouseleave,*mousemove,*mouseout,*mouseover,*mouseup,*mousewheel,*pause,*play,*playing,*progress,*ratechange,*reset,*resize,*scroll,*seeked,*seeking,*select,*show,*stalled,*submit,*suspend,*timeupdate,*toggle,*volumechange,*waiting,%style,#tabIndex',
+    '[Element]|textContent,%classList,className,id,innerHTML,*beforecopy,*beforecut,*beforepaste,*copy,*cut,*paste,*search,*selectstart,*webkitfullscreenchange,*webkitfullscreenerror,*wheel,outerHTML,#scrollLeft,#scrollTop,slot' +
+        /* added manually to avoid breaking changes */
+        ',*message,*mozfullscreenchange,*mozfullscreenerror,*mozpointerlockchange,*mozpointerlockerror,*webglcontextcreationerror,*webglcontextlost,*webglcontextrestored',
+    '[HTMLElement]^[Element]|accessKey,contentEditable,dir,!draggable,!hidden,innerText,lang,*abort,*auxclick,*blur,*cancel,*canplay,*canplaythrough,*change,*click,*close,*contextmenu,*cuechange,*dblclick,*drag,*dragend,*dragenter,*dragleave,*dragover,*dragstart,*drop,*durationchange,*emptied,*ended,*error,*focus,*gotpointercapture,*input,*invalid,*keydown,*keypress,*keyup,*load,*loadeddata,*loadedmetadata,*loadstart,*lostpointercapture,*mousedown,*mouseenter,*mouseleave,*mousemove,*mouseout,*mouseover,*mouseup,*mousewheel,*pause,*play,*playing,*pointercancel,*pointerdown,*pointerenter,*pointerleave,*pointermove,*pointerout,*pointerover,*pointerup,*progress,*ratechange,*reset,*resize,*scroll,*seeked,*seeking,*select,*show,*stalled,*submit,*suspend,*timeupdate,*toggle,*volumechange,*waiting,outerText,!spellcheck,%style,#tabIndex,title,!translate',
+    'abbr,address,article,aside,b,bdi,bdo,cite,code,dd,dfn,dt,em,figcaption,figure,footer,header,i,kbd,main,mark,nav,noscript,rb,rp,rt,rtc,ruby,s,samp,section,small,strong,sub,sup,u,var,wbr^[HTMLElement]|accessKey,contentEditable,dir,!draggable,!hidden,innerText,lang,*abort,*auxclick,*blur,*cancel,*canplay,*canplaythrough,*change,*click,*close,*contextmenu,*cuechange,*dblclick,*drag,*dragend,*dragenter,*dragleave,*dragover,*dragstart,*drop,*durationchange,*emptied,*ended,*error,*focus,*gotpointercapture,*input,*invalid,*keydown,*keypress,*keyup,*load,*loadeddata,*loadedmetadata,*loadstart,*lostpointercapture,*mousedown,*mouseenter,*mouseleave,*mousemove,*mouseout,*mouseover,*mouseup,*mousewheel,*pause,*play,*playing,*pointercancel,*pointerdown,*pointerenter,*pointerleave,*pointermove,*pointerout,*pointerover,*pointerup,*progress,*ratechange,*reset,*resize,*scroll,*seeked,*seeking,*select,*show,*stalled,*submit,*suspend,*timeupdate,*toggle,*volumechange,*waiting,outerText,!spellcheck,%style,#tabIndex,title,!translate',
+    'media^[HTMLElement]|!autoplay,!controls,%controlsList,%crossOrigin,#currentTime,!defaultMuted,#defaultPlaybackRate,!disableRemotePlayback,!loop,!muted,*encrypted,*waitingforkey,#playbackRate,preload,src,%srcObject,#volume',
+    ':svg:^[HTMLElement]|*abort,*auxclick,*blur,*cancel,*canplay,*canplaythrough,*change,*click,*close,*contextmenu,*cuechange,*dblclick,*drag,*dragend,*dragenter,*dragleave,*dragover,*dragstart,*drop,*durationchange,*emptied,*ended,*error,*focus,*gotpointercapture,*input,*invalid,*keydown,*keypress,*keyup,*load,*loadeddata,*loadedmetadata,*loadstart,*lostpointercapture,*mousedown,*mouseenter,*mouseleave,*mousemove,*mouseout,*mouseover,*mouseup,*mousewheel,*pause,*play,*playing,*pointercancel,*pointerdown,*pointerenter,*pointerleave,*pointermove,*pointerout,*pointerover,*pointerup,*progress,*ratechange,*reset,*resize,*scroll,*seeked,*seeking,*select,*show,*stalled,*submit,*suspend,*timeupdate,*toggle,*volumechange,*waiting,%style,#tabIndex',
     ':svg:graphics^:svg:|',
     ':svg:animation^:svg:|*begin,*end,*repeat',
     ':svg:geometry^:svg:|',
@@ -83837,7 +84220,7 @@ var SCHEMA = [
     ':svg:textContent^:svg:graphics|',
     ':svg:textPositioning^:svg:textContent|',
     'a^[HTMLElement]|charset,coords,download,hash,host,hostname,href,hreflang,name,password,pathname,ping,port,protocol,referrerPolicy,rel,rev,search,shape,target,text,type,username',
-    'area^[HTMLElement]|alt,coords,hash,host,hostname,href,!noHref,password,pathname,ping,port,protocol,referrerPolicy,search,shape,target,username',
+    'area^[HTMLElement]|alt,coords,download,hash,host,hostname,href,!noHref,password,pathname,ping,port,protocol,referrerPolicy,rel,search,shape,target,username',
     'audio^media|',
     'br^[HTMLElement]|clear',
     'base^[HTMLElement]|href,target',
@@ -83864,11 +84247,10 @@ var SCHEMA = [
     'iframe^[HTMLElement]|align,!allowFullscreen,frameBorder,height,longDesc,marginHeight,marginWidth,name,referrerPolicy,%sandbox,scrolling,src,srcdoc,width',
     'img^[HTMLElement]|align,alt,border,%crossOrigin,#height,#hspace,!isMap,longDesc,lowsrc,name,referrerPolicy,sizes,src,srcset,useMap,#vspace,#width',
     'input^[HTMLElement]|accept,align,alt,autocapitalize,autocomplete,!autofocus,!checked,!defaultChecked,defaultValue,dirName,!disabled,%files,formAction,formEnctype,formMethod,!formNoValidate,formTarget,#height,!incremental,!indeterminate,max,#maxLength,min,#minLength,!multiple,name,pattern,placeholder,!readOnly,!required,selectionDirection,#selectionEnd,#selectionStart,#size,src,step,type,useMap,value,%valueAsDate,#valueAsNumber,#width',
-    'keygen^[HTMLElement]|!autofocus,challenge,!disabled,keytype,name',
     'li^[HTMLElement]|type,#value',
     'label^[HTMLElement]|htmlFor',
     'legend^[HTMLElement]|align',
-    'link^[HTMLElement]|as,charset,%crossOrigin,!disabled,href,hreflang,integrity,media,rel,%relList,rev,%sizes,target,type',
+    'link^[HTMLElement]|as,charset,%crossOrigin,!disabled,href,hreflang,integrity,media,referrerPolicy,rel,%relList,rev,%sizes,target,type',
     'map^[HTMLElement]|name',
     'marquee^[HTMLElement]|behavior,bgColor,direction,height,#hspace,#loop,#scrollAmount,#scrollDelay,!trueSpeed,#vspace,width',
     'menu^[HTMLElement]|!compact',
@@ -83889,6 +84271,7 @@ var SCHEMA = [
     'script^[HTMLElement]|!async,charset,%crossOrigin,!defer,event,htmlFor,integrity,src,text,type',
     'select^[HTMLElement]|!autofocus,!disabled,#length,!multiple,name,!required,#selectedIndex,#size,value',
     'shadow^[HTMLElement]|',
+    'slot^[HTMLElement]|name',
     'source^[HTMLElement]|media,sizes,src,srcset,type',
     'span^[HTMLElement]|',
     'style^[HTMLElement]|!disabled,media,type',
@@ -83911,7 +84294,6 @@ var SCHEMA = [
     ':svg:animateTransform^:svg:animation|',
     ':svg:circle^:svg:geometry|',
     ':svg:clipPath^:svg:graphics|',
-    ':svg:cursor^:svg:|',
     ':svg:defs^:svg:graphics|',
     ':svg:desc^:svg:|',
     ':svg:discard^:svg:|',
@@ -83971,9 +84353,11 @@ var SCHEMA = [
     ':svg:use^:svg:graphics|',
     ':svg:view^:svg:|#zoomAndPan',
     'data^[HTMLElement]|value',
+    'keygen^[HTMLElement]|!autofocus,challenge,!disabled,form,keytype,name',
     'menuitem^[HTMLElement]|type,label,icon,!disabled,!checked,radiogroup,!default',
     'summary^[HTMLElement]|',
     'time^[HTMLElement]|dateTime',
+    ':svg:cursor^:svg:|',
 ];
 var _ATTR_TO_PROP = {
     'class': 'className',
@@ -84606,7 +84990,10 @@ var _shadowDOMSelectorsRe = [
     /\/shadow-deep\//g,
     /\/shadow\//g,
 ];
-var _shadowDeepSelectors = /(?:>>>)|(?:\/deep\/)/g;
+// The deep combinator is deprecated in the CSS spec
+// Support for `>>>`, `deep`, `::ng-deep` is then also deprecated and will be removed in the future.
+// see https://github.com/angular/angular/pull/17677
+var _shadowDeepSelectors = /(?:>>>)|(?:\/deep\/)|(?:::ng-deep)/g;
 var _selectorReSuffix = '([>\\s~+\[.,{:][\\s\\S]*)?$';
 var _polyfillHostRe = /-shadowcsshost/gim;
 var _colonHostRe = /:host/gim;
@@ -87428,7 +87815,17 @@ var AotCompiler = (function () {
     AotCompiler.prototype.emitAllStubs = function (analyzeResult) {
         var _this = this;
         var files = analyzeResult.files;
-        var /** @type {?} */ sourceModules = files.map(function (file) { return _this._compileStubFile(file.srcUrl, file.directives, file.ngModules); });
+        var /** @type {?} */ sourceModules = files.map(function (file) { return _this._compileStubFile(file.srcUrl, file.directives, file.pipes, file.ngModules, false); });
+        return flatten(sourceModules);
+    };
+    /**
+     * @param {?} analyzeResult
+     * @return {?}
+     */
+    AotCompiler.prototype.emitPartialStubs = function (analyzeResult) {
+        var _this = this;
+        var files = analyzeResult.files;
+        var /** @type {?} */ sourceModules = files.map(function (file) { return _this._compileStubFile(file.srcUrl, file.directives, file.pipes, file.ngModules, true); });
         return flatten(sourceModules);
     };
     /**
@@ -87444,15 +87841,26 @@ var AotCompiler = (function () {
     /**
      * @param {?} srcFileUrl
      * @param {?} directives
+     * @param {?} pipes
      * @param {?} ngModules
+     * @param {?} partial
      * @return {?}
      */
-    AotCompiler.prototype._compileStubFile = function (srcFileUrl, directives, ngModules) {
+    AotCompiler.prototype._compileStubFile = function (srcFileUrl, directives, pipes, ngModules, partial) {
         var _this = this;
+        // partial is true when we only need the files we are certain will produce a factory and/or
+        // summary.
+        // This is the normal case for `ngc` but if we assume libraryies are generating their own
+        // factories
+        // then we might need a factory for a file that re-exports a module or factory which we cannot
+        // know
+        // ahead of time so we need a stub generate for all non-.d.ts files. The .d.ts files do not need
+        // to
+        // be excluded here because they are excluded when the modules are analyzed. If a factory ends
+        // up
+        // not being needed, the factory file is not written in writeFile callback.
         var /** @type {?} */ fileSuffix = splitTypescriptSuffix(srcFileUrl, true)[1];
         var /** @type {?} */ generatedFiles = [];
-        var /** @type {?} */ jitSummaryStmts = [];
-        var /** @type {?} */ ngFactoryStms = [];
         var /** @type {?} */ ngFactoryOutputCtx = this._createOutputContext(ngfactoryFilePath(srcFileUrl, true));
         var /** @type {?} */ jitSummaryOutputCtx = this._createOutputContext(summaryForJitFileName(srcFileUrl, true));
         // create exports that user code can reference
@@ -87460,25 +87868,42 @@ var AotCompiler = (function () {
             _this._ngModuleCompiler.createStub(ngFactoryOutputCtx, ngModuleReference);
             createForJitStub(jitSummaryOutputCtx, ngModuleReference);
         });
-        // Note: we are creating stub ngfactory/ngsummary for all source files,
-        // as the real calculation requires almost the same logic as producing the real content for
-        // them.
-        // Our pipeline will filter out empty ones at the end.
-        generatedFiles.push(this._codegenSourceModule(srcFileUrl, ngFactoryOutputCtx));
-        generatedFiles.push(this._codegenSourceModule(srcFileUrl, jitSummaryOutputCtx));
+        var /** @type {?} */ partialJitStubRequired = false;
+        var /** @type {?} */ partialFactoryStubRequired = false;
         // create stubs for external stylesheets (always empty, as users should not import anything from
         // the generated code)
         directives.forEach(function (dirType) {
             var /** @type {?} */ compMeta = _this._metadataResolver.getDirectiveMetadata(/** @type {?} */ (dirType));
+            partialJitStubRequired = true;
             if (!compMeta.isComponent) {
                 return;
             } /** @type {?} */
             ((
             // Note: compMeta is a component and therefore template is non null.
             compMeta.template)).externalStylesheets.forEach(function (stylesheetMeta) {
-                generatedFiles.push(_this._codegenSourceModule(/** @type {?} */ ((stylesheetMeta.moduleUrl)), _this._createOutputContext(_stylesModuleUrl(/** @type {?} */ ((stylesheetMeta.moduleUrl)), _this._styleCompiler.needsStyleShim(compMeta), fileSuffix))));
+                var /** @type {?} */ styleContext = _this._createOutputContext(_stylesModuleUrl(/** @type {?} */ ((stylesheetMeta.moduleUrl)), _this._styleCompiler.needsStyleShim(compMeta), fileSuffix));
+                _createTypeReferenceStub(styleContext, Identifiers.ComponentFactory);
+                generatedFiles.push(_this._codegenSourceModule(/** @type {?} */ ((stylesheetMeta.moduleUrl)), styleContext));
             });
+            partialFactoryStubRequired = true;
         });
+        // If we need all the stubs to be generated then insert an arbitrary reference into the stub
+        if ((partialFactoryStubRequired || !partial) && ngFactoryOutputCtx.statements.length <= 0) {
+            _createTypeReferenceStub(ngFactoryOutputCtx, Identifiers.ComponentFactory);
+        }
+        if ((partialJitStubRequired || !partial || (pipes && pipes.length > 0)) &&
+            jitSummaryOutputCtx.statements.length <= 0) {
+            _createTypeReferenceStub(jitSummaryOutputCtx, Identifiers.ComponentFactory);
+        }
+        // Note: we are creating stub ngfactory/ngsummary for all source files,
+        // as the real calculation requires almost the same logic as producing the real content for
+        // them. Our pipeline will filter out empty ones at the end. Because of this filter, however,
+        // stub references to the reference type needs to be generated even if the user cannot
+        // refer to type from the `.d.ts` file to prevent the file being elided from the emit.
+        generatedFiles.push(this._codegenSourceModule(srcFileUrl, ngFactoryOutputCtx));
+        if (this._enableSummariesForJit) {
+            generatedFiles.push(this._codegenSourceModule(srcFileUrl, jitSummaryOutputCtx));
+        }
         return generatedFiles;
     };
     /**
@@ -87655,6 +88080,10 @@ var AotCompiler = (function () {
             var /** @type {?} */ arity = _this._symbolResolver.getTypeArity(symbol) || 0;
             var _a = _this._symbolResolver.getImportAs(symbol) || symbol, filePath = _a.filePath, name = _a.name, members = _a.members;
             var /** @type {?} */ importModule = _this._symbolResolver.fileNameToModuleName(filePath, genFilePath);
+            // It should be good enough to compare filePath to genFilePath and if they are equal
+            // there is a self reference. However, ngfactory files generate to .ts but their
+            // symbols have .d.ts so a simple compare is insufficient. They should be canonical
+            // and is tracked by #17705.
             var /** @type {?} */ selfReference = _this._symbolResolver.fileNameToModuleName(genFilePath, genFilePath);
             var /** @type {?} */ moduleName = importModule === selfReference ? null : importModule;
             // If we are in a type expression that refers to a generic type then supply
@@ -87692,6 +88121,14 @@ var AotCompiler = (function () {
     };
     return AotCompiler;
 }());
+/**
+ * @param {?} outputCtx
+ * @param {?} reference
+ * @return {?}
+ */
+function _createTypeReferenceStub(outputCtx, reference) {
+    outputCtx.statements.push(importExpr(reference).toStmt());
+}
 /**
  * @param {?} symbolResolver
  * @param {?} compileResult
@@ -87863,10 +88300,14 @@ function _createNgModules(programStaticSymbols, host, metadataResolver) {
  * found in the LICENSE file at https://angular.io/license
  */
 var ANGULAR_CORE = '@angular/core';
+var ANGULAR_ROUTER = '@angular/router';
 var HIDDEN_KEY = /^\$.*\$$/;
 var IGNORE = {
     __symbolic: 'ignore'
 };
+var USE_VALUE = 'useValue';
+var PROVIDE = 'provide';
+var REFERENCE_SET = new Set([USE_VALUE, 'useFactory', 'data']);
 /**
  * @param {?} value
  * @return {?}
@@ -87941,6 +88382,15 @@ var StaticReflector = (function () {
      */
     StaticReflector.prototype.findDeclaration = function (moduleUrl, name, containingFile) {
         return this.findSymbolDeclaration(this.symbolResolver.getSymbolByModule(moduleUrl, name, containingFile));
+    };
+    /**
+     * @param {?} moduleUrl
+     * @param {?} name
+     * @return {?}
+     */
+    StaticReflector.prototype.tryFindDeclaration = function (moduleUrl, name) {
+        var _this = this;
+        return this.symbolResolver.ignoreErrorsFor(function () { return _this.findDeclaration(moduleUrl, name); });
     };
     /**
      * @param {?} symbol
@@ -88151,6 +88601,9 @@ var StaticReflector = (function () {
     StaticReflector.prototype.initializeConversionMap = function () {
         this.injectionToken = this.findDeclaration(ANGULAR_CORE, 'InjectionToken');
         this.opaqueToken = this.findDeclaration(ANGULAR_CORE, 'OpaqueToken');
+        this.ROUTES = this.tryFindDeclaration(ANGULAR_ROUTER, 'ROUTES');
+        this.ANALYZE_FOR_ENTRY_COMPONENTS =
+            this.findDeclaration(ANGULAR_CORE, 'ANALYZE_FOR_ENTRY_COMPONENTS');
         this._registerDecoratorOrConstructor(this.findDeclaration(ANGULAR_CORE, 'Host'), __WEBPACK_IMPORTED_MODULE_1__angular_core__["Host"]);
         this._registerDecoratorOrConstructor(this.findDeclaration(ANGULAR_CORE, 'Injectable'), __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"]);
         this._registerDecoratorOrConstructor(this.findDeclaration(ANGULAR_CORE, 'Self'), __WEBPACK_IMPORTED_MODULE_1__angular_core__["Self"]);
@@ -88238,9 +88691,10 @@ var StaticReflector = (function () {
          * @param {?} context
          * @param {?} value
          * @param {?} depth
+         * @param {?} references
          * @return {?}
          */
-        function simplifyInContext(context, value, depth) {
+        function simplifyInContext(context, value, depth, references) {
             /**
              * @param {?} staticSymbol
              * @return {?}
@@ -88266,7 +88720,7 @@ var StaticReflector = (function () {
                         if (value_1 && (depth != 0 || value_1.__symbolic != 'error')) {
                             var /** @type {?} */ parameters = targetFunction['parameters'];
                             var /** @type {?} */ defaults = targetFunction.defaults;
-                            args = args.map(function (arg) { return simplifyInContext(context, arg, depth + 1); })
+                            args = args.map(function (arg) { return simplifyInContext(context, arg, depth + 1, references); })
                                 .map(function (arg) { return shouldIgnore(arg) ? undefined : arg; });
                             if (defaults && defaults.length > args.length) {
                                 args.push.apply(args, defaults.slice(args.length).map(function (value) { return simplify(value); }));
@@ -88279,7 +88733,7 @@ var StaticReflector = (function () {
                             var /** @type {?} */ result_1;
                             try {
                                 scope = functionScope.done();
-                                result_1 = simplifyInContext(functionSymbol, value_1, depth + 1);
+                                result_1 = simplifyInContext(functionSymbol, value_1, depth + 1, references);
                             }
                             finally {
                                 scope = oldScope;
@@ -88331,16 +88785,16 @@ var StaticReflector = (function () {
                     return result_2;
                 }
                 if (expression instanceof StaticSymbol) {
-                    // Stop simplification at builtin symbols
+                    // Stop simplification at builtin symbols or if we are in a reference context
                     if (expression === self.injectionToken || expression === self.opaqueToken ||
-                        self.conversionMap.has(expression)) {
+                        self.conversionMap.has(expression) || references > 0) {
                         return expression;
                     }
                     else {
                         var /** @type {?} */ staticSymbol = expression;
                         var /** @type {?} */ declarationValue = resolveReferenceValue(staticSymbol);
                         if (declarationValue) {
-                            return simplifyInContext(staticSymbol, declarationValue, depth + 1);
+                            return simplifyInContext(staticSymbol, declarationValue, depth + 1, references);
                         }
                         else {
                             return staticSymbol;
@@ -88436,14 +88890,14 @@ var StaticReflector = (function () {
                                         self.getStaticSymbol(selectTarget.filePath, selectTarget.name, members);
                                     var /** @type {?} */ declarationValue = resolveReferenceValue(selectContext);
                                     if (declarationValue) {
-                                        return simplifyInContext(selectContext, declarationValue, depth + 1);
+                                        return simplifyInContext(selectContext, declarationValue, depth + 1, references);
                                     }
                                     else {
                                         return selectContext;
                                     }
                                 }
                                 if (selectTarget && isPrimitive(member))
-                                    return simplifyInContext(selectContext, selectTarget[member], depth + 1);
+                                    return simplifyInContext(selectContext, selectTarget[member], depth + 1, references);
                                 return null;
                             case 'reference':
                                 // Note: This only has to deal with variable references,
@@ -88462,7 +88916,7 @@ var StaticReflector = (function () {
                             case 'new':
                             case 'call':
                                 // Determine if the function is a built-in conversion
-                                staticSymbol = simplifyInContext(context, expression['expression'], depth + 1);
+                                staticSymbol = simplifyInContext(context, expression['expression'], depth + 1, /* references */ 0);
                                 if (staticSymbol instanceof StaticSymbol) {
                                     if (staticSymbol === self.injectionToken || staticSymbol === self.opaqueToken) {
                                         // if somebody calls new InjectionToken, don't create an InjectionToken,
@@ -88472,7 +88926,8 @@ var StaticReflector = (function () {
                                     var /** @type {?} */ argExpressions = expression['arguments'] || [];
                                     var /** @type {?} */ converter = self.conversionMap.get(staticSymbol);
                                     if (converter) {
-                                        var /** @type {?} */ args = argExpressions.map(function (arg) { return simplifyInContext(context, arg, depth + 1); })
+                                        var /** @type {?} */ args = argExpressions
+                                            .map(function (arg) { return simplifyInContext(context, arg, depth + 1, references); })
                                             .map(function (arg) { return shouldIgnore(arg) ? undefined : arg; });
                                         return converter(context, args);
                                     }
@@ -88499,7 +88954,20 @@ var StaticReflector = (function () {
                         }
                         return null;
                     }
-                    return mapStringMap(expression, function (value, name) { return simplify(value); });
+                    return mapStringMap(expression, function (value, name) {
+                        if (REFERENCE_SET.has(name)) {
+                            if (name === USE_VALUE && PROVIDE in expression) {
+                                // If this is a provider expression, check for special tokens that need the value
+                                // during analysis.
+                                var /** @type {?} */ provide = simplify(expression.provide);
+                                if (provide === self.ROUTES || provide == self.ANALYZE_FOR_ENTRY_COMPONENTS) {
+                                    return simplify(value);
+                                }
+                            }
+                            return simplifyInContext(context, value, depth, references + 1);
+                        }
+                        return simplify(value);
+                    });
                 }
                 return IGNORE;
             }
@@ -88515,16 +88983,16 @@ var StaticReflector = (function () {
                 throw syntaxError(message);
             }
         }
-        var /** @type {?} */ recordedSimplifyInContext = function (context, value, depth) {
+        var /** @type {?} */ recordedSimplifyInContext = function (context, value) {
             try {
-                return simplifyInContext(context, value, depth);
+                return simplifyInContext(context, value, 0, 0);
             }
             catch (e) {
                 _this.reportError(e, context);
             }
         };
-        var /** @type {?} */ result = this.errorRecorder ? recordedSimplifyInContext(context, value, 0) :
-            simplifyInContext(context, value, 0);
+        var /** @type {?} */ result = this.errorRecorder ? recordedSimplifyInContext(context, value) :
+            simplifyInContext(context, value, 0, 0);
         if (shouldIgnore(result)) {
             return undefined;
         }
@@ -88844,6 +89312,21 @@ var StaticSymbolResolver = (function () {
                 this.importAs.delete(symbol);
                 this.symbolResourcePaths.delete(symbol);
             }
+        }
+    };
+    /**
+     * @template T
+     * @param {?} cb
+     * @return {?}
+     */
+    StaticSymbolResolver.prototype.ignoreErrorsFor = function (cb) {
+        var /** @type {?} */ recorder = this.errorRecorder;
+        this.errorRecorder = function () { };
+        try {
+            return cb();
+        }
+        finally {
+            this.errorRecorder = recorder;
         }
     };
     /**
@@ -90174,7 +90657,7 @@ var JitEmitterVisitor = (function (_super) {
             id = this._evalArgValues.length;
             this._evalArgValues.push(value);
             var /** @type {?} */ name = identifierName({ reference: ast.value.runtime }) || 'val';
-            this._evalArgNames.push("jit_" + name + id);
+            this._evalArgNames.push("jit_" + name + "_" + id);
         }
         ctx.print(ast, this._evalArgNames[id]);
         return null;
@@ -91240,7 +91723,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵResourceLoaderImpl", function() { return ResourceLoaderImpl; });
 
 /**
- * @license Angular v4.2.6
+ * @license Angular v4.3.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -91373,7 +91856,7 @@ var CachedResourceLoader = (function (_super) {
 /**
  * @stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.2.6');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.3.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -91432,7 +91915,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵc", function() { return instantiateSupportedAnimationDriver; });
 
 /**
- * @license Angular v4.2.6
+ * @license Angular v4.3.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -91623,6 +92106,8 @@ function issueAnimationCommand(renderer, element, id, command, args) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+var ANIMATION_PREFIX = '@';
+var DISABLE_ANIMATIONS_FLAG = '@.disabled';
 var AnimationRendererFactory = (function () {
     /**
      * @param {?} delegate
@@ -91637,6 +92122,7 @@ var AnimationRendererFactory = (function () {
         this._microtaskId = 1;
         this._animationCallbacksBuffer = [];
         this._rendererCache = new Map();
+        this._cdRecurDepth = 0;
         engine.onRemovalComplete = function (element, delegate) {
             // Note: if an component element has a leave animation, and the component
             // a host leave animation, the view engine will call `removeChild` for the parent
@@ -91679,6 +92165,7 @@ var AnimationRendererFactory = (function () {
      * @return {?}
      */
     AnimationRendererFactory.prototype.begin = function () {
+        this._cdRecurDepth++;
         if (this.delegate.begin) {
             this.delegate.begin();
         }
@@ -91720,10 +92207,15 @@ var AnimationRendererFactory = (function () {
      */
     AnimationRendererFactory.prototype.end = function () {
         var _this = this;
-        this._zone.runOutsideAngular(function () {
-            _this._scheduleCountTask();
-            _this.engine.flush(_this._microtaskId);
-        });
+        this._cdRecurDepth--;
+        // this is to prevent animations from running twice when an inner
+        // component does CD when a parent component insted has inserted it
+        if (this._cdRecurDepth == 0) {
+            this._zone.runOutsideAngular(function () {
+                _this._scheduleCountTask();
+                _this.engine.flush(_this._microtaskId);
+            });
+        }
         if (this.delegate.end) {
             this.delegate.end();
         }
@@ -91889,7 +92381,12 @@ var BaseAnimationRenderer = (function () {
      * @return {?}
      */
     BaseAnimationRenderer.prototype.setProperty = function (el, name, value) {
-        this.delegate.setProperty(el, name, value);
+        if (name.charAt(0) == ANIMATION_PREFIX && name == DISABLE_ANIMATIONS_FLAG) {
+            this.disableAnimations(el, !!value);
+        }
+        else {
+            this.delegate.setProperty(el, name, value);
+        }
     };
     /**
      * @param {?} node
@@ -91905,6 +92402,14 @@ var BaseAnimationRenderer = (function () {
      */
     BaseAnimationRenderer.prototype.listen = function (target, eventName, callback) {
         return this.delegate.listen(target, eventName, callback);
+    };
+    /**
+     * @param {?} element
+     * @param {?} value
+     * @return {?}
+     */
+    BaseAnimationRenderer.prototype.disableAnimations = function (element, value) {
+        this.engine.disableAnimations(element, value);
     };
     return BaseAnimationRenderer;
 }());
@@ -91929,9 +92434,13 @@ var AnimationRenderer = (function (_super) {
      * @return {?}
      */
     AnimationRenderer.prototype.setProperty = function (el, name, value) {
-        if (name.charAt(0) == '@') {
-            name = name.substr(1);
-            this.engine.setProperty(this.namespaceId, el, name, value);
+        if (name.charAt(0) == ANIMATION_PREFIX) {
+            if (name.charAt(1) == '.' && name == DISABLE_ANIMATIONS_FLAG) {
+                this.disableAnimations(el, !!value);
+            }
+            else {
+                this.engine.process(this.namespaceId, el, name.substr(1), value);
+            }
         }
         else {
             this.delegate.setProperty(el, name, value);
@@ -91945,11 +92454,13 @@ var AnimationRenderer = (function (_super) {
      */
     AnimationRenderer.prototype.listen = function (target, eventName, callback) {
         var _this = this;
-        if (eventName.charAt(0) == '@') {
+        if (eventName.charAt(0) == ANIMATION_PREFIX) {
             var /** @type {?} */ element = resolveElementFromTarget(target);
             var /** @type {?} */ name = eventName.substr(1);
             var /** @type {?} */ phase = '';
-            if (name.charAt(0) != '@') {
+            // @listener.phase is for trigger animation callbacks
+            // @@listener is for animation builder callbacks
+            if (name.charAt(0) != ANIMATION_PREFIX) {
                 _a = parseTriggerCallbackName(name), name = _a[0], phase = _a[1];
             }
             return this.engine.listen(this.namespaceId, element, name, phase, function (event) {
@@ -92078,7 +92589,7 @@ var BrowserAnimationsModule = (function () {
 }());
 BrowserAnimationsModule.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"], args: [{
-                imports: [__WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["BrowserModule"]],
+                exports: [__WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["BrowserModule"]],
                 providers: BROWSER_ANIMATIONS_PROVIDERS,
             },] },
 ];
@@ -92096,7 +92607,7 @@ var NoopAnimationsModule = (function () {
 }());
 NoopAnimationsModule.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"], args: [{
-                imports: [__WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["BrowserModule"]],
+                exports: [__WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["BrowserModule"]],
                 providers: BROWSER_NOOP_ANIMATIONS_PROVIDERS,
             },] },
 ];
