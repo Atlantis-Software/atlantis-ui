@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 80);
+/******/ 	return __webpack_require__(__webpack_require__.s = 77);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -72,14 +72,14 @@
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_merge__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_merge__ = __webpack_require__(117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_merge___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_merge__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_share__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_share__ = __webpack_require__(130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_share___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_operator_share__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Class", function() { return Class; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPlatform", function() { return createPlatform; });
@@ -5920,7 +5920,7 @@ var SystemJsNgModuleLoader = (function () {
         if (exportName === undefined) {
             exportName = 'default';
         }
-        return __webpack_require__(24)(module)
+        return __webpack_require__(23)(module)
             .then(function (module) { return module[exportName]; })
             .then(function (type) { return checkNotEmpty(type, module, exportName); })
             .then(function (type) { return _this._compiler.compileModuleAsync(type); });
@@ -5936,7 +5936,7 @@ var SystemJsNgModuleLoader = (function () {
             exportName = 'default';
             factoryClassSuffix = '';
         }
-        return __webpack_require__(24)(this._config.factoryPathPrefix + module + this._config.factoryPathSuffix)
+        return __webpack_require__(23)(this._config.factoryPathPrefix + module + this._config.factoryPathSuffix)
             .then(function (module) { return module[exportName + factoryClassSuffix]; })
             .then(function (factory) { return checkNotEmpty(factory, module, exportName); });
     };
@@ -15076,8 +15076,8 @@ function transition$$1(stateChangeExpr, steps) {
 
 "use strict";
 
-var root_1 = __webpack_require__(4);
-var toSubscriber_1 = __webpack_require__(135);
+var root_1 = __webpack_require__(3);
+var toSubscriber_1 = __webpack_require__(132);
 var observable_1 = __webpack_require__(19);
 /**
  * A representation of any set of values over any amount of time. This the most basic building block
@@ -15343,9 +15343,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var isFunction_1 = __webpack_require__(60);
+var isFunction_1 = __webpack_require__(59);
 var Subscription_1 = __webpack_require__(10);
-var Observer_1 = __webpack_require__(51);
+var Observer_1 = __webpack_require__(50);
 var rxSubscriber_1 = __webpack_require__(20);
 /**
  * Implements the {@link Observer} interface and extends the
@@ -15604,6 +15604,32 @@ var SafeSubscriber = (function (_super) {
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+// CommonJS / Node have global context exposed as "global" variable.
+// We don't want to include the whole node.d.ts this this compilation unit so we'll just fake
+// the global "global" var for now.
+var __window = typeof window !== 'undefined' && window;
+var __self = typeof self !== 'undefined' && typeof WorkerGlobalScope !== 'undefined' &&
+    self instanceof WorkerGlobalScope && self;
+var __global = typeof global !== 'undefined' && global;
+var _root = __window || __global || __self;
+exports.root = _root;
+// Workaround Closure Compiler restriction: The body of a goog.module cannot use throw.
+// This is needed when used with angular/tsickle which inserts a goog.module statement.
+// Wrap in IIFE
+(function () {
+    if (!_root) {
+        throw new Error('RxJS could not find any global context (window, self, global)');
+    }
+})();
+//# sourceMappingURL=root.js.map
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+
+/***/ }),
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15786,38 +15812,12 @@ function __asyncValues(o) {
 }
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
-// CommonJS / Node have global context exposed as "global" variable.
-// We don't want to include the whole node.d.ts this this compilation unit so we'll just fake
-// the global "global" var for now.
-var __window = typeof window !== 'undefined' && window;
-var __self = typeof self !== 'undefined' && typeof WorkerGlobalScope !== 'undefined' &&
-    self instanceof WorkerGlobalScope && self;
-var __global = typeof global !== 'undefined' && global;
-var _root = __window || __global || __self;
-exports.root = _root;
-// Workaround Closure Compiler restriction: The body of a goog.module cannot use throw.
-// This is needed when used with angular/tsickle which inserts a goog.module statement.
-// Wrap in IIFE
-(function () {
-    if (!_root) {
-        throw new Error('RxJS could not find any global context (window, self, global)');
-    }
-})();
-//# sourceMappingURL=root.js.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
-
-/***/ }),
 /* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgLocaleLocalization", function() { return NgLocaleLocalization; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgLocalization", function() { return NgLocalization; });
@@ -19875,11 +19875,185 @@ module.exports = g;
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Observable_1 = __webpack_require__(1);
+var Subscriber_1 = __webpack_require__(2);
+var Subscription_1 = __webpack_require__(10);
+var ObjectUnsubscribedError_1 = __webpack_require__(56);
+var SubjectSubscription_1 = __webpack_require__(109);
+var rxSubscriber_1 = __webpack_require__(20);
+/**
+ * @class SubjectSubscriber<T>
+ */
+var SubjectSubscriber = (function (_super) {
+    __extends(SubjectSubscriber, _super);
+    function SubjectSubscriber(destination) {
+        _super.call(this, destination);
+        this.destination = destination;
+    }
+    return SubjectSubscriber;
+}(Subscriber_1.Subscriber));
+exports.SubjectSubscriber = SubjectSubscriber;
+/**
+ * @class Subject<T>
+ */
+var Subject = (function (_super) {
+    __extends(Subject, _super);
+    function Subject() {
+        _super.call(this);
+        this.observers = [];
+        this.closed = false;
+        this.isStopped = false;
+        this.hasError = false;
+        this.thrownError = null;
+    }
+    Subject.prototype[rxSubscriber_1.rxSubscriber] = function () {
+        return new SubjectSubscriber(this);
+    };
+    Subject.prototype.lift = function (operator) {
+        var subject = new AnonymousSubject(this, this);
+        subject.operator = operator;
+        return subject;
+    };
+    Subject.prototype.next = function (value) {
+        if (this.closed) {
+            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
+        }
+        if (!this.isStopped) {
+            var observers = this.observers;
+            var len = observers.length;
+            var copy = observers.slice();
+            for (var i = 0; i < len; i++) {
+                copy[i].next(value);
+            }
+        }
+    };
+    Subject.prototype.error = function (err) {
+        if (this.closed) {
+            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
+        }
+        this.hasError = true;
+        this.thrownError = err;
+        this.isStopped = true;
+        var observers = this.observers;
+        var len = observers.length;
+        var copy = observers.slice();
+        for (var i = 0; i < len; i++) {
+            copy[i].error(err);
+        }
+        this.observers.length = 0;
+    };
+    Subject.prototype.complete = function () {
+        if (this.closed) {
+            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
+        }
+        this.isStopped = true;
+        var observers = this.observers;
+        var len = observers.length;
+        var copy = observers.slice();
+        for (var i = 0; i < len; i++) {
+            copy[i].complete();
+        }
+        this.observers.length = 0;
+    };
+    Subject.prototype.unsubscribe = function () {
+        this.isStopped = true;
+        this.closed = true;
+        this.observers = null;
+    };
+    Subject.prototype._trySubscribe = function (subscriber) {
+        if (this.closed) {
+            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
+        }
+        else {
+            return _super.prototype._trySubscribe.call(this, subscriber);
+        }
+    };
+    Subject.prototype._subscribe = function (subscriber) {
+        if (this.closed) {
+            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
+        }
+        else if (this.hasError) {
+            subscriber.error(this.thrownError);
+            return Subscription_1.Subscription.EMPTY;
+        }
+        else if (this.isStopped) {
+            subscriber.complete();
+            return Subscription_1.Subscription.EMPTY;
+        }
+        else {
+            this.observers.push(subscriber);
+            return new SubjectSubscription_1.SubjectSubscription(this, subscriber);
+        }
+    };
+    Subject.prototype.asObservable = function () {
+        var observable = new Observable_1.Observable();
+        observable.source = this;
+        return observable;
+    };
+    Subject.create = function (destination, source) {
+        return new AnonymousSubject(destination, source);
+    };
+    return Subject;
+}(Observable_1.Observable));
+exports.Subject = Subject;
+/**
+ * @class AnonymousSubject<T>
+ */
+var AnonymousSubject = (function (_super) {
+    __extends(AnonymousSubject, _super);
+    function AnonymousSubject(destination, source) {
+        _super.call(this);
+        this.destination = destination;
+        this.source = source;
+    }
+    AnonymousSubject.prototype.next = function (value) {
+        var destination = this.destination;
+        if (destination && destination.next) {
+            destination.next(value);
+        }
+    };
+    AnonymousSubject.prototype.error = function (err) {
+        var destination = this.destination;
+        if (destination && destination.error) {
+            this.destination.error(err);
+        }
+    };
+    AnonymousSubject.prototype.complete = function () {
+        var destination = this.destination;
+        if (destination && destination.complete) {
+            this.destination.complete();
+        }
+    };
+    AnonymousSubject.prototype._subscribe = function (subscriber) {
+        var source = this.source;
+        if (source) {
+            return this.source.subscribe(subscriber);
+        }
+        else {
+            return Subscription_1.Subscription.EMPTY;
+        }
+    };
+    return AnonymousSubject;
+}(Subject));
+exports.AnonymousSubject = AnonymousSubject;
+//# sourceMappingURL=Subject.js.map
+
+/***/ }),
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BrowserModule", function() { return BrowserModule; });
@@ -24364,180 +24538,6 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.3.3'
 
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Observable_1 = __webpack_require__(1);
-var Subscriber_1 = __webpack_require__(2);
-var Subscription_1 = __webpack_require__(10);
-var ObjectUnsubscribedError_1 = __webpack_require__(57);
-var SubjectSubscription_1 = __webpack_require__(112);
-var rxSubscriber_1 = __webpack_require__(20);
-/**
- * @class SubjectSubscriber<T>
- */
-var SubjectSubscriber = (function (_super) {
-    __extends(SubjectSubscriber, _super);
-    function SubjectSubscriber(destination) {
-        _super.call(this, destination);
-        this.destination = destination;
-    }
-    return SubjectSubscriber;
-}(Subscriber_1.Subscriber));
-exports.SubjectSubscriber = SubjectSubscriber;
-/**
- * @class Subject<T>
- */
-var Subject = (function (_super) {
-    __extends(Subject, _super);
-    function Subject() {
-        _super.call(this);
-        this.observers = [];
-        this.closed = false;
-        this.isStopped = false;
-        this.hasError = false;
-        this.thrownError = null;
-    }
-    Subject.prototype[rxSubscriber_1.rxSubscriber] = function () {
-        return new SubjectSubscriber(this);
-    };
-    Subject.prototype.lift = function (operator) {
-        var subject = new AnonymousSubject(this, this);
-        subject.operator = operator;
-        return subject;
-    };
-    Subject.prototype.next = function (value) {
-        if (this.closed) {
-            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
-        }
-        if (!this.isStopped) {
-            var observers = this.observers;
-            var len = observers.length;
-            var copy = observers.slice();
-            for (var i = 0; i < len; i++) {
-                copy[i].next(value);
-            }
-        }
-    };
-    Subject.prototype.error = function (err) {
-        if (this.closed) {
-            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
-        }
-        this.hasError = true;
-        this.thrownError = err;
-        this.isStopped = true;
-        var observers = this.observers;
-        var len = observers.length;
-        var copy = observers.slice();
-        for (var i = 0; i < len; i++) {
-            copy[i].error(err);
-        }
-        this.observers.length = 0;
-    };
-    Subject.prototype.complete = function () {
-        if (this.closed) {
-            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
-        }
-        this.isStopped = true;
-        var observers = this.observers;
-        var len = observers.length;
-        var copy = observers.slice();
-        for (var i = 0; i < len; i++) {
-            copy[i].complete();
-        }
-        this.observers.length = 0;
-    };
-    Subject.prototype.unsubscribe = function () {
-        this.isStopped = true;
-        this.closed = true;
-        this.observers = null;
-    };
-    Subject.prototype._trySubscribe = function (subscriber) {
-        if (this.closed) {
-            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
-        }
-        else {
-            return _super.prototype._trySubscribe.call(this, subscriber);
-        }
-    };
-    Subject.prototype._subscribe = function (subscriber) {
-        if (this.closed) {
-            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
-        }
-        else if (this.hasError) {
-            subscriber.error(this.thrownError);
-            return Subscription_1.Subscription.EMPTY;
-        }
-        else if (this.isStopped) {
-            subscriber.complete();
-            return Subscription_1.Subscription.EMPTY;
-        }
-        else {
-            this.observers.push(subscriber);
-            return new SubjectSubscription_1.SubjectSubscription(this, subscriber);
-        }
-    };
-    Subject.prototype.asObservable = function () {
-        var observable = new Observable_1.Observable();
-        observable.source = this;
-        return observable;
-    };
-    Subject.create = function (destination, source) {
-        return new AnonymousSubject(destination, source);
-    };
-    return Subject;
-}(Observable_1.Observable));
-exports.Subject = Subject;
-/**
- * @class AnonymousSubject<T>
- */
-var AnonymousSubject = (function (_super) {
-    __extends(AnonymousSubject, _super);
-    function AnonymousSubject(destination, source) {
-        _super.call(this);
-        this.destination = destination;
-        this.source = source;
-    }
-    AnonymousSubject.prototype.next = function (value) {
-        var destination = this.destination;
-        if (destination && destination.next) {
-            destination.next(value);
-        }
-    };
-    AnonymousSubject.prototype.error = function (err) {
-        var destination = this.destination;
-        if (destination && destination.error) {
-            this.destination.error(err);
-        }
-    };
-    AnonymousSubject.prototype.complete = function () {
-        var destination = this.destination;
-        if (destination && destination.complete) {
-            this.destination.complete();
-        }
-    };
-    AnonymousSubject.prototype._subscribe = function (subscriber) {
-        var source = this.source;
-        if (source) {
-            return this.source.subscribe(subscriber);
-        }
-        else {
-            return Subscription_1.Subscription.EMPTY;
-        }
-    };
-    return AnonymousSubject;
-}(Subject));
-exports.AnonymousSubject = AnonymousSubject;
-//# sourceMappingURL=Subject.js.map
-
-/***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -24580,11 +24580,11 @@ exports.OuterSubscriber = OuterSubscriber;
 "use strict";
 
 var isArray_1 = __webpack_require__(22);
-var isObject_1 = __webpack_require__(61);
-var isFunction_1 = __webpack_require__(60);
-var tryCatch_1 = __webpack_require__(136);
-var errorObject_1 = __webpack_require__(58);
-var UnsubscriptionError_1 = __webpack_require__(134);
+var isObject_1 = __webpack_require__(60);
+var isFunction_1 = __webpack_require__(59);
+var tryCatch_1 = __webpack_require__(133);
+var errorObject_1 = __webpack_require__(57);
+var UnsubscriptionError_1 = __webpack_require__(131);
 /**
  * Represents a disposable resource, such as the execution of an Observable. A
  * Subscription has one important method, `unsubscribe`, that takes no argument
@@ -24778,13 +24778,13 @@ function flattenUnsubscriptionErrors(errors) {
 
 "use strict";
 
-var root_1 = __webpack_require__(4);
-var isArrayLike_1 = __webpack_require__(59);
-var isPromise_1 = __webpack_require__(62);
-var isObject_1 = __webpack_require__(61);
+var root_1 = __webpack_require__(3);
+var isArrayLike_1 = __webpack_require__(58);
+var isPromise_1 = __webpack_require__(61);
+var isObject_1 = __webpack_require__(60);
 var Observable_1 = __webpack_require__(1);
 var iterator_1 = __webpack_require__(18);
-var InnerSubscriber_1 = __webpack_require__(110);
+var InnerSubscriber_1 = __webpack_require__(107);
 var observable_1 = __webpack_require__(19);
 function subscribeToResult(outerSubscriber, result, outerValue, outerIndex) {
     var destination = new InnerSubscriber_1.InnerSubscriber(outerSubscriber, outerValue, outerIndex);
@@ -24862,15 +24862,15 @@ exports.subscribeToResult = subscribeToResult;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_forkJoin__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_forkJoin__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_forkJoin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_forkJoin__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_fromPromise__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_fromPromise__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_fromPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_observable_fromPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_map__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_map__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(8);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractControlDirective", function() { return AbstractControlDirective; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractFormGroupDirective", function() { return AbstractFormGroupDirective; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CheckboxControlValueAccessor", function() { return CheckboxControlValueAccessor; });
@@ -30966,45 +30966,45 @@ ReactiveFormsModule.ctorParameters = function () { return []; };
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_operator_concatMap__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_operator_concatMap__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_operator_concatMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_operator_concatMap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_operator_every__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_operator_every__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_operator_every___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_operator_every__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_operator_first__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_operator_first__ = __webpack_require__(124);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_operator_first___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_operator_first__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_last__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_last__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_last___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_rxjs_operator_last__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_rxjs_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_operator_mergeMap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_operator_reduce__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_operator_reduce__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_operator_reduce___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_rxjs_operator_reduce__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs_Observable__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_rxjs_operator_catch__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_rxjs_operator_catch__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_rxjs_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_rxjs_operator_catch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_rxjs_operator_concatAll__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_rxjs_operator_concatAll__ = __webpack_require__(120);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_rxjs_operator_concatAll___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_rxjs_operator_concatAll__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_rxjs_util_EmptyError__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_rxjs_util_EmptyError___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_rxjs_util_EmptyError__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_rxjs_observable_fromPromise__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_rxjs_observable_fromPromise__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_rxjs_observable_fromPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18_rxjs_observable_fromPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_rxjs_operator_mergeAll__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_rxjs_operator_mergeAll___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19_rxjs_operator_mergeAll__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_platform_browser__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_rxjs_operator_filter__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_platform_browser__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_rxjs_operator_filter__ = __webpack_require__(123);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_rxjs_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21_rxjs_operator_filter__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RouterLink", function() { return RouterLink; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RouterLinkWithHref", function() { return RouterLinkWithHref; });
@@ -37366,9 +37366,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(1);
-var ScalarObservable_1 = __webpack_require__(53);
+var ScalarObservable_1 = __webpack_require__(52);
 var EmptyObservable_1 = __webpack_require__(16);
-var isScheduler_1 = __webpack_require__(63);
+var isScheduler_1 = __webpack_require__(62);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -37692,7 +37692,7 @@ exports.MergeAllSubscriber = MergeAllSubscriber;
 
 "use strict";
 
-var root_1 = __webpack_require__(4);
+var root_1 = __webpack_require__(3);
 function symbolIteratorPonyfill(root) {
     var Symbol = root.Symbol;
     if (typeof Symbol === 'function') {
@@ -37736,7 +37736,7 @@ exports.$$iterator = exports.iterator;
 
 "use strict";
 
-var root_1 = __webpack_require__(4);
+var root_1 = __webpack_require__(3);
 function getSymbolObservable(context) {
     var $$observable;
     var Symbol = context.Symbol;
@@ -37768,7 +37768,7 @@ exports.$$observable = exports.observable;
 
 "use strict";
 
-var root_1 = __webpack_require__(4);
+var root_1 = __webpack_require__(3);
 var Symbol = root_1.root.Symbol;
 exports.rxSubscriber = (typeof Symbol === 'function' && typeof Symbol.for === 'function') ?
     Symbol.for('rxSubscriber') : '@@rxSubscriber';
@@ -37823,1326 +37823,6 @@ exports.isArray = Array.isArray || (function (x) { return x && typeof x.length =
 
 /***/ }),
 /* 23 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return AnimationBuilder; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return AnimationFactory; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return AUTO_STYLE; });
-/* unused harmony export animate */
-/* unused harmony export animateChild */
-/* unused harmony export animation */
-/* unused harmony export group */
-/* unused harmony export keyframes */
-/* unused harmony export query */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return sequence; });
-/* unused harmony export stagger */
-/* unused harmony export state */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return style; });
-/* unused harmony export transition */
-/* unused harmony export trigger */
-/* unused harmony export useAnimation */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return NoopAnimationPlayer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return AnimationGroupPlayer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return ɵPRE_STYLE; });
-/**
- * @license Angular v4.3.3
- * (c) 2010-2017 Google, Inc. https://angular.io/
- * License: MIT
- */
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * AnimationBuilder is an injectable service that is available when the {\@link
- * BrowserAnimationsModule BrowserAnimationsModule} or {\@link NoopAnimationsModule
- * NoopAnimationsModule} modules are used within an application.
- *
- * The purpose if this service is to produce an animation sequence programmatically within an
- * angular component or directive.
- *
- * Programmatic animations are first built and then a player is created when the build animation is
- * attached to an element.
- *
- * ```ts
- * // remember to include the BrowserAnimationsModule module for this to work...
- * import {AnimationBuilder} from '\@angular/animations';
- *
- * class MyCmp {
- *   constructor(private _builder: AnimationBuilder) {}
- *
- *   makeAnimation(element: any) {
- *     // first build the animation
- *     const myAnimation = this._builder.build([
- *       style({ width: 0 }),
- *       animate(1000, style({ width: '100px' }))
- *     ]);
- *
- *     // then create a player from it
- *     const player = myAnimation.create(element);
- *
- *     player.play();
- *   }
- * }
- * ```
- *
- * When an animation is built an instance of {\@link AnimationFactory AnimationFactory} will be
- * returned. Using that an {\@link AnimationPlayer AnimationPlayer} can be created which can then be
- * used to start the animation.
- *
- * \@experimental Animation support is experimental.
- * @abstract
- */
-var AnimationBuilder = (function () {
-    function AnimationBuilder() {
-    }
-    /**
-     * @abstract
-     * @param {?} animation
-     * @return {?}
-     */
-    AnimationBuilder.prototype.build = function (animation) { };
-    return AnimationBuilder;
-}());
-/**
- * An instance of `AnimationFactory` is returned from {\@link AnimationBuilder#build
- * AnimationBuilder.build}.
- *
- * \@experimental Animation support is experimental.
- * @abstract
- */
-var AnimationFactory = (function () {
-    function AnimationFactory() {
-    }
-    /**
-     * @abstract
-     * @param {?} element
-     * @param {?=} options
-     * @return {?}
-     */
-    AnimationFactory.prototype.create = function (element, options) { };
-    return AnimationFactory;
-}());
-/**
- * \@experimental Animation support is experimental.
- */
-var AUTO_STYLE = '*';
-/**
- * `trigger` is an animation-specific function that is designed to be used inside of Angular's
- * animation DSL language. If this information is new, please navigate to the
- * {\@link Component#animations component animations metadata page} to gain a better
- * understanding of how animations in Angular are used.
- *
- * `trigger` Creates an animation trigger which will a list of {\@link state state} and
- * {\@link transition transition} entries that will be evaluated when the expression
- * bound to the trigger changes.
- *
- * Triggers are registered within the component annotation data under the
- * {\@link Component#animations animations section}. An animation trigger can be placed on an element
- * within a template by referencing the name of the trigger followed by the expression value that
- * the
- * trigger is bound to (in the form of `[\@triggerName]="expression"`.
- *
- * ### Usage
- *
- * `trigger` will create an animation trigger reference based on the provided `name` value. The
- * provided `animation` value is expected to be an array consisting of {\@link state state} and
- * {\@link transition transition} declarations.
- *
- * ```typescript
- * \@Component({
- *   selector: 'my-component',
- *   templateUrl: 'my-component-tpl.html',
- *   animations: [
- *     trigger("myAnimationTrigger", [
- *       state(...),
- *       state(...),
- *       transition(...),
- *       transition(...)
- *     ])
- *   ]
- * })
- * class MyComponent {
- *   myStatusExp = "something";
- * }
- * ```
- *
- * The template associated with this component will make use of the `myAnimationTrigger` animation
- * trigger by binding to an element within its template code.
- *
- * ```html
- * <!-- somewhere inside of my-component-tpl.html -->
- * <div [\@myAnimationTrigger]="myStatusExp">...</div>
- * ```
- *
- * ## Disable Child Animations
- * A special animation control binding called `\@.disabled` can be placed on an element which will
- * then disable animations for any inner animation triggers situated within the element.
- *
- * When true, the `\@.disabled` binding will prevent inner animations from rendering. The example
- * below shows how to use this feature:
- *
- * ```ts
- * \@Component({
- *   selector: 'my-component',
- *   template: `
- *     <div [\@.disabled]="isDisabled">
- *       <div [\@childAnimation]="exp"></div>
- *     </div>
- *   `,
- *   animations: [
- *     trigger("childAnimation", [
- *       // ...
- *     ])
- *   ]
- * })
- * class MyComponent {
- *   isDisabled = true;
- *   exp = '...';
- * }
- * ```
- *
- * The `\@childAnimation` trigger will not animate because `\@.disabled` prevents it from happening
- * (when true).
- *
- * Note that `\@.disbled` will only disable inner animations (any animations running on the same
- * element will not be disabled).
- *
- * ### Disabling Animations Application-wide
- * When an area of the template is set to have animations disabled, **all** inner components will
- * also have their animations disabled as well. This means that all animations for an angular
- * application can be disabled by placing a host binding set on `\@.disabled` on the topmost Angular
- * component.
- *
- * ```ts
- * import {Component, HostBinding} from '\@angular/core';
- *
- * \@Component({
- *   selector: 'app-component',
- *   templateUrl: 'app.component.html',
- * })
- * class AppComponent {
- *   \@HostBinding('\@.disabled')
- *   public animationsDisabled = true;
- * }
- * ```
- *
- * ### What about animations that us `query()` and `animateChild()`?
- * Despite inner animations being disabled, a parent animation can {\@link query query} for inner
- * elements located in disabled areas of the template and still animate them as it sees fit. This is
- * also the case for when a sub animation is queried by a parent and then later animated using {\@link
- * animateChild animateChild}.
- *
- * \@experimental Animation support is experimental.
- * @param {?} name
- * @param {?} definitions
- * @return {?}
- */
-function trigger(name, definitions) {
-    return { type: 7 /* Trigger */, name: name, definitions: definitions, options: {} };
-}
-/**
- * `animate` is an animation-specific function that is designed to be used inside of Angular's
- * animation DSL language. If this information is new, please navigate to the {\@link
- * Component#animations component animations metadata page} to gain a better understanding of
- * how animations in Angular are used.
- *
- * `animate` specifies an animation step that will apply the provided `styles` data for a given
- * amount of time based on the provided `timing` expression value. Calls to `animate` are expected
- * to be used within {\@link sequence an animation sequence}, {\@link group group}, or {\@link
- * transition transition}.
- *
- * ### Usage
- *
- * The `animate` function accepts two input parameters: `timing` and `styles`:
- *
- * - `timing` is a string based value that can be a combination of a duration with optional delay
- * and easing values. The format for the expression breaks down to `duration delay easing`
- * (therefore a value such as `1s 100ms ease-out` will be parse itself into `duration=1000,
- * delay=100, easing=ease-out`. If a numeric value is provided then that will be used as the
- * `duration` value in millisecond form.
- * - `styles` is the style input data which can either be a call to {\@link style style} or {\@link
- * keyframes keyframes}. If left empty then the styles from the destination state will be collected
- * and used (this is useful when describing an animation step that will complete an animation by
- * {\@link transition#the-final-animate-call animating to the final state}).
- *
- * ```typescript
- * // various functions for specifying timing data
- * animate(500, style(...))
- * animate("1s", style(...))
- * animate("100ms 0.5s", style(...))
- * animate("5s ease", style(...))
- * animate("5s 10ms cubic-bezier(.17,.67,.88,.1)", style(...))
- *
- * // either style() of keyframes() can be used
- * animate(500, style({ background: "red" }))
- * animate(500, keyframes([
- *   style({ background: "blue" })),
- *   style({ background: "red" }))
- * ])
- * ```
- *
- * {\@example core/animation/ts/dsl/animation_example.ts region='Component'}
- *
- * \@experimental Animation support is experimental.
- * @param {?} timings
- * @param {?=} styles
- * @return {?}
- */
-function animate(timings, styles) {
-    if (styles === void 0) { styles = null; }
-    return { type: 4 /* Animate */, styles: styles, timings: timings };
-}
-/**
- * `group` is an animation-specific function that is designed to be used inside of Angular's
- * animation DSL language. If this information is new, please navigate to the {\@link
- * Component#animations component animations metadata page} to gain a better understanding of
- * how animations in Angular are used.
- *
- * `group` specifies a list of animation steps that are all run in parallel. Grouped animations are
- * useful when a series of styles must be animated/closed off at different starting/ending times.
- *
- * The `group` function can either be used within a {\@link sequence sequence} or a {\@link transition
- * transition} and it will only continue to the next instruction once all of the inner animation
- * steps have completed.
- *
- * ### Usage
- *
- * The `steps` data that is passed into the `group` animation function can either consist of {\@link
- * style style} or {\@link animate animate} function calls. Each call to `style()` or `animate()`
- * within a group will be executed instantly (use {\@link keyframes keyframes} or a {\@link
- * animate#usage animate() with a delay value} to offset styles to be applied at a later time).
- *
- * ```typescript
- * group([
- *   animate("1s", { background: "black" }))
- *   animate("2s", { color: "white" }))
- * ])
- * ```
- *
- * {\@example core/animation/ts/dsl/animation_example.ts region='Component'}
- *
- * \@experimental Animation support is experimental.
- * @param {?} steps
- * @param {?=} options
- * @return {?}
- */
-function group(steps, options) {
-    if (options === void 0) { options = null; }
-    return { type: 3 /* Group */, steps: steps, options: options };
-}
-/**
- * `sequence` is an animation-specific function that is designed to be used inside of Angular's
- * animation DSL language. If this information is new, please navigate to the {\@link
- * Component#animations component animations metadata page} to gain a better understanding of
- * how animations in Angular are used.
- *
- * `sequence` Specifies a list of animation steps that are run one by one. (`sequence` is used by
- * default when an array is passed as animation data into {\@link transition transition}.)
- *
- * The `sequence` function can either be used within a {\@link group group} or a {\@link transition
- * transition} and it will only continue to the next instruction once each of the inner animation
- * steps have completed.
- *
- * To perform animation styling in parallel with other animation steps then have a look at the
- * {\@link group group} animation function.
- *
- * ### Usage
- *
- * The `steps` data that is passed into the `sequence` animation function can either consist of
- * {\@link style style} or {\@link animate animate} function calls. A call to `style()` will apply the
- * provided styling data immediately while a call to `animate()` will apply its styling data over a
- * given time depending on its timing data.
- *
- * ```typescript
- * sequence([
- *   style({ opacity: 0 })),
- *   animate("1s", { opacity: 1 }))
- * ])
- * ```
- *
- * {\@example core/animation/ts/dsl/animation_example.ts region='Component'}
- *
- * \@experimental Animation support is experimental.
- * @param {?} steps
- * @param {?=} options
- * @return {?}
- */
-function sequence(steps, options) {
-    if (options === void 0) { options = null; }
-    return { type: 2 /* Sequence */, steps: steps, options: options };
-}
-/**
- * `style` is an animation-specific function that is designed to be used inside of Angular's
- * animation DSL language. If this information is new, please navigate to the {\@link
- * Component#animations component animations metadata page} to gain a better understanding of
- * how animations in Angular are used.
- *
- * `style` declares a key/value object containing CSS properties/styles that can then be used for
- * {\@link state animation states}, within an {\@link sequence animation sequence}, or as styling data
- * for both {\@link animate animate} and {\@link keyframes keyframes}.
- *
- * ### Usage
- *
- * `style` takes in a key/value string map as data and expects one or more CSS property/value pairs
- * to be defined.
- *
- * ```typescript
- * // string values are used for css properties
- * style({ background: "red", color: "blue" })
- *
- * // numerical (pixel) values are also supported
- * style({ width: 100, height: 0 })
- * ```
- *
- * #### Auto-styles (using `*`)
- *
- * When an asterix (`*`) character is used as a value then it will be detected from the element
- * being animated and applied as animation data when the animation starts.
- *
- * This feature proves useful for a state depending on layout and/or environment factors; in such
- * cases the styles are calculated just before the animation starts.
- *
- * ```typescript
- * // the steps below will animate from 0 to the
- * // actual height of the element
- * style({ height: 0 }),
- * animate("1s", style({ height: "*" }))
- * ```
- *
- * {\@example core/animation/ts/dsl/animation_example.ts region='Component'}
- *
- * \@experimental Animation support is experimental.
- * @param {?} tokens
- * @return {?}
- */
-function style(tokens) {
-    return { type: 6 /* Style */, styles: tokens, offset: null };
-}
-/**
- * `state` is an animation-specific function that is designed to be used inside of Angular's
- * animation DSL language. If this information is new, please navigate to the {\@link
- * Component#animations component animations metadata page} to gain a better understanding of
- * how animations in Angular are used.
- *
- * `state` declares an animation state within the given trigger. When a state is active within a
- * component then its associated styles will persist on the element that the trigger is attached to
- * (even when the animation ends).
- *
- * To animate between states, have a look at the animation {\@link transition transition} DSL
- * function. To register states to an animation trigger please have a look at the {\@link trigger
- * trigger} function.
- *
- * #### The `void` state
- *
- * The `void` state value is a reserved word that angular uses to determine when the element is not
- * apart of the application anymore (e.g. when an `ngIf` evaluates to false then the state of the
- * associated element is void).
- *
- * #### The `*` (default) state
- *
- * The `*` state (when styled) is a fallback state that will be used if the state that is being
- * animated is not declared within the trigger.
- *
- * ### Usage
- *
- * `state` will declare an animation state with its associated styles
- * within the given trigger.
- *
- * - `stateNameExpr` can be one or more state names separated by commas.
- * - `styles` refers to the {\@link style styling data} that will be persisted on the element once
- * the state has been reached.
- *
- * ```typescript
- * // "void" is a reserved name for a state and is used to represent
- * // the state in which an element is detached from from the application.
- * state("void", style({ height: 0 }))
- *
- * // user-defined states
- * state("closed", style({ height: 0 }))
- * state("open, visible", style({ height: "*" }))
- * ```
- *
- * {\@example core/animation/ts/dsl/animation_example.ts region='Component'}
- *
- * \@experimental Animation support is experimental.
- * @param {?} name
- * @param {?} styles
- * @return {?}
- */
-function state(name, styles) {
-    return { type: 0 /* State */, name: name, styles: styles };
-}
-/**
- * `keyframes` is an animation-specific function that is designed to be used inside of Angular's
- * animation DSL language. If this information is new, please navigate to the {\@link
- * Component#animations component animations metadata page} to gain a better understanding of
- * how animations in Angular are used.
- *
- * `keyframes` specifies a collection of {\@link style style} entries each optionally characterized
- * by an `offset` value.
- *
- * ### Usage
- *
- * The `keyframes` animation function is designed to be used alongside the {\@link animate animate}
- * animation function. Instead of applying animations from where they are currently to their
- * destination, keyframes can describe how each style entry is applied and at what point within the
- * animation arc (much like CSS Keyframe Animations do).
- *
- * For each `style()` entry an `offset` value can be set. Doing so allows to specifiy at what
- * percentage of the animate time the styles will be applied.
- *
- * ```typescript
- * // the provided offset values describe when each backgroundColor value is applied.
- * animate("5s", keyframes([
- *   style({ backgroundColor: "red", offset: 0 }),
- *   style({ backgroundColor: "blue", offset: 0.2 }),
- *   style({ backgroundColor: "orange", offset: 0.3 }),
- *   style({ backgroundColor: "black", offset: 1 })
- * ]))
- * ```
- *
- * Alternatively, if there are no `offset` values used within the style entries then the offsets
- * will be calculated automatically.
- *
- * ```typescript
- * animate("5s", keyframes([
- *   style({ backgroundColor: "red" }) // offset = 0
- *   style({ backgroundColor: "blue" }) // offset = 0.33
- *   style({ backgroundColor: "orange" }) // offset = 0.66
- *   style({ backgroundColor: "black" }) // offset = 1
- * ]))
- * ```
- *
- * {\@example core/animation/ts/dsl/animation_example.ts region='Component'}
- *
- * \@experimental Animation support is experimental.
- * @param {?} steps
- * @return {?}
- */
-function keyframes(steps) {
-    return { type: 5 /* Keyframes */, steps: steps };
-}
-/**
- * `transition` is an animation-specific function that is designed to be used inside of Angular's
- * animation DSL language. If this information is new, please navigate to the {\@link
- * Component#animations component animations metadata page} to gain a better understanding of
- * how animations in Angular are used.
- *
- * `transition` declares the {\@link sequence sequence of animation steps} that will be run when the
- * provided `stateChangeExpr` value is satisfied. The `stateChangeExpr` consists of a `state1 =>
- * state2` which consists of two known states (use an asterix (`*`) to refer to a dynamic starting
- * and/or ending state).
- *
- * A function can also be provided as the `stateChangeExpr` argument for a transition and this
- * function will be executed each time a state change occurs. If the value returned within the
- * function is true then the associated animation will be run.
- *
- * Animation transitions are placed within an {\@link trigger animation trigger}. For an transition
- * to animate to a state value and persist its styles then one or more {\@link state animation
- * states} is expected to be defined.
- *
- * ### Usage
- *
- * An animation transition is kicked off the `stateChangeExpr` predicate evaluates to true based on
- * what the previous state is and what the current state has become. In other words, if a transition
- * is defined that matches the old/current state criteria then the associated animation will be
- * triggered.
- *
- * ```typescript
- * // all transition/state changes are defined within an animation trigger
- * trigger("myAnimationTrigger", [
- *   // if a state is defined then its styles will be persisted when the
- *   // animation has fully completed itself
- *   state("on", style({ background: "green" })),
- *   state("off", style({ background: "grey" })),
- *
- *   // a transition animation that will be kicked off when the state value
- *   // bound to "myAnimationTrigger" changes from "on" to "off"
- *   transition("on => off", animate(500)),
- *
- *   // it is also possible to do run the same animation for both directions
- *   transition("on <=> off", animate(500)),
- *
- *   // or to define multiple states pairs separated by commas
- *   transition("on => off, off => void", animate(500)),
- *
- *   // this is a catch-all state change for when an element is inserted into
- *   // the page and the destination state is unknown
- *   transition("void => *", [
- *     style({ opacity: 0 }),
- *     animate(500)
- *   ]),
- *
- *   // this will capture a state change between any states
- *   transition("* => *", animate("1s 0s")),
- *
- *   // you can also go full out and include a function
- *   transition((fromState, toState) => {
- *     // when `true` then it will allow the animation below to be invoked
- *     return fromState == "off" && toState == "on";
- *   }, animate("1s 0s"))
- * ])
- * ```
- *
- * The template associated with this component will make use of the `myAnimationTrigger` animation
- * trigger by binding to an element within its template code.
- *
- * ```html
- * <!-- somewhere inside of my-component-tpl.html -->
- * <div [\@myAnimationTrigger]="myStatusExp">...</div>
- * ```
- *
- * #### The final `animate` call
- *
- * If the final step within the transition steps is a call to `animate()` that **only** uses a
- * timing value with **no style data** then it will be automatically used as the final animation arc
- * for the element to animate itself to the final state. This involves an automatic mix of
- * adding/removing CSS styles so that the element will be in the exact state it should be for the
- * applied state to be presented correctly.
- *
- * ```
- * // start off by hiding the element, but make sure that it animates properly to whatever state
- * // is currently active for "myAnimationTrigger"
- * transition("void => *", [
- *   style({ opacity: 0 }),
- *   animate(500)
- * ])
- * ```
- *
- * ### Transition Aliases (`:enter` and `:leave`)
- *
- * Given that enter (insertion) and leave (removal) animations are so common, the `transition`
- * function accepts both `:enter` and `:leave` values which are aliases for the `void => *` and `*
- * => void` state changes.
- *
- * ```
- * transition(":enter", [
- *   style({ opacity: 0 }),
- *   animate(500, style({ opacity: 1 }))
- * ])
- * transition(":leave", [
- *   animate(500, style({ opacity: 0 }))
- * ])
- * ```
- *
- * {\@example core/animation/ts/dsl/animation_example.ts region='Component'}
- *
- * \@experimental Animation support is experimental.
- * @param {?} stateChangeExpr
- * @param {?} steps
- * @param {?=} options
- * @return {?}
- */
-function transition(stateChangeExpr, steps, options) {
-    if (options === void 0) { options = null; }
-    return { type: 1 /* Transition */, expr: stateChangeExpr, animation: steps, options: options };
-}
-/**
- * `animation` is an animation-specific function that is designed to be used inside of Angular's
- * animation DSL language.
- *
- * `var myAnimation = animation(...)` is designed to produce a reusable animation that can be later
- * invoked in another animation or sequence. Reusable animations are designed to make use of
- * animation parameters and the produced animation can be used via the `useAnimation` method.
- *
- * ```
- * var fadeAnimation = animation([
- *   style({ opacity: '{{ start }}' }),
- *   animate('{{ time }}',
- *     style({ opacity: '{{ end }}'))
- * ], { params: { time: '1000ms', start: 0, end: 1 }});
- * ```
- *
- * If parameters are attached to an animation then they act as **default parameter values**. When an
- * animation is invoked via `useAnimation` then parameter values are allowed to be passed in
- * directly. If any of the passed in parameter values are missing then the default values will be
- * used.
- *
- * ```
- * useAnimation(fadeAnimation, {
- *   params: {
- *     time: '2s',
- *     start: 1,
- *     end: 0
- *   }
- * })
- * ```
- *
- * If one or more parameter values are missing before animated then an error will be thrown.
- *
- * \@experimental Animation support is experimental.
- * @param {?} steps
- * @param {?=} options
- * @return {?}
- */
-function animation(steps, options) {
-    if (options === void 0) { options = null; }
-    return { type: 8 /* Reference */, animation: steps, options: options };
-}
-/**
- * `animateChild` is an animation-specific function that is designed to be used inside of Angular's
- * animation DSL language. It works by allowing a queried element to execute its own
- * animation within the animation sequence.
- *
- * Each time an animation is triggered in angular, the parent animation
- * will always get priority and any child animations will be blocked. In order
- * for a child animation to run, the parent animation must query each of the elements
- * containing child animations and then allow the animations to run using `animateChild`.
- *
- * The example HTML code below shows both parent and child elements that have animation
- * triggers that will execute at the same time.
- *
- * ```html
- * <!-- parent-child.component.html -->
- * <button (click)="exp =! exp">Toggle</button>
- * <hr>
- *
- * <div [\@parentAnimation]="exp">
- *   <header>Hello</header>
- *   <div [\@childAnimation]="exp">
- *       one
- *   </div>
- *   <div [\@childAnimation]="exp">
- *       two
- *   </div>
- *   <div [\@childAnimation]="exp">
- *       three
- *   </div>
- * </div>
- * ```
- *
- * Now when the `exp` value changes to true, only the `parentAnimation` animation will animate
- * because it has priority. However, using `query` and `animateChild` each of the inner animations
- * can also fire:
- *
- * ```ts
- * // parent-child.component.ts
- * import {trigger, transition, animate, style, query, animateChild} from '\@angular/animations';
- * \@Component({
- *   selector: 'parent-child-component',
- *   animations: [
- *     trigger('parentAnimation', [
- *       transition('false => true', [
- *         query('header', [
- *           style({ opacity: 0 }),
- *           animate(500, style({ opacity: 1 }))
- *         ]),
- *         query('\@childAnimation', [
- *           animateChild()
- *         ])
- *       ])
- *     ]),
- *     trigger('childAnimation', [
- *       transition('false => true', [
- *         style({ opacity: 0 }),
- *         animate(500, style({ opacity: 1 }))
- *       ])
- *     ])
- *   ]
- * })
- * class ParentChildCmp {
- *   exp: boolean = false;
- * }
- * ```
- *
- * In the animation code above, when the `parentAnimation` transition kicks off it first queries to
- * find the header element and fades it in. It then finds each of the sub elements that contain the
- * `\@childAnimation` trigger and then allows for their animations to fire.
- *
- * This example can be further extended by using stagger:
- *
- * ```ts
- * query('\@childAnimation', stagger(100, [
- *   animateChild()
- * ]))
- * ```
- *
- * Now each of the sub animations start off with respect to the `100ms` staggering step.
- *
- * ## The first frame of child animations
- * When sub animations are executed using `animateChild` the animation engine will always apply the
- * first frame of every sub animation immediately at the start of the animation sequence. This way
- * the parent animation does not need to set any initial styling data on the sub elements before the
- * sub animations kick off.
- *
- * In the example above the first frame of the `childAnimation`'s `false => true` transition
- * consists of a style of `opacity: 0`. This is applied immediately when the `parentAnimation`
- * animation transition sequence starts. Only then when the `\@childAnimation` is queried and called
- * with `animateChild` will it then animate to its destination of `opacity: 1`.
- *
- * Note that this feature designed to be used alongside {\@link query query()} and it will only work
- * with animations that are assigned using the Angular animation DSL (this means that CSS keyframes
- * and transitions are not handled by this API).
- *
- * \@experimental Animation support is experimental.
- * @param {?=} options
- * @return {?}
- */
-function animateChild(options) {
-    if (options === void 0) { options = null; }
-    return { type: 9 /* AnimateChild */, options: options };
-}
-/**
- * `useAnimation` is an animation-specific function that is designed to be used inside of Angular's
- * animation DSL language. It is used to kick off a reusable animation that is created using {\@link
- * animation animation()}.
- *
- * \@experimental Animation support is experimental.
- * @param {?} animation
- * @param {?=} options
- * @return {?}
- */
-function useAnimation(animation, options) {
-    if (options === void 0) { options = null; }
-    return { type: 10 /* AnimateRef */, animation: animation, options: options };
-}
-/**
- * `query` is an animation-specific function that is designed to be used inside of Angular's
- * animation DSL language.
- *
- * query() is used to find one or more inner elements within the current element that is
- * being animated within the sequence. The provided animation steps are applied
- * to the queried element (by default, an array is provided, then this will be
- * treated as an animation sequence).
- *
- * ### Usage
- *
- * query() is designed to collect mutiple elements and works internally by using
- * `element.querySelectorAll`. An additional options object can be provided which
- * can be used to limit the total amount of items to be collected.
- *
- * ```js
- * query('div', [
- *   animate(...),
- *   animate(...)
- * ], { limit: 1 })
- * ```
- *
- * query(), by default, will throw an error when zero items are found. If a query
- * has the `optional` flag set to true then this error will be ignored.
- *
- * ```js
- * query('.some-element-that-may-not-be-there', [
- *   animate(...),
- *   animate(...)
- * ], { optional: true })
- * ```
- *
- * ### Special Selector Values
- *
- * The selector value within a query can collect elements that contain angular-specific
- * characteristics
- * using special pseudo-selectors tokens.
- *
- * These include:
- *
- *  - Querying for newly inserted/removed elements using `query(":enter")`/`query(":leave")`
- *  - Querying all currently animating elements using `query(":animating")`
- *  - Querying elements that contain an animation trigger using `query("\@triggerName")`
- *  - Querying all elements that contain an animation triggers using `query("\@*")`
- *  - Including the current element into the animation sequence using `query(":self")`
- *
- *
- *  Each of these pseudo-selector tokens can be merged together into a combined query selector
- * string:
- *
- *  ```
- *  query(':self, .record:enter, .record:leave, \@subTrigger', [...])
- *  ```
- *
- * ### Demo
- *
- * ```
- * \@Component({
- *   selector: 'inner',
- *   template: `
- *     <div [\@queryAnimation]="exp">
- *       <h1>Title</h1>
- *       <div class="content">
- *         Blah blah blah
- *       </div>
- *     </div>
- *   `,
- *   animations: [
- *    trigger('queryAnimation', [
- *      transition('* => goAnimate', [
- *        // hide the inner elements
- *        query('h1', style({ opacity: 0 })),
- *        query('.content', style({ opacity: 0 })),
- *
- *        // animate the inner elements in, one by one
- *        query('h1', animate(1000, style({ opacity: 1 })),
- *        query('.content', animate(1000, style({ opacity: 1 })),
- *      ])
- *    ])
- *  ]
- * })
- * class Cmp {
- *   exp = '';
- *
- *   goAnimate() {
- *     this.exp = 'goAnimate';
- *   }
- * }
- * ```
- *
- * \@experimental Animation support is experimental.
- * @param {?} selector
- * @param {?} animation
- * @param {?=} options
- * @return {?}
- */
-function query(selector, animation, options) {
-    if (options === void 0) { options = null; }
-    return { type: 11 /* Query */, selector: selector, animation: animation, options: options };
-}
-/**
- * `stagger` is an animation-specific function that is designed to be used inside of Angular's
- * animation DSL language. It is designed to be used inside of an animation {\@link query query()}
- * and works by issuing a timing gap between after each queried item is animated.
- *
- * ### Usage
- *
- * In the example below there is a container element that wraps a list of items stamped out
- * by an ngFor. The container element contains an animation trigger that will later be set
- * to query for each of the inner items.
- *
- * ```html
- * <!-- list.component.html -->
- * <button (click)="toggle()">Show / Hide Items</button>
- * <hr />
- * <div [\@listAnimation]="items.length">
- *   <div *ngFor="let item of items">
- *     {{ item }}
- *   </div>
- * </div>
- * ```
- *
- * The component code for this looks as such:
- *
- * ```ts
- * import {trigger, transition, style, animate, query, stagger} from '\@angular/animations';
- * \@Component({
- *   templateUrl: 'list.component.html',
- *   animations: [
- *     trigger('listAnimation', [
- *        //...
- *     ])
- *   ]
- * })
- * class ListComponent {
- *   items = [];
- *
- *   showItems() {
- *     this.items = [0,1,2,3,4];
- *   }
- *
- *   hideItems() {
- *     this.items = [];
- *   }
- *
- *   toggle() {
- *     this.items.length ? this.hideItems() : this.showItems();
- *   }
- * }
- * ```
- *
- * And now for the animation trigger code:
- *
- * ```ts
- * trigger('listAnimation', [
- *   transition('* => *', [ // each time the binding value changes
- *     query(':leave', [
- *       stagger(100, [
- *         animate('0.5s', style({ opacity: 0 }))
- *       ])
- *     ]),
- *     query(':enter', [
- *       style({ opacity: 0 }),
- *       stagger(100, [
- *         animate('0.5s', style({ opacity: 1 }))
- *       ])
- *     ])
- *   ])
- * ])
- * ```
- *
- * Now each time the items are added/removed then either the opacity
- * fade-in animation will run or each removed item will be faded out.
- * When either of these animations occur then a stagger effect will be
- * applied after each item's animation is started.
- *
- * \@experimental Animation support is experimental.
- * @param {?} timings
- * @param {?} animation
- * @return {?}
- */
-function stagger(timings, animation) {
-    return { type: 12 /* Stagger */, timings: timings, animation: animation };
-}
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- * @param {?} cb
- * @return {?}
- */
-function scheduleMicroTask(cb) {
-    Promise.resolve(null).then(cb);
-}
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * \@experimental Animation support is experimental.
- */
-var NoopAnimationPlayer = (function () {
-    function NoopAnimationPlayer() {
-        this._onDoneFns = [];
-        this._onStartFns = [];
-        this._onDestroyFns = [];
-        this._started = false;
-        this._destroyed = false;
-        this._finished = false;
-        this.parentPlayer = null;
-        this.totalTime = 0;
-    }
-    /**
-     * @return {?}
-     */
-    NoopAnimationPlayer.prototype._onFinish = function () {
-        if (!this._finished) {
-            this._finished = true;
-            this._onDoneFns.forEach(function (fn) { return fn(); });
-            this._onDoneFns = [];
-        }
-    };
-    /**
-     * @param {?} fn
-     * @return {?}
-     */
-    NoopAnimationPlayer.prototype.onStart = function (fn) { this._onStartFns.push(fn); };
-    /**
-     * @param {?} fn
-     * @return {?}
-     */
-    NoopAnimationPlayer.prototype.onDone = function (fn) { this._onDoneFns.push(fn); };
-    /**
-     * @param {?} fn
-     * @return {?}
-     */
-    NoopAnimationPlayer.prototype.onDestroy = function (fn) { this._onDestroyFns.push(fn); };
-    /**
-     * @return {?}
-     */
-    NoopAnimationPlayer.prototype.hasStarted = function () { return this._started; };
-    /**
-     * @return {?}
-     */
-    NoopAnimationPlayer.prototype.init = function () { };
-    /**
-     * @return {?}
-     */
-    NoopAnimationPlayer.prototype.play = function () {
-        if (!this.hasStarted()) {
-            this.triggerMicrotask();
-            this._onStart();
-        }
-        this._started = true;
-    };
-    /**
-     * @return {?}
-     */
-    NoopAnimationPlayer.prototype.triggerMicrotask = function () {
-        var _this = this;
-        scheduleMicroTask(function () { return _this._onFinish(); });
-    };
-    /**
-     * @return {?}
-     */
-    NoopAnimationPlayer.prototype._onStart = function () {
-        this._onStartFns.forEach(function (fn) { return fn(); });
-        this._onStartFns = [];
-    };
-    /**
-     * @return {?}
-     */
-    NoopAnimationPlayer.prototype.pause = function () { };
-    /**
-     * @return {?}
-     */
-    NoopAnimationPlayer.prototype.restart = function () { };
-    /**
-     * @return {?}
-     */
-    NoopAnimationPlayer.prototype.finish = function () { this._onFinish(); };
-    /**
-     * @return {?}
-     */
-    NoopAnimationPlayer.prototype.destroy = function () {
-        if (!this._destroyed) {
-            this._destroyed = true;
-            if (!this.hasStarted()) {
-                this._onStart();
-            }
-            this.finish();
-            this._onDestroyFns.forEach(function (fn) { return fn(); });
-            this._onDestroyFns = [];
-        }
-    };
-    /**
-     * @return {?}
-     */
-    NoopAnimationPlayer.prototype.reset = function () { };
-    /**
-     * @param {?} p
-     * @return {?}
-     */
-    NoopAnimationPlayer.prototype.setPosition = function (p) { };
-    /**
-     * @return {?}
-     */
-    NoopAnimationPlayer.prototype.getPosition = function () { return 0; };
-    return NoopAnimationPlayer;
-}());
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var AnimationGroupPlayer = (function () {
-    /**
-     * @param {?} _players
-     */
-    function AnimationGroupPlayer(_players) {
-        var _this = this;
-        this._players = _players;
-        this._onDoneFns = [];
-        this._onStartFns = [];
-        this._finished = false;
-        this._started = false;
-        this._destroyed = false;
-        this._onDestroyFns = [];
-        this.parentPlayer = null;
-        this.totalTime = 0;
-        var doneCount = 0;
-        var destroyCount = 0;
-        var startCount = 0;
-        var total = this._players.length;
-        if (total == 0) {
-            scheduleMicroTask(function () { return _this._onFinish(); });
-        }
-        else {
-            this._players.forEach(function (player) {
-                player.parentPlayer = _this;
-                player.onDone(function () {
-                    if (++doneCount >= total) {
-                        _this._onFinish();
-                    }
-                });
-                player.onDestroy(function () {
-                    if (++destroyCount >= total) {
-                        _this._onDestroy();
-                    }
-                });
-                player.onStart(function () {
-                    if (++startCount >= total) {
-                        _this._onStart();
-                    }
-                });
-            });
-        }
-        this.totalTime = this._players.reduce(function (time, player) { return Math.max(time, player.totalTime); }, 0);
-    }
-    /**
-     * @return {?}
-     */
-    AnimationGroupPlayer.prototype._onFinish = function () {
-        if (!this._finished) {
-            this._finished = true;
-            this._onDoneFns.forEach(function (fn) { return fn(); });
-            this._onDoneFns = [];
-        }
-    };
-    /**
-     * @return {?}
-     */
-    AnimationGroupPlayer.prototype.init = function () { this._players.forEach(function (player) { return player.init(); }); };
-    /**
-     * @param {?} fn
-     * @return {?}
-     */
-    AnimationGroupPlayer.prototype.onStart = function (fn) { this._onStartFns.push(fn); };
-    /**
-     * @return {?}
-     */
-    AnimationGroupPlayer.prototype._onStart = function () {
-        if (!this.hasStarted()) {
-            this._onStartFns.forEach(function (fn) { return fn(); });
-            this._onStartFns = [];
-            this._started = true;
-        }
-    };
-    /**
-     * @param {?} fn
-     * @return {?}
-     */
-    AnimationGroupPlayer.prototype.onDone = function (fn) { this._onDoneFns.push(fn); };
-    /**
-     * @param {?} fn
-     * @return {?}
-     */
-    AnimationGroupPlayer.prototype.onDestroy = function (fn) { this._onDestroyFns.push(fn); };
-    /**
-     * @return {?}
-     */
-    AnimationGroupPlayer.prototype.hasStarted = function () { return this._started; };
-    /**
-     * @return {?}
-     */
-    AnimationGroupPlayer.prototype.play = function () {
-        if (!this.parentPlayer) {
-            this.init();
-        }
-        this._onStart();
-        this._players.forEach(function (player) { return player.play(); });
-    };
-    /**
-     * @return {?}
-     */
-    AnimationGroupPlayer.prototype.pause = function () { this._players.forEach(function (player) { return player.pause(); }); };
-    /**
-     * @return {?}
-     */
-    AnimationGroupPlayer.prototype.restart = function () { this._players.forEach(function (player) { return player.restart(); }); };
-    /**
-     * @return {?}
-     */
-    AnimationGroupPlayer.prototype.finish = function () {
-        this._onFinish();
-        this._players.forEach(function (player) { return player.finish(); });
-    };
-    /**
-     * @return {?}
-     */
-    AnimationGroupPlayer.prototype.destroy = function () { this._onDestroy(); };
-    /**
-     * @return {?}
-     */
-    AnimationGroupPlayer.prototype._onDestroy = function () {
-        if (!this._destroyed) {
-            this._destroyed = true;
-            this._onFinish();
-            this._players.forEach(function (player) { return player.destroy(); });
-            this._onDestroyFns.forEach(function (fn) { return fn(); });
-            this._onDestroyFns = [];
-        }
-    };
-    /**
-     * @return {?}
-     */
-    AnimationGroupPlayer.prototype.reset = function () {
-        this._players.forEach(function (player) { return player.reset(); });
-        this._destroyed = false;
-        this._finished = false;
-        this._started = false;
-    };
-    /**
-     * @param {?} p
-     * @return {?}
-     */
-    AnimationGroupPlayer.prototype.setPosition = function (p) {
-        var /** @type {?} */ timeAtPosition = p * this.totalTime;
-        this._players.forEach(function (player) {
-            var /** @type {?} */ position = player.totalTime ? Math.min(1, timeAtPosition / player.totalTime) : 1;
-            player.setPosition(position);
-        });
-    };
-    /**
-     * @return {?}
-     */
-    AnimationGroupPlayer.prototype.getPosition = function () {
-        var /** @type {?} */ min = 0;
-        this._players.forEach(function (player) {
-            var /** @type {?} */ p = player.getPosition();
-            min = Math.min(p, min);
-        });
-        return min;
-    };
-    Object.defineProperty(AnimationGroupPlayer.prototype, "players", {
-        /**
-         * @return {?}
-         */
-        get: function () { return this._players; },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @return {?}
-     */
-    AnimationGroupPlayer.prototype.beforeDestroy = function () {
-        this.players.forEach(function (player) {
-            if (player.beforeDestroy) {
-                player.beforeDestroy();
-            }
-        });
-    };
-    return AnimationGroupPlayer;
-}());
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var ɵPRE_STYLE = '!';
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @module
- * @description
- * Entry point for all animation APIs of the animation package.
- */
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @module
- * @description
- * Entry point for all public APIs of the animation package.
- */
-/**
- * Generated bundle index. Do not edit.
- */
-
-//# sourceMappingURL=animations.es5.js.map
-
-
-/***/ }),
-/* 24 */
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -39151,10 +37831,10 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 24;
+webpackEmptyContext.id = 23;
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39175,7 +37855,7 @@ var AccordionComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(85)
+        template: __webpack_require__(82)
       })];
     }
   }]);
@@ -39231,7 +37911,7 @@ exports.default = AccordionComponent;
 AccordionComponent.parameters = [];
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39252,7 +37932,7 @@ var ButtonComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(87)
+        template: __webpack_require__(84)
       })];
     }
   }]);
@@ -39278,7 +37958,7 @@ exports.default = ButtonComponent;
 ButtonComponent.parameters = [];
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39299,7 +37979,7 @@ var ButtongroupsComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(88)
+        template: __webpack_require__(85)
       })];
     }
   }]);
@@ -39324,7 +38004,7 @@ exports.default = ButtongroupsComponent;
 ButtongroupsComponent.parameters = [];
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39345,7 +38025,7 @@ var CarouselAngularComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(89)
+        template: __webpack_require__(86)
       })];
     }
   }]);
@@ -39406,7 +38086,7 @@ exports.default = CarouselAngularComponent;
 CarouselAngularComponent.parameters = [];
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39427,7 +38107,7 @@ var DatepickerAngularComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(90)
+        template: __webpack_require__(87)
       })];
     }
   }]);
@@ -39453,7 +38133,7 @@ exports.default = DatepickerAngularComponent;
 DatepickerAngularComponent.parameters = [];
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39474,7 +38154,7 @@ var DropdownAngularComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(91)
+        template: __webpack_require__(88)
       })];
     }
   }]);
@@ -39522,7 +38202,7 @@ exports.default = DropdownAngularComponent;
 DropdownAngularComponent.parameters = [];
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39543,7 +38223,7 @@ var FormsComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(92)
+        template: __webpack_require__(89)
       })];
     }
   }]);
@@ -39578,7 +38258,7 @@ exports.default = FormsComponent;
 FormsComponent.parameters = [];
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39599,7 +38279,7 @@ var GridComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(93)
+        template: __webpack_require__(90)
       })];
     }
   }]);
@@ -39626,7 +38306,7 @@ exports.default = GridComponent;
 GridComponent.parameters = [];
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39647,7 +38327,7 @@ var GridAngularComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(94)
+        template: __webpack_require__(91)
       })];
     }
   }]);
@@ -39695,7 +38375,7 @@ exports.default = GridAngularComponent;
 GridAngularComponent.parameters = [];
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39718,7 +38398,7 @@ var HomeComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(95),
+        template: __webpack_require__(92),
         directives: [_router.ROUTER_DIRECTIVES]
       })];
     }
@@ -39739,7 +38419,7 @@ exports.default = HomeComponent;
 HomeComponent.parameters = [];
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39760,7 +38440,7 @@ var IconComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(96)
+        template: __webpack_require__(93)
       })];
     }
   }]);
@@ -39783,7 +38463,7 @@ exports.default = IconComponent;
 IconComponent.parameters = [];
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39804,7 +38484,7 @@ var InputComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(97)
+        template: __webpack_require__(94)
       })];
     }
   }]);
@@ -39827,7 +38507,7 @@ exports.default = InputComponent;
 InputComponent.parameters = [];
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39848,7 +38528,7 @@ var InputgroupComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(98)
+        template: __webpack_require__(95)
       })];
     }
   }]);
@@ -39876,7 +38556,7 @@ exports.default = InputgroupComponent;
 InputgroupComponent.parameters = [];
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39897,7 +38577,7 @@ var ModalAngularComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(99)
+        template: __webpack_require__(96)
       })];
     }
   }]);
@@ -40003,7 +38683,7 @@ exports.default = ModalAngularComponent;
 ModalAngularComponent.parameters = [];
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40024,7 +38704,7 @@ var navbarComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(100)
+        template: __webpack_require__(97)
       })];
     }
   }]);
@@ -40043,7 +38723,7 @@ var navbarComponent = function () {
 exports.default = navbarComponent;
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40064,7 +38744,7 @@ var PaginationAngularComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(101)
+        template: __webpack_require__(98)
       })];
     }
   }]);
@@ -40099,7 +38779,7 @@ exports.default = PaginationAngularComponent;
 PaginationAngularComponent.parameters = [];
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40120,7 +38800,7 @@ var PopoverComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(102)
+        template: __webpack_require__(99)
       })];
     }
   }]);
@@ -40149,7 +38829,7 @@ exports.default = PopoverComponent;
 PopoverComponent.parameters = [];
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40170,7 +38850,7 @@ var ProgressBarComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(103)
+        template: __webpack_require__(100)
       })];
     }
   }]);
@@ -40201,7 +38881,7 @@ exports.default = ProgressBarComponent;
 ProgressBarComponent.parameters = [];
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40222,7 +38902,7 @@ var SelectpickerAngularComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(104)
+        template: __webpack_require__(101)
       })];
     }
   }]);
@@ -40427,7 +39107,7 @@ exports.default = SelectpickerAngularComponent;
 SelectpickerAngularComponent.parameters = [];
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40448,7 +39128,7 @@ var SlidepickerAngularComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(105)
+        template: __webpack_require__(102)
       })];
     }
   }]);
@@ -40539,7 +39219,7 @@ exports.default = SlidepickerAngularComponent;
 SlidepickerAngularComponent.parameters = [];
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40560,7 +39240,7 @@ var TableComponent = function () {
         key: 'annotations',
         get: function get() {
             return [new _core.Component({
-                template: __webpack_require__(106)
+                template: __webpack_require__(103)
             })];
         }
     }]);
@@ -40581,7 +39261,7 @@ exports.default = TableComponent;
 TableComponent.parameters = [];
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40602,7 +39282,7 @@ var TooltipComponent = function () {
     key: 'annotations',
     get: function get() {
       return [new _core.Component({
-        template: __webpack_require__(107)
+        template: __webpack_require__(104)
       })];
     }
   }]);
@@ -40631,7 +39311,7 @@ exports.default = TooltipComponent;
 TooltipComponent.parameters = [];
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports) {
 
 /*
@@ -40687,25 +39367,25 @@ module.exports = function() {
 
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports) {
 
 module.exports = "compiled/fonts/fontawesome-webfont.eot";
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports) {
 
 module.exports = "compiled/img/carousel05.jpg";
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports = "compiled/img/carousel06.jpg";
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40719,7 +39399,7 @@ exports.empty = {
 //# sourceMappingURL=Observer.js.map
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40729,7 +39409,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var root_1 = __webpack_require__(4);
+var root_1 = __webpack_require__(3);
 var Observable_1 = __webpack_require__(1);
 /**
  * We need this JSDoc comment for affecting ESDoc.
@@ -40846,7 +39526,7 @@ function dispatchError(arg) {
 //# sourceMappingURL=PromiseObservable.js.map
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40910,17 +39590,17 @@ exports.ScalarObservable = ScalarObservable;
 //# sourceMappingURL=ScalarObservable.js.map
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var PromiseObservable_1 = __webpack_require__(52);
+var PromiseObservable_1 = __webpack_require__(51);
 exports.fromPromise = PromiseObservable_1.PromiseObservable.create;
 //# sourceMappingURL=fromPromise.js.map
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41013,7 +39693,7 @@ var MapSubscriber = (function (_super) {
 //# sourceMappingURL=map.js.map
 
 /***/ }),
-/* 56 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41190,7 +39870,7 @@ exports.MergeMapSubscriber = MergeMapSubscriber;
 //# sourceMappingURL=mergeMap.js.map
 
 /***/ }),
-/* 57 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41223,7 +39903,7 @@ exports.ObjectUnsubscribedError = ObjectUnsubscribedError;
 //# sourceMappingURL=ObjectUnsubscribedError.js.map
 
 /***/ }),
-/* 58 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41233,7 +39913,7 @@ exports.errorObject = { e: {} };
 //# sourceMappingURL=errorObject.js.map
 
 /***/ }),
-/* 59 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41242,7 +39922,7 @@ exports.isArrayLike = (function (x) { return x && typeof x.length === 'number'; 
 //# sourceMappingURL=isArrayLike.js.map
 
 /***/ }),
-/* 60 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41254,7 +39934,7 @@ exports.isFunction = isFunction;
 //# sourceMappingURL=isFunction.js.map
 
 /***/ }),
-/* 61 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41266,7 +39946,7 @@ exports.isObject = isObject;
 //# sourceMappingURL=isObject.js.map
 
 /***/ }),
-/* 62 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41278,7 +39958,7 @@ exports.isPromise = isPromise;
 //# sourceMappingURL=isPromise.js.map
 
 /***/ }),
-/* 63 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41290,7 +39970,7 @@ exports.isScheduler = isScheduler;
 //# sourceMappingURL=isScheduler.js.map
 
 /***/ }),
-/* 64 */
+/* 63 */
 /***/ (function(module, exports) {
 
 /*
@@ -41542,7 +40222,7 @@ function updateLink(linkElement, obj) {
 
 
 /***/ }),
-/* 65 */
+/* 64 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -41570,20 +40250,20 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 66 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _platformBrowserDynamic = __webpack_require__(74);
+var _platformBrowserDynamic = __webpack_require__(72);
 
-var _app = __webpack_require__(78);
+var _app = __webpack_require__(75);
 
 (0, _platformBrowserDynamic.platformBrowserDynamic)().bootstrapModule(_app.AppModule);
 
 /***/ }),
-/* 67 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {;(function (global, factory) {
@@ -55287,10 +53967,10 @@ return hooks;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(65)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(64)(module)))
 
 /***/ }),
-/* 68 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global) {/*! *****************************************************************************
@@ -56418,19 +55098,19 @@ var Reflect;
             Function("return this;")());
 })(Reflect || (Reflect = {}));
 //# sourceMappingURL=Reflect.js.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(108), __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(105), __webpack_require__(6)))
 
 /***/ }),
-/* 69 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(81);
+var content = __webpack_require__(78);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(64)(content, {});
+var update = __webpack_require__(63)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -56447,16 +55127,16 @@ if(false) {
 }
 
 /***/ }),
-/* 70 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(82);
+var content = __webpack_require__(79);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(64)(content, {});
+var update = __webpack_require__(63)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -56473,7 +55153,7 @@ if(false) {
 }
 
 /***/ }),
-/* 71 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -58831,5015 +57511,11 @@ Zone.__load_patch('util', function (global, Zone, api) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 72 */
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_animations__ = __webpack_require__(23);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return AnimationDriver; });
-/* unused harmony export ɵAnimation */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return AnimationStyleNormalizer; });
-/* unused harmony export ɵNoopAnimationStyleNormalizer */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return WebAnimationsStyleNormalizer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return NoopAnimationDriver; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AnimationEngine; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return WebAnimationsDriver; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return supportsWebAnimations; });
-/* unused harmony export ɵWebAnimationsPlayer */
-
-/**
- * @license Angular v4.3.3
- * (c) 2010-2017 Google, Inc. https://angular.io/
- * License: MIT
- */
-
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-function optimizeGroupPlayer(players) {
-    switch (players.length) {
-        case 0:
-            return new __WEBPACK_IMPORTED_MODULE_1__angular_animations__["d" /* NoopAnimationPlayer */]();
-        case 1:
-            return players[0];
-        default:
-            return new __WEBPACK_IMPORTED_MODULE_1__angular_animations__["e" /* ɵAnimationGroupPlayer */](players);
-    }
-}
-function normalizeKeyframes(driver, normalizer, element, keyframes, preStyles, postStyles) {
-    if (preStyles === void 0) { preStyles = {}; }
-    if (postStyles === void 0) { postStyles = {}; }
-    var errors = [];
-    var normalizedKeyframes = [];
-    var previousOffset = -1;
-    var previousKeyframe = null;
-    keyframes.forEach(function (kf) {
-        var offset = kf['offset'];
-        var isSameOffset = offset == previousOffset;
-        var normalizedKeyframe = (isSameOffset && previousKeyframe) || {};
-        Object.keys(kf).forEach(function (prop) {
-            var normalizedProp = prop;
-            var normalizedValue = kf[prop];
-            if (prop !== 'offset') {
-                normalizedProp = normalizer.normalizePropertyName(normalizedProp, errors);
-                switch (normalizedValue) {
-                    case __WEBPACK_IMPORTED_MODULE_1__angular_animations__["f" /* ɵPRE_STYLE */]:
-                        normalizedValue = preStyles[prop];
-                        break;
-                    case __WEBPACK_IMPORTED_MODULE_1__angular_animations__["g" /* AUTO_STYLE */]:
-                        normalizedValue = postStyles[prop];
-                        break;
-                    default:
-                        normalizedValue =
-                            normalizer.normalizeStyleValue(prop, normalizedProp, normalizedValue, errors);
-                        break;
-                }
-            }
-            normalizedKeyframe[normalizedProp] = normalizedValue;
-        });
-        if (!isSameOffset) {
-            normalizedKeyframes.push(normalizedKeyframe);
-        }
-        previousKeyframe = normalizedKeyframe;
-        previousOffset = offset;
-    });
-    if (errors.length) {
-        var LINE_START = '\n - ';
-        throw new Error("Unable to animate due to the following errors:" + LINE_START + errors.join(LINE_START));
-    }
-    return normalizedKeyframes;
-}
-function listenOnPlayer(player, eventName, event, callback) {
-    switch (eventName) {
-        case 'start':
-            player.onStart(function () { return callback(event && copyAnimationEvent(event, 'start', player.totalTime)); });
-            break;
-        case 'done':
-            player.onDone(function () { return callback(event && copyAnimationEvent(event, 'done', player.totalTime)); });
-            break;
-        case 'destroy':
-            player.onDestroy(function () { return callback(event && copyAnimationEvent(event, 'destroy', player.totalTime)); });
-            break;
-    }
-}
-function copyAnimationEvent(e, phaseName, totalTime) {
-    var event = makeAnimationEvent(e.element, e.triggerName, e.fromState, e.toState, phaseName || e.phaseName, totalTime == undefined ? e.totalTime : totalTime);
-    var data = e['_data'];
-    if (data != null) {
-        event['_data'] = data;
-    }
-    return event;
-}
-function makeAnimationEvent(element, triggerName, fromState, toState, phaseName, totalTime) {
-    if (phaseName === void 0) { phaseName = ''; }
-    if (totalTime === void 0) { totalTime = 0; }
-    return { element: element, triggerName: triggerName, fromState: fromState, toState: toState, phaseName: phaseName, totalTime: totalTime };
-}
-function getOrSetAsInMap(map, key, defaultValue) {
-    var value;
-    if (map instanceof Map) {
-        value = map.get(key);
-        if (!value) {
-            map.set(key, value = defaultValue);
-        }
-    }
-    else {
-        value = map[key];
-        if (!value) {
-            value = map[key] = defaultValue;
-        }
-    }
-    return value;
-}
-function parseTimelineCommand(command) {
-    var separatorPos = command.indexOf(':');
-    var id = command.substring(1, separatorPos);
-    var action = command.substr(separatorPos + 1);
-    return [id, action];
-}
-var _contains = function (elm1, elm2) { return false; };
-var _matches = function (element, selector) { return false; };
-var _query = function (element, selector, multi) {
-    return [];
-};
-if (typeof Element != 'undefined') {
-    // this is well supported in all browsers
-    _contains = function (elm1, elm2) { return elm1.contains(elm2); };
-    if (Element.prototype.matches) {
-        _matches = function (element, selector) { return element.matches(selector); };
-    }
-    else {
-        var proto = Element.prototype;
-        var fn_1 = proto.matchesSelector || proto.mozMatchesSelector || proto.msMatchesSelector ||
-            proto.oMatchesSelector || proto.webkitMatchesSelector;
-        if (fn_1) {
-            _matches = function (element, selector) { return fn_1.apply(element, [selector]); };
-        }
-    }
-    _query = function (element, selector, multi) {
-        var results = [];
-        if (multi) {
-            results.push.apply(results, element.querySelectorAll(selector));
-        }
-        else {
-            var elm = element.querySelector(selector);
-            if (elm) {
-                results.push(elm);
-            }
-        }
-        return results;
-    };
-}
-var matchesElement = _matches;
-var containsElement = _contains;
-var invokeQuery = _query;
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @experimental
- */
-var NoopAnimationDriver = (function () {
-    function NoopAnimationDriver() {
-    }
-    NoopAnimationDriver.prototype.matchesElement = function (element, selector) {
-        return matchesElement(element, selector);
-    };
-    NoopAnimationDriver.prototype.containsElement = function (elm1, elm2) { return containsElement(elm1, elm2); };
-    NoopAnimationDriver.prototype.query = function (element, selector, multi) {
-        return invokeQuery(element, selector, multi);
-    };
-    NoopAnimationDriver.prototype.computeStyle = function (element, prop, defaultValue) {
-        return defaultValue || '';
-    };
-    NoopAnimationDriver.prototype.animate = function (element, keyframes, duration, delay, easing, previousPlayers) {
-        if (previousPlayers === void 0) { previousPlayers = []; }
-        return new __WEBPACK_IMPORTED_MODULE_1__angular_animations__["d" /* NoopAnimationPlayer */]();
-    };
-    return NoopAnimationDriver;
-}());
-/**
- * @experimental
- */
-var AnimationDriver = (function () {
-    function AnimationDriver() {
-    }
-    return AnimationDriver;
-}());
-AnimationDriver.NOOP = new NoopAnimationDriver();
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var ONE_SECOND = 1000;
-var ENTER_CLASSNAME = 'ng-enter';
-var LEAVE_CLASSNAME = 'ng-leave';
-var ENTER_SELECTOR = '.ng-enter';
-var LEAVE_SELECTOR = '.ng-leave';
-var NG_TRIGGER_CLASSNAME = 'ng-trigger';
-var NG_TRIGGER_SELECTOR = '.ng-trigger';
-var NG_ANIMATING_CLASSNAME = 'ng-animating';
-var NG_ANIMATING_SELECTOR = '.ng-animating';
-function resolveTimingValue(value) {
-    if (typeof value == 'number')
-        return value;
-    var matches = value.match(/^(-?[\.\d]+)(m?s)/);
-    if (!matches || matches.length < 2)
-        return 0;
-    return _convertTimeValueToMS(parseFloat(matches[1]), matches[2]);
-}
-function _convertTimeValueToMS(value, unit) {
-    switch (unit) {
-        case 's':
-            return value * ONE_SECOND;
-        default:
-            return value;
-    }
-}
-function resolveTiming(timings, errors, allowNegativeValues) {
-    return timings.hasOwnProperty('duration') ?
-        timings :
-        parseTimeExpression(timings, errors, allowNegativeValues);
-}
-function parseTimeExpression(exp, errors, allowNegativeValues) {
-    var regex = /^(-?[\.\d]+)(m?s)(?:\s+(-?[\.\d]+)(m?s))?(?:\s+([-a-z]+(?:\(.+?\))?))?$/i;
-    var duration;
-    var delay = 0;
-    var easing = '';
-    if (typeof exp === 'string') {
-        var matches = exp.match(regex);
-        if (matches === null) {
-            errors.push("The provided timing value \"" + exp + "\" is invalid.");
-            return { duration: 0, delay: 0, easing: '' };
-        }
-        duration = _convertTimeValueToMS(parseFloat(matches[1]), matches[2]);
-        var delayMatch = matches[3];
-        if (delayMatch != null) {
-            delay = _convertTimeValueToMS(Math.floor(parseFloat(delayMatch)), matches[4]);
-        }
-        var easingVal = matches[5];
-        if (easingVal) {
-            easing = easingVal;
-        }
-    }
-    else {
-        duration = exp;
-    }
-    if (!allowNegativeValues) {
-        var containsErrors = false;
-        var startIndex = errors.length;
-        if (duration < 0) {
-            errors.push("Duration values below 0 are not allowed for this animation step.");
-            containsErrors = true;
-        }
-        if (delay < 0) {
-            errors.push("Delay values below 0 are not allowed for this animation step.");
-            containsErrors = true;
-        }
-        if (containsErrors) {
-            errors.splice(startIndex, 0, "The provided timing value \"" + exp + "\" is invalid.");
-        }
-    }
-    return { duration: duration, delay: delay, easing: easing };
-}
-function copyObj(obj, destination) {
-    if (destination === void 0) { destination = {}; }
-    Object.keys(obj).forEach(function (prop) { destination[prop] = obj[prop]; });
-    return destination;
-}
-function normalizeStyles(styles) {
-    var normalizedStyles = {};
-    if (Array.isArray(styles)) {
-        styles.forEach(function (data) { return copyStyles(data, false, normalizedStyles); });
-    }
-    else {
-        copyStyles(styles, false, normalizedStyles);
-    }
-    return normalizedStyles;
-}
-function copyStyles(styles, readPrototype, destination) {
-    if (destination === void 0) { destination = {}; }
-    if (readPrototype) {
-        // we make use of a for-in loop so that the
-        // prototypically inherited properties are
-        // revealed from the backFill map
-        for (var prop in styles) {
-            destination[prop] = styles[prop];
-        }
-    }
-    else {
-        copyObj(styles, destination);
-    }
-    return destination;
-}
-function setStyles(element, styles) {
-    if (element['style']) {
-        Object.keys(styles).forEach(function (prop) {
-            var camelProp = dashCaseToCamelCase(prop);
-            element.style[camelProp] = styles[prop];
-        });
-    }
-}
-function eraseStyles(element, styles) {
-    if (element['style']) {
-        Object.keys(styles).forEach(function (prop) {
-            var camelProp = dashCaseToCamelCase(prop);
-            element.style[camelProp] = '';
-        });
-    }
-}
-function normalizeAnimationEntry(steps) {
-    if (Array.isArray(steps)) {
-        if (steps.length == 1)
-            return steps[0];
-        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["a" /* sequence */])(steps);
-    }
-    return steps;
-}
-function validateStyleParams(value, options, errors) {
-    var params = options.params || {};
-    if (typeof value !== 'string')
-        return;
-    var matches = value.toString().match(PARAM_REGEX);
-    if (matches) {
-        matches.forEach(function (varName) {
-            if (!params.hasOwnProperty(varName)) {
-                errors.push("Unable to resolve the local animation param " + varName + " in the given list of values");
-            }
-        });
-    }
-}
-var PARAM_REGEX = /\{\{\s*(.+?)\s*\}\}/g;
-function interpolateParams(value, params, errors) {
-    var original = value.toString();
-    var str = original.replace(PARAM_REGEX, function (_, varName) {
-        var localVal = params[varName];
-        // this means that the value was never overidden by the data passed in by the user
-        if (!params.hasOwnProperty(varName)) {
-            errors.push("Please provide a value for the animation param " + varName);
-            localVal = '';
-        }
-        return localVal.toString();
-    });
-    // we do this to assert that numeric values stay as they are
-    return str == original ? value : str;
-}
-function iteratorToArray(iterator) {
-    var arr = [];
-    var item = iterator.next();
-    while (!item.done) {
-        arr.push(item.value);
-        item = iterator.next();
-    }
-    return arr;
-}
-function mergeAnimationOptions(source, destination) {
-    if (source.params) {
-        var p0_1 = source.params;
-        if (!destination.params) {
-            destination.params = {};
-        }
-        var p1_1 = destination.params;
-        Object.keys(p0_1).forEach(function (param) {
-            if (!p1_1.hasOwnProperty(param)) {
-                p1_1[param] = p0_1[param];
-            }
-        });
-    }
-    return destination;
-}
-var DASH_CASE_REGEXP = /-+([a-z0-9])/g;
-function dashCaseToCamelCase(input) {
-    return input.replace(DASH_CASE_REGEXP, function () {
-        var m = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            m[_i] = arguments[_i];
-        }
-        return m[1].toUpperCase();
-    });
-}
-function allowPreviousPlayerStylesMerge(duration, delay) {
-    return duration === 0 || delay === 0;
-}
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var EMPTY_ANIMATION_OPTIONS = {};
-/**
- * @abstract
- */
-var Ast = (function () {
-    function Ast() {
-        this.options = EMPTY_ANIMATION_OPTIONS;
-    }
-    /**
-     * @abstract
-     * @param {?} ast
-     * @param {?} context
-     * @return {?}
-     */
-    Ast.prototype.visit = function (ast, context) { };
-    Object.defineProperty(Ast.prototype, "params", {
-        /**
-         * @return {?}
-         */
-        get: function () { return this.options['params'] || null; },
-        enumerable: true,
-        configurable: true
-    });
-    return Ast;
-}());
-var TriggerAst = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](TriggerAst, _super);
-    /**
-     * @param {?} name
-     * @param {?} states
-     * @param {?} transitions
-     */
-    function TriggerAst(name, states, transitions) {
-        var _this = _super.call(this) || this;
-        _this.name = name;
-        _this.states = states;
-        _this.transitions = transitions;
-        _this.queryCount = 0;
-        _this.depCount = 0;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    TriggerAst.prototype.visit = function (visitor, context) { return visitor.visitTrigger(this, context); };
-    return TriggerAst;
-}(Ast));
-var StateAst = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](StateAst, _super);
-    /**
-     * @param {?} name
-     * @param {?} style
-     */
-    function StateAst(name, style$$1) {
-        var _this = _super.call(this) || this;
-        _this.name = name;
-        _this.style = style$$1;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    StateAst.prototype.visit = function (visitor, context) { return visitor.visitState(this, context); };
-    return StateAst;
-}(Ast));
-var TransitionAst = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](TransitionAst, _super);
-    /**
-     * @param {?} matchers
-     * @param {?} animation
-     */
-    function TransitionAst(matchers, animation) {
-        var _this = _super.call(this) || this;
-        _this.matchers = matchers;
-        _this.animation = animation;
-        _this.queryCount = 0;
-        _this.depCount = 0;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    TransitionAst.prototype.visit = function (visitor, context) { return visitor.visitTransition(this, context); };
-    return TransitionAst;
-}(Ast));
-var SequenceAst = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SequenceAst, _super);
-    /**
-     * @param {?} steps
-     */
-    function SequenceAst(steps) {
-        var _this = _super.call(this) || this;
-        _this.steps = steps;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    SequenceAst.prototype.visit = function (visitor, context) { return visitor.visitSequence(this, context); };
-    return SequenceAst;
-}(Ast));
-var GroupAst = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](GroupAst, _super);
-    /**
-     * @param {?} steps
-     */
-    function GroupAst(steps) {
-        var _this = _super.call(this) || this;
-        _this.steps = steps;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    GroupAst.prototype.visit = function (visitor, context) { return visitor.visitGroup(this, context); };
-    return GroupAst;
-}(Ast));
-var AnimateAst = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](AnimateAst, _super);
-    /**
-     * @param {?} timings
-     * @param {?} style
-     */
-    function AnimateAst(timings, style$$1) {
-        var _this = _super.call(this) || this;
-        _this.timings = timings;
-        _this.style = style$$1;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    AnimateAst.prototype.visit = function (visitor, context) { return visitor.visitAnimate(this, context); };
-    return AnimateAst;
-}(Ast));
-var StyleAst = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](StyleAst, _super);
-    /**
-     * @param {?} styles
-     * @param {?} easing
-     * @param {?} offset
-     */
-    function StyleAst(styles, easing, offset) {
-        var _this = _super.call(this) || this;
-        _this.styles = styles;
-        _this.easing = easing;
-        _this.offset = offset;
-        _this.isEmptyStep = false;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    StyleAst.prototype.visit = function (visitor, context) { return visitor.visitStyle(this, context); };
-    return StyleAst;
-}(Ast));
-var KeyframesAst = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](KeyframesAst, _super);
-    /**
-     * @param {?} styles
-     */
-    function KeyframesAst(styles) {
-        var _this = _super.call(this) || this;
-        _this.styles = styles;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    KeyframesAst.prototype.visit = function (visitor, context) { return visitor.visitKeyframes(this, context); };
-    return KeyframesAst;
-}(Ast));
-var ReferenceAst = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](ReferenceAst, _super);
-    /**
-     * @param {?} animation
-     */
-    function ReferenceAst(animation) {
-        var _this = _super.call(this) || this;
-        _this.animation = animation;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    ReferenceAst.prototype.visit = function (visitor, context) { return visitor.visitReference(this, context); };
-    return ReferenceAst;
-}(Ast));
-var AnimateChildAst = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](AnimateChildAst, _super);
-    function AnimateChildAst() {
-        return _super.call(this) || this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    AnimateChildAst.prototype.visit = function (visitor, context) { return visitor.visitAnimateChild(this, context); };
-    return AnimateChildAst;
-}(Ast));
-var AnimateRefAst = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](AnimateRefAst, _super);
-    /**
-     * @param {?} animation
-     */
-    function AnimateRefAst(animation) {
-        var _this = _super.call(this) || this;
-        _this.animation = animation;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    AnimateRefAst.prototype.visit = function (visitor, context) { return visitor.visitAnimateRef(this, context); };
-    return AnimateRefAst;
-}(Ast));
-var QueryAst = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](QueryAst, _super);
-    /**
-     * @param {?} selector
-     * @param {?} limit
-     * @param {?} optional
-     * @param {?} includeSelf
-     * @param {?} animation
-     */
-    function QueryAst(selector, limit, optional, includeSelf, animation) {
-        var _this = _super.call(this) || this;
-        _this.selector = selector;
-        _this.limit = limit;
-        _this.optional = optional;
-        _this.includeSelf = includeSelf;
-        _this.animation = animation;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    QueryAst.prototype.visit = function (visitor, context) { return visitor.visitQuery(this, context); };
-    return QueryAst;
-}(Ast));
-var StaggerAst = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](StaggerAst, _super);
-    /**
-     * @param {?} timings
-     * @param {?} animation
-     */
-    function StaggerAst(timings, animation) {
-        var _this = _super.call(this) || this;
-        _this.timings = timings;
-        _this.animation = animation;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    StaggerAst.prototype.visit = function (visitor, context) { return visitor.visitStagger(this, context); };
-    return StaggerAst;
-}(Ast));
-var TimingAst = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](TimingAst, _super);
-    /**
-     * @param {?} duration
-     * @param {?=} delay
-     * @param {?=} easing
-     */
-    function TimingAst(duration, delay, easing) {
-        if (delay === void 0) { delay = 0; }
-        if (easing === void 0) { easing = null; }
-        var _this = _super.call(this) || this;
-        _this.duration = duration;
-        _this.delay = delay;
-        _this.easing = easing;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    TimingAst.prototype.visit = function (visitor, context) { return visitor.visitTiming(this, context); };
-    return TimingAst;
-}(Ast));
-var DynamicTimingAst = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](DynamicTimingAst, _super);
-    /**
-     * @param {?} value
-     */
-    function DynamicTimingAst(value) {
-        var _this = _super.call(this, 0, 0, '') || this;
-        _this.value = value;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    DynamicTimingAst.prototype.visit = function (visitor, context) { return visitor.visitTiming(this, context); };
-    return DynamicTimingAst;
-}(TimingAst));
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @param {?} visitor
- * @param {?} node
- * @param {?} context
- * @return {?}
- */
-function visitAnimationNode(visitor, node, context) {
-    switch (node.type) {
-        case 7 /* Trigger */:
-            return visitor.visitTrigger(/** @type {?} */ (node), context);
-        case 0 /* State */:
-            return visitor.visitState(/** @type {?} */ (node), context);
-        case 1 /* Transition */:
-            return visitor.visitTransition(/** @type {?} */ (node), context);
-        case 2 /* Sequence */:
-            return visitor.visitSequence(/** @type {?} */ (node), context);
-        case 3 /* Group */:
-            return visitor.visitGroup(/** @type {?} */ (node), context);
-        case 4 /* Animate */:
-            return visitor.visitAnimate(/** @type {?} */ (node), context);
-        case 5 /* Keyframes */:
-            return visitor.visitKeyframes(/** @type {?} */ (node), context);
-        case 6 /* Style */:
-            return visitor.visitStyle(/** @type {?} */ (node), context);
-        case 8 /* Reference */:
-            return visitor.visitReference(/** @type {?} */ (node), context);
-        case 9 /* AnimateChild */:
-            return visitor.visitAnimateChild(/** @type {?} */ (node), context);
-        case 10 /* AnimateRef */:
-            return visitor.visitAnimateRef(/** @type {?} */ (node), context);
-        case 11 /* Query */:
-            return visitor.visitQuery(/** @type {?} */ (node), context);
-        case 12 /* Stagger */:
-            return visitor.visitStagger(/** @type {?} */ (node), context);
-        default:
-            throw new Error("Unable to resolve animation metadata node #" + node.type);
-    }
-}
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var ANY_STATE = '*';
-/**
- * @param {?} transitionValue
- * @param {?} errors
- * @return {?}
- */
-function parseTransitionExpr(transitionValue, errors) {
-    var /** @type {?} */ expressions = [];
-    if (typeof transitionValue == 'string') {
-        ((transitionValue))
-            .split(/\s*,\s*/)
-            .forEach(function (str) { return parseInnerTransitionStr(str, expressions, errors); });
-    }
-    else {
-        expressions.push(/** @type {?} */ (transitionValue));
-    }
-    return expressions;
-}
-/**
- * @param {?} eventStr
- * @param {?} expressions
- * @param {?} errors
- * @return {?}
- */
-function parseInnerTransitionStr(eventStr, expressions, errors) {
-    if (eventStr[0] == ':') {
-        eventStr = parseAnimationAlias(eventStr, errors);
-    }
-    var /** @type {?} */ match = eventStr.match(/^(\*|[-\w]+)\s*(<?[=-]>)\s*(\*|[-\w]+)$/);
-    if (match == null || match.length < 4) {
-        errors.push("The provided transition expression \"" + eventStr + "\" is not supported");
-        return expressions;
-    }
-    var /** @type {?} */ fromState = match[1];
-    var /** @type {?} */ separator = match[2];
-    var /** @type {?} */ toState = match[3];
-    expressions.push(makeLambdaFromStates(fromState, toState));
-    var /** @type {?} */ isFullAnyStateExpr = fromState == ANY_STATE && toState == ANY_STATE;
-    if (separator[0] == '<' && !isFullAnyStateExpr) {
-        expressions.push(makeLambdaFromStates(toState, fromState));
-    }
-}
-/**
- * @param {?} alias
- * @param {?} errors
- * @return {?}
- */
-function parseAnimationAlias(alias, errors) {
-    switch (alias) {
-        case ':enter':
-            return 'void => *';
-        case ':leave':
-            return '* => void';
-        default:
-            errors.push("The transition alias value \"" + alias + "\" is not supported");
-            return '* => *';
-    }
-}
-/**
- * @param {?} lhs
- * @param {?} rhs
- * @return {?}
- */
-function makeLambdaFromStates(lhs, rhs) {
-    return function (fromState, toState) {
-        var /** @type {?} */ lhsMatch = lhs == ANY_STATE || lhs == fromState;
-        var /** @type {?} */ rhsMatch = rhs == ANY_STATE || rhs == toState;
-        if (!lhsMatch && typeof fromState === 'boolean') {
-            lhsMatch = fromState ? lhs === 'true' : lhs === 'false';
-        }
-        if (!rhsMatch && typeof toState === 'boolean') {
-            rhsMatch = toState ? rhs === 'true' : rhs === 'false';
-        }
-        return lhsMatch && rhsMatch;
-    };
-}
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var SELF_TOKEN = ':self';
-var SELF_TOKEN_REGEX = new RegExp("s*" + SELF_TOKEN + "s*,?", 'g');
-/**
- * @param {?} metadata
- * @param {?} errors
- * @return {?}
- */
-function buildAnimationAst(metadata, errors) {
-    return new AnimationAstBuilderVisitor().build(metadata, errors);
-}
-var LEAVE_TOKEN = ':leave';
-var LEAVE_TOKEN_REGEX = new RegExp(LEAVE_TOKEN, 'g');
-var ENTER_TOKEN = ':enter';
-var ENTER_TOKEN_REGEX = new RegExp(ENTER_TOKEN, 'g');
-var ROOT_SELECTOR = '';
-var AnimationAstBuilderVisitor = (function () {
-    function AnimationAstBuilderVisitor() {
-    }
-    /**
-     * @param {?} metadata
-     * @param {?} errors
-     * @return {?}
-     */
-    AnimationAstBuilderVisitor.prototype.build = function (metadata, errors) {
-        var /** @type {?} */ context = new AnimationAstBuilderContext(errors);
-        this._resetContextStyleTimingState(context);
-        return (visitAnimationNode(this, normalizeAnimationEntry(metadata), context));
-    };
-    /**
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationAstBuilderVisitor.prototype._resetContextStyleTimingState = function (context) {
-        context.currentQuerySelector = ROOT_SELECTOR;
-        context.collectedStyles = {};
-        context.collectedStyles[ROOT_SELECTOR] = {};
-        context.currentTime = 0;
-    };
-    /**
-     * @param {?} metadata
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationAstBuilderVisitor.prototype.visitTrigger = function (metadata, context) {
-        var _this = this;
-        var /** @type {?} */ queryCount = context.queryCount = 0;
-        var /** @type {?} */ depCount = context.depCount = 0;
-        var /** @type {?} */ states = [];
-        var /** @type {?} */ transitions = [];
-        metadata.definitions.forEach(function (def) {
-            _this._resetContextStyleTimingState(context);
-            if (def.type == 0 /* State */) {
-                var /** @type {?} */ stateDef_1 = (def);
-                var /** @type {?} */ name = stateDef_1.name;
-                name.split(/\s*,\s*/).forEach(function (n) {
-                    stateDef_1.name = n;
-                    states.push(_this.visitState(stateDef_1, context));
-                });
-                stateDef_1.name = name;
-            }
-            else if (def.type == 1 /* Transition */) {
-                var /** @type {?} */ transition = _this.visitTransition(/** @type {?} */ (def), context);
-                queryCount += transition.queryCount;
-                depCount += transition.depCount;
-                transitions.push(transition);
-            }
-            else {
-                context.errors.push('only state() and transition() definitions can sit inside of a trigger()');
-            }
-        });
-        var /** @type {?} */ ast = new TriggerAst(metadata.name, states, transitions);
-        ast.options = normalizeAnimationOptions(metadata.options);
-        ast.queryCount = queryCount;
-        ast.depCount = depCount;
-        return ast;
-    };
-    /**
-     * @param {?} metadata
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationAstBuilderVisitor.prototype.visitState = function (metadata, context) {
-        return new StateAst(metadata.name, this.visitStyle(metadata.styles, context));
-    };
-    /**
-     * @param {?} metadata
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationAstBuilderVisitor.prototype.visitTransition = function (metadata, context) {
-        context.queryCount = 0;
-        context.depCount = 0;
-        var /** @type {?} */ entry = visitAnimationNode(this, normalizeAnimationEntry(metadata.animation), context);
-        var /** @type {?} */ matchers = parseTransitionExpr(metadata.expr, context.errors);
-        var /** @type {?} */ ast = new TransitionAst(matchers, entry);
-        ast.options = normalizeAnimationOptions(metadata.options);
-        ast.queryCount = context.queryCount;
-        ast.depCount = context.depCount;
-        return ast;
-    };
-    /**
-     * @param {?} metadata
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationAstBuilderVisitor.prototype.visitSequence = function (metadata, context) {
-        var _this = this;
-        var /** @type {?} */ ast = new SequenceAst(metadata.steps.map(function (s) { return visitAnimationNode(_this, s, context); }));
-        ast.options = normalizeAnimationOptions(metadata.options);
-        return ast;
-    };
-    /**
-     * @param {?} metadata
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationAstBuilderVisitor.prototype.visitGroup = function (metadata, context) {
-        var _this = this;
-        var /** @type {?} */ currentTime = context.currentTime;
-        var /** @type {?} */ furthestTime = 0;
-        var /** @type {?} */ steps = metadata.steps.map(function (step) {
-            context.currentTime = currentTime;
-            var /** @type {?} */ innerAst = visitAnimationNode(_this, step, context);
-            furthestTime = Math.max(furthestTime, context.currentTime);
-            return innerAst;
-        });
-        context.currentTime = furthestTime;
-        var /** @type {?} */ ast = new GroupAst(steps);
-        ast.options = normalizeAnimationOptions(metadata.options);
-        return ast;
-    };
-    /**
-     * @param {?} metadata
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationAstBuilderVisitor.prototype.visitAnimate = function (metadata, context) {
-        var /** @type {?} */ timingAst = constructTimingAst(metadata.timings, context.errors);
-        context.currentAnimateTimings = timingAst;
-        var /** @type {?} */ styles;
-        var /** @type {?} */ styleMetadata = metadata.styles ? metadata.styles : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["h" /* style */])({});
-        if (styleMetadata.type == 5 /* Keyframes */) {
-            styles = this.visitKeyframes(/** @type {?} */ (styleMetadata), context);
-        }
-        else {
-            var /** @type {?} */ styleMetadata_1 = (metadata.styles);
-            var /** @type {?} */ isEmpty = false;
-            if (!styleMetadata_1) {
-                isEmpty = true;
-                var /** @type {?} */ newStyleData = {};
-                if (timingAst.easing) {
-                    newStyleData['easing'] = timingAst.easing;
-                }
-                styleMetadata_1 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["h" /* style */])(newStyleData);
-            }
-            context.currentTime += timingAst.duration + timingAst.delay;
-            var /** @type {?} */ styleAst = this.visitStyle(styleMetadata_1, context);
-            styleAst.isEmptyStep = isEmpty;
-            styles = styleAst;
-        }
-        context.currentAnimateTimings = null;
-        return new AnimateAst(timingAst, styles);
-    };
-    /**
-     * @param {?} metadata
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationAstBuilderVisitor.prototype.visitStyle = function (metadata, context) {
-        var /** @type {?} */ ast = this._makeStyleAst(metadata, context);
-        this._validateStyleAst(ast, context);
-        return ast;
-    };
-    /**
-     * @param {?} metadata
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationAstBuilderVisitor.prototype._makeStyleAst = function (metadata, context) {
-        var /** @type {?} */ styles = [];
-        if (Array.isArray(metadata.styles)) {
-            ((metadata.styles)).forEach(function (styleTuple) {
-                if (typeof styleTuple == 'string') {
-                    if (styleTuple == __WEBPACK_IMPORTED_MODULE_1__angular_animations__["g" /* AUTO_STYLE */]) {
-                        styles.push(/** @type {?} */ (styleTuple));
-                    }
-                    else {
-                        context.errors.push("The provided style string value " + styleTuple + " is not allowed.");
-                    }
-                }
-                else {
-                    styles.push(/** @type {?} */ (styleTuple));
-                }
-            });
-        }
-        else {
-            styles.push(metadata.styles);
-        }
-        var /** @type {?} */ collectedEasing = null;
-        styles.forEach(function (styleData) {
-            if (isObject(styleData)) {
-                var /** @type {?} */ styleMap = (styleData);
-                var /** @type {?} */ easing = styleMap['easing'];
-                if (easing) {
-                    collectedEasing = (easing);
-                    delete styleMap['easing'];
-                }
-            }
-        });
-        return new StyleAst(styles, collectedEasing, metadata.offset);
-    };
-    /**
-     * @param {?} ast
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationAstBuilderVisitor.prototype._validateStyleAst = function (ast, context) {
-        var /** @type {?} */ timings = context.currentAnimateTimings;
-        var /** @type {?} */ endTime = context.currentTime;
-        var /** @type {?} */ startTime = context.currentTime;
-        if (timings && startTime > 0) {
-            startTime -= timings.duration + timings.delay;
-        }
-        ast.styles.forEach(function (tuple) {
-            if (typeof tuple == 'string')
-                return;
-            Object.keys(tuple).forEach(function (prop) {
-                var /** @type {?} */ collectedStyles = context.collectedStyles[((context.currentQuerySelector))];
-                var /** @type {?} */ collectedEntry = collectedStyles[prop];
-                var /** @type {?} */ updateCollectedStyle = true;
-                if (collectedEntry) {
-                    if (startTime != endTime && startTime >= collectedEntry.startTime &&
-                        endTime <= collectedEntry.endTime) {
-                        context.errors.push("The CSS property \"" + prop + "\" that exists between the times of \"" + collectedEntry.startTime + "ms\" and \"" + collectedEntry.endTime + "ms\" is also being animated in a parallel animation between the times of \"" + startTime + "ms\" and \"" + endTime + "ms\"");
-                        updateCollectedStyle = false;
-                    }
-                    // we always choose the smaller start time value since we
-                    // want to have a record of the entire animation window where
-                    // the style property is being animated in between
-                    startTime = collectedEntry.startTime;
-                }
-                if (updateCollectedStyle) {
-                    collectedStyles[prop] = { startTime: startTime, endTime: endTime };
-                }
-                if (context.options) {
-                    validateStyleParams(tuple[prop], context.options, context.errors);
-                }
-            });
-        });
-    };
-    /**
-     * @param {?} metadata
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationAstBuilderVisitor.prototype.visitKeyframes = function (metadata, context) {
-        var _this = this;
-        if (!context.currentAnimateTimings) {
-            context.errors.push("keyframes() must be placed inside of a call to animate()");
-            return new KeyframesAst([]);
-        }
-        var /** @type {?} */ MAX_KEYFRAME_OFFSET = 1;
-        var /** @type {?} */ totalKeyframesWithOffsets = 0;
-        var /** @type {?} */ offsets = [];
-        var /** @type {?} */ offsetsOutOfOrder = false;
-        var /** @type {?} */ keyframesOutOfRange = false;
-        var /** @type {?} */ previousOffset = 0;
-        var /** @type {?} */ keyframes = metadata.steps.map(function (styles) {
-            var /** @type {?} */ style$$1 = _this._makeStyleAst(styles, context);
-            var /** @type {?} */ offsetVal = style$$1.offset != null ? style$$1.offset : consumeOffset(style$$1.styles);
-            var /** @type {?} */ offset = 0;
-            if (offsetVal != null) {
-                totalKeyframesWithOffsets++;
-                offset = style$$1.offset = offsetVal;
-            }
-            keyframesOutOfRange = keyframesOutOfRange || offset < 0 || offset > 1;
-            offsetsOutOfOrder = offsetsOutOfOrder || offset < previousOffset;
-            previousOffset = offset;
-            offsets.push(offset);
-            return style$$1;
-        });
-        if (keyframesOutOfRange) {
-            context.errors.push("Please ensure that all keyframe offsets are between 0 and 1");
-        }
-        if (offsetsOutOfOrder) {
-            context.errors.push("Please ensure that all keyframe offsets are in order");
-        }
-        var /** @type {?} */ length = metadata.steps.length;
-        var /** @type {?} */ generatedOffset = 0;
-        if (totalKeyframesWithOffsets > 0 && totalKeyframesWithOffsets < length) {
-            context.errors.push("Not all style() steps within the declared keyframes() contain offsets");
-        }
-        else if (totalKeyframesWithOffsets == 0) {
-            generatedOffset = MAX_KEYFRAME_OFFSET / (length - 1);
-        }
-        var /** @type {?} */ limit = length - 1;
-        var /** @type {?} */ currentTime = context.currentTime;
-        var /** @type {?} */ currentAnimateTimings = ((context.currentAnimateTimings));
-        var /** @type {?} */ animateDuration = currentAnimateTimings.duration;
-        keyframes.forEach(function (kf, i) {
-            var /** @type {?} */ offset = generatedOffset > 0 ? (i == limit ? 1 : (generatedOffset * i)) : offsets[i];
-            var /** @type {?} */ durationUpToThisFrame = offset * animateDuration;
-            context.currentTime = currentTime + currentAnimateTimings.delay + durationUpToThisFrame;
-            currentAnimateTimings.duration = durationUpToThisFrame;
-            _this._validateStyleAst(kf, context);
-            kf.offset = offset;
-        });
-        return new KeyframesAst(keyframes);
-    };
-    /**
-     * @param {?} metadata
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationAstBuilderVisitor.prototype.visitReference = function (metadata, context) {
-        var /** @type {?} */ entry = visitAnimationNode(this, normalizeAnimationEntry(metadata.animation), context);
-        var /** @type {?} */ ast = new ReferenceAst(entry);
-        ast.options = normalizeAnimationOptions(metadata.options);
-        return ast;
-    };
-    /**
-     * @param {?} metadata
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationAstBuilderVisitor.prototype.visitAnimateChild = function (metadata, context) {
-        context.depCount++;
-        var /** @type {?} */ ast = new AnimateChildAst();
-        ast.options = normalizeAnimationOptions(metadata.options);
-        return ast;
-    };
-    /**
-     * @param {?} metadata
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationAstBuilderVisitor.prototype.visitAnimateRef = function (metadata, context) {
-        var /** @type {?} */ animation = this.visitReference(metadata.animation, context);
-        var /** @type {?} */ ast = new AnimateRefAst(animation);
-        ast.options = normalizeAnimationOptions(metadata.options);
-        return ast;
-    };
-    /**
-     * @param {?} metadata
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationAstBuilderVisitor.prototype.visitQuery = function (metadata, context) {
-        var /** @type {?} */ parentSelector = ((context.currentQuerySelector));
-        var /** @type {?} */ options = ((metadata.options || {}));
-        context.queryCount++;
-        context.currentQuery = metadata;
-        var _a = normalizeSelector(metadata.selector), selector = _a[0], includeSelf = _a[1];
-        context.currentQuerySelector =
-            parentSelector.length ? (parentSelector + ' ' + selector) : selector;
-        getOrSetAsInMap(context.collectedStyles, context.currentQuerySelector, {});
-        var /** @type {?} */ entry = visitAnimationNode(this, normalizeAnimationEntry(metadata.animation), context);
-        context.currentQuery = null;
-        context.currentQuerySelector = parentSelector;
-        var /** @type {?} */ ast = new QueryAst(selector, options.limit || 0, !!options.optional, includeSelf, entry);
-        ast.originalSelector = metadata.selector;
-        ast.options = normalizeAnimationOptions(metadata.options);
-        return ast;
-    };
-    /**
-     * @param {?} metadata
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationAstBuilderVisitor.prototype.visitStagger = function (metadata, context) {
-        if (!context.currentQuery) {
-            context.errors.push("stagger() can only be used inside of query()");
-        }
-        var /** @type {?} */ timings = metadata.timings === 'full' ?
-            { duration: 0, delay: 0, easing: 'full' } :
-            resolveTiming(metadata.timings, context.errors, true);
-        var /** @type {?} */ animation = visitAnimationNode(this, normalizeAnimationEntry(metadata.animation), context);
-        return new StaggerAst(timings, animation);
-    };
-    return AnimationAstBuilderVisitor;
-}());
-/**
- * @param {?} selector
- * @return {?}
- */
-function normalizeSelector(selector) {
-    var /** @type {?} */ hasAmpersand = selector.split(/\s*,\s*/).find(function (token) { return token == SELF_TOKEN; }) ? true : false;
-    if (hasAmpersand) {
-        selector = selector.replace(SELF_TOKEN_REGEX, '');
-    }
-    selector = selector.replace(ENTER_TOKEN_REGEX, ENTER_SELECTOR)
-        .replace(LEAVE_TOKEN_REGEX, LEAVE_SELECTOR)
-        .replace(/@\*/g, NG_TRIGGER_SELECTOR)
-        .replace(/@\w+/g, function (match) { return NG_TRIGGER_SELECTOR + '-' + match.substr(1); })
-        .replace(/:animating/g, NG_ANIMATING_SELECTOR);
-    return [selector, hasAmpersand];
-}
-/**
- * @param {?} obj
- * @return {?}
- */
-function normalizeParams(obj) {
-    return obj ? copyObj(obj) : null;
-}
-var AnimationAstBuilderContext = (function () {
-    /**
-     * @param {?} errors
-     */
-    function AnimationAstBuilderContext(errors) {
-        this.errors = errors;
-        this.queryCount = 0;
-        this.depCount = 0;
-        this.currentTransition = null;
-        this.currentQuery = null;
-        this.currentQuerySelector = null;
-        this.currentAnimateTimings = null;
-        this.currentTime = 0;
-        this.collectedStyles = {};
-        this.options = null;
-    }
-    return AnimationAstBuilderContext;
-}());
-/**
- * @param {?} styles
- * @return {?}
- */
-function consumeOffset(styles) {
-    if (typeof styles == 'string')
-        return null;
-    var /** @type {?} */ offset = null;
-    if (Array.isArray(styles)) {
-        styles.forEach(function (styleTuple) {
-            if (isObject(styleTuple) && styleTuple.hasOwnProperty('offset')) {
-                var /** @type {?} */ obj = (styleTuple);
-                offset = parseFloat(/** @type {?} */ (obj['offset']));
-                delete obj['offset'];
-            }
-        });
-    }
-    else if (isObject(styles) && styles.hasOwnProperty('offset')) {
-        var /** @type {?} */ obj = (styles);
-        offset = parseFloat(/** @type {?} */ (obj['offset']));
-        delete obj['offset'];
-    }
-    return offset;
-}
-/**
- * @param {?} value
- * @return {?}
- */
-function isObject(value) {
-    return !Array.isArray(value) && typeof value == 'object';
-}
-/**
- * @param {?} value
- * @param {?} errors
- * @return {?}
- */
-function constructTimingAst(value, errors) {
-    var /** @type {?} */ timings = null;
-    if (value.hasOwnProperty('duration')) {
-        timings = (value);
-    }
-    else if (typeof value == 'number') {
-        var /** @type {?} */ duration = resolveTiming(/** @type {?} */ (value), errors).duration;
-        return new TimingAst(/** @type {?} */ (value), 0, '');
-    }
-    var /** @type {?} */ strValue = (value);
-    var /** @type {?} */ isDynamic = strValue.split(/\s+/).some(function (v) { return v.charAt(0) == '{' && v.charAt(1) == '{'; });
-    if (isDynamic) {
-        return new DynamicTimingAst(strValue);
-    }
-    timings = timings || resolveTiming(strValue, errors);
-    return new TimingAst(timings.duration, timings.delay, timings.easing);
-}
-/**
- * @param {?} options
- * @return {?}
- */
-function normalizeAnimationOptions(options) {
-    if (options) {
-        options = copyObj(options);
-        if (options['params']) {
-            options['params'] = ((normalizeParams(options['params'])));
-        }
-    }
-    else {
-        options = {};
-    }
-    return options;
-}
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @param {?} element
- * @param {?} keyframes
- * @param {?} preStyleProps
- * @param {?} postStyleProps
- * @param {?} duration
- * @param {?} delay
- * @param {?=} easing
- * @param {?=} subTimeline
- * @return {?}
- */
-function createTimelineInstruction(element, keyframes, preStyleProps, postStyleProps, duration, delay, easing, subTimeline) {
-    if (easing === void 0) { easing = null; }
-    if (subTimeline === void 0) { subTimeline = false; }
-    return {
-        type: 1 /* TimelineAnimation */,
-        element: element,
-        keyframes: keyframes,
-        preStyleProps: preStyleProps,
-        postStyleProps: postStyleProps,
-        duration: duration,
-        delay: delay,
-        totalTime: duration + delay, easing: easing, subTimeline: subTimeline
-    };
-}
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var ElementInstructionMap = (function () {
-    function ElementInstructionMap() {
-        this._map = new Map();
-    }
-    /**
-     * @param {?} element
-     * @return {?}
-     */
-    ElementInstructionMap.prototype.consume = function (element) {
-        var /** @type {?} */ instructions = this._map.get(element);
-        if (instructions) {
-            this._map.delete(element);
-        }
-        else {
-            instructions = [];
-        }
-        return instructions;
-    };
-    /**
-     * @param {?} element
-     * @param {?} instructions
-     * @return {?}
-     */
-    ElementInstructionMap.prototype.append = function (element, instructions) {
-        var /** @type {?} */ existingInstructions = this._map.get(element);
-        if (!existingInstructions) {
-            this._map.set(element, existingInstructions = []);
-        }
-        existingInstructions.push.apply(existingInstructions, instructions);
-    };
-    /**
-     * @param {?} element
-     * @return {?}
-     */
-    ElementInstructionMap.prototype.has = function (element) { return this._map.has(element); };
-    /**
-     * @return {?}
-     */
-    ElementInstructionMap.prototype.clear = function () { this._map.clear(); };
-    return ElementInstructionMap;
-}());
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var ONE_FRAME_IN_MILLISECONDS = 1;
-/**
- * @param {?} driver
- * @param {?} rootElement
- * @param {?} ast
- * @param {?=} startingStyles
- * @param {?=} finalStyles
- * @param {?=} options
- * @param {?=} subInstructions
- * @param {?=} errors
- * @return {?}
- */
-function buildAnimationTimelines(driver, rootElement, ast, startingStyles, finalStyles, options, subInstructions, errors) {
-    if (startingStyles === void 0) { startingStyles = {}; }
-    if (finalStyles === void 0) { finalStyles = {}; }
-    if (errors === void 0) { errors = []; }
-    return new AnimationTimelineBuilderVisitor().buildKeyframes(driver, rootElement, ast, startingStyles, finalStyles, options, subInstructions, errors);
-}
-var AnimationTimelineBuilderVisitor = (function () {
-    function AnimationTimelineBuilderVisitor() {
-    }
-    /**
-     * @param {?} driver
-     * @param {?} rootElement
-     * @param {?} ast
-     * @param {?} startingStyles
-     * @param {?} finalStyles
-     * @param {?} options
-     * @param {?=} subInstructions
-     * @param {?=} errors
-     * @return {?}
-     */
-    AnimationTimelineBuilderVisitor.prototype.buildKeyframes = function (driver, rootElement, ast, startingStyles, finalStyles, options, subInstructions, errors) {
-        if (errors === void 0) { errors = []; }
-        subInstructions = subInstructions || new ElementInstructionMap();
-        var /** @type {?} */ context = new AnimationTimelineContext(driver, rootElement, subInstructions, errors, []);
-        context.options = options;
-        context.currentTimeline.setStyles([startingStyles], null, context.errors, options);
-        ast.visit(this, context);
-        // this checks to see if an actual animation happened
-        var /** @type {?} */ timelines = context.timelines.filter(function (timeline) { return timeline.containsAnimation(); });
-        if (timelines.length && Object.keys(finalStyles).length) {
-            var /** @type {?} */ tl = timelines[timelines.length - 1];
-            if (!tl.allowOnlyTimelineStyles()) {
-                tl.setStyles([finalStyles], null, context.errors, options);
-            }
-        }
-        return timelines.length ? timelines.map(function (timeline) { return timeline.buildKeyframes(); }) :
-            [createTimelineInstruction(rootElement, [], [], [], 0, 0, '', false)];
-    };
-    /**
-     * @param {?} ast
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationTimelineBuilderVisitor.prototype.visitTrigger = function (ast, context) {
-        // these values are not visited in this AST
-    };
-    /**
-     * @param {?} ast
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationTimelineBuilderVisitor.prototype.visitState = function (ast, context) {
-        // these values are not visited in this AST
-    };
-    /**
-     * @param {?} ast
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationTimelineBuilderVisitor.prototype.visitTransition = function (ast, context) {
-        // these values are not visited in this AST
-    };
-    /**
-     * @param {?} ast
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationTimelineBuilderVisitor.prototype.visitAnimateChild = function (ast, context) {
-        var /** @type {?} */ elementInstructions = context.subInstructions.consume(context.element);
-        if (elementInstructions) {
-            var /** @type {?} */ innerContext = context.createSubContext(ast.options);
-            var /** @type {?} */ startTime = context.currentTimeline.currentTime;
-            var /** @type {?} */ endTime = this._visitSubInstructions(elementInstructions, innerContext, /** @type {?} */ (innerContext.options));
-            if (startTime != endTime) {
-                // we do this on the upper context because we created a sub context for
-                // the sub child animations
-                context.transformIntoNewTimeline(endTime);
-            }
-        }
-        context.previousNode = ast;
-    };
-    /**
-     * @param {?} ast
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationTimelineBuilderVisitor.prototype.visitAnimateRef = function (ast, context) {
-        var /** @type {?} */ innerContext = context.createSubContext(ast.options);
-        innerContext.transformIntoNewTimeline();
-        this.visitReference(ast.animation, innerContext);
-        context.transformIntoNewTimeline(innerContext.currentTimeline.currentTime);
-        context.previousNode = ast;
-    };
-    /**
-     * @param {?} instructions
-     * @param {?} context
-     * @param {?} options
-     * @return {?}
-     */
-    AnimationTimelineBuilderVisitor.prototype._visitSubInstructions = function (instructions, context, options) {
-        var /** @type {?} */ startTime = context.currentTimeline.currentTime;
-        var /** @type {?} */ furthestTime = startTime;
-        // this is a special-case for when a user wants to skip a sub
-        // animation from being fired entirely.
-        var /** @type {?} */ duration = options.duration != null ? resolveTimingValue(options.duration) : null;
-        var /** @type {?} */ delay = options.delay != null ? resolveTimingValue(options.delay) : null;
-        if (duration !== 0) {
-            instructions.forEach(function (instruction) {
-                var /** @type {?} */ instructionTimings = context.appendInstructionToTimeline(instruction, duration, delay);
-                furthestTime =
-                    Math.max(furthestTime, instructionTimings.duration + instructionTimings.delay);
-            });
-        }
-        return furthestTime;
-    };
-    /**
-     * @param {?} ast
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationTimelineBuilderVisitor.prototype.visitReference = function (ast, context) {
-        context.updateOptions(ast.options, true);
-        ast.animation.visit(this, context);
-        context.previousNode = ast;
-    };
-    /**
-     * @param {?} ast
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationTimelineBuilderVisitor.prototype.visitSequence = function (ast, context) {
-        var _this = this;
-        var /** @type {?} */ subContextCount = context.subContextCount;
-        var /** @type {?} */ ctx = context;
-        var /** @type {?} */ options = ast.options;
-        if (options && (options.params || options.delay)) {
-            ctx = context.createSubContext(options);
-            ctx.transformIntoNewTimeline();
-            if (options.delay != null) {
-                if (ctx.previousNode instanceof StyleAst) {
-                    ctx.currentTimeline.snapshotCurrentStyles();
-                    ctx.previousNode = DEFAULT_NOOP_PREVIOUS_NODE;
-                }
-                var /** @type {?} */ delay = resolveTimingValue(options.delay);
-                ctx.delayNextStep(delay);
-            }
-        }
-        if (ast.steps.length) {
-            ast.steps.forEach(function (s) { return s.visit(_this, ctx); });
-            // this is here just incase the inner steps only contain or end with a style() call
-            ctx.currentTimeline.applyStylesToKeyframe();
-            // this means that some animation function within the sequence
-            // ended up creating a sub timeline (which means the current
-            // timeline cannot overlap with the contents of the sequence)
-            if (ctx.subContextCount > subContextCount) {
-                ctx.transformIntoNewTimeline();
-            }
-        }
-        context.previousNode = ast;
-    };
-    /**
-     * @param {?} ast
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationTimelineBuilderVisitor.prototype.visitGroup = function (ast, context) {
-        var _this = this;
-        var /** @type {?} */ innerTimelines = [];
-        var /** @type {?} */ furthestTime = context.currentTimeline.currentTime;
-        var /** @type {?} */ delay = ast.options && ast.options.delay ? resolveTimingValue(ast.options.delay) : 0;
-        ast.steps.forEach(function (s) {
-            var /** @type {?} */ innerContext = context.createSubContext(ast.options);
-            if (delay) {
-                innerContext.delayNextStep(delay);
-            }
-            s.visit(_this, innerContext);
-            furthestTime = Math.max(furthestTime, innerContext.currentTimeline.currentTime);
-            innerTimelines.push(innerContext.currentTimeline);
-        });
-        // this operation is run after the AST loop because otherwise
-        // if the parent timeline's collected styles were updated then
-        // it would pass in invalid data into the new-to-be forked items
-        innerTimelines.forEach(function (timeline) { return context.currentTimeline.mergeTimelineCollectedStyles(timeline); });
-        context.transformIntoNewTimeline(furthestTime);
-        context.previousNode = ast;
-    };
-    /**
-     * @param {?} ast
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationTimelineBuilderVisitor.prototype.visitTiming = function (ast, context) {
-        if (ast instanceof DynamicTimingAst) {
-            var /** @type {?} */ strValue = context.params ?
-                interpolateParams(ast.value, context.params, context.errors) :
-                ast.value.toString();
-            return resolveTiming(strValue, context.errors);
-        }
-        else {
-            return { duration: ast.duration, delay: ast.delay, easing: ast.easing };
-        }
-    };
-    /**
-     * @param {?} ast
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationTimelineBuilderVisitor.prototype.visitAnimate = function (ast, context) {
-        var /** @type {?} */ timings = context.currentAnimateTimings = this.visitTiming(ast.timings, context);
-        var /** @type {?} */ timeline = context.currentTimeline;
-        if (timings.delay) {
-            context.incrementTime(timings.delay);
-            timeline.snapshotCurrentStyles();
-        }
-        var /** @type {?} */ style$$1 = ast.style;
-        if (style$$1 instanceof KeyframesAst) {
-            this.visitKeyframes(style$$1, context);
-        }
-        else {
-            context.incrementTime(timings.duration);
-            this.visitStyle(/** @type {?} */ (style$$1), context);
-            timeline.applyStylesToKeyframe();
-        }
-        context.currentAnimateTimings = null;
-        context.previousNode = ast;
-    };
-    /**
-     * @param {?} ast
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationTimelineBuilderVisitor.prototype.visitStyle = function (ast, context) {
-        var /** @type {?} */ timeline = context.currentTimeline;
-        var /** @type {?} */ timings = ((context.currentAnimateTimings));
-        // this is a special case for when a style() call
-        // directly follows  an animate() call (but not inside of an animate() call)
-        if (!timings && timeline.getCurrentStyleProperties().length) {
-            timeline.forwardFrame();
-        }
-        var /** @type {?} */ easing = (timings && timings.easing) || ast.easing;
-        if (ast.isEmptyStep) {
-            timeline.applyEmptyStep(easing);
-        }
-        else {
-            timeline.setStyles(ast.styles, easing, context.errors, context.options);
-        }
-        context.previousNode = ast;
-    };
-    /**
-     * @param {?} ast
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationTimelineBuilderVisitor.prototype.visitKeyframes = function (ast, context) {
-        var /** @type {?} */ currentAnimateTimings = ((context.currentAnimateTimings));
-        var /** @type {?} */ startTime = (((context.currentTimeline))).duration;
-        var /** @type {?} */ duration = currentAnimateTimings.duration;
-        var /** @type {?} */ innerContext = context.createSubContext();
-        var /** @type {?} */ innerTimeline = innerContext.currentTimeline;
-        innerTimeline.easing = currentAnimateTimings.easing;
-        ast.styles.forEach(function (step) {
-            var /** @type {?} */ offset = step.offset || 0;
-            innerTimeline.forwardTime(offset * duration);
-            innerTimeline.setStyles(step.styles, step.easing, context.errors, context.options);
-            innerTimeline.applyStylesToKeyframe();
-        });
-        // this will ensure that the parent timeline gets all the styles from
-        // the child even if the new timeline below is not used
-        context.currentTimeline.mergeTimelineCollectedStyles(innerTimeline);
-        // we do this because the window between this timeline and the sub timeline
-        // should ensure that the styles within are exactly the same as they were before
-        context.transformIntoNewTimeline(startTime + duration);
-        context.previousNode = ast;
-    };
-    /**
-     * @param {?} ast
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationTimelineBuilderVisitor.prototype.visitQuery = function (ast, context) {
-        var _this = this;
-        // in the event that the first step before this is a style step we need
-        // to ensure the styles are applied before the children are animated
-        var /** @type {?} */ startTime = context.currentTimeline.currentTime;
-        var /** @type {?} */ options = ((ast.options || {}));
-        var /** @type {?} */ delay = options.delay ? resolveTimingValue(options.delay) : 0;
-        if (delay && (context.previousNode instanceof StyleAst ||
-            (startTime == 0 && context.currentTimeline.getCurrentStyleProperties().length))) {
-            context.currentTimeline.snapshotCurrentStyles();
-            context.previousNode = DEFAULT_NOOP_PREVIOUS_NODE;
-        }
-        var /** @type {?} */ furthestTime = startTime;
-        var /** @type {?} */ elms = context.invokeQuery(ast.selector, ast.originalSelector, ast.limit, ast.includeSelf, options.optional ? true : false, context.errors);
-        context.currentQueryTotal = elms.length;
-        var /** @type {?} */ sameElementTimeline = null;
-        elms.forEach(function (element, i) {
-            context.currentQueryIndex = i;
-            var /** @type {?} */ innerContext = context.createSubContext(ast.options, element);
-            if (delay) {
-                innerContext.delayNextStep(delay);
-            }
-            if (element === context.element) {
-                sameElementTimeline = innerContext.currentTimeline;
-            }
-            ast.animation.visit(_this, innerContext);
-            // this is here just incase the inner steps only contain or end
-            // with a style() call (which is here to signal that this is a preparatory
-            // call to style an element before it is animated again)
-            innerContext.currentTimeline.applyStylesToKeyframe();
-            var /** @type {?} */ endTime = innerContext.currentTimeline.currentTime;
-            furthestTime = Math.max(furthestTime, endTime);
-        });
-        context.currentQueryIndex = 0;
-        context.currentQueryTotal = 0;
-        context.transformIntoNewTimeline(furthestTime);
-        if (sameElementTimeline) {
-            context.currentTimeline.mergeTimelineCollectedStyles(sameElementTimeline);
-            context.currentTimeline.snapshotCurrentStyles();
-        }
-        context.previousNode = ast;
-    };
-    /**
-     * @param {?} ast
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationTimelineBuilderVisitor.prototype.visitStagger = function (ast, context) {
-        var /** @type {?} */ parentContext = ((context.parentContext));
-        var /** @type {?} */ tl = context.currentTimeline;
-        var /** @type {?} */ timings = ast.timings;
-        var /** @type {?} */ duration = Math.abs(timings.duration);
-        var /** @type {?} */ maxTime = duration * (context.currentQueryTotal - 1);
-        var /** @type {?} */ delay = duration * context.currentQueryIndex;
-        var /** @type {?} */ staggerTransformer = timings.duration < 0 ? 'reverse' : timings.easing;
-        switch (staggerTransformer) {
-            case 'reverse':
-                delay = maxTime - delay;
-                break;
-            case 'full':
-                delay = parentContext.currentStaggerTime;
-                break;
-        }
-        var /** @type {?} */ timeline = context.currentTimeline;
-        if (delay) {
-            timeline.delayNextStep(delay);
-        }
-        var /** @type {?} */ startingTime = timeline.currentTime;
-        ast.animation.visit(this, context);
-        context.previousNode = ast;
-        // time = duration + delay
-        // the reason why this computation is so complex is because
-        // the inner timeline may either have a delay value or a stretched
-        // keyframe depending on if a subtimeline is not used or is used.
-        parentContext.currentStaggerTime =
-            (tl.currentTime - startingTime) + (tl.startTime - parentContext.currentTimeline.startTime);
-    };
-    return AnimationTimelineBuilderVisitor;
-}());
-var DEFAULT_NOOP_PREVIOUS_NODE = ({});
-var AnimationTimelineContext = (function () {
-    /**
-     * @param {?} _driver
-     * @param {?} element
-     * @param {?} subInstructions
-     * @param {?} errors
-     * @param {?} timelines
-     * @param {?=} initialTimeline
-     */
-    function AnimationTimelineContext(_driver, element, subInstructions, errors, timelines, initialTimeline) {
-        this._driver = _driver;
-        this.element = element;
-        this.subInstructions = subInstructions;
-        this.errors = errors;
-        this.timelines = timelines;
-        this.parentContext = null;
-        this.currentAnimateTimings = null;
-        this.previousNode = DEFAULT_NOOP_PREVIOUS_NODE;
-        this.subContextCount = 0;
-        this.options = {};
-        this.currentQueryIndex = 0;
-        this.currentQueryTotal = 0;
-        this.currentStaggerTime = 0;
-        this.currentTimeline = initialTimeline || new TimelineBuilder(element, 0);
-        timelines.push(this.currentTimeline);
-    }
-    Object.defineProperty(AnimationTimelineContext.prototype, "params", {
-        /**
-         * @return {?}
-         */
-        get: function () { return this.options.params; },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @param {?} options
-     * @param {?=} skipIfExists
-     * @return {?}
-     */
-    AnimationTimelineContext.prototype.updateOptions = function (options, skipIfExists) {
-        var _this = this;
-        if (!options)
-            return;
-        var /** @type {?} */ newOptions = (options);
-        var /** @type {?} */ optionsToUpdate = this.options;
-        // NOTE: this will get patched up when other animation methods support duration overrides
-        if (newOptions.duration != null) {
-            ((optionsToUpdate)).duration = resolveTimingValue(newOptions.duration);
-        }
-        if (newOptions.delay != null) {
-            optionsToUpdate.delay = resolveTimingValue(newOptions.delay);
-        }
-        var /** @type {?} */ newParams = newOptions.params;
-        if (newParams) {
-            var /** @type {?} */ paramsToUpdate_1 = ((optionsToUpdate.params));
-            if (!paramsToUpdate_1) {
-                paramsToUpdate_1 = this.options.params = {};
-            }
-            Object.keys(newParams).forEach(function (name) {
-                if (!skipIfExists || !paramsToUpdate_1.hasOwnProperty(name)) {
-                    paramsToUpdate_1[name] = interpolateParams(newParams[name], paramsToUpdate_1, _this.errors);
-                }
-            });
-        }
-    };
-    /**
-     * @return {?}
-     */
-    AnimationTimelineContext.prototype._copyOptions = function () {
-        var /** @type {?} */ options = {};
-        if (this.options) {
-            var /** @type {?} */ oldParams_1 = this.options.params;
-            if (oldParams_1) {
-                var /** @type {?} */ params_1 = options['params'] = {};
-                Object.keys(this.options.params).forEach(function (name) { params_1[name] = oldParams_1[name]; });
-            }
-        }
-        return options;
-    };
-    /**
-     * @param {?=} options
-     * @param {?=} element
-     * @param {?=} newTime
-     * @return {?}
-     */
-    AnimationTimelineContext.prototype.createSubContext = function (options, element, newTime) {
-        if (options === void 0) { options = null; }
-        var /** @type {?} */ target = element || this.element;
-        var /** @type {?} */ context = new AnimationTimelineContext(this._driver, target, this.subInstructions, this.errors, this.timelines, this.currentTimeline.fork(target, newTime || 0));
-        context.previousNode = this.previousNode;
-        context.currentAnimateTimings = this.currentAnimateTimings;
-        context.options = this._copyOptions();
-        context.updateOptions(options);
-        context.currentQueryIndex = this.currentQueryIndex;
-        context.currentQueryTotal = this.currentQueryTotal;
-        context.parentContext = this;
-        this.subContextCount++;
-        return context;
-    };
-    /**
-     * @param {?=} newTime
-     * @return {?}
-     */
-    AnimationTimelineContext.prototype.transformIntoNewTimeline = function (newTime) {
-        this.previousNode = DEFAULT_NOOP_PREVIOUS_NODE;
-        this.currentTimeline = this.currentTimeline.fork(this.element, newTime);
-        this.timelines.push(this.currentTimeline);
-        return this.currentTimeline;
-    };
-    /**
-     * @param {?} instruction
-     * @param {?} duration
-     * @param {?} delay
-     * @return {?}
-     */
-    AnimationTimelineContext.prototype.appendInstructionToTimeline = function (instruction, duration, delay) {
-        var /** @type {?} */ updatedTimings = {
-            duration: duration != null ? duration : instruction.duration,
-            delay: this.currentTimeline.currentTime + (delay != null ? delay : 0) + instruction.delay,
-            easing: ''
-        };
-        var /** @type {?} */ builder = new SubTimelineBuilder(instruction.element, instruction.keyframes, instruction.preStyleProps, instruction.postStyleProps, updatedTimings, instruction.stretchStartingKeyframe);
-        this.timelines.push(builder);
-        return updatedTimings;
-    };
-    /**
-     * @param {?} time
-     * @return {?}
-     */
-    AnimationTimelineContext.prototype.incrementTime = function (time) {
-        this.currentTimeline.forwardTime(this.currentTimeline.duration + time);
-    };
-    /**
-     * @param {?} delay
-     * @return {?}
-     */
-    AnimationTimelineContext.prototype.delayNextStep = function (delay) {
-        // negative delays are not yet supported
-        if (delay > 0) {
-            this.currentTimeline.delayNextStep(delay);
-        }
-    };
-    /**
-     * @param {?} selector
-     * @param {?} originalSelector
-     * @param {?} limit
-     * @param {?} includeSelf
-     * @param {?} optional
-     * @param {?} errors
-     * @return {?}
-     */
-    AnimationTimelineContext.prototype.invokeQuery = function (selector, originalSelector, limit, includeSelf, optional, errors) {
-        var /** @type {?} */ results = [];
-        if (includeSelf) {
-            results.push(this.element);
-        }
-        if (selector.length > 0) {
-            var /** @type {?} */ multi = limit != 1;
-            results.push.apply(results, this._driver.query(this.element, selector, multi));
-        }
-        if (!optional && results.length == 0) {
-            errors.push("`query(\"" + originalSelector + "\")` returned zero elements. (Use `query(\"" + originalSelector + "\", { optional: true })` if you wish to allow this.)");
-        }
-        return results;
-    };
-    return AnimationTimelineContext;
-}());
-var TimelineBuilder = (function () {
-    /**
-     * @param {?} element
-     * @param {?} startTime
-     * @param {?=} _elementTimelineStylesLookup
-     */
-    function TimelineBuilder(element, startTime, _elementTimelineStylesLookup) {
-        this.element = element;
-        this.startTime = startTime;
-        this._elementTimelineStylesLookup = _elementTimelineStylesLookup;
-        this.duration = 0;
-        this._previousKeyframe = {};
-        this._currentKeyframe = {};
-        this._keyframes = new Map();
-        this._styleSummary = {};
-        this._pendingStyles = {};
-        this._backFill = {};
-        this._currentEmptyStepKeyframe = null;
-        if (!this._elementTimelineStylesLookup) {
-            this._elementTimelineStylesLookup = new Map();
-        }
-        this._localTimelineStyles = Object.create(this._backFill, {});
-        this._globalTimelineStyles = this._elementTimelineStylesLookup.get(element);
-        if (!this._globalTimelineStyles) {
-            this._globalTimelineStyles = this._localTimelineStyles;
-            this._elementTimelineStylesLookup.set(element, this._localTimelineStyles);
-        }
-        this._loadKeyframe();
-    }
-    /**
-     * @return {?}
-     */
-    TimelineBuilder.prototype.containsAnimation = function () {
-        switch (this._keyframes.size) {
-            case 0:
-                return false;
-            case 1:
-                return this.getCurrentStyleProperties().length > 0;
-            default:
-                return true;
-        }
-    };
-    /**
-     * @return {?}
-     */
-    TimelineBuilder.prototype.getCurrentStyleProperties = function () { return Object.keys(this._currentKeyframe); };
-    Object.defineProperty(TimelineBuilder.prototype, "currentTime", {
-        /**
-         * @return {?}
-         */
-        get: function () { return this.startTime + this.duration; },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @param {?} delay
-     * @return {?}
-     */
-    TimelineBuilder.prototype.delayNextStep = function (delay) {
-        // in the event that a style() step is placed right before a stagger()
-        // and that style() step is the very first style() value in the animation
-        // then we need to make a copy of the keyframe [0, copy, 1] so that the delay
-        // properly applies the style() values to work with the stagger...
-        var /** @type {?} */ hasPreStyleStep = this._keyframes.size == 1 && Object.keys(this._pendingStyles).length;
-        if (this.duration || hasPreStyleStep) {
-            this.forwardTime(this.currentTime + delay);
-            if (hasPreStyleStep) {
-                this.snapshotCurrentStyles();
-            }
-        }
-        else {
-            this.startTime += delay;
-        }
-    };
-    /**
-     * @param {?} element
-     * @param {?=} currentTime
-     * @return {?}
-     */
-    TimelineBuilder.prototype.fork = function (element, currentTime) {
-        this.applyStylesToKeyframe();
-        return new TimelineBuilder(element, currentTime || this.currentTime, this._elementTimelineStylesLookup);
-    };
-    /**
-     * @return {?}
-     */
-    TimelineBuilder.prototype._loadKeyframe = function () {
-        if (this._currentKeyframe) {
-            this._previousKeyframe = this._currentKeyframe;
-        }
-        this._currentKeyframe = ((this._keyframes.get(this.duration)));
-        if (!this._currentKeyframe) {
-            this._currentKeyframe = Object.create(this._backFill, {});
-            this._keyframes.set(this.duration, this._currentKeyframe);
-        }
-    };
-    /**
-     * @return {?}
-     */
-    TimelineBuilder.prototype.forwardFrame = function () {
-        this.duration += ONE_FRAME_IN_MILLISECONDS;
-        this._loadKeyframe();
-    };
-    /**
-     * @param {?} time
-     * @return {?}
-     */
-    TimelineBuilder.prototype.forwardTime = function (time) {
-        this.applyStylesToKeyframe();
-        this.duration = time;
-        this._loadKeyframe();
-    };
-    /**
-     * @param {?} prop
-     * @param {?} value
-     * @return {?}
-     */
-    TimelineBuilder.prototype._updateStyle = function (prop, value) {
-        this._localTimelineStyles[prop] = value;
-        this._globalTimelineStyles[prop] = value;
-        this._styleSummary[prop] = { time: this.currentTime, value: value };
-    };
-    /**
-     * @return {?}
-     */
-    TimelineBuilder.prototype.allowOnlyTimelineStyles = function () { return this._currentEmptyStepKeyframe !== this._currentKeyframe; };
-    /**
-     * @param {?} easing
-     * @return {?}
-     */
-    TimelineBuilder.prototype.applyEmptyStep = function (easing) {
-        var _this = this;
-        if (easing) {
-            this._previousKeyframe['easing'] = easing;
-        }
-        // special case for animate(duration):
-        // all missing styles are filled with a `*` value then
-        // if any destination styles are filled in later on the same
-        // keyframe then they will override the overridden styles
-        // We use `_globalTimelineStyles` here because there may be
-        // styles in previous keyframes that are not present in this timeline
-        Object.keys(this._globalTimelineStyles).forEach(function (prop) {
-            _this._backFill[prop] = _this._globalTimelineStyles[prop] || __WEBPACK_IMPORTED_MODULE_1__angular_animations__["g" /* AUTO_STYLE */];
-            _this._currentKeyframe[prop] = __WEBPACK_IMPORTED_MODULE_1__angular_animations__["g" /* AUTO_STYLE */];
-        });
-        this._currentEmptyStepKeyframe = this._currentKeyframe;
-    };
-    /**
-     * @param {?} input
-     * @param {?} easing
-     * @param {?} errors
-     * @param {?=} options
-     * @return {?}
-     */
-    TimelineBuilder.prototype.setStyles = function (input, easing, errors, options) {
-        var _this = this;
-        if (easing) {
-            this._previousKeyframe['easing'] = easing;
-        }
-        var /** @type {?} */ params = (options && options.params) || {};
-        var /** @type {?} */ styles = flattenStyles(input, this._globalTimelineStyles);
-        Object.keys(styles).forEach(function (prop) {
-            var /** @type {?} */ val = interpolateParams(styles[prop], params, errors);
-            _this._pendingStyles[prop] = val;
-            if (!_this._localTimelineStyles.hasOwnProperty(prop)) {
-                _this._backFill[prop] = _this._globalTimelineStyles.hasOwnProperty(prop) ?
-                    _this._globalTimelineStyles[prop] :
-                    __WEBPACK_IMPORTED_MODULE_1__angular_animations__["g" /* AUTO_STYLE */];
-            }
-            _this._updateStyle(prop, val);
-        });
-    };
-    /**
-     * @return {?}
-     */
-    TimelineBuilder.prototype.applyStylesToKeyframe = function () {
-        var _this = this;
-        var /** @type {?} */ styles = this._pendingStyles;
-        var /** @type {?} */ props = Object.keys(styles);
-        if (props.length == 0)
-            return;
-        this._pendingStyles = {};
-        props.forEach(function (prop) {
-            var /** @type {?} */ val = styles[prop];
-            _this._currentKeyframe[prop] = val;
-        });
-        Object.keys(this._localTimelineStyles).forEach(function (prop) {
-            if (!_this._currentKeyframe.hasOwnProperty(prop)) {
-                _this._currentKeyframe[prop] = _this._localTimelineStyles[prop];
-            }
-        });
-    };
-    /**
-     * @return {?}
-     */
-    TimelineBuilder.prototype.snapshotCurrentStyles = function () {
-        var _this = this;
-        Object.keys(this._localTimelineStyles).forEach(function (prop) {
-            var /** @type {?} */ val = _this._localTimelineStyles[prop];
-            _this._pendingStyles[prop] = val;
-            _this._updateStyle(prop, val);
-        });
-    };
-    /**
-     * @return {?}
-     */
-    TimelineBuilder.prototype.getFinalKeyframe = function () { return this._keyframes.get(this.duration); };
-    Object.defineProperty(TimelineBuilder.prototype, "properties", {
-        /**
-         * @return {?}
-         */
-        get: function () {
-            var /** @type {?} */ properties = [];
-            for (var /** @type {?} */ prop in this._currentKeyframe) {
-                properties.push(prop);
-            }
-            return properties;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @param {?} timeline
-     * @return {?}
-     */
-    TimelineBuilder.prototype.mergeTimelineCollectedStyles = function (timeline) {
-        var _this = this;
-        Object.keys(timeline._styleSummary).forEach(function (prop) {
-            var /** @type {?} */ details0 = _this._styleSummary[prop];
-            var /** @type {?} */ details1 = timeline._styleSummary[prop];
-            if (!details0 || details1.time > details0.time) {
-                _this._updateStyle(prop, details1.value);
-            }
-        });
-    };
-    /**
-     * @return {?}
-     */
-    TimelineBuilder.prototype.buildKeyframes = function () {
-        var _this = this;
-        this.applyStylesToKeyframe();
-        var /** @type {?} */ preStyleProps = new Set();
-        var /** @type {?} */ postStyleProps = new Set();
-        var /** @type {?} */ isEmpty = this._keyframes.size === 1 && this.duration === 0;
-        var /** @type {?} */ finalKeyframes = [];
-        this._keyframes.forEach(function (keyframe, time) {
-            var /** @type {?} */ finalKeyframe = copyStyles(keyframe, true);
-            Object.keys(finalKeyframe).forEach(function (prop) {
-                var /** @type {?} */ value = finalKeyframe[prop];
-                if (value == __WEBPACK_IMPORTED_MODULE_1__angular_animations__["f" /* ɵPRE_STYLE */]) {
-                    preStyleProps.add(prop);
-                }
-                else if (value == __WEBPACK_IMPORTED_MODULE_1__angular_animations__["g" /* AUTO_STYLE */]) {
-                    postStyleProps.add(prop);
-                }
-            });
-            if (!isEmpty) {
-                finalKeyframe['offset'] = time / _this.duration;
-            }
-            finalKeyframes.push(finalKeyframe);
-        });
-        var /** @type {?} */ preProps = preStyleProps.size ? iteratorToArray(preStyleProps.values()) : [];
-        var /** @type {?} */ postProps = postStyleProps.size ? iteratorToArray(postStyleProps.values()) : [];
-        // special case for a 0-second animation (which is designed just to place styles onscreen)
-        if (isEmpty) {
-            var /** @type {?} */ kf0 = finalKeyframes[0];
-            var /** @type {?} */ kf1 = copyObj(kf0);
-            kf0['offset'] = 0;
-            kf1['offset'] = 1;
-            finalKeyframes = [kf0, kf1];
-        }
-        return createTimelineInstruction(this.element, finalKeyframes, preProps, postProps, this.duration, this.startTime, this.easing, false);
-    };
-    return TimelineBuilder;
-}());
-var SubTimelineBuilder = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SubTimelineBuilder, _super);
-    /**
-     * @param {?} element
-     * @param {?} keyframes
-     * @param {?} preStyleProps
-     * @param {?} postStyleProps
-     * @param {?} timings
-     * @param {?=} _stretchStartingKeyframe
-     */
-    function SubTimelineBuilder(element, keyframes, preStyleProps, postStyleProps, timings, _stretchStartingKeyframe) {
-        if (_stretchStartingKeyframe === void 0) { _stretchStartingKeyframe = false; }
-        var _this = _super.call(this, element, timings.delay) || this;
-        _this.element = element;
-        _this.keyframes = keyframes;
-        _this.preStyleProps = preStyleProps;
-        _this.postStyleProps = postStyleProps;
-        _this._stretchStartingKeyframe = _stretchStartingKeyframe;
-        _this.timings = { duration: timings.duration, delay: timings.delay, easing: timings.easing };
-        return _this;
-    }
-    /**
-     * @return {?}
-     */
-    SubTimelineBuilder.prototype.containsAnimation = function () { return this.keyframes.length > 1; };
-    /**
-     * @return {?}
-     */
-    SubTimelineBuilder.prototype.buildKeyframes = function () {
-        var /** @type {?} */ keyframes = this.keyframes;
-        var _a = this.timings, delay = _a.delay, duration = _a.duration, easing = _a.easing;
-        if (this._stretchStartingKeyframe && delay) {
-            var /** @type {?} */ newKeyframes = [];
-            var /** @type {?} */ totalTime = duration + delay;
-            var /** @type {?} */ startingGap = delay / totalTime;
-            // the original starting keyframe now starts once the delay is done
-            var /** @type {?} */ newFirstKeyframe = copyStyles(keyframes[0], false);
-            newFirstKeyframe['offset'] = 0;
-            newKeyframes.push(newFirstKeyframe);
-            var /** @type {?} */ oldFirstKeyframe = copyStyles(keyframes[0], false);
-            oldFirstKeyframe['offset'] = roundOffset(startingGap);
-            newKeyframes.push(oldFirstKeyframe);
-            /*
-              When the keyframe is stretched then it means that the delay before the animation
-              starts is gone. Instead the first keyframe is placed at the start of the animation
-              and it is then copied to where it starts when the original delay is over. This basically
-              means nothing animates during that delay, but the styles are still renderered. For this
-              to work the original offset values that exist in the original keyframes must be "warped"
-              so that they can take the new keyframe + delay into account.
-      
-              delay=1000, duration=1000, keyframes = 0 .5 1
-      
-              turns into
-      
-              delay=0, duration=2000, keyframes = 0 .33 .66 1
-             */
-            // offsets between 1 ... n -1 are all warped by the keyframe stretch
-            var /** @type {?} */ limit = keyframes.length - 1;
-            for (var /** @type {?} */ i = 1; i <= limit; i++) {
-                var /** @type {?} */ kf = copyStyles(keyframes[i], false);
-                var /** @type {?} */ oldOffset = (kf['offset']);
-                var /** @type {?} */ timeAtKeyframe = delay + oldOffset * duration;
-                kf['offset'] = roundOffset(timeAtKeyframe / totalTime);
-                newKeyframes.push(kf);
-            }
-            // the new starting keyframe should be added at the start
-            duration = totalTime;
-            delay = 0;
-            easing = '';
-            keyframes = newKeyframes;
-        }
-        return createTimelineInstruction(this.element, keyframes, this.preStyleProps, this.postStyleProps, duration, delay, easing, true);
-    };
-    return SubTimelineBuilder;
-}(TimelineBuilder));
-/**
- * @param {?} offset
- * @param {?=} decimalPoints
- * @return {?}
- */
-function roundOffset(offset, decimalPoints) {
-    if (decimalPoints === void 0) { decimalPoints = 3; }
-    var /** @type {?} */ mult = Math.pow(10, decimalPoints - 1);
-    return Math.round(offset * mult) / mult;
-}
-/**
- * @param {?} input
- * @param {?} allStyles
- * @return {?}
- */
-function flattenStyles(input, allStyles) {
-    var /** @type {?} */ styles = {};
-    var /** @type {?} */ allProperties;
-    input.forEach(function (token) {
-        if (token === '*') {
-            allProperties = allProperties || Object.keys(allStyles);
-            allProperties.forEach(function (prop) { styles[prop] = __WEBPACK_IMPORTED_MODULE_1__angular_animations__["g" /* AUTO_STYLE */]; });
-        }
-        else {
-            copyStyles(/** @type {?} */ (token), false, styles);
-        }
-    });
-    return styles;
-}
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var Animation = (function () {
-    /**
-     * @param {?} _driver
-     * @param {?} input
-     */
-    function Animation(_driver, input) {
-        this._driver = _driver;
-        var errors = [];
-        var ast = buildAnimationAst(input, errors);
-        if (errors.length) {
-            var errorMessage = "animation validation failed:\n" + errors.join("\n");
-            throw new Error(errorMessage);
-        }
-        this._animationAst = ast;
-    }
-    /**
-     * @param {?} element
-     * @param {?} startingStyles
-     * @param {?} destinationStyles
-     * @param {?} options
-     * @param {?=} subInstructions
-     * @return {?}
-     */
-    Animation.prototype.buildTimelines = function (element, startingStyles, destinationStyles, options, subInstructions) {
-        var /** @type {?} */ start = Array.isArray(startingStyles) ? normalizeStyles(startingStyles) : (startingStyles);
-        var /** @type {?} */ dest = Array.isArray(destinationStyles) ? normalizeStyles(destinationStyles) : (destinationStyles);
-        var /** @type {?} */ errors = [];
-        subInstructions = subInstructions || new ElementInstructionMap();
-        var /** @type {?} */ result = buildAnimationTimelines(this._driver, element, this._animationAst, start, dest, options, subInstructions, errors);
-        if (errors.length) {
-            var /** @type {?} */ errorMessage = "animation building failed:\n" + errors.join("\n");
-            throw new Error(errorMessage);
-        }
-        return result;
-    };
-    return Animation;
-}());
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @experimental Animation support is experimental.
- */
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */ var AnimationStyleNormalizer = (function () {
-    function AnimationStyleNormalizer() {
-    }
-    return AnimationStyleNormalizer;
-}());
-/**
- * @experimental Animation support is experimental.
- */
-var NoopAnimationStyleNormalizer = (function () {
-    function NoopAnimationStyleNormalizer() {
-    }
-    NoopAnimationStyleNormalizer.prototype.normalizePropertyName = function (propertyName, errors) { return propertyName; };
-    NoopAnimationStyleNormalizer.prototype.normalizeStyleValue = function (userProvidedProperty, normalizedProperty, value, errors) {
-        return value;
-    };
-    return NoopAnimationStyleNormalizer;
-}());
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var WebAnimationsStyleNormalizer = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](WebAnimationsStyleNormalizer, _super);
-    function WebAnimationsStyleNormalizer() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    /**
-     * @param {?} propertyName
-     * @param {?} errors
-     * @return {?}
-     */
-    WebAnimationsStyleNormalizer.prototype.normalizePropertyName = function (propertyName, errors) {
-        return dashCaseToCamelCase(propertyName);
-    };
-    /**
-     * @param {?} userProvidedProperty
-     * @param {?} normalizedProperty
-     * @param {?} value
-     * @param {?} errors
-     * @return {?}
-     */
-    WebAnimationsStyleNormalizer.prototype.normalizeStyleValue = function (userProvidedProperty, normalizedProperty, value, errors) {
-        var /** @type {?} */ unit = '';
-        var /** @type {?} */ strVal = value.toString().trim();
-        if (DIMENSIONAL_PROP_MAP[normalizedProperty] && value !== 0 && value !== '0') {
-            if (typeof value === 'number') {
-                unit = 'px';
-            }
-            else {
-                var /** @type {?} */ valAndSuffixMatch = value.match(/^[+-]?[\d\.]+([a-z]*)$/);
-                if (valAndSuffixMatch && valAndSuffixMatch[1].length == 0) {
-                    errors.push("Please provide a CSS unit value for " + userProvidedProperty + ":" + value);
-                }
-            }
-        }
-        return strVal + unit;
-    };
-    return WebAnimationsStyleNormalizer;
-}(AnimationStyleNormalizer));
-var DIMENSIONAL_PROP_MAP = makeBooleanMap('width,height,minWidth,minHeight,maxWidth,maxHeight,left,top,bottom,right,fontSize,outlineWidth,outlineOffset,paddingTop,paddingLeft,paddingBottom,paddingRight,marginTop,marginLeft,marginBottom,marginRight,borderRadius,borderWidth,borderTopWidth,borderLeftWidth,borderRightWidth,borderBottomWidth,textIndent,perspective'
-    .split(','));
-/**
- * @param {?} keys
- * @return {?}
- */
-function makeBooleanMap(keys) {
-    var /** @type {?} */ map = {};
-    keys.forEach(function (key) { return map[key] = true; });
-    return map;
-}
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @param {?} element
- * @param {?} triggerName
- * @param {?} fromState
- * @param {?} toState
- * @param {?} isRemovalTransition
- * @param {?} fromStyles
- * @param {?} toStyles
- * @param {?} timelines
- * @param {?} queriedElements
- * @param {?} preStyleProps
- * @param {?} postStyleProps
- * @param {?=} errors
- * @return {?}
- */
-function createTransitionInstruction(element, triggerName, fromState, toState, isRemovalTransition, fromStyles, toStyles, timelines, queriedElements, preStyleProps, postStyleProps, errors) {
-    return {
-        type: 0 /* TransitionAnimation */,
-        element: element,
-        triggerName: triggerName,
-        isRemovalTransition: isRemovalTransition,
-        fromState: fromState,
-        fromStyles: fromStyles,
-        toState: toState,
-        toStyles: toStyles,
-        timelines: timelines,
-        queriedElements: queriedElements,
-        preStyleProps: preStyleProps,
-        postStyleProps: postStyleProps,
-        errors: errors
-    };
-}
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var AnimationTransitionFactory = (function () {
-    /**
-     * @param {?} _triggerName
-     * @param {?} ast
-     * @param {?} _stateStyles
-     */
-    function AnimationTransitionFactory(_triggerName, ast, _stateStyles) {
-        this._triggerName = _triggerName;
-        this.ast = ast;
-        this._stateStyles = _stateStyles;
-    }
-    /**
-     * @param {?} currentState
-     * @param {?} nextState
-     * @return {?}
-     */
-    AnimationTransitionFactory.prototype.match = function (currentState, nextState) {
-        return oneOrMoreTransitionsMatch(this.ast.matchers, currentState, nextState);
-    };
-    /**
-     * @param {?} driver
-     * @param {?} element
-     * @param {?} currentState
-     * @param {?} nextState
-     * @param {?=} options
-     * @param {?=} subInstructions
-     * @return {?}
-     */
-    AnimationTransitionFactory.prototype.build = function (driver, element, currentState, nextState, options, subInstructions) {
-        var /** @type {?} */ animationOptions = mergeAnimationOptions(this.ast.options || {}, options || {});
-        var /** @type {?} */ backupStateStyles = this._stateStyles['*'] || {};
-        var /** @type {?} */ currentStateStyles = this._stateStyles[currentState] || backupStateStyles;
-        var /** @type {?} */ nextStateStyles = this._stateStyles[nextState] || backupStateStyles;
-        var /** @type {?} */ queriedElements = new Set();
-        var /** @type {?} */ preStyleMap = new Map();
-        var /** @type {?} */ postStyleMap = new Map();
-        var /** @type {?} */ isRemoval = nextState === 'void';
-        var /** @type {?} */ errors = [];
-        var /** @type {?} */ timelines = buildAnimationTimelines(driver, element, this.ast.animation, currentStateStyles, nextStateStyles, animationOptions, subInstructions, errors);
-        if (errors.length) {
-            return createTransitionInstruction(element, this._triggerName, currentState, nextState, isRemoval, currentStateStyles, nextStateStyles, [], [], preStyleMap, postStyleMap, errors);
-        }
-        timelines.forEach(function (tl) {
-            var /** @type {?} */ elm = tl.element;
-            var /** @type {?} */ preProps = getOrSetAsInMap(preStyleMap, elm, {});
-            tl.preStyleProps.forEach(function (prop) { return preProps[prop] = true; });
-            var /** @type {?} */ postProps = getOrSetAsInMap(postStyleMap, elm, {});
-            tl.postStyleProps.forEach(function (prop) { return postProps[prop] = true; });
-            if (elm !== element) {
-                queriedElements.add(elm);
-            }
-        });
-        var /** @type {?} */ queriedElementsList = iteratorToArray(queriedElements.values());
-        return createTransitionInstruction(element, this._triggerName, currentState, nextState, isRemoval, currentStateStyles, nextStateStyles, timelines, queriedElementsList, preStyleMap, postStyleMap);
-    };
-    return AnimationTransitionFactory;
-}());
-/**
- * @param {?} matchFns
- * @param {?} currentState
- * @param {?} nextState
- * @return {?}
- */
-function oneOrMoreTransitionsMatch(matchFns, currentState, nextState) {
-    return matchFns.some(function (fn) { return fn(currentState, nextState); });
-}
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * \@experimental Animation support is experimental.
- * @param {?} name
- * @param {?} ast
- * @return {?}
- */
-function buildTrigger(name, ast) {
-    return new AnimationTrigger(name, ast);
-}
-/**
- * \@experimental Animation support is experimental.
- */
-var AnimationTrigger = (function () {
-    /**
-     * @param {?} name
-     * @param {?} ast
-     */
-    function AnimationTrigger(name, ast) {
-        var _this = this;
-        this.name = name;
-        this.ast = ast;
-        this.transitionFactories = [];
-        this.states = {};
-        ast.states.forEach(function (ast) {
-            var obj = _this.states[ast.name] = {};
-            ast.style.styles.forEach(function (styleTuple) {
-                if (typeof styleTuple == 'object') {
-                    copyStyles(styleTuple, false, obj);
-                }
-            });
-        });
-        balanceProperties(this.states, 'true', '1');
-        balanceProperties(this.states, 'false', '0');
-        ast.transitions.forEach(function (ast) {
-            _this.transitionFactories.push(new AnimationTransitionFactory(name, ast, _this.states));
-        });
-        this.fallbackTransition = createFallbackTransition(name, this.states);
-    }
-    Object.defineProperty(AnimationTrigger.prototype, "containsQueries", {
-        /**
-         * @return {?}
-         */
-        get: function () { return this.ast.queryCount > 0; },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @param {?} currentState
-     * @param {?} nextState
-     * @return {?}
-     */
-    AnimationTrigger.prototype.matchTransition = function (currentState, nextState) {
-        var /** @type {?} */ entry = this.transitionFactories.find(function (f) { return f.match(currentState, nextState); });
-        return entry || null;
-    };
-    return AnimationTrigger;
-}());
-/**
- * @param {?} triggerName
- * @param {?} states
- * @return {?}
- */
-function createFallbackTransition(triggerName, states) {
-    var /** @type {?} */ matchers = [function (fromState, toState) { return true; }];
-    var /** @type {?} */ animation = new SequenceAst([]);
-    var /** @type {?} */ transition = new TransitionAst(matchers, animation);
-    return new AnimationTransitionFactory(triggerName, transition, states);
-}
-/**
- * @param {?} obj
- * @param {?} key1
- * @param {?} key2
- * @return {?}
- */
-function balanceProperties(obj, key1, key2) {
-    if (obj.hasOwnProperty(key1)) {
-        if (!obj.hasOwnProperty(key2)) {
-            obj[key2] = obj[key1];
-        }
-    }
-    else if (obj.hasOwnProperty(key2)) {
-        obj[key1] = obj[key2];
-    }
-}
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var EMPTY_INSTRUCTION_MAP = new ElementInstructionMap();
-var TimelineAnimationEngine = (function () {
-    /**
-     * @param {?} _driver
-     * @param {?} _normalizer
-     */
-    function TimelineAnimationEngine(_driver, _normalizer) {
-        this._driver = _driver;
-        this._normalizer = _normalizer;
-        this._animations = {};
-        this._playersById = {};
-        this.players = [];
-    }
-    /**
-     * @param {?} id
-     * @param {?} metadata
-     * @return {?}
-     */
-    TimelineAnimationEngine.prototype.register = function (id, metadata) {
-        var /** @type {?} */ errors = [];
-        var /** @type {?} */ ast = buildAnimationAst(metadata, errors);
-        if (errors.length) {
-            throw new Error("Unable to build the animation due to the following errors: " + errors.join("\n"));
-        }
-        else {
-            this._animations[id] = ast;
-        }
-    };
-    /**
-     * @param {?} i
-     * @param {?} preStyles
-     * @param {?=} postStyles
-     * @return {?}
-     */
-    TimelineAnimationEngine.prototype._buildPlayer = function (i, preStyles, postStyles) {
-        var /** @type {?} */ element = i.element;
-        var /** @type {?} */ keyframes = normalizeKeyframes(this._driver, this._normalizer, element, i.keyframes, preStyles, postStyles);
-        return this._driver.animate(element, keyframes, i.duration, i.delay, i.easing, []);
-    };
-    /**
-     * @param {?} id
-     * @param {?} element
-     * @param {?=} options
-     * @return {?}
-     */
-    TimelineAnimationEngine.prototype.create = function (id, element, options) {
-        var _this = this;
-        if (options === void 0) { options = {}; }
-        var /** @type {?} */ errors = [];
-        var /** @type {?} */ ast = this._animations[id];
-        var /** @type {?} */ instructions;
-        var /** @type {?} */ autoStylesMap = new Map();
-        if (ast) {
-            instructions = buildAnimationTimelines(this._driver, element, ast, {}, {}, options, EMPTY_INSTRUCTION_MAP, errors);
-            instructions.forEach(function (inst) {
-                var /** @type {?} */ styles = getOrSetAsInMap(autoStylesMap, inst.element, {});
-                inst.postStyleProps.forEach(function (prop) { return styles[prop] = null; });
-            });
-        }
-        else {
-            errors.push('The requested animation doesn\'t exist or has already been destroyed');
-            instructions = [];
-        }
-        if (errors.length) {
-            throw new Error("Unable to create the animation due to the following errors: " + errors.join("\n"));
-        }
-        autoStylesMap.forEach(function (styles, element) {
-            Object.keys(styles).forEach(function (prop) { styles[prop] = _this._driver.computeStyle(element, prop, __WEBPACK_IMPORTED_MODULE_1__angular_animations__["g" /* AUTO_STYLE */]); });
-        });
-        var /** @type {?} */ players = instructions.map(function (i) {
-            var /** @type {?} */ styles = autoStylesMap.get(i.element);
-            return _this._buildPlayer(i, {}, styles);
-        });
-        var /** @type {?} */ player = optimizeGroupPlayer(players);
-        this._playersById[id] = player;
-        player.onDestroy(function () { return _this.destroy(id); });
-        this.players.push(player);
-        return player;
-    };
-    /**
-     * @param {?} id
-     * @return {?}
-     */
-    TimelineAnimationEngine.prototype.destroy = function (id) {
-        var /** @type {?} */ player = this._getPlayer(id);
-        player.destroy();
-        delete this._playersById[id];
-        var /** @type {?} */ index = this.players.indexOf(player);
-        if (index >= 0) {
-            this.players.splice(index, 1);
-        }
-    };
-    /**
-     * @param {?} id
-     * @return {?}
-     */
-    TimelineAnimationEngine.prototype._getPlayer = function (id) {
-        var /** @type {?} */ player = this._playersById[id];
-        if (!player) {
-            throw new Error("Unable to find the timeline player referenced by " + id);
-        }
-        return player;
-    };
-    /**
-     * @param {?} id
-     * @param {?} element
-     * @param {?} eventName
-     * @param {?} callback
-     * @return {?}
-     */
-    TimelineAnimationEngine.prototype.listen = function (id, element, eventName, callback) {
-        // triggerName, fromState, toState are all ignored for timeline animations
-        var /** @type {?} */ baseEvent = makeAnimationEvent(element, '', '', '');
-        listenOnPlayer(this._getPlayer(id), eventName, baseEvent, callback);
-        return function () { };
-    };
-    /**
-     * @param {?} id
-     * @param {?} element
-     * @param {?} command
-     * @param {?} args
-     * @return {?}
-     */
-    TimelineAnimationEngine.prototype.command = function (id, element, command, args) {
-        if (command == 'register') {
-            this.register(id, /** @type {?} */ (args[0]));
-            return;
-        }
-        if (command == 'create') {
-            var /** @type {?} */ options = ((args[0] || {}));
-            this.create(id, element, options);
-            return;
-        }
-        var /** @type {?} */ player = this._getPlayer(id);
-        switch (command) {
-            case 'play':
-                player.play();
-                break;
-            case 'pause':
-                player.pause();
-                break;
-            case 'reset':
-                player.reset();
-                break;
-            case 'restart':
-                player.restart();
-                break;
-            case 'finish':
-                player.finish();
-                break;
-            case 'init':
-                player.init();
-                break;
-            case 'setPosition':
-                player.setPosition(parseFloat(/** @type {?} */ (args[0])));
-                break;
-            case 'destroy':
-                this.destroy(id);
-                break;
-        }
-    };
-    return TimelineAnimationEngine;
-}());
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var QUEUED_CLASSNAME = 'ng-animate-queued';
-var QUEUED_SELECTOR = '.ng-animate-queued';
-var DISABLED_CLASSNAME = 'ng-animate-disabled';
-var DISABLED_SELECTOR = '.ng-animate-disabled';
-var EMPTY_PLAYER_ARRAY = [];
-var NULL_REMOVAL_STATE = {
-    namespaceId: '',
-    setForRemoval: null,
-    hasAnimation: false,
-    removedBeforeQueried: false
-};
-var NULL_REMOVED_QUERIED_STATE = {
-    namespaceId: '',
-    setForRemoval: null,
-    hasAnimation: false,
-    removedBeforeQueried: true
-};
-var REMOVAL_FLAG = '__ng_removed';
-var StateValue = (function () {
-    /**
-     * @param {?} input
-     */
-    function StateValue(input) {
-        var isObj = input && input.hasOwnProperty('value');
-        var value = isObj ? input['value'] : input;
-        this.value = normalizeTriggerValue(value);
-        if (isObj) {
-            var options = copyObj(input);
-            delete options['value'];
-            this.options = options;
-        }
-        else {
-            this.options = {};
-        }
-        if (!this.options.params) {
-            this.options.params = {};
-        }
-    }
-    /**
-     * @param {?} options
-     * @return {?}
-     */
-    StateValue.prototype.absorbOptions = function (options) {
-        var /** @type {?} */ newParams = options.params;
-        if (newParams) {
-            var /** @type {?} */ oldParams_2 = ((this.options.params));
-            Object.keys(newParams).forEach(function (prop) {
-                if (oldParams_2[prop] == null) {
-                    oldParams_2[prop] = newParams[prop];
-                }
-            });
-        }
-    };
-    return StateValue;
-}());
-var VOID_VALUE = 'void';
-var DEFAULT_STATE_VALUE = new StateValue(VOID_VALUE);
-var DELETED_STATE_VALUE = new StateValue('DELETED');
-var AnimationTransitionNamespace = (function () {
-    /**
-     * @param {?} id
-     * @param {?} hostElement
-     * @param {?} _engine
-     */
-    function AnimationTransitionNamespace(id, hostElement, _engine) {
-        this.id = id;
-        this.hostElement = hostElement;
-        this._engine = _engine;
-        this.players = [];
-        this._triggers = {};
-        this._queue = [];
-        this._elementListeners = new Map();
-        this._hostClassName = 'ng-tns-' + id;
-        addClass(hostElement, this._hostClassName);
-    }
-    /**
-     * @param {?} element
-     * @param {?} name
-     * @param {?} phase
-     * @param {?} callback
-     * @return {?}
-     */
-    AnimationTransitionNamespace.prototype.listen = function (element, name, phase, callback) {
-        var _this = this;
-        if (!this._triggers.hasOwnProperty(name)) {
-            throw new Error("Unable to listen on the animation trigger event \"" + phase + "\" because the animation trigger \"" + name + "\" doesn't exist!");
-        }
-        if (phase == null || phase.length == 0) {
-            throw new Error("Unable to listen on the animation trigger \"" + name + "\" because the provided event is undefined!");
-        }
-        if (!isTriggerEventValid(phase)) {
-            throw new Error("The provided animation trigger event \"" + phase + "\" for the animation trigger \"" + name + "\" is not supported!");
-        }
-        var /** @type {?} */ listeners = getOrSetAsInMap(this._elementListeners, element, []);
-        var /** @type {?} */ data = { name: name, phase: phase, callback: callback };
-        listeners.push(data);
-        var /** @type {?} */ triggersWithStates = getOrSetAsInMap(this._engine.statesByElement, element, {});
-        if (!triggersWithStates.hasOwnProperty(name)) {
-            addClass(element, NG_TRIGGER_CLASSNAME);
-            addClass(element, NG_TRIGGER_CLASSNAME + '-' + name);
-            triggersWithStates[name] = null;
-        }
-        return function () {
-            // the event listener is removed AFTER the flush has occurred such
-            // that leave animations callbacks can fire (otherwise if the node
-            // is removed in between then the listeners would be deregistered)
-            _this._engine.afterFlush(function () {
-                var /** @type {?} */ index = listeners.indexOf(data);
-                if (index >= 0) {
-                    listeners.splice(index, 1);
-                }
-                if (!_this._triggers[name]) {
-                    delete triggersWithStates[name];
-                }
-            });
-        };
-    };
-    /**
-     * @param {?} name
-     * @param {?} ast
-     * @return {?}
-     */
-    AnimationTransitionNamespace.prototype.register = function (name, ast) {
-        if (this._triggers[name]) {
-            // throw
-            return false;
-        }
-        else {
-            this._triggers[name] = ast;
-            return true;
-        }
-    };
-    /**
-     * @param {?} name
-     * @return {?}
-     */
-    AnimationTransitionNamespace.prototype._getTrigger = function (name) {
-        var /** @type {?} */ trigger = this._triggers[name];
-        if (!trigger) {
-            throw new Error("The provided animation trigger \"" + name + "\" has not been registered!");
-        }
-        return trigger;
-    };
-    /**
-     * @param {?} element
-     * @param {?} triggerName
-     * @param {?} value
-     * @param {?=} defaultToFallback
-     * @return {?}
-     */
-    AnimationTransitionNamespace.prototype.trigger = function (element, triggerName, value, defaultToFallback) {
-        var _this = this;
-        if (defaultToFallback === void 0) { defaultToFallback = true; }
-        var /** @type {?} */ trigger = this._getTrigger(triggerName);
-        var /** @type {?} */ player = new TransitionAnimationPlayer(this.id, triggerName, element);
-        var /** @type {?} */ triggersWithStates = this._engine.statesByElement.get(element);
-        if (!triggersWithStates) {
-            addClass(element, NG_TRIGGER_CLASSNAME);
-            addClass(element, NG_TRIGGER_CLASSNAME + '-' + triggerName);
-            this._engine.statesByElement.set(element, triggersWithStates = {});
-        }
-        var /** @type {?} */ fromState = triggersWithStates[triggerName];
-        var /** @type {?} */ toState = new StateValue(value);
-        var /** @type {?} */ isObj = value && value.hasOwnProperty('value');
-        if (!isObj && fromState) {
-            toState.absorbOptions(fromState.options);
-        }
-        triggersWithStates[triggerName] = toState;
-        if (!fromState) {
-            fromState = DEFAULT_STATE_VALUE;
-        }
-        else if (fromState === DELETED_STATE_VALUE) {
-            return player;
-        }
-        var /** @type {?} */ isRemoval = toState.value === VOID_VALUE;
-        // normally this isn't reached by here, however, if an object expression
-        // is passed in then it may be a new object each time. Comparing the value
-        // is important since that will stay the same despite there being a new object.
-        // The removal arc here is special cased because the same element is triggered
-        // twice in the event that it contains animations on the outer/inner portions
-        // of the host container
-        if (!isRemoval && fromState.value === toState.value)
-            return;
-        var /** @type {?} */ playersOnElement = getOrSetAsInMap(this._engine.playersByElement, element, []);
-        playersOnElement.forEach(function (player) {
-            // only remove the player if it is queued on the EXACT same trigger/namespace
-            // we only also deal with queued players here because if the animation has
-            // started then we want to keep the player alive until the flush happens
-            // (which is where the previousPlayers are passed into the new palyer)
-            if (player.namespaceId == _this.id && player.triggerName == triggerName && player.queued) {
-                player.destroy();
-            }
-        });
-        var /** @type {?} */ transition = trigger.matchTransition(fromState.value, toState.value);
-        var /** @type {?} */ isFallbackTransition = false;
-        if (!transition) {
-            if (!defaultToFallback)
-                return;
-            transition = trigger.fallbackTransition;
-            isFallbackTransition = true;
-        }
-        this._engine.totalQueuedPlayers++;
-        this._queue.push({ element: element, triggerName: triggerName, transition: transition, fromState: fromState, toState: toState, player: player, isFallbackTransition: isFallbackTransition });
-        if (!isFallbackTransition) {
-            addClass(element, QUEUED_CLASSNAME);
-            player.onStart(function () { removeClass(element, QUEUED_CLASSNAME); });
-        }
-        player.onDone(function () {
-            var /** @type {?} */ index = _this.players.indexOf(player);
-            if (index >= 0) {
-                _this.players.splice(index, 1);
-            }
-            var /** @type {?} */ players = _this._engine.playersByElement.get(element);
-            if (players) {
-                var /** @type {?} */ index_1 = players.indexOf(player);
-                if (index_1 >= 0) {
-                    players.splice(index_1, 1);
-                }
-            }
-        });
-        this.players.push(player);
-        playersOnElement.push(player);
-        return player;
-    };
-    /**
-     * @param {?} name
-     * @return {?}
-     */
-    AnimationTransitionNamespace.prototype.deregister = function (name) {
-        var _this = this;
-        delete this._triggers[name];
-        this._engine.statesByElement.forEach(function (stateMap, element) { delete stateMap[name]; });
-        this._elementListeners.forEach(function (listeners, element) {
-            _this._elementListeners.set(element, listeners.filter(function (entry) { return entry.name != name; }));
-        });
-    };
-    /**
-     * @param {?} element
-     * @return {?}
-     */
-    AnimationTransitionNamespace.prototype.clearElementCache = function (element) {
-        this._engine.statesByElement.delete(element);
-        this._elementListeners.delete(element);
-        var /** @type {?} */ elementPlayers = this._engine.playersByElement.get(element);
-        if (elementPlayers) {
-            elementPlayers.forEach(function (player) { return player.destroy(); });
-            this._engine.playersByElement.delete(element);
-        }
-    };
-    /**
-     * @param {?} rootElement
-     * @param {?} context
-     * @param {?=} animate
-     * @return {?}
-     */
-    AnimationTransitionNamespace.prototype._destroyInnerNodes = function (rootElement, context, animate) {
-        var _this = this;
-        if (animate === void 0) { animate = false; }
-        this._engine.driver.query(rootElement, NG_TRIGGER_SELECTOR, true).forEach(function (elm) {
-            if (animate && containsClass(elm, _this._hostClassName)) {
-                var /** @type {?} */ innerNs = _this._engine.namespacesByHostElement.get(elm);
-                // special case for a host element with animations on the same element
-                if (innerNs) {
-                    innerNs.removeNode(elm, context, true);
-                }
-                _this.removeNode(elm, context, true);
-            }
-            else {
-                _this.clearElementCache(elm);
-            }
-        });
-    };
-    /**
-     * @param {?} element
-     * @param {?} context
-     * @param {?=} doNotRecurse
-     * @return {?}
-     */
-    AnimationTransitionNamespace.prototype.removeNode = function (element, context, doNotRecurse) {
-        var _this = this;
-        var /** @type {?} */ engine = this._engine;
-        if (!doNotRecurse && element.childElementCount) {
-            this._destroyInnerNodes(element, context, true);
-        }
-        var /** @type {?} */ triggerStates = engine.statesByElement.get(element);
-        if (triggerStates) {
-            var /** @type {?} */ players_1 = [];
-            Object.keys(triggerStates).forEach(function (triggerName) {
-                // this check is here in the event that an element is removed
-                // twice (both on the host level and the component level)
-                if (_this._triggers[triggerName]) {
-                    var /** @type {?} */ player = _this.trigger(element, triggerName, VOID_VALUE, false);
-                    if (player) {
-                        players_1.push(player);
-                    }
-                }
-            });
-            if (players_1.length) {
-                engine.markElementAsRemoved(this.id, element, true, context);
-                optimizeGroupPlayer(players_1).onDone(function () { return engine.processLeaveNode(element); });
-                return;
-            }
-        }
-        // find the player that is animating and make sure that the
-        // removal is delayed until that player has completed
-        var /** @type {?} */ containsPotentialParentTransition = false;
-        if (engine.totalAnimations) {
-            var /** @type {?} */ currentPlayers = engine.players.length ? engine.playersByQueriedElement.get(element) : [];
-            // when this `if statement` does not continue forward it means that
-            // a previous animation query has selected the current element and
-            // is animating it. In this situation want to continue fowards and
-            // allow the element to be queued up for animation later.
-            if (currentPlayers && currentPlayers.length) {
-                containsPotentialParentTransition = true;
-            }
-            else {
-                var /** @type {?} */ parent = element;
-                while (parent = parent.parentNode) {
-                    var /** @type {?} */ triggers = engine.statesByElement.get(parent);
-                    if (triggers) {
-                        containsPotentialParentTransition = true;
-                        break;
-                    }
-                }
-            }
-        }
-        // at this stage we know that the element will either get removed
-        // during flush or will be picked up by a parent query. Either way
-        // we need to fire the listeners for this element when it DOES get
-        // removed (once the query parent animation is done or after flush)
-        var /** @type {?} */ listeners = this._elementListeners.get(element);
-        if (listeners) {
-            var /** @type {?} */ visitedTriggers_1 = new Set();
-            listeners.forEach(function (listener) {
-                var /** @type {?} */ triggerName = listener.name;
-                if (visitedTriggers_1.has(triggerName))
-                    return;
-                visitedTriggers_1.add(triggerName);
-                var /** @type {?} */ trigger = _this._triggers[triggerName];
-                var /** @type {?} */ transition = trigger.fallbackTransition;
-                var /** @type {?} */ elementStates = ((engine.statesByElement.get(element)));
-                var /** @type {?} */ fromState = elementStates[triggerName] || DEFAULT_STATE_VALUE;
-                var /** @type {?} */ toState = new StateValue(VOID_VALUE);
-                var /** @type {?} */ player = new TransitionAnimationPlayer(_this.id, triggerName, element);
-                _this._engine.totalQueuedPlayers++;
-                _this._queue.push({
-                    element: element,
-                    triggerName: triggerName,
-                    transition: transition,
-                    fromState: fromState,
-                    toState: toState,
-                    player: player,
-                    isFallbackTransition: true
-                });
-            });
-        }
-        // whether or not a parent has an animation we need to delay the deferral of the leave
-        // operation until we have more information (which we do after flush() has been called)
-        if (containsPotentialParentTransition) {
-            engine.markElementAsRemoved(this.id, element, false, context);
-        }
-        else {
-            // we do this after the flush has occurred such
-            // that the callbacks can be fired
-            engine.afterFlush(function () { return _this.clearElementCache(element); });
-            engine.destroyInnerAnimations(element);
-            engine._onRemovalComplete(element, context);
-        }
-    };
-    /**
-     * @param {?} element
-     * @param {?} parent
-     * @return {?}
-     */
-    AnimationTransitionNamespace.prototype.insertNode = function (element, parent) { addClass(element, this._hostClassName); };
-    /**
-     * @param {?} microtaskId
-     * @return {?}
-     */
-    AnimationTransitionNamespace.prototype.drainQueuedTransitions = function (microtaskId) {
-        var _this = this;
-        var /** @type {?} */ instructions = [];
-        this._queue.forEach(function (entry) {
-            var /** @type {?} */ player = entry.player;
-            if (player.destroyed)
-                return;
-            var /** @type {?} */ element = entry.element;
-            var /** @type {?} */ listeners = _this._elementListeners.get(element);
-            if (listeners) {
-                listeners.forEach(function (listener) {
-                    if (listener.name == entry.triggerName) {
-                        var /** @type {?} */ baseEvent = makeAnimationEvent(element, entry.triggerName, entry.fromState.value, entry.toState.value);
-                        ((baseEvent))['_data'] = microtaskId;
-                        listenOnPlayer(entry.player, listener.phase, baseEvent, listener.callback);
-                    }
-                });
-            }
-            if (player.markedForDestroy) {
-                _this._engine.afterFlush(function () {
-                    // now we can destroy the element properly since the event listeners have
-                    // been bound to the player
-                    player.destroy();
-                });
-            }
-            else {
-                instructions.push(entry);
-            }
-        });
-        this._queue = [];
-        return instructions.sort(function (a, b) {
-            // if depCount == 0 them move to front
-            // otherwise if a contains b then move back
-            var /** @type {?} */ d0 = a.transition.ast.depCount;
-            var /** @type {?} */ d1 = b.transition.ast.depCount;
-            if (d0 == 0 || d1 == 0) {
-                return d0 - d1;
-            }
-            return _this._engine.driver.containsElement(a.element, b.element) ? 1 : -1;
-        });
-    };
-    /**
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationTransitionNamespace.prototype.destroy = function (context) {
-        this.players.forEach(function (p) { return p.destroy(); });
-        this._destroyInnerNodes(this.hostElement, context);
-    };
-    /**
-     * @param {?} element
-     * @return {?}
-     */
-    AnimationTransitionNamespace.prototype.elementContainsData = function (element) {
-        var /** @type {?} */ containsData = false;
-        if (this._elementListeners.has(element))
-            containsData = true;
-        containsData =
-            (this._queue.find(function (entry) { return entry.element === element; }) ? true : false) || containsData;
-        return containsData;
-    };
-    return AnimationTransitionNamespace;
-}());
-var TransitionAnimationEngine = (function () {
-    /**
-     * @param {?} driver
-     * @param {?} _normalizer
-     */
-    function TransitionAnimationEngine(driver, _normalizer) {
-        this.driver = driver;
-        this._normalizer = _normalizer;
-        this.players = [];
-        this.newHostElements = new Map();
-        this.playersByElement = new Map();
-        this.playersByQueriedElement = new Map();
-        this.statesByElement = new Map();
-        this.disabledNodes = new Set();
-        this.totalAnimations = 0;
-        this.totalQueuedPlayers = 0;
-        this._namespaceLookup = {};
-        this._namespaceList = [];
-        this._flushFns = [];
-        this._whenQuietFns = [];
-        this.namespacesByHostElement = new Map();
-        this.collectedEnterElements = [];
-        this.collectedLeaveElements = [];
-        this.onRemovalComplete = function (element, context) { };
-    }
-    /**
-     * @param {?} element
-     * @param {?} context
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype._onRemovalComplete = function (element, context) { this.onRemovalComplete(element, context); };
-    Object.defineProperty(TransitionAnimationEngine.prototype, "queuedPlayers", {
-        /**
-         * @return {?}
-         */
-        get: function () {
-            var /** @type {?} */ players = [];
-            this._namespaceList.forEach(function (ns) {
-                ns.players.forEach(function (player) {
-                    if (player.queued) {
-                        players.push(player);
-                    }
-                });
-            });
-            return players;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @param {?} namespaceId
-     * @param {?} hostElement
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype.createNamespace = function (namespaceId, hostElement) {
-        var /** @type {?} */ ns = new AnimationTransitionNamespace(namespaceId, hostElement, this);
-        if (hostElement.parentNode) {
-            this._balanceNamespaceList(ns, hostElement);
-        }
-        else {
-            // defer this later until flush during when the host element has
-            // been inserted so that we know exactly where to place it in
-            // the namespace list
-            this.newHostElements.set(hostElement, ns);
-            // given that this host element is apart of the animation code, it
-            // may or may not be inserted by a parent node that is an of an
-            // animation renderer type. If this happens then we can still have
-            // access to this item when we query for :enter nodes. If the parent
-            // is a renderer then the set data-structure will normalize the entry
-            this.collectEnterElement(hostElement);
-        }
-        return this._namespaceLookup[namespaceId] = ns;
-    };
-    /**
-     * @param {?} ns
-     * @param {?} hostElement
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype._balanceNamespaceList = function (ns, hostElement) {
-        var /** @type {?} */ limit = this._namespaceList.length - 1;
-        if (limit >= 0) {
-            var /** @type {?} */ found = false;
-            for (var /** @type {?} */ i = limit; i >= 0; i--) {
-                var /** @type {?} */ nextNamespace = this._namespaceList[i];
-                if (this.driver.containsElement(nextNamespace.hostElement, hostElement)) {
-                    this._namespaceList.splice(i + 1, 0, ns);
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                this._namespaceList.splice(0, 0, ns);
-            }
-        }
-        else {
-            this._namespaceList.push(ns);
-        }
-        this.namespacesByHostElement.set(hostElement, ns);
-        return ns;
-    };
-    /**
-     * @param {?} namespaceId
-     * @param {?} hostElement
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype.register = function (namespaceId, hostElement) {
-        var /** @type {?} */ ns = this._namespaceLookup[namespaceId];
-        if (!ns) {
-            ns = this.createNamespace(namespaceId, hostElement);
-        }
-        return ns;
-    };
-    /**
-     * @param {?} namespaceId
-     * @param {?} name
-     * @param {?} trigger
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype.registerTrigger = function (namespaceId, name, trigger) {
-        var /** @type {?} */ ns = this._namespaceLookup[namespaceId];
-        if (ns && ns.register(name, trigger)) {
-            this.totalAnimations++;
-        }
-    };
-    /**
-     * @param {?} namespaceId
-     * @param {?} context
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype.destroy = function (namespaceId, context) {
-        var _this = this;
-        if (!namespaceId)
-            return;
-        var /** @type {?} */ ns = this._fetchNamespace(namespaceId);
-        this.afterFlush(function () {
-            _this.namespacesByHostElement.delete(ns.hostElement);
-            delete _this._namespaceLookup[namespaceId];
-            var /** @type {?} */ index = _this._namespaceList.indexOf(ns);
-            if (index >= 0) {
-                _this._namespaceList.splice(index, 1);
-            }
-        });
-        this.afterFlushAnimationsDone(function () { return ns.destroy(context); });
-    };
-    /**
-     * @param {?} id
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype._fetchNamespace = function (id) { return this._namespaceLookup[id]; };
-    /**
-     * @param {?} namespaceId
-     * @param {?} element
-     * @param {?} name
-     * @param {?} value
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype.trigger = function (namespaceId, element, name, value) {
-        if (isElementNode(element)) {
-            this._fetchNamespace(namespaceId).trigger(element, name, value);
-            return true;
-        }
-        return false;
-    };
-    /**
-     * @param {?} namespaceId
-     * @param {?} element
-     * @param {?} parent
-     * @param {?} insertBefore
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype.insertNode = function (namespaceId, element, parent, insertBefore) {
-        if (!isElementNode(element))
-            return;
-        // special case for when an element is removed and reinserted (move operation)
-        // when this occurs we do not want to use the element for deletion later
-        var /** @type {?} */ details = (element[REMOVAL_FLAG]);
-        if (details && details.setForRemoval) {
-            details.setForRemoval = false;
-        }
-        // in the event that the namespaceId is blank then the caller
-        // code does not contain any animation code in it, but it is
-        // just being called so that the node is marked as being inserted
-        if (namespaceId) {
-            this._fetchNamespace(namespaceId).insertNode(element, parent);
-        }
-        // only *directives and host elements are inserted before
-        if (insertBefore) {
-            this.collectEnterElement(element);
-        }
-    };
-    /**
-     * @param {?} element
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype.collectEnterElement = function (element) { this.collectedEnterElements.push(element); };
-    /**
-     * @param {?} element
-     * @param {?} value
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype.markElementAsDisabled = function (element, value) {
-        if (value) {
-            if (!this.disabledNodes.has(element)) {
-                this.disabledNodes.add(element);
-                addClass(element, DISABLED_CLASSNAME);
-            }
-        }
-        else if (this.disabledNodes.has(element)) {
-            this.disabledNodes.delete(element);
-            removeClass(element, DISABLED_CLASSNAME);
-        }
-    };
-    /**
-     * @param {?} namespaceId
-     * @param {?} element
-     * @param {?} context
-     * @param {?=} doNotRecurse
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype.removeNode = function (namespaceId, element, context, doNotRecurse) {
-        if (!isElementNode(element)) {
-            this._onRemovalComplete(element, context);
-            return;
-        }
-        var /** @type {?} */ ns = namespaceId ? this._fetchNamespace(namespaceId) : null;
-        if (ns) {
-            ns.removeNode(element, context, doNotRecurse);
-        }
-        else {
-            this.markElementAsRemoved(namespaceId, element, false, context);
-        }
-    };
-    /**
-     * @param {?} namespaceId
-     * @param {?} element
-     * @param {?=} hasAnimation
-     * @param {?=} context
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype.markElementAsRemoved = function (namespaceId, element, hasAnimation, context) {
-        this.collectedLeaveElements.push(element);
-        element[REMOVAL_FLAG] = {
-            namespaceId: namespaceId,
-            setForRemoval: context, hasAnimation: hasAnimation,
-            removedBeforeQueried: false
-        };
-    };
-    /**
-     * @param {?} namespaceId
-     * @param {?} element
-     * @param {?} name
-     * @param {?} phase
-     * @param {?} callback
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype.listen = function (namespaceId, element, name, phase, callback) {
-        if (isElementNode(element)) {
-            return this._fetchNamespace(namespaceId).listen(element, name, phase, callback);
-        }
-        return function () { };
-    };
-    /**
-     * @param {?} entry
-     * @param {?} subTimelines
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype._buildInstruction = function (entry, subTimelines) {
-        return entry.transition.build(this.driver, entry.element, entry.fromState.value, entry.toState.value, entry.toState.options, subTimelines);
-    };
-    /**
-     * @param {?} containerElement
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype.destroyInnerAnimations = function (containerElement) {
-        var _this = this;
-        var /** @type {?} */ elements = this.driver.query(containerElement, NG_TRIGGER_SELECTOR, true);
-        elements.forEach(function (element) {
-            var /** @type {?} */ players = _this.playersByElement.get(element);
-            if (players) {
-                players.forEach(function (player) {
-                    // special case for when an element is set for destruction, but hasn't started.
-                    // in this situation we want to delay the destruction until the flush occurs
-                    // so that any event listeners attached to the player are triggered.
-                    if (player.queued) {
-                        player.markedForDestroy = true;
-                    }
-                    else {
-                        player.destroy();
-                    }
-                });
-            }
-            var /** @type {?} */ stateMap = _this.statesByElement.get(element);
-            if (stateMap) {
-                Object.keys(stateMap).forEach(function (triggerName) { return stateMap[triggerName] = DELETED_STATE_VALUE; });
-            }
-        });
-        if (this.playersByQueriedElement.size == 0)
-            return;
-        elements = this.driver.query(containerElement, NG_ANIMATING_SELECTOR, true);
-        if (elements.length) {
-            elements.forEach(function (element) {
-                var /** @type {?} */ players = _this.playersByQueriedElement.get(element);
-                if (players) {
-                    players.forEach(function (player) { return player.finish(); });
-                }
-            });
-        }
-    };
-    /**
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype.whenRenderingDone = function () {
-        var _this = this;
-        return new Promise(function (resolve) {
-            if (_this.players.length) {
-                return optimizeGroupPlayer(_this.players).onDone(function () { return resolve(); });
-            }
-            else {
-                resolve();
-            }
-        });
-    };
-    /**
-     * @param {?} element
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype.processLeaveNode = function (element) {
-        var _this = this;
-        var /** @type {?} */ details = (element[REMOVAL_FLAG]);
-        if (details && details.setForRemoval) {
-            // this will prevent it from removing it twice
-            element[REMOVAL_FLAG] = NULL_REMOVAL_STATE;
-            if (details.namespaceId) {
-                this.destroyInnerAnimations(element);
-                var /** @type {?} */ ns = this._fetchNamespace(details.namespaceId);
-                if (ns) {
-                    ns.clearElementCache(element);
-                }
-            }
-            this._onRemovalComplete(element, details.setForRemoval);
-        }
-        if (this.driver.matchesElement(element, DISABLED_SELECTOR)) {
-            this.markElementAsDisabled(element, false);
-        }
-        this.driver.query(element, DISABLED_SELECTOR, true).forEach(function (node) {
-            _this.markElementAsDisabled(element, false);
-        });
-    };
-    /**
-     * @param {?=} microtaskId
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype.flush = function (microtaskId) {
-        var _this = this;
-        if (microtaskId === void 0) { microtaskId = -1; }
-        var /** @type {?} */ players = [];
-        if (this.newHostElements.size) {
-            this.newHostElements.forEach(function (ns, element) { return _this._balanceNamespaceList(ns, element); });
-            this.newHostElements.clear();
-        }
-        if (this._namespaceList.length &&
-            (this.totalQueuedPlayers || this.collectedLeaveElements.length)) {
-            var /** @type {?} */ cleanupFns = [];
-            try {
-                players = this._flushAnimations(cleanupFns, microtaskId);
-            }
-            finally {
-                for (var /** @type {?} */ i = 0; i < cleanupFns.length; i++) {
-                    cleanupFns[i]();
-                }
-            }
-        }
-        else {
-            for (var /** @type {?} */ i = 0; i < this.collectedLeaveElements.length; i++) {
-                var /** @type {?} */ element = this.collectedLeaveElements[i];
-                this.processLeaveNode(element);
-            }
-        }
-        this.totalQueuedPlayers = 0;
-        this.collectedEnterElements.length = 0;
-        this.collectedLeaveElements.length = 0;
-        this._flushFns.forEach(function (fn) { return fn(); });
-        this._flushFns = [];
-        if (this._whenQuietFns.length) {
-            // we move these over to a variable so that
-            // if any new callbacks are registered in another
-            // flush they do not populate the existing set
-            var /** @type {?} */ quietFns_1 = this._whenQuietFns;
-            this._whenQuietFns = [];
-            if (players.length) {
-                optimizeGroupPlayer(players).onDone(function () { quietFns_1.forEach(function (fn) { return fn(); }); });
-            }
-            else {
-                quietFns_1.forEach(function (fn) { return fn(); });
-            }
-        }
-    };
-    /**
-     * @param {?} cleanupFns
-     * @param {?} microtaskId
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype._flushAnimations = function (cleanupFns, microtaskId) {
-        var _this = this;
-        var /** @type {?} */ subTimelines = new ElementInstructionMap();
-        var /** @type {?} */ skippedPlayers = [];
-        var /** @type {?} */ skippedPlayersMap = new Map();
-        var /** @type {?} */ queuedInstructions = [];
-        var /** @type {?} */ queriedElements = new Map();
-        var /** @type {?} */ allPreStyleElements = new Map();
-        var /** @type {?} */ allPostStyleElements = new Map();
-        var /** @type {?} */ disabledElementsSet = new Set();
-        this.disabledNodes.forEach(function (node) {
-            var /** @type {?} */ nodesThatAreDisabled = _this.driver.query(node, QUEUED_SELECTOR, true);
-            for (var /** @type {?} */ i = 0; i < nodesThatAreDisabled.length; i++) {
-                disabledElementsSet.add(nodesThatAreDisabled[i]);
-            }
-        });
-        var /** @type {?} */ bodyNode = getBodyNode();
-        var /** @type {?} */ allEnterNodes = this.collectedEnterElements.length ?
-            this.collectedEnterElements.filter(createIsRootFilterFn(this.collectedEnterElements)) :
-            [];
-        // this must occur before the instructions are built below such that
-        // the :enter queries match the elements (since the timeline queries
-        // are fired during instruction building).
-        for (var /** @type {?} */ i = 0; i < allEnterNodes.length; i++) {
-            addClass(allEnterNodes[i], ENTER_CLASSNAME);
-        }
-        var /** @type {?} */ allLeaveNodes = [];
-        var /** @type {?} */ leaveNodesWithoutAnimations = [];
-        for (var /** @type {?} */ i = 0; i < this.collectedLeaveElements.length; i++) {
-            var /** @type {?} */ element = this.collectedLeaveElements[i];
-            var /** @type {?} */ details = (element[REMOVAL_FLAG]);
-            if (details && details.setForRemoval) {
-                addClass(element, LEAVE_CLASSNAME);
-                allLeaveNodes.push(element);
-                if (!details.hasAnimation) {
-                    leaveNodesWithoutAnimations.push(element);
-                }
-            }
-        }
-        cleanupFns.push(function () {
-            allEnterNodes.forEach(function (element) { return removeClass(element, ENTER_CLASSNAME); });
-            allLeaveNodes.forEach(function (element) {
-                removeClass(element, LEAVE_CLASSNAME);
-                _this.processLeaveNode(element);
-            });
-        });
-        var /** @type {?} */ allPlayers = [];
-        var /** @type {?} */ erroneousTransitions = [];
-        for (var /** @type {?} */ i = this._namespaceList.length - 1; i >= 0; i--) {
-            var /** @type {?} */ ns = this._namespaceList[i];
-            ns.drainQueuedTransitions(microtaskId).forEach(function (entry) {
-                var /** @type {?} */ player = entry.player;
-                allPlayers.push(player);
-                var /** @type {?} */ element = entry.element;
-                if (!bodyNode || !_this.driver.containsElement(bodyNode, element)) {
-                    player.destroy();
-                    return;
-                }
-                var /** @type {?} */ instruction = ((_this._buildInstruction(entry, subTimelines)));
-                if (instruction.errors && instruction.errors.length) {
-                    erroneousTransitions.push(instruction);
-                    return;
-                }
-                // if a unmatched transition is queued to go then it SHOULD NOT render
-                // an animation and cancel the previously running animations.
-                if (entry.isFallbackTransition) {
-                    player.onStart(function () { return eraseStyles(element, instruction.fromStyles); });
-                    player.onDestroy(function () { return setStyles(element, instruction.toStyles); });
-                    skippedPlayers.push(player);
-                    return;
-                }
-                // this means that if a parent animation uses this animation as a sub trigger
-                // then it will instruct the timeline builder to not add a player delay, but
-                // instead stretch the first keyframe gap up until the animation starts. The
-                // reason this is important is to prevent extra initialization styles from being
-                // required by the user in the animation.
-                instruction.timelines.forEach(function (tl) { return tl.stretchStartingKeyframe = true; });
-                subTimelines.append(element, instruction.timelines);
-                var /** @type {?} */ tuple = { instruction: instruction, player: player, element: element };
-                queuedInstructions.push(tuple);
-                instruction.queriedElements.forEach(function (element) { return getOrSetAsInMap(queriedElements, element, []).push(player); });
-                instruction.preStyleProps.forEach(function (stringMap, element) {
-                    var /** @type {?} */ props = Object.keys(stringMap);
-                    if (props.length) {
-                        var /** @type {?} */ setVal_1 = ((allPreStyleElements.get(element)));
-                        if (!setVal_1) {
-                            allPreStyleElements.set(element, setVal_1 = new Set());
-                        }
-                        props.forEach(function (prop) { return setVal_1.add(prop); });
-                    }
-                });
-                instruction.postStyleProps.forEach(function (stringMap, element) {
-                    var /** @type {?} */ props = Object.keys(stringMap);
-                    var /** @type {?} */ setVal = ((allPostStyleElements.get(element)));
-                    if (!setVal) {
-                        allPostStyleElements.set(element, setVal = new Set());
-                    }
-                    props.forEach(function (prop) { return setVal.add(prop); });
-                });
-            });
-        }
-        if (erroneousTransitions.length) {
-            var /** @type {?} */ msg_1 = "Unable to process animations due to the following failed trigger transitions\n";
-            erroneousTransitions.forEach(function (instruction) {
-                msg_1 += "@" + instruction.triggerName + " has failed due to:\n"; /** @type {?} */
-                ((instruction.errors)).forEach(function (error) { msg_1 += "- " + error + "\n"; });
-            });
-            allPlayers.forEach(function (player) { return player.destroy(); });
-            throw new Error(msg_1);
-        }
-        // these can only be detected here since we have a map of all the elements
-        // that have animations attached to them...
-        var /** @type {?} */ enterNodesWithoutAnimations = [];
-        for (var /** @type {?} */ i = 0; i < allEnterNodes.length; i++) {
-            var /** @type {?} */ element = allEnterNodes[i];
-            if (!subTimelines.has(element)) {
-                enterNodesWithoutAnimations.push(element);
-            }
-        }
-        var /** @type {?} */ allPreviousPlayersMap = new Map();
-        var /** @type {?} */ sortedParentElements = [];
-        queuedInstructions.forEach(function (entry) {
-            var /** @type {?} */ element = entry.element;
-            if (subTimelines.has(element)) {
-                sortedParentElements.unshift(element);
-                _this._beforeAnimationBuild(entry.player.namespaceId, entry.instruction, allPreviousPlayersMap);
-            }
-        });
-        skippedPlayers.forEach(function (player) {
-            var /** @type {?} */ element = player.element;
-            var /** @type {?} */ previousPlayers = _this._getPreviousPlayers(element, false, player.namespaceId, player.triggerName, null);
-            previousPlayers.forEach(function (prevPlayer) { getOrSetAsInMap(allPreviousPlayersMap, element, []).push(prevPlayer); });
-        });
-        allPreviousPlayersMap.forEach(function (players) { return players.forEach(function (player) { return player.destroy(); }); });
-        // PRE STAGE: fill the ! styles
-        var /** @type {?} */ preStylesMap = allPreStyleElements.size ?
-            cloakAndComputeStyles(this.driver, enterNodesWithoutAnimations, allPreStyleElements, __WEBPACK_IMPORTED_MODULE_1__angular_animations__["f" /* ɵPRE_STYLE */]) :
-            new Map();
-        // POST STAGE: fill the * styles
-        var /** @type {?} */ postStylesMap = cloakAndComputeStyles(this.driver, leaveNodesWithoutAnimations, allPostStyleElements, __WEBPACK_IMPORTED_MODULE_1__angular_animations__["g" /* AUTO_STYLE */]);
-        var /** @type {?} */ rootPlayers = [];
-        var /** @type {?} */ subPlayers = [];
-        queuedInstructions.forEach(function (entry) {
-            var element = entry.element, player = entry.player, instruction = entry.instruction;
-            // this means that it was never consumed by a parent animation which
-            // means that it is independent and therefore should be set for animation
-            if (subTimelines.has(element)) {
-                if (disabledElementsSet.has(element)) {
-                    skippedPlayers.push(player);
-                    return;
-                }
-                var /** @type {?} */ innerPlayer = _this._buildAnimation(player.namespaceId, instruction, allPreviousPlayersMap, skippedPlayersMap, preStylesMap, postStylesMap);
-                player.setRealPlayer(innerPlayer);
-                var /** @type {?} */ parentHasPriority = null;
-                for (var /** @type {?} */ i = 0; i < sortedParentElements.length; i++) {
-                    var /** @type {?} */ parent = sortedParentElements[i];
-                    if (parent === element)
-                        break;
-                    if (_this.driver.containsElement(parent, element)) {
-                        parentHasPriority = parent;
-                        break;
-                    }
-                }
-                if (parentHasPriority) {
-                    var /** @type {?} */ parentPlayers = _this.playersByElement.get(parentHasPriority);
-                    if (parentPlayers && parentPlayers.length) {
-                        player.parentPlayer = optimizeGroupPlayer(parentPlayers);
-                    }
-                    skippedPlayers.push(player);
-                }
-                else {
-                    rootPlayers.push(player);
-                }
-            }
-            else {
-                eraseStyles(element, instruction.fromStyles);
-                player.onDestroy(function () { return setStyles(element, instruction.toStyles); });
-                subPlayers.push(player);
-            }
-        });
-        subPlayers.forEach(function (player) {
-            var /** @type {?} */ playersForElement = skippedPlayersMap.get(player.element);
-            if (playersForElement && playersForElement.length) {
-                var /** @type {?} */ innerPlayer = optimizeGroupPlayer(playersForElement);
-                player.setRealPlayer(innerPlayer);
-            }
-        });
-        // the reason why we don't actually play the animation is
-        // because all that a skipped player is designed to do is to
-        // fire the start/done transition callback events
-        skippedPlayers.forEach(function (player) {
-            if (player.parentPlayer) {
-                player.parentPlayer.onDestroy(function () { return player.destroy(); });
-            }
-            else {
-                player.destroy();
-            }
-        });
-        // run through all of the queued removals and see if they
-        // were picked up by a query. If not then perform the removal
-        // operation right away unless a parent animation is ongoing.
-        for (var /** @type {?} */ i = 0; i < allLeaveNodes.length; i++) {
-            var /** @type {?} */ element = allLeaveNodes[i];
-            var /** @type {?} */ details = (element[REMOVAL_FLAG]);
-            removeClass(element, LEAVE_CLASSNAME);
-            // this means the element has a removal animation that is being
-            // taken care of and therefore the inner elements will hang around
-            // until that animation is over (or the parent queried animation)
-            if (details && details.hasAnimation)
-                continue;
-            var /** @type {?} */ players = [];
-            // if this element is queried or if it contains queried children
-            // then we want for the element not to be removed from the page
-            // until the queried animations have finished
-            if (queriedElements.size) {
-                var /** @type {?} */ queriedPlayerResults = queriedElements.get(element);
-                if (queriedPlayerResults && queriedPlayerResults.length) {
-                    players.push.apply(players, queriedPlayerResults);
-                }
-                var /** @type {?} */ queriedInnerElements = this.driver.query(element, NG_ANIMATING_SELECTOR, true);
-                for (var /** @type {?} */ j = 0; j < queriedInnerElements.length; j++) {
-                    var /** @type {?} */ queriedPlayers = queriedElements.get(queriedInnerElements[j]);
-                    if (queriedPlayers && queriedPlayers.length) {
-                        players.push.apply(players, queriedPlayers);
-                    }
-                }
-            }
-            if (players.length) {
-                removeNodesAfterAnimationDone(this, element, players);
-            }
-            else {
-                this.processLeaveNode(element);
-            }
-        }
-        // this is required so the cleanup method doesn't remove them
-        allLeaveNodes.length = 0;
-        rootPlayers.forEach(function (player) {
-            _this.players.push(player);
-            player.onDone(function () {
-                player.destroy();
-                var /** @type {?} */ index = _this.players.indexOf(player);
-                _this.players.splice(index, 1);
-            });
-            player.play();
-        });
-        return rootPlayers;
-    };
-    /**
-     * @param {?} namespaceId
-     * @param {?} element
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype.elementContainsData = function (namespaceId, element) {
-        var /** @type {?} */ containsData = false;
-        var /** @type {?} */ details = (element[REMOVAL_FLAG]);
-        if (details && details.setForRemoval)
-            containsData = true;
-        if (this.playersByElement.has(element))
-            containsData = true;
-        if (this.playersByQueriedElement.has(element))
-            containsData = true;
-        if (this.statesByElement.has(element))
-            containsData = true;
-        return this._fetchNamespace(namespaceId).elementContainsData(element) || containsData;
-    };
-    /**
-     * @param {?} callback
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype.afterFlush = function (callback) { this._flushFns.push(callback); };
-    /**
-     * @param {?} callback
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype.afterFlushAnimationsDone = function (callback) { this._whenQuietFns.push(callback); };
-    /**
-     * @param {?} element
-     * @param {?} isQueriedElement
-     * @param {?=} namespaceId
-     * @param {?=} triggerName
-     * @param {?=} toStateValue
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype._getPreviousPlayers = function (element, isQueriedElement, namespaceId, triggerName, toStateValue) {
-        var /** @type {?} */ players = [];
-        if (isQueriedElement) {
-            var /** @type {?} */ queriedElementPlayers = this.playersByQueriedElement.get(element);
-            if (queriedElementPlayers) {
-                players = queriedElementPlayers;
-            }
-        }
-        else {
-            var /** @type {?} */ elementPlayers = this.playersByElement.get(element);
-            if (elementPlayers) {
-                var /** @type {?} */ isRemovalAnimation_1 = !toStateValue || toStateValue == VOID_VALUE;
-                elementPlayers.forEach(function (player) {
-                    if (player.queued)
-                        return;
-                    if (!isRemovalAnimation_1 && player.triggerName != triggerName)
-                        return;
-                    players.push(player);
-                });
-            }
-        }
-        if (namespaceId || triggerName) {
-            players = players.filter(function (player) {
-                if (namespaceId && namespaceId != player.namespaceId)
-                    return false;
-                if (triggerName && triggerName != player.triggerName)
-                    return false;
-                return true;
-            });
-        }
-        return players;
-    };
-    /**
-     * @param {?} namespaceId
-     * @param {?} instruction
-     * @param {?} allPreviousPlayersMap
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype._beforeAnimationBuild = function (namespaceId, instruction, allPreviousPlayersMap) {
-        var _this = this;
-        // it's important to do this step before destroying the players
-        // so that the onDone callback below won't fire before this
-        eraseStyles(instruction.element, instruction.fromStyles);
-        var /** @type {?} */ triggerName = instruction.triggerName;
-        var /** @type {?} */ rootElement = instruction.element;
-        // when a removal animation occurs, ALL previous players are collected
-        // and destroyed (even if they are outside of the current namespace)
-        var /** @type {?} */ targetNameSpaceId = instruction.isRemovalTransition ? undefined : namespaceId;
-        var /** @type {?} */ targetTriggerName = instruction.isRemovalTransition ? undefined : triggerName;
-        instruction.timelines.map(function (timelineInstruction) {
-            var /** @type {?} */ element = timelineInstruction.element;
-            var /** @type {?} */ isQueriedElement = element !== rootElement;
-            var /** @type {?} */ players = getOrSetAsInMap(allPreviousPlayersMap, element, []);
-            var /** @type {?} */ previousPlayers = _this._getPreviousPlayers(element, isQueriedElement, targetNameSpaceId, targetTriggerName, instruction.toState);
-            previousPlayers.forEach(function (player) {
-                var /** @type {?} */ realPlayer = (player.getRealPlayer());
-                if (realPlayer.beforeDestroy) {
-                    realPlayer.beforeDestroy();
-                }
-                players.push(player);
-            });
-        });
-    };
-    /**
-     * @param {?} namespaceId
-     * @param {?} instruction
-     * @param {?} allPreviousPlayersMap
-     * @param {?} skippedPlayersMap
-     * @param {?} preStylesMap
-     * @param {?} postStylesMap
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype._buildAnimation = function (namespaceId, instruction, allPreviousPlayersMap, skippedPlayersMap, preStylesMap, postStylesMap) {
-        var _this = this;
-        var /** @type {?} */ triggerName = instruction.triggerName;
-        var /** @type {?} */ rootElement = instruction.element;
-        // we first run this so that the previous animation player
-        // data can be passed into the successive animation players
-        var /** @type {?} */ allQueriedPlayers = [];
-        var /** @type {?} */ allConsumedElements = new Set();
-        var /** @type {?} */ allSubElements = new Set();
-        var /** @type {?} */ allNewPlayers = instruction.timelines.map(function (timelineInstruction) {
-            var /** @type {?} */ element = timelineInstruction.element;
-            allConsumedElements.add(element);
-            // FIXME (matsko): make sure to-be-removed animations are removed properly
-            var /** @type {?} */ details = element[REMOVAL_FLAG];
-            if (details && details.removedBeforeQueried)
-                return new __WEBPACK_IMPORTED_MODULE_1__angular_animations__["d" /* NoopAnimationPlayer */]();
-            var /** @type {?} */ isQueriedElement = element !== rootElement;
-            var /** @type {?} */ previousPlayers = flattenGroupPlayers((allPreviousPlayersMap.get(element) || EMPTY_PLAYER_ARRAY).map(function (p) { return p.getRealPlayer(); }));
-            var /** @type {?} */ preStyles = preStylesMap.get(element);
-            var /** @type {?} */ postStyles = postStylesMap.get(element);
-            var /** @type {?} */ keyframes = normalizeKeyframes(_this.driver, _this._normalizer, element, timelineInstruction.keyframes, preStyles, postStyles);
-            var /** @type {?} */ player = _this._buildPlayer(timelineInstruction, keyframes, previousPlayers);
-            // this means that this particular player belongs to a sub trigger. It is
-            // important that we match this player up with the corresponding (@trigger.listener)
-            if (timelineInstruction.subTimeline && skippedPlayersMap) {
-                allSubElements.add(element);
-            }
-            if (isQueriedElement) {
-                var /** @type {?} */ wrappedPlayer = new TransitionAnimationPlayer(namespaceId, triggerName, element);
-                wrappedPlayer.setRealPlayer(player);
-                allQueriedPlayers.push(wrappedPlayer);
-            }
-            return player;
-        });
-        allQueriedPlayers.forEach(function (player) {
-            getOrSetAsInMap(_this.playersByQueriedElement, player.element, []).push(player);
-            player.onDone(function () { return deleteOrUnsetInMap(_this.playersByQueriedElement, player.element, player); });
-        });
-        allConsumedElements.forEach(function (element) { return addClass(element, NG_ANIMATING_CLASSNAME); });
-        var /** @type {?} */ player = optimizeGroupPlayer(allNewPlayers);
-        player.onDestroy(function () {
-            allConsumedElements.forEach(function (element) { return removeClass(element, NG_ANIMATING_CLASSNAME); });
-            setStyles(rootElement, instruction.toStyles);
-        });
-        // this basically makes all of the callbacks for sub element animations
-        // be dependent on the upper players for when they finish
-        allSubElements.forEach(function (element) { getOrSetAsInMap(skippedPlayersMap, element, []).push(player); });
-        return player;
-    };
-    /**
-     * @param {?} instruction
-     * @param {?} keyframes
-     * @param {?} previousPlayers
-     * @return {?}
-     */
-    TransitionAnimationEngine.prototype._buildPlayer = function (instruction, keyframes, previousPlayers) {
-        if (keyframes.length > 0) {
-            return this.driver.animate(instruction.element, keyframes, instruction.duration, instruction.delay, instruction.easing, previousPlayers);
-        }
-        // special case for when an empty transition|definition is provided
-        // ... there is no point in rendering an empty animation
-        return new __WEBPACK_IMPORTED_MODULE_1__angular_animations__["d" /* NoopAnimationPlayer */]();
-    };
-    return TransitionAnimationEngine;
-}());
-var TransitionAnimationPlayer = (function () {
-    /**
-     * @param {?} namespaceId
-     * @param {?} triggerName
-     * @param {?} element
-     */
-    function TransitionAnimationPlayer(namespaceId, triggerName, element) {
-        this.namespaceId = namespaceId;
-        this.triggerName = triggerName;
-        this.element = element;
-        this._player = new __WEBPACK_IMPORTED_MODULE_1__angular_animations__["d" /* NoopAnimationPlayer */]();
-        this._containsRealPlayer = false;
-        this._queuedCallbacks = {};
-        this._destroyed = false;
-        this.markedForDestroy = false;
-    }
-    Object.defineProperty(TransitionAnimationPlayer.prototype, "queued", {
-        /**
-         * @return {?}
-         */
-        get: function () { return this._containsRealPlayer == false; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(TransitionAnimationPlayer.prototype, "destroyed", {
-        /**
-         * @return {?}
-         */
-        get: function () { return this._destroyed; },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @param {?} player
-     * @return {?}
-     */
-    TransitionAnimationPlayer.prototype.setRealPlayer = function (player) {
-        var _this = this;
-        if (this._containsRealPlayer)
-            return;
-        this._player = player;
-        Object.keys(this._queuedCallbacks).forEach(function (phase) {
-            _this._queuedCallbacks[phase].forEach(function (callback) { return listenOnPlayer(player, phase, undefined, callback); });
-        });
-        this._queuedCallbacks = {};
-        this._containsRealPlayer = true;
-    };
-    /**
-     * @return {?}
-     */
-    TransitionAnimationPlayer.prototype.getRealPlayer = function () { return this._player; };
-    /**
-     * @param {?} name
-     * @param {?} callback
-     * @return {?}
-     */
-    TransitionAnimationPlayer.prototype._queueEvent = function (name, callback) {
-        getOrSetAsInMap(this._queuedCallbacks, name, []).push(callback);
-    };
-    /**
-     * @param {?} fn
-     * @return {?}
-     */
-    TransitionAnimationPlayer.prototype.onDone = function (fn) {
-        if (this.queued) {
-            this._queueEvent('done', fn);
-        }
-        this._player.onDone(fn);
-    };
-    /**
-     * @param {?} fn
-     * @return {?}
-     */
-    TransitionAnimationPlayer.prototype.onStart = function (fn) {
-        if (this.queued) {
-            this._queueEvent('start', fn);
-        }
-        this._player.onStart(fn);
-    };
-    /**
-     * @param {?} fn
-     * @return {?}
-     */
-    TransitionAnimationPlayer.prototype.onDestroy = function (fn) {
-        if (this.queued) {
-            this._queueEvent('destroy', fn);
-        }
-        this._player.onDestroy(fn);
-    };
-    /**
-     * @return {?}
-     */
-    TransitionAnimationPlayer.prototype.init = function () { this._player.init(); };
-    /**
-     * @return {?}
-     */
-    TransitionAnimationPlayer.prototype.hasStarted = function () { return this.queued ? false : this._player.hasStarted(); };
-    /**
-     * @return {?}
-     */
-    TransitionAnimationPlayer.prototype.play = function () { !this.queued && this._player.play(); };
-    /**
-     * @return {?}
-     */
-    TransitionAnimationPlayer.prototype.pause = function () { !this.queued && this._player.pause(); };
-    /**
-     * @return {?}
-     */
-    TransitionAnimationPlayer.prototype.restart = function () { !this.queued && this._player.restart(); };
-    /**
-     * @return {?}
-     */
-    TransitionAnimationPlayer.prototype.finish = function () { this._player.finish(); };
-    /**
-     * @return {?}
-     */
-    TransitionAnimationPlayer.prototype.destroy = function () {
-        this._destroyed = true;
-        this._player.destroy();
-    };
-    /**
-     * @return {?}
-     */
-    TransitionAnimationPlayer.prototype.reset = function () { !this.queued && this._player.reset(); };
-    /**
-     * @param {?} p
-     * @return {?}
-     */
-    TransitionAnimationPlayer.prototype.setPosition = function (p) {
-        if (!this.queued) {
-            this._player.setPosition(p);
-        }
-    };
-    /**
-     * @return {?}
-     */
-    TransitionAnimationPlayer.prototype.getPosition = function () { return this.queued ? 0 : this._player.getPosition(); };
-    Object.defineProperty(TransitionAnimationPlayer.prototype, "totalTime", {
-        /**
-         * @return {?}
-         */
-        get: function () { return this._player.totalTime; },
-        enumerable: true,
-        configurable: true
-    });
-    return TransitionAnimationPlayer;
-}());
-/**
- * @param {?} map
- * @param {?} key
- * @param {?} value
- * @return {?}
- */
-function deleteOrUnsetInMap(map, key, value) {
-    var /** @type {?} */ currentValues;
-    if (map instanceof Map) {
-        currentValues = map.get(key);
-        if (currentValues) {
-            if (currentValues.length) {
-                var /** @type {?} */ index = currentValues.indexOf(value);
-                currentValues.splice(index, 1);
-            }
-            if (currentValues.length == 0) {
-                map.delete(key);
-            }
-        }
-    }
-    else {
-        currentValues = map[key];
-        if (currentValues) {
-            if (currentValues.length) {
-                var /** @type {?} */ index = currentValues.indexOf(value);
-                currentValues.splice(index, 1);
-            }
-            if (currentValues.length == 0) {
-                delete map[key];
-            }
-        }
-    }
-    return currentValues;
-}
-/**
- * @param {?} value
- * @return {?}
- */
-function normalizeTriggerValue(value) {
-    switch (typeof value) {
-        case 'boolean':
-            return value ? '1' : '0';
-        default:
-            return value != null ? value.toString() : null;
-    }
-}
-/**
- * @param {?} node
- * @return {?}
- */
-function isElementNode(node) {
-    return node && node['nodeType'] === 1;
-}
-/**
- * @param {?} eventName
- * @return {?}
- */
-function isTriggerEventValid(eventName) {
-    return eventName == 'start' || eventName == 'done';
-}
-/**
- * @param {?} element
- * @param {?=} value
- * @return {?}
- */
-function cloakElement(element, value) {
-    var /** @type {?} */ oldValue = element.style.display;
-    element.style.display = value != null ? value : 'none';
-    return oldValue;
-}
-/**
- * @param {?} driver
- * @param {?} elements
- * @param {?} elementPropsMap
- * @param {?} defaultStyle
- * @return {?}
- */
-function cloakAndComputeStyles(driver, elements, elementPropsMap, defaultStyle) {
-    var /** @type {?} */ cloakVals = elements.map(function (element) { return cloakElement(element); });
-    var /** @type {?} */ valuesMap = new Map();
-    elementPropsMap.forEach(function (props, element) {
-        var /** @type {?} */ styles = {};
-        props.forEach(function (prop) {
-            var /** @type {?} */ value = styles[prop] = driver.computeStyle(element, prop, defaultStyle);
-            // there is no easy way to detect this because a sub element could be removed
-            // by a parent animation element being detached.
-            if (!value || value.length == 0) {
-                element[REMOVAL_FLAG] = NULL_REMOVED_QUERIED_STATE;
-            }
-        });
-        valuesMap.set(element, styles);
-    });
-    elements.forEach(function (element, i) { return cloakElement(element, cloakVals[i]); });
-    return valuesMap;
-}
-/**
- * @param {?} nodes
- * @return {?}
- */
-function createIsRootFilterFn(nodes) {
-    var /** @type {?} */ nodeSet = new Set(nodes);
-    var /** @type {?} */ knownRootContainer = new Set();
-    var /** @type {?} */ isRoot;
-    isRoot = function (node) {
-        if (!node)
-            return true;
-        if (nodeSet.has(node.parentNode))
-            return false;
-        if (knownRootContainer.has(node.parentNode))
-            return true;
-        if (isRoot(node.parentNode)) {
-            knownRootContainer.add(node);
-            return true;
-        }
-        return false;
-    };
-    return isRoot;
-}
-var CLASSES_CACHE_KEY = '$$classes';
-/**
- * @param {?} element
- * @param {?} className
- * @return {?}
- */
-function containsClass(element, className) {
-    if (element.classList) {
-        return element.classList.contains(className);
-    }
-    else {
-        var /** @type {?} */ classes = element[CLASSES_CACHE_KEY];
-        return classes && classes[className];
-    }
-}
-/**
- * @param {?} element
- * @param {?} className
- * @return {?}
- */
-function addClass(element, className) {
-    if (element.classList) {
-        element.classList.add(className);
-    }
-    else {
-        var /** @type {?} */ classes = element[CLASSES_CACHE_KEY];
-        if (!classes) {
-            classes = element[CLASSES_CACHE_KEY] = {};
-        }
-        classes[className] = true;
-    }
-}
-/**
- * @param {?} element
- * @param {?} className
- * @return {?}
- */
-function removeClass(element, className) {
-    if (element.classList) {
-        element.classList.remove(className);
-    }
-    else {
-        var /** @type {?} */ classes = element[CLASSES_CACHE_KEY];
-        if (classes) {
-            delete classes[className];
-        }
-    }
-}
-/**
- * @return {?}
- */
-function getBodyNode() {
-    if (typeof document != 'undefined') {
-        return document.body;
-    }
-    return null;
-}
-/**
- * @param {?} engine
- * @param {?} element
- * @param {?} players
- * @return {?}
- */
-function removeNodesAfterAnimationDone(engine, element, players) {
-    optimizeGroupPlayer(players).onDone(function () { return engine.processLeaveNode(element); });
-}
-/**
- * @param {?} players
- * @return {?}
- */
-function flattenGroupPlayers(players) {
-    var /** @type {?} */ finalPlayers = [];
-    _flattenGroupPlayersRecur(players, finalPlayers);
-    return finalPlayers;
-}
-/**
- * @param {?} players
- * @param {?} finalPlayers
- * @return {?}
- */
-function _flattenGroupPlayersRecur(players, finalPlayers) {
-    for (var /** @type {?} */ i = 0; i < players.length; i++) {
-        var /** @type {?} */ player = players[i];
-        if (player instanceof __WEBPACK_IMPORTED_MODULE_1__angular_animations__["e" /* ɵAnimationGroupPlayer */]) {
-            _flattenGroupPlayersRecur(player.players, finalPlayers);
-        }
-        else {
-            finalPlayers.push(/** @type {?} */ (player));
-        }
-    }
-}
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var AnimationEngine = (function () {
-    /**
-     * @param {?} driver
-     * @param {?} normalizer
-     */
-    function AnimationEngine(driver, normalizer) {
-        var _this = this;
-        this._triggerCache = {};
-        this.onRemovalComplete = function (element, context) { };
-        this._transitionEngine = new TransitionAnimationEngine(driver, normalizer);
-        this._timelineEngine = new TimelineAnimationEngine(driver, normalizer);
-        this._transitionEngine.onRemovalComplete =
-            function (element, context) { _this.onRemovalComplete(element, context); };
-    }
-    /**
-     * @param {?} componentId
-     * @param {?} namespaceId
-     * @param {?} hostElement
-     * @param {?} name
-     * @param {?} metadata
-     * @return {?}
-     */
-    AnimationEngine.prototype.registerTrigger = function (componentId, namespaceId, hostElement, name, metadata) {
-        var /** @type {?} */ cacheKey = componentId + '-' + name;
-        var /** @type {?} */ trigger = this._triggerCache[cacheKey];
-        if (!trigger) {
-            var /** @type {?} */ errors = [];
-            var /** @type {?} */ ast = (buildAnimationAst(/** @type {?} */ (metadata), errors));
-            if (errors.length) {
-                throw new Error("The animation trigger \"" + name + "\" has failed to build due to the following errors:\n - " + errors.join("\n - "));
-            }
-            trigger = buildTrigger(name, ast);
-            this._triggerCache[cacheKey] = trigger;
-        }
-        this._transitionEngine.registerTrigger(namespaceId, name, trigger);
-    };
-    /**
-     * @param {?} namespaceId
-     * @param {?} hostElement
-     * @return {?}
-     */
-    AnimationEngine.prototype.register = function (namespaceId, hostElement) {
-        this._transitionEngine.register(namespaceId, hostElement);
-    };
-    /**
-     * @param {?} namespaceId
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationEngine.prototype.destroy = function (namespaceId, context) {
-        this._transitionEngine.destroy(namespaceId, context);
-    };
-    /**
-     * @param {?} namespaceId
-     * @param {?} element
-     * @param {?} parent
-     * @param {?} insertBefore
-     * @return {?}
-     */
-    AnimationEngine.prototype.onInsert = function (namespaceId, element, parent, insertBefore) {
-        this._transitionEngine.insertNode(namespaceId, element, parent, insertBefore);
-    };
-    /**
-     * @param {?} namespaceId
-     * @param {?} element
-     * @param {?} context
-     * @return {?}
-     */
-    AnimationEngine.prototype.onRemove = function (namespaceId, element, context) {
-        this._transitionEngine.removeNode(namespaceId, element, context);
-    };
-    /**
-     * @param {?} element
-     * @param {?} disable
-     * @return {?}
-     */
-    AnimationEngine.prototype.disableAnimations = function (element, disable) {
-        this._transitionEngine.markElementAsDisabled(element, disable);
-    };
-    /**
-     * @param {?} namespaceId
-     * @param {?} element
-     * @param {?} property
-     * @param {?} value
-     * @return {?}
-     */
-    AnimationEngine.prototype.process = function (namespaceId, element, property, value) {
-        if (property.charAt(0) == '@') {
-            var _a = parseTimelineCommand(property), id = _a[0], action = _a[1];
-            var /** @type {?} */ args = (value);
-            this._timelineEngine.command(id, element, action, args);
-        }
-        else {
-            this._transitionEngine.trigger(namespaceId, element, property, value);
-        }
-    };
-    /**
-     * @param {?} namespaceId
-     * @param {?} element
-     * @param {?} eventName
-     * @param {?} eventPhase
-     * @param {?} callback
-     * @return {?}
-     */
-    AnimationEngine.prototype.listen = function (namespaceId, element, eventName, eventPhase, callback) {
-        // @@listen
-        if (eventName.charAt(0) == '@') {
-            var _a = parseTimelineCommand(eventName), id = _a[0], action = _a[1];
-            return this._timelineEngine.listen(id, element, action, callback);
-        }
-        return this._transitionEngine.listen(namespaceId, element, eventName, eventPhase, callback);
-    };
-    /**
-     * @param {?=} microtaskId
-     * @return {?}
-     */
-    AnimationEngine.prototype.flush = function (microtaskId) {
-        if (microtaskId === void 0) { microtaskId = -1; }
-        this._transitionEngine.flush(microtaskId);
-    };
-    Object.defineProperty(AnimationEngine.prototype, "players", {
-        /**
-         * @return {?}
-         */
-        get: function () {
-            return ((this._transitionEngine.players))
-                .concat(/** @type {?} */ (this._timelineEngine.players));
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @return {?}
-     */
-    AnimationEngine.prototype.whenRenderingDone = function () { return this._transitionEngine.whenRenderingDone(); };
-    return AnimationEngine;
-}());
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var WebAnimationsPlayer = (function () {
-    /**
-     * @param {?} element
-     * @param {?} keyframes
-     * @param {?} options
-     * @param {?=} previousPlayers
-     */
-    function WebAnimationsPlayer(element, keyframes, options, previousPlayers) {
-        if (previousPlayers === void 0) { previousPlayers = []; }
-        var _this = this;
-        this.element = element;
-        this.keyframes = keyframes;
-        this.options = options;
-        this.previousPlayers = previousPlayers;
-        this._onDoneFns = [];
-        this._onStartFns = [];
-        this._onDestroyFns = [];
-        this._initialized = false;
-        this._finished = false;
-        this._started = false;
-        this._destroyed = false;
-        this.time = 0;
-        this.parentPlayer = null;
-        this.previousStyles = {};
-        this.currentSnapshot = {};
-        this._duration = options['duration'];
-        this._delay = options['delay'] || 0;
-        this.time = this._duration + this._delay;
-        if (allowPreviousPlayerStylesMerge(this._duration, this._delay)) {
-            previousPlayers.forEach(function (player) {
-                var styles = player.currentSnapshot;
-                Object.keys(styles).forEach(function (prop) { return _this.previousStyles[prop] = styles[prop]; });
-            });
-        }
-    }
-    /**
-     * @return {?}
-     */
-    WebAnimationsPlayer.prototype._onFinish = function () {
-        if (!this._finished) {
-            this._finished = true;
-            this._onDoneFns.forEach(function (fn) { return fn(); });
-            this._onDoneFns = [];
-        }
-    };
-    /**
-     * @return {?}
-     */
-    WebAnimationsPlayer.prototype.init = function () {
-        this._buildPlayer();
-        this._preparePlayerBeforeStart();
-    };
-    /**
-     * @return {?}
-     */
-    WebAnimationsPlayer.prototype._buildPlayer = function () {
-        var _this = this;
-        if (this._initialized)
-            return;
-        this._initialized = true;
-        var /** @type {?} */ keyframes = this.keyframes.map(function (styles) { return copyStyles(styles, false); });
-        var /** @type {?} */ previousStyleProps = Object.keys(this.previousStyles);
-        if (previousStyleProps.length) {
-            var /** @type {?} */ startingKeyframe_1 = keyframes[0];
-            var /** @type {?} */ missingStyleProps_1 = [];
-            previousStyleProps.forEach(function (prop) {
-                if (!startingKeyframe_1.hasOwnProperty(prop)) {
-                    missingStyleProps_1.push(prop);
-                }
-                startingKeyframe_1[prop] = _this.previousStyles[prop];
-            });
-            if (missingStyleProps_1.length) {
-                var /** @type {?} */ self_1 = this;
-                var _loop_1 = function () {
-                    var /** @type {?} */ kf = keyframes[i];
-                    missingStyleProps_1.forEach(function (prop) {
-                        kf[prop] = _computeStyle(self_1.element, prop);
-                    });
-                };
-                // tslint:disable-next-line
-                for (var /** @type {?} */ i = 1; i < keyframes.length; i++) {
-                    _loop_1();
-                }
-            }
-        }
-        this._player = this._triggerWebAnimation(this.element, keyframes, this.options);
-        this._finalKeyframe = keyframes.length ? keyframes[keyframes.length - 1] : {};
-        this._player.addEventListener('finish', function () { return _this._onFinish(); });
-    };
-    /**
-     * @return {?}
-     */
-    WebAnimationsPlayer.prototype._preparePlayerBeforeStart = function () {
-        // this is required so that the player doesn't start to animate right away
-        if (this._delay) {
-            this._resetDomPlayerState();
-        }
-        else {
-            this._player.pause();
-        }
-    };
-    /**
-     * \@internal
-     * @param {?} element
-     * @param {?} keyframes
-     * @param {?} options
-     * @return {?}
-     */
-    WebAnimationsPlayer.prototype._triggerWebAnimation = function (element, keyframes, options) {
-        // jscompiler doesn't seem to know animate is a native property because it's not fully
-        // supported yet across common browsers (we polyfill it for Edge/Safari) [CL #143630929]
-        return (element['animate'](keyframes, options));
-    };
-    Object.defineProperty(WebAnimationsPlayer.prototype, "domPlayer", {
-        /**
-         * @return {?}
-         */
-        get: function () { return this._player; },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @param {?} fn
-     * @return {?}
-     */
-    WebAnimationsPlayer.prototype.onStart = function (fn) { this._onStartFns.push(fn); };
-    /**
-     * @param {?} fn
-     * @return {?}
-     */
-    WebAnimationsPlayer.prototype.onDone = function (fn) { this._onDoneFns.push(fn); };
-    /**
-     * @param {?} fn
-     * @return {?}
-     */
-    WebAnimationsPlayer.prototype.onDestroy = function (fn) { this._onDestroyFns.push(fn); };
-    /**
-     * @return {?}
-     */
-    WebAnimationsPlayer.prototype.play = function () {
-        this._buildPlayer();
-        if (!this.hasStarted()) {
-            this._onStartFns.forEach(function (fn) { return fn(); });
-            this._onStartFns = [];
-            this._started = true;
-        }
-        this._player.play();
-    };
-    /**
-     * @return {?}
-     */
-    WebAnimationsPlayer.prototype.pause = function () {
-        this.init();
-        this._player.pause();
-    };
-    /**
-     * @return {?}
-     */
-    WebAnimationsPlayer.prototype.finish = function () {
-        this.init();
-        this._onFinish();
-        this._player.finish();
-    };
-    /**
-     * @return {?}
-     */
-    WebAnimationsPlayer.prototype.reset = function () {
-        this._resetDomPlayerState();
-        this._destroyed = false;
-        this._finished = false;
-        this._started = false;
-    };
-    /**
-     * @return {?}
-     */
-    WebAnimationsPlayer.prototype._resetDomPlayerState = function () {
-        if (this._player) {
-            this._player.cancel();
-        }
-    };
-    /**
-     * @return {?}
-     */
-    WebAnimationsPlayer.prototype.restart = function () {
-        this.reset();
-        this.play();
-    };
-    /**
-     * @return {?}
-     */
-    WebAnimationsPlayer.prototype.hasStarted = function () { return this._started; };
-    /**
-     * @return {?}
-     */
-    WebAnimationsPlayer.prototype.destroy = function () {
-        if (!this._destroyed) {
-            this._resetDomPlayerState();
-            this._onFinish();
-            this._destroyed = true;
-            this._onDestroyFns.forEach(function (fn) { return fn(); });
-            this._onDestroyFns = [];
-        }
-    };
-    /**
-     * @param {?} p
-     * @return {?}
-     */
-    WebAnimationsPlayer.prototype.setPosition = function (p) { this._player.currentTime = p * this.time; };
-    /**
-     * @return {?}
-     */
-    WebAnimationsPlayer.prototype.getPosition = function () { return this._player.currentTime / this.time; };
-    Object.defineProperty(WebAnimationsPlayer.prototype, "totalTime", {
-        /**
-         * @return {?}
-         */
-        get: function () { return this._delay + this._duration; },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @return {?}
-     */
-    WebAnimationsPlayer.prototype.beforeDestroy = function () {
-        var _this = this;
-        var /** @type {?} */ styles = {};
-        if (this.hasStarted()) {
-            Object.keys(this._finalKeyframe).forEach(function (prop) {
-                if (prop != 'offset') {
-                    styles[prop] =
-                        _this._finished ? _this._finalKeyframe[prop] : _computeStyle(_this.element, prop);
-                }
-            });
-        }
-        this.currentSnapshot = styles;
-    };
-    return WebAnimationsPlayer;
-}());
-/**
- * @param {?} element
- * @param {?} prop
- * @return {?}
- */
-function _computeStyle(element, prop) {
-    return ((window.getComputedStyle(element)))[prop];
-}
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var WebAnimationsDriver = (function () {
-    function WebAnimationsDriver() {
-    }
-    /**
-     * @param {?} element
-     * @param {?} selector
-     * @return {?}
-     */
-    WebAnimationsDriver.prototype.matchesElement = function (element, selector) {
-        return matchesElement(element, selector);
-    };
-    /**
-     * @param {?} elm1
-     * @param {?} elm2
-     * @return {?}
-     */
-    WebAnimationsDriver.prototype.containsElement = function (elm1, elm2) { return containsElement(elm1, elm2); };
-    /**
-     * @param {?} element
-     * @param {?} selector
-     * @param {?} multi
-     * @return {?}
-     */
-    WebAnimationsDriver.prototype.query = function (element, selector, multi) {
-        return invokeQuery(element, selector, multi);
-    };
-    /**
-     * @param {?} element
-     * @param {?} prop
-     * @param {?=} defaultValue
-     * @return {?}
-     */
-    WebAnimationsDriver.prototype.computeStyle = function (element, prop, defaultValue) {
-        return (((window.getComputedStyle(element)))[prop]);
-    };
-    /**
-     * @param {?} element
-     * @param {?} keyframes
-     * @param {?} duration
-     * @param {?} delay
-     * @param {?} easing
-     * @param {?=} previousPlayers
-     * @return {?}
-     */
-    WebAnimationsDriver.prototype.animate = function (element, keyframes, duration, delay, easing, previousPlayers) {
-        if (previousPlayers === void 0) { previousPlayers = []; }
-        var /** @type {?} */ fill = delay == 0 ? 'both' : 'forwards';
-        var /** @type {?} */ playerOptions = { duration: duration, delay: delay, fill: fill };
-        // we check for this to avoid having a null|undefined value be present
-        // for the easing (which results in an error for certain browsers #9752)
-        if (easing) {
-            playerOptions['easing'] = easing;
-        }
-        var /** @type {?} */ previousWebAnimationPlayers = (previousPlayers.filter(function (player) { return player instanceof WebAnimationsPlayer; }));
-        return new WebAnimationsPlayer(element, keyframes, playerOptions, previousWebAnimationPlayers);
-    };
-    return WebAnimationsDriver;
-}());
-/**
- * @return {?}
- */
-function supportsWebAnimations() {
-    return typeof Element !== 'undefined' && typeof ((Element)).prototype['animate'] === 'function';
-}
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @module
- * @description
- * Entry point for all animation APIs of the animation browser package.
- */
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @module
- * @description
- * Entry point for all public APIs of the animation package.
- */
-/**
- * Generated bundle index. Do not edit.
- */
-
-//# sourceMappingURL=browser.es5.js.map
-
-
-/***/ }),
-/* 73 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* unused harmony export VERSION */
 /* unused harmony export TEMPLATE_TRANSFORMS */
@@ -91706,16 +85382,16 @@ function _mergeArrays(parts) {
 //# sourceMappingURL=compiler.es5.js.map
 
 /***/ }),
-/* 74 */
+/* 72 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_compiler__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_compiler__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(8);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESOURCE_CACHE_PROVIDER", function() { return RESOURCE_CACHE_PROVIDER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "platformBrowserDynamic", function() { return platformBrowserDynamic; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VERSION", function() { return VERSION; });
@@ -91890,771 +85566,7 @@ var platformBrowserDynamic = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__
 
 
 /***/ }),
-/* 75 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_animations__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_animations_browser__ = __webpack_require__(72);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BrowserAnimationsModule", function() { return BrowserAnimationsModule; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NoopAnimationsModule", function() { return NoopAnimationsModule; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵBrowserAnimationBuilder", function() { return BrowserAnimationBuilder; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵBrowserAnimationFactory", function() { return BrowserAnimationFactory; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵAnimationRenderer", function() { return AnimationRenderer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵAnimationRendererFactory", function() { return AnimationRendererFactory; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵa", function() { return BaseAnimationRenderer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵf", function() { return BROWSER_ANIMATIONS_PROVIDERS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵg", function() { return BROWSER_NOOP_ANIMATIONS_PROVIDERS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵb", function() { return InjectableAnimationEngine; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵd", function() { return instantiateDefaultStyleNormalizer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵe", function() { return instantiateRendererFactory; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵc", function() { return instantiateSupportedAnimationDriver; });
-
-/**
- * @license Angular v4.3.3
- * (c) 2010-2017 Google, Inc. https://angular.io/
- * License: MIT
- */
-
-
-
-
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var BrowserAnimationBuilder = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](BrowserAnimationBuilder, _super);
-    /**
-     * @param {?} rootRenderer
-     */
-    function BrowserAnimationBuilder(rootRenderer) {
-        var _this = _super.call(this) || this;
-        _this._nextAnimationId = 0;
-        var typeData = {
-            id: '0',
-            encapsulation: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ViewEncapsulation"].None,
-            styles: [],
-            data: { animation: [] }
-        };
-        _this._renderer = rootRenderer.createRenderer(document.body, typeData);
-        return _this;
-    }
-    /**
-     * @param {?} animation
-     * @return {?}
-     */
-    BrowserAnimationBuilder.prototype.build = function (animation) {
-        var /** @type {?} */ id = this._nextAnimationId.toString();
-        this._nextAnimationId++;
-        var /** @type {?} */ entry = Array.isArray(animation) ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_animations__["a" /* sequence */])(animation) : animation;
-        issueAnimationCommand(this._renderer, null, id, 'register', [entry]);
-        return new BrowserAnimationFactory(id, this._renderer);
-    };
-    return BrowserAnimationBuilder;
-}(__WEBPACK_IMPORTED_MODULE_3__angular_animations__["b" /* AnimationBuilder */]));
-BrowserAnimationBuilder.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
-];
-/**
- * @nocollapse
- */
-BrowserAnimationBuilder.ctorParameters = function () { return [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["RendererFactory2"], },
-]; };
-var BrowserAnimationFactory = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](BrowserAnimationFactory, _super);
-    /**
-     * @param {?} _id
-     * @param {?} _renderer
-     */
-    function BrowserAnimationFactory(_id, _renderer) {
-        var _this = _super.call(this) || this;
-        _this._id = _id;
-        _this._renderer = _renderer;
-        return _this;
-    }
-    /**
-     * @param {?} element
-     * @param {?=} options
-     * @return {?}
-     */
-    BrowserAnimationFactory.prototype.create = function (element, options) {
-        return new RendererAnimationPlayer(this._id, element, options || {}, this._renderer);
-    };
-    return BrowserAnimationFactory;
-}(__WEBPACK_IMPORTED_MODULE_3__angular_animations__["c" /* AnimationFactory */]));
-var RendererAnimationPlayer = (function () {
-    /**
-     * @param {?} id
-     * @param {?} element
-     * @param {?} options
-     * @param {?} _renderer
-     */
-    function RendererAnimationPlayer(id, element, options, _renderer) {
-        this.id = id;
-        this.element = element;
-        this._renderer = _renderer;
-        this.parentPlayer = null;
-        this._started = false;
-        this.totalTime = 0;
-        this._command('create', options);
-    }
-    /**
-     * @param {?} eventName
-     * @param {?} callback
-     * @return {?}
-     */
-    RendererAnimationPlayer.prototype._listen = function (eventName, callback) {
-        return this._renderer.listen(this.element, "@@" + this.id + ":" + eventName, callback);
-    };
-    /**
-     * @param {?} command
-     * @param {...?} args
-     * @return {?}
-     */
-    RendererAnimationPlayer.prototype._command = function (command) {
-        var args = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            args[_i - 1] = arguments[_i];
-        }
-        return issueAnimationCommand(this._renderer, this.element, this.id, command, args);
-    };
-    /**
-     * @param {?} fn
-     * @return {?}
-     */
-    RendererAnimationPlayer.prototype.onDone = function (fn) { this._listen('done', fn); };
-    /**
-     * @param {?} fn
-     * @return {?}
-     */
-    RendererAnimationPlayer.prototype.onStart = function (fn) { this._listen('start', fn); };
-    /**
-     * @param {?} fn
-     * @return {?}
-     */
-    RendererAnimationPlayer.prototype.onDestroy = function (fn) { this._listen('destroy', fn); };
-    /**
-     * @return {?}
-     */
-    RendererAnimationPlayer.prototype.init = function () { this._command('init'); };
-    /**
-     * @return {?}
-     */
-    RendererAnimationPlayer.prototype.hasStarted = function () { return this._started; };
-    /**
-     * @return {?}
-     */
-    RendererAnimationPlayer.prototype.play = function () {
-        this._command('play');
-        this._started = true;
-    };
-    /**
-     * @return {?}
-     */
-    RendererAnimationPlayer.prototype.pause = function () { this._command('pause'); };
-    /**
-     * @return {?}
-     */
-    RendererAnimationPlayer.prototype.restart = function () { this._command('restart'); };
-    /**
-     * @return {?}
-     */
-    RendererAnimationPlayer.prototype.finish = function () { this._command('finish'); };
-    /**
-     * @return {?}
-     */
-    RendererAnimationPlayer.prototype.destroy = function () { this._command('destroy'); };
-    /**
-     * @return {?}
-     */
-    RendererAnimationPlayer.prototype.reset = function () { this._command('reset'); };
-    /**
-     * @param {?} p
-     * @return {?}
-     */
-    RendererAnimationPlayer.prototype.setPosition = function (p) { this._command('setPosition', p); };
-    /**
-     * @return {?}
-     */
-    RendererAnimationPlayer.prototype.getPosition = function () { return 0; };
-    return RendererAnimationPlayer;
-}());
-/**
- * @param {?} renderer
- * @param {?} element
- * @param {?} id
- * @param {?} command
- * @param {?} args
- * @return {?}
- */
-function issueAnimationCommand(renderer, element, id, command, args) {
-    return renderer.setProperty(element, "@@" + id + ":" + command, args);
-}
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var ANIMATION_PREFIX = '@';
-var DISABLE_ANIMATIONS_FLAG = '@.disabled';
-var AnimationRendererFactory = (function () {
-    /**
-     * @param {?} delegate
-     * @param {?} engine
-     * @param {?} _zone
-     */
-    function AnimationRendererFactory(delegate, engine, _zone) {
-        this.delegate = delegate;
-        this.engine = engine;
-        this._zone = _zone;
-        this._currentId = 0;
-        this._microtaskId = 1;
-        this._animationCallbacksBuffer = [];
-        this._rendererCache = new Map();
-        this._cdRecurDepth = 0;
-        engine.onRemovalComplete = function (element, delegate) {
-            // Note: if an component element has a leave animation, and the component
-            // a host leave animation, the view engine will call `removeChild` for the parent
-            // component renderer as well as for the child component renderer.
-            // Therefore, we need to check if we already removed the element.
-            if (delegate && delegate.parentNode(element)) {
-                delegate.removeChild(element.parentNode, element);
-            }
-        };
-    }
-    /**
-     * @param {?} hostElement
-     * @param {?} type
-     * @return {?}
-     */
-    AnimationRendererFactory.prototype.createRenderer = function (hostElement, type) {
-        var _this = this;
-        var /** @type {?} */ EMPTY_NAMESPACE_ID = '';
-        // cache the delegates to find out which cached delegate can
-        // be used by which cached renderer
-        var /** @type {?} */ delegate = this.delegate.createRenderer(hostElement, type);
-        if (!hostElement || !type || !type.data || !type.data['animation']) {
-            var /** @type {?} */ renderer = this._rendererCache.get(delegate);
-            if (!renderer) {
-                renderer = new BaseAnimationRenderer(EMPTY_NAMESPACE_ID, delegate, this.engine);
-                // only cache this result when the base renderer is used
-                this._rendererCache.set(delegate, renderer);
-            }
-            return renderer;
-        }
-        var /** @type {?} */ componentId = type.id;
-        var /** @type {?} */ namespaceId = type.id + '-' + this._currentId;
-        this._currentId++;
-        this.engine.register(namespaceId, hostElement);
-        var /** @type {?} */ animationTriggers = (type.data['animation']);
-        animationTriggers.forEach(function (trigger) { return _this.engine.registerTrigger(componentId, namespaceId, hostElement, trigger.name, trigger); });
-        return new AnimationRenderer(this, namespaceId, delegate, this.engine);
-    };
-    /**
-     * @return {?}
-     */
-    AnimationRendererFactory.prototype.begin = function () {
-        this._cdRecurDepth++;
-        if (this.delegate.begin) {
-            this.delegate.begin();
-        }
-    };
-    /**
-     * @return {?}
-     */
-    AnimationRendererFactory.prototype._scheduleCountTask = function () {
-        var _this = this;
-        Zone.current.scheduleMicroTask('incremenet the animation microtask', function () { return _this._microtaskId++; });
-    };
-    /**
-     * @param {?} count
-     * @param {?} fn
-     * @param {?} data
-     * @return {?}
-     */
-    AnimationRendererFactory.prototype.scheduleListenerCallback = function (count, fn, data) {
-        var _this = this;
-        if (count >= 0 && count < this._microtaskId) {
-            this._zone.run(function () { return fn(data); });
-            return;
-        }
-        if (this._animationCallbacksBuffer.length == 0) {
-            Promise.resolve(null).then(function () {
-                _this._zone.run(function () {
-                    _this._animationCallbacksBuffer.forEach(function (tuple) {
-                        var fn = tuple[0], data = tuple[1];
-                        fn(data);
-                    });
-                    _this._animationCallbacksBuffer = [];
-                });
-            });
-        }
-        this._animationCallbacksBuffer.push([fn, data]);
-    };
-    /**
-     * @return {?}
-     */
-    AnimationRendererFactory.prototype.end = function () {
-        var _this = this;
-        this._cdRecurDepth--;
-        // this is to prevent animations from running twice when an inner
-        // component does CD when a parent component insted has inserted it
-        if (this._cdRecurDepth == 0) {
-            this._zone.runOutsideAngular(function () {
-                _this._scheduleCountTask();
-                _this.engine.flush(_this._microtaskId);
-            });
-        }
-        if (this.delegate.end) {
-            this.delegate.end();
-        }
-    };
-    /**
-     * @return {?}
-     */
-    AnimationRendererFactory.prototype.whenRenderingDone = function () { return this.engine.whenRenderingDone(); };
-    return AnimationRendererFactory;
-}());
-AnimationRendererFactory.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
-];
-/**
- * @nocollapse
- */
-AnimationRendererFactory.ctorParameters = function () { return [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["RendererFactory2"], },
-    { type: __WEBPACK_IMPORTED_MODULE_4__angular_animations_browser__["a" /* ɵAnimationEngine */], },
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgZone"], },
-]; };
-var BaseAnimationRenderer = (function () {
-    /**
-     * @param {?} namespaceId
-     * @param {?} delegate
-     * @param {?} engine
-     */
-    function BaseAnimationRenderer(namespaceId, delegate, engine) {
-        this.namespaceId = namespaceId;
-        this.delegate = delegate;
-        this.engine = engine;
-        this.destroyNode = this.delegate.destroyNode ? function (n) { return delegate.destroyNode(n); } : null;
-    }
-    Object.defineProperty(BaseAnimationRenderer.prototype, "data", {
-        /**
-         * @return {?}
-         */
-        get: function () { return this.delegate.data; },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.destroy = function () {
-        this.engine.destroy(this.namespaceId, this.delegate);
-        this.delegate.destroy();
-    };
-    /**
-     * @param {?} name
-     * @param {?=} namespace
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.createElement = function (name, namespace) {
-        return this.delegate.createElement(name, namespace);
-    };
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.createComment = function (value) { return this.delegate.createComment(value); };
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.createText = function (value) { return this.delegate.createText(value); };
-    /**
-     * @param {?} parent
-     * @param {?} newChild
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.appendChild = function (parent, newChild) {
-        this.delegate.appendChild(parent, newChild);
-        this.engine.onInsert(this.namespaceId, newChild, parent, false);
-    };
-    /**
-     * @param {?} parent
-     * @param {?} newChild
-     * @param {?} refChild
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.insertBefore = function (parent, newChild, refChild) {
-        this.delegate.insertBefore(parent, newChild, refChild);
-        this.engine.onInsert(this.namespaceId, newChild, parent, true);
-    };
-    /**
-     * @param {?} parent
-     * @param {?} oldChild
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.removeChild = function (parent, oldChild) {
-        this.engine.onRemove(this.namespaceId, oldChild, this.delegate);
-    };
-    /**
-     * @param {?} selectorOrNode
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.selectRootElement = function (selectorOrNode) { return this.delegate.selectRootElement(selectorOrNode); };
-    /**
-     * @param {?} node
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.parentNode = function (node) { return this.delegate.parentNode(node); };
-    /**
-     * @param {?} node
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.nextSibling = function (node) { return this.delegate.nextSibling(node); };
-    /**
-     * @param {?} el
-     * @param {?} name
-     * @param {?} value
-     * @param {?=} namespace
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.setAttribute = function (el, name, value, namespace) {
-        this.delegate.setAttribute(el, name, value, namespace);
-    };
-    /**
-     * @param {?} el
-     * @param {?} name
-     * @param {?=} namespace
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.removeAttribute = function (el, name, namespace) {
-        this.delegate.removeAttribute(el, name, namespace);
-    };
-    /**
-     * @param {?} el
-     * @param {?} name
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.addClass = function (el, name) { this.delegate.addClass(el, name); };
-    /**
-     * @param {?} el
-     * @param {?} name
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.removeClass = function (el, name) { this.delegate.removeClass(el, name); };
-    /**
-     * @param {?} el
-     * @param {?} style
-     * @param {?} value
-     * @param {?=} flags
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.setStyle = function (el, style, value, flags) {
-        this.delegate.setStyle(el, style, value, flags);
-    };
-    /**
-     * @param {?} el
-     * @param {?} style
-     * @param {?=} flags
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.removeStyle = function (el, style, flags) {
-        this.delegate.removeStyle(el, style, flags);
-    };
-    /**
-     * @param {?} el
-     * @param {?} name
-     * @param {?} value
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.setProperty = function (el, name, value) {
-        if (name.charAt(0) == ANIMATION_PREFIX && name == DISABLE_ANIMATIONS_FLAG) {
-            this.disableAnimations(el, !!value);
-        }
-        else {
-            this.delegate.setProperty(el, name, value);
-        }
-    };
-    /**
-     * @param {?} node
-     * @param {?} value
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.setValue = function (node, value) { this.delegate.setValue(node, value); };
-    /**
-     * @param {?} target
-     * @param {?} eventName
-     * @param {?} callback
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.listen = function (target, eventName, callback) {
-        return this.delegate.listen(target, eventName, callback);
-    };
-    /**
-     * @param {?} element
-     * @param {?} value
-     * @return {?}
-     */
-    BaseAnimationRenderer.prototype.disableAnimations = function (element, value) {
-        this.engine.disableAnimations(element, value);
-    };
-    return BaseAnimationRenderer;
-}());
-var AnimationRenderer = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](AnimationRenderer, _super);
-    /**
-     * @param {?} factory
-     * @param {?} namespaceId
-     * @param {?} delegate
-     * @param {?} engine
-     */
-    function AnimationRenderer(factory, namespaceId, delegate, engine) {
-        var _this = _super.call(this, namespaceId, delegate, engine) || this;
-        _this.factory = factory;
-        _this.namespaceId = namespaceId;
-        return _this;
-    }
-    /**
-     * @param {?} el
-     * @param {?} name
-     * @param {?} value
-     * @return {?}
-     */
-    AnimationRenderer.prototype.setProperty = function (el, name, value) {
-        if (name.charAt(0) == ANIMATION_PREFIX) {
-            if (name.charAt(1) == '.' && name == DISABLE_ANIMATIONS_FLAG) {
-                this.disableAnimations(el, !!value);
-            }
-            else {
-                this.engine.process(this.namespaceId, el, name.substr(1), value);
-            }
-        }
-        else {
-            this.delegate.setProperty(el, name, value);
-        }
-    };
-    /**
-     * @param {?} target
-     * @param {?} eventName
-     * @param {?} callback
-     * @return {?}
-     */
-    AnimationRenderer.prototype.listen = function (target, eventName, callback) {
-        var _this = this;
-        if (eventName.charAt(0) == ANIMATION_PREFIX) {
-            var /** @type {?} */ element = resolveElementFromTarget(target);
-            var /** @type {?} */ name = eventName.substr(1);
-            var /** @type {?} */ phase = '';
-            // @listener.phase is for trigger animation callbacks
-            // @@listener is for animation builder callbacks
-            if (name.charAt(0) != ANIMATION_PREFIX) {
-                _a = parseTriggerCallbackName(name), name = _a[0], phase = _a[1];
-            }
-            return this.engine.listen(this.namespaceId, element, name, phase, function (event) {
-                var /** @type {?} */ countId = ((event))['_data'] || -1;
-                _this.factory.scheduleListenerCallback(countId, callback, event);
-            });
-        }
-        return this.delegate.listen(target, eventName, callback);
-        var _a;
-    };
-    return AnimationRenderer;
-}(BaseAnimationRenderer));
-/**
- * @param {?} target
- * @return {?}
- */
-function resolveElementFromTarget(target) {
-    switch (target) {
-        case 'body':
-            return document.body;
-        case 'document':
-            return document;
-        case 'window':
-            return window;
-        default:
-            return target;
-    }
-}
-/**
- * @param {?} triggerName
- * @return {?}
- */
-function parseTriggerCallbackName(triggerName) {
-    var /** @type {?} */ dotIndex = triggerName.indexOf('.');
-    var /** @type {?} */ trigger = triggerName.substring(0, dotIndex);
-    var /** @type {?} */ phase = triggerName.substr(dotIndex + 1);
-    return [trigger, phase];
-}
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var InjectableAnimationEngine = (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](InjectableAnimationEngine, _super);
-    /**
-     * @param {?} driver
-     * @param {?} normalizer
-     */
-    function InjectableAnimationEngine(driver, normalizer) {
-        return _super.call(this, driver, normalizer) || this;
-    }
-    return InjectableAnimationEngine;
-}(__WEBPACK_IMPORTED_MODULE_4__angular_animations_browser__["a" /* ɵAnimationEngine */]));
-InjectableAnimationEngine.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
-];
-/**
- * @nocollapse
- */
-InjectableAnimationEngine.ctorParameters = function () { return [
-    { type: __WEBPACK_IMPORTED_MODULE_4__angular_animations_browser__["b" /* AnimationDriver */], },
-    { type: __WEBPACK_IMPORTED_MODULE_4__angular_animations_browser__["c" /* ɵAnimationStyleNormalizer */], },
-]; };
-/**
- * @return {?}
- */
-function instantiateSupportedAnimationDriver() {
-    if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_animations_browser__["d" /* ɵsupportsWebAnimations */])()) {
-        return new __WEBPACK_IMPORTED_MODULE_4__angular_animations_browser__["e" /* ɵWebAnimationsDriver */]();
-    }
-    return new __WEBPACK_IMPORTED_MODULE_4__angular_animations_browser__["f" /* ɵNoopAnimationDriver */]();
-}
-/**
- * @return {?}
- */
-function instantiateDefaultStyleNormalizer() {
-    return new __WEBPACK_IMPORTED_MODULE_4__angular_animations_browser__["g" /* ɵWebAnimationsStyleNormalizer */]();
-}
-/**
- * @param {?} renderer
- * @param {?} engine
- * @param {?} zone
- * @return {?}
- */
-function instantiateRendererFactory(renderer, engine, zone) {
-    return new AnimationRendererFactory(renderer, engine, zone);
-}
-var SHARED_ANIMATION_PROVIDERS = [
-    { provide: __WEBPACK_IMPORTED_MODULE_3__angular_animations__["b" /* AnimationBuilder */], useClass: BrowserAnimationBuilder },
-    { provide: __WEBPACK_IMPORTED_MODULE_4__angular_animations_browser__["c" /* ɵAnimationStyleNormalizer */], useFactory: instantiateDefaultStyleNormalizer },
-    { provide: __WEBPACK_IMPORTED_MODULE_4__angular_animations_browser__["a" /* ɵAnimationEngine */], useClass: InjectableAnimationEngine }, {
-        provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["RendererFactory2"],
-        useFactory: instantiateRendererFactory,
-        deps: [__WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["ɵDomRendererFactory2"], __WEBPACK_IMPORTED_MODULE_4__angular_animations_browser__["a" /* ɵAnimationEngine */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgZone"]]
-    }
-];
-/**
- * Separate providers from the actual module so that we can do a local modification in Google3 to
- * include them in the BrowserModule.
- */
-var BROWSER_ANIMATIONS_PROVIDERS = [
-    { provide: __WEBPACK_IMPORTED_MODULE_4__angular_animations_browser__["b" /* AnimationDriver */], useFactory: instantiateSupportedAnimationDriver }
-].concat(SHARED_ANIMATION_PROVIDERS);
-/**
- * Separate providers from the actual module so that we can do a local modification in Google3 to
- * include them in the BrowserTestingModule.
- */
-var BROWSER_NOOP_ANIMATIONS_PROVIDERS = [{ provide: __WEBPACK_IMPORTED_MODULE_4__angular_animations_browser__["b" /* AnimationDriver */], useClass: __WEBPACK_IMPORTED_MODULE_4__angular_animations_browser__["f" /* ɵNoopAnimationDriver */] }].concat(SHARED_ANIMATION_PROVIDERS);
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * \@experimental Animation support is experimental.
- */
-var BrowserAnimationsModule = (function () {
-    function BrowserAnimationsModule() {
-    }
-    return BrowserAnimationsModule;
-}());
-BrowserAnimationsModule.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"], args: [{
-                exports: [__WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["BrowserModule"]],
-                providers: BROWSER_ANIMATIONS_PROVIDERS,
-            },] },
-];
-/**
- * @nocollapse
- */
-BrowserAnimationsModule.ctorParameters = function () { return []; };
-/**
- * \@experimental Animation support is experimental.
- */
-var NoopAnimationsModule = (function () {
-    function NoopAnimationsModule() {
-    }
-    return NoopAnimationsModule;
-}());
-NoopAnimationsModule.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"], args: [{
-                exports: [__WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["BrowserModule"]],
-                providers: BROWSER_NOOP_ANIMATIONS_PROVIDERS,
-            },] },
-];
-/**
- * @nocollapse
- */
-NoopAnimationsModule.ctorParameters = function () { return []; };
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @module
- * @description
- * Entry point for all animation APIs of the animation browser package.
- */
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @module
- * @description
- * Entry point for all public APIs of the animation package.
- */
-/**
- * Generated bundle index. Do not edit.
- */
-
-//# sourceMappingURL=animations.es5.js.map
-
-
-/***/ }),
-/* 76 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97195,10 +90107,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     /******/)
   );
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(65)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(64)(module)))
 
 /***/ }),
-/* 77 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97222,7 +90134,7 @@ var AppComponent = function () {
     get: function get() {
       return [new _core.Component({
         selector: 'my-app',
-        template: __webpack_require__(86),
+        template: __webpack_require__(83),
         directives: [_router.ROUTER_DIRECTIVES]
       })];
     }
@@ -97241,7 +90153,7 @@ exports.default = AppComponent;
 AppComponent.parameters = [];
 
 /***/ }),
-/* 78 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97256,117 +90168,114 @@ var _core = __webpack_require__(0);
 
 var _router = __webpack_require__(13);
 
-var _app = __webpack_require__(77);
+var _app = __webpack_require__(74);
 
 var _app2 = _interopRequireDefault(_app);
 
 var _forms = __webpack_require__(12);
 
-var _platformBrowser = __webpack_require__(7);
+var _platformBrowser = __webpack_require__(8);
 
 var _common = __webpack_require__(5);
 
-var _homeComponent = __webpack_require__(34);
+var _homeComponent = __webpack_require__(33);
 
 var _homeComponent2 = _interopRequireDefault(_homeComponent);
 
-var _datepicker = __webpack_require__(29);
+var _datepicker = __webpack_require__(28);
 
 var _datepicker2 = _interopRequireDefault(_datepicker);
 
-var _paginationComponent = __webpack_require__(40);
+var _paginationComponent = __webpack_require__(39);
 
 var _paginationComponent2 = _interopRequireDefault(_paginationComponent);
 
-var _selectpickerComponent = __webpack_require__(43);
+var _selectpickerComponent = __webpack_require__(42);
 
 var _selectpickerComponent2 = _interopRequireDefault(_selectpickerComponent);
 
-var _slidepickerComponent = __webpack_require__(44);
+var _slidepickerComponent = __webpack_require__(43);
 
 var _slidepickerComponent2 = _interopRequireDefault(_slidepickerComponent);
 
-var _navbarComponent = __webpack_require__(39);
+var _navbarComponent = __webpack_require__(38);
 
 var _navbarComponent2 = _interopRequireDefault(_navbarComponent);
 
-var _dropdownComponent = __webpack_require__(30);
+var _dropdownComponent = __webpack_require__(29);
 
 var _dropdownComponent2 = _interopRequireDefault(_dropdownComponent);
 
-var _inputComponent = __webpack_require__(36);
+var _inputComponent = __webpack_require__(35);
 
 var _inputComponent2 = _interopRequireDefault(_inputComponent);
 
-var _buttonComponent = __webpack_require__(26);
+var _buttonComponent = __webpack_require__(25);
 
 var _buttonComponent2 = _interopRequireDefault(_buttonComponent);
 
-var _iconComponent = __webpack_require__(35);
+var _iconComponent = __webpack_require__(34);
 
 var _iconComponent2 = _interopRequireDefault(_iconComponent);
 
-var _modalComponent = __webpack_require__(38);
+var _modalComponent = __webpack_require__(37);
 
 var _modalComponent2 = _interopRequireDefault(_modalComponent);
 
-var _tableComponent = __webpack_require__(45);
+var _tableComponent = __webpack_require__(44);
 
 var _tableComponent2 = _interopRequireDefault(_tableComponent);
 
-var _carouselComponent = __webpack_require__(28);
+var _carouselComponent = __webpack_require__(27);
 
 var _carouselComponent2 = _interopRequireDefault(_carouselComponent);
 
-var _popoverComponent = __webpack_require__(41);
+var _popoverComponent = __webpack_require__(40);
 
 var _popoverComponent2 = _interopRequireDefault(_popoverComponent);
 
-var _tooltipComponent = __webpack_require__(46);
+var _tooltipComponent = __webpack_require__(45);
 
 var _tooltipComponent2 = _interopRequireDefault(_tooltipComponent);
 
-var _accordionComponent = __webpack_require__(25);
+var _accordionComponent = __webpack_require__(24);
 
 var _accordionComponent2 = _interopRequireDefault(_accordionComponent);
 
-var _progressBarComponent = __webpack_require__(42);
+var _progressBarComponent = __webpack_require__(41);
 
 var _progressBarComponent2 = _interopRequireDefault(_progressBarComponent);
 
-var _inputgroupComponent = __webpack_require__(37);
+var _inputgroupComponent = __webpack_require__(36);
 
 var _inputgroupComponent2 = _interopRequireDefault(_inputgroupComponent);
 
-var _gridComponent = __webpack_require__(32);
+var _gridComponent = __webpack_require__(31);
 
 var _gridComponent2 = _interopRequireDefault(_gridComponent);
 
-var _gridComponent3 = __webpack_require__(33);
+var _gridComponent3 = __webpack_require__(32);
 
 var _gridComponent4 = _interopRequireDefault(_gridComponent3);
 
-var _buttongroupsComponent = __webpack_require__(27);
+var _buttongroupsComponent = __webpack_require__(26);
 
 var _buttongroupsComponent2 = _interopRequireDefault(_buttongroupsComponent);
 
-var _formsComponent = __webpack_require__(31);
+var _formsComponent = __webpack_require__(30);
 
 var _formsComponent2 = _interopRequireDefault(_formsComponent);
 
-var _animations = __webpack_require__(75);
+var _atlantisUiNgx = __webpack_require__(73);
 
-var _atlantisUiNgx = __webpack_require__(76);
-
-var _app3 = __webpack_require__(79);
+var _app3 = __webpack_require__(76);
 
 var _app4 = _interopRequireDefault(_app3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var AppModule = exports.AppModule = function AppModule() {};
 // import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
+var AppModule = exports.AppModule = function AppModule() {};
 
 var types = [{
   type: "date",
@@ -97379,13 +90288,13 @@ var types = [{
 
 AppModule.annotations = [new _core.NgModule({
   declarations: [_app2.default, _homeComponent2.default, _datepicker2.default, _paginationComponent2.default, _selectpickerComponent2.default, _slidepickerComponent2.default, _navbarComponent2.default, _dropdownComponent2.default, _inputComponent2.default, _buttonComponent2.default, _iconComponent2.default, _modalComponent2.default, _tableComponent2.default, _carouselComponent2.default, _popoverComponent2.default, _tooltipComponent2.default, _accordionComponent2.default, _inputgroupComponent2.default, _gridComponent2.default, _buttongroupsComponent2.default, _formsComponent2.default, _progressBarComponent2.default, _gridComponent4.default],
-  imports: [_platformBrowser.BrowserModule, _forms.FormsModule, _router.RouterModule.forRoot(_app4.default), _atlantisUiNgx.ngxAtlUiModule.forRoot(types), _animations.BrowserAnimationsModule],
+  imports: [_platformBrowser.BrowserModule, _forms.FormsModule, _router.RouterModule.forRoot(_app4.default), _atlantisUiNgx.ngxAtlUiModule.forRoot(types)],
   bootstrap: [_app2.default],
   providers: [{ provide: _common.LocationStrategy, useClass: _common.HashLocationStrategy }, _common.DatePipe, _common.UpperCasePipe]
 })];
 
 /***/ }),
-/* 79 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97395,91 +90304,91 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _home = __webpack_require__(34);
+var _home = __webpack_require__(33);
 
 var _home2 = _interopRequireDefault(_home);
 
-var _datepicker = __webpack_require__(29);
+var _datepicker = __webpack_require__(28);
 
 var _datepicker2 = _interopRequireDefault(_datepicker);
 
-var _pagination = __webpack_require__(40);
+var _pagination = __webpack_require__(39);
 
 var _pagination2 = _interopRequireDefault(_pagination);
 
-var _selectpicker = __webpack_require__(43);
+var _selectpicker = __webpack_require__(42);
 
 var _selectpicker2 = _interopRequireDefault(_selectpicker);
 
-var _slidepicker = __webpack_require__(44);
+var _slidepicker = __webpack_require__(43);
 
 var _slidepicker2 = _interopRequireDefault(_slidepicker);
 
-var _navbar = __webpack_require__(39);
+var _navbar = __webpack_require__(38);
 
 var _navbar2 = _interopRequireDefault(_navbar);
 
-var _dropdownComponent = __webpack_require__(30);
+var _dropdownComponent = __webpack_require__(29);
 
 var _dropdownComponent2 = _interopRequireDefault(_dropdownComponent);
 
-var _inputComponent = __webpack_require__(36);
+var _inputComponent = __webpack_require__(35);
 
 var _inputComponent2 = _interopRequireDefault(_inputComponent);
 
-var _buttonComponent = __webpack_require__(26);
+var _buttonComponent = __webpack_require__(25);
 
 var _buttonComponent2 = _interopRequireDefault(_buttonComponent);
 
-var _iconComponent = __webpack_require__(35);
+var _iconComponent = __webpack_require__(34);
 
 var _iconComponent2 = _interopRequireDefault(_iconComponent);
 
-var _modalComponent = __webpack_require__(38);
+var _modalComponent = __webpack_require__(37);
 
 var _modalComponent2 = _interopRequireDefault(_modalComponent);
 
-var _tableComponent = __webpack_require__(45);
+var _tableComponent = __webpack_require__(44);
 
 var _tableComponent2 = _interopRequireDefault(_tableComponent);
 
-var _carouselComponent = __webpack_require__(28);
+var _carouselComponent = __webpack_require__(27);
 
 var _carouselComponent2 = _interopRequireDefault(_carouselComponent);
 
-var _popoverComponent = __webpack_require__(41);
+var _popoverComponent = __webpack_require__(40);
 
 var _popoverComponent2 = _interopRequireDefault(_popoverComponent);
 
-var _tooltipComponent = __webpack_require__(46);
+var _tooltipComponent = __webpack_require__(45);
 
 var _tooltipComponent2 = _interopRequireDefault(_tooltipComponent);
 
-var _accordionComponent = __webpack_require__(25);
+var _accordionComponent = __webpack_require__(24);
 
 var _accordionComponent2 = _interopRequireDefault(_accordionComponent);
 
-var _progressBarComponent = __webpack_require__(42);
+var _progressBarComponent = __webpack_require__(41);
 
 var _progressBarComponent2 = _interopRequireDefault(_progressBarComponent);
 
-var _inputgroupComponent = __webpack_require__(37);
+var _inputgroupComponent = __webpack_require__(36);
 
 var _inputgroupComponent2 = _interopRequireDefault(_inputgroupComponent);
 
-var _gridComponent = __webpack_require__(32);
+var _gridComponent = __webpack_require__(31);
 
 var _gridComponent2 = _interopRequireDefault(_gridComponent);
 
-var _gridComponent3 = __webpack_require__(33);
+var _gridComponent3 = __webpack_require__(32);
 
 var _gridComponent4 = _interopRequireDefault(_gridComponent3);
 
-var _buttongroupsComponent = __webpack_require__(27);
+var _buttongroupsComponent = __webpack_require__(26);
 
 var _buttongroupsComponent2 = _interopRequireDefault(_buttongroupsComponent);
 
-var _formsComponent = __webpack_require__(31);
+var _formsComponent = __webpack_require__(30);
 
 var _formsComponent2 = _interopRequireDefault(_formsComponent);
 
@@ -97488,40 +90397,40 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = [{ path: '', redirectTo: 'home', pathMatch: 'full' }, { path: 'home', component: _home2.default }, { path: 'datepickerAngular', component: _datepicker2.default }, { path: 'paginationAngular', component: _pagination2.default }, { path: 'selectpickerAngular', component: _selectpicker2.default }, { path: 'slidepickerAngular', component: _slidepicker2.default }, { path: 'navbar', component: _navbar2.default }, { path: 'dropdownAngular', component: _dropdownComponent2.default }, { path: 'input', component: _inputComponent2.default }, { path: 'button', component: _buttonComponent2.default }, { path: 'icon', component: _iconComponent2.default }, { path: 'modalAngular', component: _modalComponent2.default }, { path: 'table', component: _tableComponent2.default }, { path: 'carouselAngular', component: _carouselComponent2.default }, { path: 'popover', component: _popoverComponent2.default }, { path: 'tooltip', component: _tooltipComponent2.default }, { path: 'accordion', component: _accordionComponent2.default }, { path: 'progressBar', component: _progressBarComponent2.default }, { path: 'inputgroup', component: _inputgroupComponent2.default }, { path: 'grid', component: _gridComponent2.default }, { path: 'gridAngular', component: _gridComponent4.default }, { path: 'buttongroups', component: _buttongroupsComponent2.default }, { path: 'forms', component: _formsComponent2.default }];
 
 /***/ }),
-/* 80 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
 
-global.moment = __webpack_require__(67);
-__webpack_require__(69);
-__webpack_require__(70);
+global.moment = __webpack_require__(66);
 __webpack_require__(68);
-__webpack_require__(71);
+__webpack_require__(69);
+__webpack_require__(67);
+__webpack_require__(70);
 
-__webpack_require__(66);
+__webpack_require__(65);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 81 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(47)();
+exports = module.exports = __webpack_require__(46)();
 // imports
 
 
 // module
-exports.push([module.i, "/*!\n * Bootstrap v3.3.7 (http://getbootstrap.com)\n * Copyright 2011-2016 Twitter, Inc.\n * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n */\n@font-face {\n  font-family: 'FontAwesome';\n  src: url(" + __webpack_require__(48) + ");\n  src: url(" + __webpack_require__(48) + "?#iefix&v=0.0.1) format('embedded-opentype'), url(" + __webpack_require__(138) + ") format('woff2'), url(" + __webpack_require__(137) + ") format('woff'), url(" + __webpack_require__(84) + ") format('truetype'), url(" + __webpack_require__(83) + "#fontawesomeregular) format('svg');\n  font-weight: normal;\n  font-style: normal;\n}\n.icon {\n  display: inline-block;\n  font: normal normal normal 14px/1.42857143 FontAwesome;\n  font-size: inherit;\n  text-rendering: auto;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n.icon-add::before {\n  content: \"\\F067\";\n}\n.icon-delete::before {\n  content: \"\\F1F8\";\n}\n.icon-close::before {\n  content: \"\\F00D\";\n}\n.icon-edit::before {\n  content: \"\\F040\";\n}\n.icon-search::before {\n  content: \"\\F002\";\n}\n.icon-about::before {\n  content: \"\\F00E\";\n}\n.icon-import::before {\n  content: \"\\F019\";\n}\n.icon-export::before {\n  content: \"\\F093\";\n}\n.icon-save::before {\n  content: \"\\F0C7\";\n}\n.icon-print::before {\n  content: \"\\F02F\";\n}\n.icon-parameter::before {\n  content: \"\\F013\";\n}\n.icon-info::before {\n  content: \"\\F129\";\n}\n.icon-question::before {\n  content: \"\\F128\";\n}\n.icon-link::before {\n  content: \"\\F0C1\";\n}\n.icon-next::before {\n  content: \"\\F054\";\n}\n.icon-previous::before {\n  content: \"\\F053\";\n}\n.icon-exchange::before {\n  content: \"\\F0EC\";\n}\n.icon-warning::before {\n  content: \"\\F071\";\n}\n.icon-copy::before {\n  content: \"\\F016\";\n}\n.icon-star::before {\n  content: \"\\F005\";\n}\n.icon-archive::before {\n  content: \"\\F187\";\n}\n.icon-date::before {\n  content: \"\\F073\";\n}\n.icon-share::before {\n  content: \"\\F064\";\n}\n.icon-back::before {\n  content: \"\\F0E2\";\n}\n.icon-comment::before {\n  content: \"\\F075\";\n}\n.icon-users::before {\n  content: \"\\F0C0\";\n}\n.icon-user::before {\n  content: \"\\F007\";\n}\n.icon-folder::before {\n  content: \"\\F114\";\n}\n.icon-folder-open::before {\n  content: \"\\F115\";\n}\n.icon-stats::before {\n  content: \"\\F200\";\n}\n.icon-sort-asc::before {\n  content: \"\\F0DE\";\n}\n.icon-sort-desc::before {\n  content: \"\\F0DD\";\n}\n.icon-ticket::before {\n  content: \"\\F145\";\n}\n.icon-lock::before {\n  content: \"\\F023\";\n}\n.icon-unlock::before {\n  content: \"\\F09C\";\n}\n.icon-show::before {\n  content: \"\\F06E\";\n}\n.icon-hide::before {\n  content: \"\\F070\";\n}\n.icon-fax::before {\n  content: \"\\F1AC\";\n}\n.icon-home::before {\n  content: \"\\F015\";\n}\n.icon-sign-in::before {\n  content: \"\\F011\";\n}\n.icon-sign-out::before {\n  content: \"\\F08B\";\n}\n.icon-purchase::before {\n  content: \"\\F07A\";\n}\n.icon-file-pdf::before {\n  content: \"\\F1C1\";\n}\n.icon-file-zip::before {\n  content: \"\\F1C6\";\n}\n.icon-file-text::before {\n  content: \"\\F0F6\";\n}\n.icon-notification::before {\n  content: \"\\F0A2\";\n}\n.icon-up::before {\n  content: \"\\F0D8\";\n}\n.icon-down::before {\n  content: \"\\F0D7\";\n}\n.icon-parameter::before {\n  content: \"\\F013\";\n}\n.icon-check::before {\n  content: \"\\F00C\";\n}\n.icon-list::before {\n  content: \"\\F0CB\";\n}\n.icon-1x {\n  font-size: 14px;\n}\n.icon-2x {\n  font-size: 28px;\n}\n.icon-3x {\n  font-size: 42px;\n}\n.icon-4x {\n  font-size: 56px;\n}\n.icon-5x {\n  font-size: 70px;\n}\n.icon-disabled {\n  color: #bbb;\n}\n/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */\nhtml {\n  font-family: sans-serif;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%;\n}\nbody {\n  margin: 0;\n}\narticle,\naside,\ndetails,\nfigcaption,\nfigure,\nfooter,\nheader,\nhgroup,\nmain,\nmenu,\nnav,\nsection,\nsummary {\n  display: block;\n}\naudio,\ncanvas,\nprogress,\nvideo {\n  display: inline-block;\n  vertical-align: baseline;\n}\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n[hidden],\ntemplate {\n  display: none;\n}\na {\n  background-color: transparent;\n}\na:active,\na:hover {\n  outline: 0;\n}\nabbr[title] {\n  border-bottom: 1px dotted;\n}\nb,\nstrong {\n  font-weight: bold;\n}\ndfn {\n  font-style: italic;\n}\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\nmark {\n  background: #ff0;\n  color: #000;\n}\nsmall {\n  font-size: 80%;\n}\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\nsup {\n  top: -0.5em;\n}\nsub {\n  bottom: -0.25em;\n}\nimg {\n  border: 0;\n}\nsvg:not(:root) {\n  overflow: hidden;\n}\nfigure {\n  margin: 1em 40px;\n}\nhr {\n  box-sizing: content-box;\n  height: 0;\n}\npre {\n  overflow: auto;\n}\ncode,\nkbd,\npre,\nsamp {\n  font-family: monospace, monospace;\n  font-size: 1em;\n}\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  color: inherit;\n  font: inherit;\n  margin: 0;\n}\nbutton {\n  overflow: visible;\n}\nbutton,\nselect {\n  text-transform: none;\n}\nbutton,\nhtml input[type=\"button\"],\ninput[type=\"reset\"],\ninput[type=\"submit\"] {\n  -webkit-appearance: button;\n  cursor: pointer;\n}\nbutton[disabled],\nhtml input[disabled] {\n  cursor: default;\n}\nbutton::-moz-focus-inner,\ninput::-moz-focus-inner {\n  border: 0;\n  padding: 0;\n}\ninput {\n  line-height: normal;\n}\ninput[type=\"checkbox\"],\ninput[type=\"radio\"] {\n  box-sizing: border-box;\n  padding: 0;\n}\ninput[type=\"number\"]::-webkit-inner-spin-button,\ninput[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\ninput[type=\"search\"] {\n  -webkit-appearance: textfield;\n  box-sizing: content-box;\n}\ninput[type=\"search\"]::-webkit-search-cancel-button,\ninput[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\nlegend {\n  border: 0;\n  padding: 0;\n}\ntextarea {\n  overflow: auto;\n}\noptgroup {\n  font-weight: bold;\n}\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\ntd,\nth {\n  padding: 0;\n}\n/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */\n@media print {\n  *,\n  *:before,\n  *:after {\n    background: transparent !important;\n    color: #000 !important;\n    box-shadow: none !important;\n    text-shadow: none !important;\n  }\n  a,\n  a:visited {\n    text-decoration: underline;\n  }\n  a[href]:after {\n    content: \" (\" attr(href) \")\";\n  }\n  abbr[title]:after {\n    content: \" (\" attr(title) \")\";\n  }\n  a[href^=\"#\"]:after,\n  a[href^=\"javascript:\"]:after {\n    content: \"\";\n  }\n  pre,\n  blockquote {\n    border: 1px solid #999;\n    page-break-inside: avoid;\n  }\n  thead {\n    display: table-header-group;\n  }\n  tr,\n  img {\n    page-break-inside: avoid;\n  }\n  img {\n    max-width: 100% !important;\n  }\n  p,\n  h2,\n  h3 {\n    orphans: 3;\n    widows: 3;\n  }\n  h2,\n  h3 {\n    page-break-after: avoid;\n  }\n  .navbar {\n    display: none;\n  }\n  .btn > .caret,\n  .dropup > .btn > .caret {\n    border-top-color: #000 !important;\n  }\n  .label {\n    border: 1px solid #000;\n  }\n  .table {\n    border-collapse: collapse !important;\n  }\n  .table td,\n  .table th {\n    background-color: #fff !important;\n  }\n  .table-bordered th,\n  .table-bordered td {\n    border: 1px solid #ddd !important;\n  }\n}\n* {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n}\n*:before,\n*:after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n}\nhtml {\n  font-size: 10px;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n  font-size: 14px;\n  line-height: 1.42857143;\n  color: #000;\n  background-color: #fff;\n}\ninput,\nbutton,\nselect,\ntextarea {\n  font-family: inherit;\n  font-size: inherit;\n  line-height: inherit;\n}\na {\n  color: #15c;\n  text-decoration: none;\n}\na:hover,\na:focus {\n  color: #0b3885;\n  text-decoration: underline;\n}\na:focus {\n  outline: 5px auto -webkit-focus-ring-color;\n  outline-offset: -2px;\n}\nfigure {\n  margin: 0;\n}\nimg {\n  vertical-align: middle;\n}\n.img-responsive,\n.thumbnail > img,\n.thumbnail a > img,\n.carousel-inner > .item > img,\n.carousel-inner > .item > a > img {\n  display: block;\n  max-width: 100%;\n  height: auto;\n}\n.img-rounded {\n  border-radius: 0px;\n}\n.img-thumbnail {\n  padding: 4px;\n  line-height: 1.42857143;\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: 0px;\n  -webkit-transition: all 0.2s ease-in-out;\n  -o-transition: all 0.2s ease-in-out;\n  transition: all 0.2s ease-in-out;\n  display: inline-block;\n  max-width: 100%;\n  height: auto;\n}\n.img-circle {\n  border-radius: 50%;\n}\nhr {\n  margin-top: 20px;\n  margin-bottom: 20px;\n  border: 0;\n  border-top: 1px solid #eeeeee;\n}\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  margin: -1px;\n  padding: 0;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  border: 0;\n}\n.sr-only-focusable:active,\n.sr-only-focusable:focus {\n  position: static;\n  width: auto;\n  height: auto;\n  margin: 0;\n  overflow: visible;\n  clip: auto;\n}\n[role=\"button\"] {\n  cursor: pointer;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6,\n.h1,\n.h2,\n.h3,\n.h4,\n.h5,\n.h6 {\n  font-family: inherit;\n  font-weight: 500;\n  line-height: 1.1;\n  color: inherit;\n}\nh1 small,\nh2 small,\nh3 small,\nh4 small,\nh5 small,\nh6 small,\n.h1 small,\n.h2 small,\n.h3 small,\n.h4 small,\n.h5 small,\n.h6 small,\nh1 .small,\nh2 .small,\nh3 .small,\nh4 .small,\nh5 .small,\nh6 .small,\n.h1 .small,\n.h2 .small,\n.h3 .small,\n.h4 .small,\n.h5 .small,\n.h6 .small {\n  font-weight: normal;\n  line-height: 1;\n  color: #777777;\n}\nh1,\n.h1,\nh2,\n.h2,\nh3,\n.h3 {\n  margin-top: 20px;\n  margin-bottom: 10px;\n}\nh1 small,\n.h1 small,\nh2 small,\n.h2 small,\nh3 small,\n.h3 small,\nh1 .small,\n.h1 .small,\nh2 .small,\n.h2 .small,\nh3 .small,\n.h3 .small {\n  font-size: 65%;\n}\nh4,\n.h4,\nh5,\n.h5,\nh6,\n.h6 {\n  margin-top: 10px;\n  margin-bottom: 10px;\n}\nh4 small,\n.h4 small,\nh5 small,\n.h5 small,\nh6 small,\n.h6 small,\nh4 .small,\n.h4 .small,\nh5 .small,\n.h5 .small,\nh6 .small,\n.h6 .small {\n  font-size: 75%;\n}\nh1,\n.h1 {\n  font-size: 36px;\n}\nh2,\n.h2 {\n  font-size: 30px;\n}\nh3,\n.h3 {\n  font-size: 24px;\n}\nh4,\n.h4 {\n  font-size: 18px;\n}\nh5,\n.h5 {\n  font-size: 14px;\n}\nh6,\n.h6 {\n  font-size: 12px;\n}\np {\n  margin: 0 0 10px;\n}\n.lead {\n  margin-bottom: 20px;\n  font-size: 16px;\n  font-weight: 300;\n  line-height: 1.4;\n}\n@media (min-width: 768px) {\n  .lead {\n    font-size: 21px;\n  }\n}\nsmall,\n.small {\n  font-size: 85%;\n}\nmark,\n.mark {\n  background-color: #fcf8e3;\n  padding: .2em;\n}\n.text-left {\n  text-align: left;\n}\n.text-right {\n  text-align: right;\n}\n.text-center {\n  text-align: center;\n}\n.text-justify {\n  text-align: justify;\n}\n.text-nowrap {\n  white-space: nowrap;\n}\n.text-lowercase {\n  text-transform: lowercase;\n}\n.text-uppercase {\n  text-transform: uppercase;\n}\n.text-capitalize {\n  text-transform: capitalize;\n}\n.text-muted {\n  color: #777777;\n}\n.text-primary {\n  color: #15c;\n}\na.text-primary:hover,\na.text-primary:focus {\n  color: #0d419d;\n}\n.text-success {\n  color: #3c763d;\n}\na.text-success:hover,\na.text-success:focus {\n  color: #2b542c;\n}\n.text-info {\n  color: #31708f;\n}\na.text-info:hover,\na.text-info:focus {\n  color: #245269;\n}\n.text-warning {\n  color: #8a6d3b;\n}\na.text-warning:hover,\na.text-warning:focus {\n  color: #66512c;\n}\n.text-danger {\n  color: #a94442;\n}\na.text-danger:hover,\na.text-danger:focus {\n  color: #843534;\n}\n.bg-primary {\n  color: #fff;\n  background-color: #15c;\n}\na.bg-primary:hover,\na.bg-primary:focus {\n  background-color: #0d419d;\n}\n.bg-success {\n  background-color: #dff0d8;\n}\na.bg-success:hover,\na.bg-success:focus {\n  background-color: #c1e2b3;\n}\n.bg-info {\n  background-color: #d9edf7;\n}\na.bg-info:hover,\na.bg-info:focus {\n  background-color: #afd9ee;\n}\n.bg-warning {\n  background-color: #fcf8e3;\n}\na.bg-warning:hover,\na.bg-warning:focus {\n  background-color: #f7ecb5;\n}\n.bg-danger {\n  background-color: #f2dede;\n}\na.bg-danger:hover,\na.bg-danger:focus {\n  background-color: #e4b9b9;\n}\n.page-header {\n  padding-bottom: 9px;\n  margin: 40px 0 20px;\n  border-bottom: 1px solid #eeeeee;\n}\n.title1 {\n  color: #15c;\n  display: flex;\n  flex-direction: row;\n  flex: 1 auto;\n  font-size: 36px;\n  line-height: 1.1;\n  font-weight: bold;\n  white-space: nowrap;\n  margin: 10px 0;\n}\n.title1::after {\n  content: '';\n  width: 100%;\n  height: 1px;\n  background: linear-gradient(to right, #15c, transparent);\n  align-self: flex-end;\n  margin-left: 10px;\n  margin-bottom: 7px;\n}\n.title2 {\n  color: #15c;\n  display: flex;\n  flex-direction: row;\n  flex: 1 auto;\n  font-size: 30px;\n  line-height: 1.1;\n  font-weight: bold;\n  white-space: nowrap;\n  margin: 10px 0;\n}\n.title2::after {\n  content: '';\n  width: 100%;\n  height: 1px;\n  background: linear-gradient(to right, #15c, transparent);\n  align-self: flex-end;\n  margin-left: 10px;\n  margin-bottom: 6px;\n}\n.title3 {\n  color: #15c;\n  display: flex;\n  flex-direction: row;\n  flex: 1 auto;\n  font-size: 24px;\n  line-height: 1.1;\n  font-weight: bold;\n  white-space: nowrap;\n  margin: 10px 0;\n}\n.title3::after {\n  content: '';\n  width: 100%;\n  height: 1px;\n  background: linear-gradient(to right, #15c, transparent);\n  align-self: flex-end;\n  margin-left: 10px;\n  margin-bottom: 5px;\n}\n.title4 {\n  color: #15c;\n  display: flex;\n  flex-direction: row;\n  flex: 1 auto;\n  font-size: 18px;\n  line-height: 1.1;\n  font-weight: bold;\n  white-space: nowrap;\n  margin: 10px 0;\n}\n.title4::after {\n  content: '';\n  width: 100%;\n  height: 1px;\n  background: linear-gradient(to right, #15c, transparent);\n  align-self: flex-end;\n  margin-left: 10px;\n  margin-bottom: 3px;\n}\n.title5 {\n  color: #15c;\n  display: flex;\n  flex-direction: row;\n  flex: 1 auto;\n  font-size: 14px;\n  line-height: 1.1;\n  font-weight: bold;\n  white-space: nowrap;\n  margin: 10px 0;\n}\n.title5::after {\n  content: '';\n  width: 100%;\n  height: 1px;\n  background: linear-gradient(to right, #15c, transparent);\n  align-self: flex-end;\n  margin-left: 10px;\n  margin-bottom: 3px;\n}\n.title6 {\n  color: #15c;\n  display: flex;\n  flex-direction: row;\n  flex: 1 auto;\n  font-size: 12px;\n  line-height: 1.1;\n  font-weight: bold;\n  white-space: nowrap;\n  margin: 10px 0;\n}\n.title6::after {\n  content: '';\n  width: 100%;\n  height: 1px;\n  background: linear-gradient(to right, #15c, transparent);\n  align-self: flex-end;\n  margin-left: 10px;\n  margin-bottom: 2px;\n}\nul,\nol {\n  margin-top: 0;\n  margin-bottom: 10px;\n}\nul ul,\nol ul,\nul ol,\nol ol {\n  margin-bottom: 0;\n}\n.list-unstyled {\n  padding-left: 0;\n  list-style: none;\n}\n.list-inline {\n  padding-left: 0;\n  list-style: none;\n  margin-left: -5px;\n}\n.list-inline > li {\n  display: inline-block;\n  padding-left: 5px;\n  padding-right: 5px;\n}\ndl {\n  margin-top: 0;\n  margin-bottom: 20px;\n}\ndt,\ndd {\n  line-height: 1.42857143;\n}\ndt {\n  font-weight: bold;\n}\ndd {\n  margin-left: 0;\n}\n@media (min-width: 768px) {\n  .dl-horizontal dt {\n    float: left;\n    width: 160px;\n    clear: left;\n    text-align: right;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n  }\n  .dl-horizontal dd {\n    margin-left: 180px;\n  }\n}\nabbr[title],\nabbr[data-original-title] {\n  cursor: help;\n  border-bottom: 1px dotted #777777;\n}\n.initialism {\n  font-size: 90%;\n  text-transform: uppercase;\n}\nblockquote {\n  padding: 10px 20px;\n  margin: 0 0 20px;\n  font-size: 17.5px;\n  border-left: 5px solid #eeeeee;\n}\nblockquote p:last-child,\nblockquote ul:last-child,\nblockquote ol:last-child {\n  margin-bottom: 0;\n}\nblockquote footer,\nblockquote small,\nblockquote .small {\n  display: block;\n  font-size: 80%;\n  line-height: 1.42857143;\n  color: #777777;\n}\nblockquote footer:before,\nblockquote small:before,\nblockquote .small:before {\n  content: '\\2014     \\A0';\n}\n.blockquote-reverse,\nblockquote.pull-right {\n  padding-right: 15px;\n  padding-left: 0;\n  border-right: 5px solid #eeeeee;\n  border-left: 0;\n  text-align: right;\n}\n.blockquote-reverse footer:before,\nblockquote.pull-right footer:before,\n.blockquote-reverse small:before,\nblockquote.pull-right small:before,\n.blockquote-reverse .small:before,\nblockquote.pull-right .small:before {\n  content: '';\n}\n.blockquote-reverse footer:after,\nblockquote.pull-right footer:after,\n.blockquote-reverse small:after,\nblockquote.pull-right small:after,\n.blockquote-reverse .small:after,\nblockquote.pull-right .small:after {\n  content: '\\A0     \\2014';\n}\naddress {\n  margin-bottom: 20px;\n  font-style: normal;\n  line-height: 1.42857143;\n}\ncode,\nkbd,\npre,\nsamp {\n  font-family: Menlo, Monaco, Consolas, \"Courier New\", monospace;\n}\ncode {\n  padding: 2px 4px;\n  font-size: 90%;\n  color: #c7254e;\n  background-color: #f9f2f4;\n  border-radius: 0px;\n}\nkbd {\n  padding: 2px 4px;\n  font-size: 90%;\n  color: #fff;\n  background-color: #333;\n  border-radius: 0px;\n  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);\n}\nkbd kbd {\n  padding: 0;\n  font-size: 100%;\n  font-weight: bold;\n  box-shadow: none;\n}\npre {\n  display: block;\n  padding: 9.5px;\n  margin: 0 0 10px;\n  font-size: 13px;\n  line-height: 1.42857143;\n  word-break: break-all;\n  word-wrap: break-word;\n  color: #333333;\n  background-color: #f5f5f5;\n  border: 1px solid #ccc;\n  border-radius: 0px;\n}\npre code {\n  padding: 0;\n  font-size: inherit;\n  color: inherit;\n  white-space: pre-wrap;\n  background-color: transparent;\n  border-radius: 0;\n}\n.pre-scrollable {\n  max-height: 340px;\n  overflow-y: scroll;\n}\n.container {\n  margin-right: auto;\n  margin-left: auto;\n  padding-left: 15px;\n  padding-right: 15px;\n}\n@media (min-width: 768px) {\n  .container {\n    width: 750px;\n  }\n}\n@media (min-width: 992px) {\n  .container {\n    width: 970px;\n  }\n}\n@media (min-width: 1200px) {\n  .container {\n    width: 1170px;\n  }\n}\n.container-fluid {\n  margin-right: auto;\n  margin-left: auto;\n  padding-left: 15px;\n  padding-right: 15px;\n}\n.row {\n  margin-left: -15px;\n  margin-right: -15px;\n}\n.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {\n  position: relative;\n  min-height: 1px;\n  padding-left: 15px;\n  padding-right: 15px;\n}\n.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {\n  float: left;\n}\n.col-xs-12 {\n  width: 100%;\n}\n.col-xs-11 {\n  width: 91.66666667%;\n}\n.col-xs-10 {\n  width: 83.33333333%;\n}\n.col-xs-9 {\n  width: 75%;\n}\n.col-xs-8 {\n  width: 66.66666667%;\n}\n.col-xs-7 {\n  width: 58.33333333%;\n}\n.col-xs-6 {\n  width: 50%;\n}\n.col-xs-5 {\n  width: 41.66666667%;\n}\n.col-xs-4 {\n  width: 33.33333333%;\n}\n.col-xs-3 {\n  width: 25%;\n}\n.col-xs-2 {\n  width: 16.66666667%;\n}\n.col-xs-1 {\n  width: 8.33333333%;\n}\n.col-xs-pull-12 {\n  right: 100%;\n}\n.col-xs-pull-11 {\n  right: 91.66666667%;\n}\n.col-xs-pull-10 {\n  right: 83.33333333%;\n}\n.col-xs-pull-9 {\n  right: 75%;\n}\n.col-xs-pull-8 {\n  right: 66.66666667%;\n}\n.col-xs-pull-7 {\n  right: 58.33333333%;\n}\n.col-xs-pull-6 {\n  right: 50%;\n}\n.col-xs-pull-5 {\n  right: 41.66666667%;\n}\n.col-xs-pull-4 {\n  right: 33.33333333%;\n}\n.col-xs-pull-3 {\n  right: 25%;\n}\n.col-xs-pull-2 {\n  right: 16.66666667%;\n}\n.col-xs-pull-1 {\n  right: 8.33333333%;\n}\n.col-xs-pull-0 {\n  right: auto;\n}\n.col-xs-push-12 {\n  left: 100%;\n}\n.col-xs-push-11 {\n  left: 91.66666667%;\n}\n.col-xs-push-10 {\n  left: 83.33333333%;\n}\n.col-xs-push-9 {\n  left: 75%;\n}\n.col-xs-push-8 {\n  left: 66.66666667%;\n}\n.col-xs-push-7 {\n  left: 58.33333333%;\n}\n.col-xs-push-6 {\n  left: 50%;\n}\n.col-xs-push-5 {\n  left: 41.66666667%;\n}\n.col-xs-push-4 {\n  left: 33.33333333%;\n}\n.col-xs-push-3 {\n  left: 25%;\n}\n.col-xs-push-2 {\n  left: 16.66666667%;\n}\n.col-xs-push-1 {\n  left: 8.33333333%;\n}\n.col-xs-push-0 {\n  left: auto;\n}\n.col-xs-offset-12 {\n  margin-left: 100%;\n}\n.col-xs-offset-11 {\n  margin-left: 91.66666667%;\n}\n.col-xs-offset-10 {\n  margin-left: 83.33333333%;\n}\n.col-xs-offset-9 {\n  margin-left: 75%;\n}\n.col-xs-offset-8 {\n  margin-left: 66.66666667%;\n}\n.col-xs-offset-7 {\n  margin-left: 58.33333333%;\n}\n.col-xs-offset-6 {\n  margin-left: 50%;\n}\n.col-xs-offset-5 {\n  margin-left: 41.66666667%;\n}\n.col-xs-offset-4 {\n  margin-left: 33.33333333%;\n}\n.col-xs-offset-3 {\n  margin-left: 25%;\n}\n.col-xs-offset-2 {\n  margin-left: 16.66666667%;\n}\n.col-xs-offset-1 {\n  margin-left: 8.33333333%;\n}\n.col-xs-offset-0 {\n  margin-left: 0%;\n}\n@media (min-width: 768px) {\n  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {\n    float: left;\n  }\n  .col-sm-12 {\n    width: 100%;\n  }\n  .col-sm-11 {\n    width: 91.66666667%;\n  }\n  .col-sm-10 {\n    width: 83.33333333%;\n  }\n  .col-sm-9 {\n    width: 75%;\n  }\n  .col-sm-8 {\n    width: 66.66666667%;\n  }\n  .col-sm-7 {\n    width: 58.33333333%;\n  }\n  .col-sm-6 {\n    width: 50%;\n  }\n  .col-sm-5 {\n    width: 41.66666667%;\n  }\n  .col-sm-4 {\n    width: 33.33333333%;\n  }\n  .col-sm-3 {\n    width: 25%;\n  }\n  .col-sm-2 {\n    width: 16.66666667%;\n  }\n  .col-sm-1 {\n    width: 8.33333333%;\n  }\n  .col-sm-pull-12 {\n    right: 100%;\n  }\n  .col-sm-pull-11 {\n    right: 91.66666667%;\n  }\n  .col-sm-pull-10 {\n    right: 83.33333333%;\n  }\n  .col-sm-pull-9 {\n    right: 75%;\n  }\n  .col-sm-pull-8 {\n    right: 66.66666667%;\n  }\n  .col-sm-pull-7 {\n    right: 58.33333333%;\n  }\n  .col-sm-pull-6 {\n    right: 50%;\n  }\n  .col-sm-pull-5 {\n    right: 41.66666667%;\n  }\n  .col-sm-pull-4 {\n    right: 33.33333333%;\n  }\n  .col-sm-pull-3 {\n    right: 25%;\n  }\n  .col-sm-pull-2 {\n    right: 16.66666667%;\n  }\n  .col-sm-pull-1 {\n    right: 8.33333333%;\n  }\n  .col-sm-pull-0 {\n    right: auto;\n  }\n  .col-sm-push-12 {\n    left: 100%;\n  }\n  .col-sm-push-11 {\n    left: 91.66666667%;\n  }\n  .col-sm-push-10 {\n    left: 83.33333333%;\n  }\n  .col-sm-push-9 {\n    left: 75%;\n  }\n  .col-sm-push-8 {\n    left: 66.66666667%;\n  }\n  .col-sm-push-7 {\n    left: 58.33333333%;\n  }\n  .col-sm-push-6 {\n    left: 50%;\n  }\n  .col-sm-push-5 {\n    left: 41.66666667%;\n  }\n  .col-sm-push-4 {\n    left: 33.33333333%;\n  }\n  .col-sm-push-3 {\n    left: 25%;\n  }\n  .col-sm-push-2 {\n    left: 16.66666667%;\n  }\n  .col-sm-push-1 {\n    left: 8.33333333%;\n  }\n  .col-sm-push-0 {\n    left: auto;\n  }\n  .col-sm-offset-12 {\n    margin-left: 100%;\n  }\n  .col-sm-offset-11 {\n    margin-left: 91.66666667%;\n  }\n  .col-sm-offset-10 {\n    margin-left: 83.33333333%;\n  }\n  .col-sm-offset-9 {\n    margin-left: 75%;\n  }\n  .col-sm-offset-8 {\n    margin-left: 66.66666667%;\n  }\n  .col-sm-offset-7 {\n    margin-left: 58.33333333%;\n  }\n  .col-sm-offset-6 {\n    margin-left: 50%;\n  }\n  .col-sm-offset-5 {\n    margin-left: 41.66666667%;\n  }\n  .col-sm-offset-4 {\n    margin-left: 33.33333333%;\n  }\n  .col-sm-offset-3 {\n    margin-left: 25%;\n  }\n  .col-sm-offset-2 {\n    margin-left: 16.66666667%;\n  }\n  .col-sm-offset-1 {\n    margin-left: 8.33333333%;\n  }\n  .col-sm-offset-0 {\n    margin-left: 0%;\n  }\n}\n@media (min-width: 992px) {\n  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {\n    float: left;\n  }\n  .col-md-12 {\n    width: 100%;\n  }\n  .col-md-11 {\n    width: 91.66666667%;\n  }\n  .col-md-10 {\n    width: 83.33333333%;\n  }\n  .col-md-9 {\n    width: 75%;\n  }\n  .col-md-8 {\n    width: 66.66666667%;\n  }\n  .col-md-7 {\n    width: 58.33333333%;\n  }\n  .col-md-6 {\n    width: 50%;\n  }\n  .col-md-5 {\n    width: 41.66666667%;\n  }\n  .col-md-4 {\n    width: 33.33333333%;\n  }\n  .col-md-3 {\n    width: 25%;\n  }\n  .col-md-2 {\n    width: 16.66666667%;\n  }\n  .col-md-1 {\n    width: 8.33333333%;\n  }\n  .col-md-pull-12 {\n    right: 100%;\n  }\n  .col-md-pull-11 {\n    right: 91.66666667%;\n  }\n  .col-md-pull-10 {\n    right: 83.33333333%;\n  }\n  .col-md-pull-9 {\n    right: 75%;\n  }\n  .col-md-pull-8 {\n    right: 66.66666667%;\n  }\n  .col-md-pull-7 {\n    right: 58.33333333%;\n  }\n  .col-md-pull-6 {\n    right: 50%;\n  }\n  .col-md-pull-5 {\n    right: 41.66666667%;\n  }\n  .col-md-pull-4 {\n    right: 33.33333333%;\n  }\n  .col-md-pull-3 {\n    right: 25%;\n  }\n  .col-md-pull-2 {\n    right: 16.66666667%;\n  }\n  .col-md-pull-1 {\n    right: 8.33333333%;\n  }\n  .col-md-pull-0 {\n    right: auto;\n  }\n  .col-md-push-12 {\n    left: 100%;\n  }\n  .col-md-push-11 {\n    left: 91.66666667%;\n  }\n  .col-md-push-10 {\n    left: 83.33333333%;\n  }\n  .col-md-push-9 {\n    left: 75%;\n  }\n  .col-md-push-8 {\n    left: 66.66666667%;\n  }\n  .col-md-push-7 {\n    left: 58.33333333%;\n  }\n  .col-md-push-6 {\n    left: 50%;\n  }\n  .col-md-push-5 {\n    left: 41.66666667%;\n  }\n  .col-md-push-4 {\n    left: 33.33333333%;\n  }\n  .col-md-push-3 {\n    left: 25%;\n  }\n  .col-md-push-2 {\n    left: 16.66666667%;\n  }\n  .col-md-push-1 {\n    left: 8.33333333%;\n  }\n  .col-md-push-0 {\n    left: auto;\n  }\n  .col-md-offset-12 {\n    margin-left: 100%;\n  }\n  .col-md-offset-11 {\n    margin-left: 91.66666667%;\n  }\n  .col-md-offset-10 {\n    margin-left: 83.33333333%;\n  }\n  .col-md-offset-9 {\n    margin-left: 75%;\n  }\n  .col-md-offset-8 {\n    margin-left: 66.66666667%;\n  }\n  .col-md-offset-7 {\n    margin-left: 58.33333333%;\n  }\n  .col-md-offset-6 {\n    margin-left: 50%;\n  }\n  .col-md-offset-5 {\n    margin-left: 41.66666667%;\n  }\n  .col-md-offset-4 {\n    margin-left: 33.33333333%;\n  }\n  .col-md-offset-3 {\n    margin-left: 25%;\n  }\n  .col-md-offset-2 {\n    margin-left: 16.66666667%;\n  }\n  .col-md-offset-1 {\n    margin-left: 8.33333333%;\n  }\n  .col-md-offset-0 {\n    margin-left: 0%;\n  }\n}\n@media (min-width: 1200px) {\n  .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {\n    float: left;\n  }\n  .col-lg-12 {\n    width: 100%;\n  }\n  .col-lg-11 {\n    width: 91.66666667%;\n  }\n  .col-lg-10 {\n    width: 83.33333333%;\n  }\n  .col-lg-9 {\n    width: 75%;\n  }\n  .col-lg-8 {\n    width: 66.66666667%;\n  }\n  .col-lg-7 {\n    width: 58.33333333%;\n  }\n  .col-lg-6 {\n    width: 50%;\n  }\n  .col-lg-5 {\n    width: 41.66666667%;\n  }\n  .col-lg-4 {\n    width: 33.33333333%;\n  }\n  .col-lg-3 {\n    width: 25%;\n  }\n  .col-lg-2 {\n    width: 16.66666667%;\n  }\n  .col-lg-1 {\n    width: 8.33333333%;\n  }\n  .col-lg-pull-12 {\n    right: 100%;\n  }\n  .col-lg-pull-11 {\n    right: 91.66666667%;\n  }\n  .col-lg-pull-10 {\n    right: 83.33333333%;\n  }\n  .col-lg-pull-9 {\n    right: 75%;\n  }\n  .col-lg-pull-8 {\n    right: 66.66666667%;\n  }\n  .col-lg-pull-7 {\n    right: 58.33333333%;\n  }\n  .col-lg-pull-6 {\n    right: 50%;\n  }\n  .col-lg-pull-5 {\n    right: 41.66666667%;\n  }\n  .col-lg-pull-4 {\n    right: 33.33333333%;\n  }\n  .col-lg-pull-3 {\n    right: 25%;\n  }\n  .col-lg-pull-2 {\n    right: 16.66666667%;\n  }\n  .col-lg-pull-1 {\n    right: 8.33333333%;\n  }\n  .col-lg-pull-0 {\n    right: auto;\n  }\n  .col-lg-push-12 {\n    left: 100%;\n  }\n  .col-lg-push-11 {\n    left: 91.66666667%;\n  }\n  .col-lg-push-10 {\n    left: 83.33333333%;\n  }\n  .col-lg-push-9 {\n    left: 75%;\n  }\n  .col-lg-push-8 {\n    left: 66.66666667%;\n  }\n  .col-lg-push-7 {\n    left: 58.33333333%;\n  }\n  .col-lg-push-6 {\n    left: 50%;\n  }\n  .col-lg-push-5 {\n    left: 41.66666667%;\n  }\n  .col-lg-push-4 {\n    left: 33.33333333%;\n  }\n  .col-lg-push-3 {\n    left: 25%;\n  }\n  .col-lg-push-2 {\n    left: 16.66666667%;\n  }\n  .col-lg-push-1 {\n    left: 8.33333333%;\n  }\n  .col-lg-push-0 {\n    left: auto;\n  }\n  .col-lg-offset-12 {\n    margin-left: 100%;\n  }\n  .col-lg-offset-11 {\n    margin-left: 91.66666667%;\n  }\n  .col-lg-offset-10 {\n    margin-left: 83.33333333%;\n  }\n  .col-lg-offset-9 {\n    margin-left: 75%;\n  }\n  .col-lg-offset-8 {\n    margin-left: 66.66666667%;\n  }\n  .col-lg-offset-7 {\n    margin-left: 58.33333333%;\n  }\n  .col-lg-offset-6 {\n    margin-left: 50%;\n  }\n  .col-lg-offset-5 {\n    margin-left: 41.66666667%;\n  }\n  .col-lg-offset-4 {\n    margin-left: 33.33333333%;\n  }\n  .col-lg-offset-3 {\n    margin-left: 25%;\n  }\n  .col-lg-offset-2 {\n    margin-left: 16.66666667%;\n  }\n  .col-lg-offset-1 {\n    margin-left: 8.33333333%;\n  }\n  .col-lg-offset-0 {\n    margin-left: 0%;\n  }\n}\ntable,\ngrid {\n  background-color: #fff;\n}\ncaption {\n  padding-top: 8px;\n  padding-bottom: 8px;\n  color: #777777;\n  text-align: left;\n}\nth,\n.gridHead {\n  text-align: left;\n}\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 20px;\n}\n.table > thead > tr > th,\n.table > tbody > tr > th,\n.table > tfoot > tr > th,\n.table > .gridHeader > tr > th,\n.table > .gridBody > tr > th,\n.table > .gridFooter > tr > th,\n.table > thead > .gridRow > th,\n.table > tbody > .gridRow > th,\n.table > tfoot > .gridRow > th,\n.table > .gridHeader > .gridRow > th,\n.table > .gridBody > .gridRow > th,\n.table > .gridFooter > .gridRow > th,\n.table > thead > tr > td,\n.table > tbody > tr > td,\n.table > tfoot > tr > td,\n.table > .gridHeader > tr > td,\n.table > .gridBody > tr > td,\n.table > .gridFooter > tr > td,\n.table > thead > .gridRow > td,\n.table > tbody > .gridRow > td,\n.table > tfoot > .gridRow > td,\n.table > .gridHeader > .gridRow > td,\n.table > .gridBody > .gridRow > td,\n.table > .gridFooter > .gridRow > td,\n.table > thead > tr > .gridCell,\n.table > tbody > tr > .gridCell,\n.table > tfoot > tr > .gridCell,\n.table > .gridHeader > tr > .gridCell,\n.table > .gridBody > tr > .gridCell,\n.table > .gridFooter > tr > .gridCell,\n.table > thead > .gridRow > .gridCell,\n.table > tbody > .gridRow > .gridCell,\n.table > tfoot > .gridRow > .gridCell,\n.table > .gridHeader > .gridRow > .gridCell,\n.table > .gridBody > .gridRow > .gridCell,\n.table > .gridFooter > .gridRow > .gridCell,\n.table > thead > tr > .gridHead,\n.table > tbody > tr > .gridHead,\n.table > tfoot > tr > .gridHead,\n.table > .gridHeader > tr > .gridHead,\n.table > .gridBody > tr > .gridHead,\n.table > .gridFooter > tr > .gridHead,\n.table > thead > .gridRow > .gridHead,\n.table > tbody > .gridRow > .gridHead,\n.table > tfoot > .gridRow > .gridHead,\n.table > .gridHeader > .gridRow > .gridHead,\n.table > .gridBody > .gridRow > .gridHead,\n.table > .gridFooter > .gridRow > .gridHead {\n  padding: 8px;\n  line-height: 1.42857143;\n  vertical-align: top;\n  border-top: 1px solid #d4d4d4;\n}\n.table > thead > tr > th,\n.table > .gridHeader > .gridRow > .gridHead {\n  vertical-align: bottom;\n  border-bottom: 2px solid #d4d4d4;\n  background: linear-gradient(#626262, #222);\n  color: #fff;\n}\n.table > caption + thead > tr:first-child > th,\n.table > colgroup + thead > tr:first-child > th,\n.table > thead:first-child > tr:first-child > th,\n.table > .gridHeader:first-child > tr:first-child > th,\n.table > caption + thead > .gridRow:first-child > th,\n.table > colgroup + thead > .gridRow:first-child > th,\n.table > thead:first-child > .gridRow:first-child > th,\n.table > .gridHeader:first-child > .gridRow:first-child > th,\n.table > caption + thead > tr:first-child > td,\n.table > colgroup + thead > tr:first-child > td,\n.table > thead:first-child > tr:first-child > td,\n.table > .gridHeader:first-child > tr:first-child > td,\n.table > caption + thead > .gridRow:first-child > td,\n.table > colgroup + thead > .gridRow:first-child > td,\n.table > thead:first-child > .gridRow:first-child > td,\n.table > .gridHeader:first-child > .gridRow:first-child > td,\n.table > caption + thead > tr:first-child > .gridCell,\n.table > colgroup + thead > tr:first-child > .gridCell,\n.table > thead:first-child > tr:first-child > .gridCell,\n.table > .gridHeader:first-child > tr:first-child > .gridCell,\n.table > caption + thead > .gridRow:first-child > .gridCell,\n.table > colgroup + thead > .gridRow:first-child > .gridCell,\n.table > thead:first-child > .gridRow:first-child > .gridCell,\n.table > .gridHeader:first-child > .gridRow:first-child > .gridCell,\n.table > caption + thead > tr:first-child > .gridHead,\n.table > colgroup + thead > tr:first-child > .gridHead,\n.table > thead:first-child > tr:first-child > .gridHead,\n.table > .gridHeader:first-child > tr:first-child > .gridHead,\n.table > caption + thead > .gridRow:first-child > .gridHead,\n.table > colgroup + thead > .gridRow:first-child > .gridHead,\n.table > thead:first-child > .gridRow:first-child > .gridHead,\n.table > .gridHeader:first-child > .gridRow:first-child > .gridHead {\n  border-top: 0;\n}\n.table > tbody + tbody,\n.table > .gridBody + .gridBody {\n  border-top: 2px solid #d4d4d4;\n}\n.table .table {\n  background-color: #fff;\n}\n.table-condensed > thead > tr > th,\n.table-condensed > tbody > tr > th,\n.table-condensed > tfoot > tr > th,\n.table-condensed > .gridHeader > tr > th,\n.table-condensed > .gridBody > tr > th,\n.table-condensed > .gridFooter > tr > th,\n.table-condensed > thead > .gridRow > th,\n.table-condensed > tbody > .gridRow > th,\n.table-condensed > tfoot > .gridRow > th,\n.table-condensed > .gridHeader > .gridRow > th,\n.table-condensed > .gridBody > .gridRow > th,\n.table-condensed > .gridFooter > .gridRow > th,\n.table-condensed > thead > tr > td,\n.table-condensed > tbody > tr > td,\n.table-condensed > tfoot > tr > td,\n.table-condensed > .gridHeader > tr > td,\n.table-condensed > .gridBody > tr > td,\n.table-condensed > .gridFooter > tr > td,\n.table-condensed > thead > .gridRow > td,\n.table-condensed > tbody > .gridRow > td,\n.table-condensed > tfoot > .gridRow > td,\n.table-condensed > .gridHeader > .gridRow > td,\n.table-condensed > .gridBody > .gridRow > td,\n.table-condensed > .gridFooter > .gridRow > td,\n.table-condensed > thead > tr > .gridCell,\n.table-condensed > tbody > tr > .gridCell,\n.table-condensed > tfoot > tr > .gridCell,\n.table-condensed > .gridHeader > tr > .gridCell,\n.table-condensed > .gridBody > tr > .gridCell,\n.table-condensed > .gridFooter > tr > .gridCell,\n.table-condensed > thead > .gridRow > .gridCell,\n.table-condensed > tbody > .gridRow > .gridCell,\n.table-condensed > tfoot > .gridRow > .gridCell,\n.table-condensed > .gridHeader > .gridRow > .gridCell,\n.table-condensed > .gridBody > .gridRow > .gridCell,\n.table-condensed > .gridFooter > .gridRow > .gridCell,\n.table-condensed > thead > tr > .gridHead,\n.table-condensed > tbody > tr > .gridHead,\n.table-condensed > tfoot > tr > .gridHead,\n.table-condensed > .gridHeader > tr > .gridHead,\n.table-condensed > .gridBody > tr > .gridHead,\n.table-condensed > .gridFooter > tr > .gridHead,\n.table-condensed > thead > .gridRow > .gridHead,\n.table-condensed > tbody > .gridRow > .gridHead,\n.table-condensed > tfoot > .gridRow > .gridHead,\n.table-condensed > .gridHeader > .gridRow > .gridHead,\n.table-condensed > .gridBody > .gridRow > .gridHead,\n.table-condensed > .gridFooter > .gridRow > .gridHead {\n  padding: 5px;\n}\n.table-bordered {\n  border: 1px solid #d4d4d4;\n}\n.table-bordered > thead > tr > th,\n.table-bordered > tbody > tr > th,\n.table-bordered > tfoot > tr > th,\n.table-bordered > .gridHeader > tr > th,\n.table-bordered > .gridBody > tr > th,\n.table-bordered > .gridFooter > tr > th,\n.table-bordered > thead > .gridRow > th,\n.table-bordered > tbody > .gridRow > th,\n.table-bordered > tfoot > .gridRow > th,\n.table-bordered > .gridHeader > .gridRow > th,\n.table-bordered > .gridBody > .gridRow > th,\n.table-bordered > .gridFooter > .gridRow > th,\n.table-bordered > thead > tr > td,\n.table-bordered > tbody > tr > td,\n.table-bordered > tfoot > tr > td,\n.table-bordered > .gridHeader > tr > td,\n.table-bordered > .gridBody > tr > td,\n.table-bordered > .gridFooter > tr > td,\n.table-bordered > thead > .gridRow > td,\n.table-bordered > tbody > .gridRow > td,\n.table-bordered > tfoot > .gridRow > td,\n.table-bordered > .gridHeader > .gridRow > td,\n.table-bordered > .gridBody > .gridRow > td,\n.table-bordered > .gridFooter > .gridRow > td,\n.table-bordered > thead > tr > .gridCell,\n.table-bordered > tbody > tr > .gridCell,\n.table-bordered > tfoot > tr > .gridCell,\n.table-bordered > .gridHeader > tr > .gridCell,\n.table-bordered > .gridBody > tr > .gridCell,\n.table-bordered > .gridFooter > tr > .gridCell,\n.table-bordered > thead > .gridRow > .gridCell,\n.table-bordered > tbody > .gridRow > .gridCell,\n.table-bordered > tfoot > .gridRow > .gridCell,\n.table-bordered > .gridHeader > .gridRow > .gridCell,\n.table-bordered > .gridBody > .gridRow > .gridCell,\n.table-bordered > .gridFooter > .gridRow > .gridCell,\n.table-bordered > thead > tr > .gridHead,\n.table-bordered > tbody > tr > .gridHead,\n.table-bordered > tfoot > tr > .gridHead,\n.table-bordered > .gridHeader > tr > .gridHead,\n.table-bordered > .gridBody > tr > .gridHead,\n.table-bordered > .gridFooter > tr > .gridHead,\n.table-bordered > thead > .gridRow > .gridHead,\n.table-bordered > tbody > .gridRow > .gridHead,\n.table-bordered > tfoot > .gridRow > .gridHead,\n.table-bordered > .gridHeader > .gridRow > .gridHead,\n.table-bordered > .gridBody > .gridRow > .gridHead,\n.table-bordered > .gridFooter > .gridRow > .gridHead {\n  border: 1px solid #d4d4d4;\n}\n.table-bordered > thead > tr > th,\n.table-bordered > gridBody > .gridRow > th,\n.table-bordered > thead > tr > td,\n.table-bordered > gridBody > .gridRow > td,\n.table-bordered > thead > tr > .gridCell,\n.table-bordered > gridBody > .gridRow > .gridCell,\n.table-bordered > thead > tr > .gridHead,\n.table-bordered > gridBody > .gridRow > .gridHead {\n  border-bottom-width: 2px;\n}\n.table-striped > tbody > tr:nth-of-type(odd),\n.table-striped > .gridBody > .gridRow:nth-of-type(odd) {\n  background-color: #f9f9f9;\n}\n.table-hover > tbody > tr:hover,\n.table-hover > .gridBody > .gridRow:hover {\n  background: #15c;\n  color: #fff;\n}\n.table-hover > tbody > tr:hover a,\n.table-hover > .gridBody > .gridRow:hover a {\n  color: #fff;\n  text-decoration: underline;\n}\ntable col[class*=\"col-\"],\ngrid col[class*=\"col-\"] {\n  position: static;\n  float: none;\n  display: table-column;\n}\ntable td[class*=\"col-\"],\ngrid td[class*=\"col-\"],\ntable th[class*=\"col-\"],\ngrid th[class*=\"col-\"],\ntable .gridCell[class*=\"col-\"],\ngrid .gridCell[class*=\"col-\"],\ntable .gridHead[class*=\"col-\"],\ngrid .gridHead[class*=\"col-\"] {\n  position: static;\n  float: none;\n  display: table-cell;\n}\n.table > thead > tr > td.active,\n.table > tbody > tr > td.active,\n.table > tfoot > tr > td.active,\n.table > thead > tr > th.active,\n.table > tbody > tr > th.active,\n.table > tfoot > tr > th.active,\n.table > thead > tr.active > td,\n.table > tbody > tr.active > td,\n.table > tfoot > tr.active > td,\n.table > thead > tr.active > th,\n.table > tbody > tr.active > th,\n.table > tfoot > tr.active > th {\n  background-color: #15c;\n}\n.table-hover > tbody > tr > td.active:hover,\n.table-hover > tbody > tr > th.active:hover,\n.table-hover > tbody > tr.active:hover > td,\n.table-hover > tbody > tr:hover > .active,\n.table-hover > tbody > tr.active:hover > th {\n  background-color: #0f4bb4;\n}\n.table > thead > tr > td.success,\n.table > tbody > tr > td.success,\n.table > tfoot > tr > td.success,\n.table > thead > tr > th.success,\n.table > tbody > tr > th.success,\n.table > tfoot > tr > th.success,\n.table > thead > tr.success > td,\n.table > tbody > tr.success > td,\n.table > tfoot > tr.success > td,\n.table > thead > tr.success > th,\n.table > tbody > tr.success > th,\n.table > tfoot > tr.success > th {\n  background-color: #dff0d8;\n}\n.table-hover > tbody > tr > td.success:hover,\n.table-hover > tbody > tr > th.success:hover,\n.table-hover > tbody > tr.success:hover > td,\n.table-hover > tbody > tr:hover > .success,\n.table-hover > tbody > tr.success:hover > th {\n  background-color: #d0e9c6;\n}\n.table > thead > tr > td.info,\n.table > tbody > tr > td.info,\n.table > tfoot > tr > td.info,\n.table > thead > tr > th.info,\n.table > tbody > tr > th.info,\n.table > tfoot > tr > th.info,\n.table > thead > tr.info > td,\n.table > tbody > tr.info > td,\n.table > tfoot > tr.info > td,\n.table > thead > tr.info > th,\n.table > tbody > tr.info > th,\n.table > tfoot > tr.info > th {\n  background-color: #d9edf7;\n}\n.table-hover > tbody > tr > td.info:hover,\n.table-hover > tbody > tr > th.info:hover,\n.table-hover > tbody > tr.info:hover > td,\n.table-hover > tbody > tr:hover > .info,\n.table-hover > tbody > tr.info:hover > th {\n  background-color: #c4e3f3;\n}\n.table > thead > tr > td.warning,\n.table > tbody > tr > td.warning,\n.table > tfoot > tr > td.warning,\n.table > thead > tr > th.warning,\n.table > tbody > tr > th.warning,\n.table > tfoot > tr > th.warning,\n.table > thead > tr.warning > td,\n.table > tbody > tr.warning > td,\n.table > tfoot > tr.warning > td,\n.table > thead > tr.warning > th,\n.table > tbody > tr.warning > th,\n.table > tfoot > tr.warning > th {\n  background-color: #fcf8e3;\n}\n.table-hover > tbody > tr > td.warning:hover,\n.table-hover > tbody > tr > th.warning:hover,\n.table-hover > tbody > tr.warning:hover > td,\n.table-hover > tbody > tr:hover > .warning,\n.table-hover > tbody > tr.warning:hover > th {\n  background-color: #faf2cc;\n}\n.table > thead > tr > td.danger,\n.table > tbody > tr > td.danger,\n.table > tfoot > tr > td.danger,\n.table > thead > tr > th.danger,\n.table > tbody > tr > th.danger,\n.table > tfoot > tr > th.danger,\n.table > thead > tr.danger > td,\n.table > tbody > tr.danger > td,\n.table > tfoot > tr.danger > td,\n.table > thead > tr.danger > th,\n.table > tbody > tr.danger > th,\n.table > tfoot > tr.danger > th {\n  background-color: #f2dede;\n}\n.table-hover > tbody > tr > td.danger:hover,\n.table-hover > tbody > tr > th.danger:hover,\n.table-hover > tbody > tr.danger:hover > td,\n.table-hover > tbody > tr:hover > .danger,\n.table-hover > tbody > tr.danger:hover > th {\n  background-color: #ebcccc;\n}\n.table-responsive {\n  overflow-x: auto;\n  min-height: 0.01%;\n}\n@media screen and (max-width: 767px) {\n  .table-responsive {\n    width: 100%;\n    margin-bottom: 15px;\n    overflow-y: hidden;\n    -ms-overflow-style: -ms-autohiding-scrollbar;\n    border: 1px solid #d4d4d4;\n  }\n  .table-responsive > .table {\n    margin-bottom: 0;\n  }\n  .table-responsive > .table > thead > tr > th,\n  .table-responsive > .table > tbody > tr > th,\n  .table-responsive > .table > tfoot > tr > th,\n  .table-responsive > .table > .gridHeader > tr > th,\n  .table-responsive > .table > .gridBody > tr > th,\n  .table-responsive > .table > .gridFooter > tr > th,\n  .table-responsive > .table > thead > .gridRow > th,\n  .table-responsive > .table > tbody > .gridRow > th,\n  .table-responsive > .table > tfoot > .gridRow > th,\n  .table-responsive > .table > .gridHeader > .gridRow > th,\n  .table-responsive > .table > .gridBody > .gridRow > th,\n  .table-responsive > .table > .gridFooter > .gridRow > th,\n  .table-responsive > .table > thead > tr > td,\n  .table-responsive > .table > tbody > tr > td,\n  .table-responsive > .table > tfoot > tr > td,\n  .table-responsive > .table > .gridHeader > tr > td,\n  .table-responsive > .table > .gridBody > tr > td,\n  .table-responsive > .table > .gridFooter > tr > td,\n  .table-responsive > .table > thead > .gridRow > td,\n  .table-responsive > .table > tbody > .gridRow > td,\n  .table-responsive > .table > tfoot > .gridRow > td,\n  .table-responsive > .table > .gridHeader > .gridRow > td,\n  .table-responsive > .table > .gridBody > .gridRow > td,\n  .table-responsive > .table > .gridFooter > .gridRow > td,\n  .table-responsive > .table > thead > tr > .gridCell,\n  .table-responsive > .table > tbody > tr > .gridCell,\n  .table-responsive > .table > tfoot > tr > .gridCell,\n  .table-responsive > .table > .gridHeader > tr > .gridCell,\n  .table-responsive > .table > .gridBody > tr > .gridCell,\n  .table-responsive > .table > .gridFooter > tr > .gridCell,\n  .table-responsive > .table > thead > .gridRow > .gridCell,\n  .table-responsive > .table > tbody > .gridRow > .gridCell,\n  .table-responsive > .table > tfoot > .gridRow > .gridCell,\n  .table-responsive > .table > .gridHeader > .gridRow > .gridCell,\n  .table-responsive > .table > .gridBody > .gridRow > .gridCell,\n  .table-responsive > .table > .gridFooter > .gridRow > .gridCell,\n  .table-responsive > .table > thead > tr > .gridHead,\n  .table-responsive > .table > tbody > tr > .gridHead,\n  .table-responsive > .table > tfoot > tr > .gridHead,\n  .table-responsive > .table > .gridHeader > tr > .gridHead,\n  .table-responsive > .table > .gridBody > tr > .gridHead,\n  .table-responsive > .table > .gridFooter > tr > .gridHead,\n  .table-responsive > .table > thead > .gridRow > .gridHead,\n  .table-responsive > .table > tbody > .gridRow > .gridHead,\n  .table-responsive > .table > tfoot > .gridRow > .gridHead,\n  .table-responsive > .table > .gridHeader > .gridRow > .gridHead,\n  .table-responsive > .table > .gridBody > .gridRow > .gridHead,\n  .table-responsive > .table > .gridFooter > .gridRow > .gridHead {\n    white-space: nowrap;\n  }\n  .table-responsive > .table-bordered {\n    border: 0;\n  }\n  .table-responsive > .table-bordered > thead > tr > th:first-child,\n  .table-responsive > .table-bordered > tbody > tr > th:first-child,\n  .table-responsive > .table-bordered > tfoot > tr > th:first-child,\n  .table-responsive > .table-bordered > .gridHeader > tr > th:first-child,\n  .table-responsive > .table-bordered > .gridBody > tr > th:first-child,\n  .table-responsive > .table-bordered > .gridFooter > tr > th:first-child,\n  .table-responsive > .table-bordered > thead > .gridRow > th:first-child,\n  .table-responsive > .table-bordered > tbody > .gridRow > th:first-child,\n  .table-responsive > .table-bordered > tfoot > .gridRow > th:first-child,\n  .table-responsive > .table-bordered > .gridHeader > .gridRow > th:first-child,\n  .table-responsive > .table-bordered > .gridBody > .gridRow > th:first-child,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow > th:first-child,\n  .table-responsive > .table-bordered > thead > tr > td:first-child,\n  .table-responsive > .table-bordered > tbody > tr > td:first-child,\n  .table-responsive > .table-bordered > tfoot > tr > td:first-child,\n  .table-responsive > .table-bordered > .gridHeader > tr > td:first-child,\n  .table-responsive > .table-bordered > .gridBody > tr > td:first-child,\n  .table-responsive > .table-bordered > .gridFooter > tr > td:first-child,\n  .table-responsive > .table-bordered > thead > .gridRow > td:first-child,\n  .table-responsive > .table-bordered > tbody > .gridRow > td:first-child,\n  .table-responsive > .table-bordered > tfoot > .gridRow > td:first-child,\n  .table-responsive > .table-bordered > .gridHeader > .gridRow > td:first-child,\n  .table-responsive > .table-bordered > .gridBody > .gridRow > td:first-child,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow > td:first-child,\n  .table-responsive > .table-bordered > thead > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > tbody > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > tfoot > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridHeader > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridBody > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridFooter > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > thead > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > tbody > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > tfoot > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridHeader > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridBody > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > thead > tr > .gridHead:first-child,\n  .table-responsive > .table-bordered > tbody > tr > .gridHead:first-child,\n  .table-responsive > .table-bordered > tfoot > tr > .gridHead:first-child,\n  .table-responsive > .table-bordered > .gridHeader > tr > .gridHead:first-child,\n  .table-responsive > .table-bordered > .gridBody > tr > .gridHead:first-child,\n  .table-responsive > .table-bordered > .gridFooter > tr > .gridHead:first-child,\n  .table-responsive > .table-bordered > thead > .gridRow > .gridHead:first-child,\n  .table-responsive > .table-bordered > tbody > .gridRow > .gridHead:first-child,\n  .table-responsive > .table-bordered > tfoot > .gridRow > .gridHead:first-child,\n  .table-responsive > .table-bordered > .gridHeader > .gridRow > .gridHead:first-child,\n  .table-responsive > .table-bordered > .gridBody > .gridRow > .gridHead:first-child,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow > .gridHead:first-child {\n    border-left: 0;\n  }\n  .table-responsive > .table-bordered > thead > tr > th:last-child,\n  .table-responsive > .table-bordered > tbody > tr > th:last-child,\n  .table-responsive > .table-bordered > tfoot > tr > th:last-child,\n  .table-responsive > .table-bordered > .gridHeader > tr > th:last-child,\n  .table-responsive > .table-bordered > .gridBody > tr > th:last-child,\n  .table-responsive > .table-bordered > .gridFooter > tr > th:last-child,\n  .table-responsive > .table-bordered > thead > .gridRow > th:last-child,\n  .table-responsive > .table-bordered > tbody > .gridRow > th:last-child,\n  .table-responsive > .table-bordered > tfoot > .gridRow > th:last-child,\n  .table-responsive > .table-bordered > .gridHeader > .gridRow > th:last-child,\n  .table-responsive > .table-bordered > .gridBody > .gridRow > th:last-child,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow > th:last-child,\n  .table-responsive > .table-bordered > thead > tr > td:last-child,\n  .table-responsive > .table-bordered > tbody > tr > td:last-child,\n  .table-responsive > .table-bordered > tfoot > tr > td:last-child,\n  .table-responsive > .table-bordered > .gridHeader > tr > td:last-child,\n  .table-responsive > .table-bordered > .gridBody > tr > td:last-child,\n  .table-responsive > .table-bordered > .gridFooter > tr > td:last-child,\n  .table-responsive > .table-bordered > thead > .gridRow > td:last-child,\n  .table-responsive > .table-bordered > tbody > .gridRow > td:last-child,\n  .table-responsive > .table-bordered > tfoot > .gridRow > td:last-child,\n  .table-responsive > .table-bordered > .gridHeader > .gridRow > td:last-child,\n  .table-responsive > .table-bordered > .gridBody > .gridRow > td:last-child,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow > td:last-child,\n  .table-responsive > .table-bordered > thead > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > tbody > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > tfoot > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridHeader > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridBody > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridFooter > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > thead > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > tbody > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > tfoot > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridHeader > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridBody > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > thead > tr > .gridHead:first-line,\n  .table-responsive > .table-bordered > tbody > tr > .gridHead:first-line,\n  .table-responsive > .table-bordered > tfoot > tr > .gridHead:first-line,\n  .table-responsive > .table-bordered > .gridHeader > tr > .gridHead:first-line,\n  .table-responsive > .table-bordered > .gridBody > tr > .gridHead:first-line,\n  .table-responsive > .table-bordered > .gridFooter > tr > .gridHead:first-line,\n  .table-responsive > .table-bordered > thead > .gridRow > .gridHead:first-line,\n  .table-responsive > .table-bordered > tbody > .gridRow > .gridHead:first-line,\n  .table-responsive > .table-bordered > tfoot > .gridRow > .gridHead:first-line,\n  .table-responsive > .table-bordered > .gridHeader > .gridRow > .gridHead:first-line,\n  .table-responsive > .table-bordered > .gridBody > .gridRow > .gridHead:first-line,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow > .gridHead:first-line {\n    border-right: 0;\n  }\n  .table-responsive > .table-bordered > tbody > tr:last-child > th,\n  .table-responsive > .table-bordered > tfoot > tr:last-child > th,\n  .table-responsive > .table-bordered > .gridBody > tr:last-child > th,\n  .table-responsive > .table-bordered > .gridFooter > tr:last-child > th,\n  .table-responsive > .table-bordered > tbody > .gridRow:last-child > th,\n  .table-responsive > .table-bordered > tfoot > .gridRow:last-child > th,\n  .table-responsive > .table-bordered > .gridBody > .gridRow:last-child > th,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow:last-child > th,\n  .table-responsive > .table-bordered > tbody > tr:last-child > td,\n  .table-responsive > .table-bordered > tfoot > tr:last-child > td,\n  .table-responsive > .table-bordered > .gridBody > tr:last-child > td,\n  .table-responsive > .table-bordered > .gridFooter > tr:last-child > td,\n  .table-responsive > .table-bordered > tbody > .gridRow:last-child > td,\n  .table-responsive > .table-bordered > tfoot > .gridRow:last-child > td,\n  .table-responsive > .table-bordered > .gridBody > .gridRow:last-child > td,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow:last-child > td,\n  .table-responsive > .table-bordered > tbody > tr:last-child > .gridCell,\n  .table-responsive > .table-bordered > tfoot > tr:last-child > .gridCell,\n  .table-responsive > .table-bordered > .gridBody > tr:last-child > .gridCell,\n  .table-responsive > .table-bordered > .gridFooter > tr:last-child > .gridCell,\n  .table-responsive > .table-bordered > tbody > .gridRow:last-child > .gridCell,\n  .table-responsive > .table-bordered > tfoot > .gridRow:last-child > .gridCell,\n  .table-responsive > .table-bordered > .gridBody > .gridRow:last-child > .gridCell,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow:last-child > .gridCell,\n  .table-responsive > .table-bordered > tbody > tr:last-child > .gridHead,\n  .table-responsive > .table-bordered > tfoot > tr:last-child > .gridHead,\n  .table-responsive > .table-bordered > .gridBody > tr:last-child > .gridHead,\n  .table-responsive > .table-bordered > .gridFooter > tr:last-child > .gridHead,\n  .table-responsive > .table-bordered > tbody > .gridRow:last-child > .gridHead,\n  .table-responsive > .table-bordered > tfoot > .gridRow:last-child > .gridHead,\n  .table-responsive > .table-bordered > .gridBody > .gridRow:last-child > .gridHead,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow:last-child > .gridHead {\n    border-bottom: 0;\n  }\n}\nfieldset {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  min-width: 0;\n}\nlegend {\n  display: block;\n  width: 100%;\n  padding: 0;\n  margin-bottom: 20px;\n  font-size: 21px;\n  line-height: inherit;\n  color: #333333;\n  border: 0;\n  border-bottom: 1px solid #e5e5e5;\n}\nlabel {\n  display: inline-block;\n  max-width: 100%;\n  margin-bottom: 5px;\n  font-weight: bold;\n}\ninput[type=\"search\"] {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n}\ninput[type=\"radio\"],\ninput[type=\"checkbox\"] {\n  margin: 4px 0 0;\n  margin-top: 1px \\9;\n  line-height: normal;\n}\ninput[type=\"file\"] {\n  display: block;\n}\ninput[type=\"range\"] {\n  display: block;\n  width: 100%;\n}\ninput.active {\n  border-color: #15c;\n}\nselect[multiple],\nselect[size] {\n  height: auto;\n}\ninput[type=\"file\"]:focus,\ninput[type=\"radio\"]:focus,\ninput[type=\"checkbox\"]:focus {\n  outline: 5px auto -webkit-focus-ring-color;\n  outline-offset: -2px;\n}\noutput {\n  display: block;\n  padding-top: 7px;\n  font-size: 14px;\n  line-height: 1.42857143;\n  color: #000;\n}\n.form-control {\n  display: block;\n  width: 100%;\n  height: 34px;\n  padding: 6px 12px;\n  font-size: 14px;\n  line-height: 1.42857143;\n  color: #000;\n  background-color: #fff;\n  background-image: none;\n  border-width: 0 1px 1px 1px;\n  border-style: solid;\n  border-color: #999;\n  border-radius: 0px;\n  -webkit-box-shadow: none;\n  box-shadow: none;\n  -webkit-transition: none;\n  -o-transition: none;\n  transition: none;\n}\n.form-control:focus {\n  border-color: #15c;\n  outline: 0;\n}\n.form-control::-moz-placeholder {\n  color: #bbb;\n  opacity: 1;\n}\n.form-control:-ms-input-placeholder {\n  color: #bbb;\n}\n.form-control::-webkit-input-placeholder {\n  color: #bbb;\n}\n.form-control::-ms-expand {\n  border: 0;\n  background-color: transparent;\n}\n.form-control[disabled],\n.form-control[readonly],\nfieldset[disabled] .form-control {\n  background-color: #bbb;\n  color: #777;\n  opacity: 1;\n}\n.form-control[disabled],\nfieldset[disabled] .form-control {\n  cursor: not-allowed;\n}\ntextarea.form-control {\n  height: auto;\n}\ninput[type=\"date\"]::-webkit-clear-button {\n  display: none;\n}\ninput[type=\"date\"]::-webkit-inner-spin-button {\n  display: none;\n}\ninput[type=\"date\"]::-webkit-calendar-picker-indicator {\n  display: none;\n}\ninput[type=\"search\"] {\n  -webkit-appearance: none;\n}\n@media screen and (-webkit-min-device-pixel-ratio: 0) {\n  input[type=\"date\"].form-control,\n  input[type=\"time\"].form-control,\n  input[type=\"datetime-local\"].form-control,\n  input[type=\"month\"].form-control {\n    line-height: 34px;\n  }\n  input[type=\"date\"].input-sm,\n  input[type=\"time\"].input-sm,\n  input[type=\"datetime-local\"].input-sm,\n  input[type=\"month\"].input-sm,\n  .input-group-sm input[type=\"date\"],\n  .input-group-sm input[type=\"time\"],\n  .input-group-sm input[type=\"datetime-local\"],\n  .input-group-sm input[type=\"month\"] {\n    line-height: 30px;\n  }\n  input[type=\"date\"].input-lg,\n  input[type=\"time\"].input-lg,\n  input[type=\"datetime-local\"].input-lg,\n  input[type=\"month\"].input-lg,\n  .input-group-lg input[type=\"date\"],\n  .input-group-lg input[type=\"time\"],\n  .input-group-lg input[type=\"datetime-local\"],\n  .input-group-lg input[type=\"month\"] {\n    line-height: 46px;\n  }\n}\n.form-group {\n  margin-bottom: 15px;\n}\n.checkbox input[type=\"checkbox\"],\n.checkbox-inline input[type=\"checkbox\"],\n.radio-inline input[type=\"radio\"],\n.radio input[type=\"radio\"] {\n  margin-left: 0;\n  opacity: 0;\n  z-index: 1;\n  cursor: pointer;\n}\n.checkbox input[type=\"checkbox\"] + label:before,\n.checkbox-inline input[type=\"checkbox\"] + label:before {\n  content: \"\";\n  position: absolute;\n  top: 2px;\n  left: 0px;\n  width: 16px;\n  height: 16px;\n  border: 1px solid #999;\n}\n.checkbox input[type=\"checkbox\"]:checked + label:before,\n.checkbox-inline input[type=\"checkbox\"]:checked + label:before {\n  font-family: \"FontAwesome\";\n  content: \"\\F00C\";\n  color: #fff;\n  background-color: #15c;\n  border-width: 0px;\n  line-height: 16px;\n}\n.checkbox input[type=\"checkbox\"]:disabled + label:before,\n.checkbox-inline input[type=\"checkbox\"]:disabled + label:before {\n  background-color: #bbb;\n  color: #777;\n  border-width: 0px;\n  line-height: 16px;\n}\n.radio input[type=\"radio\"] + label:before,\n.radio-inline input[type=\"radio\"] + label:before {\n  position: absolute;\n  top: 5px;\n  left: 2px;\n  width: 12px;\n  height: 12px;\n  content: \"\";\n  border-width: 1px;\n  border-style: solid;\n  border-color: #999;\n  border-radius: 6px;\n}\n.radio input[type=\"radio\"]:checked + label:before,\n.radio-inline input[type=\"radio\"]:checked + label:before {\n  border-width: 4px;\n  border-color: #15c;\n}\n.radio input[type=\"radio\"]:disabled + label:before,\n.radio-inline input[type=\"radio\"]:disabled + label:before {\n  border-color: #bbb;\n  background-color: #bbb;\n}\n.radio,\n.checkbox {\n  position: relative;\n  display: block;\n  margin-top: 10px;\n  margin-bottom: 10px;\n}\n.radio label,\n.checkbox label {\n  min-height: 20px;\n  padding-left: 20px;\n  margin-bottom: 0;\n  font-weight: normal;\n  cursor: pointer;\n}\n.radio input[type=\"radio\"],\n.radio-inline input[type=\"radio\"],\n.checkbox input[type=\"checkbox\"],\n.checkbox-inline input[type=\"checkbox\"] {\n  position: absolute;\n  margin-top: 4px \\9;\n}\n.radio-inline input[type=\"radio\"],\n.checkbox-inline input[type=\"checkbox\"] {\n  margin-left: -20px;\n}\n.radio + .radio,\n.checkbox + .checkbox {\n  margin-top: -5px;\n}\n.radio-inline,\n.checkbox-inline {\n  position: relative;\n  display: inline-block;\n  padding-left: 20px;\n  margin-bottom: 0;\n}\n.radio-inline label,\n.checkbox-inline label {\n  font-weight: normal;\n  vertical-align: middle;\n  cursor: pointer;\n}\n.radio-inline + .radio-inline,\n.checkbox-inline + .checkbox-inline {\n  margin-top: 0;\n  margin-left: 10px;\n}\ninput[type=\"radio\"][disabled],\ninput[type=\"checkbox\"][disabled],\ninput[type=\"radio\"].disabled,\ninput[type=\"checkbox\"].disabled,\nfieldset[disabled] input[type=\"radio\"],\nfieldset[disabled] input[type=\"checkbox\"] {\n  cursor: not-allowed;\n}\n.radio-inline.disabled,\n.checkbox-inline.disabled,\nfieldset[disabled] .radio-inline,\nfieldset[disabled] .checkbox-inline {\n  cursor: not-allowed;\n}\n.radio.disabled label,\n.checkbox.disabled label,\nfieldset[disabled] .radio label,\nfieldset[disabled] .checkbox label {\n  cursor: not-allowed;\n}\n.form-control-static {\n  padding-top: 7px;\n  padding-bottom: 7px;\n  margin-bottom: 0;\n  min-height: 34px;\n}\n.form-control-static.input-lg,\n.form-control-static.input-sm {\n  padding-left: 0;\n  padding-right: 0;\n}\n.input-sm,\ndatepicker datepicker.datepicker-sm input,\ndatepicker-range datepicker.datepicker-sm input {\n  height: 30px;\n  padding: 5px 10px;\n  font-size: 12px;\n  line-height: 1.5;\n  border-radius: 0px;\n}\nselect.input-sm {\n  height: 30px;\n  line-height: 30px;\n}\ntextarea.input-sm,\nselect[multiple].input-sm {\n  height: auto;\n}\n.form-group-sm .form-control {\n  height: 30px;\n  padding: 5px 10px;\n  font-size: 12px;\n  line-height: 1.5;\n  border-radius: 0px;\n}\n.form-group-sm select.form-control {\n  height: 30px;\n  line-height: 30px;\n}\n.form-group-sm textarea.form-control,\n.form-group-sm select[multiple].form-control {\n  height: auto;\n}\n.form-group-sm .form-control-static {\n  height: 30px;\n  min-height: 32px;\n  padding: 6px 10px;\n  font-size: 12px;\n  line-height: 1.5;\n}\n.input-lg,\ndatepicker datepicker.datepicker-lg input,\ndatepicker-range datepicker.datepicker-lg input {\n  height: 46px;\n  padding: 10px 16px;\n  font-size: 18px;\n  line-height: 1.3333333;\n  border-radius: 0px;\n}\nselect.input-lg {\n  height: 46px;\n  line-height: 46px;\n}\ntextarea.input-lg,\nselect[multiple].input-lg {\n  height: auto;\n}\n.form-group-lg .form-control {\n  height: 46px;\n  padding: 10px 16px;\n  font-size: 18px;\n  line-height: 1.3333333;\n  border-radius: 0px;\n}\n.form-group-lg select.form-control {\n  height: 46px;\n  line-height: 46px;\n}\n.form-group-lg textarea.form-control,\n.form-group-lg select[multiple].form-control {\n  height: auto;\n}\n.form-group-lg .form-control-static {\n  height: 46px;\n  min-height: 38px;\n  padding: 11px 16px;\n  font-size: 18px;\n  line-height: 1.3333333;\n}\n.has-feedback {\n  position: relative;\n}\n.has-feedback .form-control {\n  padding-right: 42.5px;\n}\n.form-control-feedback {\n  position: absolute;\n  top: 0;\n  right: 0;\n  z-index: 2;\n  display: block;\n  width: 34px;\n  height: 34px;\n  line-height: 34px;\n  text-align: center;\n  pointer-events: none;\n}\n.input-lg + .form-control-feedback,\n.input-group-lg + .form-control-feedback,\n.form-group-lg .form-control + .form-control-feedback {\n  width: 46px;\n  height: 46px;\n  line-height: 46px;\n}\n.input-sm + .form-control-feedback,\n.input-group-sm + .form-control-feedback,\n.form-group-sm .form-control + .form-control-feedback {\n  width: 30px;\n  height: 30px;\n  line-height: 30px;\n}\n.has-success .help-block,\n.has-success .control-label,\n.has-success .radio,\n.has-success .checkbox,\n.has-success .radio-inline,\n.has-success .checkbox-inline,\n.has-success.radio label,\n.has-success.checkbox label,\n.has-success.radio-inline label,\n.has-success.checkbox-inline label {\n  color: #3c763d;\n}\n.has-success .form-control {\n  border-color: #3c763d;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n}\n.has-success .form-control:focus {\n  border-color: #2b542c;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;\n}\n.has-success .input-group-addon {\n  color: #3c763d;\n  border-color: #3c763d;\n  background-color: #dff0d8;\n}\n.has-success .form-control-feedback {\n  color: #3c763d;\n}\n.has-warning .help-block,\n.has-warning .control-label,\n.has-warning .radio,\n.has-warning .checkbox,\n.has-warning .radio-inline,\n.has-warning .checkbox-inline,\n.has-warning.radio label,\n.has-warning.checkbox label,\n.has-warning.radio-inline label,\n.has-warning.checkbox-inline label {\n  color: #8a6d3b;\n}\n.has-warning .form-control {\n  border-color: #8a6d3b;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n}\n.has-warning .form-control:focus {\n  border-color: #66512c;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b;\n}\n.has-warning .input-group-addon {\n  color: #8a6d3b;\n  border-color: #8a6d3b;\n  background-color: #fcf8e3;\n}\n.has-warning .form-control-feedback {\n  color: #8a6d3b;\n}\n.has-error .help-block,\n.has-error .control-label,\n.has-error .radio,\n.has-error .checkbox,\n.has-error .radio-inline,\n.has-error .checkbox-inline,\n.has-error.radio label,\n.has-error.checkbox label,\n.has-error.radio-inline label,\n.has-error.checkbox-inline label {\n  color: #a94442;\n}\n.has-error .form-control {\n  border-color: #a94442;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n}\n.has-error .form-control:focus {\n  border-color: #843534;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;\n}\n.has-error .input-group-addon {\n  color: #a94442;\n  border-color: #a94442;\n  background-color: #f2dede;\n}\n.has-error .form-control-feedback {\n  color: #a94442;\n}\n.has-feedback label ~ .form-control-feedback {\n  top: 25px;\n}\n.has-feedback label.sr-only ~ .form-control-feedback {\n  top: 0;\n}\n.help-block {\n  display: block;\n  margin-top: 5px;\n  margin-bottom: 10px;\n  color: #404040;\n}\n@media (min-width: 768px) {\n  .form-inline .form-group {\n    display: inline-block;\n    margin-bottom: 0;\n    vertical-align: middle;\n  }\n  .form-inline .form-control {\n    display: inline-block;\n    width: auto;\n    vertical-align: middle;\n  }\n  .form-inline .form-control-static {\n    display: inline-block;\n  }\n  .form-inline .input-group {\n    display: inline-table;\n    vertical-align: middle;\n  }\n  .form-inline .input-group .input-group-addon,\n  .form-inline .input-group .input-group-btn,\n  .form-inline .input-group .form-control {\n    width: auto;\n  }\n  .form-inline .input-group > .form-control {\n    width: 100%;\n  }\n  .form-inline .control-label {\n    margin-bottom: 0;\n    vertical-align: middle;\n  }\n  .form-inline .radio,\n  .form-inline .checkbox {\n    display: inline-block;\n    margin-top: 0;\n    margin-bottom: 0;\n    vertical-align: middle;\n  }\n  .form-inline .radio label,\n  .form-inline .checkbox label {\n    padding-left: 0;\n  }\n  .form-inline .radio input[type=\"radio\"],\n  .form-inline .checkbox input[type=\"checkbox\"] {\n    position: relative;\n    margin-left: 0;\n  }\n  .form-inline .has-feedback .form-control-feedback {\n    top: 0;\n  }\n}\n.form-horizontal .radio,\n.form-horizontal .checkbox,\n.form-horizontal .radio-inline,\n.form-horizontal .checkbox-inline {\n  margin-top: 0;\n  margin-bottom: 0;\n  padding-top: 7px;\n}\n.form-horizontal .radio,\n.form-horizontal .checkbox {\n  min-height: 27px;\n}\n.form-horizontal .form-group {\n  margin-left: -15px;\n  margin-right: -15px;\n}\n@media (min-width: 768px) {\n  .form-horizontal .control-label {\n    text-align: right;\n    margin-bottom: 0;\n    padding-top: 7px;\n  }\n}\n.form-horizontal .has-feedback .form-control-feedback {\n  right: 15px;\n}\n@media (min-width: 768px) {\n  .form-horizontal .form-group-lg .control-label {\n    padding-top: 11px;\n    font-size: 18px;\n  }\n}\n@media (min-width: 768px) {\n  .form-horizontal .form-group-sm .control-label {\n    padding-top: 6px;\n    font-size: 12px;\n  }\n}\n.btn {\n  display: inline-block;\n  margin-bottom: 0;\n  font-weight: normal;\n  text-align: left;\n  vertical-align: middle;\n  touch-action: manipulation;\n  cursor: pointer;\n  background-image: none;\n  border: 1px solid transparent;\n  white-space: nowrap;\n  padding: 6px 12px;\n  font-size: 14px;\n  line-height: 1.42857143;\n  border-radius: 0px;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n}\n.btn:focus,\n.btn:active:focus,\n.btn.active:focus,\n.btn.focus,\n.btn:active.focus,\n.btn.active.focus {\n  outline: 5px auto -webkit-focus-ring-color;\n  outline-offset: -2px;\n}\n.btn:hover,\n.btn:focus,\n.btn.focus {\n  color: #fff;\n  text-decoration: none;\n}\n.btn:active,\n.btn.active {\n  outline: 0;\n  background-image: none;\n  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);\n  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);\n}\n.btn.disabled,\n.btn[disabled],\nfieldset[disabled] .btn {\n  cursor: not-allowed;\n  background: linear-gradient(#d4d4d4, #bbb);\n  color: #777;\n  border-color: #7b7b7b;\n  -webkit-box-shadow: none;\n  box-shadow: none;\n}\n.btn.disabled::before,\n.btn[disabled]::before,\nfieldset[disabled] .btn::before {\n  border-color: #7b7b7b;\n}\na.btn.disabled,\nfieldset[disabled] a.btn {\n  pointer-events: none;\n}\n.btn-icon {\n  padding-left: 5px;\n}\n.btn-icon::before {\n  display: inline-block;\n  font: normal normal normal 14px/1.42857143 FontAwesome;\n  font-size: inherit;\n  text-rendering: auto;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  padding: 6px 5px;\n  margin: -6px 5px -6px -5px;\n  border-right: 1px solid #e63d00;\n}\n.btn-default {\n  color: #fff;\n  background: linear-gradient(#ff6933, #f40);\n  border-color: #e63d00;\n}\n.btn-default::before {\n  border-color: #e63d00;\n}\n.btn-default:focus,\n.btn-default.focus {\n  color: #fff;\n  background-color: #cc3600;\n  border-color: #661b00;\n}\n.btn-default:hover {\n  color: #fff;\n  background-color: #cc3600;\n  border-color: #a82d00;\n}\n.btn-default:active,\n.btn-default.active,\n.open > .dropdown-toggle.btn-default {\n  color: #fff;\n  background-color: #cc3600;\n  border-color: #a82d00;\n}\n.btn-default:active:hover,\n.btn-default.active:hover,\n.open > .dropdown-toggle.btn-default:hover,\n.btn-default:active:focus,\n.btn-default.active:focus,\n.open > .dropdown-toggle.btn-default:focus,\n.btn-default:active.focus,\n.btn-default.active.focus,\n.open > .dropdown-toggle.btn-default.focus {\n  color: #fff;\n  background-color: #a82d00;\n  border-color: #661b00;\n}\n.btn-default:active,\n.btn-default.active,\n.open > .dropdown-toggle.btn-default {\n  background-image: none;\n}\n.btn-default.disabled:hover,\n.btn-default[disabled]:hover,\nfieldset[disabled] .btn-default:hover,\n.btn-default.disabled:focus,\n.btn-default[disabled]:focus,\nfieldset[disabled] .btn-default:focus,\n.btn-default.disabled.focus,\n.btn-default[disabled].focus,\nfieldset[disabled] .btn-default.focus {\n  background-color: #bbb;\n  border-color: #7b7b7b;\n  color: #777;\n}\n.btn-default.disabled::before,\n.btn-default[disabled]::before,\nfieldset[disabled] .btn-default::before {\n  border-color: #7b7b7b;\n}\n.btn-default .badge {\n  color: #f40;\n  background-color: #fff;\n}\n.btn-primary {\n  color: #fff;\n  background: linear-gradient(#236ded, #15c);\n  border-color: #0f4bb4;\n}\n.btn-primary::before {\n  border-color: #0f4bb4;\n}\n.btn-primary:focus,\n.btn-primary.focus {\n  color: #fff;\n  background-color: #0d419d;\n  border-color: #051a3f;\n}\n.btn-primary:hover {\n  color: #fff;\n  background-color: #0d419d;\n  border-color: #0a347c;\n}\n.btn-primary:active,\n.btn-primary.active,\n.open > .dropdown-toggle.btn-primary {\n  color: #fff;\n  background-color: #0d419d;\n  border-color: #0a347c;\n}\n.btn-primary:active:hover,\n.btn-primary.active:hover,\n.open > .dropdown-toggle.btn-primary:hover,\n.btn-primary:active:focus,\n.btn-primary.active:focus,\n.open > .dropdown-toggle.btn-primary:focus,\n.btn-primary:active.focus,\n.btn-primary.active.focus,\n.open > .dropdown-toggle.btn-primary.focus {\n  color: #fff;\n  background-color: #0a347c;\n  border-color: #051a3f;\n}\n.btn-primary:active,\n.btn-primary.active,\n.open > .dropdown-toggle.btn-primary {\n  background-image: none;\n}\n.btn-primary.disabled:hover,\n.btn-primary[disabled]:hover,\nfieldset[disabled] .btn-primary:hover,\n.btn-primary.disabled:focus,\n.btn-primary[disabled]:focus,\nfieldset[disabled] .btn-primary:focus,\n.btn-primary.disabled.focus,\n.btn-primary[disabled].focus,\nfieldset[disabled] .btn-primary.focus {\n  background-color: #bbb;\n  border-color: #7b7b7b;\n  color: #777;\n}\n.btn-primary.disabled::before,\n.btn-primary[disabled]::before,\nfieldset[disabled] .btn-primary::before {\n  border-color: #7b7b7b;\n}\n.btn-primary .badge {\n  color: #15c;\n  background-color: #fff;\n}\n.btn-success {\n  color: #fff;\n  background: linear-gradient(#80c780, #5cb85c);\n  border-color: #4cae4c;\n}\n.btn-success::before {\n  border-color: #4cae4c;\n}\n.btn-success:focus,\n.btn-success.focus {\n  color: #fff;\n  background-color: #449d44;\n  border-color: #255625;\n}\n.btn-success:hover {\n  color: #fff;\n  background-color: #449d44;\n  border-color: #398439;\n}\n.btn-success:active,\n.btn-success.active,\n.open > .dropdown-toggle.btn-success {\n  color: #fff;\n  background-color: #449d44;\n  border-color: #398439;\n}\n.btn-success:active:hover,\n.btn-success.active:hover,\n.open > .dropdown-toggle.btn-success:hover,\n.btn-success:active:focus,\n.btn-success.active:focus,\n.open > .dropdown-toggle.btn-success:focus,\n.btn-success:active.focus,\n.btn-success.active.focus,\n.open > .dropdown-toggle.btn-success.focus {\n  color: #fff;\n  background-color: #398439;\n  border-color: #255625;\n}\n.btn-success:active,\n.btn-success.active,\n.open > .dropdown-toggle.btn-success {\n  background-image: none;\n}\n.btn-success.disabled:hover,\n.btn-success[disabled]:hover,\nfieldset[disabled] .btn-success:hover,\n.btn-success.disabled:focus,\n.btn-success[disabled]:focus,\nfieldset[disabled] .btn-success:focus,\n.btn-success.disabled.focus,\n.btn-success[disabled].focus,\nfieldset[disabled] .btn-success.focus {\n  background-color: #bbb;\n  border-color: #7b7b7b;\n  color: #777;\n}\n.btn-success.disabled::before,\n.btn-success[disabled]::before,\nfieldset[disabled] .btn-success::before {\n  border-color: #7b7b7b;\n}\n.btn-success .badge {\n  color: #5cb85c;\n  background-color: #fff;\n}\n.btn-info {\n  color: #fff;\n  background: linear-gradient(#ff6933, #f40);\n  border-color: #e63d00;\n}\n.btn-info::before {\n  border-color: #e63d00;\n}\n.btn-info:focus,\n.btn-info.focus {\n  color: #fff;\n  background-color: #cc3600;\n  border-color: #661b00;\n}\n.btn-info:hover {\n  color: #fff;\n  background-color: #cc3600;\n  border-color: #a82d00;\n}\n.btn-info:active,\n.btn-info.active,\n.open > .dropdown-toggle.btn-info {\n  color: #fff;\n  background-color: #cc3600;\n  border-color: #a82d00;\n}\n.btn-info:active:hover,\n.btn-info.active:hover,\n.open > .dropdown-toggle.btn-info:hover,\n.btn-info:active:focus,\n.btn-info.active:focus,\n.open > .dropdown-toggle.btn-info:focus,\n.btn-info:active.focus,\n.btn-info.active.focus,\n.open > .dropdown-toggle.btn-info.focus {\n  color: #fff;\n  background-color: #a82d00;\n  border-color: #661b00;\n}\n.btn-info:active,\n.btn-info.active,\n.open > .dropdown-toggle.btn-info {\n  background-image: none;\n}\n.btn-info.disabled:hover,\n.btn-info[disabled]:hover,\nfieldset[disabled] .btn-info:hover,\n.btn-info.disabled:focus,\n.btn-info[disabled]:focus,\nfieldset[disabled] .btn-info:focus,\n.btn-info.disabled.focus,\n.btn-info[disabled].focus,\nfieldset[disabled] .btn-info.focus {\n  background-color: #bbb;\n  border-color: #7b7b7b;\n  color: #777;\n}\n.btn-info.disabled::before,\n.btn-info[disabled]::before,\nfieldset[disabled] .btn-info::before {\n  border-color: #7b7b7b;\n}\n.btn-info .badge {\n  color: #f40;\n  background-color: #fff;\n}\n.btn-warning {\n  color: #fff;\n  background: linear-gradient(#f4c37d, #f0ad4e);\n  border-color: #eea236;\n}\n.btn-warning::before {\n  border-color: #eea236;\n}\n.btn-warning:focus,\n.btn-warning.focus {\n  color: #fff;\n  background-color: #ec971f;\n  border-color: #985f0d;\n}\n.btn-warning:hover {\n  color: #fff;\n  background-color: #ec971f;\n  border-color: #d58512;\n}\n.btn-warning:active,\n.btn-warning.active,\n.open > .dropdown-toggle.btn-warning {\n  color: #fff;\n  background-color: #ec971f;\n  border-color: #d58512;\n}\n.btn-warning:active:hover,\n.btn-warning.active:hover,\n.open > .dropdown-toggle.btn-warning:hover,\n.btn-warning:active:focus,\n.btn-warning.active:focus,\n.open > .dropdown-toggle.btn-warning:focus,\n.btn-warning:active.focus,\n.btn-warning.active.focus,\n.open > .dropdown-toggle.btn-warning.focus {\n  color: #fff;\n  background-color: #d58512;\n  border-color: #985f0d;\n}\n.btn-warning:active,\n.btn-warning.active,\n.open > .dropdown-toggle.btn-warning {\n  background-image: none;\n}\n.btn-warning.disabled:hover,\n.btn-warning[disabled]:hover,\nfieldset[disabled] .btn-warning:hover,\n.btn-warning.disabled:focus,\n.btn-warning[disabled]:focus,\nfieldset[disabled] .btn-warning:focus,\n.btn-warning.disabled.focus,\n.btn-warning[disabled].focus,\nfieldset[disabled] .btn-warning.focus {\n  background-color: #bbb;\n  border-color: #7b7b7b;\n  color: #777;\n}\n.btn-warning.disabled::before,\n.btn-warning[disabled]::before,\nfieldset[disabled] .btn-warning::before {\n  border-color: #7b7b7b;\n}\n.btn-warning .badge {\n  color: #f0ad4e;\n  background-color: #fff;\n}\n.btn-danger {\n  color: #fff;\n  background: linear-gradient(#ff3333, #f00);\n  border-color: #e60000;\n}\n.btn-danger::before {\n  border-color: #e60000;\n}\n.btn-danger:focus,\n.btn-danger.focus {\n  color: #fff;\n  background-color: #cc0000;\n  border-color: #660000;\n}\n.btn-danger:hover {\n  color: #fff;\n  background-color: #cc0000;\n  border-color: #a80000;\n}\n.btn-danger:active,\n.btn-danger.active,\n.open > .dropdown-toggle.btn-danger {\n  color: #fff;\n  background-color: #cc0000;\n  border-color: #a80000;\n}\n.btn-danger:active:hover,\n.btn-danger.active:hover,\n.open > .dropdown-toggle.btn-danger:hover,\n.btn-danger:active:focus,\n.btn-danger.active:focus,\n.open > .dropdown-toggle.btn-danger:focus,\n.btn-danger:active.focus,\n.btn-danger.active.focus,\n.open > .dropdown-toggle.btn-danger.focus {\n  color: #fff;\n  background-color: #a80000;\n  border-color: #660000;\n}\n.btn-danger:active,\n.btn-danger.active,\n.open > .dropdown-toggle.btn-danger {\n  background-image: none;\n}\n.btn-danger.disabled:hover,\n.btn-danger[disabled]:hover,\nfieldset[disabled] .btn-danger:hover,\n.btn-danger.disabled:focus,\n.btn-danger[disabled]:focus,\nfieldset[disabled] .btn-danger:focus,\n.btn-danger.disabled.focus,\n.btn-danger[disabled].focus,\nfieldset[disabled] .btn-danger.focus {\n  background-color: #bbb;\n  border-color: #7b7b7b;\n  color: #777;\n}\n.btn-danger.disabled::before,\n.btn-danger[disabled]::before,\nfieldset[disabled] .btn-danger::before {\n  border-color: #7b7b7b;\n}\n.btn-danger .badge {\n  color: #f00;\n  background-color: #fff;\n}\n.btn-link {\n  color: #15c;\n  font-weight: normal;\n  border-radius: 0;\n}\n.btn-link,\n.btn-link:active,\n.btn-link.active,\n.btn-link[disabled],\nfieldset[disabled] .btn-link {\n  background-color: transparent;\n  -webkit-box-shadow: none;\n  box-shadow: none;\n}\n.btn-link,\n.btn-link:hover,\n.btn-link:focus,\n.btn-link:active {\n  border-color: transparent;\n}\n.btn-link:hover,\n.btn-link:focus {\n  color: #0b3885;\n  text-decoration: underline;\n  background-color: transparent;\n}\n.btn-link[disabled]:hover,\nfieldset[disabled] .btn-link:hover,\n.btn-link[disabled]:focus,\nfieldset[disabled] .btn-link:focus {\n  color: #bbb;\n  text-decoration: none;\n}\n.btn-lg,\nselectpicker.selectpicker-lg button.btn,\n.btn-group-lg > .btn {\n  padding: 10px 16px;\n  font-size: 18px;\n  line-height: 1.3333333;\n  border-radius: 0px;\n}\n.btn-sm,\nselectpicker.selectpicker-sm button.btn,\n.btn-group-sm > .btn {\n  padding: 5px 10px;\n  font-size: 12px;\n  line-height: 1.5;\n  border-radius: 0px;\n}\n.btn-xs,\n.btn-group-xs > .btn {\n  padding: 1px 5px;\n  font-size: 12px;\n  line-height: 1.5;\n  border-radius: 0px;\n}\n.btn-block {\n  display: block;\n  width: 100%;\n}\n.btn-block + .btn-block {\n  margin-top: 5px;\n}\ninput[type=\"submit\"].btn-block,\ninput[type=\"reset\"].btn-block,\ninput[type=\"button\"].btn-block {\n  width: 100%;\n}\n.fade {\n  opacity: 0;\n  -webkit-transition: opacity 0.15s linear;\n  -o-transition: opacity 0.15s linear;\n  transition: opacity 0.15s linear;\n}\n.fade.in {\n  opacity: 1;\n}\n.collapse {\n  display: none;\n}\n.collapse.in {\n  display: block;\n}\ntr.collapse.in {\n  display: table-row;\n}\ntbody.collapse.in {\n  display: table-row-group;\n}\n.collapsing {\n  position: relative;\n  height: 0;\n  overflow: hidden;\n  -webkit-transition-property: height, visibility;\n  transition-property: height, visibility;\n  -webkit-transition-duration: 0.35s;\n  transition-duration: 0.35s;\n  -webkit-transition-timing-function: ease;\n  transition-timing-function: ease;\n}\ndatepicker .modal-header,\ndatepicker-range .modal-header {\n  background-color: #15c;\n}\ndatepicker .modal-header .withoutClose,\ndatepicker-range .modal-header .withoutClose {\n  height: 14px;\n}\ndatepicker .modal-header .date-letter,\ndatepicker-range .modal-header .date-letter {\n  height: 120px;\n}\ndatepicker .modal-header .date-letter span:first-child,\ndatepicker-range .modal-header .date-letter span:first-child {\n  color: #fff;\n  text-transform: uppercase;\n  font-size: 24px;\n  font-weight: bold;\n  line-height: 0px;\n  margin-bottom: 12px;\n  display: inline-block;\n  width: 100%;\n}\ndatepicker .modal-header .date-letter span:nth-child(2),\ndatepicker-range .modal-header .date-letter span:nth-child(2) {\n  color: #fff;\n  font-size: 90px;\n  line-height: 80px;\n  display: inline-block;\n  width: 100%;\n}\ndatepicker .modal-header .date-letter span:nth-child(3),\ndatepicker-range .modal-header .date-letter span:nth-child(3) {\n  color: #fff;\n  text-transform: capitalize;\n  font-size: 21px;\n  line-height: 0px;\n  display: inline-block;\n  width: 100%;\n}\ndatepicker .modal-header .calendar-bg,\ndatepicker-range .modal-header .calendar-bg {\n  background-color: #fff;\n  padding-top: 10px;\n}\ndatepicker .modal-header .calendar-bg .arrow .icon-next,\ndatepicker-range .modal-header .calendar-bg .arrow .icon-next,\ndatepicker .modal-header .calendar-bg .arrow .icon-previous,\ndatepicker-range .modal-header .calendar-bg .arrow .icon-previous {\n  color: #15c;\n  cursor: auto;\n}\ndatepicker .modal-header .calendar-bg .arrow .icon-next:hover,\ndatepicker-range .modal-header .calendar-bg .arrow .icon-next:hover,\ndatepicker .modal-header .calendar-bg .arrow .icon-previous:hover,\ndatepicker-range .modal-header .calendar-bg .arrow .icon-previous:hover {\n  color: #f40;\n  cursor: pointer;\n}\ndatepicker .modal-body,\ndatepicker-range .modal-body {\n  background-color: #fff;\n}\ndatepicker .datepicker,\ndatepicker-range .datepicker {\n  color: inherit;\n  padding: 4px;\n  margin-top: 1px;\n}\ndatepicker .datepicker .calendar,\ndatepicker-range .datepicker .calendar {\n  display: none;\n  margin: 4px;\n  border-bottom: 2px solid #fff;\n}\ndatepicker .datepicker .calendar th,\ndatepicker-range .datepicker .calendar th,\ndatepicker .datepicker .calendar td,\ndatepicker-range .datepicker .calendar td {\n  white-space: nowrap;\n  text-align: center;\n  min-width: 32px;\n}\ndatepicker .datepicker .calendar-table,\ndatepicker-range .datepicker .calendar-table {\n  border: 1px solid #fff;\n  padding: 5px;\n  border-radius: 0px;\n  background-color: #fff;\n  margin-bottom: 25px;\n}\ndatepicker .datepicker table,\ndatepicker-range .datepicker table {\n  width: 100%;\n  margin: 0;\n}\ndatepicker .datepicker th,\ndatepicker-range .datepicker th {\n  text-align: center;\n  width: 20px;\n  height: 20px;\n  border: 1px solid transparent;\n  white-space: nowrap;\n  cursor: pointer;\n}\ndatepicker .datepicker td,\ndatepicker-range .datepicker td {\n  text-align: center;\n  width: 20px;\n  height: 20px;\n  border-radius: 4px;\n  border: 1px solid transparent;\n  white-space: nowrap;\n  cursor: pointer;\n}\ndatepicker .datepicker td.available:hover,\ndatepicker-range .datepicker td.available:hover {\n  background-color: #f40;\n  border-color: transparent;\n  color: #fff;\n}\ndatepicker .datepicker td.today,\ndatepicker-range .datepicker td.today {\n  border: 2px solid #f40;\n  font-weight: bold;\n}\ndatepicker .datepicker td.today:hover,\ndatepicker-range .datepicker td.today:hover {\n  background-color: #f40;\n  border-color: transparent;\n  color: #fff;\n}\ndatepicker .datepicker td.dayweek,\ndatepicker-range .datepicker td.dayweek {\n  font-weight: bold;\n}\ndatepicker .datepicker td.in-range,\ndatepicker-range .datepicker td.in-range {\n  background-color: #e0eafc;\n  border-color: transparent;\n  color: #000;\n  border-radius: 0;\n}\ndatepicker .datepicker td.start-date,\ndatepicker-range .datepicker td.start-date,\ndatepicker .datepicker td.end-date,\ndatepicker-range .datepicker td.end-date,\ndatepicker .datepicker td.start-date.end-date,\ndatepicker-range .datepicker td.start-date.end-date {\n  border-radius: 0px 0 0 0px;\n}\ndatepicker .datepicker td.active,\ndatepicker-range .datepicker td.active {\n  background-color: #15c;\n  border-color: transparent;\n  color: #fff;\n}\ndatepicker .datepicker td.active:hover,\ndatepicker-range .datepicker td.active:hover {\n  background-color: #15c;\n  border-color: transparent;\n  color: #fff;\n}\ndatepicker .datepicker td.off,\ndatepicker-range .datepicker td.off {\n  background-color: #fff;\n  color: #777;\n  border: none;\n  font-weight: normal;\n}\ndatepicker .datepicker.show-calendar .calendar,\ndatepicker-range .datepicker.show-calendar .calendar {\n  display: block;\n}\n.caret {\n  display: inline-block;\n  width: 0;\n  height: 0;\n  margin-left: 2px;\n  vertical-align: middle;\n  border-top: 4px dashed;\n  border-top: 4px solid \\9;\n  border-right: 4px solid transparent;\n  border-left: 4px solid transparent;\n}\n.dropup,\n.dropdown {\n  position: relative;\n}\n.dropdown-toggle:focus {\n  outline: 0;\n}\ndropdown-option,\ndropdown-header,\ndropdown-divider {\n  display: list-item;\n}\ndropdown-option {\n  cursor: pointer;\n}\n.dropdown-menu {\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 1000;\n  display: none;\n  float: left;\n  min-width: 160px;\n  height: auto;\n  overflow-x: hidden;\n  max-height: 200px;\n  padding: 5px 0;\n  margin: 2px 0 0;\n  list-style: none;\n  font-size: 14px;\n  text-align: left;\n  background-color: #fff;\n  border: 1px solid #ccc;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  border-radius: 0px;\n  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);\n  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);\n  background-clip: padding-box;\n}\n.dropdown-menu.pull-right {\n  right: 0;\n  left: auto;\n}\n.dropdown-menu .divider {\n  height: 1px;\n  margin: 9px 0;\n  overflow: hidden;\n  background-color: #e5e5e5;\n}\n.dropdown-menu > dropdown-option > div,\n.dropdown-menu dropdown-divider > div,\n.dropdown-menu dropdown-header > div {\n  margin: 10px 20px;\n}\n.dropdown-menu > dropdown-option > a,\n.dropdown-menu dropdown-divider > a,\n.dropdown-menu dropdown-header > a {\n  display: block;\n  padding: 3px 20px;\n  clear: both;\n  font-weight: normal;\n  line-height: 1.42857143;\n  color: #000;\n  white-space: nowrap;\n}\n.dropdown-menu > dropdown-option > a:hover,\n.dropdown-menu > dropdown-option > a:focus {\n  text-decoration: none;\n  color: #fff;\n  background-color: #15c;\n}\n.dropdown-menu > .active > a,\n.dropdown-menu > .active > a:hover,\n.dropdown-menu > .active > a:focus {\n  color: #fff;\n  text-decoration: none;\n  outline: 0;\n  background-color: #15c;\n}\n.dropdown-menu > .disabled > a,\n.dropdown-menu > .disabled > a:hover,\n.dropdown-menu > .disabled > a:focus {\n  color: #777777;\n}\n.dropdown-menu > .disabled > a:hover,\n.dropdown-menu > .disabled > a:focus {\n  text-decoration: none;\n  background-color: transparent;\n  background-image: none;\n  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);\n  cursor: not-allowed;\n}\n.open > .dropdown-menu,\n.open > dropdown > div > .dropdown-menu {\n  display: block;\n}\n.open > a {\n  outline: 0;\n}\n.dropdown-menu-right {\n  left: auto;\n  right: 0;\n}\n.dropdown-menu-left {\n  left: 0;\n  right: auto;\n}\n.dropdown-header {\n  display: block;\n  padding: 3px 20px;\n  font-size: 12px;\n  line-height: 1.42857143;\n  color: #777777;\n  white-space: nowrap;\n}\n.dropdown-backdrop {\n  position: fixed;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  top: 0;\n  z-index: 990;\n}\n.pull-right > .dropdown-menu {\n  right: 0;\n  left: auto;\n}\n.dropup .caret,\n.navbar-fixed-bottom .dropdown .caret {\n  border-top: 0;\n  border-bottom: 4px dashed;\n  border-bottom: 4px solid \\9;\n  content: \"\";\n}\n.dropup .dropdown-menu,\n.navbar-fixed-bottom .dropdown .dropdown-menu {\n  top: auto;\n  bottom: 100%;\n  margin-bottom: 2px;\n}\n@media (min-width: 768px) {\n  .navbar-right .dropdown-menu {\n    left: auto;\n    right: 0;\n  }\n  .navbar-right .dropdown-menu-left {\n    left: 0;\n    right: auto;\n  }\n}\n.select {\n  position: relative;\n  width: 100%;\n}\n.select > button.btn {\n  width: 100%;\n  background: linear-gradient(#ffffff, #ccc);\n  border: 1px solid #aaa;\n  color: #000;\n}\n.select > button.btn .select-text {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  display: block;\n}\n.select > button.btn .caret {\n  position: absolute;\n  top: 45%;\n  right: 10px;\n}\n.select > .select-options {\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 1000;\n  display: none;\n  float: left;\n  min-width: 160px;\n  height: auto;\n  overflow-x: hidden;\n  max-height: 200px;\n  list-style: none;\n  font-size: 14px;\n  text-align: left;\n  background-color: #fff;\n  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);\n  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);\n  background-clip: padding-box;\n  width: 100%;\n  border-radius: 0;\n  margin-top: 0;\n  padding: 0;\n  border: 1px solid #aaa;\n  border-top: 0;\n}\n.select > .select-options > li > input.option-status[type=\"checkbox\"] {\n  display: none;\n}\n.select > .select-options > li > a {\n  display: block;\n  clear: both;\n  font-weight: normal;\n  line-height: 1.42857143;\n  white-space: nowrap;\n  padding: 3px 10px;\n  background-color: #fff;\n  color: #000;\n  border-bottom: solid 1px #d4d4d4;\n  -webkit-transition: all 0.6s ease-out;\n  -o-transition: all 0.6s ease-out;\n  transition: all 0.6s ease-out;\n}\n.select > .select-options > li:nth-of-type(odd) > a {\n  background-color: #f9f9f9;\n}\n.select > .select-options > li[aria-selected=\"true\"] > a {\n  background-color: #15c;\n  color: #fff;\n}\n.select > .select-options > li > a:hover {\n  background-color: #3478ee;\n  color: #fff;\n  padding-left: 20px;\n}\n.select > .select-options > li > a:focus {\n  background-color: #3478ee;\n  color: #fff;\n}\n.select > .select-options > li > a.noselect {\n  -webkit-touch-callout: none;\n  /* iOS Safari */\n  -webkit-user-select: none;\n  /* Safari */\n  -khtml-user-select: none;\n  /* Konqueror HTML */\n  -moz-user-select: none;\n  /* Firefox */\n  -ms-user-select: none;\n  /* Internet Explorer/Edge */\n  user-select: none;\n  /* Non-prefixed version, currently\n                                    supported by Chrome and Opera */\n}\n.select.open > .select-options {\n  display: block;\n}\n.select.open > a {\n  outline: 0;\n}\n.select.open > .select-toggle.btn-default {\n  background: linear-gradient(#ffffff, #ccc);\n  color: #000;\n  border: 1px solid #aaa;\n}\n.btn-group,\n.btn-group-vertical {\n  position: relative;\n  display: inline-block;\n  vertical-align: middle;\n}\n.btn-group > .btn,\n.btn-group-vertical > .btn {\n  position: relative;\n  float: left;\n}\n.btn-group > .btn:hover,\n.btn-group-vertical > .btn:hover,\n.btn-group > .btn:focus,\n.btn-group-vertical > .btn:focus,\n.btn-group > .btn:active,\n.btn-group-vertical > .btn:active,\n.btn-group > .btn.active,\n.btn-group-vertical > .btn.active {\n  z-index: 2;\n}\n.btn-group .btn + .btn,\n.btn-group .btn + .btn-group,\n.btn-group .btn-group + .btn,\n.btn-group .btn-group + .btn-group {\n  margin-left: -1px;\n}\n.btn-toolbar {\n  margin-left: -5px;\n}\n.btn-toolbar .btn,\n.btn-toolbar .btn-group,\n.btn-toolbar .input-group {\n  float: left;\n}\n.btn-toolbar > .btn,\n.btn-toolbar > .btn-group,\n.btn-toolbar > .input-group {\n  margin-left: 5px;\n}\n.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {\n  border-radius: 0;\n}\n.btn-group > .btn:first-child {\n  margin-left: 0;\n}\n.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {\n  border-bottom-right-radius: 0;\n  border-top-right-radius: 0;\n}\n.btn-group > .btn:last-child:not(:first-child),\n.btn-group > .dropdown-toggle:not(:first-child) {\n  border-bottom-left-radius: 0;\n  border-top-left-radius: 0;\n}\n.btn-group > .btn-group {\n  float: left;\n}\n.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn {\n  border-radius: 0;\n}\n.btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child,\n.btn-group > .btn-group:first-child:not(:last-child) > .dropdown-toggle {\n  border-bottom-right-radius: 0;\n  border-top-right-radius: 0;\n}\n.btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child {\n  border-bottom-left-radius: 0;\n  border-top-left-radius: 0;\n}\n.btn-group .dropdown-toggle:active,\n.btn-group.open .dropdown-toggle {\n  outline: 0;\n}\n.btn-group > .btn + .dropdown-toggle {\n  padding-left: 8px;\n  padding-right: 8px;\n}\n.btn-group > .btn-lg + .dropdown-toggle {\n  padding-left: 12px;\n  padding-right: 12px;\n}\n.btn-group.open .dropdown-toggle {\n  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);\n  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);\n}\n.btn-group.open .dropdown-toggle.btn-link {\n  -webkit-box-shadow: none;\n  box-shadow: none;\n}\n.btn .caret {\n  margin-left: 0;\n}\n.btn-lg .caret {\n  border-width: 5px 5px 0;\n  border-bottom-width: 0;\n}\n.dropup .btn-lg .caret {\n  border-width: 0 5px 5px;\n}\n.btn-group-vertical > .btn,\n.btn-group-vertical > .btn-group,\n.btn-group-vertical > .btn-group > .btn {\n  display: block;\n  float: none;\n  width: 100%;\n  max-width: 100%;\n}\n.btn-group-vertical > .btn-group > .btn {\n  float: none;\n}\n.btn-group-vertical > .btn + .btn,\n.btn-group-vertical > .btn + .btn-group,\n.btn-group-vertical > .btn-group + .btn,\n.btn-group-vertical > .btn-group + .btn-group {\n  margin-top: -1px;\n  margin-left: 0;\n}\n.btn-group-vertical > .btn:not(:first-child):not(:last-child) {\n  border-radius: 0;\n}\n.btn-group-vertical > .btn:first-child:not(:last-child) {\n  border-top-right-radius: 0px;\n  border-top-left-radius: 0px;\n  border-bottom-right-radius: 0;\n  border-bottom-left-radius: 0;\n}\n.btn-group-vertical > .btn:last-child:not(:first-child) {\n  border-top-right-radius: 0;\n  border-top-left-radius: 0;\n  border-bottom-right-radius: 0px;\n  border-bottom-left-radius: 0px;\n}\n.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn {\n  border-radius: 0;\n}\n.btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn:last-child,\n.btn-group-vertical > .btn-group:first-child:not(:last-child) > .dropdown-toggle {\n  border-bottom-right-radius: 0;\n  border-bottom-left-radius: 0;\n}\n.btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child {\n  border-top-right-radius: 0;\n  border-top-left-radius: 0;\n}\n.btn-group-justified {\n  display: table;\n  width: 100%;\n  table-layout: fixed;\n  border-collapse: separate;\n}\n.btn-group-justified > .btn,\n.btn-group-justified > .btn-group {\n  float: none;\n  display: table-cell;\n  width: 1%;\n}\n.btn-group-justified > .btn-group .btn {\n  width: 100%;\n}\n.btn-group-justified > .btn-group .dropdown-menu {\n  left: auto;\n}\n[data-toggle=\"buttons\"] > .btn input[type=\"radio\"],\n[data-toggle=\"buttons\"] > .btn-group > .btn input[type=\"radio\"],\n[data-toggle=\"buttons\"] > .btn input[type=\"checkbox\"],\n[data-toggle=\"buttons\"] > .btn-group > .btn input[type=\"checkbox\"] {\n  position: absolute;\n  clip: rect(0, 0, 0, 0);\n  pointer-events: none;\n}\n.input-group {\n  position: relative;\n  display: table;\n  border-collapse: separate;\n}\n.input-group[class*=\"col-\"] {\n  float: none;\n  padding-left: 0;\n  padding-right: 0;\n}\n.input-group .form-control {\n  position: relative;\n  z-index: 2;\n  float: left;\n  width: 100%;\n  margin-bottom: 0;\n}\n.input-group .form-control:focus {\n  z-index: 3;\n}\n.input-group-lg > .form-control,\n.input-group-lg > .input-group-addon,\n.input-group-lg > .input-group-btn > .btn {\n  height: 46px;\n  padding: 10px 16px;\n  font-size: 18px;\n  line-height: 1.3333333;\n  border-radius: 0px;\n}\nselect.input-group-lg > .form-control,\nselect.input-group-lg > .input-group-addon,\nselect.input-group-lg > .input-group-btn > .btn {\n  height: 46px;\n  line-height: 46px;\n}\ntextarea.input-group-lg > .form-control,\ntextarea.input-group-lg > .input-group-addon,\ntextarea.input-group-lg > .input-group-btn > .btn,\nselect[multiple].input-group-lg > .form-control,\nselect[multiple].input-group-lg > .input-group-addon,\nselect[multiple].input-group-lg > .input-group-btn > .btn {\n  height: auto;\n}\n.input-group-sm > .form-control,\n.input-group-sm > .input-group-addon,\n.input-group-sm > .input-group-btn > .btn {\n  height: 30px;\n  padding: 5px 10px;\n  font-size: 12px;\n  line-height: 1.5;\n  border-radius: 0px;\n}\nselect.input-group-sm > .form-control,\nselect.input-group-sm > .input-group-addon,\nselect.input-group-sm > .input-group-btn > .btn {\n  height: 30px;\n  line-height: 30px;\n}\ntextarea.input-group-sm > .form-control,\ntextarea.input-group-sm > .input-group-addon,\ntextarea.input-group-sm > .input-group-btn > .btn,\nselect[multiple].input-group-sm > .form-control,\nselect[multiple].input-group-sm > .input-group-addon,\nselect[multiple].input-group-sm > .input-group-btn > .btn {\n  height: auto;\n}\n.input-group-addon,\n.input-group-btn,\n.input-group .form-control {\n  display: table-cell;\n}\n.input-group-addon:not(:first-child):not(:last-child),\n.input-group-btn:not(:first-child):not(:last-child),\n.input-group .form-control:not(:first-child):not(:last-child) {\n  border-radius: 0;\n}\n.input-group-addon,\n.input-group-btn {\n  width: 1%;\n  white-space: nowrap;\n  vertical-align: middle;\n}\n.input-group-addon {\n  padding: 6px 12px;\n  font-size: 14px;\n  font-weight: normal;\n  line-height: 1;\n  color: #000;\n  text-align: center;\n  background-color: transparent;\n  border: 1px solid transparent;\n  border-radius: 0px;\n}\n.input-group-addon.input-sm {\n  padding: 5px 10px;\n  font-size: 12px;\n  border-radius: 0px;\n}\n.input-group-addon.input-lg {\n  padding: 10px 16px;\n  font-size: 18px;\n  border-radius: 0px;\n}\n.input-group-addon input[type=\"radio\"],\n.input-group-addon input[type=\"checkbox\"] {\n  margin-top: 0;\n}\n.input-group .form-control:first-child,\n.input-group-addon:first-child,\n.input-group-btn:first-child > .btn,\n.input-group-btn:first-child > .btn-group > .btn,\n.input-group-btn:first-child > .dropdown-toggle,\n.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),\n.input-group-btn:last-child > .btn-group:not(:last-child) > .btn {\n  border-bottom-right-radius: 0;\n  border-top-right-radius: 0;\n}\n.input-group-addon:first-child {\n  border-right: 0;\n}\n.input-group .form-control:last-child,\n.input-group-addon:last-child,\n.input-group-btn:last-child > .btn,\n.input-group-btn:last-child > .btn-group > .btn,\n.input-group-btn:last-child > .dropdown-toggle,\n.input-group-btn:first-child > .btn:not(:first-child),\n.input-group-btn:first-child > .btn-group:not(:first-child) > .btn {\n  border-bottom-left-radius: 0;\n  border-top-left-radius: 0;\n}\n.input-group-addon:last-child {\n  border-left: 0;\n}\n.input-group-btn {\n  position: relative;\n  font-size: 0;\n  white-space: nowrap;\n}\n.input-group-btn > .btn {\n  position: relative;\n}\n.input-group-btn > .btn + .btn {\n  margin-left: -1px;\n}\n.input-group-btn > .btn:hover,\n.input-group-btn > .btn:focus,\n.input-group-btn > .btn:active {\n  z-index: 2;\n}\n.input-group-btn:first-child > .btn,\n.input-group-btn:first-child > .btn-group {\n  margin-right: -1px;\n}\n.input-group-btn:last-child > .btn,\n.input-group-btn:last-child > .btn-group {\n  z-index: 2;\n  margin-left: -1px;\n}\n.nav {\n  margin-bottom: 0;\n  padding-left: 0;\n  list-style: none;\n}\n.nav > li {\n  position: relative;\n  display: block;\n}\n.nav > li > a,\n.nav > li > dropdown > a {\n  position: relative;\n  display: block;\n  padding: 10px 15px;\n}\n.nav > li > a:hover,\n.nav > li > dropdown > a:hover,\n.nav > li > a:focus,\n.nav > li > dropdown > a:focus {\n  text-decoration: none;\n  background-color: #eeeeee;\n}\n.nav > li.disabled > a,\n.nav > li.disabled > dropdown > a {\n  color: #777777;\n}\n.nav > li.disabled > a:hover,\n.nav > li.disabled > dropdown > a:hover,\n.nav > li.disabled > a:focus,\n.nav > li.disabled > dropdown > a:focus {\n  color: #777777;\n  text-decoration: none;\n  background-color: transparent;\n  cursor: not-allowed;\n}\n.nav .open > a,\n.nav .open > dropdown > a,\n.nav .open > a:hover,\n.nav .open > dropdown > a:hover,\n.nav .open > a:focus,\n.nav .open > dropdown > a:focus {\n  background-color: #eeeeee;\n  border-color: #15c;\n}\n.nav .nav-divider {\n  height: 1px;\n  margin: 9px 0;\n  overflow: hidden;\n  background-color: #e5e5e5;\n}\n.nav > li > a > img {\n  max-width: none;\n}\n.nav-tabs {\n  border-bottom: 1px solid #ddd;\n}\n.nav-tabs > li {\n  float: left;\n  margin-bottom: -1px;\n}\n.nav-tabs > li > a {\n  margin-right: 2px;\n  line-height: 1.42857143;\n  border: 1px solid transparent;\n  border-radius: 0px 0px 0 0;\n}\n.nav-tabs > li > a:hover {\n  border-color: #eeeeee #eeeeee #ddd;\n}\n.nav-tabs > li.active > a,\n.nav-tabs > li.active > a:hover,\n.nav-tabs > li.active > a:focus {\n  color: #555555;\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-bottom-color: transparent;\n  cursor: default;\n}\n.nav-tabs.nav-justified {\n  width: 100%;\n  border-bottom: 0;\n}\n.nav-tabs.nav-justified > li {\n  float: none;\n}\n.nav-tabs.nav-justified > li > a {\n  text-align: center;\n  margin-bottom: 5px;\n}\n.nav-tabs.nav-justified > .dropdown .dropdown-menu {\n  top: auto;\n  left: auto;\n}\n@media (min-width: 768px) {\n  .nav-tabs.nav-justified > li {\n    display: table-cell;\n    width: 1%;\n  }\n  .nav-tabs.nav-justified > li > a {\n    margin-bottom: 0;\n  }\n}\n.nav-tabs.nav-justified > li > a {\n  margin-right: 0;\n  border-radius: 0px;\n}\n.nav-tabs.nav-justified > .active > a,\n.nav-tabs.nav-justified > .active > a:hover,\n.nav-tabs.nav-justified > .active > a:focus {\n  border: 1px solid #ddd;\n}\n@media (min-width: 768px) {\n  .nav-tabs.nav-justified > li > a {\n    border-bottom: 1px solid #ddd;\n    border-radius: 0px 0px 0 0;\n  }\n  .nav-tabs.nav-justified > .active > a,\n  .nav-tabs.nav-justified > .active > a:hover,\n  .nav-tabs.nav-justified > .active > a:focus {\n    border-bottom-color: #fff;\n  }\n}\n.nav-pills > li {\n  float: left;\n}\n.nav-pills > li > a {\n  border-radius: 0px;\n}\n.nav-pills > li + li {\n  margin-left: 2px;\n}\n.nav-pills > li.active > a,\n.nav-pills > li.active > a:hover,\n.nav-pills > li.active > a:focus {\n  color: #fff;\n  background-color: #15c;\n}\n.nav-stacked > li {\n  float: none;\n}\n.nav-stacked > li + li {\n  margin-top: 2px;\n  margin-left: 0;\n}\n.nav-justified {\n  width: 100%;\n}\n.nav-justified > li {\n  float: none;\n}\n.nav-justified > li > a {\n  text-align: center;\n  margin-bottom: 5px;\n}\n.nav-justified > .dropdown .dropdown-menu {\n  top: auto;\n  left: auto;\n}\n@media (min-width: 768px) {\n  .nav-justified > li {\n    display: table-cell;\n    width: 1%;\n  }\n  .nav-justified > li > a {\n    margin-bottom: 0;\n  }\n}\n.nav-tabs-justified {\n  border-bottom: 0;\n}\n.nav-tabs-justified > li > a {\n  margin-right: 0;\n  border-radius: 0px;\n}\n.nav-tabs-justified > .active > a,\n.nav-tabs-justified > .active > a:hover,\n.nav-tabs-justified > .active > a:focus {\n  border: 1px solid #ddd;\n}\n@media (min-width: 768px) {\n  .nav-tabs-justified > li > a {\n    border-bottom: 1px solid #ddd;\n    border-radius: 0px 0px 0 0;\n  }\n  .nav-tabs-justified > .active > a,\n  .nav-tabs-justified > .active > a:hover,\n  .nav-tabs-justified > .active > a:focus {\n    border-bottom-color: #fff;\n  }\n}\n.tab-content > .tab-pane {\n  display: none;\n}\n.tab-content > .active {\n  display: block;\n}\n.nav-tabs .dropdown-menu {\n  margin-top: -1px;\n  border-top-right-radius: 0;\n  border-top-left-radius: 0;\n}\n.navbar {\n  position: relative;\n  min-height: 50px;\n  margin-bottom: 20px;\n  border: 1px solid transparent;\n}\n@media (min-width: 768px) {\n  .navbar {\n    border-radius: 0px;\n  }\n}\n@media (min-width: 768px) {\n  .navbar-header {\n    float: left;\n  }\n}\n.navbar-collapse {\n  overflow-x: visible;\n  padding-right: 15px;\n  padding-left: 15px;\n  border-top: 1px solid transparent;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);\n  -webkit-overflow-scrolling: touch;\n}\n.navbar-collapse.in {\n  overflow-y: auto;\n}\n@media (min-width: 768px) {\n  .navbar-collapse {\n    width: auto;\n    border-top: 0;\n    box-shadow: none;\n  }\n  .navbar-collapse.collapse {\n    display: block !important;\n    height: auto !important;\n    padding-bottom: 0;\n    overflow: visible !important;\n  }\n  .navbar-collapse.in {\n    overflow-y: visible;\n  }\n  .navbar-fixed-top .navbar-collapse,\n  .navbar-static-top .navbar-collapse,\n  .navbar-fixed-bottom .navbar-collapse {\n    padding-left: 0;\n    padding-right: 0;\n  }\n}\n.navbar-fixed-top .navbar-collapse,\n.navbar-fixed-bottom .navbar-collapse {\n  max-height: 340px;\n}\n@media (max-device-width: 480px) and (orientation: landscape) {\n  .navbar-fixed-top .navbar-collapse,\n  .navbar-fixed-bottom .navbar-collapse {\n    max-height: 200px;\n  }\n}\n.container > .navbar-header,\n.container-fluid > .navbar-header,\n.container > .navbar-collapse,\n.container-fluid > .navbar-collapse {\n  margin-right: -15px;\n  margin-left: -15px;\n}\n@media (min-width: 768px) {\n  .container > .navbar-header,\n  .container-fluid > .navbar-header,\n  .container > .navbar-collapse,\n  .container-fluid > .navbar-collapse {\n    margin-right: 0;\n    margin-left: 0;\n  }\n}\n.navbar-static-top {\n  z-index: 1000;\n  border-width: 0 0 1px;\n}\n@media (min-width: 768px) {\n  .navbar-static-top {\n    border-radius: 0;\n  }\n}\n.navbar-fixed-top,\n.navbar-fixed-bottom {\n  position: fixed;\n  right: 0;\n  left: 0;\n  z-index: 1030;\n}\n@media (min-width: 768px) {\n  .navbar-fixed-top,\n  .navbar-fixed-bottom {\n    border-radius: 0;\n  }\n}\n.navbar-fixed-top {\n  top: 0;\n  border-width: 0 0 1px;\n}\n.navbar-fixed-bottom {\n  bottom: 0;\n  margin-bottom: 0;\n  border-width: 1px 0 0;\n}\n.navbar-brand {\n  float: left;\n  padding: 15px 15px;\n  font-size: 18px;\n  line-height: 20px;\n  height: 50px;\n}\n.navbar-brand:hover,\n.navbar-brand:focus {\n  text-decoration: none;\n}\n.navbar-brand > img {\n  display: block;\n}\n@media (min-width: 768px) {\n  .navbar > .container .navbar-brand,\n  .navbar > .container-fluid .navbar-brand {\n    margin-left: -15px;\n  }\n}\n.navbar-toggle {\n  position: relative;\n  float: right;\n  margin-right: 15px;\n  padding: 9px 10px;\n  margin-top: 8px;\n  margin-bottom: 8px;\n  background-color: transparent;\n  background-image: none;\n  border: 1px solid transparent;\n  border-radius: 0px;\n}\n.navbar-toggle:focus {\n  outline: 0;\n}\n.navbar-toggle .icon-bar {\n  display: block;\n  width: 22px;\n  height: 2px;\n  border-radius: 1px;\n}\n.navbar-toggle .icon-bar + .icon-bar {\n  margin-top: 4px;\n}\n@media (min-width: 768px) {\n  .navbar-toggle {\n    display: none;\n  }\n}\n.navbar-nav {\n  margin: 7.5px -15px;\n}\n.navbar-nav > li > a,\n.navbar-nav > li > dropdown > a {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  line-height: 20px;\n}\n@media (max-width: 767px) {\n  .navbar-nav .open .dropdown-menu {\n    position: static;\n    float: none;\n    width: auto;\n    margin-top: 0;\n    background-color: transparent;\n    border: 0;\n    box-shadow: none;\n  }\n  .navbar-nav .open .dropdown-menu > li > a,\n  .navbar-nav .open .dropdown-menu .dropdown-header {\n    padding: 5px 15px 5px 25px;\n  }\n  .navbar-nav .open .dropdown-menu > li > a,\n  .navbar-nav .open .dropdown-menu > li > dropdown > a {\n    line-height: 20px;\n  }\n  .navbar-nav .open .dropdown-menu > li > a:hover,\n  .navbar-nav .open .dropdown-menu > li > dropdown > a:hover,\n  .navbar-nav .open .dropdown-menu > li > a:focus,\n  .navbar-nav .open .dropdown-menu > li > dropdown > a:focus {\n    background-image: none;\n  }\n}\n@media (min-width: 768px) {\n  .navbar-nav {\n    float: left;\n    margin: 0;\n  }\n  .navbar-nav > li {\n    float: left;\n  }\n  .navbar-nav > li > a {\n    padding-top: 15px;\n    padding-bottom: 15px;\n  }\n}\n.navbar-form {\n  margin-left: -15px;\n  margin-right: -15px;\n  padding: 10px 15px;\n  border-top: 1px solid transparent;\n  border-bottom: 1px solid transparent;\n  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);\n  margin-top: 8px;\n  margin-bottom: 8px;\n}\n@media (min-width: 768px) {\n  .navbar-form .form-group {\n    display: inline-block;\n    margin-bottom: 0;\n    vertical-align: middle;\n  }\n  .navbar-form .form-control {\n    display: inline-block;\n    width: auto;\n    vertical-align: middle;\n  }\n  .navbar-form .form-control-static {\n    display: inline-block;\n  }\n  .navbar-form .input-group {\n    display: inline-table;\n    vertical-align: middle;\n  }\n  .navbar-form .input-group .input-group-addon,\n  .navbar-form .input-group .input-group-btn,\n  .navbar-form .input-group .form-control {\n    width: auto;\n  }\n  .navbar-form .input-group > .form-control {\n    width: 100%;\n  }\n  .navbar-form .control-label {\n    margin-bottom: 0;\n    vertical-align: middle;\n  }\n  .navbar-form .radio,\n  .navbar-form .checkbox {\n    display: inline-block;\n    margin-top: 0;\n    margin-bottom: 0;\n    vertical-align: middle;\n  }\n  .navbar-form .radio label,\n  .navbar-form .checkbox label {\n    padding-left: 0;\n  }\n  .navbar-form .radio input[type=\"radio\"],\n  .navbar-form .checkbox input[type=\"checkbox\"] {\n    position: relative;\n    margin-left: 0;\n  }\n  .navbar-form .has-feedback .form-control-feedback {\n    top: 0;\n  }\n}\n@media (max-width: 767px) {\n  .navbar-form .form-group {\n    margin-bottom: 5px;\n  }\n  .navbar-form .form-group:last-child {\n    margin-bottom: 0;\n  }\n}\n@media (min-width: 768px) {\n  .navbar-form {\n    width: auto;\n    border: 0;\n    margin-left: 0;\n    margin-right: 0;\n    padding-top: 0;\n    padding-bottom: 0;\n    -webkit-box-shadow: none;\n    box-shadow: none;\n  }\n}\n.navbar-nav > li > dropdown > .dropdown-menu {\n  margin-top: 0;\n  border-top-right-radius: 0;\n  border-top-left-radius: 0;\n}\n.navbar-fixed-bottom .navbar-nav > li > dropdown > .dropdown-menu {\n  margin-bottom: 0;\n  border-top-right-radius: 0px;\n  border-top-left-radius: 0px;\n  border-bottom-right-radius: 0;\n  border-bottom-left-radius: 0;\n}\n.navbar-btn {\n  margin-top: 8px;\n  margin-bottom: 8px;\n}\n.navbar-btn.btn-sm {\n  margin-top: 10px;\n  margin-bottom: 10px;\n}\n.navbar-btn.btn-xs {\n  margin-top: 14px;\n  margin-bottom: 14px;\n}\n.navbar-text {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n@media (min-width: 768px) {\n  .navbar-text {\n    float: left;\n    margin-left: 15px;\n    margin-right: 15px;\n  }\n}\n@media (min-width: 768px) {\n  .navbar-left {\n    float: left !important;\n  }\n  .navbar-right {\n    float: right !important;\n    margin-right: -15px;\n  }\n  .navbar-right ~ .navbar-right {\n    margin-right: 0;\n  }\n}\n.navbar-default {\n  background: linear-gradient(#626262, #222);\n  border-color: #222;\n}\n.navbar-default .navbar-brand {\n  color: #fff;\n}\n.navbar-default .navbar-brand:hover,\n.navbar-default .navbar-brand:focus {\n  color: #e6e6e6;\n  background-color: transparent;\n}\n.navbar-default .navbar-text {\n  color: #fff;\n}\n.navbar-default .navbar-nav > li > a,\n.navbar-default .navbar-nav > li > dropdown > a {\n  color: #fff;\n  padding: 15px 15px;\n  z-index: 0;\n}\n.navbar-default .navbar-nav > li > a::before,\n.navbar-default .navbar-nav > li > dropdown > a::before {\n  content: '';\n  position: absolute;\n  top: 0;\n  left: -15px;\n  width: calc(115%);\n  z-index: -1;\n  height: 100%;\n}\n@media (min-width: 768px) {\n  .navbar-default .navbar-nav > li > a::before,\n  .navbar-default .navbar-nav > li > dropdown > a::before {\n    border-right: solid 1px #fff;\n    transform: skewX(-25deg);\n    left: -2px;\n    width: calc(101%);\n  }\n}\n.navbar-default .navbar-nav > li > a:hover,\n.navbar-default .navbar-nav > li > dropdown > a:hover,\n.navbar-default .navbar-nav > li > a:focus,\n.navbar-default .navbar-nav > li > dropdown > a:focus {\n  color: #fff;\n  background-color: transparent;\n}\n.navbar-default .navbar-nav > li > a:hover::before,\n.navbar-default .navbar-nav > li > dropdown > a:hover::before,\n.navbar-default .navbar-nav > li > a:focus::before,\n.navbar-default .navbar-nav > li > dropdown > a:focus::before {\n  background-color: #ff6933;\n}\n.navbar-default .navbar-nav > .active > a,\n.navbar-default .navbar-nav > .active > dropdown > a,\n.navbar-default .navbar-nav > .active > a:hover,\n.navbar-default .navbar-nav > .active > dropdown > a:hover,\n.navbar-default .navbar-nav > .active > a:focus,\n.navbar-default .navbar-nav > .active > dropdown > a:focus {\n  color: #fff;\n}\n.navbar-default .navbar-nav > .active > a::before,\n.navbar-default .navbar-nav > .active > dropdown > a::before,\n.navbar-default .navbar-nav > .active > a:hover::before,\n.navbar-default .navbar-nav > .active > dropdown > a:hover::before,\n.navbar-default .navbar-nav > .active > a:focus::before,\n.navbar-default .navbar-nav > .active > dropdown > a:focus::before {\n  background-color: #15c;\n}\n.navbar-default .navbar-nav > .disabled > a,\n.navbar-default .navbar-nav > .disabled > dropdown > a,\n.navbar-default .navbar-nav > .disabled > a:hover,\n.navbar-default .navbar-nav > .disabled > dropdown > a:hover,\n.navbar-default .navbar-nav > .disabled > a:focus,\n.navbar-default .navbar-nav > .disabled > dropdown > a:focus {\n  color: #777;\n}\n.navbar-default .navbar-nav > .disabled > a::before,\n.navbar-default .navbar-nav > .disabled > dropdown > a::before,\n.navbar-default .navbar-nav > .disabled > a:hover::before,\n.navbar-default .navbar-nav > .disabled > dropdown > a:hover::before,\n.navbar-default .navbar-nav > .disabled > a:focus::before,\n.navbar-default .navbar-nav > .disabled > dropdown > a:focus::before {\n  background-color: #bbb;\n}\n.navbar-default .navbar-toggle {\n  border-color: #ddd;\n}\n.navbar-default .navbar-toggle:hover,\n.navbar-default .navbar-toggle:focus {\n  background-color: #ddd;\n}\n.navbar-default .navbar-toggle .icon-bar {\n  background-color: #888;\n}\n.navbar-default .navbar-collapse,\n.navbar-default .navbar-form {\n  border-color: #222;\n}\n.navbar-default .navbar-nav > .open > dropdown > a,\n.navbar-default .navbar-nav > .open > dropdown > a:hover,\n.navbar-default .navbar-nav > .open > dropdown > a:focus {\n  color: #fff;\n  background-color: transparent;\n}\n.navbar-default .navbar-nav > .open > dropdown > a::before,\n.navbar-default .navbar-nav > .open > dropdown > a:hover::before,\n.navbar-default .navbar-nav > .open > dropdown > a:focus::before {\n  background-color: #15c;\n}\n@media (min-width: 768px) {\n  .navbar-default .navbar-nav .open .dropdown-menu {\n    transform: translateX(-15px);\n  }\n}\n@media (max-width: 767px) {\n  .navbar-default .navbar-nav .open .dropdown-menu > li > a {\n    color: #fff;\n  }\n  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,\n  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {\n    color: #fff;\n  }\n  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover::before,\n  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus::before {\n    background-color: #ff6933;\n  }\n  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,\n  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,\n  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {\n    color: #fff;\n  }\n  .navbar-default .navbar-nav .open .dropdown-menu > .active > a::before,\n  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover::before,\n  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus::before {\n    background-color: #15c;\n  }\n  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,\n  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,\n  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus {\n    color: #777;\n  }\n  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a::before,\n  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover::before,\n  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus::before {\n    background-color: #bbb;\n  }\n}\n.navbar-default .navbar-link {\n  color: #fff;\n}\n.navbar-default .navbar-link:hover {\n  color: #fff;\n}\n.navbar-default .btn-link {\n  color: #fff;\n}\n.navbar-default .btn-link:hover,\n.navbar-default .btn-link:focus {\n  color: #fff;\n}\n.navbar-default .btn-link[disabled]:hover,\nfieldset[disabled] .navbar-default .btn-link:hover,\n.navbar-default .btn-link[disabled]:focus,\nfieldset[disabled] .navbar-default .btn-link:focus {\n  color: #777;\n}\n.navbar-inverse {\n  background-color: #222;\n  border-color: #080808;\n}\n.navbar-inverse .navbar-brand {\n  color: #9d9d9d;\n}\n.navbar-inverse .navbar-brand:hover,\n.navbar-inverse .navbar-brand:focus {\n  color: #fff;\n  background-color: transparent;\n}\n.navbar-inverse .navbar-text {\n  color: #9d9d9d;\n}\n.navbar-inverse .navbar-nav > li > a,\n.navbar-inverse .navbar-nav > li > dropdown > a {\n  color: #9d9d9d;\n}\n.navbar-inverse .navbar-nav > li > a:hover,\n.navbar-inverse .navbar-nav > li > dropdown > a:hover,\n.navbar-inverse .navbar-nav > li > a:focus,\n.navbar-inverse .navbar-nav > li > dropdown > a:focus {\n  color: #fff;\n}\n.navbar-inverse .navbar-nav > li > a:hover::before,\n.navbar-inverse .navbar-nav > li > dropdown > a:hover::before,\n.navbar-inverse .navbar-nav > li > a:focus::before,\n.navbar-inverse .navbar-nav > li > dropdown > a:focus::before {\n  background-color: transparent;\n}\n.navbar-inverse .navbar-nav > .active > a,\n.navbar-inverse .navbar-nav > .active > dropdown > a,\n.navbar-inverse .navbar-nav > .active > a:hover,\n.navbar-inverse .navbar-nav > .active > dropdown > a:hover,\n.navbar-inverse .navbar-nav > .active > a:focus,\n.navbar-inverse .navbar-nav > .active > dropdown > a:focus {\n  color: #fff;\n}\n.navbar-inverse .navbar-nav > .active > a::before,\n.navbar-inverse .navbar-nav > .active > dropdown > a::before,\n.navbar-inverse .navbar-nav > .active > a:hover::before,\n.navbar-inverse .navbar-nav > .active > dropdown > a:hover::before,\n.navbar-inverse .navbar-nav > .active > a:focus::before,\n.navbar-inverse .navbar-nav > .active > dropdown > a:focus::before {\n  background-color: #080808;\n}\n.navbar-inverse .navbar-nav > .disabled > a,\n.navbar-inverse .navbar-nav > .disabled > dropdown > a,\n.navbar-inverse .navbar-nav > .disabled > a:hover,\n.navbar-inverse .navbar-nav > .disabled > dropdown > a:hover,\n.navbar-inverse .navbar-nav > .disabled > a:focus,\n.navbar-inverse .navbar-nav > .disabled > dropdown > a:focus {\n  color: #444;\n}\n.navbar-inverse .navbar-nav > .disabled > a::before,\n.navbar-inverse .navbar-nav > .disabled > dropdown > a::before,\n.navbar-inverse .navbar-nav > .disabled > a:hover::before,\n.navbar-inverse .navbar-nav > .disabled > dropdown > a:hover::before,\n.navbar-inverse .navbar-nav > .disabled > a:focus::before,\n.navbar-inverse .navbar-nav > .disabled > dropdown > a:focus::before {\n  background-color: transparent;\n}\n.navbar-inverse .navbar-toggle {\n  border-color: #333;\n}\n.navbar-inverse .navbar-toggle:hover,\n.navbar-inverse .navbar-toggle:focus {\n  background-color: #333;\n}\n.navbar-inverse .navbar-toggle .icon-bar {\n  background-color: #fff;\n}\n.navbar-inverse .navbar-collapse,\n.navbar-inverse .navbar-form {\n  border-color: #101010;\n}\n.navbar-inverse .navbar-nav > .open > a,\n.navbar-inverse .navbar-nav > .open > dropdown > a,\n.navbar-inverse .navbar-nav > .open > a:hover,\n.navbar-inverse .navbar-nav > .open > dropdown > a:hover,\n.navbar-inverse .navbar-nav > .open > a:focus,\n.navbar-inverse .navbar-nav > .open > dropdown > a:focus {\n  color: #fff;\n}\n.navbar-inverse .navbar-nav > .open > a::before,\n.navbar-inverse .navbar-nav > .open > dropdown > a::before,\n.navbar-inverse .navbar-nav > .open > a:hover::before,\n.navbar-inverse .navbar-nav > .open > dropdown > a:hover::before,\n.navbar-inverse .navbar-nav > .open > a:focus::before,\n.navbar-inverse .navbar-nav > .open > dropdown > a:focus::before {\n  background-color: #080808;\n}\n@media (max-width: 767px) {\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {\n    border-color: #080808;\n  }\n  .navbar-inverse .navbar-nav .open .dropdown-menu .divider {\n    background-color: #080808;\n  }\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > dropdown > a {\n    color: #9d9d9d;\n  }\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > dropdown > a:hover,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > dropdown > a:focus {\n    color: #fff;\n  }\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > dropdown > a:hover::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > dropdown > a:focus::before {\n    background-color: transparent;\n  }\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > dropdown > a,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > dropdown > a:hover,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > dropdown > a:focus {\n    color: #fff;\n  }\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > dropdown > a::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > dropdown > a:hover::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > dropdown > a:focus::before {\n    background-color: #080808;\n  }\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > dropdown > a,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > dropdown > a:hover,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > dropdown > a:focus {\n    color: #444;\n  }\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > dropdown > a::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > dropdown > a:hover::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > dropdown > a:focus::before {\n    background-color: transparent;\n  }\n}\n.navbar-inverse .navbar-link {\n  color: #9d9d9d;\n}\n.navbar-inverse .navbar-link:hover {\n  color: #fff;\n}\n.navbar-inverse .btn-link {\n  color: #9d9d9d;\n}\n.navbar-inverse .btn-link:hover,\n.navbar-inverse .btn-link:focus {\n  color: #fff;\n}\n.navbar-inverse .btn-link[disabled]:hover,\nfieldset[disabled] .navbar-inverse .btn-link:hover,\n.navbar-inverse .btn-link[disabled]:focus,\nfieldset[disabled] .navbar-inverse .btn-link:focus {\n  color: #444;\n}\n.breadcrumb {\n  padding: 8px 15px;\n  margin-bottom: 20px;\n  list-style: none;\n  background-color: #f5f5f5;\n  border-radius: 0px;\n}\n.breadcrumb > li {\n  display: inline-block;\n}\n.breadcrumb > li + li:before {\n  content: \"/\\A0\";\n  padding: 0 5px;\n  color: #ccc;\n}\n.breadcrumb > .active {\n  color: #777777;\n}\n.pagination {\n  display: inline-block;\n  padding-left: 0;\n  margin: 20px 0;\n  border-radius: 0px;\n}\n.pagination > li {\n  display: inline;\n}\n.pagination > li > a,\n.pagination > li > span,\n.pagination > li > input {\n  position: relative;\n  float: left;\n  padding: 6px 12px;\n  line-height: 1.42857143;\n  text-decoration: none;\n  color: #000;\n  margin-left: -1px;\n}\n.pagination > li > a::before,\n.pagination > li > span::before,\n.pagination > li > input::before {\n  position: absolute;\n  top: 0;\n  left: 0;\n  content: '';\n  border-width: 0 1px;\n  border-style: solid;\n  border-color: #ddd;\n  width: 100%;\n  height: 100%;\n  transform: skewX(-30deg);\n}\n.pagination > li .pagination-input {\n  height: auto;\n  -moz-appearance: textfield;\n  border-right: 0;\n  border-left: 0;\n  width: 4em;\n  left: -10px;\n  padding-left: 22px;\n  padding-right: 0px;\n  background-color: transparent;\n}\n.pagination > li .pagination-input::-webkit-outer-spin-button,\n.pagination > li .pagination-input::-webkit-inner-spin-button {\n  -webkit-appearance: none;\n  margin: 0;\n}\n.pagination > li:first-child > a,\n.pagination > li:first-child > span {\n  margin-left: 0;\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n  padding: 5px 12px;\n}\n.pagination > li:first-child > a::before,\n.pagination > li:first-child > span::before {\n  border-width: 0;\n}\n.pagination > li:last-child > a,\n.pagination > li:last-child > span {\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n  padding: 5px 12px;\n}\n.pagination > li:last-child > a::before,\n.pagination > li:last-child > span::before {\n  border-width: 0;\n}\n.pagination > li > a:hover,\n.pagination > li > span:hover,\n.pagination > li > a:focus,\n.pagination > li > span:focus {\n  z-index: 2;\n  color: #fff;\n}\n.pagination > li > a:hover::before,\n.pagination > li > span:hover::before,\n.pagination > li > a:focus::before,\n.pagination > li > span:focus::before {\n  z-index: -1;\n  background-color: #528cf1;\n  border-color: #3478ee;\n}\n.pagination > .active > a,\n.pagination > .active > span,\n.pagination > .active > a:hover,\n.pagination > .active > span:hover,\n.pagination > .active > a:focus,\n.pagination > .active > span:focus {\n  z-index: 3;\n  color: #fff;\n  cursor: default;\n}\n.pagination > .active > a::before,\n.pagination > .active > span::before,\n.pagination > .active > a:hover::before,\n.pagination > .active > span:hover::before,\n.pagination > .active > a:focus::before,\n.pagination > .active > span:focus::before {\n  z-index: -1;\n  background-color: #15c;\n  border-color: #15c;\n}\n.pagination > .disabled > span,\n.pagination > .disabled > span:hover,\n.pagination > .disabled > span:focus,\n.pagination > .disabled > a,\n.pagination > .disabled > a:hover,\n.pagination > .disabled > a:focus {\n  color: #777;\n  cursor: not-allowed;\n}\n.pagination > .disabled > span::before,\n.pagination > .disabled > span:hover::before,\n.pagination > .disabled > span:focus::before,\n.pagination > .disabled > a::before,\n.pagination > .disabled > a:hover::before,\n.pagination > .disabled > a:focus::before {\n  z-index: -1;\n  background-color: #bbb;\n  border-color: #bbb;\n}\n.pagination-lg > li > a,\n.pagination-lg > li > span,\n.pagination-lg > li > input {\n  padding: 10px 16px;\n  font-size: 18px;\n  line-height: 1.3333333;\n}\n.pagination-lg > li .pagination-input {\n  left: -12px;\n}\n.pagination-lg > li:first-child > a,\n.pagination-lg > li:first-child > span {\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n  padding: 9px 16px;\n  min-height: 28px;\n}\n.pagination-lg > li:last-child > a,\n.pagination-lg > li:last-child > span {\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n  padding: 9px 16px;\n  min-height: 28px;\n}\n.pagination-sm > li > a,\n.pagination-sm > li > span,\n.pagination-sm > li > input {\n  padding: 5px 10px;\n  font-size: 12px;\n  line-height: 1.5;\n}\n.pagination-sm > li .pagination-input {\n  left: -8px;\n}\n.pagination-sm > li:first-child > a,\n.pagination-sm > li:first-child > span {\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n  padding: 4px 10px;\n  min-height: 28px;\n}\n.pagination-sm > li:last-child > a,\n.pagination-sm > li:last-child > span {\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n  padding: 4px 10px;\n  min-height: 28px;\n}\n.pager {\n  padding-left: 0;\n  margin: 20px 0;\n  list-style: none;\n  text-align: center;\n}\n.pager li {\n  display: inline;\n}\n.pager li > a,\n.pager li > span {\n  display: inline-block;\n  padding: 5px 14px;\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: 15px;\n}\n.pager li > a:hover,\n.pager li > a:focus {\n  text-decoration: none;\n  background-color: #528cf1;\n}\n.pager .next > a,\n.pager .next > span {\n  float: right;\n}\n.pager .previous > a,\n.pager .previous > span {\n  float: left;\n}\n.pager .disabled > a,\n.pager .disabled > a:hover,\n.pager .disabled > a:focus,\n.pager .disabled > span {\n  color: #777;\n  background-color: #fff;\n  cursor: not-allowed;\n}\n.label {\n  display: inline;\n  padding: .2em .6em .3em;\n  font-size: 75%;\n  font-weight: bold;\n  line-height: 1;\n  color: #fff;\n  text-align: center;\n  white-space: nowrap;\n  vertical-align: baseline;\n  border-radius: .25em;\n}\na.label:hover,\na.label:focus {\n  color: #fff;\n  text-decoration: none;\n  cursor: pointer;\n}\n.label:empty {\n  display: none;\n}\n.btn .label {\n  position: relative;\n  top: -1px;\n}\n.label-default {\n  background-color: #777777;\n}\n.label-default[href]:hover,\n.label-default[href]:focus {\n  background-color: #5e5e5e;\n}\n.label-primary {\n  background-color: #15c;\n}\n.label-primary[href]:hover,\n.label-primary[href]:focus {\n  background-color: #0d419d;\n}\n.label-success {\n  background-color: #5cb85c;\n}\n.label-success[href]:hover,\n.label-success[href]:focus {\n  background-color: #449d44;\n}\n.label-info {\n  background-color: #f40;\n}\n.label-info[href]:hover,\n.label-info[href]:focus {\n  background-color: #cc3600;\n}\n.label-warning {\n  background-color: #f0ad4e;\n}\n.label-warning[href]:hover,\n.label-warning[href]:focus {\n  background-color: #ec971f;\n}\n.label-danger {\n  background-color: #f00;\n}\n.label-danger[href]:hover,\n.label-danger[href]:focus {\n  background-color: #cc0000;\n}\n.badge {\n  display: inline-block;\n  min-width: 10px;\n  padding: 3px 7px;\n  font-size: 12px;\n  font-weight: bold;\n  color: #fff;\n  line-height: 1;\n  vertical-align: middle;\n  white-space: nowrap;\n  text-align: center;\n  background-color: #777777;\n  border-radius: 10px;\n}\n.badge:empty {\n  display: none;\n}\n.btn .badge {\n  position: relative;\n  top: -1px;\n}\n.btn-xs .badge,\n.btn-group-xs > .btn .badge {\n  top: 0;\n  padding: 1px 5px;\n}\na.badge:hover,\na.badge:focus {\n  color: #fff;\n  text-decoration: none;\n  cursor: pointer;\n}\n.list-group-item.active > .badge,\n.nav-pills > .active > a > .badge {\n  color: #15c;\n  background-color: #fff;\n}\n.list-group-item > .badge {\n  float: right;\n}\n.list-group-item > .badge + .badge {\n  margin-right: 5px;\n}\n.nav-pills > li > a > .badge {\n  margin-left: 3px;\n}\n.jumbotron {\n  padding-top: 30px;\n  padding-bottom: 30px;\n  margin-bottom: 30px;\n  color: inherit;\n  background-color: #eeeeee;\n}\n.jumbotron h1,\n.jumbotron .h1 {\n  color: inherit;\n}\n.jumbotron p {\n  margin-bottom: 15px;\n  font-size: 21px;\n  font-weight: 200;\n}\n.jumbotron > hr {\n  border-top-color: #d5d5d5;\n}\n.container .jumbotron,\n.container-fluid .jumbotron {\n  border-radius: 0px;\n  padding-left: 15px;\n  padding-right: 15px;\n}\n.jumbotron .container {\n  max-width: 100%;\n}\n@media screen and (min-width: 768px) {\n  .jumbotron {\n    padding-top: 48px;\n    padding-bottom: 48px;\n  }\n  .container .jumbotron,\n  .container-fluid .jumbotron {\n    padding-left: 60px;\n    padding-right: 60px;\n  }\n  .jumbotron h1,\n  .jumbotron .h1 {\n    font-size: 63px;\n  }\n}\n.thumbnail {\n  display: block;\n  padding: 4px;\n  margin-bottom: 20px;\n  line-height: 1.42857143;\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: 0px;\n  -webkit-transition: border 0.2s ease-in-out;\n  -o-transition: border 0.2s ease-in-out;\n  transition: border 0.2s ease-in-out;\n}\n.thumbnail > img,\n.thumbnail a > img {\n  margin-left: auto;\n  margin-right: auto;\n}\na.thumbnail:hover,\na.thumbnail:focus,\na.thumbnail.active {\n  border-color: #15c;\n}\n.thumbnail .caption {\n  padding: 9px;\n  color: #000;\n}\n.alert {\n  padding: 15px;\n  margin-bottom: 20px;\n  border: 1px solid transparent;\n  border-radius: 0px;\n}\n.alert h4 {\n  margin-top: 0;\n  color: inherit;\n}\n.alert .alert-link {\n  font-weight: bold;\n}\n.alert > p,\n.alert > ul {\n  margin-bottom: 0;\n}\n.alert > p + p {\n  margin-top: 5px;\n}\n.alert-dismissable,\n.alert-dismissible {\n  padding-right: 35px;\n}\n.alert-dismissable .close,\n.alert-dismissible .close {\n  position: relative;\n  top: -2px;\n  right: -21px;\n  color: inherit;\n}\n.alert-success {\n  background-color: #dff0d8;\n  border-color: #d6e9c6;\n  color: #3c763d;\n}\n.alert-success hr {\n  border-top-color: #c9e2b3;\n}\n.alert-success .alert-link {\n  color: #2b542c;\n}\n.alert-info {\n  background-color: #d9edf7;\n  border-color: #bce8f1;\n  color: #31708f;\n}\n.alert-info hr {\n  border-top-color: #a6e1ec;\n}\n.alert-info .alert-link {\n  color: #245269;\n}\n.alert-warning {\n  background-color: #fcf8e3;\n  border-color: #faebcc;\n  color: #8a6d3b;\n}\n.alert-warning hr {\n  border-top-color: #f7e1b5;\n}\n.alert-warning .alert-link {\n  color: #66512c;\n}\n.alert-danger {\n  background-color: #f2dede;\n  border-color: #ebccd1;\n  color: #a94442;\n}\n.alert-danger hr {\n  border-top-color: #e4b9c0;\n}\n.alert-danger .alert-link {\n  color: #843534;\n}\n@-webkit-keyframes progress-bar-stripes {\n  from {\n    background-position: 40px 0;\n  }\n  to {\n    background-position: 0 0;\n  }\n}\n@keyframes progress-bar-stripes {\n  from {\n    background-position: 40px 0;\n  }\n  to {\n    background-position: 0 0;\n  }\n}\n.progress {\n  overflow: hidden;\n  height: 20px;\n  margin-bottom: 20px;\n  background-color: #f5f5f5;\n  border-radius: 0px;\n  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);\n  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);\n}\n.progress-bar {\n  float: left;\n  width: 0%;\n  height: 100%;\n  font-size: 12px;\n  line-height: 20px;\n  color: #fff;\n  text-align: center;\n  background-color: #15c;\n  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);\n  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);\n  -webkit-transition: width 0.6s ease;\n  -o-transition: width 0.6s ease;\n  transition: width 0.6s ease;\n}\n.progress-striped .progress-bar,\n.progress-bar-striped {\n  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-size: 40px 40px;\n}\n.progress.active .progress-bar,\n.progress-bar.active {\n  -webkit-animation: progress-bar-stripes 2s linear infinite;\n  -o-animation: progress-bar-stripes 2s linear infinite;\n  animation: progress-bar-stripes 2s linear infinite;\n}\n.progress-bar-success {\n  background-color: #5cb85c;\n}\n.progress-striped .progress-bar-success {\n  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n}\n.progress-bar-info {\n  background-color: #f40;\n}\n.progress-striped .progress-bar-info {\n  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n}\n.progress-bar-warning {\n  background-color: #f0ad4e;\n}\n.progress-striped .progress-bar-warning {\n  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n}\n.progress-bar-danger {\n  background-color: #f00;\n}\n.progress-striped .progress-bar-danger {\n  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n}\n.circle-progress-bar {\n  display: block;\n  border-radius: 100%;\n  position: relative;\n}\n.circle-progress-bar:after {\n  position: absolute;\n  display: block;\n  box-shadow: inset 0 0 1em black;\n  content: attr(data-percent) \"%\";\n  font-size: 2em;\n  text-align: center;\n  left: 50%;\n  top: 50%;\n  border-radius: 100%;\n}\n.circle-progress-bar.circle-progress-bar-sm {\n  height: 140px;\n  width: 140px;\n}\n.circle-progress-bar.circle-progress-bar-sm #svg {\n  width: 140px;\n  height: 140px;\n}\n.circle-progress-bar.circle-progress-bar-sm #svg circle {\n  r: 60;\n  cx: 70;\n  cy: 70;\n}\n.circle-progress-bar.circle-progress-bar-sm:after {\n  height: 100px;\n  width: 100px;\n  margin-top: -50px;\n  margin-left: -50px;\n  line-height: 106px;\n}\n.circle-progress-bar.circle-progress-bar-md {\n  height: 148px;\n  width: 148px;\n}\n.circle-progress-bar.circle-progress-bar-md #svg {\n  width: 148px;\n  height: 148px;\n}\n.circle-progress-bar.circle-progress-bar-md #svg circle {\n  r: 64;\n  cx: 74;\n  cy: 74;\n}\n.circle-progress-bar.circle-progress-bar-md:after {\n  height: 108px;\n  width: 108px;\n  margin-top: -54px;\n  margin-left: -54px;\n  line-height: 114px;\n}\n.circle-progress-bar.circle-progress-bar-lg {\n  height: 172px;\n  width: 172px;\n}\n.circle-progress-bar.circle-progress-bar-lg #svg {\n  width: 172px;\n  height: 172px;\n}\n.circle-progress-bar.circle-progress-bar-lg #svg circle {\n  r: 76;\n  cx: 86;\n  cy: 86;\n}\n.circle-progress-bar.circle-progress-bar-lg:after {\n  height: 132px;\n  width: 132px;\n  margin-top: -66px;\n  margin-left: -66px;\n  line-height: 138px;\n}\n.circle-progress-bar #svg circle {\n  stroke-dashoffset: 0;\n  transition: stroke-dashoffset 1s linear;\n  stroke: #666;\n  stroke-width: 1em;\n  display: block;\n}\n.circle-progress-bar-default .bar {\n  stroke: #15c !important;\n}\n.circle-progress-bar-success .bar {\n  stroke: #5cb85c !important;\n}\n.circle-progress-bar-info .bar {\n  stroke: #f40 !important;\n}\n.circle-progress-bar-warning .bar {\n  stroke: #f0ad4e !important;\n}\n.circle-progress-bar-danger .bar {\n  stroke: #f00 !important;\n}\n.media {\n  margin-top: 15px;\n}\n.media:first-child {\n  margin-top: 0;\n}\n.media,\n.media-body {\n  zoom: 1;\n  overflow: hidden;\n}\n.media-body {\n  width: 10000px;\n}\n.media-object {\n  display: block;\n}\n.media-object.img-thumbnail {\n  max-width: none;\n}\n.media-right,\n.media > .pull-right {\n  padding-left: 10px;\n}\n.media-left,\n.media > .pull-left {\n  padding-right: 10px;\n}\n.media-left,\n.media-right,\n.media-body {\n  display: table-cell;\n  vertical-align: top;\n}\n.media-middle {\n  vertical-align: middle;\n}\n.media-bottom {\n  vertical-align: bottom;\n}\n.media-heading {\n  margin-top: 0;\n  margin-bottom: 5px;\n}\n.media-list {\n  padding-left: 0;\n  list-style: none;\n}\n.list-group {\n  margin-bottom: 20px;\n  padding-left: 0;\n}\n.list-group-item {\n  position: relative;\n  display: block;\n  padding: 10px 15px;\n  margin-bottom: -1px;\n  background-color: #fff;\n  border: 1px solid #ddd;\n}\n.list-group-item:first-child {\n  border-top-right-radius: 0px;\n  border-top-left-radius: 0px;\n}\n.list-group-item:last-child {\n  margin-bottom: 0;\n  border-bottom-right-radius: 0px;\n  border-bottom-left-radius: 0px;\n}\na.list-group-item,\nbutton.list-group-item {\n  color: #555;\n}\na.list-group-item .list-group-item-heading,\nbutton.list-group-item .list-group-item-heading {\n  color: #333;\n}\na.list-group-item:hover,\nbutton.list-group-item:hover,\na.list-group-item:focus,\nbutton.list-group-item:focus {\n  text-decoration: none;\n  color: #555;\n  background-color: #f5f5f5;\n}\nbutton.list-group-item {\n  width: 100%;\n  text-align: left;\n}\n.list-group-item.disabled,\n.list-group-item.disabled:hover,\n.list-group-item.disabled:focus {\n  background-color: #eeeeee;\n  color: #777777;\n  cursor: not-allowed;\n}\n.list-group-item.disabled .list-group-item-heading,\n.list-group-item.disabled:hover .list-group-item-heading,\n.list-group-item.disabled:focus .list-group-item-heading {\n  color: inherit;\n}\n.list-group-item.disabled .list-group-item-text,\n.list-group-item.disabled:hover .list-group-item-text,\n.list-group-item.disabled:focus .list-group-item-text {\n  color: #777777;\n}\n.list-group-item.active,\n.list-group-item.active:hover,\n.list-group-item.active:focus {\n  z-index: 2;\n  color: #fff;\n  background-color: #15c;\n  border-color: #15c;\n}\n.list-group-item.active .list-group-item-heading,\n.list-group-item.active:hover .list-group-item-heading,\n.list-group-item.active:focus .list-group-item-heading,\n.list-group-item.active .list-group-item-heading > small,\n.list-group-item.active:hover .list-group-item-heading > small,\n.list-group-item.active:focus .list-group-item-heading > small,\n.list-group-item.active .list-group-item-heading > .small,\n.list-group-item.active:hover .list-group-item-heading > .small,\n.list-group-item.active:focus .list-group-item-heading > .small {\n  color: inherit;\n}\n.list-group-item.active .list-group-item-text,\n.list-group-item.active:hover .list-group-item-text,\n.list-group-item.active:focus .list-group-item-text {\n  color: #b1cbf8;\n}\n.list-group-item-success {\n  color: #3c763d;\n  background-color: #dff0d8;\n}\na.list-group-item-success,\nbutton.list-group-item-success {\n  color: #3c763d;\n}\na.list-group-item-success .list-group-item-heading,\nbutton.list-group-item-success .list-group-item-heading {\n  color: inherit;\n}\na.list-group-item-success:hover,\nbutton.list-group-item-success:hover,\na.list-group-item-success:focus,\nbutton.list-group-item-success:focus {\n  color: #3c763d;\n  background-color: #d0e9c6;\n}\na.list-group-item-success.active,\nbutton.list-group-item-success.active,\na.list-group-item-success.active:hover,\nbutton.list-group-item-success.active:hover,\na.list-group-item-success.active:focus,\nbutton.list-group-item-success.active:focus {\n  color: #fff;\n  background-color: #3c763d;\n  border-color: #3c763d;\n}\n.list-group-item-info {\n  color: #31708f;\n  background-color: #d9edf7;\n}\na.list-group-item-info,\nbutton.list-group-item-info {\n  color: #31708f;\n}\na.list-group-item-info .list-group-item-heading,\nbutton.list-group-item-info .list-group-item-heading {\n  color: inherit;\n}\na.list-group-item-info:hover,\nbutton.list-group-item-info:hover,\na.list-group-item-info:focus,\nbutton.list-group-item-info:focus {\n  color: #31708f;\n  background-color: #c4e3f3;\n}\na.list-group-item-info.active,\nbutton.list-group-item-info.active,\na.list-group-item-info.active:hover,\nbutton.list-group-item-info.active:hover,\na.list-group-item-info.active:focus,\nbutton.list-group-item-info.active:focus {\n  color: #fff;\n  background-color: #31708f;\n  border-color: #31708f;\n}\n.list-group-item-warning {\n  color: #8a6d3b;\n  background-color: #fcf8e3;\n}\na.list-group-item-warning,\nbutton.list-group-item-warning {\n  color: #8a6d3b;\n}\na.list-group-item-warning .list-group-item-heading,\nbutton.list-group-item-warning .list-group-item-heading {\n  color: inherit;\n}\na.list-group-item-warning:hover,\nbutton.list-group-item-warning:hover,\na.list-group-item-warning:focus,\nbutton.list-group-item-warning:focus {\n  color: #8a6d3b;\n  background-color: #faf2cc;\n}\na.list-group-item-warning.active,\nbutton.list-group-item-warning.active,\na.list-group-item-warning.active:hover,\nbutton.list-group-item-warning.active:hover,\na.list-group-item-warning.active:focus,\nbutton.list-group-item-warning.active:focus {\n  color: #fff;\n  background-color: #8a6d3b;\n  border-color: #8a6d3b;\n}\n.list-group-item-danger {\n  color: #a94442;\n  background-color: #f2dede;\n}\na.list-group-item-danger,\nbutton.list-group-item-danger {\n  color: #a94442;\n}\na.list-group-item-danger .list-group-item-heading,\nbutton.list-group-item-danger .list-group-item-heading {\n  color: inherit;\n}\na.list-group-item-danger:hover,\nbutton.list-group-item-danger:hover,\na.list-group-item-danger:focus,\nbutton.list-group-item-danger:focus {\n  color: #a94442;\n  background-color: #ebcccc;\n}\na.list-group-item-danger.active,\nbutton.list-group-item-danger.active,\na.list-group-item-danger.active:hover,\nbutton.list-group-item-danger.active:hover,\na.list-group-item-danger.active:focus,\nbutton.list-group-item-danger.active:focus {\n  color: #fff;\n  background-color: #a94442;\n  border-color: #a94442;\n}\n.list-group-item-heading {\n  margin-top: 0;\n  margin-bottom: 5px;\n}\n.list-group-item-text {\n  margin-bottom: 0;\n  line-height: 1.3;\n}\n.panel {\n  margin-bottom: 20px;\n  background-color: #fff;\n  border: 1px solid transparent;\n  border-radius: 0px;\n  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);\n  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);\n}\n.panel-body {\n  padding: 15px;\n}\n.panel-heading {\n  padding: 10px 15px;\n  border-bottom: 1px solid transparent;\n  border-top-right-radius: -1px;\n  border-top-left-radius: -1px;\n}\n.panel-heading > .dropdown .dropdown-toggle {\n  color: inherit;\n}\n.panel-title {\n  margin-top: 0;\n  margin-bottom: 0;\n  font-size: 16px;\n  color: inherit;\n}\n.panel-title > a,\n.panel-title > small,\n.panel-title > .small,\n.panel-title > small > a,\n.panel-title > .small > a {\n  color: inherit;\n}\n.panel-footer {\n  padding: 10px 15px;\n  background-color: #f5f5f5;\n  border-top: 1px solid #ddd;\n  border-bottom-right-radius: -1px;\n  border-bottom-left-radius: -1px;\n}\n.panel > .list-group,\n.panel > .panel-collapse > .list-group {\n  margin-bottom: 0;\n}\n.panel > .list-group .list-group-item,\n.panel > .panel-collapse > .list-group .list-group-item {\n  border-width: 1px 0;\n  border-radius: 0;\n}\n.panel > .list-group:first-child .list-group-item:first-child,\n.panel > .panel-collapse > .list-group:first-child .list-group-item:first-child {\n  border-top: 0;\n  border-top-right-radius: -1px;\n  border-top-left-radius: -1px;\n}\n.panel > .list-group:last-child .list-group-item:last-child,\n.panel > .panel-collapse > .list-group:last-child .list-group-item:last-child {\n  border-bottom: 0;\n  border-bottom-right-radius: -1px;\n  border-bottom-left-radius: -1px;\n}\n.panel > .panel-heading + .panel-collapse > .list-group .list-group-item:first-child {\n  border-top-right-radius: 0;\n  border-top-left-radius: 0;\n}\n.panel-heading + .list-group .list-group-item:first-child {\n  border-top-width: 0;\n}\n.list-group + .panel-footer {\n  border-top-width: 0;\n}\n.panel > .table,\n.panel > .table-responsive > .table,\n.panel > .panel-collapse > .table {\n  margin-bottom: 0;\n}\n.panel > .table caption,\n.panel > .table-responsive > .table caption,\n.panel > .panel-collapse > .table caption {\n  padding-left: 15px;\n  padding-right: 15px;\n}\n.panel > .table:first-child,\n.panel > .table-responsive:first-child > .table:first-child {\n  border-top-right-radius: -1px;\n  border-top-left-radius: -1px;\n}\n.panel > .table:first-child > thead:first-child > tr:first-child,\n.panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child,\n.panel > .table:first-child > tbody:first-child > tr:first-child,\n.panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child {\n  border-top-left-radius: -1px;\n  border-top-right-radius: -1px;\n}\n.panel > .table:first-child > thead:first-child > tr:first-child td:first-child,\n.panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child td:first-child,\n.panel > .table:first-child > tbody:first-child > tr:first-child td:first-child,\n.panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child td:first-child,\n.panel > .table:first-child > thead:first-child > tr:first-child th:first-child,\n.panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child th:first-child,\n.panel > .table:first-child > tbody:first-child > tr:first-child th:first-child,\n.panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child th:first-child {\n  border-top-left-radius: -1px;\n}\n.panel > .table:first-child > thead:first-child > tr:first-child td:last-child,\n.panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child td:last-child,\n.panel > .table:first-child > tbody:first-child > tr:first-child td:last-child,\n.panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child td:last-child,\n.panel > .table:first-child > thead:first-child > tr:first-child th:last-child,\n.panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child th:last-child,\n.panel > .table:first-child > tbody:first-child > tr:first-child th:last-child,\n.panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child th:last-child {\n  border-top-right-radius: -1px;\n}\n.panel > .table:last-child,\n.panel > .table-responsive:last-child > .table:last-child {\n  border-bottom-right-radius: -1px;\n  border-bottom-left-radius: -1px;\n}\n.panel > .table:last-child > tbody:last-child > tr:last-child,\n.panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child,\n.panel > .table:last-child > tfoot:last-child > tr:last-child,\n.panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child {\n  border-bottom-left-radius: -1px;\n  border-bottom-right-radius: -1px;\n}\n.panel > .table:last-child > tbody:last-child > tr:last-child td:first-child,\n.panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child td:first-child,\n.panel > .table:last-child > tfoot:last-child > tr:last-child td:first-child,\n.panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child td:first-child,\n.panel > .table:last-child > tbody:last-child > tr:last-child th:first-child,\n.panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child th:first-child,\n.panel > .table:last-child > tfoot:last-child > tr:last-child th:first-child,\n.panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child th:first-child {\n  border-bottom-left-radius: -1px;\n}\n.panel > .table:last-child > tbody:last-child > tr:last-child td:last-child,\n.panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child td:last-child,\n.panel > .table:last-child > tfoot:last-child > tr:last-child td:last-child,\n.panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child td:last-child,\n.panel > .table:last-child > tbody:last-child > tr:last-child th:last-child,\n.panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child th:last-child,\n.panel > .table:last-child > tfoot:last-child > tr:last-child th:last-child,\n.panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child th:last-child {\n  border-bottom-right-radius: -1px;\n}\n.panel > .panel-body + .table,\n.panel > .panel-body + .table-responsive,\n.panel > .table + .panel-body,\n.panel > .table-responsive + .panel-body {\n  border-top: 1px solid #d4d4d4;\n}\n.panel > .table > tbody:first-child > tr:first-child th,\n.panel > .table > tbody:first-child > tr:first-child td {\n  border-top: 0;\n}\n.panel > .table-bordered,\n.panel > .table-responsive > .table-bordered {\n  border: 0;\n}\n.panel > .table-bordered > thead > tr > th:first-child,\n.panel > .table-responsive > .table-bordered > thead > tr > th:first-child,\n.panel > .table-bordered > tbody > tr > th:first-child,\n.panel > .table-responsive > .table-bordered > tbody > tr > th:first-child,\n.panel > .table-bordered > tfoot > tr > th:first-child,\n.panel > .table-responsive > .table-bordered > tfoot > tr > th:first-child,\n.panel > .table-bordered > thead > tr > td:first-child,\n.panel > .table-responsive > .table-bordered > thead > tr > td:first-child,\n.panel > .table-bordered > tbody > tr > td:first-child,\n.panel > .table-responsive > .table-bordered > tbody > tr > td:first-child,\n.panel > .table-bordered > tfoot > tr > td:first-child,\n.panel > .table-responsive > .table-bordered > tfoot > tr > td:first-child {\n  border-left: 0;\n}\n.panel > .table-bordered > thead > tr > th:last-child,\n.panel > .table-responsive > .table-bordered > thead > tr > th:last-child,\n.panel > .table-bordered > tbody > tr > th:last-child,\n.panel > .table-responsive > .table-bordered > tbody > tr > th:last-child,\n.panel > .table-bordered > tfoot > tr > th:last-child,\n.panel > .table-responsive > .table-bordered > tfoot > tr > th:last-child,\n.panel > .table-bordered > thead > tr > td:last-child,\n.panel > .table-responsive > .table-bordered > thead > tr > td:last-child,\n.panel > .table-bordered > tbody > tr > td:last-child,\n.panel > .table-responsive > .table-bordered > tbody > tr > td:last-child,\n.panel > .table-bordered > tfoot > tr > td:last-child,\n.panel > .table-responsive > .table-bordered > tfoot > tr > td:last-child {\n  border-right: 0;\n}\n.panel > .table-bordered > thead > tr:first-child > td,\n.panel > .table-responsive > .table-bordered > thead > tr:first-child > td,\n.panel > .table-bordered > tbody > tr:first-child > td,\n.panel > .table-responsive > .table-bordered > tbody > tr:first-child > td,\n.panel > .table-bordered > thead > tr:first-child > th,\n.panel > .table-responsive > .table-bordered > thead > tr:first-child > th,\n.panel > .table-bordered > tbody > tr:first-child > th,\n.panel > .table-responsive > .table-bordered > tbody > tr:first-child > th {\n  border-bottom: 0;\n}\n.panel > .table-bordered > tbody > tr:last-child > td,\n.panel > .table-responsive > .table-bordered > tbody > tr:last-child > td,\n.panel > .table-bordered > tfoot > tr:last-child > td,\n.panel > .table-responsive > .table-bordered > tfoot > tr:last-child > td,\n.panel > .table-bordered > tbody > tr:last-child > th,\n.panel > .table-responsive > .table-bordered > tbody > tr:last-child > th,\n.panel > .table-bordered > tfoot > tr:last-child > th,\n.panel > .table-responsive > .table-bordered > tfoot > tr:last-child > th {\n  border-bottom: 0;\n}\n.panel > .table-responsive {\n  border: 0;\n  margin-bottom: 0;\n}\n.panel-group {\n  margin-bottom: 20px;\n}\n.panel-group .panel {\n  margin-bottom: 0;\n  border-radius: 0px;\n}\n.panel-group .panel + .panel {\n  margin-top: 5px;\n}\n.panel-group .panel-heading {\n  border-bottom: 0;\n}\n.panel-group .panel-heading + .panel-collapse > .panel-body,\n.panel-group .panel-heading + .panel-collapse > .list-group {\n  border-top: 1px solid #ddd;\n}\n.panel-group .panel-footer {\n  border-top: 0;\n}\n.panel-group .panel-footer + .panel-collapse .panel-body {\n  border-bottom: 1px solid #ddd;\n}\n.panel-default {\n  border-color: #ddd;\n}\n.panel-default > .panel-heading {\n  color: #333333;\n  background-color: #f5f5f5;\n  border-color: #ddd;\n}\n.panel-default > .panel-heading + .panel-collapse > .panel-body {\n  border-top-color: #ddd;\n}\n.panel-default > .panel-heading .badge {\n  color: #f5f5f5;\n  background-color: #333333;\n}\n.panel-default > .panel-footer + .panel-collapse > .panel-body {\n  border-bottom-color: #ddd;\n}\n.panel-primary {\n  border-color: #15c;\n}\n.panel-primary > .panel-heading {\n  color: #fff;\n  background-color: #15c;\n  border-color: #15c;\n}\n.panel-primary > .panel-heading + .panel-collapse > .panel-body {\n  border-top-color: #15c;\n}\n.panel-primary > .panel-heading .badge {\n  color: #15c;\n  background-color: #fff;\n}\n.panel-primary > .panel-footer + .panel-collapse > .panel-body {\n  border-bottom-color: #15c;\n}\n.panel-success {\n  border-color: #d6e9c6;\n}\n.panel-success > .panel-heading {\n  color: #3c763d;\n  background-color: #dff0d8;\n  border-color: #d6e9c6;\n}\n.panel-success > .panel-heading + .panel-collapse > .panel-body {\n  border-top-color: #d6e9c6;\n}\n.panel-success > .panel-heading .badge {\n  color: #dff0d8;\n  background-color: #3c763d;\n}\n.panel-success > .panel-footer + .panel-collapse > .panel-body {\n  border-bottom-color: #d6e9c6;\n}\n.panel-info {\n  border-color: #bce8f1;\n}\n.panel-info > .panel-heading {\n  color: #31708f;\n  background-color: #d9edf7;\n  border-color: #bce8f1;\n}\n.panel-info > .panel-heading + .panel-collapse > .panel-body {\n  border-top-color: #bce8f1;\n}\n.panel-info > .panel-heading .badge {\n  color: #d9edf7;\n  background-color: #31708f;\n}\n.panel-info > .panel-footer + .panel-collapse > .panel-body {\n  border-bottom-color: #bce8f1;\n}\n.panel-warning {\n  border-color: #faebcc;\n}\n.panel-warning > .panel-heading {\n  color: #8a6d3b;\n  background-color: #fcf8e3;\n  border-color: #faebcc;\n}\n.panel-warning > .panel-heading + .panel-collapse > .panel-body {\n  border-top-color: #faebcc;\n}\n.panel-warning > .panel-heading .badge {\n  color: #fcf8e3;\n  background-color: #8a6d3b;\n}\n.panel-warning > .panel-footer + .panel-collapse > .panel-body {\n  border-bottom-color: #faebcc;\n}\n.panel-danger {\n  border-color: #ebccd1;\n}\n.panel-danger > .panel-heading {\n  color: #a94442;\n  background-color: #f2dede;\n  border-color: #ebccd1;\n}\n.panel-danger > .panel-heading + .panel-collapse > .panel-body {\n  border-top-color: #ebccd1;\n}\n.panel-danger > .panel-heading .badge {\n  color: #f2dede;\n  background-color: #a94442;\n}\n.panel-danger > .panel-footer + .panel-collapse > .panel-body {\n  border-bottom-color: #ebccd1;\n}\n.embed-responsive {\n  position: relative;\n  display: block;\n  height: 0;\n  padding: 0;\n  overflow: hidden;\n}\n.embed-responsive .embed-responsive-item,\n.embed-responsive iframe,\n.embed-responsive embed,\n.embed-responsive object,\n.embed-responsive video {\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  height: 100%;\n  width: 100%;\n  border: 0;\n}\n.embed-responsive-16by9 {\n  padding-bottom: 56.25%;\n}\n.embed-responsive-4by3 {\n  padding-bottom: 75%;\n}\n.well {\n  min-height: 20px;\n  padding: 19px;\n  margin-bottom: 20px;\n  background-color: #f5f5f5;\n  border: 1px solid #e3e3e3;\n  border-radius: 0px;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);\n}\n.well blockquote {\n  border-color: #ddd;\n  border-color: rgba(0, 0, 0, 0.15);\n}\n.well-lg {\n  padding: 24px;\n  border-radius: 0px;\n}\n.well-sm {\n  padding: 9px;\n  border-radius: 0px;\n}\n.close {\n  float: right;\n  font-size: 21px;\n  font-weight: bold;\n  line-height: 1;\n  color: #000;\n  text-shadow: 0 1px 0 #fff;\n  opacity: 0.2;\n  filter: alpha(opacity=20);\n}\n.close:hover,\n.close:focus {\n  color: #000;\n  text-decoration: none;\n  cursor: pointer;\n  opacity: 0.5;\n  filter: alpha(opacity=50);\n}\nbutton.close {\n  padding: 0;\n  cursor: pointer;\n  background: transparent;\n  border: 0;\n  -webkit-appearance: none;\n}\nslidepicker {\n  position: relative;\n  display: block;\n}\nslidepicker .slidepicker-track {\n  background: #fbfbfb;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  float: left;\n  height: 8px;\n  position: absolute;\n  width: 100%;\n}\nslidepicker .slidepicker-handle {\n  display: block;\n  position: absolute;\n  top: -5px;\n  background: #15c;\n  cursor: pointer;\n  height: 25px;\n  margin: -4px 0 0 -6px;\n  width: 10px;\n}\nslidepicker .slidepicker-label {\n  margin: 0px;\n  padding: 0px;\n  margin-top: 20px;\n}\nslidepicker .slidepicker-label slidepicker-option {\n  float: left;\n  display: block;\n  margin-left: 28px;\n  margin-right: 28px;\n}\nslidepicker .slidepicker-label slidepicker-option.active a {\n  color: #15c;\n  font-weight: bold;\n}\nslidepicker .slidepicker-label slidepicker-option a {\n  display: block;\n  clear: both;\n  font-weight: normal;\n  color: #000;\n  white-space: nowrap;\n  cursor: pointer;\n  text-decoration: none;\n}\nslidepicker.slidepicker-vertical {\n  width: 14px;\n}\nslidepicker.slidepicker-vertical .slidepicker-track {\n  height: 100%;\n  width: 8px;\n}\nslidepicker.slidepicker-vertical .slidepicker-handle {\n  left: -4px;\n  height: 10px;\n  width: 25px;\n}\nslidepicker.slidepicker-vertical .slidepicker-label {\n  margin: 0px;\n  margin-left: 20px;\n}\nslidepicker.slidepicker-vertical .slidepicker-label slidepicker-option {\n  float: none;\n  margin-left: 0px;\n  margin-right: 0px;\n  padding-top: 27px;\n  padding-bottom: 27px;\n}\nslidepicker.slidepicker-vertical .slidepicker-label.sm slidepicker-option {\n  padding-top: 25px;\n  padding-bottom: 25px;\n}\nslidepicker.slidepicker-vertical .slidepicker-label.lg slidepicker-option {\n  padding-top: 33px;\n  padding-bottom: 33px;\n}\nslidepicker.slidepicker-vertical.slidepicker-sm slidepicker-option {\n  padding-top: 25px;\n  padding-bottom: 25px;\n}\nslidepicker.slidepicker-vertical.slidepicker-lg slidepicker-option {\n  padding-top: 33px;\n  padding-bottom: 33px;\n}\n.autocomplete-suggestions {\n  text-align: left;\n  cursor: default;\n  border: 1px solid #ccc;\n  border-top: 0;\n  background: #fff;\n  box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.1);\n  /* core styles should not be changed */\n  position: absolute;\n  display: none;\n  z-index: 9999;\n  max-height: 254px;\n  overflow: hidden;\n  overflow-y: auto;\n  box-sizing: border-box;\n  min-width: 500px;\n}\n.pagination-autocomplete {\n  text-align: left;\n  cursor: default;\n  border: 1px solid #ccc;\n  border-top: 0;\n  background: #fff;\n  box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.1);\n  /* core styles should not be changed */\n  display: none;\n  position: absolute;\n  z-index: 9999;\n  overflow: hidden;\n  overflow-y: auto;\n  box-sizing: border-box;\n  min-width: 500px;\n}\n.autocomplete-suggestion {\n  position: relative;\n  padding: 0 .6em;\n  line-height: 23px;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  font-size: 1.02em;\n  color: #333;\n}\n.autocomplete-suggestion b {\n  font-weight: normal;\n  color: #1f8dd6;\n}\n.autocomplete-suggestion.selected {\n  background: #f0f0f0;\n}\n.modal-open {\n  overflow: hidden;\n}\n.modal {\n  display: none;\n  overflow: hidden;\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  z-index: 1050;\n  -webkit-overflow-scrolling: touch;\n  outline: 0;\n}\n.modal.fade .modal-dialog {\n  -webkit-transform: translate(0, -25%);\n  -ms-transform: translate(0, -25%);\n  -o-transform: translate(0, -25%);\n  transform: translate(0, -25%);\n  -webkit-transition: -webkit-transform 0.3s ease-out;\n  -moz-transition: -moz-transform 0.3s ease-out;\n  -o-transition: -o-transform 0.3s ease-out;\n  transition: transform 0.3s ease-out;\n}\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  -ms-transform: translate(0, 0);\n  -o-transform: translate(0, 0);\n  transform: translate(0, 0);\n}\n.modal-open .modal {\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n.modal-dialog {\n  position: relative;\n  width: auto;\n  margin: 10px;\n}\n.modal-content {\n  position: relative;\n  background-color: #fff;\n  border: 1px solid #999;\n  border: 1px solid rgba(0, 0, 0, 0.2);\n  border-radius: 0px;\n  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);\n  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);\n  background-clip: padding-box;\n  outline: 0;\n}\n.modal-backdrop {\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  z-index: 1040;\n  background-color: #000;\n}\n.modal-backdrop.fade {\n  opacity: 0;\n  filter: alpha(opacity=0);\n}\n.modal-backdrop.in {\n  opacity: 0.5;\n  filter: alpha(opacity=50);\n}\n.modal-header {\n  padding-top: 15px;\n  padding-right: 15px;\n  padding-left: 15px;\n}\n.modal-header .close {\n  margin-top: -6px;\n}\n.modal-title {\n  margin: 0;\n  line-height: 1.42857143;\n}\n.modal-body {\n  position: relative;\n  padding: 15px;\n}\n.modal-footer {\n  padding: 15px;\n  text-align: right;\n  border-top: 1px solid #e5e5e5;\n}\n.modal-footer .btn + .btn {\n  margin-left: 5px;\n  margin-bottom: 0;\n}\n.modal-footer .btn-group .btn + .btn {\n  margin-left: -1px;\n}\n.modal-footer .btn-block + .btn-block {\n  margin-left: 0;\n}\n.modal-scrollbar-measure {\n  position: absolute;\n  top: -9999px;\n  width: 50px;\n  height: 50px;\n  overflow: scroll;\n}\n@media (min-width: 768px) {\n  .modal-dialog {\n    width: 600px;\n    margin: 30px auto;\n  }\n  .modal-content {\n    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);\n    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);\n  }\n  .modal-sm {\n    width: 300px;\n  }\n}\n@media (min-width: 992px) {\n  .modal-lg {\n    width: 900px;\n  }\n}\n.modal-right .modal-dialog,\n.modal-left .modal-dialog,\n.modal-top .modal-dialog,\n.modal-bottom .modal-dialog {\n  position: fixed;\n  margin: 0px;\n}\n.modal-right .modal-dialog .modal-content,\n.modal-left .modal-dialog .modal-content,\n.modal-top .modal-dialog .modal-content,\n.modal-bottom .modal-dialog .modal-content {\n  border: 0;\n  overflow-y: auto;\n  height: 100%;\n}\n.modal-left .modal-dialog {\n  left: 0;\n  top: 0;\n  bottom: 0;\n}\n.modal-right .modal-dialog {\n  right: 0;\n  top: 0;\n  bottom: 0;\n}\n.modal-top .modal-dialog {\n  left: 0;\n  right: 0;\n  top: 0;\n  width: 100%;\n}\n.modal-bottom .modal-dialog {\n  left: 0;\n  right: 0;\n  bottom: 0;\n  width: 100%;\n}\n.modal-right.fade .modal-dialog {\n  -webkit-transform: translate(25%, 0);\n  -ms-transform: translate(25%, 0);\n  -o-transform: translate(25%, 0);\n  transform: translate(25%, 0);\n  -webkit-transition: -webkit-transform 0.3s ease-out;\n  -moz-transition: -moz-transform 0.3s ease-out;\n  -o-transition: -o-transform 0.3s ease-out;\n  transition: transform 0.3s ease-out;\n}\n.modal-right.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  -ms-transform: translate(0, 0);\n  -o-transform: translate(0, 0);\n  transform: translate(0, 0);\n}\n.modal-left.fade .modal-dialog {\n  -webkit-transform: translate(-25%, 0);\n  -ms-transform: translate(-25%, 0);\n  -o-transform: translate(-25%, 0);\n  transform: translate(-25%, 0);\n  -webkit-transition: -webkit-transform 0.3s ease-out;\n  -moz-transition: -moz-transform 0.3s ease-out;\n  -o-transition: -o-transform 0.3s ease-out;\n  transition: transform 0.3s ease-out;\n}\n.modal-left.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  -ms-transform: translate(0, 0);\n  -o-transform: translate(0, 0);\n  transform: translate(0, 0);\n}\n.modal-top.fade .modal-dialog {\n  -webkit-transform: translate(0, -25%);\n  -ms-transform: translate(0, -25%);\n  -o-transform: translate(0, -25%);\n  transform: translate(0, -25%);\n  -webkit-transition: -webkit-transform 0.3s ease-out;\n  -moz-transition: -moz-transform 0.3s ease-out;\n  -o-transition: -o-transform 0.3s ease-out;\n  transition: transform 0.3s ease-out;\n}\n.modal-top.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  -ms-transform: translate(0, 0);\n  -o-transform: translate(0, 0);\n  transform: translate(0, 0);\n}\n.modal-bottom.fade .modal-dialog {\n  -webkit-transform: translate(0, 25%);\n  -ms-transform: translate(0, 25%);\n  -o-transform: translate(0, 25%);\n  transform: translate(0, 25%);\n  -webkit-transition: -webkit-transform 0.3s ease-out;\n  -moz-transition: -moz-transform 0.3s ease-out;\n  -o-transition: -o-transform 0.3s ease-out;\n  transition: transform 0.3s ease-out;\n}\n.modal-bottom.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  -ms-transform: translate(0, 0);\n  -o-transform: translate(0, 0);\n  transform: translate(0, 0);\n}\n@media (min-width: 768px) {\n  .modal-right .modal-dialog,\n  .modal-left .modal-dialog {\n    width: 600px;\n    margin: 0px auto;\n  }\n}\n@media (max-width: 768px) {\n  .modal-right .modal-dialog,\n  .modal-left .modal-dialog {\n    width: 100%;\n    float: none;\n  }\n}\n.tooltip {\n  position: absolute;\n  z-index: 1070;\n  display: block;\n  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n  font-style: normal;\n  font-weight: normal;\n  letter-spacing: normal;\n  line-break: auto;\n  line-height: 1.42857143;\n  text-align: left;\n  text-align: start;\n  text-decoration: none;\n  text-shadow: none;\n  text-transform: none;\n  white-space: normal;\n  word-break: normal;\n  word-spacing: normal;\n  word-wrap: normal;\n  font-size: 12px;\n  opacity: 0;\n  filter: alpha(opacity=0);\n}\n.tooltip.in {\n  opacity: 0.9;\n  filter: alpha(opacity=90);\n}\n.tooltip.top {\n  margin-top: -3px;\n  padding: 5px 0;\n}\n.tooltip.right {\n  margin-left: 3px;\n  padding: 0 5px;\n}\n.tooltip.bottom {\n  margin-top: 3px;\n  padding: 5px 0;\n}\n.tooltip.left {\n  margin-left: -3px;\n  padding: 0 5px;\n}\n.tooltip-inner {\n  max-width: 200px;\n  padding: 3px 8px;\n  color: #fff;\n  text-align: center;\n  background-color: #000;\n  border-radius: 0px;\n}\n.tooltip-arrow {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-color: transparent;\n  border-style: solid;\n}\n.tooltip.top .tooltip-arrow {\n  bottom: 0;\n  left: 50%;\n  margin-left: -5px;\n  border-width: 5px 5px 0;\n  border-top-color: #000;\n}\n.tooltip.top-left .tooltip-arrow {\n  bottom: 0;\n  right: 5px;\n  margin-bottom: -5px;\n  border-width: 5px 5px 0;\n  border-top-color: #000;\n}\n.tooltip.top-right .tooltip-arrow {\n  bottom: 0;\n  left: 5px;\n  margin-bottom: -5px;\n  border-width: 5px 5px 0;\n  border-top-color: #000;\n}\n.tooltip.right .tooltip-arrow {\n  top: 50%;\n  left: 0;\n  margin-top: -5px;\n  border-width: 5px 5px 5px 0;\n  border-right-color: #000;\n}\n.tooltip.left .tooltip-arrow {\n  top: 50%;\n  right: 0;\n  margin-top: -5px;\n  border-width: 5px 0 5px 5px;\n  border-left-color: #000;\n}\n.tooltip.bottom .tooltip-arrow {\n  top: 0;\n  left: 50%;\n  margin-left: -5px;\n  border-width: 0 5px 5px;\n  border-bottom-color: #000;\n}\n.tooltip.bottom-left .tooltip-arrow {\n  top: 0;\n  right: 5px;\n  margin-top: -5px;\n  border-width: 0 5px 5px;\n  border-bottom-color: #000;\n}\n.tooltip.bottom-right .tooltip-arrow {\n  top: 0;\n  left: 5px;\n  margin-top: -5px;\n  border-width: 0 5px 5px;\n  border-bottom-color: #000;\n}\n.popover {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1060;\n  display: none;\n  max-width: 276px;\n  padding: 1px;\n  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n  font-style: normal;\n  font-weight: normal;\n  letter-spacing: normal;\n  line-break: auto;\n  line-height: 1.42857143;\n  text-align: left;\n  text-align: start;\n  text-decoration: none;\n  text-shadow: none;\n  text-transform: none;\n  white-space: normal;\n  word-break: normal;\n  word-spacing: normal;\n  word-wrap: normal;\n  font-size: 14px;\n  background-color: #fff;\n  background-clip: padding-box;\n  border: 1px solid #ccc;\n  border: 1px solid rgba(0, 0, 0, 0.2);\n  border-radius: 0px;\n  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);\n  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);\n}\n.popover.top {\n  margin-top: -10px;\n}\n.popover.right {\n  margin-left: 10px;\n}\n.popover.bottom {\n  margin-top: 10px;\n}\n.popover.left {\n  margin-left: -10px;\n}\n.popover-title {\n  margin: 0;\n  padding: 8px 14px;\n  font-size: 14px;\n  background-color: #f7f7f7;\n  border-bottom: 1px solid #ebebeb;\n  border-radius: -1px -1px 0 0;\n}\n.popover-content {\n  padding: 9px 14px;\n}\n.popover > .arrow,\n.popover > .arrow:after {\n  position: absolute;\n  display: block;\n  width: 0;\n  height: 0;\n  border-color: transparent;\n  border-style: solid;\n}\n.popover > .arrow {\n  border-width: 11px;\n}\n.popover > .arrow:after {\n  border-width: 10px;\n  content: \"\";\n}\n.popover.top > .arrow {\n  left: 50%;\n  margin-left: -11px;\n  border-bottom-width: 0;\n  border-top-color: #999999;\n  border-top-color: rgba(0, 0, 0, 0.25);\n  bottom: -11px;\n}\n.popover.top > .arrow:after {\n  content: \" \";\n  bottom: 1px;\n  margin-left: -10px;\n  border-bottom-width: 0;\n  border-top-color: #fff;\n}\n.popover.right > .arrow {\n  top: 50%;\n  left: -11px;\n  margin-top: -11px;\n  border-left-width: 0;\n  border-right-color: #999999;\n  border-right-color: rgba(0, 0, 0, 0.25);\n}\n.popover.right > .arrow:after {\n  content: \" \";\n  left: 1px;\n  bottom: -10px;\n  border-left-width: 0;\n  border-right-color: #fff;\n}\n.popover.bottom > .arrow {\n  left: 50%;\n  margin-left: -11px;\n  border-top-width: 0;\n  border-bottom-color: #999999;\n  border-bottom-color: rgba(0, 0, 0, 0.25);\n  top: -11px;\n}\n.popover.bottom > .arrow:after {\n  content: \" \";\n  top: 1px;\n  margin-left: -10px;\n  border-top-width: 0;\n  border-bottom-color: #fff;\n}\n.popover.left > .arrow {\n  top: 50%;\n  right: -11px;\n  margin-top: -11px;\n  border-right-width: 0;\n  border-left-color: #999999;\n  border-left-color: rgba(0, 0, 0, 0.25);\n}\n.popover.left > .arrow:after {\n  content: \" \";\n  right: 1px;\n  border-right-width: 0;\n  border-left-color: #fff;\n  bottom: -10px;\n}\n.carousel {\n  display: block;\n  position: relative;\n}\n.carousel-inner {\n  position: relative;\n  overflow: hidden;\n  width: 100%;\n}\n.carousel-inner > .item {\n  display: none;\n  position: relative;\n  -webkit-transition: 0.6s ease-in-out left;\n  -o-transition: 0.6s ease-in-out left;\n  transition: 0.6s ease-in-out left;\n}\n.carousel-inner > .item > img,\n.carousel-inner > .item > a > img {\n  line-height: 1;\n}\n@media all and (transform-3d), (-webkit-transform-3d) {\n  .carousel-inner > .item {\n    -webkit-transition: -webkit-transform 0.6s ease-in-out;\n    -moz-transition: -moz-transform 0.6s ease-in-out;\n    -o-transition: -o-transform 0.6s ease-in-out;\n    transition: transform 0.6s ease-in-out;\n    -webkit-backface-visibility: hidden;\n    -moz-backface-visibility: hidden;\n    backface-visibility: hidden;\n    -webkit-perspective: 1000px;\n    -moz-perspective: 1000px;\n    perspective: 1000px;\n  }\n  .carousel-inner > .item.next,\n  .carousel-inner > .item.active.right {\n    -webkit-transform: translate3d(100%, 0, 0);\n    transform: translate3d(100%, 0, 0);\n    left: 0;\n  }\n  .carousel-inner > .item.prev,\n  .carousel-inner > .item.active.left {\n    -webkit-transform: translate3d(-100%, 0, 0);\n    transform: translate3d(-100%, 0, 0);\n    left: 0;\n  }\n  .carousel-inner > .item.next.left,\n  .carousel-inner > .item.prev.right,\n  .carousel-inner > .item.active {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n    left: 0;\n  }\n}\n.carousel-inner > .active,\n.carousel-inner > .next,\n.carousel-inner > .prev {\n  display: block;\n}\n.carousel-inner > .active {\n  left: 0;\n}\n.carousel-inner > .next,\n.carousel-inner > .prev {\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n.carousel-inner > .next {\n  left: 100%;\n}\n.carousel-inner > .prev {\n  left: -100%;\n}\n.carousel-inner > .next.left,\n.carousel-inner > .prev.right {\n  left: 0;\n}\n.carousel-inner > .active.left {\n  left: -100%;\n}\n.carousel-inner > .active.right {\n  left: 100%;\n}\n.carousel-control {\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 15%;\n  opacity: 0.5;\n  filter: alpha(opacity=50);\n  font-size: 20px;\n  color: #fff;\n  text-align: center;\n  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);\n  background-color: rgba(0, 0, 0, 0);\n}\n.carousel-control.left {\n  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);\n  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);\n  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);\n  background-repeat: repeat-x;\n  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);\n}\n.carousel-control.right {\n  left: auto;\n  right: 0;\n  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);\n  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);\n  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);\n  background-repeat: repeat-x;\n  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);\n}\n.carousel-control:hover,\n.carousel-control:focus {\n  outline: 0;\n  color: #fff;\n  text-decoration: none;\n  opacity: 0.9;\n  filter: alpha(opacity=90);\n}\n.carousel-control .icon-previous,\n.carousel-control .icon-next {\n  position: absolute;\n  top: 50%;\n  margin-top: -10px;\n  z-index: 5;\n  display: inline-block;\n}\n.carousel-control .icon-previous {\n  left: 50%;\n  margin-left: -10px;\n}\n.carousel-control .icon-next {\n  right: 50%;\n  margin-right: -10px;\n}\n.carousel-control .icon-previous,\n.carousel-control .icon-next {\n  width: 20px;\n  height: 20px;\n  line-height: 1;\n}\n.carousel-indicators {\n  position: absolute;\n  bottom: 10px;\n  left: 50%;\n  z-index: 15;\n  width: 60%;\n  margin-left: -30%;\n  padding-left: 0;\n  list-style: none;\n  text-align: center;\n}\n.carousel-indicators li {\n  display: inline-block;\n  width: 10px;\n  height: 10px;\n  margin: 1px;\n  text-indent: -999px;\n  border: 1px solid #fff;\n  border-radius: 10px;\n  cursor: pointer;\n  background-color: #000 \\9;\n  background-color: rgba(0, 0, 0, 0);\n}\n.carousel-indicators .active {\n  margin: 0;\n  width: 12px;\n  height: 12px;\n  background-color: #fff;\n}\n.carousel-caption {\n  position: absolute;\n  left: 15%;\n  right: 15%;\n  bottom: 20px;\n  z-index: 10;\n  padding-top: 20px;\n  padding-bottom: 20px;\n  color: #fff;\n  text-align: center;\n  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);\n}\n.carousel-caption .btn {\n  text-shadow: none;\n}\n@media screen and (min-width: 768px) {\n  .carousel-control .icon-previous,\n  .carousel-control .icon-next {\n    width: 30px;\n    height: 30px;\n    margin-top: -10px;\n    font-size: 30px;\n  }\n  .carousel-control .icon-previous {\n    margin-left: -10px;\n  }\n  .carousel-control .icon-next {\n    margin-right: -10px;\n  }\n  .carousel-caption {\n    left: 20%;\n    right: 20%;\n    padding-bottom: 30px;\n  }\n  .carousel-indicators {\n    bottom: 20px;\n  }\n}\n.clearfix:before,\n.clearfix:after,\n.dl-horizontal dd:before,\n.dl-horizontal dd:after,\n.container:before,\n.container:after,\n.container-fluid:before,\n.container-fluid:after,\n.row:before,\n.row:after,\n.form-horizontal .form-group:before,\n.form-horizontal .form-group:after,\n.btn-toolbar:before,\n.btn-toolbar:after,\n.btn-group-vertical > .btn-group:before,\n.btn-group-vertical > .btn-group:after,\n.nav:before,\n.nav:after,\n.navbar:before,\n.navbar:after,\n.navbar-header:before,\n.navbar-header:after,\n.navbar-collapse:before,\n.navbar-collapse:after,\n.pager:before,\n.pager:after,\n.panel-body:before,\n.panel-body:after,\n.modal-footer:before,\n.modal-footer:after {\n  content: \" \";\n  display: table;\n}\n.clearfix:after,\n.dl-horizontal dd:after,\n.container:after,\n.container-fluid:after,\n.row:after,\n.form-horizontal .form-group:after,\n.btn-toolbar:after,\n.btn-group-vertical > .btn-group:after,\n.nav:after,\n.navbar:after,\n.navbar-header:after,\n.navbar-collapse:after,\n.pager:after,\n.panel-body:after,\n.modal-footer:after {\n  clear: both;\n}\n.center-block {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n}\n.pull-right {\n  float: right !important;\n}\n.pull-left {\n  float: left !important;\n}\n.hide {\n  display: none !important;\n}\n.show {\n  display: block !important;\n}\n.invisible {\n  visibility: hidden;\n}\n.text-hide {\n  font: 0/0 a;\n  color: transparent;\n  text-shadow: none;\n  background-color: transparent;\n  border: 0;\n}\n.hidden {\n  display: none !important;\n}\n.affix {\n  position: fixed;\n}\n@-ms-viewport {\n  width: device-width;\n}\n.visible-xs,\n.visible-sm,\n.visible-md,\n.visible-lg {\n  display: none !important;\n}\n.visible-xs-block,\n.visible-xs-inline,\n.visible-xs-inline-block,\n.visible-sm-block,\n.visible-sm-inline,\n.visible-sm-inline-block,\n.visible-md-block,\n.visible-md-inline,\n.visible-md-inline-block,\n.visible-lg-block,\n.visible-lg-inline,\n.visible-lg-inline-block {\n  display: none !important;\n}\n@media (max-width: 767px) {\n  .visible-xs {\n    display: block !important;\n  }\n  table.visible-xs {\n    display: table !important;\n  }\n  tr.visible-xs {\n    display: table-row !important;\n  }\n  th.visible-xs,\n  td.visible-xs {\n    display: table-cell !important;\n  }\n}\n@media (max-width: 767px) {\n  .visible-xs-block {\n    display: block !important;\n  }\n}\n@media (max-width: 767px) {\n  .visible-xs-inline {\n    display: inline !important;\n  }\n}\n@media (max-width: 767px) {\n  .visible-xs-inline-block {\n    display: inline-block !important;\n  }\n}\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm {\n    display: block !important;\n  }\n  table.visible-sm {\n    display: table !important;\n  }\n  tr.visible-sm {\n    display: table-row !important;\n  }\n  th.visible-sm,\n  td.visible-sm {\n    display: table-cell !important;\n  }\n}\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm-block {\n    display: block !important;\n  }\n}\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm-inline {\n    display: inline !important;\n  }\n}\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm-inline-block {\n    display: inline-block !important;\n  }\n}\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md {\n    display: block !important;\n  }\n  table.visible-md {\n    display: table !important;\n  }\n  tr.visible-md {\n    display: table-row !important;\n  }\n  th.visible-md,\n  td.visible-md {\n    display: table-cell !important;\n  }\n}\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md-block {\n    display: block !important;\n  }\n}\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md-inline {\n    display: inline !important;\n  }\n}\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md-inline-block {\n    display: inline-block !important;\n  }\n}\n@media (min-width: 1200px) {\n  .visible-lg {\n    display: block !important;\n  }\n  table.visible-lg {\n    display: table !important;\n  }\n  tr.visible-lg {\n    display: table-row !important;\n  }\n  th.visible-lg,\n  td.visible-lg {\n    display: table-cell !important;\n  }\n}\n@media (min-width: 1200px) {\n  .visible-lg-block {\n    display: block !important;\n  }\n}\n@media (min-width: 1200px) {\n  .visible-lg-inline {\n    display: inline !important;\n  }\n}\n@media (min-width: 1200px) {\n  .visible-lg-inline-block {\n    display: inline-block !important;\n  }\n}\n@media (max-width: 767px) {\n  .hidden-xs {\n    display: none !important;\n  }\n}\n@media (min-width: 768px) and (max-width: 991px) {\n  .hidden-sm {\n    display: none !important;\n  }\n}\n@media (min-width: 992px) and (max-width: 1199px) {\n  .hidden-md {\n    display: none !important;\n  }\n}\n@media (min-width: 1200px) {\n  .hidden-lg {\n    display: none !important;\n  }\n}\n.visible-print {\n  display: none !important;\n}\n@media print {\n  .visible-print {\n    display: block !important;\n  }\n  table.visible-print {\n    display: table !important;\n  }\n  tr.visible-print {\n    display: table-row !important;\n  }\n  th.visible-print,\n  td.visible-print {\n    display: table-cell !important;\n  }\n}\n.visible-print-block {\n  display: none !important;\n}\n@media print {\n  .visible-print-block {\n    display: block !important;\n  }\n}\n.visible-print-inline {\n  display: none !important;\n}\n@media print {\n  .visible-print-inline {\n    display: inline !important;\n  }\n}\n.visible-print-inline-block {\n  display: none !important;\n}\n@media print {\n  .visible-print-inline-block {\n    display: inline-block !important;\n  }\n}\n@media print {\n  .hidden-print {\n    display: none !important;\n  }\n}\n", ""]);
+exports.push([module.i, "/*!\n * Bootstrap v3.3.7 (http://getbootstrap.com)\n * Copyright 2011-2016 Twitter, Inc.\n * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n */\n@font-face {\n  font-family: 'FontAwesome';\n  src: url(" + __webpack_require__(47) + ");\n  src: url(" + __webpack_require__(47) + "?#iefix&v=0.0.1) format('embedded-opentype'), url(" + __webpack_require__(135) + ") format('woff2'), url(" + __webpack_require__(134) + ") format('woff'), url(" + __webpack_require__(81) + ") format('truetype'), url(" + __webpack_require__(80) + "#fontawesomeregular) format('svg');\n  font-weight: normal;\n  font-style: normal;\n}\n.icon {\n  display: inline-block;\n  font: normal normal normal 14px/1.42857143 FontAwesome;\n  font-size: inherit;\n  text-rendering: auto;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n.icon-add::before {\n  content: \"\\F067\";\n}\n.icon-delete::before {\n  content: \"\\F1F8\";\n}\n.icon-close::before {\n  content: \"\\F00D\";\n}\n.icon-edit::before {\n  content: \"\\F040\";\n}\n.icon-search::before {\n  content: \"\\F002\";\n}\n.icon-about::before {\n  content: \"\\F00E\";\n}\n.icon-import::before {\n  content: \"\\F019\";\n}\n.icon-export::before {\n  content: \"\\F093\";\n}\n.icon-save::before {\n  content: \"\\F0C7\";\n}\n.icon-print::before {\n  content: \"\\F02F\";\n}\n.icon-parameter::before {\n  content: \"\\F013\";\n}\n.icon-info::before {\n  content: \"\\F129\";\n}\n.icon-question::before {\n  content: \"\\F128\";\n}\n.icon-link::before {\n  content: \"\\F0C1\";\n}\n.icon-next::before {\n  content: \"\\F054\";\n}\n.icon-previous::before {\n  content: \"\\F053\";\n}\n.icon-exchange::before {\n  content: \"\\F0EC\";\n}\n.icon-warning::before {\n  content: \"\\F071\";\n}\n.icon-copy::before {\n  content: \"\\F016\";\n}\n.icon-star::before {\n  content: \"\\F005\";\n}\n.icon-archive::before {\n  content: \"\\F187\";\n}\n.icon-date::before {\n  content: \"\\F073\";\n}\n.icon-share::before {\n  content: \"\\F064\";\n}\n.icon-back::before {\n  content: \"\\F0E2\";\n}\n.icon-comment::before {\n  content: \"\\F075\";\n}\n.icon-users::before {\n  content: \"\\F0C0\";\n}\n.icon-user::before {\n  content: \"\\F007\";\n}\n.icon-folder::before {\n  content: \"\\F114\";\n}\n.icon-folder-open::before {\n  content: \"\\F115\";\n}\n.icon-stats::before {\n  content: \"\\F200\";\n}\n.icon-sort-asc::before {\n  content: \"\\F0DE\";\n}\n.icon-sort-desc::before {\n  content: \"\\F0DD\";\n}\n.icon-ticket::before {\n  content: \"\\F145\";\n}\n.icon-lock::before {\n  content: \"\\F023\";\n}\n.icon-unlock::before {\n  content: \"\\F09C\";\n}\n.icon-show::before {\n  content: \"\\F06E\";\n}\n.icon-hide::before {\n  content: \"\\F070\";\n}\n.icon-fax::before {\n  content: \"\\F1AC\";\n}\n.icon-home::before {\n  content: \"\\F015\";\n}\n.icon-sign-in::before {\n  content: \"\\F011\";\n}\n.icon-sign-out::before {\n  content: \"\\F08B\";\n}\n.icon-purchase::before {\n  content: \"\\F07A\";\n}\n.icon-file-pdf::before {\n  content: \"\\F1C1\";\n}\n.icon-file-zip::before {\n  content: \"\\F1C6\";\n}\n.icon-file-text::before {\n  content: \"\\F0F6\";\n}\n.icon-notification::before {\n  content: \"\\F0A2\";\n}\n.icon-up::before {\n  content: \"\\F0D8\";\n}\n.icon-down::before {\n  content: \"\\F0D7\";\n}\n.icon-parameter::before {\n  content: \"\\F013\";\n}\n.icon-check::before {\n  content: \"\\F00C\";\n}\n.icon-list::before {\n  content: \"\\F0CB\";\n}\n.icon-1x {\n  font-size: 14px;\n}\n.icon-2x {\n  font-size: 28px;\n}\n.icon-3x {\n  font-size: 42px;\n}\n.icon-4x {\n  font-size: 56px;\n}\n.icon-5x {\n  font-size: 70px;\n}\n.icon-disabled {\n  color: #bbb;\n}\n/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */\nhtml {\n  font-family: sans-serif;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%;\n}\nbody {\n  margin: 0;\n}\narticle,\naside,\ndetails,\nfigcaption,\nfigure,\nfooter,\nheader,\nhgroup,\nmain,\nmenu,\nnav,\nsection,\nsummary {\n  display: block;\n}\naudio,\ncanvas,\nprogress,\nvideo {\n  display: inline-block;\n  vertical-align: baseline;\n}\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n[hidden],\ntemplate {\n  display: none;\n}\na {\n  background-color: transparent;\n}\na:active,\na:hover {\n  outline: 0;\n}\nabbr[title] {\n  border-bottom: 1px dotted;\n}\nb,\nstrong {\n  font-weight: bold;\n}\ndfn {\n  font-style: italic;\n}\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\nmark {\n  background: #ff0;\n  color: #000;\n}\nsmall {\n  font-size: 80%;\n}\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\nsup {\n  top: -0.5em;\n}\nsub {\n  bottom: -0.25em;\n}\nimg {\n  border: 0;\n}\nsvg:not(:root) {\n  overflow: hidden;\n}\nfigure {\n  margin: 1em 40px;\n}\nhr {\n  box-sizing: content-box;\n  height: 0;\n}\npre {\n  overflow: auto;\n}\ncode,\nkbd,\npre,\nsamp {\n  font-family: monospace, monospace;\n  font-size: 1em;\n}\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  color: inherit;\n  font: inherit;\n  margin: 0;\n}\nbutton {\n  overflow: visible;\n}\nbutton,\nselect {\n  text-transform: none;\n}\nbutton,\nhtml input[type=\"button\"],\ninput[type=\"reset\"],\ninput[type=\"submit\"] {\n  -webkit-appearance: button;\n  cursor: pointer;\n}\nbutton[disabled],\nhtml input[disabled] {\n  cursor: default;\n}\nbutton::-moz-focus-inner,\ninput::-moz-focus-inner {\n  border: 0;\n  padding: 0;\n}\ninput {\n  line-height: normal;\n}\ninput[type=\"checkbox\"],\ninput[type=\"radio\"] {\n  box-sizing: border-box;\n  padding: 0;\n}\ninput[type=\"number\"]::-webkit-inner-spin-button,\ninput[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\ninput[type=\"search\"] {\n  -webkit-appearance: textfield;\n  box-sizing: content-box;\n}\ninput[type=\"search\"]::-webkit-search-cancel-button,\ninput[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\nlegend {\n  border: 0;\n  padding: 0;\n}\ntextarea {\n  overflow: auto;\n}\noptgroup {\n  font-weight: bold;\n}\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\ntd,\nth {\n  padding: 0;\n}\n/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */\n@media print {\n  *,\n  *:before,\n  *:after {\n    background: transparent !important;\n    color: #000 !important;\n    box-shadow: none !important;\n    text-shadow: none !important;\n  }\n  a,\n  a:visited {\n    text-decoration: underline;\n  }\n  a[href]:after {\n    content: \" (\" attr(href) \")\";\n  }\n  abbr[title]:after {\n    content: \" (\" attr(title) \")\";\n  }\n  a[href^=\"#\"]:after,\n  a[href^=\"javascript:\"]:after {\n    content: \"\";\n  }\n  pre,\n  blockquote {\n    border: 1px solid #999;\n    page-break-inside: avoid;\n  }\n  thead {\n    display: table-header-group;\n  }\n  tr,\n  img {\n    page-break-inside: avoid;\n  }\n  img {\n    max-width: 100% !important;\n  }\n  p,\n  h2,\n  h3 {\n    orphans: 3;\n    widows: 3;\n  }\n  h2,\n  h3 {\n    page-break-after: avoid;\n  }\n  .navbar {\n    display: none;\n  }\n  .btn > .caret,\n  .dropup > .btn > .caret {\n    border-top-color: #000 !important;\n  }\n  .label {\n    border: 1px solid #000;\n  }\n  .table {\n    border-collapse: collapse !important;\n  }\n  .table td,\n  .table th {\n    background-color: #fff !important;\n  }\n  .table-bordered th,\n  .table-bordered td {\n    border: 1px solid #ddd !important;\n  }\n}\n* {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n}\n*:before,\n*:after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n}\nhtml {\n  font-size: 10px;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n  font-size: 14px;\n  line-height: 1.42857143;\n  color: #000;\n  background-color: #fff;\n}\ninput,\nbutton,\nselect,\ntextarea {\n  font-family: inherit;\n  font-size: inherit;\n  line-height: inherit;\n}\na {\n  color: #15c;\n  text-decoration: none;\n}\na:hover,\na:focus {\n  color: #0b3885;\n  text-decoration: underline;\n}\na:focus {\n  outline: 5px auto -webkit-focus-ring-color;\n  outline-offset: -2px;\n}\nfigure {\n  margin: 0;\n}\nimg {\n  vertical-align: middle;\n}\n.img-responsive,\n.thumbnail > img,\n.thumbnail a > img,\n.carousel-inner > .item > img,\n.carousel-inner > .item > a > img {\n  display: block;\n  max-width: 100%;\n  height: auto;\n}\n.img-rounded {\n  border-radius: 0px;\n}\n.img-thumbnail {\n  padding: 4px;\n  line-height: 1.42857143;\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: 0px;\n  -webkit-transition: all 0.2s ease-in-out;\n  -o-transition: all 0.2s ease-in-out;\n  transition: all 0.2s ease-in-out;\n  display: inline-block;\n  max-width: 100%;\n  height: auto;\n}\n.img-circle {\n  border-radius: 50%;\n}\nhr {\n  margin-top: 20px;\n  margin-bottom: 20px;\n  border: 0;\n  border-top: 1px solid #eeeeee;\n}\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  margin: -1px;\n  padding: 0;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  border: 0;\n}\n.sr-only-focusable:active,\n.sr-only-focusable:focus {\n  position: static;\n  width: auto;\n  height: auto;\n  margin: 0;\n  overflow: visible;\n  clip: auto;\n}\n[role=\"button\"] {\n  cursor: pointer;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6,\n.h1,\n.h2,\n.h3,\n.h4,\n.h5,\n.h6 {\n  font-family: inherit;\n  font-weight: 500;\n  line-height: 1.1;\n  color: inherit;\n}\nh1 small,\nh2 small,\nh3 small,\nh4 small,\nh5 small,\nh6 small,\n.h1 small,\n.h2 small,\n.h3 small,\n.h4 small,\n.h5 small,\n.h6 small,\nh1 .small,\nh2 .small,\nh3 .small,\nh4 .small,\nh5 .small,\nh6 .small,\n.h1 .small,\n.h2 .small,\n.h3 .small,\n.h4 .small,\n.h5 .small,\n.h6 .small {\n  font-weight: normal;\n  line-height: 1;\n  color: #777777;\n}\nh1,\n.h1,\nh2,\n.h2,\nh3,\n.h3 {\n  margin-top: 20px;\n  margin-bottom: 10px;\n}\nh1 small,\n.h1 small,\nh2 small,\n.h2 small,\nh3 small,\n.h3 small,\nh1 .small,\n.h1 .small,\nh2 .small,\n.h2 .small,\nh3 .small,\n.h3 .small {\n  font-size: 65%;\n}\nh4,\n.h4,\nh5,\n.h5,\nh6,\n.h6 {\n  margin-top: 10px;\n  margin-bottom: 10px;\n}\nh4 small,\n.h4 small,\nh5 small,\n.h5 small,\nh6 small,\n.h6 small,\nh4 .small,\n.h4 .small,\nh5 .small,\n.h5 .small,\nh6 .small,\n.h6 .small {\n  font-size: 75%;\n}\nh1,\n.h1 {\n  font-size: 36px;\n}\nh2,\n.h2 {\n  font-size: 30px;\n}\nh3,\n.h3 {\n  font-size: 24px;\n}\nh4,\n.h4 {\n  font-size: 18px;\n}\nh5,\n.h5 {\n  font-size: 14px;\n}\nh6,\n.h6 {\n  font-size: 12px;\n}\np {\n  margin: 0 0 10px;\n}\n.lead {\n  margin-bottom: 20px;\n  font-size: 16px;\n  font-weight: 300;\n  line-height: 1.4;\n}\n@media (min-width: 768px) {\n  .lead {\n    font-size: 21px;\n  }\n}\nsmall,\n.small {\n  font-size: 85%;\n}\nmark,\n.mark {\n  background-color: #fcf8e3;\n  padding: .2em;\n}\n.text-left {\n  text-align: left;\n}\n.text-right {\n  text-align: right;\n}\n.text-center {\n  text-align: center;\n}\n.text-justify {\n  text-align: justify;\n}\n.text-nowrap {\n  white-space: nowrap;\n}\n.text-lowercase {\n  text-transform: lowercase;\n}\n.text-uppercase {\n  text-transform: uppercase;\n}\n.text-capitalize {\n  text-transform: capitalize;\n}\n.text-muted {\n  color: #777777;\n}\n.text-primary {\n  color: #15c;\n}\na.text-primary:hover,\na.text-primary:focus {\n  color: #0d419d;\n}\n.text-success {\n  color: #3c763d;\n}\na.text-success:hover,\na.text-success:focus {\n  color: #2b542c;\n}\n.text-info {\n  color: #31708f;\n}\na.text-info:hover,\na.text-info:focus {\n  color: #245269;\n}\n.text-warning {\n  color: #8a6d3b;\n}\na.text-warning:hover,\na.text-warning:focus {\n  color: #66512c;\n}\n.text-danger {\n  color: #a94442;\n}\na.text-danger:hover,\na.text-danger:focus {\n  color: #843534;\n}\n.bg-primary {\n  color: #fff;\n  background-color: #15c;\n}\na.bg-primary:hover,\na.bg-primary:focus {\n  background-color: #0d419d;\n}\n.bg-success {\n  background-color: #dff0d8;\n}\na.bg-success:hover,\na.bg-success:focus {\n  background-color: #c1e2b3;\n}\n.bg-info {\n  background-color: #d9edf7;\n}\na.bg-info:hover,\na.bg-info:focus {\n  background-color: #afd9ee;\n}\n.bg-warning {\n  background-color: #fcf8e3;\n}\na.bg-warning:hover,\na.bg-warning:focus {\n  background-color: #f7ecb5;\n}\n.bg-danger {\n  background-color: #f2dede;\n}\na.bg-danger:hover,\na.bg-danger:focus {\n  background-color: #e4b9b9;\n}\n.page-header {\n  padding-bottom: 9px;\n  margin: 40px 0 20px;\n  border-bottom: 1px solid #eeeeee;\n}\n.title1 {\n  color: #15c;\n  display: flex;\n  flex-direction: row;\n  flex: 1 auto;\n  font-size: 36px;\n  line-height: 1.1;\n  font-weight: bold;\n  white-space: nowrap;\n  margin: 10px 0;\n}\n.title1::after {\n  content: '';\n  width: 100%;\n  height: 1px;\n  background: linear-gradient(to right, #15c, transparent);\n  align-self: flex-end;\n  margin-left: 10px;\n  margin-bottom: 7px;\n}\n.title2 {\n  color: #15c;\n  display: flex;\n  flex-direction: row;\n  flex: 1 auto;\n  font-size: 30px;\n  line-height: 1.1;\n  font-weight: bold;\n  white-space: nowrap;\n  margin: 10px 0;\n}\n.title2::after {\n  content: '';\n  width: 100%;\n  height: 1px;\n  background: linear-gradient(to right, #15c, transparent);\n  align-self: flex-end;\n  margin-left: 10px;\n  margin-bottom: 6px;\n}\n.title3 {\n  color: #15c;\n  display: flex;\n  flex-direction: row;\n  flex: 1 auto;\n  font-size: 24px;\n  line-height: 1.1;\n  font-weight: bold;\n  white-space: nowrap;\n  margin: 10px 0;\n}\n.title3::after {\n  content: '';\n  width: 100%;\n  height: 1px;\n  background: linear-gradient(to right, #15c, transparent);\n  align-self: flex-end;\n  margin-left: 10px;\n  margin-bottom: 5px;\n}\n.title4 {\n  color: #15c;\n  display: flex;\n  flex-direction: row;\n  flex: 1 auto;\n  font-size: 18px;\n  line-height: 1.1;\n  font-weight: bold;\n  white-space: nowrap;\n  margin: 10px 0;\n}\n.title4::after {\n  content: '';\n  width: 100%;\n  height: 1px;\n  background: linear-gradient(to right, #15c, transparent);\n  align-self: flex-end;\n  margin-left: 10px;\n  margin-bottom: 3px;\n}\n.title5 {\n  color: #15c;\n  display: flex;\n  flex-direction: row;\n  flex: 1 auto;\n  font-size: 14px;\n  line-height: 1.1;\n  font-weight: bold;\n  white-space: nowrap;\n  margin: 10px 0;\n}\n.title5::after {\n  content: '';\n  width: 100%;\n  height: 1px;\n  background: linear-gradient(to right, #15c, transparent);\n  align-self: flex-end;\n  margin-left: 10px;\n  margin-bottom: 3px;\n}\n.title6 {\n  color: #15c;\n  display: flex;\n  flex-direction: row;\n  flex: 1 auto;\n  font-size: 12px;\n  line-height: 1.1;\n  font-weight: bold;\n  white-space: nowrap;\n  margin: 10px 0;\n}\n.title6::after {\n  content: '';\n  width: 100%;\n  height: 1px;\n  background: linear-gradient(to right, #15c, transparent);\n  align-self: flex-end;\n  margin-left: 10px;\n  margin-bottom: 2px;\n}\nul,\nol {\n  margin-top: 0;\n  margin-bottom: 10px;\n}\nul ul,\nol ul,\nul ol,\nol ol {\n  margin-bottom: 0;\n}\n.list-unstyled {\n  padding-left: 0;\n  list-style: none;\n}\n.list-inline {\n  padding-left: 0;\n  list-style: none;\n  margin-left: -5px;\n}\n.list-inline > li {\n  display: inline-block;\n  padding-left: 5px;\n  padding-right: 5px;\n}\ndl {\n  margin-top: 0;\n  margin-bottom: 20px;\n}\ndt,\ndd {\n  line-height: 1.42857143;\n}\ndt {\n  font-weight: bold;\n}\ndd {\n  margin-left: 0;\n}\n@media (min-width: 768px) {\n  .dl-horizontal dt {\n    float: left;\n    width: 160px;\n    clear: left;\n    text-align: right;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n  }\n  .dl-horizontal dd {\n    margin-left: 180px;\n  }\n}\nabbr[title],\nabbr[data-original-title] {\n  cursor: help;\n  border-bottom: 1px dotted #777777;\n}\n.initialism {\n  font-size: 90%;\n  text-transform: uppercase;\n}\nblockquote {\n  padding: 10px 20px;\n  margin: 0 0 20px;\n  font-size: 17.5px;\n  border-left: 5px solid #eeeeee;\n}\nblockquote p:last-child,\nblockquote ul:last-child,\nblockquote ol:last-child {\n  margin-bottom: 0;\n}\nblockquote footer,\nblockquote small,\nblockquote .small {\n  display: block;\n  font-size: 80%;\n  line-height: 1.42857143;\n  color: #777777;\n}\nblockquote footer:before,\nblockquote small:before,\nblockquote .small:before {\n  content: '\\2014     \\A0';\n}\n.blockquote-reverse,\nblockquote.pull-right {\n  padding-right: 15px;\n  padding-left: 0;\n  border-right: 5px solid #eeeeee;\n  border-left: 0;\n  text-align: right;\n}\n.blockquote-reverse footer:before,\nblockquote.pull-right footer:before,\n.blockquote-reverse small:before,\nblockquote.pull-right small:before,\n.blockquote-reverse .small:before,\nblockquote.pull-right .small:before {\n  content: '';\n}\n.blockquote-reverse footer:after,\nblockquote.pull-right footer:after,\n.blockquote-reverse small:after,\nblockquote.pull-right small:after,\n.blockquote-reverse .small:after,\nblockquote.pull-right .small:after {\n  content: '\\A0     \\2014';\n}\naddress {\n  margin-bottom: 20px;\n  font-style: normal;\n  line-height: 1.42857143;\n}\ncode,\nkbd,\npre,\nsamp {\n  font-family: Menlo, Monaco, Consolas, \"Courier New\", monospace;\n}\ncode {\n  padding: 2px 4px;\n  font-size: 90%;\n  color: #c7254e;\n  background-color: #f9f2f4;\n  border-radius: 0px;\n}\nkbd {\n  padding: 2px 4px;\n  font-size: 90%;\n  color: #fff;\n  background-color: #333;\n  border-radius: 0px;\n  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);\n}\nkbd kbd {\n  padding: 0;\n  font-size: 100%;\n  font-weight: bold;\n  box-shadow: none;\n}\npre {\n  display: block;\n  padding: 9.5px;\n  margin: 0 0 10px;\n  font-size: 13px;\n  line-height: 1.42857143;\n  word-break: break-all;\n  word-wrap: break-word;\n  color: #333333;\n  background-color: #f5f5f5;\n  border: 1px solid #ccc;\n  border-radius: 0px;\n}\npre code {\n  padding: 0;\n  font-size: inherit;\n  color: inherit;\n  white-space: pre-wrap;\n  background-color: transparent;\n  border-radius: 0;\n}\n.pre-scrollable {\n  max-height: 340px;\n  overflow-y: scroll;\n}\n.container {\n  margin-right: auto;\n  margin-left: auto;\n  padding-left: 15px;\n  padding-right: 15px;\n}\n@media (min-width: 768px) {\n  .container {\n    width: 750px;\n  }\n}\n@media (min-width: 992px) {\n  .container {\n    width: 970px;\n  }\n}\n@media (min-width: 1200px) {\n  .container {\n    width: 1170px;\n  }\n}\n.container-fluid {\n  margin-right: auto;\n  margin-left: auto;\n  padding-left: 15px;\n  padding-right: 15px;\n}\n.row {\n  margin-left: -15px;\n  margin-right: -15px;\n}\n.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {\n  position: relative;\n  min-height: 1px;\n  padding-left: 15px;\n  padding-right: 15px;\n}\n.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {\n  float: left;\n}\n.col-xs-12 {\n  width: 100%;\n}\n.col-xs-11 {\n  width: 91.66666667%;\n}\n.col-xs-10 {\n  width: 83.33333333%;\n}\n.col-xs-9 {\n  width: 75%;\n}\n.col-xs-8 {\n  width: 66.66666667%;\n}\n.col-xs-7 {\n  width: 58.33333333%;\n}\n.col-xs-6 {\n  width: 50%;\n}\n.col-xs-5 {\n  width: 41.66666667%;\n}\n.col-xs-4 {\n  width: 33.33333333%;\n}\n.col-xs-3 {\n  width: 25%;\n}\n.col-xs-2 {\n  width: 16.66666667%;\n}\n.col-xs-1 {\n  width: 8.33333333%;\n}\n.col-xs-pull-12 {\n  right: 100%;\n}\n.col-xs-pull-11 {\n  right: 91.66666667%;\n}\n.col-xs-pull-10 {\n  right: 83.33333333%;\n}\n.col-xs-pull-9 {\n  right: 75%;\n}\n.col-xs-pull-8 {\n  right: 66.66666667%;\n}\n.col-xs-pull-7 {\n  right: 58.33333333%;\n}\n.col-xs-pull-6 {\n  right: 50%;\n}\n.col-xs-pull-5 {\n  right: 41.66666667%;\n}\n.col-xs-pull-4 {\n  right: 33.33333333%;\n}\n.col-xs-pull-3 {\n  right: 25%;\n}\n.col-xs-pull-2 {\n  right: 16.66666667%;\n}\n.col-xs-pull-1 {\n  right: 8.33333333%;\n}\n.col-xs-pull-0 {\n  right: auto;\n}\n.col-xs-push-12 {\n  left: 100%;\n}\n.col-xs-push-11 {\n  left: 91.66666667%;\n}\n.col-xs-push-10 {\n  left: 83.33333333%;\n}\n.col-xs-push-9 {\n  left: 75%;\n}\n.col-xs-push-8 {\n  left: 66.66666667%;\n}\n.col-xs-push-7 {\n  left: 58.33333333%;\n}\n.col-xs-push-6 {\n  left: 50%;\n}\n.col-xs-push-5 {\n  left: 41.66666667%;\n}\n.col-xs-push-4 {\n  left: 33.33333333%;\n}\n.col-xs-push-3 {\n  left: 25%;\n}\n.col-xs-push-2 {\n  left: 16.66666667%;\n}\n.col-xs-push-1 {\n  left: 8.33333333%;\n}\n.col-xs-push-0 {\n  left: auto;\n}\n.col-xs-offset-12 {\n  margin-left: 100%;\n}\n.col-xs-offset-11 {\n  margin-left: 91.66666667%;\n}\n.col-xs-offset-10 {\n  margin-left: 83.33333333%;\n}\n.col-xs-offset-9 {\n  margin-left: 75%;\n}\n.col-xs-offset-8 {\n  margin-left: 66.66666667%;\n}\n.col-xs-offset-7 {\n  margin-left: 58.33333333%;\n}\n.col-xs-offset-6 {\n  margin-left: 50%;\n}\n.col-xs-offset-5 {\n  margin-left: 41.66666667%;\n}\n.col-xs-offset-4 {\n  margin-left: 33.33333333%;\n}\n.col-xs-offset-3 {\n  margin-left: 25%;\n}\n.col-xs-offset-2 {\n  margin-left: 16.66666667%;\n}\n.col-xs-offset-1 {\n  margin-left: 8.33333333%;\n}\n.col-xs-offset-0 {\n  margin-left: 0%;\n}\n@media (min-width: 768px) {\n  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {\n    float: left;\n  }\n  .col-sm-12 {\n    width: 100%;\n  }\n  .col-sm-11 {\n    width: 91.66666667%;\n  }\n  .col-sm-10 {\n    width: 83.33333333%;\n  }\n  .col-sm-9 {\n    width: 75%;\n  }\n  .col-sm-8 {\n    width: 66.66666667%;\n  }\n  .col-sm-7 {\n    width: 58.33333333%;\n  }\n  .col-sm-6 {\n    width: 50%;\n  }\n  .col-sm-5 {\n    width: 41.66666667%;\n  }\n  .col-sm-4 {\n    width: 33.33333333%;\n  }\n  .col-sm-3 {\n    width: 25%;\n  }\n  .col-sm-2 {\n    width: 16.66666667%;\n  }\n  .col-sm-1 {\n    width: 8.33333333%;\n  }\n  .col-sm-pull-12 {\n    right: 100%;\n  }\n  .col-sm-pull-11 {\n    right: 91.66666667%;\n  }\n  .col-sm-pull-10 {\n    right: 83.33333333%;\n  }\n  .col-sm-pull-9 {\n    right: 75%;\n  }\n  .col-sm-pull-8 {\n    right: 66.66666667%;\n  }\n  .col-sm-pull-7 {\n    right: 58.33333333%;\n  }\n  .col-sm-pull-6 {\n    right: 50%;\n  }\n  .col-sm-pull-5 {\n    right: 41.66666667%;\n  }\n  .col-sm-pull-4 {\n    right: 33.33333333%;\n  }\n  .col-sm-pull-3 {\n    right: 25%;\n  }\n  .col-sm-pull-2 {\n    right: 16.66666667%;\n  }\n  .col-sm-pull-1 {\n    right: 8.33333333%;\n  }\n  .col-sm-pull-0 {\n    right: auto;\n  }\n  .col-sm-push-12 {\n    left: 100%;\n  }\n  .col-sm-push-11 {\n    left: 91.66666667%;\n  }\n  .col-sm-push-10 {\n    left: 83.33333333%;\n  }\n  .col-sm-push-9 {\n    left: 75%;\n  }\n  .col-sm-push-8 {\n    left: 66.66666667%;\n  }\n  .col-sm-push-7 {\n    left: 58.33333333%;\n  }\n  .col-sm-push-6 {\n    left: 50%;\n  }\n  .col-sm-push-5 {\n    left: 41.66666667%;\n  }\n  .col-sm-push-4 {\n    left: 33.33333333%;\n  }\n  .col-sm-push-3 {\n    left: 25%;\n  }\n  .col-sm-push-2 {\n    left: 16.66666667%;\n  }\n  .col-sm-push-1 {\n    left: 8.33333333%;\n  }\n  .col-sm-push-0 {\n    left: auto;\n  }\n  .col-sm-offset-12 {\n    margin-left: 100%;\n  }\n  .col-sm-offset-11 {\n    margin-left: 91.66666667%;\n  }\n  .col-sm-offset-10 {\n    margin-left: 83.33333333%;\n  }\n  .col-sm-offset-9 {\n    margin-left: 75%;\n  }\n  .col-sm-offset-8 {\n    margin-left: 66.66666667%;\n  }\n  .col-sm-offset-7 {\n    margin-left: 58.33333333%;\n  }\n  .col-sm-offset-6 {\n    margin-left: 50%;\n  }\n  .col-sm-offset-5 {\n    margin-left: 41.66666667%;\n  }\n  .col-sm-offset-4 {\n    margin-left: 33.33333333%;\n  }\n  .col-sm-offset-3 {\n    margin-left: 25%;\n  }\n  .col-sm-offset-2 {\n    margin-left: 16.66666667%;\n  }\n  .col-sm-offset-1 {\n    margin-left: 8.33333333%;\n  }\n  .col-sm-offset-0 {\n    margin-left: 0%;\n  }\n}\n@media (min-width: 992px) {\n  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {\n    float: left;\n  }\n  .col-md-12 {\n    width: 100%;\n  }\n  .col-md-11 {\n    width: 91.66666667%;\n  }\n  .col-md-10 {\n    width: 83.33333333%;\n  }\n  .col-md-9 {\n    width: 75%;\n  }\n  .col-md-8 {\n    width: 66.66666667%;\n  }\n  .col-md-7 {\n    width: 58.33333333%;\n  }\n  .col-md-6 {\n    width: 50%;\n  }\n  .col-md-5 {\n    width: 41.66666667%;\n  }\n  .col-md-4 {\n    width: 33.33333333%;\n  }\n  .col-md-3 {\n    width: 25%;\n  }\n  .col-md-2 {\n    width: 16.66666667%;\n  }\n  .col-md-1 {\n    width: 8.33333333%;\n  }\n  .col-md-pull-12 {\n    right: 100%;\n  }\n  .col-md-pull-11 {\n    right: 91.66666667%;\n  }\n  .col-md-pull-10 {\n    right: 83.33333333%;\n  }\n  .col-md-pull-9 {\n    right: 75%;\n  }\n  .col-md-pull-8 {\n    right: 66.66666667%;\n  }\n  .col-md-pull-7 {\n    right: 58.33333333%;\n  }\n  .col-md-pull-6 {\n    right: 50%;\n  }\n  .col-md-pull-5 {\n    right: 41.66666667%;\n  }\n  .col-md-pull-4 {\n    right: 33.33333333%;\n  }\n  .col-md-pull-3 {\n    right: 25%;\n  }\n  .col-md-pull-2 {\n    right: 16.66666667%;\n  }\n  .col-md-pull-1 {\n    right: 8.33333333%;\n  }\n  .col-md-pull-0 {\n    right: auto;\n  }\n  .col-md-push-12 {\n    left: 100%;\n  }\n  .col-md-push-11 {\n    left: 91.66666667%;\n  }\n  .col-md-push-10 {\n    left: 83.33333333%;\n  }\n  .col-md-push-9 {\n    left: 75%;\n  }\n  .col-md-push-8 {\n    left: 66.66666667%;\n  }\n  .col-md-push-7 {\n    left: 58.33333333%;\n  }\n  .col-md-push-6 {\n    left: 50%;\n  }\n  .col-md-push-5 {\n    left: 41.66666667%;\n  }\n  .col-md-push-4 {\n    left: 33.33333333%;\n  }\n  .col-md-push-3 {\n    left: 25%;\n  }\n  .col-md-push-2 {\n    left: 16.66666667%;\n  }\n  .col-md-push-1 {\n    left: 8.33333333%;\n  }\n  .col-md-push-0 {\n    left: auto;\n  }\n  .col-md-offset-12 {\n    margin-left: 100%;\n  }\n  .col-md-offset-11 {\n    margin-left: 91.66666667%;\n  }\n  .col-md-offset-10 {\n    margin-left: 83.33333333%;\n  }\n  .col-md-offset-9 {\n    margin-left: 75%;\n  }\n  .col-md-offset-8 {\n    margin-left: 66.66666667%;\n  }\n  .col-md-offset-7 {\n    margin-left: 58.33333333%;\n  }\n  .col-md-offset-6 {\n    margin-left: 50%;\n  }\n  .col-md-offset-5 {\n    margin-left: 41.66666667%;\n  }\n  .col-md-offset-4 {\n    margin-left: 33.33333333%;\n  }\n  .col-md-offset-3 {\n    margin-left: 25%;\n  }\n  .col-md-offset-2 {\n    margin-left: 16.66666667%;\n  }\n  .col-md-offset-1 {\n    margin-left: 8.33333333%;\n  }\n  .col-md-offset-0 {\n    margin-left: 0%;\n  }\n}\n@media (min-width: 1200px) {\n  .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {\n    float: left;\n  }\n  .col-lg-12 {\n    width: 100%;\n  }\n  .col-lg-11 {\n    width: 91.66666667%;\n  }\n  .col-lg-10 {\n    width: 83.33333333%;\n  }\n  .col-lg-9 {\n    width: 75%;\n  }\n  .col-lg-8 {\n    width: 66.66666667%;\n  }\n  .col-lg-7 {\n    width: 58.33333333%;\n  }\n  .col-lg-6 {\n    width: 50%;\n  }\n  .col-lg-5 {\n    width: 41.66666667%;\n  }\n  .col-lg-4 {\n    width: 33.33333333%;\n  }\n  .col-lg-3 {\n    width: 25%;\n  }\n  .col-lg-2 {\n    width: 16.66666667%;\n  }\n  .col-lg-1 {\n    width: 8.33333333%;\n  }\n  .col-lg-pull-12 {\n    right: 100%;\n  }\n  .col-lg-pull-11 {\n    right: 91.66666667%;\n  }\n  .col-lg-pull-10 {\n    right: 83.33333333%;\n  }\n  .col-lg-pull-9 {\n    right: 75%;\n  }\n  .col-lg-pull-8 {\n    right: 66.66666667%;\n  }\n  .col-lg-pull-7 {\n    right: 58.33333333%;\n  }\n  .col-lg-pull-6 {\n    right: 50%;\n  }\n  .col-lg-pull-5 {\n    right: 41.66666667%;\n  }\n  .col-lg-pull-4 {\n    right: 33.33333333%;\n  }\n  .col-lg-pull-3 {\n    right: 25%;\n  }\n  .col-lg-pull-2 {\n    right: 16.66666667%;\n  }\n  .col-lg-pull-1 {\n    right: 8.33333333%;\n  }\n  .col-lg-pull-0 {\n    right: auto;\n  }\n  .col-lg-push-12 {\n    left: 100%;\n  }\n  .col-lg-push-11 {\n    left: 91.66666667%;\n  }\n  .col-lg-push-10 {\n    left: 83.33333333%;\n  }\n  .col-lg-push-9 {\n    left: 75%;\n  }\n  .col-lg-push-8 {\n    left: 66.66666667%;\n  }\n  .col-lg-push-7 {\n    left: 58.33333333%;\n  }\n  .col-lg-push-6 {\n    left: 50%;\n  }\n  .col-lg-push-5 {\n    left: 41.66666667%;\n  }\n  .col-lg-push-4 {\n    left: 33.33333333%;\n  }\n  .col-lg-push-3 {\n    left: 25%;\n  }\n  .col-lg-push-2 {\n    left: 16.66666667%;\n  }\n  .col-lg-push-1 {\n    left: 8.33333333%;\n  }\n  .col-lg-push-0 {\n    left: auto;\n  }\n  .col-lg-offset-12 {\n    margin-left: 100%;\n  }\n  .col-lg-offset-11 {\n    margin-left: 91.66666667%;\n  }\n  .col-lg-offset-10 {\n    margin-left: 83.33333333%;\n  }\n  .col-lg-offset-9 {\n    margin-left: 75%;\n  }\n  .col-lg-offset-8 {\n    margin-left: 66.66666667%;\n  }\n  .col-lg-offset-7 {\n    margin-left: 58.33333333%;\n  }\n  .col-lg-offset-6 {\n    margin-left: 50%;\n  }\n  .col-lg-offset-5 {\n    margin-left: 41.66666667%;\n  }\n  .col-lg-offset-4 {\n    margin-left: 33.33333333%;\n  }\n  .col-lg-offset-3 {\n    margin-left: 25%;\n  }\n  .col-lg-offset-2 {\n    margin-left: 16.66666667%;\n  }\n  .col-lg-offset-1 {\n    margin-left: 8.33333333%;\n  }\n  .col-lg-offset-0 {\n    margin-left: 0%;\n  }\n}\ntable,\ngrid {\n  background-color: #fff;\n}\ncaption {\n  padding-top: 8px;\n  padding-bottom: 8px;\n  color: #777777;\n  text-align: left;\n}\nth,\n.gridHead {\n  text-align: left;\n}\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 20px;\n}\n.table > thead > tr > th,\n.table > tbody > tr > th,\n.table > tfoot > tr > th,\n.table > .gridHeader > tr > th,\n.table > .gridBody > tr > th,\n.table > .gridFooter > tr > th,\n.table > thead > .gridRow > th,\n.table > tbody > .gridRow > th,\n.table > tfoot > .gridRow > th,\n.table > .gridHeader > .gridRow > th,\n.table > .gridBody > .gridRow > th,\n.table > .gridFooter > .gridRow > th,\n.table > thead > tr > td,\n.table > tbody > tr > td,\n.table > tfoot > tr > td,\n.table > .gridHeader > tr > td,\n.table > .gridBody > tr > td,\n.table > .gridFooter > tr > td,\n.table > thead > .gridRow > td,\n.table > tbody > .gridRow > td,\n.table > tfoot > .gridRow > td,\n.table > .gridHeader > .gridRow > td,\n.table > .gridBody > .gridRow > td,\n.table > .gridFooter > .gridRow > td,\n.table > thead > tr > .gridCell,\n.table > tbody > tr > .gridCell,\n.table > tfoot > tr > .gridCell,\n.table > .gridHeader > tr > .gridCell,\n.table > .gridBody > tr > .gridCell,\n.table > .gridFooter > tr > .gridCell,\n.table > thead > .gridRow > .gridCell,\n.table > tbody > .gridRow > .gridCell,\n.table > tfoot > .gridRow > .gridCell,\n.table > .gridHeader > .gridRow > .gridCell,\n.table > .gridBody > .gridRow > .gridCell,\n.table > .gridFooter > .gridRow > .gridCell,\n.table > thead > tr > .gridHead,\n.table > tbody > tr > .gridHead,\n.table > tfoot > tr > .gridHead,\n.table > .gridHeader > tr > .gridHead,\n.table > .gridBody > tr > .gridHead,\n.table > .gridFooter > tr > .gridHead,\n.table > thead > .gridRow > .gridHead,\n.table > tbody > .gridRow > .gridHead,\n.table > tfoot > .gridRow > .gridHead,\n.table > .gridHeader > .gridRow > .gridHead,\n.table > .gridBody > .gridRow > .gridHead,\n.table > .gridFooter > .gridRow > .gridHead {\n  padding: 8px;\n  line-height: 1.42857143;\n  vertical-align: top;\n  border-top: 1px solid #d4d4d4;\n}\n.table > thead > tr > th,\n.table > .gridHeader > .gridRow > .gridHead {\n  vertical-align: bottom;\n  border-bottom: 2px solid #d4d4d4;\n  background: linear-gradient(#626262, #222);\n  color: #fff;\n}\n.table > caption + thead > tr:first-child > th,\n.table > colgroup + thead > tr:first-child > th,\n.table > thead:first-child > tr:first-child > th,\n.table > .gridHeader:first-child > tr:first-child > th,\n.table > caption + thead > .gridRow:first-child > th,\n.table > colgroup + thead > .gridRow:first-child > th,\n.table > thead:first-child > .gridRow:first-child > th,\n.table > .gridHeader:first-child > .gridRow:first-child > th,\n.table > caption + thead > tr:first-child > td,\n.table > colgroup + thead > tr:first-child > td,\n.table > thead:first-child > tr:first-child > td,\n.table > .gridHeader:first-child > tr:first-child > td,\n.table > caption + thead > .gridRow:first-child > td,\n.table > colgroup + thead > .gridRow:first-child > td,\n.table > thead:first-child > .gridRow:first-child > td,\n.table > .gridHeader:first-child > .gridRow:first-child > td,\n.table > caption + thead > tr:first-child > .gridCell,\n.table > colgroup + thead > tr:first-child > .gridCell,\n.table > thead:first-child > tr:first-child > .gridCell,\n.table > .gridHeader:first-child > tr:first-child > .gridCell,\n.table > caption + thead > .gridRow:first-child > .gridCell,\n.table > colgroup + thead > .gridRow:first-child > .gridCell,\n.table > thead:first-child > .gridRow:first-child > .gridCell,\n.table > .gridHeader:first-child > .gridRow:first-child > .gridCell,\n.table > caption + thead > tr:first-child > .gridHead,\n.table > colgroup + thead > tr:first-child > .gridHead,\n.table > thead:first-child > tr:first-child > .gridHead,\n.table > .gridHeader:first-child > tr:first-child > .gridHead,\n.table > caption + thead > .gridRow:first-child > .gridHead,\n.table > colgroup + thead > .gridRow:first-child > .gridHead,\n.table > thead:first-child > .gridRow:first-child > .gridHead,\n.table > .gridHeader:first-child > .gridRow:first-child > .gridHead {\n  border-top: 0;\n}\n.table > tbody + tbody,\n.table > .gridBody + .gridBody {\n  border-top: 2px solid #d4d4d4;\n}\n.table .table {\n  background-color: #fff;\n}\n.table-condensed > thead > tr > th,\n.table-condensed > tbody > tr > th,\n.table-condensed > tfoot > tr > th,\n.table-condensed > .gridHeader > tr > th,\n.table-condensed > .gridBody > tr > th,\n.table-condensed > .gridFooter > tr > th,\n.table-condensed > thead > .gridRow > th,\n.table-condensed > tbody > .gridRow > th,\n.table-condensed > tfoot > .gridRow > th,\n.table-condensed > .gridHeader > .gridRow > th,\n.table-condensed > .gridBody > .gridRow > th,\n.table-condensed > .gridFooter > .gridRow > th,\n.table-condensed > thead > tr > td,\n.table-condensed > tbody > tr > td,\n.table-condensed > tfoot > tr > td,\n.table-condensed > .gridHeader > tr > td,\n.table-condensed > .gridBody > tr > td,\n.table-condensed > .gridFooter > tr > td,\n.table-condensed > thead > .gridRow > td,\n.table-condensed > tbody > .gridRow > td,\n.table-condensed > tfoot > .gridRow > td,\n.table-condensed > .gridHeader > .gridRow > td,\n.table-condensed > .gridBody > .gridRow > td,\n.table-condensed > .gridFooter > .gridRow > td,\n.table-condensed > thead > tr > .gridCell,\n.table-condensed > tbody > tr > .gridCell,\n.table-condensed > tfoot > tr > .gridCell,\n.table-condensed > .gridHeader > tr > .gridCell,\n.table-condensed > .gridBody > tr > .gridCell,\n.table-condensed > .gridFooter > tr > .gridCell,\n.table-condensed > thead > .gridRow > .gridCell,\n.table-condensed > tbody > .gridRow > .gridCell,\n.table-condensed > tfoot > .gridRow > .gridCell,\n.table-condensed > .gridHeader > .gridRow > .gridCell,\n.table-condensed > .gridBody > .gridRow > .gridCell,\n.table-condensed > .gridFooter > .gridRow > .gridCell,\n.table-condensed > thead > tr > .gridHead,\n.table-condensed > tbody > tr > .gridHead,\n.table-condensed > tfoot > tr > .gridHead,\n.table-condensed > .gridHeader > tr > .gridHead,\n.table-condensed > .gridBody > tr > .gridHead,\n.table-condensed > .gridFooter > tr > .gridHead,\n.table-condensed > thead > .gridRow > .gridHead,\n.table-condensed > tbody > .gridRow > .gridHead,\n.table-condensed > tfoot > .gridRow > .gridHead,\n.table-condensed > .gridHeader > .gridRow > .gridHead,\n.table-condensed > .gridBody > .gridRow > .gridHead,\n.table-condensed > .gridFooter > .gridRow > .gridHead {\n  padding: 5px;\n}\n.table-bordered {\n  border: 1px solid #d4d4d4;\n}\n.table-bordered > thead > tr > th,\n.table-bordered > tbody > tr > th,\n.table-bordered > tfoot > tr > th,\n.table-bordered > .gridHeader > tr > th,\n.table-bordered > .gridBody > tr > th,\n.table-bordered > .gridFooter > tr > th,\n.table-bordered > thead > .gridRow > th,\n.table-bordered > tbody > .gridRow > th,\n.table-bordered > tfoot > .gridRow > th,\n.table-bordered > .gridHeader > .gridRow > th,\n.table-bordered > .gridBody > .gridRow > th,\n.table-bordered > .gridFooter > .gridRow > th,\n.table-bordered > thead > tr > td,\n.table-bordered > tbody > tr > td,\n.table-bordered > tfoot > tr > td,\n.table-bordered > .gridHeader > tr > td,\n.table-bordered > .gridBody > tr > td,\n.table-bordered > .gridFooter > tr > td,\n.table-bordered > thead > .gridRow > td,\n.table-bordered > tbody > .gridRow > td,\n.table-bordered > tfoot > .gridRow > td,\n.table-bordered > .gridHeader > .gridRow > td,\n.table-bordered > .gridBody > .gridRow > td,\n.table-bordered > .gridFooter > .gridRow > td,\n.table-bordered > thead > tr > .gridCell,\n.table-bordered > tbody > tr > .gridCell,\n.table-bordered > tfoot > tr > .gridCell,\n.table-bordered > .gridHeader > tr > .gridCell,\n.table-bordered > .gridBody > tr > .gridCell,\n.table-bordered > .gridFooter > tr > .gridCell,\n.table-bordered > thead > .gridRow > .gridCell,\n.table-bordered > tbody > .gridRow > .gridCell,\n.table-bordered > tfoot > .gridRow > .gridCell,\n.table-bordered > .gridHeader > .gridRow > .gridCell,\n.table-bordered > .gridBody > .gridRow > .gridCell,\n.table-bordered > .gridFooter > .gridRow > .gridCell,\n.table-bordered > thead > tr > .gridHead,\n.table-bordered > tbody > tr > .gridHead,\n.table-bordered > tfoot > tr > .gridHead,\n.table-bordered > .gridHeader > tr > .gridHead,\n.table-bordered > .gridBody > tr > .gridHead,\n.table-bordered > .gridFooter > tr > .gridHead,\n.table-bordered > thead > .gridRow > .gridHead,\n.table-bordered > tbody > .gridRow > .gridHead,\n.table-bordered > tfoot > .gridRow > .gridHead,\n.table-bordered > .gridHeader > .gridRow > .gridHead,\n.table-bordered > .gridBody > .gridRow > .gridHead,\n.table-bordered > .gridFooter > .gridRow > .gridHead {\n  border: 1px solid #d4d4d4;\n}\n.table-bordered > thead > tr > th,\n.table-bordered > gridBody > .gridRow > th,\n.table-bordered > thead > tr > td,\n.table-bordered > gridBody > .gridRow > td,\n.table-bordered > thead > tr > .gridCell,\n.table-bordered > gridBody > .gridRow > .gridCell,\n.table-bordered > thead > tr > .gridHead,\n.table-bordered > gridBody > .gridRow > .gridHead {\n  border-bottom-width: 2px;\n}\n.table-striped > tbody > tr:nth-of-type(odd),\n.table-striped > .gridBody > .gridRow:nth-of-type(odd) {\n  background-color: #f9f9f9;\n}\n.table-hover > tbody > tr:hover,\n.table-hover > .gridBody > .gridRow:hover {\n  background: #15c;\n  color: #fff;\n}\n.table-hover > tbody > tr:hover a,\n.table-hover > .gridBody > .gridRow:hover a {\n  color: #fff;\n  text-decoration: underline;\n}\ntable col[class*=\"col-\"],\ngrid col[class*=\"col-\"] {\n  position: static;\n  float: none;\n  display: table-column;\n}\ntable td[class*=\"col-\"],\ngrid td[class*=\"col-\"],\ntable th[class*=\"col-\"],\ngrid th[class*=\"col-\"],\ntable .gridCell[class*=\"col-\"],\ngrid .gridCell[class*=\"col-\"],\ntable .gridHead[class*=\"col-\"],\ngrid .gridHead[class*=\"col-\"] {\n  position: static;\n  float: none;\n  display: table-cell;\n}\n.table > thead > tr > td.active,\n.table > tbody > tr > td.active,\n.table > tfoot > tr > td.active,\n.table > thead > tr > th.active,\n.table > tbody > tr > th.active,\n.table > tfoot > tr > th.active,\n.table > thead > tr.active > td,\n.table > tbody > tr.active > td,\n.table > tfoot > tr.active > td,\n.table > thead > tr.active > th,\n.table > tbody > tr.active > th,\n.table > tfoot > tr.active > th {\n  background-color: #15c;\n}\n.table-hover > tbody > tr > td.active:hover,\n.table-hover > tbody > tr > th.active:hover,\n.table-hover > tbody > tr.active:hover > td,\n.table-hover > tbody > tr:hover > .active,\n.table-hover > tbody > tr.active:hover > th {\n  background-color: #0f4bb4;\n}\n.table > thead > tr > td.success,\n.table > tbody > tr > td.success,\n.table > tfoot > tr > td.success,\n.table > thead > tr > th.success,\n.table > tbody > tr > th.success,\n.table > tfoot > tr > th.success,\n.table > thead > tr.success > td,\n.table > tbody > tr.success > td,\n.table > tfoot > tr.success > td,\n.table > thead > tr.success > th,\n.table > tbody > tr.success > th,\n.table > tfoot > tr.success > th {\n  background-color: #dff0d8;\n}\n.table-hover > tbody > tr > td.success:hover,\n.table-hover > tbody > tr > th.success:hover,\n.table-hover > tbody > tr.success:hover > td,\n.table-hover > tbody > tr:hover > .success,\n.table-hover > tbody > tr.success:hover > th {\n  background-color: #d0e9c6;\n}\n.table > thead > tr > td.info,\n.table > tbody > tr > td.info,\n.table > tfoot > tr > td.info,\n.table > thead > tr > th.info,\n.table > tbody > tr > th.info,\n.table > tfoot > tr > th.info,\n.table > thead > tr.info > td,\n.table > tbody > tr.info > td,\n.table > tfoot > tr.info > td,\n.table > thead > tr.info > th,\n.table > tbody > tr.info > th,\n.table > tfoot > tr.info > th {\n  background-color: #d9edf7;\n}\n.table-hover > tbody > tr > td.info:hover,\n.table-hover > tbody > tr > th.info:hover,\n.table-hover > tbody > tr.info:hover > td,\n.table-hover > tbody > tr:hover > .info,\n.table-hover > tbody > tr.info:hover > th {\n  background-color: #c4e3f3;\n}\n.table > thead > tr > td.warning,\n.table > tbody > tr > td.warning,\n.table > tfoot > tr > td.warning,\n.table > thead > tr > th.warning,\n.table > tbody > tr > th.warning,\n.table > tfoot > tr > th.warning,\n.table > thead > tr.warning > td,\n.table > tbody > tr.warning > td,\n.table > tfoot > tr.warning > td,\n.table > thead > tr.warning > th,\n.table > tbody > tr.warning > th,\n.table > tfoot > tr.warning > th {\n  background-color: #fcf8e3;\n}\n.table-hover > tbody > tr > td.warning:hover,\n.table-hover > tbody > tr > th.warning:hover,\n.table-hover > tbody > tr.warning:hover > td,\n.table-hover > tbody > tr:hover > .warning,\n.table-hover > tbody > tr.warning:hover > th {\n  background-color: #faf2cc;\n}\n.table > thead > tr > td.danger,\n.table > tbody > tr > td.danger,\n.table > tfoot > tr > td.danger,\n.table > thead > tr > th.danger,\n.table > tbody > tr > th.danger,\n.table > tfoot > tr > th.danger,\n.table > thead > tr.danger > td,\n.table > tbody > tr.danger > td,\n.table > tfoot > tr.danger > td,\n.table > thead > tr.danger > th,\n.table > tbody > tr.danger > th,\n.table > tfoot > tr.danger > th {\n  background-color: #f2dede;\n}\n.table-hover > tbody > tr > td.danger:hover,\n.table-hover > tbody > tr > th.danger:hover,\n.table-hover > tbody > tr.danger:hover > td,\n.table-hover > tbody > tr:hover > .danger,\n.table-hover > tbody > tr.danger:hover > th {\n  background-color: #ebcccc;\n}\n.table-responsive {\n  overflow-x: auto;\n  min-height: 0.01%;\n}\n@media screen and (max-width: 767px) {\n  .table-responsive {\n    width: 100%;\n    margin-bottom: 15px;\n    overflow-y: hidden;\n    -ms-overflow-style: -ms-autohiding-scrollbar;\n    border: 1px solid #d4d4d4;\n  }\n  .table-responsive > .table {\n    margin-bottom: 0;\n  }\n  .table-responsive > .table > thead > tr > th,\n  .table-responsive > .table > tbody > tr > th,\n  .table-responsive > .table > tfoot > tr > th,\n  .table-responsive > .table > .gridHeader > tr > th,\n  .table-responsive > .table > .gridBody > tr > th,\n  .table-responsive > .table > .gridFooter > tr > th,\n  .table-responsive > .table > thead > .gridRow > th,\n  .table-responsive > .table > tbody > .gridRow > th,\n  .table-responsive > .table > tfoot > .gridRow > th,\n  .table-responsive > .table > .gridHeader > .gridRow > th,\n  .table-responsive > .table > .gridBody > .gridRow > th,\n  .table-responsive > .table > .gridFooter > .gridRow > th,\n  .table-responsive > .table > thead > tr > td,\n  .table-responsive > .table > tbody > tr > td,\n  .table-responsive > .table > tfoot > tr > td,\n  .table-responsive > .table > .gridHeader > tr > td,\n  .table-responsive > .table > .gridBody > tr > td,\n  .table-responsive > .table > .gridFooter > tr > td,\n  .table-responsive > .table > thead > .gridRow > td,\n  .table-responsive > .table > tbody > .gridRow > td,\n  .table-responsive > .table > tfoot > .gridRow > td,\n  .table-responsive > .table > .gridHeader > .gridRow > td,\n  .table-responsive > .table > .gridBody > .gridRow > td,\n  .table-responsive > .table > .gridFooter > .gridRow > td,\n  .table-responsive > .table > thead > tr > .gridCell,\n  .table-responsive > .table > tbody > tr > .gridCell,\n  .table-responsive > .table > tfoot > tr > .gridCell,\n  .table-responsive > .table > .gridHeader > tr > .gridCell,\n  .table-responsive > .table > .gridBody > tr > .gridCell,\n  .table-responsive > .table > .gridFooter > tr > .gridCell,\n  .table-responsive > .table > thead > .gridRow > .gridCell,\n  .table-responsive > .table > tbody > .gridRow > .gridCell,\n  .table-responsive > .table > tfoot > .gridRow > .gridCell,\n  .table-responsive > .table > .gridHeader > .gridRow > .gridCell,\n  .table-responsive > .table > .gridBody > .gridRow > .gridCell,\n  .table-responsive > .table > .gridFooter > .gridRow > .gridCell,\n  .table-responsive > .table > thead > tr > .gridHead,\n  .table-responsive > .table > tbody > tr > .gridHead,\n  .table-responsive > .table > tfoot > tr > .gridHead,\n  .table-responsive > .table > .gridHeader > tr > .gridHead,\n  .table-responsive > .table > .gridBody > tr > .gridHead,\n  .table-responsive > .table > .gridFooter > tr > .gridHead,\n  .table-responsive > .table > thead > .gridRow > .gridHead,\n  .table-responsive > .table > tbody > .gridRow > .gridHead,\n  .table-responsive > .table > tfoot > .gridRow > .gridHead,\n  .table-responsive > .table > .gridHeader > .gridRow > .gridHead,\n  .table-responsive > .table > .gridBody > .gridRow > .gridHead,\n  .table-responsive > .table > .gridFooter > .gridRow > .gridHead {\n    white-space: nowrap;\n  }\n  .table-responsive > .table-bordered {\n    border: 0;\n  }\n  .table-responsive > .table-bordered > thead > tr > th:first-child,\n  .table-responsive > .table-bordered > tbody > tr > th:first-child,\n  .table-responsive > .table-bordered > tfoot > tr > th:first-child,\n  .table-responsive > .table-bordered > .gridHeader > tr > th:first-child,\n  .table-responsive > .table-bordered > .gridBody > tr > th:first-child,\n  .table-responsive > .table-bordered > .gridFooter > tr > th:first-child,\n  .table-responsive > .table-bordered > thead > .gridRow > th:first-child,\n  .table-responsive > .table-bordered > tbody > .gridRow > th:first-child,\n  .table-responsive > .table-bordered > tfoot > .gridRow > th:first-child,\n  .table-responsive > .table-bordered > .gridHeader > .gridRow > th:first-child,\n  .table-responsive > .table-bordered > .gridBody > .gridRow > th:first-child,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow > th:first-child,\n  .table-responsive > .table-bordered > thead > tr > td:first-child,\n  .table-responsive > .table-bordered > tbody > tr > td:first-child,\n  .table-responsive > .table-bordered > tfoot > tr > td:first-child,\n  .table-responsive > .table-bordered > .gridHeader > tr > td:first-child,\n  .table-responsive > .table-bordered > .gridBody > tr > td:first-child,\n  .table-responsive > .table-bordered > .gridFooter > tr > td:first-child,\n  .table-responsive > .table-bordered > thead > .gridRow > td:first-child,\n  .table-responsive > .table-bordered > tbody > .gridRow > td:first-child,\n  .table-responsive > .table-bordered > tfoot > .gridRow > td:first-child,\n  .table-responsive > .table-bordered > .gridHeader > .gridRow > td:first-child,\n  .table-responsive > .table-bordered > .gridBody > .gridRow > td:first-child,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow > td:first-child,\n  .table-responsive > .table-bordered > thead > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > tbody > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > tfoot > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridHeader > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridBody > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridFooter > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > thead > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > tbody > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > tfoot > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridHeader > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridBody > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > thead > tr > .gridHead:first-child,\n  .table-responsive > .table-bordered > tbody > tr > .gridHead:first-child,\n  .table-responsive > .table-bordered > tfoot > tr > .gridHead:first-child,\n  .table-responsive > .table-bordered > .gridHeader > tr > .gridHead:first-child,\n  .table-responsive > .table-bordered > .gridBody > tr > .gridHead:first-child,\n  .table-responsive > .table-bordered > .gridFooter > tr > .gridHead:first-child,\n  .table-responsive > .table-bordered > thead > .gridRow > .gridHead:first-child,\n  .table-responsive > .table-bordered > tbody > .gridRow > .gridHead:first-child,\n  .table-responsive > .table-bordered > tfoot > .gridRow > .gridHead:first-child,\n  .table-responsive > .table-bordered > .gridHeader > .gridRow > .gridHead:first-child,\n  .table-responsive > .table-bordered > .gridBody > .gridRow > .gridHead:first-child,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow > .gridHead:first-child {\n    border-left: 0;\n  }\n  .table-responsive > .table-bordered > thead > tr > th:last-child,\n  .table-responsive > .table-bordered > tbody > tr > th:last-child,\n  .table-responsive > .table-bordered > tfoot > tr > th:last-child,\n  .table-responsive > .table-bordered > .gridHeader > tr > th:last-child,\n  .table-responsive > .table-bordered > .gridBody > tr > th:last-child,\n  .table-responsive > .table-bordered > .gridFooter > tr > th:last-child,\n  .table-responsive > .table-bordered > thead > .gridRow > th:last-child,\n  .table-responsive > .table-bordered > tbody > .gridRow > th:last-child,\n  .table-responsive > .table-bordered > tfoot > .gridRow > th:last-child,\n  .table-responsive > .table-bordered > .gridHeader > .gridRow > th:last-child,\n  .table-responsive > .table-bordered > .gridBody > .gridRow > th:last-child,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow > th:last-child,\n  .table-responsive > .table-bordered > thead > tr > td:last-child,\n  .table-responsive > .table-bordered > tbody > tr > td:last-child,\n  .table-responsive > .table-bordered > tfoot > tr > td:last-child,\n  .table-responsive > .table-bordered > .gridHeader > tr > td:last-child,\n  .table-responsive > .table-bordered > .gridBody > tr > td:last-child,\n  .table-responsive > .table-bordered > .gridFooter > tr > td:last-child,\n  .table-responsive > .table-bordered > thead > .gridRow > td:last-child,\n  .table-responsive > .table-bordered > tbody > .gridRow > td:last-child,\n  .table-responsive > .table-bordered > tfoot > .gridRow > td:last-child,\n  .table-responsive > .table-bordered > .gridHeader > .gridRow > td:last-child,\n  .table-responsive > .table-bordered > .gridBody > .gridRow > td:last-child,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow > td:last-child,\n  .table-responsive > .table-bordered > thead > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > tbody > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > tfoot > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridHeader > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridBody > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridFooter > tr > .gridCell:first-child,\n  .table-responsive > .table-bordered > thead > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > tbody > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > tfoot > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridHeader > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridBody > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow > .gridCell:first-child,\n  .table-responsive > .table-bordered > thead > tr > .gridHead:first-line,\n  .table-responsive > .table-bordered > tbody > tr > .gridHead:first-line,\n  .table-responsive > .table-bordered > tfoot > tr > .gridHead:first-line,\n  .table-responsive > .table-bordered > .gridHeader > tr > .gridHead:first-line,\n  .table-responsive > .table-bordered > .gridBody > tr > .gridHead:first-line,\n  .table-responsive > .table-bordered > .gridFooter > tr > .gridHead:first-line,\n  .table-responsive > .table-bordered > thead > .gridRow > .gridHead:first-line,\n  .table-responsive > .table-bordered > tbody > .gridRow > .gridHead:first-line,\n  .table-responsive > .table-bordered > tfoot > .gridRow > .gridHead:first-line,\n  .table-responsive > .table-bordered > .gridHeader > .gridRow > .gridHead:first-line,\n  .table-responsive > .table-bordered > .gridBody > .gridRow > .gridHead:first-line,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow > .gridHead:first-line {\n    border-right: 0;\n  }\n  .table-responsive > .table-bordered > tbody > tr:last-child > th,\n  .table-responsive > .table-bordered > tfoot > tr:last-child > th,\n  .table-responsive > .table-bordered > .gridBody > tr:last-child > th,\n  .table-responsive > .table-bordered > .gridFooter > tr:last-child > th,\n  .table-responsive > .table-bordered > tbody > .gridRow:last-child > th,\n  .table-responsive > .table-bordered > tfoot > .gridRow:last-child > th,\n  .table-responsive > .table-bordered > .gridBody > .gridRow:last-child > th,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow:last-child > th,\n  .table-responsive > .table-bordered > tbody > tr:last-child > td,\n  .table-responsive > .table-bordered > tfoot > tr:last-child > td,\n  .table-responsive > .table-bordered > .gridBody > tr:last-child > td,\n  .table-responsive > .table-bordered > .gridFooter > tr:last-child > td,\n  .table-responsive > .table-bordered > tbody > .gridRow:last-child > td,\n  .table-responsive > .table-bordered > tfoot > .gridRow:last-child > td,\n  .table-responsive > .table-bordered > .gridBody > .gridRow:last-child > td,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow:last-child > td,\n  .table-responsive > .table-bordered > tbody > tr:last-child > .gridCell,\n  .table-responsive > .table-bordered > tfoot > tr:last-child > .gridCell,\n  .table-responsive > .table-bordered > .gridBody > tr:last-child > .gridCell,\n  .table-responsive > .table-bordered > .gridFooter > tr:last-child > .gridCell,\n  .table-responsive > .table-bordered > tbody > .gridRow:last-child > .gridCell,\n  .table-responsive > .table-bordered > tfoot > .gridRow:last-child > .gridCell,\n  .table-responsive > .table-bordered > .gridBody > .gridRow:last-child > .gridCell,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow:last-child > .gridCell,\n  .table-responsive > .table-bordered > tbody > tr:last-child > .gridHead,\n  .table-responsive > .table-bordered > tfoot > tr:last-child > .gridHead,\n  .table-responsive > .table-bordered > .gridBody > tr:last-child > .gridHead,\n  .table-responsive > .table-bordered > .gridFooter > tr:last-child > .gridHead,\n  .table-responsive > .table-bordered > tbody > .gridRow:last-child > .gridHead,\n  .table-responsive > .table-bordered > tfoot > .gridRow:last-child > .gridHead,\n  .table-responsive > .table-bordered > .gridBody > .gridRow:last-child > .gridHead,\n  .table-responsive > .table-bordered > .gridFooter > .gridRow:last-child > .gridHead {\n    border-bottom: 0;\n  }\n}\nfieldset {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  min-width: 0;\n}\nlegend {\n  display: block;\n  width: 100%;\n  padding: 0;\n  margin-bottom: 20px;\n  font-size: 21px;\n  line-height: inherit;\n  color: #333333;\n  border: 0;\n  border-bottom: 1px solid #e5e5e5;\n}\nlabel {\n  display: inline-block;\n  max-width: 100%;\n  margin-bottom: 5px;\n  font-weight: bold;\n}\ninput[type=\"search\"] {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n}\ninput[type=\"radio\"],\ninput[type=\"checkbox\"] {\n  margin: 4px 0 0;\n  margin-top: 1px \\9;\n  line-height: normal;\n}\ninput[type=\"file\"] {\n  display: block;\n}\ninput[type=\"range\"] {\n  display: block;\n  width: 100%;\n}\ninput.active {\n  border-color: #15c;\n}\nselect[multiple],\nselect[size] {\n  height: auto;\n}\ninput[type=\"file\"]:focus,\ninput[type=\"radio\"]:focus,\ninput[type=\"checkbox\"]:focus {\n  outline: 5px auto -webkit-focus-ring-color;\n  outline-offset: -2px;\n}\noutput {\n  display: block;\n  padding-top: 7px;\n  font-size: 14px;\n  line-height: 1.42857143;\n  color: #000;\n}\n.form-control {\n  display: block;\n  width: 100%;\n  height: 34px;\n  padding: 6px 12px;\n  font-size: 14px;\n  line-height: 1.42857143;\n  color: #000;\n  background-color: #fff;\n  background-image: none;\n  border-width: 0 1px 1px 1px;\n  border-style: solid;\n  border-color: #999;\n  border-radius: 0px;\n  -webkit-box-shadow: none;\n  box-shadow: none;\n  -webkit-transition: none;\n  -o-transition: none;\n  transition: none;\n}\n.form-control:focus {\n  border-color: #15c;\n  outline: 0;\n}\n.form-control::-moz-placeholder {\n  color: #bbb;\n  opacity: 1;\n}\n.form-control:-ms-input-placeholder {\n  color: #bbb;\n}\n.form-control::-webkit-input-placeholder {\n  color: #bbb;\n}\n.form-control::-ms-expand {\n  border: 0;\n  background-color: transparent;\n}\n.form-control[disabled],\n.form-control[readonly],\nfieldset[disabled] .form-control {\n  background-color: #bbb;\n  color: #777;\n  opacity: 1;\n}\n.form-control[disabled],\nfieldset[disabled] .form-control {\n  cursor: not-allowed;\n}\ntextarea.form-control {\n  height: auto;\n}\ninput[type=\"date\"]::-webkit-clear-button {\n  display: none;\n}\ninput[type=\"date\"]::-webkit-inner-spin-button {\n  display: none;\n}\ninput[type=\"date\"]::-webkit-calendar-picker-indicator {\n  display: none;\n}\ninput[type=\"search\"] {\n  -webkit-appearance: none;\n}\n@media screen and (-webkit-min-device-pixel-ratio: 0) {\n  input[type=\"date\"].form-control,\n  input[type=\"time\"].form-control,\n  input[type=\"datetime-local\"].form-control,\n  input[type=\"month\"].form-control {\n    line-height: 34px;\n  }\n  input[type=\"date\"].input-sm,\n  input[type=\"time\"].input-sm,\n  input[type=\"datetime-local\"].input-sm,\n  input[type=\"month\"].input-sm,\n  .input-group-sm input[type=\"date\"],\n  .input-group-sm input[type=\"time\"],\n  .input-group-sm input[type=\"datetime-local\"],\n  .input-group-sm input[type=\"month\"] {\n    line-height: 30px;\n  }\n  input[type=\"date\"].input-lg,\n  input[type=\"time\"].input-lg,\n  input[type=\"datetime-local\"].input-lg,\n  input[type=\"month\"].input-lg,\n  .input-group-lg input[type=\"date\"],\n  .input-group-lg input[type=\"time\"],\n  .input-group-lg input[type=\"datetime-local\"],\n  .input-group-lg input[type=\"month\"] {\n    line-height: 46px;\n  }\n}\n.form-group {\n  margin-bottom: 15px;\n}\n.checkbox input[type=\"checkbox\"],\n.checkbox-inline input[type=\"checkbox\"],\n.radio-inline input[type=\"radio\"],\n.radio input[type=\"radio\"] {\n  margin-left: 0;\n  opacity: 0;\n  z-index: 1;\n  cursor: pointer;\n}\n.checkbox input[type=\"checkbox\"] + label:before,\n.checkbox-inline input[type=\"checkbox\"] + label:before {\n  content: \"\";\n  position: absolute;\n  top: 2px;\n  left: 0px;\n  width: 16px;\n  height: 16px;\n  border: 1px solid #999;\n}\n.checkbox input[type=\"checkbox\"]:checked + label:before,\n.checkbox-inline input[type=\"checkbox\"]:checked + label:before {\n  font-family: \"FontAwesome\";\n  content: \"\\F00C\";\n  color: #fff;\n  background-color: #15c;\n  border-width: 0px;\n  line-height: 16px;\n}\n.checkbox input[type=\"checkbox\"]:disabled + label:before,\n.checkbox-inline input[type=\"checkbox\"]:disabled + label:before {\n  background-color: #bbb;\n  color: #777;\n  border-width: 0px;\n  line-height: 16px;\n}\n.radio input[type=\"radio\"] + label:before,\n.radio-inline input[type=\"radio\"] + label:before {\n  position: absolute;\n  top: 5px;\n  left: 2px;\n  width: 12px;\n  height: 12px;\n  content: \"\";\n  border-width: 1px;\n  border-style: solid;\n  border-color: #999;\n  border-radius: 6px;\n}\n.radio input[type=\"radio\"]:checked + label:before,\n.radio-inline input[type=\"radio\"]:checked + label:before {\n  border-width: 4px;\n  border-color: #15c;\n}\n.radio input[type=\"radio\"]:disabled + label:before,\n.radio-inline input[type=\"radio\"]:disabled + label:before {\n  border-color: #bbb;\n  background-color: #bbb;\n}\n.radio,\n.checkbox {\n  position: relative;\n  display: block;\n  margin-top: 10px;\n  margin-bottom: 10px;\n}\n.radio label,\n.checkbox label {\n  min-height: 20px;\n  padding-left: 20px;\n  margin-bottom: 0;\n  font-weight: normal;\n  cursor: pointer;\n}\n.radio input[type=\"radio\"],\n.radio-inline input[type=\"radio\"],\n.checkbox input[type=\"checkbox\"],\n.checkbox-inline input[type=\"checkbox\"] {\n  position: absolute;\n  margin-top: 4px \\9;\n}\n.radio-inline input[type=\"radio\"],\n.checkbox-inline input[type=\"checkbox\"] {\n  margin-left: -20px;\n}\n.radio + .radio,\n.checkbox + .checkbox {\n  margin-top: -5px;\n}\n.radio-inline,\n.checkbox-inline {\n  position: relative;\n  display: inline-block;\n  padding-left: 20px;\n  margin-bottom: 0;\n}\n.radio-inline label,\n.checkbox-inline label {\n  font-weight: normal;\n  vertical-align: middle;\n  cursor: pointer;\n}\n.radio-inline + .radio-inline,\n.checkbox-inline + .checkbox-inline {\n  margin-top: 0;\n  margin-left: 10px;\n}\ninput[type=\"radio\"][disabled],\ninput[type=\"checkbox\"][disabled],\ninput[type=\"radio\"].disabled,\ninput[type=\"checkbox\"].disabled,\nfieldset[disabled] input[type=\"radio\"],\nfieldset[disabled] input[type=\"checkbox\"] {\n  cursor: not-allowed;\n}\n.radio-inline.disabled,\n.checkbox-inline.disabled,\nfieldset[disabled] .radio-inline,\nfieldset[disabled] .checkbox-inline {\n  cursor: not-allowed;\n}\n.radio.disabled label,\n.checkbox.disabled label,\nfieldset[disabled] .radio label,\nfieldset[disabled] .checkbox label {\n  cursor: not-allowed;\n}\n.form-control-static {\n  padding-top: 7px;\n  padding-bottom: 7px;\n  margin-bottom: 0;\n  min-height: 34px;\n}\n.form-control-static.input-lg,\n.form-control-static.input-sm {\n  padding-left: 0;\n  padding-right: 0;\n}\n.input-sm,\ndatepicker datepicker.datepicker-sm input,\ndatepicker-range datepicker.datepicker-sm input {\n  height: 30px;\n  padding: 5px 10px;\n  font-size: 12px;\n  line-height: 1.5;\n  border-radius: 0px;\n}\nselect.input-sm {\n  height: 30px;\n  line-height: 30px;\n}\ntextarea.input-sm,\nselect[multiple].input-sm {\n  height: auto;\n}\n.form-group-sm .form-control {\n  height: 30px;\n  padding: 5px 10px;\n  font-size: 12px;\n  line-height: 1.5;\n  border-radius: 0px;\n}\n.form-group-sm select.form-control {\n  height: 30px;\n  line-height: 30px;\n}\n.form-group-sm textarea.form-control,\n.form-group-sm select[multiple].form-control {\n  height: auto;\n}\n.form-group-sm .form-control-static {\n  height: 30px;\n  min-height: 32px;\n  padding: 6px 10px;\n  font-size: 12px;\n  line-height: 1.5;\n}\n.input-lg,\ndatepicker datepicker.datepicker-lg input,\ndatepicker-range datepicker.datepicker-lg input {\n  height: 46px;\n  padding: 10px 16px;\n  font-size: 18px;\n  line-height: 1.3333333;\n  border-radius: 0px;\n}\nselect.input-lg {\n  height: 46px;\n  line-height: 46px;\n}\ntextarea.input-lg,\nselect[multiple].input-lg {\n  height: auto;\n}\n.form-group-lg .form-control {\n  height: 46px;\n  padding: 10px 16px;\n  font-size: 18px;\n  line-height: 1.3333333;\n  border-radius: 0px;\n}\n.form-group-lg select.form-control {\n  height: 46px;\n  line-height: 46px;\n}\n.form-group-lg textarea.form-control,\n.form-group-lg select[multiple].form-control {\n  height: auto;\n}\n.form-group-lg .form-control-static {\n  height: 46px;\n  min-height: 38px;\n  padding: 11px 16px;\n  font-size: 18px;\n  line-height: 1.3333333;\n}\n.has-feedback {\n  position: relative;\n}\n.has-feedback .form-control {\n  padding-right: 42.5px;\n}\n.form-control-feedback {\n  position: absolute;\n  top: 0;\n  right: 0;\n  z-index: 2;\n  display: block;\n  width: 34px;\n  height: 34px;\n  line-height: 34px;\n  text-align: center;\n  pointer-events: none;\n}\n.input-lg + .form-control-feedback,\n.input-group-lg + .form-control-feedback,\n.form-group-lg .form-control + .form-control-feedback {\n  width: 46px;\n  height: 46px;\n  line-height: 46px;\n}\n.input-sm + .form-control-feedback,\n.input-group-sm + .form-control-feedback,\n.form-group-sm .form-control + .form-control-feedback {\n  width: 30px;\n  height: 30px;\n  line-height: 30px;\n}\n.has-success .help-block,\n.has-success .control-label,\n.has-success .radio,\n.has-success .checkbox,\n.has-success .radio-inline,\n.has-success .checkbox-inline,\n.has-success.radio label,\n.has-success.checkbox label,\n.has-success.radio-inline label,\n.has-success.checkbox-inline label {\n  color: #3c763d;\n}\n.has-success .form-control {\n  border-color: #3c763d;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n}\n.has-success .form-control:focus {\n  border-color: #2b542c;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;\n}\n.has-success .input-group-addon {\n  color: #3c763d;\n  border-color: #3c763d;\n  background-color: #dff0d8;\n}\n.has-success .form-control-feedback {\n  color: #3c763d;\n}\n.has-warning .help-block,\n.has-warning .control-label,\n.has-warning .radio,\n.has-warning .checkbox,\n.has-warning .radio-inline,\n.has-warning .checkbox-inline,\n.has-warning.radio label,\n.has-warning.checkbox label,\n.has-warning.radio-inline label,\n.has-warning.checkbox-inline label {\n  color: #8a6d3b;\n}\n.has-warning .form-control {\n  border-color: #8a6d3b;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n}\n.has-warning .form-control:focus {\n  border-color: #66512c;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b;\n}\n.has-warning .input-group-addon {\n  color: #8a6d3b;\n  border-color: #8a6d3b;\n  background-color: #fcf8e3;\n}\n.has-warning .form-control-feedback {\n  color: #8a6d3b;\n}\n.has-error .help-block,\n.has-error .control-label,\n.has-error .radio,\n.has-error .checkbox,\n.has-error .radio-inline,\n.has-error .checkbox-inline,\n.has-error.radio label,\n.has-error.checkbox label,\n.has-error.radio-inline label,\n.has-error.checkbox-inline label {\n  color: #a94442;\n}\n.has-error .form-control {\n  border-color: #a94442;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n}\n.has-error .form-control:focus {\n  border-color: #843534;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;\n}\n.has-error .input-group-addon {\n  color: #a94442;\n  border-color: #a94442;\n  background-color: #f2dede;\n}\n.has-error .form-control-feedback {\n  color: #a94442;\n}\n.has-feedback label ~ .form-control-feedback {\n  top: 25px;\n}\n.has-feedback label.sr-only ~ .form-control-feedback {\n  top: 0;\n}\n.help-block {\n  display: block;\n  margin-top: 5px;\n  margin-bottom: 10px;\n  color: #404040;\n}\n@media (min-width: 768px) {\n  .form-inline .form-group {\n    display: inline-block;\n    margin-bottom: 0;\n    vertical-align: middle;\n  }\n  .form-inline .form-control {\n    display: inline-block;\n    width: auto;\n    vertical-align: middle;\n  }\n  .form-inline .form-control-static {\n    display: inline-block;\n  }\n  .form-inline .input-group {\n    display: inline-table;\n    vertical-align: middle;\n  }\n  .form-inline .input-group .input-group-addon,\n  .form-inline .input-group .input-group-btn,\n  .form-inline .input-group .form-control {\n    width: auto;\n  }\n  .form-inline .input-group > .form-control {\n    width: 100%;\n  }\n  .form-inline .control-label {\n    margin-bottom: 0;\n    vertical-align: middle;\n  }\n  .form-inline .radio,\n  .form-inline .checkbox {\n    display: inline-block;\n    margin-top: 0;\n    margin-bottom: 0;\n    vertical-align: middle;\n  }\n  .form-inline .radio label,\n  .form-inline .checkbox label {\n    padding-left: 0;\n  }\n  .form-inline .radio input[type=\"radio\"],\n  .form-inline .checkbox input[type=\"checkbox\"] {\n    position: relative;\n    margin-left: 0;\n  }\n  .form-inline .has-feedback .form-control-feedback {\n    top: 0;\n  }\n}\n.form-horizontal .radio,\n.form-horizontal .checkbox,\n.form-horizontal .radio-inline,\n.form-horizontal .checkbox-inline {\n  margin-top: 0;\n  margin-bottom: 0;\n  padding-top: 7px;\n}\n.form-horizontal .radio,\n.form-horizontal .checkbox {\n  min-height: 27px;\n}\n.form-horizontal .form-group {\n  margin-left: -15px;\n  margin-right: -15px;\n}\n@media (min-width: 768px) {\n  .form-horizontal .control-label {\n    text-align: right;\n    margin-bottom: 0;\n    padding-top: 7px;\n  }\n}\n.form-horizontal .has-feedback .form-control-feedback {\n  right: 15px;\n}\n@media (min-width: 768px) {\n  .form-horizontal .form-group-lg .control-label {\n    padding-top: 11px;\n    font-size: 18px;\n  }\n}\n@media (min-width: 768px) {\n  .form-horizontal .form-group-sm .control-label {\n    padding-top: 6px;\n    font-size: 12px;\n  }\n}\n.btn {\n  display: inline-block;\n  margin-bottom: 0;\n  font-weight: normal;\n  text-align: left;\n  vertical-align: middle;\n  touch-action: manipulation;\n  cursor: pointer;\n  background-image: none;\n  border: 1px solid transparent;\n  white-space: nowrap;\n  padding: 6px 12px;\n  font-size: 14px;\n  line-height: 1.42857143;\n  border-radius: 0px;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n}\n.btn:focus,\n.btn:active:focus,\n.btn.active:focus,\n.btn.focus,\n.btn:active.focus,\n.btn.active.focus {\n  outline: 5px auto -webkit-focus-ring-color;\n  outline-offset: -2px;\n}\n.btn:hover,\n.btn:focus,\n.btn.focus {\n  color: #fff;\n  text-decoration: none;\n}\n.btn:active,\n.btn.active {\n  outline: 0;\n  background-image: none;\n  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);\n  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);\n}\n.btn.disabled,\n.btn[disabled],\nfieldset[disabled] .btn {\n  cursor: not-allowed;\n  background: linear-gradient(#d4d4d4, #bbb);\n  color: #777;\n  border-color: #7b7b7b;\n  -webkit-box-shadow: none;\n  box-shadow: none;\n}\n.btn.disabled::before,\n.btn[disabled]::before,\nfieldset[disabled] .btn::before {\n  border-color: #7b7b7b;\n}\na.btn.disabled,\nfieldset[disabled] a.btn {\n  pointer-events: none;\n}\n.btn-icon {\n  padding-left: 5px;\n}\n.btn-icon::before {\n  display: inline-block;\n  font: normal normal normal 14px/1.42857143 FontAwesome;\n  font-size: inherit;\n  text-rendering: auto;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  padding: 6px 5px;\n  margin: -6px 5px -6px -5px;\n  border-right: 1px solid #e63d00;\n}\n.btn-default {\n  color: #fff;\n  background: linear-gradient(#ff6933, #f40);\n  border-color: #e63d00;\n}\n.btn-default::before {\n  border-color: #e63d00;\n}\n.btn-default:focus,\n.btn-default.focus {\n  color: #fff;\n  background-color: #cc3600;\n  border-color: #661b00;\n}\n.btn-default:hover {\n  color: #fff;\n  background-color: #cc3600;\n  border-color: #a82d00;\n}\n.btn-default:active,\n.btn-default.active,\n.open > .dropdown-toggle.btn-default {\n  color: #fff;\n  background-color: #cc3600;\n  border-color: #a82d00;\n}\n.btn-default:active:hover,\n.btn-default.active:hover,\n.open > .dropdown-toggle.btn-default:hover,\n.btn-default:active:focus,\n.btn-default.active:focus,\n.open > .dropdown-toggle.btn-default:focus,\n.btn-default:active.focus,\n.btn-default.active.focus,\n.open > .dropdown-toggle.btn-default.focus {\n  color: #fff;\n  background-color: #a82d00;\n  border-color: #661b00;\n}\n.btn-default:active,\n.btn-default.active,\n.open > .dropdown-toggle.btn-default {\n  background-image: none;\n}\n.btn-default.disabled:hover,\n.btn-default[disabled]:hover,\nfieldset[disabled] .btn-default:hover,\n.btn-default.disabled:focus,\n.btn-default[disabled]:focus,\nfieldset[disabled] .btn-default:focus,\n.btn-default.disabled.focus,\n.btn-default[disabled].focus,\nfieldset[disabled] .btn-default.focus {\n  background-color: #bbb;\n  border-color: #7b7b7b;\n  color: #777;\n}\n.btn-default.disabled::before,\n.btn-default[disabled]::before,\nfieldset[disabled] .btn-default::before {\n  border-color: #7b7b7b;\n}\n.btn-default .badge {\n  color: #f40;\n  background-color: #fff;\n}\n.btn-primary {\n  color: #fff;\n  background: linear-gradient(#236ded, #15c);\n  border-color: #0f4bb4;\n}\n.btn-primary::before {\n  border-color: #0f4bb4;\n}\n.btn-primary:focus,\n.btn-primary.focus {\n  color: #fff;\n  background-color: #0d419d;\n  border-color: #051a3f;\n}\n.btn-primary:hover {\n  color: #fff;\n  background-color: #0d419d;\n  border-color: #0a347c;\n}\n.btn-primary:active,\n.btn-primary.active,\n.open > .dropdown-toggle.btn-primary {\n  color: #fff;\n  background-color: #0d419d;\n  border-color: #0a347c;\n}\n.btn-primary:active:hover,\n.btn-primary.active:hover,\n.open > .dropdown-toggle.btn-primary:hover,\n.btn-primary:active:focus,\n.btn-primary.active:focus,\n.open > .dropdown-toggle.btn-primary:focus,\n.btn-primary:active.focus,\n.btn-primary.active.focus,\n.open > .dropdown-toggle.btn-primary.focus {\n  color: #fff;\n  background-color: #0a347c;\n  border-color: #051a3f;\n}\n.btn-primary:active,\n.btn-primary.active,\n.open > .dropdown-toggle.btn-primary {\n  background-image: none;\n}\n.btn-primary.disabled:hover,\n.btn-primary[disabled]:hover,\nfieldset[disabled] .btn-primary:hover,\n.btn-primary.disabled:focus,\n.btn-primary[disabled]:focus,\nfieldset[disabled] .btn-primary:focus,\n.btn-primary.disabled.focus,\n.btn-primary[disabled].focus,\nfieldset[disabled] .btn-primary.focus {\n  background-color: #bbb;\n  border-color: #7b7b7b;\n  color: #777;\n}\n.btn-primary.disabled::before,\n.btn-primary[disabled]::before,\nfieldset[disabled] .btn-primary::before {\n  border-color: #7b7b7b;\n}\n.btn-primary .badge {\n  color: #15c;\n  background-color: #fff;\n}\n.btn-success {\n  color: #fff;\n  background: linear-gradient(#80c780, #5cb85c);\n  border-color: #4cae4c;\n}\n.btn-success::before {\n  border-color: #4cae4c;\n}\n.btn-success:focus,\n.btn-success.focus {\n  color: #fff;\n  background-color: #449d44;\n  border-color: #255625;\n}\n.btn-success:hover {\n  color: #fff;\n  background-color: #449d44;\n  border-color: #398439;\n}\n.btn-success:active,\n.btn-success.active,\n.open > .dropdown-toggle.btn-success {\n  color: #fff;\n  background-color: #449d44;\n  border-color: #398439;\n}\n.btn-success:active:hover,\n.btn-success.active:hover,\n.open > .dropdown-toggle.btn-success:hover,\n.btn-success:active:focus,\n.btn-success.active:focus,\n.open > .dropdown-toggle.btn-success:focus,\n.btn-success:active.focus,\n.btn-success.active.focus,\n.open > .dropdown-toggle.btn-success.focus {\n  color: #fff;\n  background-color: #398439;\n  border-color: #255625;\n}\n.btn-success:active,\n.btn-success.active,\n.open > .dropdown-toggle.btn-success {\n  background-image: none;\n}\n.btn-success.disabled:hover,\n.btn-success[disabled]:hover,\nfieldset[disabled] .btn-success:hover,\n.btn-success.disabled:focus,\n.btn-success[disabled]:focus,\nfieldset[disabled] .btn-success:focus,\n.btn-success.disabled.focus,\n.btn-success[disabled].focus,\nfieldset[disabled] .btn-success.focus {\n  background-color: #bbb;\n  border-color: #7b7b7b;\n  color: #777;\n}\n.btn-success.disabled::before,\n.btn-success[disabled]::before,\nfieldset[disabled] .btn-success::before {\n  border-color: #7b7b7b;\n}\n.btn-success .badge {\n  color: #5cb85c;\n  background-color: #fff;\n}\n.btn-info {\n  color: #fff;\n  background: linear-gradient(#ff6933, #f40);\n  border-color: #e63d00;\n}\n.btn-info::before {\n  border-color: #e63d00;\n}\n.btn-info:focus,\n.btn-info.focus {\n  color: #fff;\n  background-color: #cc3600;\n  border-color: #661b00;\n}\n.btn-info:hover {\n  color: #fff;\n  background-color: #cc3600;\n  border-color: #a82d00;\n}\n.btn-info:active,\n.btn-info.active,\n.open > .dropdown-toggle.btn-info {\n  color: #fff;\n  background-color: #cc3600;\n  border-color: #a82d00;\n}\n.btn-info:active:hover,\n.btn-info.active:hover,\n.open > .dropdown-toggle.btn-info:hover,\n.btn-info:active:focus,\n.btn-info.active:focus,\n.open > .dropdown-toggle.btn-info:focus,\n.btn-info:active.focus,\n.btn-info.active.focus,\n.open > .dropdown-toggle.btn-info.focus {\n  color: #fff;\n  background-color: #a82d00;\n  border-color: #661b00;\n}\n.btn-info:active,\n.btn-info.active,\n.open > .dropdown-toggle.btn-info {\n  background-image: none;\n}\n.btn-info.disabled:hover,\n.btn-info[disabled]:hover,\nfieldset[disabled] .btn-info:hover,\n.btn-info.disabled:focus,\n.btn-info[disabled]:focus,\nfieldset[disabled] .btn-info:focus,\n.btn-info.disabled.focus,\n.btn-info[disabled].focus,\nfieldset[disabled] .btn-info.focus {\n  background-color: #bbb;\n  border-color: #7b7b7b;\n  color: #777;\n}\n.btn-info.disabled::before,\n.btn-info[disabled]::before,\nfieldset[disabled] .btn-info::before {\n  border-color: #7b7b7b;\n}\n.btn-info .badge {\n  color: #f40;\n  background-color: #fff;\n}\n.btn-warning {\n  color: #fff;\n  background: linear-gradient(#f4c37d, #f0ad4e);\n  border-color: #eea236;\n}\n.btn-warning::before {\n  border-color: #eea236;\n}\n.btn-warning:focus,\n.btn-warning.focus {\n  color: #fff;\n  background-color: #ec971f;\n  border-color: #985f0d;\n}\n.btn-warning:hover {\n  color: #fff;\n  background-color: #ec971f;\n  border-color: #d58512;\n}\n.btn-warning:active,\n.btn-warning.active,\n.open > .dropdown-toggle.btn-warning {\n  color: #fff;\n  background-color: #ec971f;\n  border-color: #d58512;\n}\n.btn-warning:active:hover,\n.btn-warning.active:hover,\n.open > .dropdown-toggle.btn-warning:hover,\n.btn-warning:active:focus,\n.btn-warning.active:focus,\n.open > .dropdown-toggle.btn-warning:focus,\n.btn-warning:active.focus,\n.btn-warning.active.focus,\n.open > .dropdown-toggle.btn-warning.focus {\n  color: #fff;\n  background-color: #d58512;\n  border-color: #985f0d;\n}\n.btn-warning:active,\n.btn-warning.active,\n.open > .dropdown-toggle.btn-warning {\n  background-image: none;\n}\n.btn-warning.disabled:hover,\n.btn-warning[disabled]:hover,\nfieldset[disabled] .btn-warning:hover,\n.btn-warning.disabled:focus,\n.btn-warning[disabled]:focus,\nfieldset[disabled] .btn-warning:focus,\n.btn-warning.disabled.focus,\n.btn-warning[disabled].focus,\nfieldset[disabled] .btn-warning.focus {\n  background-color: #bbb;\n  border-color: #7b7b7b;\n  color: #777;\n}\n.btn-warning.disabled::before,\n.btn-warning[disabled]::before,\nfieldset[disabled] .btn-warning::before {\n  border-color: #7b7b7b;\n}\n.btn-warning .badge {\n  color: #f0ad4e;\n  background-color: #fff;\n}\n.btn-danger {\n  color: #fff;\n  background: linear-gradient(#ff3333, #f00);\n  border-color: #e60000;\n}\n.btn-danger::before {\n  border-color: #e60000;\n}\n.btn-danger:focus,\n.btn-danger.focus {\n  color: #fff;\n  background-color: #cc0000;\n  border-color: #660000;\n}\n.btn-danger:hover {\n  color: #fff;\n  background-color: #cc0000;\n  border-color: #a80000;\n}\n.btn-danger:active,\n.btn-danger.active,\n.open > .dropdown-toggle.btn-danger {\n  color: #fff;\n  background-color: #cc0000;\n  border-color: #a80000;\n}\n.btn-danger:active:hover,\n.btn-danger.active:hover,\n.open > .dropdown-toggle.btn-danger:hover,\n.btn-danger:active:focus,\n.btn-danger.active:focus,\n.open > .dropdown-toggle.btn-danger:focus,\n.btn-danger:active.focus,\n.btn-danger.active.focus,\n.open > .dropdown-toggle.btn-danger.focus {\n  color: #fff;\n  background-color: #a80000;\n  border-color: #660000;\n}\n.btn-danger:active,\n.btn-danger.active,\n.open > .dropdown-toggle.btn-danger {\n  background-image: none;\n}\n.btn-danger.disabled:hover,\n.btn-danger[disabled]:hover,\nfieldset[disabled] .btn-danger:hover,\n.btn-danger.disabled:focus,\n.btn-danger[disabled]:focus,\nfieldset[disabled] .btn-danger:focus,\n.btn-danger.disabled.focus,\n.btn-danger[disabled].focus,\nfieldset[disabled] .btn-danger.focus {\n  background-color: #bbb;\n  border-color: #7b7b7b;\n  color: #777;\n}\n.btn-danger.disabled::before,\n.btn-danger[disabled]::before,\nfieldset[disabled] .btn-danger::before {\n  border-color: #7b7b7b;\n}\n.btn-danger .badge {\n  color: #f00;\n  background-color: #fff;\n}\n.btn-link {\n  color: #15c;\n  font-weight: normal;\n  border-radius: 0;\n}\n.btn-link,\n.btn-link:active,\n.btn-link.active,\n.btn-link[disabled],\nfieldset[disabled] .btn-link {\n  background-color: transparent;\n  -webkit-box-shadow: none;\n  box-shadow: none;\n}\n.btn-link,\n.btn-link:hover,\n.btn-link:focus,\n.btn-link:active {\n  border-color: transparent;\n}\n.btn-link:hover,\n.btn-link:focus {\n  color: #0b3885;\n  text-decoration: underline;\n  background-color: transparent;\n}\n.btn-link[disabled]:hover,\nfieldset[disabled] .btn-link:hover,\n.btn-link[disabled]:focus,\nfieldset[disabled] .btn-link:focus {\n  color: #bbb;\n  text-decoration: none;\n}\n.btn-lg,\nselectpicker.selectpicker-lg button.btn,\n.btn-group-lg > .btn {\n  padding: 10px 16px;\n  font-size: 18px;\n  line-height: 1.3333333;\n  border-radius: 0px;\n}\n.btn-sm,\nselectpicker.selectpicker-sm button.btn,\n.btn-group-sm > .btn {\n  padding: 5px 10px;\n  font-size: 12px;\n  line-height: 1.5;\n  border-radius: 0px;\n}\n.btn-xs,\n.btn-group-xs > .btn {\n  padding: 1px 5px;\n  font-size: 12px;\n  line-height: 1.5;\n  border-radius: 0px;\n}\n.btn-block {\n  display: block;\n  width: 100%;\n}\n.btn-block + .btn-block {\n  margin-top: 5px;\n}\ninput[type=\"submit\"].btn-block,\ninput[type=\"reset\"].btn-block,\ninput[type=\"button\"].btn-block {\n  width: 100%;\n}\n.fade {\n  opacity: 0;\n  -webkit-transition: opacity 0.15s linear;\n  -o-transition: opacity 0.15s linear;\n  transition: opacity 0.15s linear;\n}\n.fade.in {\n  opacity: 1;\n}\n.collapse {\n  display: none;\n}\n.collapse.in {\n  display: block;\n}\ntr.collapse.in {\n  display: table-row;\n}\ntbody.collapse.in {\n  display: table-row-group;\n}\n.collapsing {\n  position: relative;\n  height: 0;\n  overflow: hidden;\n  -webkit-transition-property: height, visibility;\n  transition-property: height, visibility;\n  -webkit-transition-duration: 0.35s;\n  transition-duration: 0.35s;\n  -webkit-transition-timing-function: ease;\n  transition-timing-function: ease;\n}\ndatepicker .modal-header,\ndatepicker-range .modal-header {\n  background-color: #15c;\n}\ndatepicker .modal-header .withoutClose,\ndatepicker-range .modal-header .withoutClose {\n  height: 14px;\n}\ndatepicker .modal-header .date-letter,\ndatepicker-range .modal-header .date-letter {\n  height: 120px;\n}\ndatepicker .modal-header .date-letter span:first-child,\ndatepicker-range .modal-header .date-letter span:first-child {\n  color: #fff;\n  text-transform: uppercase;\n  font-size: 24px;\n  font-weight: bold;\n  line-height: 0px;\n  margin-bottom: 12px;\n  display: inline-block;\n  width: 100%;\n}\ndatepicker .modal-header .date-letter span:nth-child(2),\ndatepicker-range .modal-header .date-letter span:nth-child(2) {\n  color: #fff;\n  font-size: 90px;\n  line-height: 80px;\n  display: inline-block;\n  width: 100%;\n}\ndatepicker .modal-header .date-letter span:nth-child(3),\ndatepicker-range .modal-header .date-letter span:nth-child(3) {\n  color: #fff;\n  text-transform: capitalize;\n  font-size: 21px;\n  line-height: 0px;\n  display: inline-block;\n  width: 100%;\n}\ndatepicker .modal-header .calendar-bg,\ndatepicker-range .modal-header .calendar-bg {\n  background-color: #fff;\n  padding-top: 10px;\n}\ndatepicker .modal-header .calendar-bg .arrow .icon-next,\ndatepicker-range .modal-header .calendar-bg .arrow .icon-next,\ndatepicker .modal-header .calendar-bg .arrow .icon-previous,\ndatepicker-range .modal-header .calendar-bg .arrow .icon-previous {\n  color: #15c;\n  cursor: auto;\n}\ndatepicker .modal-header .calendar-bg .arrow .icon-next:hover,\ndatepicker-range .modal-header .calendar-bg .arrow .icon-next:hover,\ndatepicker .modal-header .calendar-bg .arrow .icon-previous:hover,\ndatepicker-range .modal-header .calendar-bg .arrow .icon-previous:hover {\n  color: #f40;\n  cursor: pointer;\n}\ndatepicker .modal-body,\ndatepicker-range .modal-body {\n  background-color: #fff;\n}\ndatepicker .datepicker,\ndatepicker-range .datepicker {\n  color: inherit;\n  padding: 4px;\n  margin-top: 1px;\n}\ndatepicker .datepicker .calendar,\ndatepicker-range .datepicker .calendar {\n  display: none;\n  margin: 4px;\n  border-bottom: 2px solid #fff;\n}\ndatepicker .datepicker .calendar th,\ndatepicker-range .datepicker .calendar th,\ndatepicker .datepicker .calendar td,\ndatepicker-range .datepicker .calendar td {\n  white-space: nowrap;\n  text-align: center;\n  min-width: 32px;\n}\ndatepicker .datepicker .calendar-table,\ndatepicker-range .datepicker .calendar-table {\n  border: 1px solid #fff;\n  padding: 5px;\n  border-radius: 0px;\n  background-color: #fff;\n  margin-bottom: 25px;\n}\ndatepicker .datepicker table,\ndatepicker-range .datepicker table {\n  width: 100%;\n  margin: 0;\n}\ndatepicker .datepicker th,\ndatepicker-range .datepicker th {\n  text-align: center;\n  width: 20px;\n  height: 20px;\n  border: 1px solid transparent;\n  white-space: nowrap;\n  cursor: pointer;\n}\ndatepicker .datepicker td,\ndatepicker-range .datepicker td {\n  text-align: center;\n  width: 20px;\n  height: 20px;\n  border-radius: 4px;\n  border: 1px solid transparent;\n  white-space: nowrap;\n  cursor: pointer;\n}\ndatepicker .datepicker td.available:hover,\ndatepicker-range .datepicker td.available:hover {\n  background-color: #f40;\n  border-color: transparent;\n  color: #fff;\n}\ndatepicker .datepicker td.today,\ndatepicker-range .datepicker td.today {\n  border: 2px solid #f40;\n  font-weight: bold;\n}\ndatepicker .datepicker td.today:hover,\ndatepicker-range .datepicker td.today:hover {\n  background-color: #f40;\n  border-color: transparent;\n  color: #fff;\n}\ndatepicker .datepicker td.dayweek,\ndatepicker-range .datepicker td.dayweek {\n  font-weight: bold;\n}\ndatepicker .datepicker td.in-range,\ndatepicker-range .datepicker td.in-range {\n  background-color: #e0eafc;\n  border-color: transparent;\n  color: #000;\n  border-radius: 0;\n}\ndatepicker .datepicker td.start-date,\ndatepicker-range .datepicker td.start-date,\ndatepicker .datepicker td.end-date,\ndatepicker-range .datepicker td.end-date,\ndatepicker .datepicker td.start-date.end-date,\ndatepicker-range .datepicker td.start-date.end-date {\n  border-radius: 0px 0 0 0px;\n}\ndatepicker .datepicker td.active,\ndatepicker-range .datepicker td.active {\n  background-color: #15c;\n  border-color: transparent;\n  color: #fff;\n}\ndatepicker .datepicker td.active:hover,\ndatepicker-range .datepicker td.active:hover {\n  background-color: #15c;\n  border-color: transparent;\n  color: #fff;\n}\ndatepicker .datepicker td.off,\ndatepicker-range .datepicker td.off {\n  background-color: #fff;\n  color: #777;\n  border: none;\n  font-weight: normal;\n}\ndatepicker .datepicker.show-calendar .calendar,\ndatepicker-range .datepicker.show-calendar .calendar {\n  display: block;\n}\n.caret {\n  display: inline-block;\n  width: 0;\n  height: 0;\n  margin-left: 2px;\n  vertical-align: middle;\n  border-top: 4px dashed;\n  border-top: 4px solid \\9;\n  border-right: 4px solid transparent;\n  border-left: 4px solid transparent;\n}\n.dropup,\n.dropdown {\n  position: relative;\n}\n.dropdown-toggle:focus {\n  outline: 0;\n}\ndropdown-option,\ndropdown-header,\ndropdown-divider {\n  display: list-item;\n}\ndropdown-option {\n  cursor: pointer;\n}\n.dropdown-menu {\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 1000;\n  display: none;\n  float: left;\n  min-width: 160px;\n  height: auto;\n  overflow-x: hidden;\n  max-height: 200px;\n  padding: 5px 0;\n  margin: 2px 0 0;\n  list-style: none;\n  font-size: 14px;\n  text-align: left;\n  background-color: #fff;\n  border: 1px solid #ccc;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  border-radius: 0px;\n  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);\n  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);\n  background-clip: padding-box;\n}\n.dropdown-menu.pull-right {\n  right: 0;\n  left: auto;\n}\n.dropdown-menu .divider {\n  height: 1px;\n  margin: 9px 0;\n  overflow: hidden;\n  background-color: #e5e5e5;\n}\n.dropdown-menu > dropdown-option > div,\n.dropdown-menu dropdown-divider > div,\n.dropdown-menu dropdown-header > div {\n  margin: 10px 20px;\n}\n.dropdown-menu > dropdown-option > a,\n.dropdown-menu dropdown-divider > a,\n.dropdown-menu dropdown-header > a {\n  display: block;\n  padding: 3px 20px;\n  clear: both;\n  font-weight: normal;\n  line-height: 1.42857143;\n  color: #000;\n  white-space: nowrap;\n}\n.dropdown-menu > dropdown-option > a:hover,\n.dropdown-menu > dropdown-option > a:focus {\n  text-decoration: none;\n  color: #fff;\n  background-color: #15c;\n}\n.dropdown-menu > .active > a,\n.dropdown-menu > .active > a:hover,\n.dropdown-menu > .active > a:focus {\n  color: #fff;\n  text-decoration: none;\n  outline: 0;\n  background-color: #15c;\n}\n.dropdown-menu > .disabled > a,\n.dropdown-menu > .disabled > a:hover,\n.dropdown-menu > .disabled > a:focus {\n  color: #777777;\n}\n.dropdown-menu > .disabled > a:hover,\n.dropdown-menu > .disabled > a:focus {\n  text-decoration: none;\n  background-color: transparent;\n  background-image: none;\n  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);\n  cursor: not-allowed;\n}\n.open > .dropdown-menu,\n.open > dropdown > div > .dropdown-menu {\n  display: block;\n}\n.open > a {\n  outline: 0;\n}\n.dropdown-menu-right {\n  left: auto;\n  right: 0;\n}\n.dropdown-menu-left {\n  left: 0;\n  right: auto;\n}\n.dropdown-header {\n  display: block;\n  padding: 3px 20px;\n  font-size: 12px;\n  line-height: 1.42857143;\n  color: #777777;\n  white-space: nowrap;\n}\n.dropdown-backdrop {\n  position: fixed;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  top: 0;\n  z-index: 990;\n}\n.pull-right > .dropdown-menu {\n  right: 0;\n  left: auto;\n}\n.dropup .caret,\n.navbar-fixed-bottom .dropdown .caret {\n  border-top: 0;\n  border-bottom: 4px dashed;\n  border-bottom: 4px solid \\9;\n  content: \"\";\n}\n.dropup .dropdown-menu,\n.navbar-fixed-bottom .dropdown .dropdown-menu {\n  top: auto;\n  bottom: 100%;\n  margin-bottom: 2px;\n}\n@media (min-width: 768px) {\n  .navbar-right .dropdown-menu {\n    left: auto;\n    right: 0;\n  }\n  .navbar-right .dropdown-menu-left {\n    left: 0;\n    right: auto;\n  }\n}\n.select {\n  position: relative;\n  width: 100%;\n}\n.select > button.btn {\n  width: 100%;\n  background: linear-gradient(#ffffff, #ccc);\n  border: 1px solid #aaa;\n  color: #000;\n}\n.select > button.btn .select-text {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  display: block;\n}\n.select > button.btn .caret {\n  position: absolute;\n  top: 45%;\n  right: 10px;\n}\n.select > .select-options {\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 1000;\n  display: none;\n  float: left;\n  min-width: 160px;\n  height: auto;\n  overflow-x: hidden;\n  max-height: 200px;\n  list-style: none;\n  font-size: 14px;\n  text-align: left;\n  background-color: #fff;\n  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);\n  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);\n  background-clip: padding-box;\n  width: 100%;\n  border-radius: 0;\n  margin-top: 0;\n  padding: 0;\n  border: 1px solid #aaa;\n  border-top: 0;\n}\n.select > .select-options > li > input.option-status[type=\"checkbox\"] {\n  display: none;\n}\n.select > .select-options > li > a {\n  display: block;\n  clear: both;\n  font-weight: normal;\n  line-height: 1.42857143;\n  white-space: nowrap;\n  padding: 3px 10px;\n  background-color: #fff;\n  color: #000;\n  border-bottom: solid 1px #d4d4d4;\n  -webkit-transition: all 0.6s ease-out;\n  -o-transition: all 0.6s ease-out;\n  transition: all 0.6s ease-out;\n}\n.select > .select-options > li:nth-of-type(odd) > a {\n  background-color: #f9f9f9;\n}\n.select > .select-options > li[aria-selected=\"true\"] > a {\n  background-color: #15c;\n  color: #fff;\n}\n.select > .select-options > li > a:hover {\n  background-color: #3478ee;\n  color: #fff;\n  padding-left: 20px;\n}\n.select > .select-options > li > a:focus {\n  background-color: #3478ee;\n  color: #fff;\n}\n.select > .select-options > li > a.noselect {\n  -webkit-touch-callout: none;\n  /* iOS Safari */\n  -webkit-user-select: none;\n  /* Safari */\n  -khtml-user-select: none;\n  /* Konqueror HTML */\n  -moz-user-select: none;\n  /* Firefox */\n  -ms-user-select: none;\n  /* Internet Explorer/Edge */\n  user-select: none;\n  /* Non-prefixed version, currently\n                                    supported by Chrome and Opera */\n}\n.select.open > .select-options {\n  display: block;\n}\n.select.open > a {\n  outline: 0;\n}\n.select.open > .select-toggle.btn-default {\n  background: linear-gradient(#ffffff, #ccc);\n  color: #000;\n  border: 1px solid #aaa;\n}\n.btn-group,\n.btn-group-vertical {\n  position: relative;\n  display: inline-block;\n  vertical-align: middle;\n}\n.btn-group > .btn,\n.btn-group-vertical > .btn {\n  position: relative;\n  float: left;\n}\n.btn-group > .btn:hover,\n.btn-group-vertical > .btn:hover,\n.btn-group > .btn:focus,\n.btn-group-vertical > .btn:focus,\n.btn-group > .btn:active,\n.btn-group-vertical > .btn:active,\n.btn-group > .btn.active,\n.btn-group-vertical > .btn.active {\n  z-index: 2;\n}\n.btn-group .btn + .btn,\n.btn-group .btn + .btn-group,\n.btn-group .btn-group + .btn,\n.btn-group .btn-group + .btn-group {\n  margin-left: -1px;\n}\n.btn-toolbar {\n  margin-left: -5px;\n}\n.btn-toolbar .btn,\n.btn-toolbar .btn-group,\n.btn-toolbar .input-group {\n  float: left;\n}\n.btn-toolbar > .btn,\n.btn-toolbar > .btn-group,\n.btn-toolbar > .input-group {\n  margin-left: 5px;\n}\n.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {\n  border-radius: 0;\n}\n.btn-group > .btn:first-child {\n  margin-left: 0;\n}\n.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {\n  border-bottom-right-radius: 0;\n  border-top-right-radius: 0;\n}\n.btn-group > .btn:last-child:not(:first-child),\n.btn-group > .dropdown-toggle:not(:first-child) {\n  border-bottom-left-radius: 0;\n  border-top-left-radius: 0;\n}\n.btn-group > .btn-group {\n  float: left;\n}\n.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn {\n  border-radius: 0;\n}\n.btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child,\n.btn-group > .btn-group:first-child:not(:last-child) > .dropdown-toggle {\n  border-bottom-right-radius: 0;\n  border-top-right-radius: 0;\n}\n.btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child {\n  border-bottom-left-radius: 0;\n  border-top-left-radius: 0;\n}\n.btn-group .dropdown-toggle:active,\n.btn-group.open .dropdown-toggle {\n  outline: 0;\n}\n.btn-group > .btn + .dropdown-toggle {\n  padding-left: 8px;\n  padding-right: 8px;\n}\n.btn-group > .btn-lg + .dropdown-toggle {\n  padding-left: 12px;\n  padding-right: 12px;\n}\n.btn-group.open .dropdown-toggle {\n  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);\n  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);\n}\n.btn-group.open .dropdown-toggle.btn-link {\n  -webkit-box-shadow: none;\n  box-shadow: none;\n}\n.btn .caret {\n  margin-left: 0;\n}\n.btn-lg .caret {\n  border-width: 5px 5px 0;\n  border-bottom-width: 0;\n}\n.dropup .btn-lg .caret {\n  border-width: 0 5px 5px;\n}\n.btn-group-vertical > .btn,\n.btn-group-vertical > .btn-group,\n.btn-group-vertical > .btn-group > .btn {\n  display: block;\n  float: none;\n  width: 100%;\n  max-width: 100%;\n}\n.btn-group-vertical > .btn-group > .btn {\n  float: none;\n}\n.btn-group-vertical > .btn + .btn,\n.btn-group-vertical > .btn + .btn-group,\n.btn-group-vertical > .btn-group + .btn,\n.btn-group-vertical > .btn-group + .btn-group {\n  margin-top: -1px;\n  margin-left: 0;\n}\n.btn-group-vertical > .btn:not(:first-child):not(:last-child) {\n  border-radius: 0;\n}\n.btn-group-vertical > .btn:first-child:not(:last-child) {\n  border-top-right-radius: 0px;\n  border-top-left-radius: 0px;\n  border-bottom-right-radius: 0;\n  border-bottom-left-radius: 0;\n}\n.btn-group-vertical > .btn:last-child:not(:first-child) {\n  border-top-right-radius: 0;\n  border-top-left-radius: 0;\n  border-bottom-right-radius: 0px;\n  border-bottom-left-radius: 0px;\n}\n.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn {\n  border-radius: 0;\n}\n.btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn:last-child,\n.btn-group-vertical > .btn-group:first-child:not(:last-child) > .dropdown-toggle {\n  border-bottom-right-radius: 0;\n  border-bottom-left-radius: 0;\n}\n.btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child {\n  border-top-right-radius: 0;\n  border-top-left-radius: 0;\n}\n.btn-group-justified {\n  display: table;\n  width: 100%;\n  table-layout: fixed;\n  border-collapse: separate;\n}\n.btn-group-justified > .btn,\n.btn-group-justified > .btn-group {\n  float: none;\n  display: table-cell;\n  width: 1%;\n}\n.btn-group-justified > .btn-group .btn {\n  width: 100%;\n}\n.btn-group-justified > .btn-group .dropdown-menu {\n  left: auto;\n}\n[data-toggle=\"buttons\"] > .btn input[type=\"radio\"],\n[data-toggle=\"buttons\"] > .btn-group > .btn input[type=\"radio\"],\n[data-toggle=\"buttons\"] > .btn input[type=\"checkbox\"],\n[data-toggle=\"buttons\"] > .btn-group > .btn input[type=\"checkbox\"] {\n  position: absolute;\n  clip: rect(0, 0, 0, 0);\n  pointer-events: none;\n}\n.input-group {\n  position: relative;\n  display: table;\n  border-collapse: separate;\n}\n.input-group[class*=\"col-\"] {\n  float: none;\n  padding-left: 0;\n  padding-right: 0;\n}\n.input-group .form-control {\n  position: relative;\n  z-index: 2;\n  float: left;\n  width: 100%;\n  margin-bottom: 0;\n}\n.input-group .form-control:focus {\n  z-index: 3;\n}\n.input-group-lg > .form-control,\n.input-group-lg > .input-group-addon,\n.input-group-lg > .input-group-btn > .btn {\n  height: 46px;\n  padding: 10px 16px;\n  font-size: 18px;\n  line-height: 1.3333333;\n  border-radius: 0px;\n}\nselect.input-group-lg > .form-control,\nselect.input-group-lg > .input-group-addon,\nselect.input-group-lg > .input-group-btn > .btn {\n  height: 46px;\n  line-height: 46px;\n}\ntextarea.input-group-lg > .form-control,\ntextarea.input-group-lg > .input-group-addon,\ntextarea.input-group-lg > .input-group-btn > .btn,\nselect[multiple].input-group-lg > .form-control,\nselect[multiple].input-group-lg > .input-group-addon,\nselect[multiple].input-group-lg > .input-group-btn > .btn {\n  height: auto;\n}\n.input-group-sm > .form-control,\n.input-group-sm > .input-group-addon,\n.input-group-sm > .input-group-btn > .btn {\n  height: 30px;\n  padding: 5px 10px;\n  font-size: 12px;\n  line-height: 1.5;\n  border-radius: 0px;\n}\nselect.input-group-sm > .form-control,\nselect.input-group-sm > .input-group-addon,\nselect.input-group-sm > .input-group-btn > .btn {\n  height: 30px;\n  line-height: 30px;\n}\ntextarea.input-group-sm > .form-control,\ntextarea.input-group-sm > .input-group-addon,\ntextarea.input-group-sm > .input-group-btn > .btn,\nselect[multiple].input-group-sm > .form-control,\nselect[multiple].input-group-sm > .input-group-addon,\nselect[multiple].input-group-sm > .input-group-btn > .btn {\n  height: auto;\n}\n.input-group-addon,\n.input-group-btn,\n.input-group .form-control {\n  display: table-cell;\n}\n.input-group-addon:not(:first-child):not(:last-child),\n.input-group-btn:not(:first-child):not(:last-child),\n.input-group .form-control:not(:first-child):not(:last-child) {\n  border-radius: 0;\n}\n.input-group-addon,\n.input-group-btn {\n  width: 1%;\n  white-space: nowrap;\n  vertical-align: middle;\n}\n.input-group-addon {\n  padding: 6px 12px;\n  font-size: 14px;\n  font-weight: normal;\n  line-height: 1;\n  color: #000;\n  text-align: center;\n  background-color: transparent;\n  border: 1px solid transparent;\n  border-radius: 0px;\n}\n.input-group-addon.input-sm {\n  padding: 5px 10px;\n  font-size: 12px;\n  border-radius: 0px;\n}\n.input-group-addon.input-lg {\n  padding: 10px 16px;\n  font-size: 18px;\n  border-radius: 0px;\n}\n.input-group-addon input[type=\"radio\"],\n.input-group-addon input[type=\"checkbox\"] {\n  margin-top: 0;\n}\n.input-group .form-control:first-child,\n.input-group-addon:first-child,\n.input-group-btn:first-child > .btn,\n.input-group-btn:first-child > .btn-group > .btn,\n.input-group-btn:first-child > .dropdown-toggle,\n.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),\n.input-group-btn:last-child > .btn-group:not(:last-child) > .btn {\n  border-bottom-right-radius: 0;\n  border-top-right-radius: 0;\n}\n.input-group-addon:first-child {\n  border-right: 0;\n}\n.input-group .form-control:last-child,\n.input-group-addon:last-child,\n.input-group-btn:last-child > .btn,\n.input-group-btn:last-child > .btn-group > .btn,\n.input-group-btn:last-child > .dropdown-toggle,\n.input-group-btn:first-child > .btn:not(:first-child),\n.input-group-btn:first-child > .btn-group:not(:first-child) > .btn {\n  border-bottom-left-radius: 0;\n  border-top-left-radius: 0;\n}\n.input-group-addon:last-child {\n  border-left: 0;\n}\n.input-group-btn {\n  position: relative;\n  font-size: 0;\n  white-space: nowrap;\n}\n.input-group-btn > .btn {\n  position: relative;\n}\n.input-group-btn > .btn + .btn {\n  margin-left: -1px;\n}\n.input-group-btn > .btn:hover,\n.input-group-btn > .btn:focus,\n.input-group-btn > .btn:active {\n  z-index: 2;\n}\n.input-group-btn:first-child > .btn,\n.input-group-btn:first-child > .btn-group {\n  margin-right: -1px;\n}\n.input-group-btn:last-child > .btn,\n.input-group-btn:last-child > .btn-group {\n  z-index: 2;\n  margin-left: -1px;\n}\n.nav {\n  margin-bottom: 0;\n  padding-left: 0;\n  list-style: none;\n}\n.nav > li {\n  position: relative;\n  display: block;\n}\n.nav > li > a,\n.nav > li > dropdown > a {\n  position: relative;\n  display: block;\n  padding: 10px 15px;\n}\n.nav > li > a:hover,\n.nav > li > dropdown > a:hover,\n.nav > li > a:focus,\n.nav > li > dropdown > a:focus {\n  text-decoration: none;\n  background-color: #eeeeee;\n}\n.nav > li.disabled > a,\n.nav > li.disabled > dropdown > a {\n  color: #777777;\n}\n.nav > li.disabled > a:hover,\n.nav > li.disabled > dropdown > a:hover,\n.nav > li.disabled > a:focus,\n.nav > li.disabled > dropdown > a:focus {\n  color: #777777;\n  text-decoration: none;\n  background-color: transparent;\n  cursor: not-allowed;\n}\n.nav .open > a,\n.nav .open > dropdown > a,\n.nav .open > a:hover,\n.nav .open > dropdown > a:hover,\n.nav .open > a:focus,\n.nav .open > dropdown > a:focus {\n  background-color: #eeeeee;\n  border-color: #15c;\n}\n.nav .nav-divider {\n  height: 1px;\n  margin: 9px 0;\n  overflow: hidden;\n  background-color: #e5e5e5;\n}\n.nav > li > a > img {\n  max-width: none;\n}\n.nav-tabs {\n  border-bottom: 1px solid #ddd;\n}\n.nav-tabs > li {\n  float: left;\n  margin-bottom: -1px;\n}\n.nav-tabs > li > a {\n  margin-right: 2px;\n  line-height: 1.42857143;\n  border: 1px solid transparent;\n  border-radius: 0px 0px 0 0;\n}\n.nav-tabs > li > a:hover {\n  border-color: #eeeeee #eeeeee #ddd;\n}\n.nav-tabs > li.active > a,\n.nav-tabs > li.active > a:hover,\n.nav-tabs > li.active > a:focus {\n  color: #555555;\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-bottom-color: transparent;\n  cursor: default;\n}\n.nav-tabs.nav-justified {\n  width: 100%;\n  border-bottom: 0;\n}\n.nav-tabs.nav-justified > li {\n  float: none;\n}\n.nav-tabs.nav-justified > li > a {\n  text-align: center;\n  margin-bottom: 5px;\n}\n.nav-tabs.nav-justified > .dropdown .dropdown-menu {\n  top: auto;\n  left: auto;\n}\n@media (min-width: 768px) {\n  .nav-tabs.nav-justified > li {\n    display: table-cell;\n    width: 1%;\n  }\n  .nav-tabs.nav-justified > li > a {\n    margin-bottom: 0;\n  }\n}\n.nav-tabs.nav-justified > li > a {\n  margin-right: 0;\n  border-radius: 0px;\n}\n.nav-tabs.nav-justified > .active > a,\n.nav-tabs.nav-justified > .active > a:hover,\n.nav-tabs.nav-justified > .active > a:focus {\n  border: 1px solid #ddd;\n}\n@media (min-width: 768px) {\n  .nav-tabs.nav-justified > li > a {\n    border-bottom: 1px solid #ddd;\n    border-radius: 0px 0px 0 0;\n  }\n  .nav-tabs.nav-justified > .active > a,\n  .nav-tabs.nav-justified > .active > a:hover,\n  .nav-tabs.nav-justified > .active > a:focus {\n    border-bottom-color: #fff;\n  }\n}\n.nav-pills > li {\n  float: left;\n}\n.nav-pills > li > a {\n  border-radius: 0px;\n}\n.nav-pills > li + li {\n  margin-left: 2px;\n}\n.nav-pills > li.active > a,\n.nav-pills > li.active > a:hover,\n.nav-pills > li.active > a:focus {\n  color: #fff;\n  background-color: #15c;\n}\n.nav-stacked > li {\n  float: none;\n}\n.nav-stacked > li + li {\n  margin-top: 2px;\n  margin-left: 0;\n}\n.nav-justified {\n  width: 100%;\n}\n.nav-justified > li {\n  float: none;\n}\n.nav-justified > li > a {\n  text-align: center;\n  margin-bottom: 5px;\n}\n.nav-justified > .dropdown .dropdown-menu {\n  top: auto;\n  left: auto;\n}\n@media (min-width: 768px) {\n  .nav-justified > li {\n    display: table-cell;\n    width: 1%;\n  }\n  .nav-justified > li > a {\n    margin-bottom: 0;\n  }\n}\n.nav-tabs-justified {\n  border-bottom: 0;\n}\n.nav-tabs-justified > li > a {\n  margin-right: 0;\n  border-radius: 0px;\n}\n.nav-tabs-justified > .active > a,\n.nav-tabs-justified > .active > a:hover,\n.nav-tabs-justified > .active > a:focus {\n  border: 1px solid #ddd;\n}\n@media (min-width: 768px) {\n  .nav-tabs-justified > li > a {\n    border-bottom: 1px solid #ddd;\n    border-radius: 0px 0px 0 0;\n  }\n  .nav-tabs-justified > .active > a,\n  .nav-tabs-justified > .active > a:hover,\n  .nav-tabs-justified > .active > a:focus {\n    border-bottom-color: #fff;\n  }\n}\n.tab-content > .tab-pane {\n  display: none;\n}\n.tab-content > .active {\n  display: block;\n}\n.nav-tabs .dropdown-menu {\n  margin-top: -1px;\n  border-top-right-radius: 0;\n  border-top-left-radius: 0;\n}\n.navbar {\n  position: relative;\n  min-height: 50px;\n  margin-bottom: 20px;\n  border: 1px solid transparent;\n}\n@media (min-width: 768px) {\n  .navbar {\n    border-radius: 0px;\n  }\n}\n@media (min-width: 768px) {\n  .navbar-header {\n    float: left;\n  }\n}\n.navbar-collapse {\n  overflow-x: visible;\n  padding-right: 15px;\n  padding-left: 15px;\n  border-top: 1px solid transparent;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);\n  -webkit-overflow-scrolling: touch;\n}\n.navbar-collapse.in {\n  overflow-y: auto;\n}\n@media (min-width: 768px) {\n  .navbar-collapse {\n    width: auto;\n    border-top: 0;\n    box-shadow: none;\n  }\n  .navbar-collapse.collapse {\n    display: block !important;\n    height: auto !important;\n    padding-bottom: 0;\n    overflow: visible !important;\n  }\n  .navbar-collapse.in {\n    overflow-y: visible;\n  }\n  .navbar-fixed-top .navbar-collapse,\n  .navbar-static-top .navbar-collapse,\n  .navbar-fixed-bottom .navbar-collapse {\n    padding-left: 0;\n    padding-right: 0;\n  }\n}\n.navbar-fixed-top .navbar-collapse,\n.navbar-fixed-bottom .navbar-collapse {\n  max-height: 340px;\n}\n@media (max-device-width: 480px) and (orientation: landscape) {\n  .navbar-fixed-top .navbar-collapse,\n  .navbar-fixed-bottom .navbar-collapse {\n    max-height: 200px;\n  }\n}\n.container > .navbar-header,\n.container-fluid > .navbar-header,\n.container > .navbar-collapse,\n.container-fluid > .navbar-collapse {\n  margin-right: -15px;\n  margin-left: -15px;\n}\n@media (min-width: 768px) {\n  .container > .navbar-header,\n  .container-fluid > .navbar-header,\n  .container > .navbar-collapse,\n  .container-fluid > .navbar-collapse {\n    margin-right: 0;\n    margin-left: 0;\n  }\n}\n.navbar-static-top {\n  z-index: 1000;\n  border-width: 0 0 1px;\n}\n@media (min-width: 768px) {\n  .navbar-static-top {\n    border-radius: 0;\n  }\n}\n.navbar-fixed-top,\n.navbar-fixed-bottom {\n  position: fixed;\n  right: 0;\n  left: 0;\n  z-index: 1030;\n}\n@media (min-width: 768px) {\n  .navbar-fixed-top,\n  .navbar-fixed-bottom {\n    border-radius: 0;\n  }\n}\n.navbar-fixed-top {\n  top: 0;\n  border-width: 0 0 1px;\n}\n.navbar-fixed-bottom {\n  bottom: 0;\n  margin-bottom: 0;\n  border-width: 1px 0 0;\n}\n.navbar-brand {\n  float: left;\n  padding: 15px 15px;\n  font-size: 18px;\n  line-height: 20px;\n  height: 50px;\n}\n.navbar-brand:hover,\n.navbar-brand:focus {\n  text-decoration: none;\n}\n.navbar-brand > img {\n  display: block;\n}\n@media (min-width: 768px) {\n  .navbar > .container .navbar-brand,\n  .navbar > .container-fluid .navbar-brand {\n    margin-left: -15px;\n  }\n}\n.navbar-toggle {\n  position: relative;\n  float: right;\n  margin-right: 15px;\n  padding: 9px 10px;\n  margin-top: 8px;\n  margin-bottom: 8px;\n  background-color: transparent;\n  background-image: none;\n  border: 1px solid transparent;\n  border-radius: 0px;\n}\n.navbar-toggle:focus {\n  outline: 0;\n}\n.navbar-toggle .icon-bar {\n  display: block;\n  width: 22px;\n  height: 2px;\n  border-radius: 1px;\n}\n.navbar-toggle .icon-bar + .icon-bar {\n  margin-top: 4px;\n}\n@media (min-width: 768px) {\n  .navbar-toggle {\n    display: none;\n  }\n}\n.navbar-nav {\n  margin: 7.5px -15px;\n}\n.navbar-nav > li > a,\n.navbar-nav > li > dropdown > a {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  line-height: 20px;\n}\n@media (max-width: 767px) {\n  .navbar-nav .open .dropdown-menu {\n    position: static;\n    float: none;\n    width: auto;\n    margin-top: 0;\n    background-color: transparent;\n    border: 0;\n    box-shadow: none;\n  }\n  .navbar-nav .open .dropdown-menu > li > a,\n  .navbar-nav .open .dropdown-menu .dropdown-header {\n    padding: 5px 15px 5px 25px;\n  }\n  .navbar-nav .open .dropdown-menu > li > a,\n  .navbar-nav .open .dropdown-menu > li > dropdown > a {\n    line-height: 20px;\n  }\n  .navbar-nav .open .dropdown-menu > li > a:hover,\n  .navbar-nav .open .dropdown-menu > li > dropdown > a:hover,\n  .navbar-nav .open .dropdown-menu > li > a:focus,\n  .navbar-nav .open .dropdown-menu > li > dropdown > a:focus {\n    background-image: none;\n  }\n}\n@media (min-width: 768px) {\n  .navbar-nav {\n    float: left;\n    margin: 0;\n  }\n  .navbar-nav > li {\n    float: left;\n  }\n  .navbar-nav > li > a {\n    padding-top: 15px;\n    padding-bottom: 15px;\n  }\n}\n.navbar-form {\n  margin-left: -15px;\n  margin-right: -15px;\n  padding: 10px 15px;\n  border-top: 1px solid transparent;\n  border-bottom: 1px solid transparent;\n  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);\n  margin-top: 8px;\n  margin-bottom: 8px;\n}\n@media (min-width: 768px) {\n  .navbar-form .form-group {\n    display: inline-block;\n    margin-bottom: 0;\n    vertical-align: middle;\n  }\n  .navbar-form .form-control {\n    display: inline-block;\n    width: auto;\n    vertical-align: middle;\n  }\n  .navbar-form .form-control-static {\n    display: inline-block;\n  }\n  .navbar-form .input-group {\n    display: inline-table;\n    vertical-align: middle;\n  }\n  .navbar-form .input-group .input-group-addon,\n  .navbar-form .input-group .input-group-btn,\n  .navbar-form .input-group .form-control {\n    width: auto;\n  }\n  .navbar-form .input-group > .form-control {\n    width: 100%;\n  }\n  .navbar-form .control-label {\n    margin-bottom: 0;\n    vertical-align: middle;\n  }\n  .navbar-form .radio,\n  .navbar-form .checkbox {\n    display: inline-block;\n    margin-top: 0;\n    margin-bottom: 0;\n    vertical-align: middle;\n  }\n  .navbar-form .radio label,\n  .navbar-form .checkbox label {\n    padding-left: 0;\n  }\n  .navbar-form .radio input[type=\"radio\"],\n  .navbar-form .checkbox input[type=\"checkbox\"] {\n    position: relative;\n    margin-left: 0;\n  }\n  .navbar-form .has-feedback .form-control-feedback {\n    top: 0;\n  }\n}\n@media (max-width: 767px) {\n  .navbar-form .form-group {\n    margin-bottom: 5px;\n  }\n  .navbar-form .form-group:last-child {\n    margin-bottom: 0;\n  }\n}\n@media (min-width: 768px) {\n  .navbar-form {\n    width: auto;\n    border: 0;\n    margin-left: 0;\n    margin-right: 0;\n    padding-top: 0;\n    padding-bottom: 0;\n    -webkit-box-shadow: none;\n    box-shadow: none;\n  }\n}\n.navbar-nav > li > dropdown > .dropdown-menu {\n  margin-top: 0;\n  border-top-right-radius: 0;\n  border-top-left-radius: 0;\n}\n.navbar-fixed-bottom .navbar-nav > li > dropdown > .dropdown-menu {\n  margin-bottom: 0;\n  border-top-right-radius: 0px;\n  border-top-left-radius: 0px;\n  border-bottom-right-radius: 0;\n  border-bottom-left-radius: 0;\n}\n.navbar-btn {\n  margin-top: 8px;\n  margin-bottom: 8px;\n}\n.navbar-btn.btn-sm {\n  margin-top: 10px;\n  margin-bottom: 10px;\n}\n.navbar-btn.btn-xs {\n  margin-top: 14px;\n  margin-bottom: 14px;\n}\n.navbar-text {\n  margin-top: 15px;\n  margin-bottom: 15px;\n}\n@media (min-width: 768px) {\n  .navbar-text {\n    float: left;\n    margin-left: 15px;\n    margin-right: 15px;\n  }\n}\n@media (min-width: 768px) {\n  .navbar-left {\n    float: left !important;\n  }\n  .navbar-right {\n    float: right !important;\n    margin-right: -15px;\n  }\n  .navbar-right ~ .navbar-right {\n    margin-right: 0;\n  }\n}\n.navbar-default {\n  background: linear-gradient(#626262, #222);\n  border-color: #222;\n}\n.navbar-default .navbar-brand {\n  color: #fff;\n}\n.navbar-default .navbar-brand:hover,\n.navbar-default .navbar-brand:focus {\n  color: #e6e6e6;\n  background-color: transparent;\n}\n.navbar-default .navbar-text {\n  color: #fff;\n}\n.navbar-default .navbar-nav > li > a,\n.navbar-default .navbar-nav > li > dropdown > a {\n  color: #fff;\n  padding: 15px 15px;\n  z-index: 0;\n}\n.navbar-default .navbar-nav > li > a::before,\n.navbar-default .navbar-nav > li > dropdown > a::before {\n  content: '';\n  position: absolute;\n  top: 0;\n  left: -15px;\n  width: calc(115%);\n  z-index: -1;\n  height: 100%;\n}\n@media (min-width: 768px) {\n  .navbar-default .navbar-nav > li > a::before,\n  .navbar-default .navbar-nav > li > dropdown > a::before {\n    border-right: solid 1px #fff;\n    transform: skewX(-25deg);\n    left: -2px;\n    width: calc(101%);\n  }\n}\n.navbar-default .navbar-nav > li > a:hover,\n.navbar-default .navbar-nav > li > dropdown > a:hover,\n.navbar-default .navbar-nav > li > a:focus,\n.navbar-default .navbar-nav > li > dropdown > a:focus {\n  color: #fff;\n  background-color: transparent;\n}\n.navbar-default .navbar-nav > li > a:hover::before,\n.navbar-default .navbar-nav > li > dropdown > a:hover::before,\n.navbar-default .navbar-nav > li > a:focus::before,\n.navbar-default .navbar-nav > li > dropdown > a:focus::before {\n  background-color: #ff6933;\n}\n.navbar-default .navbar-nav > .active > a,\n.navbar-default .navbar-nav > .active > dropdown > a,\n.navbar-default .navbar-nav > .active > a:hover,\n.navbar-default .navbar-nav > .active > dropdown > a:hover,\n.navbar-default .navbar-nav > .active > a:focus,\n.navbar-default .navbar-nav > .active > dropdown > a:focus {\n  color: #fff;\n}\n.navbar-default .navbar-nav > .active > a::before,\n.navbar-default .navbar-nav > .active > dropdown > a::before,\n.navbar-default .navbar-nav > .active > a:hover::before,\n.navbar-default .navbar-nav > .active > dropdown > a:hover::before,\n.navbar-default .navbar-nav > .active > a:focus::before,\n.navbar-default .navbar-nav > .active > dropdown > a:focus::before {\n  background-color: #15c;\n}\n.navbar-default .navbar-nav > .disabled > a,\n.navbar-default .navbar-nav > .disabled > dropdown > a,\n.navbar-default .navbar-nav > .disabled > a:hover,\n.navbar-default .navbar-nav > .disabled > dropdown > a:hover,\n.navbar-default .navbar-nav > .disabled > a:focus,\n.navbar-default .navbar-nav > .disabled > dropdown > a:focus {\n  color: #777;\n}\n.navbar-default .navbar-nav > .disabled > a::before,\n.navbar-default .navbar-nav > .disabled > dropdown > a::before,\n.navbar-default .navbar-nav > .disabled > a:hover::before,\n.navbar-default .navbar-nav > .disabled > dropdown > a:hover::before,\n.navbar-default .navbar-nav > .disabled > a:focus::before,\n.navbar-default .navbar-nav > .disabled > dropdown > a:focus::before {\n  background-color: #bbb;\n}\n.navbar-default .navbar-toggle {\n  border-color: #ddd;\n}\n.navbar-default .navbar-toggle:hover,\n.navbar-default .navbar-toggle:focus {\n  background-color: #ddd;\n}\n.navbar-default .navbar-toggle .icon-bar {\n  background-color: #888;\n}\n.navbar-default .navbar-collapse,\n.navbar-default .navbar-form {\n  border-color: #222;\n}\n.navbar-default .navbar-nav > .open > dropdown > a,\n.navbar-default .navbar-nav > .open > dropdown > a:hover,\n.navbar-default .navbar-nav > .open > dropdown > a:focus {\n  color: #fff;\n  background-color: transparent;\n}\n.navbar-default .navbar-nav > .open > dropdown > a::before,\n.navbar-default .navbar-nav > .open > dropdown > a:hover::before,\n.navbar-default .navbar-nav > .open > dropdown > a:focus::before {\n  background-color: #15c;\n}\n@media (min-width: 768px) {\n  .navbar-default .navbar-nav .open .dropdown-menu {\n    transform: translateX(-15px);\n  }\n}\n@media (max-width: 767px) {\n  .navbar-default .navbar-nav .open .dropdown-menu > li > a {\n    color: #fff;\n  }\n  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,\n  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {\n    color: #fff;\n  }\n  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover::before,\n  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus::before {\n    background-color: #ff6933;\n  }\n  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,\n  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,\n  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {\n    color: #fff;\n  }\n  .navbar-default .navbar-nav .open .dropdown-menu > .active > a::before,\n  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover::before,\n  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus::before {\n    background-color: #15c;\n  }\n  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,\n  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,\n  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus {\n    color: #777;\n  }\n  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a::before,\n  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover::before,\n  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus::before {\n    background-color: #bbb;\n  }\n}\n.navbar-default .navbar-link {\n  color: #fff;\n}\n.navbar-default .navbar-link:hover {\n  color: #fff;\n}\n.navbar-default .btn-link {\n  color: #fff;\n}\n.navbar-default .btn-link:hover,\n.navbar-default .btn-link:focus {\n  color: #fff;\n}\n.navbar-default .btn-link[disabled]:hover,\nfieldset[disabled] .navbar-default .btn-link:hover,\n.navbar-default .btn-link[disabled]:focus,\nfieldset[disabled] .navbar-default .btn-link:focus {\n  color: #777;\n}\n.navbar-inverse {\n  background-color: #222;\n  border-color: #080808;\n}\n.navbar-inverse .navbar-brand {\n  color: #9d9d9d;\n}\n.navbar-inverse .navbar-brand:hover,\n.navbar-inverse .navbar-brand:focus {\n  color: #fff;\n  background-color: transparent;\n}\n.navbar-inverse .navbar-text {\n  color: #9d9d9d;\n}\n.navbar-inverse .navbar-nav > li > a,\n.navbar-inverse .navbar-nav > li > dropdown > a {\n  color: #9d9d9d;\n}\n.navbar-inverse .navbar-nav > li > a:hover,\n.navbar-inverse .navbar-nav > li > dropdown > a:hover,\n.navbar-inverse .navbar-nav > li > a:focus,\n.navbar-inverse .navbar-nav > li > dropdown > a:focus {\n  color: #fff;\n}\n.navbar-inverse .navbar-nav > li > a:hover::before,\n.navbar-inverse .navbar-nav > li > dropdown > a:hover::before,\n.navbar-inverse .navbar-nav > li > a:focus::before,\n.navbar-inverse .navbar-nav > li > dropdown > a:focus::before {\n  background-color: transparent;\n}\n.navbar-inverse .navbar-nav > .active > a,\n.navbar-inverse .navbar-nav > .active > dropdown > a,\n.navbar-inverse .navbar-nav > .active > a:hover,\n.navbar-inverse .navbar-nav > .active > dropdown > a:hover,\n.navbar-inverse .navbar-nav > .active > a:focus,\n.navbar-inverse .navbar-nav > .active > dropdown > a:focus {\n  color: #fff;\n}\n.navbar-inverse .navbar-nav > .active > a::before,\n.navbar-inverse .navbar-nav > .active > dropdown > a::before,\n.navbar-inverse .navbar-nav > .active > a:hover::before,\n.navbar-inverse .navbar-nav > .active > dropdown > a:hover::before,\n.navbar-inverse .navbar-nav > .active > a:focus::before,\n.navbar-inverse .navbar-nav > .active > dropdown > a:focus::before {\n  background-color: #080808;\n}\n.navbar-inverse .navbar-nav > .disabled > a,\n.navbar-inverse .navbar-nav > .disabled > dropdown > a,\n.navbar-inverse .navbar-nav > .disabled > a:hover,\n.navbar-inverse .navbar-nav > .disabled > dropdown > a:hover,\n.navbar-inverse .navbar-nav > .disabled > a:focus,\n.navbar-inverse .navbar-nav > .disabled > dropdown > a:focus {\n  color: #444;\n}\n.navbar-inverse .navbar-nav > .disabled > a::before,\n.navbar-inverse .navbar-nav > .disabled > dropdown > a::before,\n.navbar-inverse .navbar-nav > .disabled > a:hover::before,\n.navbar-inverse .navbar-nav > .disabled > dropdown > a:hover::before,\n.navbar-inverse .navbar-nav > .disabled > a:focus::before,\n.navbar-inverse .navbar-nav > .disabled > dropdown > a:focus::before {\n  background-color: transparent;\n}\n.navbar-inverse .navbar-toggle {\n  border-color: #333;\n}\n.navbar-inverse .navbar-toggle:hover,\n.navbar-inverse .navbar-toggle:focus {\n  background-color: #333;\n}\n.navbar-inverse .navbar-toggle .icon-bar {\n  background-color: #fff;\n}\n.navbar-inverse .navbar-collapse,\n.navbar-inverse .navbar-form {\n  border-color: #101010;\n}\n.navbar-inverse .navbar-nav > .open > a,\n.navbar-inverse .navbar-nav > .open > dropdown > a,\n.navbar-inverse .navbar-nav > .open > a:hover,\n.navbar-inverse .navbar-nav > .open > dropdown > a:hover,\n.navbar-inverse .navbar-nav > .open > a:focus,\n.navbar-inverse .navbar-nav > .open > dropdown > a:focus {\n  color: #fff;\n}\n.navbar-inverse .navbar-nav > .open > a::before,\n.navbar-inverse .navbar-nav > .open > dropdown > a::before,\n.navbar-inverse .navbar-nav > .open > a:hover::before,\n.navbar-inverse .navbar-nav > .open > dropdown > a:hover::before,\n.navbar-inverse .navbar-nav > .open > a:focus::before,\n.navbar-inverse .navbar-nav > .open > dropdown > a:focus::before {\n  background-color: #080808;\n}\n@media (max-width: 767px) {\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {\n    border-color: #080808;\n  }\n  .navbar-inverse .navbar-nav .open .dropdown-menu .divider {\n    background-color: #080808;\n  }\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > dropdown > a {\n    color: #9d9d9d;\n  }\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > dropdown > a:hover,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > dropdown > a:focus {\n    color: #fff;\n  }\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > dropdown > a:hover::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > li > dropdown > a:focus::before {\n    background-color: transparent;\n  }\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > dropdown > a,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > dropdown > a:hover,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > dropdown > a:focus {\n    color: #fff;\n  }\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > dropdown > a::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > dropdown > a:hover::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > dropdown > a:focus::before {\n    background-color: #080808;\n  }\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > dropdown > a,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > dropdown > a:hover,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > dropdown > a:focus {\n    color: #444;\n  }\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > dropdown > a::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > dropdown > a:hover::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus::before,\n  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > dropdown > a:focus::before {\n    background-color: transparent;\n  }\n}\n.navbar-inverse .navbar-link {\n  color: #9d9d9d;\n}\n.navbar-inverse .navbar-link:hover {\n  color: #fff;\n}\n.navbar-inverse .btn-link {\n  color: #9d9d9d;\n}\n.navbar-inverse .btn-link:hover,\n.navbar-inverse .btn-link:focus {\n  color: #fff;\n}\n.navbar-inverse .btn-link[disabled]:hover,\nfieldset[disabled] .navbar-inverse .btn-link:hover,\n.navbar-inverse .btn-link[disabled]:focus,\nfieldset[disabled] .navbar-inverse .btn-link:focus {\n  color: #444;\n}\n.breadcrumb {\n  padding: 8px 15px;\n  margin-bottom: 20px;\n  list-style: none;\n  background-color: #f5f5f5;\n  border-radius: 0px;\n}\n.breadcrumb > li {\n  display: inline-block;\n}\n.breadcrumb > li + li:before {\n  content: \"/\\A0\";\n  padding: 0 5px;\n  color: #ccc;\n}\n.breadcrumb > .active {\n  color: #777777;\n}\n.pagination {\n  display: inline-block;\n  padding-left: 0;\n  margin: 20px 0;\n  border-radius: 0px;\n}\n.pagination > li {\n  display: inline;\n}\n.pagination > li > a,\n.pagination > li > span,\n.pagination > li > input {\n  position: relative;\n  float: left;\n  padding: 6px 12px;\n  line-height: 1.42857143;\n  text-decoration: none;\n  color: #000;\n  margin-left: -1px;\n}\n.pagination > li > a::before,\n.pagination > li > span::before,\n.pagination > li > input::before {\n  position: absolute;\n  top: 0;\n  left: 0;\n  content: '';\n  border-width: 0 1px;\n  border-style: solid;\n  border-color: #ddd;\n  width: 100%;\n  height: 100%;\n  transform: skewX(-30deg);\n}\n.pagination > li .pagination-input {\n  height: auto;\n  -moz-appearance: textfield;\n  border-right: 0;\n  border-left: 0;\n  width: 4em;\n  left: -10px;\n  padding-left: 22px;\n  padding-right: 0px;\n  background-color: transparent;\n}\n.pagination > li .pagination-input::-webkit-outer-spin-button,\n.pagination > li .pagination-input::-webkit-inner-spin-button {\n  -webkit-appearance: none;\n  margin: 0;\n}\n.pagination > li:first-child > a,\n.pagination > li:first-child > span {\n  margin-left: 0;\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n  padding: 5px 12px;\n}\n.pagination > li:first-child > a::before,\n.pagination > li:first-child > span::before {\n  border-width: 0;\n}\n.pagination > li:last-child > a,\n.pagination > li:last-child > span {\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n  padding: 5px 12px;\n}\n.pagination > li:last-child > a::before,\n.pagination > li:last-child > span::before {\n  border-width: 0;\n}\n.pagination > li > a:hover,\n.pagination > li > span:hover,\n.pagination > li > a:focus,\n.pagination > li > span:focus {\n  z-index: 2;\n  color: #fff;\n}\n.pagination > li > a:hover::before,\n.pagination > li > span:hover::before,\n.pagination > li > a:focus::before,\n.pagination > li > span:focus::before {\n  z-index: -1;\n  background-color: #528cf1;\n  border-color: #3478ee;\n}\n.pagination > .active > a,\n.pagination > .active > span,\n.pagination > .active > a:hover,\n.pagination > .active > span:hover,\n.pagination > .active > a:focus,\n.pagination > .active > span:focus {\n  z-index: 3;\n  color: #fff;\n  cursor: default;\n}\n.pagination > .active > a::before,\n.pagination > .active > span::before,\n.pagination > .active > a:hover::before,\n.pagination > .active > span:hover::before,\n.pagination > .active > a:focus::before,\n.pagination > .active > span:focus::before {\n  z-index: -1;\n  background-color: #15c;\n  border-color: #15c;\n}\n.pagination > .disabled > span,\n.pagination > .disabled > span:hover,\n.pagination > .disabled > span:focus,\n.pagination > .disabled > a,\n.pagination > .disabled > a:hover,\n.pagination > .disabled > a:focus {\n  color: #777;\n  cursor: not-allowed;\n}\n.pagination > .disabled > span::before,\n.pagination > .disabled > span:hover::before,\n.pagination > .disabled > span:focus::before,\n.pagination > .disabled > a::before,\n.pagination > .disabled > a:hover::before,\n.pagination > .disabled > a:focus::before {\n  z-index: -1;\n  background-color: #bbb;\n  border-color: #bbb;\n}\n.pagination-lg > li > a,\n.pagination-lg > li > span,\n.pagination-lg > li > input {\n  padding: 10px 16px;\n  font-size: 18px;\n  line-height: 1.3333333;\n}\n.pagination-lg > li .pagination-input {\n  left: -12px;\n}\n.pagination-lg > li:first-child > a,\n.pagination-lg > li:first-child > span {\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n  padding: 9px 16px;\n  min-height: 28px;\n}\n.pagination-lg > li:last-child > a,\n.pagination-lg > li:last-child > span {\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n  padding: 9px 16px;\n  min-height: 28px;\n}\n.pagination-sm > li > a,\n.pagination-sm > li > span,\n.pagination-sm > li > input {\n  padding: 5px 10px;\n  font-size: 12px;\n  line-height: 1.5;\n}\n.pagination-sm > li .pagination-input {\n  left: -8px;\n}\n.pagination-sm > li:first-child > a,\n.pagination-sm > li:first-child > span {\n  border-bottom-left-radius: 0px;\n  border-top-left-radius: 0px;\n  padding: 4px 10px;\n  min-height: 28px;\n}\n.pagination-sm > li:last-child > a,\n.pagination-sm > li:last-child > span {\n  border-bottom-right-radius: 0px;\n  border-top-right-radius: 0px;\n  padding: 4px 10px;\n  min-height: 28px;\n}\n.pager {\n  padding-left: 0;\n  margin: 20px 0;\n  list-style: none;\n  text-align: center;\n}\n.pager li {\n  display: inline;\n}\n.pager li > a,\n.pager li > span {\n  display: inline-block;\n  padding: 5px 14px;\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: 15px;\n}\n.pager li > a:hover,\n.pager li > a:focus {\n  text-decoration: none;\n  background-color: #528cf1;\n}\n.pager .next > a,\n.pager .next > span {\n  float: right;\n}\n.pager .previous > a,\n.pager .previous > span {\n  float: left;\n}\n.pager .disabled > a,\n.pager .disabled > a:hover,\n.pager .disabled > a:focus,\n.pager .disabled > span {\n  color: #777;\n  background-color: #fff;\n  cursor: not-allowed;\n}\n.label {\n  display: inline;\n  padding: .2em .6em .3em;\n  font-size: 75%;\n  font-weight: bold;\n  line-height: 1;\n  color: #fff;\n  text-align: center;\n  white-space: nowrap;\n  vertical-align: baseline;\n  border-radius: .25em;\n}\na.label:hover,\na.label:focus {\n  color: #fff;\n  text-decoration: none;\n  cursor: pointer;\n}\n.label:empty {\n  display: none;\n}\n.btn .label {\n  position: relative;\n  top: -1px;\n}\n.label-default {\n  background-color: #777777;\n}\n.label-default[href]:hover,\n.label-default[href]:focus {\n  background-color: #5e5e5e;\n}\n.label-primary {\n  background-color: #15c;\n}\n.label-primary[href]:hover,\n.label-primary[href]:focus {\n  background-color: #0d419d;\n}\n.label-success {\n  background-color: #5cb85c;\n}\n.label-success[href]:hover,\n.label-success[href]:focus {\n  background-color: #449d44;\n}\n.label-info {\n  background-color: #f40;\n}\n.label-info[href]:hover,\n.label-info[href]:focus {\n  background-color: #cc3600;\n}\n.label-warning {\n  background-color: #f0ad4e;\n}\n.label-warning[href]:hover,\n.label-warning[href]:focus {\n  background-color: #ec971f;\n}\n.label-danger {\n  background-color: #f00;\n}\n.label-danger[href]:hover,\n.label-danger[href]:focus {\n  background-color: #cc0000;\n}\n.badge {\n  display: inline-block;\n  min-width: 10px;\n  padding: 3px 7px;\n  font-size: 12px;\n  font-weight: bold;\n  color: #fff;\n  line-height: 1;\n  vertical-align: middle;\n  white-space: nowrap;\n  text-align: center;\n  background-color: #777777;\n  border-radius: 10px;\n}\n.badge:empty {\n  display: none;\n}\n.btn .badge {\n  position: relative;\n  top: -1px;\n}\n.btn-xs .badge,\n.btn-group-xs > .btn .badge {\n  top: 0;\n  padding: 1px 5px;\n}\na.badge:hover,\na.badge:focus {\n  color: #fff;\n  text-decoration: none;\n  cursor: pointer;\n}\n.list-group-item.active > .badge,\n.nav-pills > .active > a > .badge {\n  color: #15c;\n  background-color: #fff;\n}\n.list-group-item > .badge {\n  float: right;\n}\n.list-group-item > .badge + .badge {\n  margin-right: 5px;\n}\n.nav-pills > li > a > .badge {\n  margin-left: 3px;\n}\n.jumbotron {\n  padding-top: 30px;\n  padding-bottom: 30px;\n  margin-bottom: 30px;\n  color: inherit;\n  background-color: #eeeeee;\n}\n.jumbotron h1,\n.jumbotron .h1 {\n  color: inherit;\n}\n.jumbotron p {\n  margin-bottom: 15px;\n  font-size: 21px;\n  font-weight: 200;\n}\n.jumbotron > hr {\n  border-top-color: #d5d5d5;\n}\n.container .jumbotron,\n.container-fluid .jumbotron {\n  border-radius: 0px;\n  padding-left: 15px;\n  padding-right: 15px;\n}\n.jumbotron .container {\n  max-width: 100%;\n}\n@media screen and (min-width: 768px) {\n  .jumbotron {\n    padding-top: 48px;\n    padding-bottom: 48px;\n  }\n  .container .jumbotron,\n  .container-fluid .jumbotron {\n    padding-left: 60px;\n    padding-right: 60px;\n  }\n  .jumbotron h1,\n  .jumbotron .h1 {\n    font-size: 63px;\n  }\n}\n.thumbnail {\n  display: block;\n  padding: 4px;\n  margin-bottom: 20px;\n  line-height: 1.42857143;\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: 0px;\n  -webkit-transition: border 0.2s ease-in-out;\n  -o-transition: border 0.2s ease-in-out;\n  transition: border 0.2s ease-in-out;\n}\n.thumbnail > img,\n.thumbnail a > img {\n  margin-left: auto;\n  margin-right: auto;\n}\na.thumbnail:hover,\na.thumbnail:focus,\na.thumbnail.active {\n  border-color: #15c;\n}\n.thumbnail .caption {\n  padding: 9px;\n  color: #000;\n}\n.alert {\n  padding: 15px;\n  margin-bottom: 20px;\n  border: 1px solid transparent;\n  border-radius: 0px;\n}\n.alert h4 {\n  margin-top: 0;\n  color: inherit;\n}\n.alert .alert-link {\n  font-weight: bold;\n}\n.alert > p,\n.alert > ul {\n  margin-bottom: 0;\n}\n.alert > p + p {\n  margin-top: 5px;\n}\n.alert-dismissable,\n.alert-dismissible {\n  padding-right: 35px;\n}\n.alert-dismissable .close,\n.alert-dismissible .close {\n  position: relative;\n  top: -2px;\n  right: -21px;\n  color: inherit;\n}\n.alert-success {\n  background-color: #dff0d8;\n  border-color: #d6e9c6;\n  color: #3c763d;\n}\n.alert-success hr {\n  border-top-color: #c9e2b3;\n}\n.alert-success .alert-link {\n  color: #2b542c;\n}\n.alert-info {\n  background-color: #d9edf7;\n  border-color: #bce8f1;\n  color: #31708f;\n}\n.alert-info hr {\n  border-top-color: #a6e1ec;\n}\n.alert-info .alert-link {\n  color: #245269;\n}\n.alert-warning {\n  background-color: #fcf8e3;\n  border-color: #faebcc;\n  color: #8a6d3b;\n}\n.alert-warning hr {\n  border-top-color: #f7e1b5;\n}\n.alert-warning .alert-link {\n  color: #66512c;\n}\n.alert-danger {\n  background-color: #f2dede;\n  border-color: #ebccd1;\n  color: #a94442;\n}\n.alert-danger hr {\n  border-top-color: #e4b9c0;\n}\n.alert-danger .alert-link {\n  color: #843534;\n}\n@-webkit-keyframes progress-bar-stripes {\n  from {\n    background-position: 40px 0;\n  }\n  to {\n    background-position: 0 0;\n  }\n}\n@keyframes progress-bar-stripes {\n  from {\n    background-position: 40px 0;\n  }\n  to {\n    background-position: 0 0;\n  }\n}\n.progress {\n  overflow: hidden;\n  height: 20px;\n  margin-bottom: 20px;\n  background-color: #f5f5f5;\n  border-radius: 0px;\n  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);\n  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);\n}\n.progress-bar {\n  float: left;\n  width: 0%;\n  height: 100%;\n  font-size: 12px;\n  line-height: 20px;\n  color: #fff;\n  text-align: center;\n  background-color: #15c;\n  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);\n  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);\n  -webkit-transition: width 0.6s ease;\n  -o-transition: width 0.6s ease;\n  transition: width 0.6s ease;\n}\n.progress-striped .progress-bar,\n.progress-bar-striped {\n  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-size: 40px 40px;\n}\n.progress.active .progress-bar,\n.progress-bar.active {\n  -webkit-animation: progress-bar-stripes 2s linear infinite;\n  -o-animation: progress-bar-stripes 2s linear infinite;\n  animation: progress-bar-stripes 2s linear infinite;\n}\n.progress-bar-success {\n  background-color: #5cb85c;\n}\n.progress-striped .progress-bar-success {\n  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n}\n.progress-bar-info {\n  background-color: #f40;\n}\n.progress-striped .progress-bar-info {\n  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n}\n.progress-bar-warning {\n  background-color: #f0ad4e;\n}\n.progress-striped .progress-bar-warning {\n  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n}\n.progress-bar-danger {\n  background-color: #f00;\n}\n.progress-striped .progress-bar-danger {\n  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n}\n.circle-progress-bar {\n  display: block;\n  border-radius: 100%;\n  position: relative;\n}\n.circle-progress-bar:after {\n  position: absolute;\n  display: block;\n  box-shadow: inset 0 0 1em black;\n  content: attr(data-percent) \"%\";\n  font-size: 2em;\n  text-align: center;\n  left: 50%;\n  top: 50%;\n  border-radius: 100%;\n}\n.circle-progress-bar.circle-progress-bar-sm {\n  height: 140px;\n  width: 140px;\n}\n.circle-progress-bar.circle-progress-bar-sm #svg {\n  width: 140px;\n  height: 140px;\n}\n.circle-progress-bar.circle-progress-bar-sm #svg circle {\n  r: 60;\n  cx: 70;\n  cy: 70;\n}\n.circle-progress-bar.circle-progress-bar-sm:after {\n  height: 100px;\n  width: 100px;\n  margin-top: -50px;\n  margin-left: -50px;\n  line-height: 106px;\n}\n.circle-progress-bar.circle-progress-bar-md {\n  height: 148px;\n  width: 148px;\n}\n.circle-progress-bar.circle-progress-bar-md #svg {\n  width: 148px;\n  height: 148px;\n}\n.circle-progress-bar.circle-progress-bar-md #svg circle {\n  r: 64;\n  cx: 74;\n  cy: 74;\n}\n.circle-progress-bar.circle-progress-bar-md:after {\n  height: 108px;\n  width: 108px;\n  margin-top: -54px;\n  margin-left: -54px;\n  line-height: 114px;\n}\n.circle-progress-bar.circle-progress-bar-lg {\n  height: 172px;\n  width: 172px;\n}\n.circle-progress-bar.circle-progress-bar-lg #svg {\n  width: 172px;\n  height: 172px;\n}\n.circle-progress-bar.circle-progress-bar-lg #svg circle {\n  r: 76;\n  cx: 86;\n  cy: 86;\n}\n.circle-progress-bar.circle-progress-bar-lg:after {\n  height: 132px;\n  width: 132px;\n  margin-top: -66px;\n  margin-left: -66px;\n  line-height: 138px;\n}\n.circle-progress-bar #svg circle {\n  stroke-dashoffset: 0;\n  transition: stroke-dashoffset 1s linear;\n  stroke: #666;\n  stroke-width: 1em;\n  display: block;\n}\n.circle-progress-bar-default .bar {\n  stroke: #15c !important;\n}\n.circle-progress-bar-success .bar {\n  stroke: #5cb85c !important;\n}\n.circle-progress-bar-info .bar {\n  stroke: #f40 !important;\n}\n.circle-progress-bar-warning .bar {\n  stroke: #f0ad4e !important;\n}\n.circle-progress-bar-danger .bar {\n  stroke: #f00 !important;\n}\n.media {\n  margin-top: 15px;\n}\n.media:first-child {\n  margin-top: 0;\n}\n.media,\n.media-body {\n  zoom: 1;\n  overflow: hidden;\n}\n.media-body {\n  width: 10000px;\n}\n.media-object {\n  display: block;\n}\n.media-object.img-thumbnail {\n  max-width: none;\n}\n.media-right,\n.media > .pull-right {\n  padding-left: 10px;\n}\n.media-left,\n.media > .pull-left {\n  padding-right: 10px;\n}\n.media-left,\n.media-right,\n.media-body {\n  display: table-cell;\n  vertical-align: top;\n}\n.media-middle {\n  vertical-align: middle;\n}\n.media-bottom {\n  vertical-align: bottom;\n}\n.media-heading {\n  margin-top: 0;\n  margin-bottom: 5px;\n}\n.media-list {\n  padding-left: 0;\n  list-style: none;\n}\n.list-group {\n  margin-bottom: 20px;\n  padding-left: 0;\n}\n.list-group-item {\n  position: relative;\n  display: block;\n  padding: 10px 15px;\n  margin-bottom: -1px;\n  background-color: #fff;\n  border: 1px solid #ddd;\n}\n.list-group-item:first-child {\n  border-top-right-radius: 0px;\n  border-top-left-radius: 0px;\n}\n.list-group-item:last-child {\n  margin-bottom: 0;\n  border-bottom-right-radius: 0px;\n  border-bottom-left-radius: 0px;\n}\na.list-group-item,\nbutton.list-group-item {\n  color: #555;\n}\na.list-group-item .list-group-item-heading,\nbutton.list-group-item .list-group-item-heading {\n  color: #333;\n}\na.list-group-item:hover,\nbutton.list-group-item:hover,\na.list-group-item:focus,\nbutton.list-group-item:focus {\n  text-decoration: none;\n  color: #555;\n  background-color: #f5f5f5;\n}\nbutton.list-group-item {\n  width: 100%;\n  text-align: left;\n}\n.list-group-item.disabled,\n.list-group-item.disabled:hover,\n.list-group-item.disabled:focus {\n  background-color: #eeeeee;\n  color: #777777;\n  cursor: not-allowed;\n}\n.list-group-item.disabled .list-group-item-heading,\n.list-group-item.disabled:hover .list-group-item-heading,\n.list-group-item.disabled:focus .list-group-item-heading {\n  color: inherit;\n}\n.list-group-item.disabled .list-group-item-text,\n.list-group-item.disabled:hover .list-group-item-text,\n.list-group-item.disabled:focus .list-group-item-text {\n  color: #777777;\n}\n.list-group-item.active,\n.list-group-item.active:hover,\n.list-group-item.active:focus {\n  z-index: 2;\n  color: #fff;\n  background-color: #15c;\n  border-color: #15c;\n}\n.list-group-item.active .list-group-item-heading,\n.list-group-item.active:hover .list-group-item-heading,\n.list-group-item.active:focus .list-group-item-heading,\n.list-group-item.active .list-group-item-heading > small,\n.list-group-item.active:hover .list-group-item-heading > small,\n.list-group-item.active:focus .list-group-item-heading > small,\n.list-group-item.active .list-group-item-heading > .small,\n.list-group-item.active:hover .list-group-item-heading > .small,\n.list-group-item.active:focus .list-group-item-heading > .small {\n  color: inherit;\n}\n.list-group-item.active .list-group-item-text,\n.list-group-item.active:hover .list-group-item-text,\n.list-group-item.active:focus .list-group-item-text {\n  color: #b1cbf8;\n}\n.list-group-item-success {\n  color: #3c763d;\n  background-color: #dff0d8;\n}\na.list-group-item-success,\nbutton.list-group-item-success {\n  color: #3c763d;\n}\na.list-group-item-success .list-group-item-heading,\nbutton.list-group-item-success .list-group-item-heading {\n  color: inherit;\n}\na.list-group-item-success:hover,\nbutton.list-group-item-success:hover,\na.list-group-item-success:focus,\nbutton.list-group-item-success:focus {\n  color: #3c763d;\n  background-color: #d0e9c6;\n}\na.list-group-item-success.active,\nbutton.list-group-item-success.active,\na.list-group-item-success.active:hover,\nbutton.list-group-item-success.active:hover,\na.list-group-item-success.active:focus,\nbutton.list-group-item-success.active:focus {\n  color: #fff;\n  background-color: #3c763d;\n  border-color: #3c763d;\n}\n.list-group-item-info {\n  color: #31708f;\n  background-color: #d9edf7;\n}\na.list-group-item-info,\nbutton.list-group-item-info {\n  color: #31708f;\n}\na.list-group-item-info .list-group-item-heading,\nbutton.list-group-item-info .list-group-item-heading {\n  color: inherit;\n}\na.list-group-item-info:hover,\nbutton.list-group-item-info:hover,\na.list-group-item-info:focus,\nbutton.list-group-item-info:focus {\n  color: #31708f;\n  background-color: #c4e3f3;\n}\na.list-group-item-info.active,\nbutton.list-group-item-info.active,\na.list-group-item-info.active:hover,\nbutton.list-group-item-info.active:hover,\na.list-group-item-info.active:focus,\nbutton.list-group-item-info.active:focus {\n  color: #fff;\n  background-color: #31708f;\n  border-color: #31708f;\n}\n.list-group-item-warning {\n  color: #8a6d3b;\n  background-color: #fcf8e3;\n}\na.list-group-item-warning,\nbutton.list-group-item-warning {\n  color: #8a6d3b;\n}\na.list-group-item-warning .list-group-item-heading,\nbutton.list-group-item-warning .list-group-item-heading {\n  color: inherit;\n}\na.list-group-item-warning:hover,\nbutton.list-group-item-warning:hover,\na.list-group-item-warning:focus,\nbutton.list-group-item-warning:focus {\n  color: #8a6d3b;\n  background-color: #faf2cc;\n}\na.list-group-item-warning.active,\nbutton.list-group-item-warning.active,\na.list-group-item-warning.active:hover,\nbutton.list-group-item-warning.active:hover,\na.list-group-item-warning.active:focus,\nbutton.list-group-item-warning.active:focus {\n  color: #fff;\n  background-color: #8a6d3b;\n  border-color: #8a6d3b;\n}\n.list-group-item-danger {\n  color: #a94442;\n  background-color: #f2dede;\n}\na.list-group-item-danger,\nbutton.list-group-item-danger {\n  color: #a94442;\n}\na.list-group-item-danger .list-group-item-heading,\nbutton.list-group-item-danger .list-group-item-heading {\n  color: inherit;\n}\na.list-group-item-danger:hover,\nbutton.list-group-item-danger:hover,\na.list-group-item-danger:focus,\nbutton.list-group-item-danger:focus {\n  color: #a94442;\n  background-color: #ebcccc;\n}\na.list-group-item-danger.active,\nbutton.list-group-item-danger.active,\na.list-group-item-danger.active:hover,\nbutton.list-group-item-danger.active:hover,\na.list-group-item-danger.active:focus,\nbutton.list-group-item-danger.active:focus {\n  color: #fff;\n  background-color: #a94442;\n  border-color: #a94442;\n}\n.list-group-item-heading {\n  margin-top: 0;\n  margin-bottom: 5px;\n}\n.list-group-item-text {\n  margin-bottom: 0;\n  line-height: 1.3;\n}\n.panel {\n  margin-bottom: 20px;\n  background-color: #fff;\n  border: 1px solid transparent;\n  border-radius: 0px;\n  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);\n  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);\n}\n.panel-body {\n  padding: 15px;\n}\n.panel-heading {\n  padding: 10px 15px;\n  border-bottom: 1px solid transparent;\n  border-top-right-radius: -1px;\n  border-top-left-radius: -1px;\n}\n.panel-heading > .dropdown .dropdown-toggle {\n  color: inherit;\n}\n.panel-title {\n  margin-top: 0;\n  margin-bottom: 0;\n  font-size: 16px;\n  color: inherit;\n}\n.panel-title > a,\n.panel-title > small,\n.panel-title > .small,\n.panel-title > small > a,\n.panel-title > .small > a {\n  color: inherit;\n}\n.panel-footer {\n  padding: 10px 15px;\n  background-color: #f5f5f5;\n  border-top: 1px solid #ddd;\n  border-bottom-right-radius: -1px;\n  border-bottom-left-radius: -1px;\n}\n.panel > .list-group,\n.panel > .panel-collapse > .list-group {\n  margin-bottom: 0;\n}\n.panel > .list-group .list-group-item,\n.panel > .panel-collapse > .list-group .list-group-item {\n  border-width: 1px 0;\n  border-radius: 0;\n}\n.panel > .list-group:first-child .list-group-item:first-child,\n.panel > .panel-collapse > .list-group:first-child .list-group-item:first-child {\n  border-top: 0;\n  border-top-right-radius: -1px;\n  border-top-left-radius: -1px;\n}\n.panel > .list-group:last-child .list-group-item:last-child,\n.panel > .panel-collapse > .list-group:last-child .list-group-item:last-child {\n  border-bottom: 0;\n  border-bottom-right-radius: -1px;\n  border-bottom-left-radius: -1px;\n}\n.panel > .panel-heading + .panel-collapse > .list-group .list-group-item:first-child {\n  border-top-right-radius: 0;\n  border-top-left-radius: 0;\n}\n.panel-heading + .list-group .list-group-item:first-child {\n  border-top-width: 0;\n}\n.list-group + .panel-footer {\n  border-top-width: 0;\n}\n.panel > .table,\n.panel > .table-responsive > .table,\n.panel > .panel-collapse > .table {\n  margin-bottom: 0;\n}\n.panel > .table caption,\n.panel > .table-responsive > .table caption,\n.panel > .panel-collapse > .table caption {\n  padding-left: 15px;\n  padding-right: 15px;\n}\n.panel > .table:first-child,\n.panel > .table-responsive:first-child > .table:first-child {\n  border-top-right-radius: -1px;\n  border-top-left-radius: -1px;\n}\n.panel > .table:first-child > thead:first-child > tr:first-child,\n.panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child,\n.panel > .table:first-child > tbody:first-child > tr:first-child,\n.panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child {\n  border-top-left-radius: -1px;\n  border-top-right-radius: -1px;\n}\n.panel > .table:first-child > thead:first-child > tr:first-child td:first-child,\n.panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child td:first-child,\n.panel > .table:first-child > tbody:first-child > tr:first-child td:first-child,\n.panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child td:first-child,\n.panel > .table:first-child > thead:first-child > tr:first-child th:first-child,\n.panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child th:first-child,\n.panel > .table:first-child > tbody:first-child > tr:first-child th:first-child,\n.panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child th:first-child {\n  border-top-left-radius: -1px;\n}\n.panel > .table:first-child > thead:first-child > tr:first-child td:last-child,\n.panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child td:last-child,\n.panel > .table:first-child > tbody:first-child > tr:first-child td:last-child,\n.panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child td:last-child,\n.panel > .table:first-child > thead:first-child > tr:first-child th:last-child,\n.panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child th:last-child,\n.panel > .table:first-child > tbody:first-child > tr:first-child th:last-child,\n.panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child th:last-child {\n  border-top-right-radius: -1px;\n}\n.panel > .table:last-child,\n.panel > .table-responsive:last-child > .table:last-child {\n  border-bottom-right-radius: -1px;\n  border-bottom-left-radius: -1px;\n}\n.panel > .table:last-child > tbody:last-child > tr:last-child,\n.panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child,\n.panel > .table:last-child > tfoot:last-child > tr:last-child,\n.panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child {\n  border-bottom-left-radius: -1px;\n  border-bottom-right-radius: -1px;\n}\n.panel > .table:last-child > tbody:last-child > tr:last-child td:first-child,\n.panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child td:first-child,\n.panel > .table:last-child > tfoot:last-child > tr:last-child td:first-child,\n.panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child td:first-child,\n.panel > .table:last-child > tbody:last-child > tr:last-child th:first-child,\n.panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child th:first-child,\n.panel > .table:last-child > tfoot:last-child > tr:last-child th:first-child,\n.panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child th:first-child {\n  border-bottom-left-radius: -1px;\n}\n.panel > .table:last-child > tbody:last-child > tr:last-child td:last-child,\n.panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child td:last-child,\n.panel > .table:last-child > tfoot:last-child > tr:last-child td:last-child,\n.panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child td:last-child,\n.panel > .table:last-child > tbody:last-child > tr:last-child th:last-child,\n.panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child th:last-child,\n.panel > .table:last-child > tfoot:last-child > tr:last-child th:last-child,\n.panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child th:last-child {\n  border-bottom-right-radius: -1px;\n}\n.panel > .panel-body + .table,\n.panel > .panel-body + .table-responsive,\n.panel > .table + .panel-body,\n.panel > .table-responsive + .panel-body {\n  border-top: 1px solid #d4d4d4;\n}\n.panel > .table > tbody:first-child > tr:first-child th,\n.panel > .table > tbody:first-child > tr:first-child td {\n  border-top: 0;\n}\n.panel > .table-bordered,\n.panel > .table-responsive > .table-bordered {\n  border: 0;\n}\n.panel > .table-bordered > thead > tr > th:first-child,\n.panel > .table-responsive > .table-bordered > thead > tr > th:first-child,\n.panel > .table-bordered > tbody > tr > th:first-child,\n.panel > .table-responsive > .table-bordered > tbody > tr > th:first-child,\n.panel > .table-bordered > tfoot > tr > th:first-child,\n.panel > .table-responsive > .table-bordered > tfoot > tr > th:first-child,\n.panel > .table-bordered > thead > tr > td:first-child,\n.panel > .table-responsive > .table-bordered > thead > tr > td:first-child,\n.panel > .table-bordered > tbody > tr > td:first-child,\n.panel > .table-responsive > .table-bordered > tbody > tr > td:first-child,\n.panel > .table-bordered > tfoot > tr > td:first-child,\n.panel > .table-responsive > .table-bordered > tfoot > tr > td:first-child {\n  border-left: 0;\n}\n.panel > .table-bordered > thead > tr > th:last-child,\n.panel > .table-responsive > .table-bordered > thead > tr > th:last-child,\n.panel > .table-bordered > tbody > tr > th:last-child,\n.panel > .table-responsive > .table-bordered > tbody > tr > th:last-child,\n.panel > .table-bordered > tfoot > tr > th:last-child,\n.panel > .table-responsive > .table-bordered > tfoot > tr > th:last-child,\n.panel > .table-bordered > thead > tr > td:last-child,\n.panel > .table-responsive > .table-bordered > thead > tr > td:last-child,\n.panel > .table-bordered > tbody > tr > td:last-child,\n.panel > .table-responsive > .table-bordered > tbody > tr > td:last-child,\n.panel > .table-bordered > tfoot > tr > td:last-child,\n.panel > .table-responsive > .table-bordered > tfoot > tr > td:last-child {\n  border-right: 0;\n}\n.panel > .table-bordered > thead > tr:first-child > td,\n.panel > .table-responsive > .table-bordered > thead > tr:first-child > td,\n.panel > .table-bordered > tbody > tr:first-child > td,\n.panel > .table-responsive > .table-bordered > tbody > tr:first-child > td,\n.panel > .table-bordered > thead > tr:first-child > th,\n.panel > .table-responsive > .table-bordered > thead > tr:first-child > th,\n.panel > .table-bordered > tbody > tr:first-child > th,\n.panel > .table-responsive > .table-bordered > tbody > tr:first-child > th {\n  border-bottom: 0;\n}\n.panel > .table-bordered > tbody > tr:last-child > td,\n.panel > .table-responsive > .table-bordered > tbody > tr:last-child > td,\n.panel > .table-bordered > tfoot > tr:last-child > td,\n.panel > .table-responsive > .table-bordered > tfoot > tr:last-child > td,\n.panel > .table-bordered > tbody > tr:last-child > th,\n.panel > .table-responsive > .table-bordered > tbody > tr:last-child > th,\n.panel > .table-bordered > tfoot > tr:last-child > th,\n.panel > .table-responsive > .table-bordered > tfoot > tr:last-child > th {\n  border-bottom: 0;\n}\n.panel > .table-responsive {\n  border: 0;\n  margin-bottom: 0;\n}\n.panel-group {\n  margin-bottom: 20px;\n}\n.panel-group .panel {\n  margin-bottom: 0;\n  border-radius: 0px;\n}\n.panel-group .panel + .panel {\n  margin-top: 5px;\n}\n.panel-group .panel-heading {\n  border-bottom: 0;\n}\n.panel-group .panel-heading + .panel-collapse > .panel-body,\n.panel-group .panel-heading + .panel-collapse > .list-group {\n  border-top: 1px solid #ddd;\n}\n.panel-group .panel-footer {\n  border-top: 0;\n}\n.panel-group .panel-footer + .panel-collapse .panel-body {\n  border-bottom: 1px solid #ddd;\n}\n.panel-default {\n  border-color: #ddd;\n}\n.panel-default > .panel-heading {\n  color: #333333;\n  background-color: #f5f5f5;\n  border-color: #ddd;\n}\n.panel-default > .panel-heading + .panel-collapse > .panel-body {\n  border-top-color: #ddd;\n}\n.panel-default > .panel-heading .badge {\n  color: #f5f5f5;\n  background-color: #333333;\n}\n.panel-default > .panel-footer + .panel-collapse > .panel-body {\n  border-bottom-color: #ddd;\n}\n.panel-primary {\n  border-color: #15c;\n}\n.panel-primary > .panel-heading {\n  color: #fff;\n  background-color: #15c;\n  border-color: #15c;\n}\n.panel-primary > .panel-heading + .panel-collapse > .panel-body {\n  border-top-color: #15c;\n}\n.panel-primary > .panel-heading .badge {\n  color: #15c;\n  background-color: #fff;\n}\n.panel-primary > .panel-footer + .panel-collapse > .panel-body {\n  border-bottom-color: #15c;\n}\n.panel-success {\n  border-color: #d6e9c6;\n}\n.panel-success > .panel-heading {\n  color: #3c763d;\n  background-color: #dff0d8;\n  border-color: #d6e9c6;\n}\n.panel-success > .panel-heading + .panel-collapse > .panel-body {\n  border-top-color: #d6e9c6;\n}\n.panel-success > .panel-heading .badge {\n  color: #dff0d8;\n  background-color: #3c763d;\n}\n.panel-success > .panel-footer + .panel-collapse > .panel-body {\n  border-bottom-color: #d6e9c6;\n}\n.panel-info {\n  border-color: #bce8f1;\n}\n.panel-info > .panel-heading {\n  color: #31708f;\n  background-color: #d9edf7;\n  border-color: #bce8f1;\n}\n.panel-info > .panel-heading + .panel-collapse > .panel-body {\n  border-top-color: #bce8f1;\n}\n.panel-info > .panel-heading .badge {\n  color: #d9edf7;\n  background-color: #31708f;\n}\n.panel-info > .panel-footer + .panel-collapse > .panel-body {\n  border-bottom-color: #bce8f1;\n}\n.panel-warning {\n  border-color: #faebcc;\n}\n.panel-warning > .panel-heading {\n  color: #8a6d3b;\n  background-color: #fcf8e3;\n  border-color: #faebcc;\n}\n.panel-warning > .panel-heading + .panel-collapse > .panel-body {\n  border-top-color: #faebcc;\n}\n.panel-warning > .panel-heading .badge {\n  color: #fcf8e3;\n  background-color: #8a6d3b;\n}\n.panel-warning > .panel-footer + .panel-collapse > .panel-body {\n  border-bottom-color: #faebcc;\n}\n.panel-danger {\n  border-color: #ebccd1;\n}\n.panel-danger > .panel-heading {\n  color: #a94442;\n  background-color: #f2dede;\n  border-color: #ebccd1;\n}\n.panel-danger > .panel-heading + .panel-collapse > .panel-body {\n  border-top-color: #ebccd1;\n}\n.panel-danger > .panel-heading .badge {\n  color: #f2dede;\n  background-color: #a94442;\n}\n.panel-danger > .panel-footer + .panel-collapse > .panel-body {\n  border-bottom-color: #ebccd1;\n}\n.embed-responsive {\n  position: relative;\n  display: block;\n  height: 0;\n  padding: 0;\n  overflow: hidden;\n}\n.embed-responsive .embed-responsive-item,\n.embed-responsive iframe,\n.embed-responsive embed,\n.embed-responsive object,\n.embed-responsive video {\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  height: 100%;\n  width: 100%;\n  border: 0;\n}\n.embed-responsive-16by9 {\n  padding-bottom: 56.25%;\n}\n.embed-responsive-4by3 {\n  padding-bottom: 75%;\n}\n.well {\n  min-height: 20px;\n  padding: 19px;\n  margin-bottom: 20px;\n  background-color: #f5f5f5;\n  border: 1px solid #e3e3e3;\n  border-radius: 0px;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);\n}\n.well blockquote {\n  border-color: #ddd;\n  border-color: rgba(0, 0, 0, 0.15);\n}\n.well-lg {\n  padding: 24px;\n  border-radius: 0px;\n}\n.well-sm {\n  padding: 9px;\n  border-radius: 0px;\n}\n.close {\n  float: right;\n  font-size: 21px;\n  font-weight: bold;\n  line-height: 1;\n  color: #000;\n  text-shadow: 0 1px 0 #fff;\n  opacity: 0.2;\n  filter: alpha(opacity=20);\n}\n.close:hover,\n.close:focus {\n  color: #000;\n  text-decoration: none;\n  cursor: pointer;\n  opacity: 0.5;\n  filter: alpha(opacity=50);\n}\nbutton.close {\n  padding: 0;\n  cursor: pointer;\n  background: transparent;\n  border: 0;\n  -webkit-appearance: none;\n}\nslidepicker {\n  position: relative;\n  display: block;\n}\nslidepicker .slidepicker-track {\n  background: #fbfbfb;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  float: left;\n  height: 8px;\n  position: absolute;\n  width: 100%;\n}\nslidepicker .slidepicker-handle {\n  display: block;\n  position: absolute;\n  top: -5px;\n  background: #15c;\n  cursor: pointer;\n  height: 25px;\n  margin: -4px 0 0 -6px;\n  width: 10px;\n}\nslidepicker .slidepicker-label {\n  margin: 0px;\n  padding: 0px;\n  margin-top: 20px;\n}\nslidepicker .slidepicker-label slidepicker-option {\n  float: left;\n  display: block;\n  margin-left: 28px;\n  margin-right: 28px;\n}\nslidepicker .slidepicker-label slidepicker-option.active a {\n  color: #15c;\n  font-weight: bold;\n}\nslidepicker .slidepicker-label slidepicker-option a {\n  display: block;\n  clear: both;\n  font-weight: normal;\n  color: #000;\n  white-space: nowrap;\n  cursor: pointer;\n  text-decoration: none;\n}\nslidepicker.slidepicker-vertical {\n  width: 14px;\n}\nslidepicker.slidepicker-vertical .slidepicker-track {\n  height: 100%;\n  width: 8px;\n}\nslidepicker.slidepicker-vertical .slidepicker-handle {\n  left: -4px;\n  height: 10px;\n  width: 25px;\n}\nslidepicker.slidepicker-vertical .slidepicker-label {\n  margin: 0px;\n  margin-left: 20px;\n}\nslidepicker.slidepicker-vertical .slidepicker-label slidepicker-option {\n  float: none;\n  margin-left: 0px;\n  margin-right: 0px;\n  padding-top: 27px;\n  padding-bottom: 27px;\n}\nslidepicker.slidepicker-vertical .slidepicker-label.sm slidepicker-option {\n  padding-top: 25px;\n  padding-bottom: 25px;\n}\nslidepicker.slidepicker-vertical .slidepicker-label.lg slidepicker-option {\n  padding-top: 33px;\n  padding-bottom: 33px;\n}\nslidepicker.slidepicker-vertical.slidepicker-sm slidepicker-option {\n  padding-top: 25px;\n  padding-bottom: 25px;\n}\nslidepicker.slidepicker-vertical.slidepicker-lg slidepicker-option {\n  padding-top: 33px;\n  padding-bottom: 33px;\n}\n.autocomplete-suggestions {\n  text-align: left;\n  cursor: default;\n  border: 1px solid #ccc;\n  border-top: 0;\n  background: #fff;\n  box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.1);\n  /* core styles should not be changed */\n  position: absolute;\n  display: none;\n  z-index: 9999;\n  max-height: 254px;\n  overflow: hidden;\n  overflow-y: auto;\n  box-sizing: border-box;\n  min-width: 500px;\n}\n.pagination-autocomplete {\n  text-align: left;\n  cursor: default;\n  border: 1px solid #ccc;\n  border-top: 0;\n  background: #fff;\n  box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.1);\n  /* core styles should not be changed */\n  display: none;\n  position: absolute;\n  z-index: 9999;\n  overflow: hidden;\n  overflow-y: auto;\n  box-sizing: border-box;\n  min-width: 500px;\n}\n.autocomplete-suggestion {\n  position: relative;\n  padding: 0 .6em;\n  line-height: 23px;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  font-size: 1.02em;\n  color: #333;\n}\n.autocomplete-suggestion b {\n  font-weight: normal;\n  color: #1f8dd6;\n}\n.autocomplete-suggestion.selected {\n  background: #f0f0f0;\n}\n.modal-open {\n  overflow: hidden;\n}\n.modal {\n  display: none;\n  overflow: hidden;\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  z-index: 1050;\n  -webkit-overflow-scrolling: touch;\n  outline: 0;\n}\n.modal.fade .modal-dialog {\n  -webkit-transform: translate(0, -25%);\n  -ms-transform: translate(0, -25%);\n  -o-transform: translate(0, -25%);\n  transform: translate(0, -25%);\n  -webkit-transition: -webkit-transform 0.3s ease-out;\n  -moz-transition: -moz-transform 0.3s ease-out;\n  -o-transition: -o-transform 0.3s ease-out;\n  transition: transform 0.3s ease-out;\n}\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  -ms-transform: translate(0, 0);\n  -o-transform: translate(0, 0);\n  transform: translate(0, 0);\n}\n.modal-open .modal {\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n.modal-dialog {\n  position: relative;\n  width: auto;\n  margin: 10px;\n}\n.modal-content {\n  position: relative;\n  background-color: #fff;\n  border: 1px solid #999;\n  border: 1px solid rgba(0, 0, 0, 0.2);\n  border-radius: 0px;\n  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);\n  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);\n  background-clip: padding-box;\n  outline: 0;\n}\n.modal-backdrop {\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  z-index: 1040;\n  background-color: #000;\n}\n.modal-backdrop.fade {\n  opacity: 0;\n  filter: alpha(opacity=0);\n}\n.modal-backdrop.in {\n  opacity: 0.5;\n  filter: alpha(opacity=50);\n}\n.modal-header {\n  padding-top: 15px;\n  padding-right: 15px;\n  padding-left: 15px;\n}\n.modal-header .close {\n  margin-top: -6px;\n}\n.modal-title {\n  margin: 0;\n  line-height: 1.42857143;\n}\n.modal-body {\n  position: relative;\n  padding: 15px;\n}\n.modal-footer {\n  padding: 15px;\n  text-align: right;\n  border-top: 1px solid #e5e5e5;\n}\n.modal-footer .btn + .btn {\n  margin-left: 5px;\n  margin-bottom: 0;\n}\n.modal-footer .btn-group .btn + .btn {\n  margin-left: -1px;\n}\n.modal-footer .btn-block + .btn-block {\n  margin-left: 0;\n}\n.modal-scrollbar-measure {\n  position: absolute;\n  top: -9999px;\n  width: 50px;\n  height: 50px;\n  overflow: scroll;\n}\n@media (min-width: 768px) {\n  .modal-dialog {\n    width: 600px;\n    margin: 30px auto;\n  }\n  .modal-content {\n    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);\n    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);\n  }\n  .modal-sm {\n    width: 300px;\n  }\n}\n@media (min-width: 992px) {\n  .modal-lg {\n    width: 900px;\n  }\n}\n.modal-right .modal-dialog,\n.modal-left .modal-dialog,\n.modal-top .modal-dialog,\n.modal-bottom .modal-dialog {\n  position: fixed;\n  margin: 0px;\n}\n.modal-right .modal-dialog .modal-content,\n.modal-left .modal-dialog .modal-content,\n.modal-top .modal-dialog .modal-content,\n.modal-bottom .modal-dialog .modal-content {\n  border: 0;\n  overflow-y: auto;\n  height: 100%;\n}\n.modal-left .modal-dialog {\n  left: 0;\n  top: 0;\n  bottom: 0;\n}\n.modal-right .modal-dialog {\n  right: 0;\n  top: 0;\n  bottom: 0;\n}\n.modal-top .modal-dialog {\n  left: 0;\n  right: 0;\n  top: 0;\n  width: 100%;\n}\n.modal-bottom .modal-dialog {\n  left: 0;\n  right: 0;\n  bottom: 0;\n  width: 100%;\n}\n.modal-right.fade .modal-dialog {\n  -webkit-transform: translate(25%, 0);\n  -ms-transform: translate(25%, 0);\n  -o-transform: translate(25%, 0);\n  transform: translate(25%, 0);\n  -webkit-transition: -webkit-transform 0.3s ease-out;\n  -moz-transition: -moz-transform 0.3s ease-out;\n  -o-transition: -o-transform 0.3s ease-out;\n  transition: transform 0.3s ease-out;\n}\n.modal-right.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  -ms-transform: translate(0, 0);\n  -o-transform: translate(0, 0);\n  transform: translate(0, 0);\n}\n.modal-left.fade .modal-dialog {\n  -webkit-transform: translate(-25%, 0);\n  -ms-transform: translate(-25%, 0);\n  -o-transform: translate(-25%, 0);\n  transform: translate(-25%, 0);\n  -webkit-transition: -webkit-transform 0.3s ease-out;\n  -moz-transition: -moz-transform 0.3s ease-out;\n  -o-transition: -o-transform 0.3s ease-out;\n  transition: transform 0.3s ease-out;\n}\n.modal-left.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  -ms-transform: translate(0, 0);\n  -o-transform: translate(0, 0);\n  transform: translate(0, 0);\n}\n.modal-top.fade .modal-dialog {\n  -webkit-transform: translate(0, -25%);\n  -ms-transform: translate(0, -25%);\n  -o-transform: translate(0, -25%);\n  transform: translate(0, -25%);\n  -webkit-transition: -webkit-transform 0.3s ease-out;\n  -moz-transition: -moz-transform 0.3s ease-out;\n  -o-transition: -o-transform 0.3s ease-out;\n  transition: transform 0.3s ease-out;\n}\n.modal-top.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  -ms-transform: translate(0, 0);\n  -o-transform: translate(0, 0);\n  transform: translate(0, 0);\n}\n.modal-bottom.fade .modal-dialog {\n  -webkit-transform: translate(0, 25%);\n  -ms-transform: translate(0, 25%);\n  -o-transform: translate(0, 25%);\n  transform: translate(0, 25%);\n  -webkit-transition: -webkit-transform 0.3s ease-out;\n  -moz-transition: -moz-transform 0.3s ease-out;\n  -o-transition: -o-transform 0.3s ease-out;\n  transition: transform 0.3s ease-out;\n}\n.modal-bottom.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  -ms-transform: translate(0, 0);\n  -o-transform: translate(0, 0);\n  transform: translate(0, 0);\n}\n@media (min-width: 768px) {\n  .modal-right .modal-dialog,\n  .modal-left .modal-dialog {\n    width: 600px;\n    margin: 0px auto;\n  }\n}\n@media (max-width: 768px) {\n  .modal-right .modal-dialog,\n  .modal-left .modal-dialog {\n    width: 100%;\n    float: none;\n  }\n}\n.tooltip {\n  position: absolute;\n  z-index: 1070;\n  display: block;\n  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n  font-style: normal;\n  font-weight: normal;\n  letter-spacing: normal;\n  line-break: auto;\n  line-height: 1.42857143;\n  text-align: left;\n  text-align: start;\n  text-decoration: none;\n  text-shadow: none;\n  text-transform: none;\n  white-space: normal;\n  word-break: normal;\n  word-spacing: normal;\n  word-wrap: normal;\n  font-size: 12px;\n  opacity: 0;\n  filter: alpha(opacity=0);\n}\n.tooltip.in {\n  opacity: 0.9;\n  filter: alpha(opacity=90);\n}\n.tooltip.top {\n  margin-top: -3px;\n  padding: 5px 0;\n}\n.tooltip.right {\n  margin-left: 3px;\n  padding: 0 5px;\n}\n.tooltip.bottom {\n  margin-top: 3px;\n  padding: 5px 0;\n}\n.tooltip.left {\n  margin-left: -3px;\n  padding: 0 5px;\n}\n.tooltip-inner {\n  max-width: 200px;\n  padding: 3px 8px;\n  color: #fff;\n  text-align: center;\n  background-color: #000;\n  border-radius: 0px;\n}\n.tooltip-arrow {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-color: transparent;\n  border-style: solid;\n}\n.tooltip.top .tooltip-arrow {\n  bottom: 0;\n  left: 50%;\n  margin-left: -5px;\n  border-width: 5px 5px 0;\n  border-top-color: #000;\n}\n.tooltip.top-left .tooltip-arrow {\n  bottom: 0;\n  right: 5px;\n  margin-bottom: -5px;\n  border-width: 5px 5px 0;\n  border-top-color: #000;\n}\n.tooltip.top-right .tooltip-arrow {\n  bottom: 0;\n  left: 5px;\n  margin-bottom: -5px;\n  border-width: 5px 5px 0;\n  border-top-color: #000;\n}\n.tooltip.right .tooltip-arrow {\n  top: 50%;\n  left: 0;\n  margin-top: -5px;\n  border-width: 5px 5px 5px 0;\n  border-right-color: #000;\n}\n.tooltip.left .tooltip-arrow {\n  top: 50%;\n  right: 0;\n  margin-top: -5px;\n  border-width: 5px 0 5px 5px;\n  border-left-color: #000;\n}\n.tooltip.bottom .tooltip-arrow {\n  top: 0;\n  left: 50%;\n  margin-left: -5px;\n  border-width: 0 5px 5px;\n  border-bottom-color: #000;\n}\n.tooltip.bottom-left .tooltip-arrow {\n  top: 0;\n  right: 5px;\n  margin-top: -5px;\n  border-width: 0 5px 5px;\n  border-bottom-color: #000;\n}\n.tooltip.bottom-right .tooltip-arrow {\n  top: 0;\n  left: 5px;\n  margin-top: -5px;\n  border-width: 0 5px 5px;\n  border-bottom-color: #000;\n}\n.popover {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1060;\n  display: none;\n  max-width: 276px;\n  padding: 1px;\n  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n  font-style: normal;\n  font-weight: normal;\n  letter-spacing: normal;\n  line-break: auto;\n  line-height: 1.42857143;\n  text-align: left;\n  text-align: start;\n  text-decoration: none;\n  text-shadow: none;\n  text-transform: none;\n  white-space: normal;\n  word-break: normal;\n  word-spacing: normal;\n  word-wrap: normal;\n  font-size: 14px;\n  background-color: #fff;\n  background-clip: padding-box;\n  border: 1px solid #ccc;\n  border: 1px solid rgba(0, 0, 0, 0.2);\n  border-radius: 0px;\n  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);\n  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);\n}\n.popover.top {\n  margin-top: -10px;\n}\n.popover.right {\n  margin-left: 10px;\n}\n.popover.bottom {\n  margin-top: 10px;\n}\n.popover.left {\n  margin-left: -10px;\n}\n.popover-title {\n  margin: 0;\n  padding: 8px 14px;\n  font-size: 14px;\n  background-color: #f7f7f7;\n  border-bottom: 1px solid #ebebeb;\n  border-radius: -1px -1px 0 0;\n}\n.popover-content {\n  padding: 9px 14px;\n}\n.popover > .arrow,\n.popover > .arrow:after {\n  position: absolute;\n  display: block;\n  width: 0;\n  height: 0;\n  border-color: transparent;\n  border-style: solid;\n}\n.popover > .arrow {\n  border-width: 11px;\n}\n.popover > .arrow:after {\n  border-width: 10px;\n  content: \"\";\n}\n.popover.top > .arrow {\n  left: 50%;\n  margin-left: -11px;\n  border-bottom-width: 0;\n  border-top-color: #999999;\n  border-top-color: rgba(0, 0, 0, 0.25);\n  bottom: -11px;\n}\n.popover.top > .arrow:after {\n  content: \" \";\n  bottom: 1px;\n  margin-left: -10px;\n  border-bottom-width: 0;\n  border-top-color: #fff;\n}\n.popover.right > .arrow {\n  top: 50%;\n  left: -11px;\n  margin-top: -11px;\n  border-left-width: 0;\n  border-right-color: #999999;\n  border-right-color: rgba(0, 0, 0, 0.25);\n}\n.popover.right > .arrow:after {\n  content: \" \";\n  left: 1px;\n  bottom: -10px;\n  border-left-width: 0;\n  border-right-color: #fff;\n}\n.popover.bottom > .arrow {\n  left: 50%;\n  margin-left: -11px;\n  border-top-width: 0;\n  border-bottom-color: #999999;\n  border-bottom-color: rgba(0, 0, 0, 0.25);\n  top: -11px;\n}\n.popover.bottom > .arrow:after {\n  content: \" \";\n  top: 1px;\n  margin-left: -10px;\n  border-top-width: 0;\n  border-bottom-color: #fff;\n}\n.popover.left > .arrow {\n  top: 50%;\n  right: -11px;\n  margin-top: -11px;\n  border-right-width: 0;\n  border-left-color: #999999;\n  border-left-color: rgba(0, 0, 0, 0.25);\n}\n.popover.left > .arrow:after {\n  content: \" \";\n  right: 1px;\n  border-right-width: 0;\n  border-left-color: #fff;\n  bottom: -10px;\n}\n.carousel {\n  display: block;\n  position: relative;\n}\n.carousel-inner {\n  position: relative;\n  overflow: hidden;\n  width: 100%;\n}\n.carousel-inner > .item {\n  display: none;\n  position: relative;\n  -webkit-transition: 0.6s ease-in-out left;\n  -o-transition: 0.6s ease-in-out left;\n  transition: 0.6s ease-in-out left;\n}\n.carousel-inner > .item > img,\n.carousel-inner > .item > a > img {\n  line-height: 1;\n}\n@media all and (transform-3d), (-webkit-transform-3d) {\n  .carousel-inner > .item {\n    -webkit-transition: -webkit-transform 0.6s ease-in-out;\n    -moz-transition: -moz-transform 0.6s ease-in-out;\n    -o-transition: -o-transform 0.6s ease-in-out;\n    transition: transform 0.6s ease-in-out;\n    -webkit-backface-visibility: hidden;\n    -moz-backface-visibility: hidden;\n    backface-visibility: hidden;\n    -webkit-perspective: 1000px;\n    -moz-perspective: 1000px;\n    perspective: 1000px;\n  }\n  .carousel-inner > .item.next,\n  .carousel-inner > .item.active.right {\n    -webkit-transform: translate3d(100%, 0, 0);\n    transform: translate3d(100%, 0, 0);\n    left: 0;\n  }\n  .carousel-inner > .item.prev,\n  .carousel-inner > .item.active.left {\n    -webkit-transform: translate3d(-100%, 0, 0);\n    transform: translate3d(-100%, 0, 0);\n    left: 0;\n  }\n  .carousel-inner > .item.next.left,\n  .carousel-inner > .item.prev.right,\n  .carousel-inner > .item.active {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n    left: 0;\n  }\n}\n.carousel-inner > .active,\n.carousel-inner > .next,\n.carousel-inner > .prev {\n  display: block;\n}\n.carousel-inner > .active {\n  left: 0;\n}\n.carousel-inner > .next,\n.carousel-inner > .prev {\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n.carousel-inner > .next {\n  left: 100%;\n}\n.carousel-inner > .prev {\n  left: -100%;\n}\n.carousel-inner > .next.left,\n.carousel-inner > .prev.right {\n  left: 0;\n}\n.carousel-inner > .active.left {\n  left: -100%;\n}\n.carousel-inner > .active.right {\n  left: 100%;\n}\n.carousel-control {\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  width: 15%;\n  opacity: 0.5;\n  filter: alpha(opacity=50);\n  font-size: 20px;\n  color: #fff;\n  text-align: center;\n  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);\n  background-color: rgba(0, 0, 0, 0);\n}\n.carousel-control.left {\n  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);\n  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);\n  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);\n  background-repeat: repeat-x;\n  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);\n}\n.carousel-control.right {\n  left: auto;\n  right: 0;\n  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);\n  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);\n  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);\n  background-repeat: repeat-x;\n  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);\n}\n.carousel-control:hover,\n.carousel-control:focus {\n  outline: 0;\n  color: #fff;\n  text-decoration: none;\n  opacity: 0.9;\n  filter: alpha(opacity=90);\n}\n.carousel-control .icon-previous,\n.carousel-control .icon-next {\n  position: absolute;\n  top: 50%;\n  margin-top: -10px;\n  z-index: 5;\n  display: inline-block;\n}\n.carousel-control .icon-previous {\n  left: 50%;\n  margin-left: -10px;\n}\n.carousel-control .icon-next {\n  right: 50%;\n  margin-right: -10px;\n}\n.carousel-control .icon-previous,\n.carousel-control .icon-next {\n  width: 20px;\n  height: 20px;\n  line-height: 1;\n}\n.carousel-indicators {\n  position: absolute;\n  bottom: 10px;\n  left: 50%;\n  z-index: 15;\n  width: 60%;\n  margin-left: -30%;\n  padding-left: 0;\n  list-style: none;\n  text-align: center;\n}\n.carousel-indicators li {\n  display: inline-block;\n  width: 10px;\n  height: 10px;\n  margin: 1px;\n  text-indent: -999px;\n  border: 1px solid #fff;\n  border-radius: 10px;\n  cursor: pointer;\n  background-color: #000 \\9;\n  background-color: rgba(0, 0, 0, 0);\n}\n.carousel-indicators .active {\n  margin: 0;\n  width: 12px;\n  height: 12px;\n  background-color: #fff;\n}\n.carousel-caption {\n  position: absolute;\n  left: 15%;\n  right: 15%;\n  bottom: 20px;\n  z-index: 10;\n  padding-top: 20px;\n  padding-bottom: 20px;\n  color: #fff;\n  text-align: center;\n  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);\n}\n.carousel-caption .btn {\n  text-shadow: none;\n}\n@media screen and (min-width: 768px) {\n  .carousel-control .icon-previous,\n  .carousel-control .icon-next {\n    width: 30px;\n    height: 30px;\n    margin-top: -10px;\n    font-size: 30px;\n  }\n  .carousel-control .icon-previous {\n    margin-left: -10px;\n  }\n  .carousel-control .icon-next {\n    margin-right: -10px;\n  }\n  .carousel-caption {\n    left: 20%;\n    right: 20%;\n    padding-bottom: 30px;\n  }\n  .carousel-indicators {\n    bottom: 20px;\n  }\n}\n.clearfix:before,\n.clearfix:after,\n.dl-horizontal dd:before,\n.dl-horizontal dd:after,\n.container:before,\n.container:after,\n.container-fluid:before,\n.container-fluid:after,\n.row:before,\n.row:after,\n.form-horizontal .form-group:before,\n.form-horizontal .form-group:after,\n.btn-toolbar:before,\n.btn-toolbar:after,\n.btn-group-vertical > .btn-group:before,\n.btn-group-vertical > .btn-group:after,\n.nav:before,\n.nav:after,\n.navbar:before,\n.navbar:after,\n.navbar-header:before,\n.navbar-header:after,\n.navbar-collapse:before,\n.navbar-collapse:after,\n.pager:before,\n.pager:after,\n.panel-body:before,\n.panel-body:after,\n.modal-footer:before,\n.modal-footer:after {\n  content: \" \";\n  display: table;\n}\n.clearfix:after,\n.dl-horizontal dd:after,\n.container:after,\n.container-fluid:after,\n.row:after,\n.form-horizontal .form-group:after,\n.btn-toolbar:after,\n.btn-group-vertical > .btn-group:after,\n.nav:after,\n.navbar:after,\n.navbar-header:after,\n.navbar-collapse:after,\n.pager:after,\n.panel-body:after,\n.modal-footer:after {\n  clear: both;\n}\n.center-block {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n}\n.pull-right {\n  float: right !important;\n}\n.pull-left {\n  float: left !important;\n}\n.hide {\n  display: none !important;\n}\n.show {\n  display: block !important;\n}\n.invisible {\n  visibility: hidden;\n}\n.text-hide {\n  font: 0/0 a;\n  color: transparent;\n  text-shadow: none;\n  background-color: transparent;\n  border: 0;\n}\n.hidden {\n  display: none !important;\n}\n.affix {\n  position: fixed;\n}\n@-ms-viewport {\n  width: device-width;\n}\n.visible-xs,\n.visible-sm,\n.visible-md,\n.visible-lg {\n  display: none !important;\n}\n.visible-xs-block,\n.visible-xs-inline,\n.visible-xs-inline-block,\n.visible-sm-block,\n.visible-sm-inline,\n.visible-sm-inline-block,\n.visible-md-block,\n.visible-md-inline,\n.visible-md-inline-block,\n.visible-lg-block,\n.visible-lg-inline,\n.visible-lg-inline-block {\n  display: none !important;\n}\n@media (max-width: 767px) {\n  .visible-xs {\n    display: block !important;\n  }\n  table.visible-xs {\n    display: table !important;\n  }\n  tr.visible-xs {\n    display: table-row !important;\n  }\n  th.visible-xs,\n  td.visible-xs {\n    display: table-cell !important;\n  }\n}\n@media (max-width: 767px) {\n  .visible-xs-block {\n    display: block !important;\n  }\n}\n@media (max-width: 767px) {\n  .visible-xs-inline {\n    display: inline !important;\n  }\n}\n@media (max-width: 767px) {\n  .visible-xs-inline-block {\n    display: inline-block !important;\n  }\n}\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm {\n    display: block !important;\n  }\n  table.visible-sm {\n    display: table !important;\n  }\n  tr.visible-sm {\n    display: table-row !important;\n  }\n  th.visible-sm,\n  td.visible-sm {\n    display: table-cell !important;\n  }\n}\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm-block {\n    display: block !important;\n  }\n}\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm-inline {\n    display: inline !important;\n  }\n}\n@media (min-width: 768px) and (max-width: 991px) {\n  .visible-sm-inline-block {\n    display: inline-block !important;\n  }\n}\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md {\n    display: block !important;\n  }\n  table.visible-md {\n    display: table !important;\n  }\n  tr.visible-md {\n    display: table-row !important;\n  }\n  th.visible-md,\n  td.visible-md {\n    display: table-cell !important;\n  }\n}\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md-block {\n    display: block !important;\n  }\n}\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md-inline {\n    display: inline !important;\n  }\n}\n@media (min-width: 992px) and (max-width: 1199px) {\n  .visible-md-inline-block {\n    display: inline-block !important;\n  }\n}\n@media (min-width: 1200px) {\n  .visible-lg {\n    display: block !important;\n  }\n  table.visible-lg {\n    display: table !important;\n  }\n  tr.visible-lg {\n    display: table-row !important;\n  }\n  th.visible-lg,\n  td.visible-lg {\n    display: table-cell !important;\n  }\n}\n@media (min-width: 1200px) {\n  .visible-lg-block {\n    display: block !important;\n  }\n}\n@media (min-width: 1200px) {\n  .visible-lg-inline {\n    display: inline !important;\n  }\n}\n@media (min-width: 1200px) {\n  .visible-lg-inline-block {\n    display: inline-block !important;\n  }\n}\n@media (max-width: 767px) {\n  .hidden-xs {\n    display: none !important;\n  }\n}\n@media (min-width: 768px) and (max-width: 991px) {\n  .hidden-sm {\n    display: none !important;\n  }\n}\n@media (min-width: 992px) and (max-width: 1199px) {\n  .hidden-md {\n    display: none !important;\n  }\n}\n@media (min-width: 1200px) {\n  .hidden-lg {\n    display: none !important;\n  }\n}\n.visible-print {\n  display: none !important;\n}\n@media print {\n  .visible-print {\n    display: block !important;\n  }\n  table.visible-print {\n    display: table !important;\n  }\n  tr.visible-print {\n    display: table-row !important;\n  }\n  th.visible-print,\n  td.visible-print {\n    display: table-cell !important;\n  }\n}\n.visible-print-block {\n  display: none !important;\n}\n@media print {\n  .visible-print-block {\n    display: block !important;\n  }\n}\n.visible-print-inline {\n  display: none !important;\n}\n@media print {\n  .visible-print-inline {\n    display: inline !important;\n  }\n}\n.visible-print-inline-block {\n  display: none !important;\n}\n@media print {\n  .visible-print-inline-block {\n    display: inline-block !important;\n  }\n}\n@media print {\n  .hidden-print {\n    display: none !important;\n  }\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 82 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(47)();
+exports = module.exports = __webpack_require__(46)();
 // imports
 
 
@@ -97532,157 +90441,157 @@ exports.push([module.i, "my-app {\n    height: 100%;\n}\n\nmain {\n    position:
 
 
 /***/ }),
-/* 83 */
+/* 80 */
 /***/ (function(module, exports) {
 
 module.exports = "compiled/fonts/fontawesome-webfont.svg";
 
 /***/ }),
-/* 84 */
+/* 81 */
 /***/ (function(module, exports) {
 
 module.exports = "compiled/fonts/fontawesome-webfont.ttf";
 
 /***/ }),
-/* 85 */
+/* 82 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\"> <h3> Example : </h3> <div class=\"row container-fluid form-group\"> <accordion [options]=\"optionsAccordion\"> <accordion-panel [title]=\"'test1'\"> {{time | date : 'shortDate'}} </accordion-panel> <accordion-panel [title]=\"'test2'\"> azertyuiop <button type=\"button\" class=\"btn btn-block\">Basic</button> </accordion-panel> </accordion> </div> <pre>\n    {{accordionHtml}}\n  </pre> <h3> Accordion : </h3> <h3> Settings </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th class=\"col-md-2\"> Setting </th> <th class=\"col-md-1\"> Type </th> <th class=\"col-md-3\"> Description </th> <th class=\"col-md-3\"> value </th> <th class=\"col-md-3\"> Info </th> </tr> </thead> <tbody> <tr> <td> class </td> <td> String </td> <td> Change style per default of any panel </td> <td> default, primary, success, info, warning, danger </td> <td> Per default : default </td> </tr> <tr> <td> options </td> <td> Object </td> <td> Define options we want for accordion </td> <td> See option's section </td> <td> </td> </tr> </tbody> </table> <h3> Options </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th class=\"col-md-2\"> Attribut </th> <th class=\"col-md-1\"> Type </th> <th class=\"col-md-3\"> Description </th> <th class=\"col-md-3\"> value </th> <th class=\"col-md-3\"> Info </th> </tr> </thead> <tbody> <tr> <td> openDefault </td> <td> number </td> <td> Define if we want a panel open by default </td> <td> any </td> <td> if no value, all panel will be close </td> </tr> </tbody> </table> <h3> Carousel-item </h3> <h3> Settings </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Setting </th> <th> Description </th> </tr> </thead> <tbody> <tr> <td> title </td> <td> Define the title of a panel </td> </tr> </tbody> </table> <h3> Example with ngFor </h3> <div class=\"row container-fluid form-group\"> <accordion [options]=\"{style: 'danger'}\"> <accordion-panel *ngFor=\"let panel of panels\" [title]=\"panel.title\"> {{panel.content}} </accordion-panel> </accordion> </div> <pre>\n    {{accordionNgFor}}\n  </pre> <pre>\n    {{accordionNgForPanel}}\n  </pre> </div> ";
 
 /***/ }),
-/* 86 */
+/* 83 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=\"sidebar-wrapper\"> <ul class=\"sidebar-nav\"> <li> <a [routerLink]=\"['/home']\">Home</a> </li> <li> <a [routerLink]=\"['/accordion']\">Accordion</a> </li> <li> <a [routerLink]=\"['/button']\">Button</a> </li> <li> <a [routerLink]=\"['/buttongroups']\">Button groups</a> </li> <li> <a [routerLink]=\"['/carouselAngular']\">Carousel</a> </li> <li> <a [routerLink]=\"['/datepickerAngular']\">Datepicker</a> </li> <li> <a [routerLink]=\"['/dropdownAngular']\">Dropdown</a> </li> <li> <a [routerLink]=\"['/forms']\">Forms</a> </li> <li> <a [routerLink]=\"['/grid']\">Grid</a> </li> <li> <a [routerLink]=\"['/icon']\">Icon</a> </li> <li> <a [routerLink]=\"['/input']\">Input</a> </li> <li> <a [routerLink]=\"['/inputgroup']\">Inputgroup</a> </li> <li> <a [routerLink]=\"['/modalAngular']\">Modal</a> </li> <li> <a [routerLink]=\"['/navbar']\">Navbar</a> </li> <li> <a [routerLink]=\"['/paginationAngular']\">Pagination</a> </li> <li> <a [routerLink]=\"['/popover']\">Popover</a> </li> <li> <a [routerLink]=\"['/progressBar']\">Progress bar</a> </li> <li> <a [routerLink]=\"['/selectpickerAngular']\">Selectpicker</a> </li> <li> <a [routerLink]=\"['/slidepickerAngular']\">Slidepicker</a> </li> <li> <a [routerLink]=\"['/table']\">Table</a> </li> <li> <a [routerLink]=\"['/tooltip']\">Tooltip</a> </li> </ul> </div> <div> <main> <router-outlet></router-outlet> </main> </div> <footer> </footer> ";
 
 /***/ }),
-/* 87 */
+/* 84 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\"> <h3> Simple button </h3> <div class=\"form-group\"> <button type=\"button\" class=\"btn\">Basic</button> </div> <pre>\n    {{buttonHtml}}\n  </pre> <blockquote> <p> We add a div with form-group class for add a margin between different element </p> </blockquote> <h3> Button with link and input </h3> <div class=\"form-group\"> <a class=\"btn btn-default\" role=\"button\"> Link button </a> </div> <div class=\"form-group\"> <input type=\"button\" class=\"btn btn-default\" value=\"Input Button\"/> </div> <div class=\"form-group\"> <input type=\"submit\" class=\"btn btn-default\" value=\"Submit Button\"/> </div> <blockquote> <p> We can use a link or a input with button style </p> </blockquote> <pre>\n    {{buttonLinkInputHtml}}\n  </pre> <h3> Button styles </h3> <div class=\"row container-fluid\"> <div class=\"form-group\"> <button type=\"button\" class=\"btn\">Basic</button> </div> <div class=\"form-group\"> <button type=\"button\" class=\"btn btn-default\"> Default </button> </div> <div class=\"form-group\"> <button type=\"button\" class=\"btn btn-primary\"> Primary </button> </div> <div class=\"form-group\"> <button type=\"button\" class=\"btn btn-success\"> Success </button> </div> <div class=\"form-group\"> <button type=\"button\" class=\"btn btn-info\"> Info </button> </div> <div class=\"form-group\"> <button type=\"button\" class=\"btn btn-warning\"> Warning </button> </div> <div class=\"form-group\"> <button type=\"button\" class=\"btn btn-danger\"> Danger </button> </div> <div class=\"form-group\"> <button type=\"button\" class=\"btn btn-link\"> Link </button> </div> <blockquote> <p> We can use different class for different style </p> </blockquote> <pre>\n      {{buttonStyleHtml}}\n    </pre> <h3> Button with icon </h3> <div class=\"form-group\"> <button class=\"btn btn-default btn-icon icon-add\"> Default with icon </button> </div> <blockquote> <p> For add a icon to a button we just need to add class btn-icon and the icon we want </p> </blockquote> <pre>\n      {{buttonIcon}}\n    </pre> <h3> Button disabled </h3> <div class=\"form-group\"> <button class=\"btn btn-default\" disabled=\"disabled\"> Default disabled </button> </div> <div class=\"form-group\"> <button class=\"btn btn-default btn-icon icon-add\" disabled=\"disabled\"> Default disabled with icon </button> </div> <blockquote> <p> If we want to disabled a button we just need to add the atribute disabled </p> </blockquote> <pre>\n      {{buttonDisabled}}\n    </pre> <h3> Button with 100% width </h3> <div class=\"form-group\"> <button class=\"btn btn-default btn-block\">Default with 100% width</button> </div> <blockquote> <p> To create a button that take all width we just need to add btn-block </p> </blockquote> <pre>\n      {{buttonBlock}}\n    </pre> <h3> Button size </h3> <div class=\"form-group\"> <button class=\"btn btn-default btn-lg\"> Large </button> </div> <div class=\"form-group\"> <button class=\"btn btn-default btn-md\"> Medium </button> </div> <div class=\"form-group\"> <button class=\"btn btn-default btn-sm\"> Small </button> </div> <div class=\"form-group\"> <button class=\"btn btn-default btn-xs\"> XSmall </button> </div> <pre>\n      {{buttonSize}}\n    </pre> </div> </div> ";
 
 /***/ }),
-/* 88 */
+/* 85 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\"> <h3> Basic example : </h3> <div class=\"row container-fluid\"> <div class=\"btn-group form-group\"> <button type=\"button\" class=\"btn btn-default\">1</button> <button type=\"button\" class=\"btn btn-default\">2</button> <button type=\"button\" class=\"btn btn-default\">3</button> </div> </div> <pre>\n    {{buttongroupsHtml}}\n  </pre> <h3> Toolbar with button groups </h3> <div class=\"row container-fluid\"> <div class=\"btn-toolbar form-group\"> <div class=\"btn-group\"> <button type=\"button\" class=\"btn btn-default\">File</button> <button type=\"button\" class=\"btn btn-default\">Save</button> <button type=\"button\" class=\"btn btn-default\">Load</button> </div> <div class=\"btn-group\"> <button type=\"button\" class=\"btn btn-default\">View</button> <button type=\"button\" class=\"btn btn-default\">Selection</button> </div> </div> </div> <blockquote> <p> We can create a toolbar with button groups we just need to add a parent div with btn-toolbar class </p> </blockquote> <pre>\n    {{buttonToolbar}}\n  </pre> <h3> button groups with dropdown : </h3> <div class=\"row container-fluid\"> <div class=\"btn-group form-group\"> <button type=\"button\" class=\"btn btn-default\">Save</button> <button type=\"button\" class=\"btn btn-default\">Load</button> <dropdown title=\"File\"> <dropdown-option>Open</dropdown-option> <dropdown-option>Exit</dropdown-option> </dropdown> </div> </div> <blockquote> <p> We can add a dropdown if we want </p> </blockquote> <pre>\n    {{buttongroupsDropdown}}\n  </pre> <h3> Different size : </h3> <div class=\"row container-fluid\"> <div class=\"btn-group btn-group-lg form-group\" role=\"group\"> <button type=\"button\" class=\"btn btn-default\">1</button> <button type=\"button\" class=\"btn btn-default\">2</button> <button type=\"button\" class=\"btn btn-default\">3</button> </div> <div class=\"btn-group form-group form-group\" role=\"group\"> <button type=\"button\" class=\"btn btn-default\">1</button> <button type=\"button\" class=\"btn btn-default\">2</button> <button type=\"button\" class=\"btn btn-default\">3</button> </div> <div class=\"btn-group btn-group-sm form-group\" role=\"group\"> <button type=\"button\" class=\"btn btn-default\">1</button> <button type=\"button\" class=\"btn btn-default\">2</button> <button type=\"button\" class=\"btn btn-default\">3</button> </div> <div class=\"btn-group btn-group-xs form-group\" role=\"group\"> <button type=\"button\" class=\"btn btn-default\">1</button> <button type=\"button\" class=\"btn btn-default\">2</button> <button type=\"button\" class=\"btn btn-default\">3</button> </div> </div> <blockquote> <p> We can modify size of button-groups like standard button </p> </blockquote> <pre>\n    {{buttongroupsSize}}\n  </pre> <h3> Vertical button groups : </h3> <div class=\"row container-fluid\"> <div class=\"btn-group-vertical form-group\"> <button type=\"button\" class=\"btn btn-default\">1</button> <button type=\"button\" class=\"btn btn-default\">2</button> <button type=\"button\" class=\"btn btn-default\">3</button> </div> </div> <pre>\n    {{buttonVertical}}\n  </pre> <h3> Button groups with 100% width : </h3> <div class=\"row container-fluid\"> <div class=\"btn-group btn-group-justified form-group\"> <a role=\"button\" class=\"btn btn-default\">1</a> <a role=\"button\" class=\"btn btn-default\">2</a> <a role=\"button\" class=\"btn btn-default\">3</a> </div> </div> <pre>\n    {{buttonJustified}}\n  </pre> </div> ";
 
 /***/ }),
-/* 89 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div class=\"container\"> <h3> Example : </h3> <div class=\"row container-fluid form-group\"> <carousel [options]=\"optionsCarousel\"> <carousel-item> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(14) + "\" alt=\"\"> <div class=\"carousel-caption\"> Slide 1 </div> </carousel-item> <carousel-item> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(49) + "\" alt=\"\"> </carousel-item> <carousel-item> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(50) + "\" alt=\"\"> <div class=\"carousel-caption\"> slide 3 </div> </carousel-item> </carousel> </div> <pre>\n    {{carouselHtml}}\n  </pre> <h3> Carousel : </h3> <h3> Options </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Attribut </th> <th> Type </th> <th> Description </th> <th> Value </th> <th> Info </th> </tr> </thead> <tbody> <tr> <td> indicator </td> <td> boolean </td> <td> Define if we want indicator in bottom of carousel </td> <td> true, false </td> <td> Per default : false </td> </tr> <tr> <td> interval </td> <td> number </td> <td> Modify the time between slide </td> <td> 2000 - infinite </td> <td> </td> </tr> <tr> <td> pause </td> <td> String | null </td> <td> Define if we want pauses the cycling on mouseenter </td> <td> hover, null </td> <td> Per default : hover </td> </tr> </tbody> </table> <h3> Exemple with add and suppress slide </h3> <div class=\"row container-fluid form-group\"> <carousel [options]=\"optionsCarousel\"> <carousel-item *ngIf=\"show1\"> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(14) + "\" alt=\"\"> <div class=\"carousel-caption\"> Slide 1 </div> </carousel-item> <carousel-item *ngIf=\"show2\"> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(49) + "\" alt=\"\"> </carousel-item> <carousel-item *ngIf=\"show3\"> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(50) + "\" alt=\"\"> <div class=\"carousel-caption\"> slide 3 </div> </carousel-item> </carousel> </div> <div class=\"row container-fluid\"> <div class=\"form-group\"> <label for=\"ButtonA\">Toggle test1</label> <button class=\"btn btn-block\" (click)=\"toggle1()\">toggle test1</button> <label for=\"ButtonA\">Toggle test2</label> <button class=\"btn btn-block\" (click)=\"toggle2()\">toggle test2</button> <label for=\"ButtonA\">Toggle test3</label> <button class=\"btn btn-block\" (click)=\"toggle3()\">toggle test3</button> </div> </div> <blockquote> <p> We can use ngIf for carousel-item to add or suppress slide, if active is suppress, the first slide will be the new active slide </p> </blockquote> <pre>\n    {{carrouselSlideNgIf}}\n  </pre> <h3> Exemple with ngFor </h3> <div class=\"row container-fluid form-group\"> <carousel [options]=\"optionsCarousel\"> <carousel-item *ngFor=\"let carouselItem of carouselItems\"> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(14) + "\" alt=\"\"> <div class=\"carousel-caption\"> {{carouselItem.label}} </div> </carousel-item> </carousel> </div> <pre>\n    {{carouselNgFor}}\n  </pre> <pre>\n    {{carouselNgForItems}}\n  </pre> </div> ";
+module.exports = "<div class=\"container\"> <h3> Example : </h3> <div class=\"row container-fluid form-group\"> <carousel [options]=\"optionsCarousel\"> <carousel-item> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(14) + "\" alt=\"\"> <div class=\"carousel-caption\"> Slide 1 </div> </carousel-item> <carousel-item> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(48) + "\" alt=\"\"> </carousel-item> <carousel-item> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(49) + "\" alt=\"\"> <div class=\"carousel-caption\"> slide 3 </div> </carousel-item> </carousel> </div> <pre>\n    {{carouselHtml}}\n  </pre> <h3> Carousel : </h3> <h3> Options </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Attribut </th> <th> Type </th> <th> Description </th> <th> Value </th> <th> Info </th> </tr> </thead> <tbody> <tr> <td> indicator </td> <td> boolean </td> <td> Define if we want indicator in bottom of carousel </td> <td> true, false </td> <td> Per default : false </td> </tr> <tr> <td> interval </td> <td> number </td> <td> Modify the time between slide </td> <td> 2000 - infinite </td> <td> </td> </tr> <tr> <td> pause </td> <td> String | null </td> <td> Define if we want pauses the cycling on mouseenter </td> <td> hover, null </td> <td> Per default : hover </td> </tr> </tbody> </table> <h3> Exemple with add and suppress slide </h3> <div class=\"row container-fluid form-group\"> <carousel [options]=\"optionsCarousel\"> <carousel-item *ngIf=\"show1\"> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(14) + "\" alt=\"\"> <div class=\"carousel-caption\"> Slide 1 </div> </carousel-item> <carousel-item *ngIf=\"show2\"> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(48) + "\" alt=\"\"> </carousel-item> <carousel-item *ngIf=\"show3\"> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(49) + "\" alt=\"\"> <div class=\"carousel-caption\"> slide 3 </div> </carousel-item> </carousel> </div> <div class=\"row container-fluid\"> <div class=\"form-group\"> <label for=\"ButtonA\">Toggle test1</label> <button class=\"btn btn-block\" (click)=\"toggle1()\">toggle test1</button> <label for=\"ButtonA\">Toggle test2</label> <button class=\"btn btn-block\" (click)=\"toggle2()\">toggle test2</button> <label for=\"ButtonA\">Toggle test3</label> <button class=\"btn btn-block\" (click)=\"toggle3()\">toggle test3</button> </div> </div> <blockquote> <p> We can use ngIf for carousel-item to add or suppress slide, if active is suppress, the first slide will be the new active slide </p> </blockquote> <pre>\n    {{carrouselSlideNgIf}}\n  </pre> <h3> Exemple with ngFor </h3> <div class=\"row container-fluid form-group\"> <carousel [options]=\"optionsCarousel\"> <carousel-item *ngFor=\"let carouselItem of carouselItems\"> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(14) + "\" alt=\"\"> <div class=\"carousel-caption\"> {{carouselItem.label}} </div> </carousel-item> </carousel> </div> <pre>\n    {{carouselNgFor}}\n  </pre> <pre>\n    {{carouselNgForItems}}\n  </pre> </div> ";
 
 /***/ }),
-/* 90 */
+/* 87 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\"> <h3> Simple datepicker : </h3> <div class=\"row\"> <div class=\"col-md-6\"> <div class=\"form-group\"> <label for=\"rangeDatePicker\">Example</label> <datepicker [(ngModel)]=\"valueDatePicker\" [numberOfMonths]=\"5\"></datepicker> </div> </div> <div class=\"col-md-6\"> <label for=\"Binding1\">Binding</label> <input name=\"Binding1\" class=\"form-control\" type=\"text\" [(ngModel)]=\"valueDatePicker\"> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <label>Code : </label> </div> </div> <pre>\n    {{DatepickerSimpleHtml}}\n  </pre> <div class=\"row\"> <div class=\"col-md-4\"> <label>Variables : </label> </div> </div> <pre>\n    this.valueDatePicker = \"2017-05-01\";\n  </pre> <blockquote> <p>valueDatePicker is the binded value, if you no put value by default it will be today.<br> numberOfMonths is the number of month in the calendar, if you no put value by default it will 3.</p> </blockquote> <h3> Datepicker range: </h3> <div class=\"row\"> <div class=\"col-md-6\"> <div class=\"form-group\"> <label for=\"rangeDatePicker\">Example</label> <datepicker-range [(start)]=\"start1\" [(end)]=\"end1\"></datepicker-range> </div> </div> <div class=\"col-md-6\"> <label for=\"Binding1\">Binding</label> <div class=\"form-group input-group\"> <input name=\"Binding1\" class=\"form-control\" type=\"text\" [(ngModel)]=\"start1\"> <span class=\"input-group-addon\"></span> <input name=\"Binding1\" class=\"form-control\" type=\"text\" [(ngModel)]=\"end1\"> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <label>Code : </label> </div> </div> <pre>\n    {{DatepickerRangeHtml}}\n  </pre> <div class=\"row\"> <div class=\"col-md-4\"> <label>Variables : </label> </div> </div> <pre>\n    this.start1 = \"2017-05-01\";\n    this.end1 = \"2017-05-22\";\n  </pre> <blockquote> <p>start1 et end1 are the binded value, if you no put value by default it will be today for the 2 dates.<br> numberOfMonths is the number of month in the calendar, if you no put value by default it will 3.</p> </blockquote> </div> ";
 
 /***/ }),
-/* 91 */
+/* 88 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\"> <h3>Exemple : </h3> <div class=\"form-group\"> <div class=\"row container-fluid\"> <dropdown title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> </div> <pre>\n    {{dropdownHtml}}\n  </pre> <h3> Dropup </h3> <div class=\"form-group\"> <div class=\"row container-fluid\"> <dropdown [options]=\"{orientation:'up'}\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> </div> <blockquote> Just add to options the attribute orientation with value 'up' </blockquote> <pre>\n    {{dropup}}\n  </pre> <h3> Alignement </h3> <div class=\"form-group\"> <div class=\"row container-fluid\"> <dropdown class=\"form-group\" [options]=\"{alignement:'left'}\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> <dropdown [options]=\"{alignement:'right'}\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown-divider></dropdown> </div> </div> <pre>\n    {{dropdownAlignement}}\n  </pre> <h3> Dropdown options with ngFor </h3> <div class=\"form-group\"> <div class=\"row container-fluid\"> <dropdown class=\"form-group\" [options]=\"{alignement:'left'}\" title=\"Menu A\"> <dropdown-option *ngFor=\"let dropdownoption of dropdownoptions\"><a>{{dropdownoption.label}}</a></dropdown-option> </dropdown> </div> </div> <pre>\n    {{dropdownNgFor}}\n  </pre> <pre>\n    {{dropdownNgForJS}}\n  </pre> <h3> Dropdown : </h3> <h3> Settings </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Setting </th> <th> Description </th> </tr> </thead> <tbody> <tr> <td> title </td> <td> Define the title of the button what open dropdown </td> </tr> <tr> <td> Option </td> <td> Allow to send options to dropdown </td> </tr> </tbody> </table> <h3> Options </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Attribut </th> <th> Type </th> <th> Description </th> <th> Value </th> <th> Info </th> </tr> </thead> <tbody> <tr> <td> orientation </td> <td> String </td> <td> Define the orientation of the dropdown, up or down </td> <td> Up, down </td> <td> Per default : down </td> </tr> <tr> <td> alignement </td> <td> String </td> <td> Define the alignement of dropdown </td> <td> right, left </td> <td> Per default : left </td> </tr> </tbody> </table> <h3> Dropdown-option : </h3> <h3> Options </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Attribut </th> <th> Type </th> <th> Description </th> <th> Value </th> <th> Info </th> </tr> </thead> <tbody> <tr> <td> disabled </td> <td> boolean </td> <td> Define if a option is disabled or not </td> <td> true, false </td> <td> Per default : false </td> </tr> <tr> <td> type </td> <td> String </td> <td> Define the type of li </td> <td> action, divider, header </td> <td> Per default : action </td> </tr> </tbody> </table> </div> ";
 
 /***/ }),
-/* 92 */
+/* 89 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\"> <div class=\"row\" style=\"display:flex;flex-wrap:wrap\"> <h3 style=\"width:100%\"> The forms </h3> <p>html code example : </p> <pre>\n      {{formHtml}}\n    </pre> <form> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"ExamplePassword\">Password</label> <input type=\"text\" class=\"form-control\" id=\"ExampleUsername\" placeholder=\"Username\" [(ngModel)]=\"person.username\" name=\"ExampleUsername\"/> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <selectpicker [(ngModel)]=\"person.Language\" multiple=\"true\" name=\"ExampleLanguage\"> <selectpicker-option value=\"English\">English</selectpicker-option> <selectpicker-option value=\"French\">French</selectpicker-option> <selectpicker-option value=\"Spanish\">Spanish</selectpicker-option> </selectpicker> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"ExampleBirthday\">Birthday</label> <div class=\"radio\"> <input type=\"radio\" id=\"radio3\" name=\"radioset3\" value=\"Male\"> <label for=\"radio3\"> Male </label> </div> <div class=\"radio\"> <input type=\"radio\" id=\"radio4\" name=\"radioset3\" value=\"Female\" checked=\"\"> <label for=\"radio4\"> Female </label> </div> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"radio\"> <input type=\"radio\" id=\"radio1\" name=\"radioset\" value=\"option1\"> <label for=\"radio1\"> Option 1 </label> </div> <div class=\"radio\"> <input type=\"radio\" id=\"radio2\" name=\"radioset\" value=\"option2\" checked=\"\"> <label for=\"radio2\"> Option 2 </label> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"ExampleBirthday\">Birthday</label> <datepicker [(ngModel)]=\"person.birthday\" name=\"ExampleBirthday\"></datepicker> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"rangeDatePicker\">Example Datepicker range</label> <datepicker-range [(start)]=\"start1\" [(end)]=\"end1\"></datepicker-range> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"button-succes\">Bouton succes</label> <button type=\"button\" id=\"button-succes\" class=\"btn btn-success\"> Success </button> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"ExampleLanguage2\">Language 2</label> <selectpicker [(ngModel)]=\"Selectpicker2\" name=\"ExampleLanguage2\"> <selectpicker-option value=\"English\">English</selectpicker-option> <selectpicker-option value=\"French\">French</selectpicker-option> <selectpicker-option value=\"Spanish\">Spanish</selectpicker-option> </selectpicker> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"rangeDatePicker\">Example Datepicker range</label> <datepicker-range [(start)]=\"start1\" [(end)]=\"end1\"></datepicker-range> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"basic-inputgroup2\">Example input bouton texte</label> <div class=\"input-group\"> <input type=\"text\" class=\"form-control\" placeholder=\"Recipient's username\" aria-describedby=\"basic-inputgroup2\"> <span class=\"input-group-addon\" id=\"basic-inputgroup2\">@example.com</span> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"radio\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"checkbox\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"inputgroup-radio\">Example input bouton radio</label> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"radio\" id=\"inputgroup-radio\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"radio\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"inputgroup-checkbox\">Example input bouton checkbox</label> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"checkbox\" id=\"inputgroup-checkbox\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <textarea rows=\"4\" class=\"form-control\" name=\"inputActive\" placeholder=\"active\" [(ngModel)]=\"input2\">\n          </textarea></div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <button type=\"button\" class=\"btn btn-block\">Basic</button> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <datepicker-range [(start)]=\"start1\" [(end)]=\"end1\"></datepicker-range> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"ExamplePassword\">Password</label> <div class=\"input-group\"> <span class=\"input-group-btn\"> <button class=\"btn btn-default\" type=\"button\">Action</button> </span> <input type=\"text\" class=\"form-control\" aria-label=\"Amount (to the nearest dollar)\"> <span class=\"input-group-addon\">.00</span> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"dropdown\">Language 2</label> <dropdown title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <input type=\"password\" class=\"form-control\" id=\"ExamplePassword\" placeholder=\"Password\" [(ngModel)]=\"person.password\" name=\"ExamplePassword\"/> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"ExamplePassword\">Password</label> <input type=\"password\" class=\"form-control\" id=\"ExamplePassword\" placeholder=\"Password\" [(ngModel)]=\"person.password\" name=\"ExamplePassword\"/> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <dropdown title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"input-group\"> <div class=\"input-group-btn\"> <button class=\"btn btn-default\" type=\"button\">Action1</button> <button class=\"btn btn-default\" type=\"button\">Action2</button> </div> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"checkbox\">Checkbox</label> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk1\"> <label for=\"chk1\"> checkbox </label> </div> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk2\" checked=\"\"> <label for=\"chk2\"> checkbox checked </label> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckbox1\" value=\"option1\"> <label for=\"inlineCheckbox1\">1</label> </div> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckbox2\" value=\"option2\"> <label for=\"inlineCheckbox2\">2</label> </div> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckbox3\" value=\"option3\"> <label for=\"inlineCheckbox3\">3</label> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"checkboxInline\">Checkbox inline</label> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckboxText1\" value=\"optionText1\"> <label for=\"inlineCheckboxText1\">1</label> </div> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckboxText2\" value=\"optionText2\"> <label for=\"inlineCheckboxText2\">2</label> </div> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckboxText3\" value=\"optionText3\"> <label for=\"inlineCheckboxText3\">3</label> </div> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"radio-inline\"> <input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio1\" value=\"option1\"> <label for=\"inlineRadio1\">1</label> </div> <div class=\"radio-inline\"> <input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio2\" value=\"option2\" checked=\"\"> <label for=\"inlineRadio2\">2</label> </div> <div class=\"radio-inline\"> <input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio3\" value=\"option3\" disabled=\"\"> <label for=\"inlineRadio3\">3</label> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk1\"> <label for=\"chk1\"> checkbox </label> </div> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk2\" checked=\"\"> <label for=\"chk2\"> checkbox checked </label> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"inputActive\">Textarea</label> <textarea rows=\"4\" class=\"form-control\" name=\"inputActive\" placeholder=\"active\" [(ngModel)]=\"input2\">\n          </textarea></div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"input-group\"> <div class=\"input-group-btn\"> <dropdown [options]=\"{orientation:'up'}\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk1\"> <label for=\"chk1\"> checkbox </label> </div> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk2\" checked=\"\"> <label for=\"chk2\"> checkbox checked </label> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label>Dropdown input</label> <div class=\"input-group\"> <div class=\"input-group-btn\"> <dropdown [options]=\"{orientation:'up'}\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-12\"> <div class=\"btn-group\"> <button type=\"submit\" class=\"btn btn-default\">Submit</button> <button type=\"reset\" class=\"btn btn-default\">Reset</button> </div> </div> </div> </form> </div> </div> ";
 
 /***/ }),
-/* 93 */
+/* 90 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\"> <h3> Classic grid </h3> <div class=\"row show-grid container\"> <div class=\"col-md-12\">.col-md-12</div> </div> <div class=\"row show-grid container\"> <div class=\"col-md-11\">.col-md-11</div> </div> <div class=\"row show-grid container\"> <div class=\"col-md-10\">.col-md-10</div> </div> <div class=\"row show-grid container\"> <div class=\"col-md-9\">.col-md-9</div> </div> <div class=\"row show-grid container\"> <div class=\"col-md-8\">.col-md-8</div> </div> <div class=\"row show-grid container\"> <div class=\"col-md-7\">.col-md-7</div> </div> <div class=\"row show-grid container\"> <div class=\"col-md-6\">.col-md-6</div> </div> <div class=\"row show-grid container\"> <div class=\"col-md-5\">.col-md-5</div> </div> <div class=\"row show-grid container\"> <div class=\"col-md-4\">.col-md-4</div> </div> <div class=\"row show-grid container\"> <div class=\"col-md-3\">.col-md-3</div> </div> <div class=\"row show-grid container\"> <div class=\"col-md-2\">.col-md-2</div> </div> <div class=\"row show-grid container\"> <div class=\"col-md-1\">.col-md-1</div> </div> <pre>\n    {{GridHtml}}\n  </pre> <h3> Mobile, tablet and desktop grid </h3> <div class=\"row show-grid container\"> <div class=\"col-xs-12 col-sm-4 col-md-4\">.col-xs-12 .col-sm-4 .col-md-4</div> <div class=\"col-xs-8 col-sm-8 col-md-2\">.col-xs-8 .col-sm-8 .col-md-6</div> <div class=\"col-xs-4 col-sm-12 col-md-6\">.col-xs-4 .col-sm-12 .col-md-2</div> </div> <h3> For a grid use : </h3> <p> We can use different grid for different screen size : </p> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Name </th> <th> Screen size </th> <th> Container width </th> <th> Class css </th> <th> Column width </th> </tr> </thead> <tbody> <tr> <td> Extra small devices like phones </td> <td> &lt;768px </td> <td> Auto </td> <td> .col-xs- </td> <td> Auto </td> </tr> <tr> <td> Small devices like Tablets </td> <td> &ge;768px </td> <td> 750px </td> <td> .col-sm- </td> <td> ~62px </td> </tr> <tr> <td> Medium devices like Desktops </td> <td> &ge;992px </td> <td> 970px </td> <td> .col-md- </td> <td> ~81px </td> </tr> <tr> <td> Large devices like Desktops </td> <td> &ge;1200px </td> <td> 1170px </td> <td> .col-lg- </td> <td> ~97px </td> </tr> </tbody> </table> <h3> Column wrapping </h3> <blockquote> <p> If we exceed 12 columns in one row, each group of extra columns will go onto a new line </p> </blockquote> <div class=\"row show-grid container\"> <div class=\"col-md-8\">.col-md-8</div> <div class=\"col-md-6\">.col-md-6<br>8+6 = 13 &gt; 12 </div> <div class=\"col-md-4\">.col-md-4</div> </div> <pre>\n    {{gridWrapping}}\n  </pre> <h3> Offset columns </h3> <blockquote> We can add offset to column. That allow to place correctly all content </blockquote> <div class=\"row show-grid container\"> <div class=\"col-md-4\"> .col-md-4 </div> </div> <div class=\"row show-grid container\"> <div class=\"col-md-4 col-md-offset-4\">.col-md-4 .col-md-offset-4</div> </div> <div class=\"row show-grid container\"> <div class=\"col-md-5\"> .col-md-5 </div> </div> <div class=\"row show-grid container\"> <div class=\"col-md-3\">.col-md-3</div> <div class=\"col-md-2 col-md-offset-2\">.col-md-2 .col-md-offset-2</div> <div class=\"col-md-3 col-md-offset-2\">.col-md-2 .col-md-offset-2</div> </div> <div class=\"row show-grid container\"> <div class=\"col-md-9\"> .col-md-9 </div> </div> <pre>\n    {{gridOffset}}\n  </pre> <h3> Ordering columns </h3> <div class=\"row show-grid container\"> <div class=\"col-md-8 col-md-push-4\">.col-md-8 .col-md-push-4</div> <div class=\"col-md-4 col-md-pull-8\">.col-md-4 .col-md-pull-8</div> </div> <blockquote> <p> We can push or pull column to order column on different support </p> </blockquote> <pre>\n    {{gridOrder}}\n  </pre> <h3> Nesting columns </h3> <div class=\"row show-grid container\"> <div class=\"col-md-8\"> Level 1: .col-md-8 <div class=\"row show-grid\"> <div class=\"col-md-7 col-sm-6\"> Level 2: .col-md-7 .col-sm-6 </div> <div class=\"col-md-5 col-sm-6\"> Level 2: .col-md-5 .col-sm-6 </div> </div> </div> </div> <blockquote> <p> If we want \"more\" columns we can create an grid into another grid. This new grid will have 12 columns even if we put that in small columns. </p> </blockquote> <pre>\n    {{gridNesting}}\n  </pre> </div> ";
 
 /***/ }),
-/* 94 */
+/* 91 */
 /***/ (function(module, exports) {
 
 module.exports = "<nav class=\"navbar navbar-default\"> <div class=\"container-fluid\"> <div class=\"navbar-header\"> <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\"> <span class=\"sr-only\">Toggle navigation</span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span> </button> </div> <div class=\"collapse navbar-collapse\"> <ul class=\"nav navbar-nav\"> <li> <a (click)=\"Display = 'Example'\"> Example </a> </li> <li> <a (click)=\"Display = 'Api'\"> Api </a> </li> </ul> </div> </div> </nav> <div [ngSwitch]=\"Display\"> <div class=\"container\" *ngSwitchCase=\"'Example'\"> <div class=\"row\"> <grid class=\"table table-bordered\" [columns]=\"columns\" [rows]=\"rows\"> </grid> </div> </div> <div class=\"container\" *ngSwitchCase=\"'Api'\"> <pre>\n      {{navbarHtml}}\n    </pre> <p> Class css li: <br> -dropdown : Allow to create a dropdown into the navbar for add another link like a menu <br> -disabled : deactivate the li. </p> </div> </div> ";
 
 /***/ }),
-/* 95 */
+/* 92 */
 /***/ (function(module, exports) {
 
 module.exports = "<div> <div class=\"container\"> <div class=\"row\"> <h3> Getting started : </h3> <h3> Step 1 : Install atlantis-ui </h3> <p> npm install atlantis-ui </p> <h3> Step 2 : Import the component Modules, use standard widget and CSS or less </h3> <p> Import the ngModule for each component you want to use or in a shared module : </p> <pre>\n        {{importHtml}}\n      </pre> <p> For use standard widget, add with script atlantis-ui-js </p> <p> For use css, add link to atlantis-ui-css </p> <p> For use less, add link to less and add less compiler or loader. </p> </div> </div> </div> ";
 
 /***/ }),
-/* 96 */
+/* 93 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\"> <div class=\"row container-fluid\"> <h3>Icons available : </h3> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-add\"></i> add </div> <div class=\"col-md-3\"> <i class=\"icon icon-delete\"></i> delete </div> <div class=\"col-md-3\"> <i class=\"icon icon-close\"></i> close </div> <div class=\"col-md-3\"> <i class=\"icon icon-edit\"></i> edit </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-search\"></i> search </div> <div class=\"col-md-3\"> <i class=\"icon icon-about\"></i> about </div> <div class=\"col-md-3\"> <i class=\"icon icon-import\"></i> import </div> <div class=\"col-md-3\"> <i class=\"icon icon-export\"></i> export </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-save\"></i> save </div> <div class=\"col-md-3\"> <i class=\"icon icon-print\"></i> print </div> <div class=\"col-md-3\"> <i class=\"icon icon-parameter\"></i> parameter </div> <div class=\"col-md-3\"> <i class=\"icon icon-info\"></i> info </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-question\"></i> question </div> <div class=\"col-md-3\"> <i class=\"icon icon-link\"></i> link </div> <div class=\"col-md-3\"> <i class=\"icon icon-next\"></i> next </div> <div class=\"col-md-3\"> <i class=\"icon icon-previous\"></i> previous </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-exchange\"></i> exchange </div> <div class=\"col-md-3\"> <i class=\"icon icon-warning\"></i> warning </div> <div class=\"col-md-3\"> <i class=\"icon icon-copy\"></i> copy </div> <div class=\"col-md-3\"> <i class=\"icon icon-star\"></i> star </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-archive\"></i> archive </div> <div class=\"col-md-3\"> <i class=\"icon icon-date\"></i> date </div> <div class=\"col-md-3\"> <i class=\"icon icon-share\"></i> share </div> <div class=\"col-md-3\"> <i class=\"icon icon-back\"></i> back </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-comment\"></i> comment </div> <div class=\"col-md-3\"> <i class=\"icon icon-users\"></i> users </div> <div class=\"col-md-3\"> <i class=\"icon icon-user\"></i> user </div> <div class=\"col-md-3\"> <i class=\"icon icon-folder\"></i> folder </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-folder-open\"></i> folder-open </div> <div class=\"col-md-3\"> <i class=\"icon icon-stats\"></i> stats </div> <div class=\"col-md-3\"> <i class=\"icon icon-sort-asc\"></i> sort-asc </div> <div class=\"col-md-3\"> <i class=\"icon icon-sort-desc\"></i> sort-desc </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-ticket\"></i> ticket </div> <div class=\"col-md-3\"> <i class=\"icon icon-lock\"></i> lock </div> <div class=\"col-md-3\"> <i class=\"icon icon-unlock\"></i> unlock </div> <div class=\"col-md-3\"> <i class=\"icon icon-show\"></i> show </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-hide\"></i> hide </div> <div class=\"col-md-3\"> <i class=\"icon icon-fax\"></i> fax </div> <div class=\"col-md-3\"> <i class=\"icon icon-home\"></i> home </div> <div class=\"col-md-3\"> <i class=\"icon icon-sign-in\"></i> sign-in </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-sign-out\"></i> sign-out </div> <div class=\"col-md-3\"> <i class=\"icon icon-purchase\"></i> purchase </div> <div class=\"col-md-3\"> <i class=\"icon icon-file-pdf\"></i> file-pdf </div> <div class=\"col-md-3\"> <i class=\"icon icon-file-zip\"></i> file-zip </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-file-text\"></i> file-text </div> <div class=\"col-md-3\"> <i class=\"icon icon-list\"></i> list </div> </div> </div> <pre>\n    {{iconHtml}}\n  </pre> <blockquote> <p>Remplace name by the icon you want</p> </blockquote> <h3> Different size </h3> <div class=\"row\"> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-1x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-2x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-3x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-4x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-5x\"></i> add </div> </div> <pre>\n    {{iconSize}}\n  </pre> <h3> Disabled icon </h3> <div class=\"row\"> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-disabled\"> </i> add </div> </div> <pre>\n    {{iconDisabled}}\n  </pre> </div> ";
 
 /***/ }),
-/* 97 */
+/* 94 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\"> <div class=\"row\"> <h3> Input text/textarea </h3> <div class=\"form-group\"> <label for=\"inputActive\">input active</label> <input type=\"text\" class=\"form-control\" name=\"inputActive\" placeholder=\"active\" [(ngModel)]=\"input1\"> </div> <div class=\"form-group\"> <label for=\"inputActive\">Textarea</label> <textarea rows=\"4\" class=\"form-control\" name=\"inputActive\" placeholder=\"active\" [(ngModel)]=\"input2\">\n    </textarea></div> <div class=\"form-group\"> <label for=\"inputDisabled\">input disabled</label> <input type=\"text\" class=\"form-control\" name=\"inputDisabled\" placeholder=\"disabled\" value=\"input disabled\" disabled=\"\" [(ngModel)]=\"input3\"> </div> <h3> Input checkbox </h3> <div class=\"form-group\"> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk1\"> <label for=\"chk1\"> checkbox </label> </div> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk2\" checked=\"\"> <label for=\"chk2\"> checkbox checked </label> </div> <div class=\"checkbox disabled\"> <input type=\"checkbox\" value=\"\" id=\"chk3\" disabled=\"\"> <label for=\"chk3\"> checkbox disabled </label> </div> <div class=\"checkbox disabled\"> <input type=\"checkbox\" value=\"\" id=\"chk1\" checked=\"\" disabled=\"\"> <label for=\"chk4\"> checkbox checked disabled </label> </div> </div> <h3> Input checkbox inline </h3> <div class=\"form-group\"> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckbox1\" value=\"option1\"> <label for=\"inlineCheckbox1\">1</label> </div> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckbox2\" value=\"option2\"> <label for=\"inlineCheckbox2\">2</label> </div> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckbox3\" value=\"option3\"> <label for=\"inlineCheckbox3\">3</label> </div> </div> <h3> Input radio </h3> <div class=\"form-group\"> <div class=\"radio\"> <input type=\"radio\" id=\"radio1\" name=\"radioset\" value=\"option1\"> <label for=\"radio1\"> Option 1 </label> </div> <div class=\"radio\"> <input type=\"radio\" id=\"radio2\" name=\"radioset\" value=\"option2\" checked=\"\"> <label for=\"radio2\"> Option 2 </label> </div> <div class=\"radio disabled\"> <input type=\"radio\" id=\"radio3\" name=\"radioset\" value=\"option3\" disabled=\"\"> <label for=\"radio3\"> Option disabled </label> </div> </div> <h3> Input radio inline </h3> <div class=\"form-group\"> <div class=\"radio-inline\"> <input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio1\" value=\"option1\"> <label for=\"inlineRadio1\">1</label> </div> <div class=\"radio-inline\"> <input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio2\" value=\"option2\" checked=\"\"> <label for=\"inlineRadio2\">2</label> </div> <div class=\"radio-inline\"> <input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio3\" value=\"option3\" disabled=\"\"> <label for=\"inlineRadio3\">3</label> </div> </div> <h3> For use an input : </h3> <p> Use native html tag and add a parent div with form-group class and for all input, exept radio and checkbox, add form-control class </p> </div> </div> ";
 
 /***/ }),
-/* 98 */
+/* 95 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\"> <div class=\"row\"> <h3> Inputgroup basic : </h3> <div class=\"form-group\"> <div class=\"input-group\"> <span class=\"input-group-addon\" id=\"basic-inputgroup1\">@</span> <input type=\"text\" class=\"form-control\" placeholder=\"Username\" aria-describedby=\"basic-inputgroup1\"> </div> </div> <div class=\"form-group\"> <div class=\"input-group\"> <input type=\"text\" class=\"form-control\" placeholder=\"Recipient's username\" aria-describedby=\"basic-inputgroup2\"> <span class=\"input-group-addon\" id=\"basic-inputgroup2\">@example.com</span> </div> </div> <pre>\n      {{inputgroupBasicHtml}}\n    </pre> <h3> Inputgroup with checkboxs and radio : </h3> <div class=\"form-group\"> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"checkbox\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> <div class=\"form-group\"> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"radio\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> <pre>\n      {{inputgroupCheckHtml}}\n    </pre> <h3> Inputgroup with buttons : </h3> <div class=\"form-group\"> <div class=\"input-group\"> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> <span class=\"input-group-btn\"> <button class=\"btn btn-default\" type=\"button\">Action</button> </span> </div> </div> <div class=\"form-group\"> <div class=\"input-group\"> <div class=\"input-group-btn\"> <button class=\"btn btn-default\" type=\"button\">Action1</button> <button class=\"btn btn-default\" type=\"button\">Action2</button> </div> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> <pre>\n      {{inputgroupButtonHtml}}\n    </pre> <h3> Inputgroup with dropdown </h3> <div class=\"form-group\"> <div class=\"input-group\"> <div class=\"input-group-btn\"> <dropdown [options]=\"{orientation:'up'}\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> <div class=\"input-group-btn\"> <dropdown [options]=\"{orientation:'up'}\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> </div> </div> <pre>\n    {{inputgroupDropdownHtml}}\n  </pre> </div> </div> ";
 
 /***/ }),
-/* 99 */
+/* 96 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\"> <h3> Modal </h3> <div class=\"row\"> <div class=\"col-md-2 col-md-offset-1\"> <button type=\"button\" class=\"btn btn-default btn-sm\" (click)=\"openLeft()\"> orientation=\"left\"<br> fade=true<br> backdrop=true </button> <modal idModal=\"test\" [options]=\"modalOptionsLeft\" [(show)]=\"showLeft\"> <modal-header [options]=\"modalHeaderOptions\"> <h3 class=\"modal-title\">Modal Header</h3> </modal-header> <modal-body> <p>Some text in the modal.</p> </modal-body> <modal-footer> <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"closeLeft()\">Close</button> </modal-footer> </modal> </div> <div class=\"col-md-2\"> <button type=\"button\" class=\"btn btn-default btn-sm\" (click)=\"openRight()\"> orientation=\"right\"<br> fade=false<br> backdrop=false </button> <modal idModal=\"test\" [options]=\"modalOptionsRight\" [(show)]=\"showRight\"> <modal-header [options]=\"modalHeaderOptions\"> <h3 class=\"modal-title\">Modal Header</h3> </modal-header> <modal-body> <p>Some text in the modal.</p> </modal-body> <modal-footer> <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"closeRight()\">Close</button> </modal-footer> </modal> </div> <div class=\"col-md-2\"> <button type=\"button\" class=\"btn btn-default btn-sm\" (click)=\"openTop()\"> orientation=\"top\"<br> fade=false<br> backdrop=true </button> <modal idModal=\"test\" [options]=\"modalOptionsTop\" [(show)]=\"showTop\"> <modal-header [options]=\"modalHeaderOptions\"> <h3 class=\"modal-title\">Modal Header</h3> </modal-header> <modal-body> <p>Some text in the modal.</p> </modal-body> <modal-footer> <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"closeTop()\">Close</button> </modal-footer> </modal> </div> <div class=\"col-md-2\"> <button type=\"button\" class=\"btn btn-default btn-sm\" (click)=\"openBottom()\"> orientation = bottom<br> fade=true<br> backdrop=true </button> <modal idModal=\"test\" [options]=\"modalOptionsBottom\" [(show)]=\"showBottom\"> <modal-header [options]=\"modalHeaderOptions\"> <h3 class=\"modal-title\">Modal Header</h3> </modal-header> <modal-body> <p>Some text in the modal.</p> </modal-body> <modal-footer> <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"closeBottom()\">Close</button> </modal-footer> </modal> </div> <div class=\"col-md-2\"> <button type=\"button\" class=\"btn btn-default btn-sm\" (click)=\"openStandard()\"> No Options defined </button> <modal idModal=\"test\" [(show)]=\"showStandard\"> <modal-header [options]=\"modalHeaderOptions\"> <h3 class=\"modal-title\">Modal Header</h3> </modal-header> <modal-body> <p>Some text in the modal.</p> </modal-body> <modal-footer> <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"closeStandard()\">Close</button> </modal-footer> </modal> </div> </div> <h3> For a modal use : </h3> <pre>\n    {{ modalHtml }}\n  </pre> <h3> with variables : </h3> <pre>\n    {{ modalVar }}\n  </pre> <blockquote> <p> ShowLeft is a boolean, is used to open (true) or close (false) the modal.<br> Test is use for the id modal, by default the value is modal + random number.<br> ModalOptionsLeft is the options of the modal.<br> ModalHeaderOptions is the options of the header modal.<br> </p> </blockquote> <h3> modal options </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Parameters </th> <th> Type </th> <th> Description </th> <th> Value </th> <th> Default value </th> </tr> </thead> <tbody> <tr> <td> orientation </td> <td> String </td> <td> Position of the modal </td> <td> left, bottom, right, top </td> <td> left </td> </tr> <tr> <td> fade </td> <td> boolean </td> <td> Define if we use animation or not </td> <td> true, false </td> <td> true </td> </tr> <tr> <td> backdrop </td> <td> string </td> <td> Define if the backdrop is present </td> <td> true, false </td> <td> true. </td> </tr> </tbody> </table> <h3> modal-header option </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Parameters </th> <th> Type </th> <th> Description </th> <th> Value </th> <th> Default value </th> </tr> </thead> <tbody> <tr> <td> close </td> <td> boolean </td> <td> Define if the button close is present </td> <td> true, false </td> <td> true </td> </tr> </tbody> </table> </div> ";
 
 /***/ }),
-/* 100 */
+/* 97 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\"> <div class=\"row container-fluid\"> <h3>Example : </h3> <div class=\"navbar navbar-default\"> <div class=\"container-fluid\"> <div class=\"navbar-header\"> <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\"> <span class=\"sr-only\">Toggle navigation</span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span> </button> <a class=\"navbar-brand\">Test</a> </div> <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\"> <ul class=\"nav navbar-nav\"> <li> <dropdown title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </li> <li><a>Menu B</a></li> <li class=\"disabled\"> <dropdown title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> </dropdown> </li> <li><a>Menu D</a></li> <li class=\"disabled\"><a>Menu E</a></li> </ul> <form class=\"navbar-form navbar-left\"> <div class=\"form-group\"> <input type=\"text\" class=\"form-control\" placeholder=\"Action\"> </div> <button type=\"submit\" class=\"btn btn-default\">Search</button> </form> <ul class=\"nav navbar-nav navbar-right\"> <button type=\"button\" class=\"btn btn-default navbar-btn\">Action A</button> <p class=\"navbar-text\">Test text</p> </ul> </div> </div> </div> </div> <pre>\n    {{navbarHtml}}\n  </pre> <blockquote> <p> We can use a dropdown menu directly in the navbar, like any dropdown </p> <p> Don't forget to use .navbar class </p> </blockquote> <h3> How to use : </h3> <h3> Class for first div or nav tag : </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th class=\"col-md-2\"> Class </th> <th class=\"col-md-1\"> tag </th> <th class=\"col-md-5\"> Description </th> <th class=\"col-md-4\"> Info </th> </tr> </thead> <tbody> <tr> <td> .navbar </td> <td> first div, nav </td> <td> Define the navbar </td> <td></td> </tr> <tr> <td> .navbar-default </td> <td> first div, nav </td> <td> Define the classic color for navbar </td> <td></td> </tr> <tr> <td> .navbar-inverse </td> <td> first div, nav </td> <td> Define inverse color for navbar </td> <td></td> </tr> <tr> <td> .navbar-fixed-top </td> <td> first div, nav </td> <td> Fixed the navbar to top </td> <td> Include a div with .container into navbar.<br> Warning : Add padding to body, to avoid that navbar overlay other content. (by default, navbar as 50px height) </td> </tr> <tr> <td> .navbar-fixed-bottom </td> <td> first div, nav </td> <td> Fixed the navbar to bottom </td> <td> Include a div with .container into navbar.<br> Warning : Add padding to body, to avoid that navbar overlay other content. (by default, navbar as 50px height) </td> </tr> <tr> <td> .navbar-static-top </td> <td> first div, nav </td> <td> Fixed the navbar to top </td> <td> Include a div with .container into navbar.<br> Warning : Don't need to add padding to body </td> </tr> </tbody> </table> <h3> Class specific to header : </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th class=\"col-md-2\"> Class </th> <th class=\"col-md-1\"> tag </th> <th class=\"col-md-5\"> Description </th> <th class=\"col-md-4\"> Info </th> </tr> </thead> <tbody> <tr> <td> .navbar-header </td> <td> div after nav </td> <td> Define the navbar-header </td> <td></td> </tr> <tr> <td> .navbar-toggle </td> <td> button </td> <td> Use for small screen, to display navbar like a menu </td> <td> Warning : Don't forget to add data-toggle=\"collapse\" and correct data-target </td> </tr> <tr> <td> .icon-bar </td> <td> span </td> <td> Show a bar </td> <td></td> </tr> <tr> <td> .navbar-brand </td> <td> a </td> <td> Display the content with more visibility. Usefull for a home link </td> <td> We can use a image with a tag img into a with .navbar-brand class </td> </tr> </tbody> </table> <h3> Class specific to main body </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th class=\"col-md-2\"> Class </th> <th class=\"col-md-1\"> tag </th> <th class=\"col-md-5\"> Description </th> <th class=\"col-md-4\"> Info </th> </tr> </thead> <tbody> <tr> <td> .navbar-collapse </td> <td> div </td> <td> Define the navbar to be collapse if we are in small screen </td> <td> Warning : Don't forget to add .collapse class to the div </td> </tr> <tr> <td> .navbar-nav </td> <td> ul </td> <td> Define the link into navbar </td> <td> </td> </tr> <tr> <td> .active </td> <td> li </td> <td> Show the link active, also to show the current status </td> <td></td> </tr> <tr> <td> .disabled </td> <td> li, dropdown </td> <td> Desactive a link </td> <td> </td> </tr> <tr> <td> .dropdown </td> <td> li </td> <td> Allow to use dropdown into navbar, see dropdown docs </td> <td></td> </tr> <tr> <td> .navbar-form </td> <td> form </td> <td> Allow to use form into navbar. </td> <td></td> </tr> <tr> <td> .navbar-left </td> <td> ul, form, p, button </td> <td> Align the content to left. </td> <td></td> </tr> <tr> <td> .navbar-right </td> <td> ul, form, p, button </td> <td> Align the content to right </td> <td></td> </tr> <tr> <td> .navbar-btn </td> <td> button </td> <td> Vertically center button into navbar </td> <td></td> </tr> <tr> <td> .navbar-text </td> <td> p </td> <td> Allow to use text into navbar </td> <td></td> </tr> </tbody> </table> </div> ";
 
 /***/ }),
-/* 101 */
+/* 98 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\"> <div class=\"row container-fluid\"> <h3> Example : </h3> <table class=\"table table-bordered\"> <thead> <tr> <th>Result</th> </tr> </thead> <tbody> <tr *ngFor=\"let resultat of result\"> <td> {{resultat}} </td> </tr> </tbody> </table> </div> <div class=\"row\"> <div class=\"col-md-4\"> <pagination [page]=\"page\" [pages]=\"pages\" (pagechange)=\"testPagination($event)\"></pagination> </div> <div class=\"col-md-4\"> <div class=\"form-group input-group\"> <input name=\"Binding1\" class=\"form-control\" type=\"text\" [(ngModel)]=\"page\" disabled=\"disabled\"> <span class=\"input-group-addon\"></span> <input name=\"Binding1\" class=\"form-control\" type=\"text\" [(ngModel)]=\"pages\"> </div> </div> </div> <pre>\n    {{PaginationHtml}}\n  </pre> <h3> Different size : </h3> <div class=\"row\"> <div class=\"col-md-6\"> <pagination [page]=\"page\" [pages]=\"pages\" (pagechange)=\"testPagination($event)\" class=\"pagination-sm\"></pagination> </div> <div class=\"col-md-6\"> <pagination [page]=\"page\" [pages]=\"pages\" (pagechange)=\"testPagination($event)\" class=\"pagination-lg\"></pagination> </div> </div> <pre>\n    {{paginationSize}}\n  </pre> <h3> Precision : </h3> <p> We can define different size for the widget. For that just add a class to pagination tag like pagination-sm or pagination-lg </p> <h3> Settings : </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Setting </th> <th> Type </th> <th> Description </th> </tr> </thead> <tbody> <tr> <td> page </td> <td> number </td> <td> Current page </td> </tr> <tr> <td> pages </td> <td> number </td> <td> Total pages </td> </tr> <tr> <td> pagechange </td> <td> string </td> <td> An expression </td> </tr> </tbody> </table> </div> ";
 
 /***/ }),
-/* 102 */
+/* 99 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\"> <h3> Example </h3> <div class=\"row container-fluid\"> <button class=\"btn btn-default\" popover popoverDirection=\"left\" popoverTitle=\"test\" [popoverContent]=\"time\"> Popover on left </button> <button type=\"button\" class=\"btn btn-default\" popover popoverDirection=\"top\" popoverTitle=\"test\" popoverContent=\"testetstestsetest\"> Popover on top </button> <button type=\"button\" class=\"btn btn-default\" popover popoverDirection=\"bottom\" popoverTitle=\"test\" popoverContent=\"testetstestsetest\"> Popover on bottom </button> <button type=\"button\" class=\"btn btn-default\" popover popoverDirection=\"right\" popoverTitle=\"test\" popoverContent=\"testetstestsetest\"> Popover on right </button> </div> <pre>\n    {{PopoverHtml}}\n  </pre> <blockquote> <p> We can apply popover on any type of tag (a, h, div, p, input) </p> </blockquote> </div> ";
 
 /***/ }),
-/* 103 */
+/* 100 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\"> <h3> Example : </h3> <div class=\"row container-fluid\"> <label for=\"percent\">Type a percent!</label> <input id=\"percent\" name=\"percent\" type=\"number\" [(ngModel)]=\"test\"> </div> <div class=\"row container-fluid\"> <h3> Exemple : </h3> <label for=\"cpb-md\">Basic circle-progress-bar</label> <circle-progress-bar [value]=\"test\" name=\"cpb-md\"> </circle-progress-bar> </div> <pre>\n    {{circleProgressBarHtml}}\n  </pre> <div class=\"row container-fluid\"> <h3> Different size </h3> <label for=\"cpb-sm\">Small circle-progress-bar</label> <circle-progress-bar-sm affix=\"50\" [value]=\"test\" name=\"cpb-sm\"> </circle-progress-bar-sm> <label for=\"cpb-md\">Default/medium circle-progress-bar</label> <circle-progress-bar [value]=\"test\" name=\"cpb-md\"> </circle-progress-bar> <label for=\"cpb-lg\">Large circle-progress-bar</label> <circle-progress-bar-lg [value]=\"test\" name=\"cpb-lg\"> </circle-progress-bar-lg> </div> <pre>\n    {{circleProgressBarSize}}\n  </pre> <div class=\"row container-fluid\"> <h3> Different style </h3> <label for=\"cpb-success\">Success circle-progress-bar</label> <circle-progress-bar class=\"circle-progress-bar-success\" [value]=\"test\"> </circle-progress-bar> <label for=\"cpb-info\">Info circle-progress-bar</label> <circle-progress-bar class=\"circle-progress-bar-info\" [value]=\"test\"> </circle-progress-bar> <label for=\"cpb-warning\">Warning circle-progress-bar</label> <circle-progress-bar class=\"circle-progress-bar-warning\" [value]=\"test\"> </circle-progress-bar> <label for=\"cpb-danger\">Danger circle-progress-bar</label> <circle-progress-bar class=\"circle-progress-bar-danger\" [value]=\"test\"> </circle-progress-bar> </div> <pre>\n    {{circleProgressBarStyle}}\n  </pre> </div> ";
 
 /***/ }),
-/* 104 */
+/* 101 */
 /***/ (function(module, exports) {
 
 module.exports = " <div class=\"container\"> <div class=\"mt-3\"> <h3> Multiple selectpicker </h3> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"Selectpicker1\">Example</label> <selectpicker name=\"Selectpicker1\" [(ngModel)]=\"Selectpicker3\" multiple=\"true\"> <selectpicker-option [value]=\"A\">AAAA</selectpicker-option> <selectpicker-option value=\"B\">BBBB</selectpicker-option> <selectpicker-option value=\"C\">CCCC</selectpicker-option> <selectpicker-option [value]=\"booleanFalse\">boolean test</selectpicker-option> <selectpicker-option [value]=\"one\">11111</selectpicker-option> <selectpicker-option [value]=\"arrayOneTwoThree\">one, two, three</selectpicker-option> <selectpicker-option [value]=\"objetWithArray\">objet javascript</selectpicker-option> </selectpicker> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\" style=\"height:140px\"> <label for=\"Binding1\">Binding</label> <ul> <li *ngFor=\"let value of Selectpicker3\">{{ value }}</li> </ul> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <label>Code : </label> </div> </div> <pre>\n        {{selectpickerMultipleHtml}}\n      </pre> <blockquote> <p>For the multiple selectpickers, we must add multiple=\"true\" attribute.</p> </blockquote> <br> <div class=\"row\"> <div class=\"col-md-4\"> <h5> Select value when clicking on button.</h5> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <button (click)=\"AddRemoveASelectPicker3()\">A</button> <button (click)=\"AddRemove1SelectPicker3()\">1</button> <button (click)=\"AddRemoveArraySelectPicker3()\">Array</button> <button (click)=\"AddRemoveObjetSelectPicker3()\">Objet</button> <button (click)=\"AddRemoveBooleanSlectPicker3()\">Boolean</button> </div> </div> <blockquote> <p>If we select value dynamically by code , it is necessary to be the same instance otherwise it does not work.<br/> For example, for the array button : </p> </blockquote> <pre>\n          {{exempleButtonArray}}\n      </pre> <br> <div class=\"row\"> <div class=\"col-md-4\"> <h5> Explanation code</h5> </div> </div> <blockquote> <p>Selectpicker1 is the bind value. If not value by default it's a empty array : </p> </blockquote> <pre>\n        Selectpicker1 = [];\n      </pre> <blockquote> <p>Otherwise it's a array of variables ( we must use the same instance). In that case on, two, three and 11111 are selected by default.</p> </blockquote> <pre>\n        var arrayOneTwoThree = [\"one\", \"two\", \"three\"];\n        var one = 1;\n        Selectpicker1 = [arrayOneTwoThree, one];\n      </pre> <blockquote> <p>The value between selectpicker-option tags is text or a bind value and value attribute is a bind value.</p> </blockquote> <pre>\n        {{selectpickerOptionHtml}}\n      </pre> <blockquote> <p> If value attribute is not defined , it will be equal to the value of the text ( in the exemple below the value of the variable NoneValue that is to say none value), so when none value for attribute value, the value is that of the text. </p> </blockquote> <pre>\n        {{selectpickerOptionWithoutValueHtml}}\n      </pre> </div> <br><br> <h3> Multiple dynamic selectpicker </h3> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"Selectpicker1\">Example dynamic select</label> <selectpicker name=\"Selectpicker1\" [(ngModel)]=\"Selectpicker1\" multiple=\"true\"> <selectpicker-option *ngFor=\"let option of optionsSelect\" [value]=\"option.value\">{{ option.text}}</selectpicker-option> </selectpicker> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\" style=\"height:100px\"> <label for=\"Binding1\">Binding</label> <ul> <li *ngFor=\"let value of Selectpicker1\">{{ value }}</li> </ul> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <label>Code : </label> </div> </div> <pre>\n      {{exempleDynamicSelect}}\n    </pre> <blockquote> <p>Value [\"un\", \"deux\", \"trois\"] will be selected by default.</p> </blockquote> <h5> Select value when clicking on button.</h5> <div class=\"row\"> <div class=\"col-md-4\"> <button style=\"margin:0\" (click)=\"AddRemove1()\">1</button> <button style=\"margin:0\" (click)=\"AddRemoveArray()\">Array</button> <button style=\"margin:0\" (click)=\"AddRemoveObjet()\">Objet</button> </div> </div> <br/> <br><br> <h3> Simple select </h3> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"Selectpicker1\">Example simple selectPicker</label> <selectpicker name=\"Selectpicker2\" [(ngModel)]=\"Selectpicker2\"> <selectpicker-option [value]=\"A\">AAAA</selectpicker-option> <selectpicker-option value=\"B\">BBBB</selectpicker-option> <selectpicker-option value=\"C\">CCCC</selectpicker-option> <selectpicker-option [value]=\"booleanFalse\">boolean test</selectpicker-option> <selectpicker-option [value]=\"one\">11111</selectpicker-option> <selectpicker-option [value]=\"arrayOneTwoThree\">one, two, three</selectpicker-option> <selectpicker-option [value]=\"objetWithArray\">objet javascript</selectpicker-option> <selectpicker-option> {{ NoneValue }} </selectpicker-option> </selectpicker> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"Binding1\">Binding</label> <input name=\"Binding1\" class=\"form-control\" type=\"text\" [(ngModel)]=\"Selectpicker2\"> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <label>Code : </label> </div> </div> <pre>\n      {{selectpickerSimpleHtml}}\n    </pre> <blockquote> <p>For simple selecticker do not use multiple attribute or else multiple=\"false\".</p> </blockquote> <br> <div class=\"row\"> <div class=\"col-md-4\"> <h5> Select value per click button</h5> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <button (click)=\"ValueA()\">A</button> <button (click)=\"Value1()\">1</button> <button (click)=\"ValueArray()\">Array</button> <button (click)=\"ValueObjet()\">Objet</button> <button (click)=\"ValueBoolean()\">Boolean</button> <button (click)=\"ValueNoneValue()\">None Value</button> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <label>Code for array button : </label> </div> </div> <pre>\n        var arrayOneTwoThree = [\"one\", \"two\", \"three\"];\n        Selectpicker2 = this.arrayOneTwoThree;\n    </pre> <br> <div class=\"row\"> <div class=\"col-md-4\"> <h5> Explanation code</h5> </div> </div> <p>Selectpicker2 is the bind value. If not default value Selectpicker2 is not set : </p> <blockquote> <p>otherwise it is assigned the variable used for the value attribute.</p> </blockquote> <pre>\n      var arrayOneTwoThree = [\"one\", \"two\", \"three\"];\n      Selectpicker2 = arrayOneTwoThree;\n    </pre> <blockquote> <p>The value between the selectpicker-option tags is text or a bind value and value attribute is a bind value.</p> </blockquote> <pre>\n      {{selectpickerOptionHtml}}\n    </pre> <blockquote> <p> If value attribute is not defined , it will be equal to the value of the text ( in the exemple below the value of the variable NoneValue that is to say none value), so when none value for attribute value, the value is that of the text. </p> </blockquote> <pre>\n      {{selectpickerOptionWithoutValueHtml}}\n    </pre> <h3> Exemple with ngFor </h3> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"Selectpicker10\">Example</label> <selectpicker name=\"Selectpicker10\" [(ngModel)]=\"Selectpicker10\" multiple=\"true\"> <selectpicker-option *ngFor=\"let option of options\" [value]=\"option.value\">{{option.label}}</selectpicker-option> </selectpicker> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\" style=\"height:140px\"> <label for=\"Binding1\">Binding</label> <ul> <li *ngFor=\"let value of Selectpicker10\">{{ value }}</li> </ul> </div> </div> </div> <div class=\"row\"> <pre>\n        {{selectpickerNgFor}}\n      </pre> <pre>\n        {{selectpickerNgForOptions}}\n      </pre> </div> </div> ";
 
 /***/ }),
-/* 105 */
+/* 102 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\"> <h3> Example : </h3> <div class=\"row\"> <div class=\"col-md-4\"> <label for=\"slidepicker1\">Slidepicker</label> <slidepicker [(ngModel)]=\"slidepicker1\" class=\"slidepicker-vertical\" name=\"slidepicker1\"> <slidepicker-option value=\"test1\">test1</slidepicker-option> <slidepicker-option value=\"test2\">test2</slidepicker-option> <slidepicker-option value=\"test3\">test3</slidepicker-option> <slidepicker-option value=\"test4\">test4</slidepicker-option> </slidepicker> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"Binding1\">Binding</label> <input name=\"Binding1\" class=\"form-control\" type=\"text\" [(ngModel)]=\"slidepicker1\" disabled=\"disabled\"> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <label for=\"slidepicker2\">Slidepicker with default value</label> <slidepicker [(ngModel)]=\"slidepicker2\" class=\"slidepicker-vertical\" name=\"slidepicker2\"> <slidepicker-option value=\"test1\">test1</slidepicker-option> <slidepicker-option value=\"test2\">test2</slidepicker-option> <slidepicker-option value=\"test3\">test3</slidepicker-option> </slidepicker> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"Binding2\">Binding</label> <input name=\"Binding2\" class=\"form-control\" type=\"text\" [(ngModel)]=\"slidepicker2\" disabled=\"disabled\"> </div> </div> </div> <pre>\n    {{slidepickerHtml}}\n  </pre> <h3> Parameters </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Parameter </th> <th> Type </th> <th> Description </th> </tr> </thead> <tbody> <tr> <td> value </td> <td> Anything </td> <td> Value use to bind into ngModel </td> </tr> <tr> <td> ngModel </td> <td> type of parameter value </td> <td> Value send to parent component </td> </tr> </tbody> </table> <h3> Different type of value </h3> <div class=\"row\"> <div class=\"col-md-4\"> <slidepicker class=\"slidepicker-vertical form-group\" name=\"slidepicker1\" [(ngModel)]=\"slidepicker5\"> <slidepicker-option [value]=\"A\">AAAA</slidepicker-option> <slidepicker-option value=\"B\">BBBB</slidepicker-option> <slidepicker-option value=\"C\">CCCC</slidepicker-option> <slidepicker-option [value]=\"booleanFalse\">boolean test</slidepicker-option> <slidepicker-option [value]=\"one\">11111</slidepicker-option> <slidepicker-option [value]=\"arrayOneTwoThree\">one, two, three</slidepicker-option> <slidepicker-option [value]=\"objetWithArray\">objet javascript</slidepicker-option> </slidepicker> </div> <div class=\"col-md-4\"> <div class=\"form-group\" style=\"height:140px\"> <label for=\"Binding1\">Binding</label> <span>{{slidepicker5}}</span> </div> </div> </div> <div class=\"row\"> <blockquote> <p> We can send different type of value to the slidepicker. </p> </blockquote> </div> <pre>\n    {{slidepickerValue}}\n  </pre> <h3> Select Value and add/suppress value with parent component </h3> <div class=\"row\"> <div class=\"col-md-4\"> <label for=\"slidepicker3\">Slidepicker</label> <slidepicker [(ngModel)]=\"slidepicker3\" class=\"slidepicker-vertical\" name=\"slidepicker3\"> <slidepicker-option *ngIf=\"show1\" value=\"test1\">test1</slidepicker-option> <slidepicker-option *ngIf=\"show2\" value=\"test2\">test2</slidepicker-option> <slidepicker-option *ngIf=\"show3\" value=\"test3\">test3</slidepicker-option> </slidepicker> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"Binding2\">Binding</label> <input name=\"Binding2\" class=\"form-control\" type=\"text\" [(ngModel)]=\"slidepicker3\" disabled=\"disabled\"> <label for=\"ButtonA\">Select test1</label> <button class=\"btn btn-block\" (click)=\"changeBinding('slidepicker3', 'test1')\">Select test1</button> <label for=\"ButtonA\">Select test2</label> <button class=\"btn btn-block\" (click)=\"changeBinding('slidepicker3', 'test2')\">Select test2</button> <label for=\"ButtonA\">Select test3</label> <button class=\"btn btn-block\" (click)=\"changeBinding('slidepicker3', 'test3')\">Select test3</button> <label for=\"ButtonA\">Toggle test1</label> <button class=\"btn btn-block\" (click)=\"toggle1()\">toggle test1</button> <label for=\"ButtonA\">Toggle test2</label> <button class=\"btn btn-block\" (click)=\"toggle2()\">toggle test2</button> <label for=\"ButtonA\">Toggle test3</label> <button class=\"btn btn-block\" (click)=\"toggle3()\">toggle test3</button> <label for=\"ButtonA\">Toggle all</label> <button class=\"btn btn-block\" (click)=\"toggleAll()\">toggle all</button> </div> </div> </div> <blockquote> <p> If we add or suppress a value with *ngIf in tag slidepicker-option, the component will change active or replace correctly the handle </p> </blockquote> <pre>\n    {{slidepickerOptionNgIf}}\n  </pre> <h3> Different size : </h3> <div class=\"row\"> <div class=\"col-md-4\"> <label for=\"slidepicker1\">Slidepicker small</label> <slidepicker [(ngModel)]=\"slidepicker1\" class=\"slidepicker-vertical slidepicker-sm\" name=\"slidepicker1\"> <slidepicker-option value=\"test1\">test1</slidepicker-option> <slidepicker-option value=\"test2\">test2</slidepicker-option> <slidepicker-option value=\"test3\">test3</slidepicker-option> <slidepicker-option value=\"test4\">test4</slidepicker-option> </slidepicker> </div> <div class=\"col-md-4\"> <label for=\"slidepicker1\">Slidepicker medium</label> <slidepicker [(ngModel)]=\"slidepicker1\" class=\"slidepicker-vertical\" name=\"slidepicker1\"> <slidepicker-option value=\"test1\">test1</slidepicker-option> <slidepicker-option value=\"test2\">test2</slidepicker-option> <slidepicker-option value=\"test3\">test3</slidepicker-option> <slidepicker-option value=\"test4\">test4</slidepicker-option> </slidepicker> </div> <div class=\"col-md-4\"> <label for=\"slidepicker1\">Slidepicker large</label> <slidepicker [(ngModel)]=\"slidepicker1\" class=\"slidepicker-vertical slidepicker-lg\" name=\"slidepicker1\"> <slidepicker-option value=\"test1\">test1</slidepicker-option> <slidepicker-option value=\"test2\">test2</slidepicker-option> <slidepicker-option value=\"test3\">test3</slidepicker-option> <slidepicker-option value=\"test4\">test4</slidepicker-option> </slidepicker> </div> </div> <blockquote> <p> If we want different size we just need to add class to slidepicker </p> </blockquote> <pre>\n    {{slidepickerSizeHtml}}\n  </pre> <h3> Exemple with ngFor </h3> <div class=\"row\"> <div class=\"col-md-4\"> <label for=\"slidepicker4\">Slidepicker ngFor</label> <slidepicker [(ngModel)]=\"slidepicker4\" class=\"slidepicker-vertical\" name=\"slidepicker4\"> <slidepicker-option *ngFor=\"let option of options\" [value]=\"option.value\">{{option.label}}</slidepicker-option> </slidepicker> </div> <div class=\"col-md-4\"> <div class=\"form-group\" style=\"height:140px\"> <label for=\"Binding1\">Binding</label> <span>{{slidepicker4}}</span> </div> </div> </div> <div class=\"row\"> <pre>\n      {{slidepickerNgFor}}\n    </pre> <pre>\n      {{slidepickerNgForOptions}}\n    </pre> </div> </div> ";
 
 /***/ }),
-/* 106 */
+/* 103 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\"> <h3> Example : </h3> <div class=\"row container-fluid\"> <h3> Basic table : </h3> <table class=\"table\"> <thead> <tr> <th>Number</th> <th>Language</th> <th>Fruit</th> <th>Other</th> </tr> </thead> <tbody> <tr> <td>1</td> <td>Javascript</td> <td>Ananas</td> <td>azert</td> </tr> <tr> <td>2</td> <td>Python</td> <td>Banana</td> <td>qsdfg</td> </tr> <tr> <td>3</td> <td>C++</td> <td>Orange</td> <td>wxcvb</td> </tr> </tbody> </table> </div> <div class=\"row container-fluid\"> <h3> Table with zebra stripping : </h3> <table class=\"table table-striped\"> <thead> <tr> <th>Number</th> <th>Language</th> <th>Fruit</th> <th>Other</th> </tr> </thead> <tbody> <tr> <td>1</td> <td>Javascript</td> <td>Ananas</td> <td>azert</td> </tr> <tr> <td>2</td> <td>Python</td> <td>Banana</td> <td>qsdfg</td> </tr> <tr> <td>3</td> <td>C++</td> <td>Orange</td> <td>wxcvb</td> </tr> </tbody> </table> </div> <div class=\"row container-fluid\"> <h3> Table with borders : </h3> <table class=\"table table-bordered\"> <thead> <tr> <th>Number</th> <th>Language</th> <th>Fruit</th> <th>Other</th> </tr> </thead> <tbody> <tr> <td>1</td> <td>Javascript</td> <td>Ananas</td> <td>azert</td> </tr> <tr> <td>2</td> <td>Python</td> <td>Banana</td> <td>qsdfg</td> </tr> <tr> <td>3</td> <td>C++</td> <td>Orange</td> <td>wxcvb</td> </tr> </tbody> </table> </div> <div class=\"row container-fluid\"> <h3> Table with hover state : </h3> <table class=\"table table-hover\"> <thead> <tr> <th>Number</th> <th>Language</th> <th>Fruit</th> <th>Other</th> </tr> </thead> <tbody> <tr> <td>1</td> <td>Javascript</td> <td>Ananas</td> <td>azert</td> </tr> <tr> <td>2</td> <td>Python</td> <td>Banana</td> <td>qsdfg</td> </tr> <tr> <td>3</td> <td>C++</td> <td>Orange</td> <td>wxcvb</td> </tr> </tbody> </table> </div> <div class=\"row container-fluid\"> <h3> Table compact : </h3> <table class=\"table table-condensed\"> <thead> <tr> <th>Number</th> <th>Language</th> <th>Fruit</th> <th>Other</th> </tr> </thead> <tbody> <tr> <td>1</td> <td>Javascript</td> <td>Ananas</td> <td>azert</td> </tr> <tr> <td>2</td> <td>Python</td> <td>Banana</td> <td>qsdfg</td> </tr> <tr> <td>3</td> <td>C++</td> <td>Orange</td> <td>wxcvb</td> </tr> </tbody> </table> </div> <div class=\"row container-fluid\"> <h3> Table with zebra striping, borders and hover state : </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th>Number</th> <th>Language</th> <th>Fruit</th> <th>Other</th> </tr> </thead> <tbody> <tr> <td>1</td> <td>Javascript</td> <td>Ananas</td> <td>azert</td> </tr> <tr> <td>2</td> <td>Python</td> <td>Banana</td> <td>qsdfg</td> </tr> <tr> <td>3</td> <td>C++</td> <td>Orange</td> <td>wxcvb</td> </tr> </tbody> </table> </div> <h3> For an table use : </h3> <pre>\n    {{tableHtml}}\n  </pre> <h3> Class css : </h3> <div class=\"row container-fluid\"> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Class </th> <th> Tag </th> <th> Description </th> </tr> </thead> <tbody> <tr> <td> .table </td> <td> table </td> <td> Define the classic style </td> </tr> <tr> <td> .table-striped </td> <td> table </td> <td> Add a zebra striping to odd row </td> </tr> <tr> <td> .table-bordered </td> <td> table </td> <td> Add borders to all sides of each cells </td> </tr> <tr> <td> .table-hover </td> <td> table </td> <td> Add a hover state on rows </td> </tr> <tr> <td> .table-condensed </td> <td> table </td> <td> Make tables more compact </td> </tr> </tbody> </table> </div> <ul> <li> .table : define to use 100% width and define the border and all padding </li> <li> .table-stripped : use for zebra-stripping, alternate between gray and transparent background </li> <li> .table-bordered : Add borders between all the columns and around the table </li> <li> .table-hover : Add hover effect when mouse are on line </li> </ul> </div> ";
 
 /***/ }),
-/* 107 */
+/* 104 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\"> <h3> Example </h3> <div class=\"row container-fluid\"> <button class=\"btn btn-default\" tooltip tooltipDirection=\"left\" [tooltipContent]=\"time\"> Tooltip on left </button> <button type=\"button\" class=\"btn btn-default\" tooltip tooltipDirection=\"top\" tooltipContent=\"testetstestsetest\"> Tooltip on top </button> <button type=\"button\" class=\"btn btn-default\" tooltip tooltipDirection=\"bottom\" tooltipContent=\"testetstestsetest\"> Tooltip on bottom </button> <button type=\"button\" class=\"btn btn-default\" tooltip tooltipDirection=\"right\" tooltipContent=\"testetstestsetest\"> Tooltip on right </button> </div> <pre>\n    {{tooltipHtml}}\n  </pre> <blockquote> <p> We can apply tooltip on any type of tag (a, h, div, p, input) </p> </blockquote> </div> ";
 
 /***/ }),
-/* 108 */
+/* 105 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -97872,7 +90781,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 109 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97882,8 +90791,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subject_1 = __webpack_require__(8);
-var ObjectUnsubscribedError_1 = __webpack_require__(57);
+var Subject_1 = __webpack_require__(7);
+var ObjectUnsubscribedError_1 = __webpack_require__(56);
 /**
  * @class BehaviorSubject<T>
  */
@@ -97927,7 +90836,7 @@ exports.BehaviorSubject = BehaviorSubject;
 //# sourceMappingURL=BehaviorSubject.js.map
 
 /***/ }),
-/* 110 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97969,7 +90878,7 @@ exports.InnerSubscriber = InnerSubscriber;
 //# sourceMappingURL=InnerSubscriber.js.map
 
 /***/ }),
-/* 111 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -98102,7 +91011,7 @@ exports.Notification = Notification;
 //# sourceMappingURL=Notification.js.map
 
 /***/ }),
-/* 112 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -98148,7 +91057,7 @@ exports.SubjectSubscription = SubjectSubscription;
 //# sourceMappingURL=SubjectSubscription.js.map
 
 /***/ }),
-/* 113 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -98159,7 +91068,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(1);
-var ScalarObservable_1 = __webpack_require__(53);
+var ScalarObservable_1 = __webpack_require__(52);
 var EmptyObservable_1 = __webpack_require__(16);
 /**
  * We need this JSDoc comment for affecting ESDoc.
@@ -98224,7 +91133,7 @@ exports.ArrayLikeObservable = ArrayLikeObservable;
 //# sourceMappingURL=ArrayLikeObservable.js.map
 
 /***/ }),
-/* 114 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -98234,7 +91143,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subject_1 = __webpack_require__(8);
+var Subject_1 = __webpack_require__(7);
 var Observable_1 = __webpack_require__(1);
 var Subscriber_1 = __webpack_require__(2);
 var Subscription_1 = __webpack_require__(10);
@@ -98399,7 +91308,7 @@ var RefCountSubscriber = (function (_super) {
 //# sourceMappingURL=ConnectableObservable.js.map
 
 /***/ }),
-/* 115 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -98517,7 +91426,7 @@ var ForkJoinSubscriber = (function (_super) {
 //# sourceMappingURL=ForkJoinObservable.js.map
 
 /***/ }),
-/* 116 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -98528,15 +91437,15 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var isArray_1 = __webpack_require__(22);
-var isArrayLike_1 = __webpack_require__(59);
-var isPromise_1 = __webpack_require__(62);
-var PromiseObservable_1 = __webpack_require__(52);
-var IteratorObservable_1 = __webpack_require__(117);
+var isArrayLike_1 = __webpack_require__(58);
+var isPromise_1 = __webpack_require__(61);
+var PromiseObservable_1 = __webpack_require__(51);
+var IteratorObservable_1 = __webpack_require__(114);
 var ArrayObservable_1 = __webpack_require__(15);
-var ArrayLikeObservable_1 = __webpack_require__(113);
+var ArrayLikeObservable_1 = __webpack_require__(110);
 var iterator_1 = __webpack_require__(18);
 var Observable_1 = __webpack_require__(1);
-var observeOn_1 = __webpack_require__(131);
+var observeOn_1 = __webpack_require__(128);
 var observable_1 = __webpack_require__(19);
 /**
  * We need this JSDoc comment for affecting ESDoc.
@@ -98645,7 +91554,7 @@ exports.FromObservable = FromObservable;
 //# sourceMappingURL=FromObservable.js.map
 
 /***/ }),
-/* 117 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -98655,7 +91564,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var root_1 = __webpack_require__(4);
+var root_1 = __webpack_require__(3);
 var Observable_1 = __webpack_require__(1);
 var iterator_1 = __webpack_require__(18);
 /**
@@ -98814,37 +91723,37 @@ function sign(value) {
 //# sourceMappingURL=IteratorObservable.js.map
 
 /***/ }),
-/* 118 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var ForkJoinObservable_1 = __webpack_require__(115);
+var ForkJoinObservable_1 = __webpack_require__(112);
 exports.forkJoin = ForkJoinObservable_1.ForkJoinObservable.create;
 //# sourceMappingURL=forkJoin.js.map
 
 /***/ }),
-/* 119 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var FromObservable_1 = __webpack_require__(116);
+var FromObservable_1 = __webpack_require__(113);
 exports.from = FromObservable_1.FromObservable.create;
 //# sourceMappingURL=from.js.map
 
 /***/ }),
-/* 120 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var merge_1 = __webpack_require__(129);
+var merge_1 = __webpack_require__(126);
 exports.merge = merge_1.mergeStatic;
 //# sourceMappingURL=merge.js.map
 
 /***/ }),
-/* 121 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -98854,7 +91763,7 @@ exports.of = ArrayObservable_1.ArrayObservable.of;
 //# sourceMappingURL=of.js.map
 
 /***/ }),
-/* 122 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -98976,7 +91885,7 @@ var CatchSubscriber = (function (_super) {
 //# sourceMappingURL=catch.js.map
 
 /***/ }),
-/* 123 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -99038,12 +91947,12 @@ exports.concatAll = concatAll;
 //# sourceMappingURL=concatAll.js.map
 
 /***/ }),
-/* 124 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var mergeMap_1 = __webpack_require__(56);
+var mergeMap_1 = __webpack_require__(55);
 /* tslint:enable:max-line-length */
 /**
  * Projects each source value to an Observable which is merged in the output
@@ -99111,7 +92020,7 @@ exports.concatMap = concatMap;
 //# sourceMappingURL=concatMap.js.map
 
 /***/ }),
-/* 125 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -99191,7 +92100,7 @@ var EverySubscriber = (function (_super) {
 //# sourceMappingURL=every.js.map
 
 /***/ }),
-/* 126 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -99290,7 +92199,7 @@ var FilterSubscriber = (function (_super) {
 //# sourceMappingURL=filter.js.map
 
 /***/ }),
-/* 127 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -99448,7 +92357,7 @@ var FirstSubscriber = (function (_super) {
 //# sourceMappingURL=first.js.map
 
 /***/ }),
-/* 128 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -99573,7 +92482,7 @@ var LastSubscriber = (function (_super) {
 //# sourceMappingURL=last.js.map
 
 /***/ }),
-/* 129 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -99581,7 +92490,7 @@ var LastSubscriber = (function (_super) {
 var Observable_1 = __webpack_require__(1);
 var ArrayObservable_1 = __webpack_require__(15);
 var mergeAll_1 = __webpack_require__(17);
-var isScheduler_1 = __webpack_require__(63);
+var isScheduler_1 = __webpack_require__(62);
 /* tslint:enable:max-line-length */
 /**
  * Creates an output Observable which concurrently emits all values from every
@@ -99724,12 +92633,12 @@ exports.mergeStatic = mergeStatic;
 //# sourceMappingURL=merge.js.map
 
 /***/ }),
-/* 130 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var ConnectableObservable_1 = __webpack_require__(114);
+var ConnectableObservable_1 = __webpack_require__(111);
 /* tslint:enable:max-line-length */
 /**
  * Returns an Observable that emits the results of invoking a specified selector on items
@@ -99787,7 +92696,7 @@ exports.MulticastOperator = MulticastOperator;
 //# sourceMappingURL=multicast.js.map
 
 /***/ }),
-/* 131 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -99798,7 +92707,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(2);
-var Notification_1 = __webpack_require__(111);
+var Notification_1 = __webpack_require__(108);
 /**
  *
  * Re-emits all notifications from source Observable with specified scheduler.
@@ -99906,7 +92815,7 @@ exports.ObserveOnMessage = ObserveOnMessage;
 //# sourceMappingURL=observeOn.js.map
 
 /***/ }),
-/* 132 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -100038,13 +92947,13 @@ exports.ReduceSubscriber = ReduceSubscriber;
 //# sourceMappingURL=reduce.js.map
 
 /***/ }),
-/* 133 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var multicast_1 = __webpack_require__(130);
-var Subject_1 = __webpack_require__(8);
+var multicast_1 = __webpack_require__(127);
+var Subject_1 = __webpack_require__(7);
 function shareSubjectFactory() {
     return new Subject_1.Subject();
 }
@@ -100068,7 +92977,7 @@ exports.share = share;
 //# sourceMappingURL=share.js.map
 
 /***/ }),
-/* 134 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -100099,14 +93008,14 @@ exports.UnsubscriptionError = UnsubscriptionError;
 //# sourceMappingURL=UnsubscriptionError.js.map
 
 /***/ }),
-/* 135 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Subscriber_1 = __webpack_require__(2);
 var rxSubscriber_1 = __webpack_require__(20);
-var Observer_1 = __webpack_require__(51);
+var Observer_1 = __webpack_require__(50);
 function toSubscriber(nextOrObserver, error, complete) {
     if (nextOrObserver) {
         if (nextOrObserver instanceof Subscriber_1.Subscriber) {
@@ -100125,12 +93034,12 @@ exports.toSubscriber = toSubscriber;
 //# sourceMappingURL=toSubscriber.js.map
 
 /***/ }),
-/* 136 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var errorObject_1 = __webpack_require__(58);
+var errorObject_1 = __webpack_require__(57);
 var tryCatchTarget;
 function tryCatcher() {
     try {
@@ -100150,13 +93059,13 @@ exports.tryCatch = tryCatch;
 //# sourceMappingURL=tryCatch.js.map
 
 /***/ }),
-/* 137 */
+/* 134 */
 /***/ (function(module, exports) {
 
 module.exports = "compiled/fonts/fontawesome-webfont.woff";
 
 /***/ }),
-/* 138 */
+/* 135 */
 /***/ (function(module, exports) {
 
 module.exports = "compiled/fonts/fontawesome-webfont.woff2";
