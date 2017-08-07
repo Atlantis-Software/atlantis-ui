@@ -41,10 +41,17 @@ class modalTestComponent {
       backdrop: true
     }
 
+    this.modalOptionsLeft = {
+      fade : true,
+      orientation:"left",
+      backdrop: true
+    }
+
     this.showLeft = false;
     this.showRight = false;
     this.showTop = false;
     this.showBottom = false;
+    this.showStandard = false;
 
   }
 	static get annotations() {
@@ -82,6 +89,13 @@ class modalTestComponent {
   closeBottom() {
     this.showBottom = false;
   }
+
+  openStandard() {
+    this.showStandard = true;
+  }
+  closeStandard() {
+    this.showStandard = false;
+  }
 }
 
 describe('modal', function() {
@@ -115,6 +129,8 @@ describe('modal', function() {
     assert.strictEqual(modal[1].classList[1], "modal-right");
     assert.strictEqual(modal[2].classList[1], "modal-top");
     assert.strictEqual(modal[3].classList[2], "modal-bottom");
+    assert.strictEqual(modal[4].classList[2], void 0);
+
 
   }));
 
@@ -231,6 +247,37 @@ describe('modal', function() {
 
   }));
 
+  it('should show on button click then close on close button click, standard modal', fakeAsync(function(){
+
+    var fixture = TestBed.createComponent(modalTestComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+    testComponent = fixture.componentInstance;
+    var button = document.querySelector('#openStandard');
+    button.click();
+    tick();
+    fixture.detectChanges();
+
+    var modal = document.querySelector('#testStandard');
+    modal = modal.querySelector('.modal');
+
+    assert.strictEqual(modal.classList[2], "in");
+    assert.strictEqual(testComponent.showStandard, true);
+
+    var closeButton = document.querySelector("#closeStandard");
+    closeButton.click();
+    tick();
+    fixture.detectChanges();
+
+    var modal = document.querySelector('#testStandard');
+    modal = modal.querySelector('.modal');
+
+    assert.strictEqual(modal.classList[2], void 0);
+    assert.strictEqual(testComponent.showStandard, false);
+
+  }));
+
   it('should close on cross click, left modal', fakeAsync(function(){
     var fixture = TestBed.createComponent(modalTestComponent);
     fixture.detectChanges();
@@ -344,6 +391,39 @@ describe('modal', function() {
 
   }));
 
+  it('should close on cross click, standard modal', fakeAsync(function(){
+
+    var fixture = TestBed.createComponent(modalTestComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+    testComponent = fixture.componentInstance;
+    var button = document.querySelector('#openStandard');
+    button.click();
+    tick();
+    fixture.detectChanges();
+
+    var modal = document.querySelector('#testStandard');
+    modal = modal.querySelector('.modal');
+
+    assert.strictEqual(modal.classList[2], "in");
+    assert.strictEqual(testComponent.showStandard, true);
+
+    var closeButton = document.querySelector(".close");
+    closeButton.click();
+    tick();
+    fixture.detectChanges();
+
+    var modal = document.querySelector('#testStandard');
+    modal = modal.querySelector('.modal');
+
+    assert.strictEqual(modal.classList[2], void 0);
+    assert.strictEqual(testComponent.showStandard, false);
+
+  }));
+
+
+
   it('should close on out modal click, left modal', fakeAsync(function(){
 
     var fixture = TestBed.createComponent(modalTestComponent);
@@ -428,7 +508,7 @@ describe('modal', function() {
 
   }));
 
-  it('should close on out modal click, left modal', fakeAsync(function(){
+  it('should close on out modal click, bottom modal', fakeAsync(function(){
 
     var fixture = TestBed.createComponent(modalTestComponent);
     fixture.detectChanges();
@@ -453,6 +533,36 @@ describe('modal', function() {
 
     assert.strictEqual(modal.classList[3], void 0);
     assert.strictEqual(testComponent.showBottom, false);
+
+  }));
+
+  it('should close on out modal click, standard modal', fakeAsync(function(){
+
+    var fixture = TestBed.createComponent(modalTestComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+    testComponent = fixture.componentInstance;
+    var button = document.querySelector('#openStandard');
+    button.click();
+    tick();
+    fixture.detectChanges();
+
+    var modal = document.querySelector('#testStandard');
+    modal = modal.querySelector('.modal');
+
+    assert.strictEqual(modal.classList[2], "in");
+    assert.strictEqual(testComponent.showStandard, true);
+
+    modal.click();
+    tick();
+    fixture.detectChanges();
+
+    modal = document.querySelector('#testStandard');
+    modal = modal.querySelector('.modal');
+
+    assert.strictEqual(modal.classList[2], void 0);
+    assert.strictEqual(testComponent.showStandard, false);
 
   }));
 
