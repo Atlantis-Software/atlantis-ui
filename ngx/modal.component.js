@@ -67,7 +67,7 @@ export default class modalComponent {
 
   close(event) {
     // if click inside modal
-    if (event && event.target !== this.elementRef.nativeElement.getElementsByClassName("modal")[0]) {
+    if (event && event.target !== this.modal ) {
       return;
     }
     this.model = false;
@@ -84,27 +84,11 @@ export default class modalComponent {
 
   ngOnInit() {;
 
-    if (typeof this.idModal === "undefined" || this.idModal === "" ){
-			this.idModal = "modal" + Math.floor(Math.random() * (10000000000 - 0));
-		}
-
     this.modal = this.elementRef.nativeElement.getElementsByClassName("modal")[0];
 
      // options by default
     if (typeof this.options === "undefined" || this.options === "" ){
       this.options = {};
-    }
-
-    if (typeof this.options.size === "undefined" || this.options.size === "") {
-      this.options.size = "small";
-    }
-
-    if ( typeof this.options.orientation === "undefined" || this.options.orientation === "") {
-      this.options.orientation = "left";
-    }
-
-    if (typeof this.options.orientation === "undefined" || this.options.fade === "")  {
-      this.options.fade = true;
     }
 
     if (typeof this.options.backdrop === "undefined" || this.options.backdrop === "" )  {
@@ -119,20 +103,9 @@ export default class modalComponent {
       this.modal.classList.add("fade");
     }
 
-    switch(this.options.orientation) {
-      case "left" :
-        this.modal.classList.add("modal-left");
-        break;
-      case "right" :
-        this.modal.classList.add("modal-right");
-        break;
-      case "top" :
-        this.modal.classList.add("modal-top");
-        break;
-      case "bottom" :
-        this.modal.classList.add("modal-bottom");
-        break;
-    }
+		if (this.options.orientation) {
+			this.modal.classList.add("modal-"+this.options.orientation);
+		}
   }
 }
 
