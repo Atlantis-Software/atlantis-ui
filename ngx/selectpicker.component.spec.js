@@ -253,7 +253,7 @@ describe('selectpicker', function() {
     assert.strictEqual(text.textContent, 'object javascript');
   }));
 
-  it('should render selected value, multiple selection', fakeAsync(() => {
+  it('should render selected value, multiple selection with ctrl key', fakeAsync(() => {
     var fixture = TestBed.createComponent(selectpickerTestComponent);
 
     fixture.detectChanges();
@@ -264,12 +264,16 @@ describe('selectpicker', function() {
     var select = document.querySelectorAll('selectpicker')
     var options = select[1].querySelectorAll('a');
 
-    options[0].click();
+    var click = new Event("click", {'bubbles': true});
+    click.ctrlKey = true;
+
+    options[0].dispatchEvent(click);
     tick();
     fixture.detectChanges();
 
     var text = document.querySelector('#selected2');
 
+    assert.strictEqual(testComponent.select2.length, 3)
     assert.strictEqual(testComponent.select2[0].value, "B");
     assert.strictEqual(testComponent.select2[0].label, 'BBBB');
     assert.strictEqual(testComponent.select2[1].value, "C");
@@ -278,8 +282,37 @@ describe('selectpicker', function() {
     assert.strictEqual(testComponent.select2[2].label, 'AAAA');
   }));
 
+  it('should render selected value, toggle selection with ctrl key', fakeAsync(() => {
+    var fixture = TestBed.createComponent(selectpickerTestComponent);
 
-  // TODO: Shift key
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var testComponent = fixture.componentInstance;
+    var select = document.querySelectorAll('selectpicker')
+    var options = select[1].querySelectorAll('a');
+
+    var click = new Event("click", {'bubbles': true});
+    click.ctrlKey = true;
+
+    options[0].dispatchEvent(click);
+    tick();
+    fixture.detectChanges();
+
+    options[0].dispatchEvent(click);
+    tick();
+    fixture.detectChanges();
+
+    var text = document.querySelector('#selected2');
+
+    assert.strictEqual(testComponent.select2.length, 2)
+    assert.strictEqual(testComponent.select2[0].value, "B");
+    assert.strictEqual(testComponent.select2[0].label, 'BBBB');
+    assert.strictEqual(testComponent.select2[1].value, "C");
+    assert.strictEqual(testComponent.select2[1].label, 'CCCC');
+
+  }));
 
   it('should render selected value, multiple selection with shift key', fakeAsync(() => {
     var fixture = TestBed.createComponent(selectpickerTestComponent);
@@ -313,10 +346,10 @@ describe('selectpicker', function() {
     tick();
     fixture.detectChanges();
 
-    assert.strictEqual(testComponent.select3[0].value, "A");
-    assert.strictEqual(testComponent.select3[0].label, 'AAAA');
-    assert.strictEqual(testComponent.select3[1].value, "C");
-    assert.strictEqual(testComponent.select3[1].label, 'CCCC');
+    assert.strictEqual(testComponent.select3[0].value, "C");
+    assert.strictEqual(testComponent.select3[0].label, 'CCCC');
+    assert.strictEqual(testComponent.select3[1].value, "A");
+    assert.strictEqual(testComponent.select3[1].label, 'AAAA');
     assert.strictEqual(testComponent.select3[2].value, "B");
     assert.strictEqual(testComponent.select3[2].label, 'BBBB');
   }));
