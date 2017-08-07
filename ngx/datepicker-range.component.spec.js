@@ -560,9 +560,6 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    console.log(datepickerStart.textContent);
-    console.log(datepickerEnd.textContent);
-
     assert.strictEqual(moment(new Date(datepickerStart.textContent)).format('YYYY-MM-DD'), moment("2004-02-03").format('YYYY-MM-DD'));
     assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'), moment("2004-02-07").format('YYYY-MM-DD'));
     assert.strictEqual(modal.classList[3], void 0);
