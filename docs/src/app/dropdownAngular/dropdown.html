@@ -72,13 +72,13 @@
     Dropdown options with ngFor
   </h3>
 
-  <!-- <div class="form-group">
+  <div class="form-group">
     <div class="row container-fluid">
       <dropdown class="form-group" [options]="{alignement:'left'}" title="Menu A">
-        <dropdown-option *ngFor="let dropdownoption of dropdownoptions" [options]="dropdownoption.options">{{dropdownoption.label}}</dropdown-option>
+        <dropdown-option *ngFor="let dropdownoption of dropdownoptions"><a>{{dropdownoption.label}}</a></dropdown-option>
       </dropdown>
     </div>
-  </div> -->
+  </div>
 
   <pre>
     {{dropdownNgFor}}

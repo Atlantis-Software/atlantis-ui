@@ -44,17 +44,7 @@ export default  class DropdownAngularComponent {
       },{
         label: "Sub-menu B"
       },{
-        label: "",
-        options : {
-          type : "divider"
-        }
-      },{
         label: "Sub-menu separated A"
-      },{
-        label: "",
-        options : {
-          type : "header"
-        }
       },{
         label: "Sub-menu separated B"
       }
