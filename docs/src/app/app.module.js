@@ -43,7 +43,6 @@ import GridAngularComponent from './gridAngular/grid.component.js';
 
 import ButtongroupsComponent from './buttongroups/buttongroups.component.js';
 import FormsComponent from './forms/forms.component.js';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ngxAtlUiModule } from 'atlantis-ui-ngx';
 
 
@@ -95,8 +94,7 @@ AppModule.annotations = [
       BrowserModule,
       FormsModule,
       RouterModule.forRoot(route),
-      ngxAtlUiModule.forRoot(types), 
-      BrowserAnimationsModule
+      ngxAtlUiModule.forRoot(types)
     ],
     bootstrap: [ AppComponent ],
     providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, DatePipe, UpperCasePipe]
