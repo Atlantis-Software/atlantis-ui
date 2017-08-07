@@ -56,7 +56,7 @@ export default class dropdownComponent {
     if (this.options && this.options.alignement === "right") {
       dropdownMenu.classList.add("dropdown-menu-right");
     }
-
+    this.cdr.detectChanges();
   }
 
   openDropdown(){
