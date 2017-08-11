@@ -1,54 +1,11 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
 
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a (click)="Display = 'Example'">
-            Example
-          </a>
-        </li>
-        <li>
-          <a (click)="Display = 'Api'">
-            Api
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<div class="container">
 
-<div [ngSwitch]= "Display">
+  <div class="row">
 
-  <div class="container" *ngSwitchCase="'Example'">
+    <grid class="table table-bordered" [columns]= "columns" [rows]= "rows" (select)="selectiontest($event)" [selected]="selection" (sort)="onSort($event)" [sorting]="sorting">
 
-    <div class="row">
-
-      <grid class="table table-bordered" [columns]= "columns" [rows]= "rows">
-
-      </grid>
-
-    </div>
-
-  </div>
-
-  <div class="container" *ngSwitchCase="'Api'">
-    <pre>
-      {{navbarHtml}}
-    </pre>
-    <p>
-      Class css li: </br>
-      -dropdown : Allow to create a dropdown into the navbar for add another link like a menu </br>
-      -disabled : deactivate the li.
-    </p>
+    </grid>
 
   </div>
 

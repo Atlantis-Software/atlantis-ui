@@ -1,4 +1,4 @@
-import { Component, ElementRef, Injector} from '@angular/core';
+import { Component, ElementRef, Injector, EventEmitter} from '@angular/core';
 import { gridConfig } from './grid.config.js';
 
 export default class gridComponent {
@@ -7,14 +7,15 @@ export default class gridComponent {
 			new Component({
         selector: 'grid',
         template: `
-				<grid-header class="gridHeader" [columns]="columns" [pipes]="pipes">
+				<grid-header class="gridHeader" [columns]="columns" [pipes]="pipes" [sorting]="sorting" (sort)="sort.emit($event)">
         </grid-header>
-        <grid-body class="gridBody" [columns]="columns" [rows]="rows" [pipes]="pipes">
+        <grid-body class="gridBody" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected" (select)="select.emit($event)">
         </grid-body>
         <grid-footer class="gridFooter" *ngIf="config.footer !=='none'" [columns]="columns" [rows]="rows">
         </grid-footer>`,
         styles: [':host { display : table;}'],
-        inputs: ['columns', 'rows', 'config']
+        inputs: ['columns', 'rows', 'config', 'selected', 'sorting'],
+				outputs: ['select', 'sort']
 	  	})
 		];
 	}
@@ -24,6 +25,8 @@ export default class gridComponent {
 		this.injector = injector;
 		this.pipes = [];
 		this.types =  gridConfig;
+		this.select = new EventEmitter();
+		this.sort = new EventEmitter();
 		this.types.forEach(function(type, i) {
 			if ( type.pipes) {
 				if (Array.isArray(type.pipes) ) {
@@ -52,33 +55,6 @@ export default class gridComponent {
 
   ngOnInit(){
 		var self = this;
-		// this.rows.forEach(function(row){
-		// 	self.columns.forEach(function(column){
-		// 		var index = -1;
-		// 		self.types.forEach(function(type, i){
-		// 			if (column.type === type.type) {
-		// 				index = i;
-		// 			}
-		// 		})
-		// 		if ( index !== -1) {
-		// 			if( Array.isArray(self.pipes[index])) {
-		// 				self.pipes[index].forEach(function( pipe, i) {
-		// 					if (pipe !== null) {
-		// 						if ( self.types[index].optionsPipe[i] ){
-		// 							row[column.label] = self.pipes[index].transform( row[column.label], self.types[index].optionsPipe[i]);
-		// 						} else {
-		// 							row[column.label] = self.pipes[index].transform( row[column.label]);
-		// 						}
-		// 					}
-		// 				})
-		// 			} else {
-		// 				if (self.pipes[index] !== null) {
-		// 					row[column.label] = self.pipes[index].transform( row[column.label], self.types[index].optionsPipe);
-		// 				}
-		// 			}
-		// 		}
-		// 	})
-		// })
 		this.columns.forEach(function (column) {
 			var indexHeader = -1;
 			var indexType = -1;
@@ -90,27 +66,6 @@ export default class gridComponent {
 					indexType = i;
 				}
 			})
-			// if ( indexHeader !== -1 && self.pipes[indexHeader] !== null) {
-			// 	column.label = self.pipes[indexHeader].transform( column.label, self.types[indexHeader].optionsPipe );
-			// }
-
-			// if ( indexHeader !== -1) {
-			// 	if( Array.isArray(self.pipes[indexHeader])) {
-			// 		self.pipes[indexHeader].forEach(function( pipe, i) {
-			// 			if (pipe !== null) {
-			// 				if ( self.types[indexHeader].optionsPipe[i] ){
-			// 					row[column.label] = self.pipes[indexHeader].transform( row[column.label], self.types[indexHeader].optionsPipe[i]);
-			// 				} else {
-			// 					row[column.label] = self.pipes[indexHeader].transform( row[column.label]);
-			// 				}
-			// 			}
-			// 		})
-			// 	} else {
-			// 		if (self.pipes[indexHeader] !== null) {
-			// 			row[column.label] = self.pipes[indexHeader].transform( row[column.label], self.types[indexHeader].optionsPipe);
-			// 		}
-			// 	}
-			// }
 
 			if ( indexType !== -1 ) {
 				column.class = column.class || self.types[indexType].class;

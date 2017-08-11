@@ -27,7 +27,7 @@ export default class gridCellComponent {
       }
     })
 		if (index !== -1) {
-			if( Array.isArray(this.pipes[index])) {
+			if ( Array.isArray(this.pipes[index])) {
 				this.pipes[index].forEach(function( pipeType) {
 					pipeType.pipeInjected = self.injector.get(pipeType.pipe, null);
 					if (pipeType.pipeInjected !== null) {

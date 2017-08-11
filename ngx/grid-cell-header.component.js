@@ -1,4 +1,4 @@
-import { Component, ElementRef, Injector} from '@angular/core';
+import { Component, ElementRef, Injector, EventEmitter} from '@angular/core';
 
 export default class gridCellHeaderComponent {
 	static get annotations() {
@@ -6,16 +6,44 @@ export default class gridCellHeaderComponent {
 			new Component({
         selector: 'grid-cell-header',
         template: `
-				{{content}}`,
-        inputs: ['content', 'pipes']
+				<span (click)="onSort()">{{content}}</span>
+				<span [class]="sortingClass"></span>`,
+        inputs: ['column','content', 'pipes', 'sorting'],
+				outputs: ['sort']
 	  	})
 		];
 	}
 
+	set sorting(val){
+		this._sorting = val;
+
+		if (val && this.column) {
+			if (val && val.column.label === this.column.label) {
+				this.sortDir = val.sort.dir;
+			}else {
+				this.sortDir = "";
+			}
+		} else {
+			this.sortDir = "";
+		}
+
+		if (this.sortDir === "desc") {
+			this.sortingClass = "icon icon-sort-desc";
+		} else if (this.sortDir === "asc") {
+			this.sortingClass = "icon icon-sort-asc";
+		} else {
+			this.sortingClass = "";
+		}
+	}
+
+	get sorting(){
+		return this._sorting
+	}
+
   constructor(elementRef, injector) {
-
+		this.sort = new EventEmitter();
 		this.injector = injector;
-
+		this.sortType = "none";
   }
 
 	ngOnInit() {
@@ -44,6 +72,19 @@ export default class gridCellHeaderComponent {
 			}
 		}
   }
+
+	onSort() {
+		var sort = {label: this.column.label};
+		if (this.sortDir === 'asc') {
+			sort.dir = 'desc';
+		} else {
+			sort.dir = 'asc';
+		}
+		this.sort.emit({
+			column: this.column,
+			sort
+		});
+	}
 
 }
 
