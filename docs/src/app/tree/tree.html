@@ -1,0 +1,44 @@
+<div class="container">
+  <h3>
+    Example
+  </h3>
+  <div class="row container-fluid">
+    <tree [nodes]="nodes" (select)='onSelect($event)'></tree>
+  </div>
+
+  <div class="row container-fluid">
+    <tree>
+      <tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [selectable]="true">
+        <tree>
+          <tree-node [label]="'Node 1'"></tree-node>
+          <tree-node [label]="'Node 2'"></tree-node>
+          <tree-node [label]="'Node 3'"></tree-node>
+        </tree>
+      </tree-node>
+      <tree-node [label]="'Node 3'" [selectable]="true"></tree-node>
+      <tree-node [label]="'Node 4'" [selectable]="true" [expandable]="true" [expanded]="false">
+        <tree>
+          <tree-node [label]="'Node 1'"></tree-node>
+          <tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [disabled]="true">
+            <tree>
+              <tree-node [label]="'Node 1'"></tree-node>
+              <tree-node [label]="'Node 2'"></tree-node>
+              <tree-node [label]="'Node 3'"></tree-node>
+            </tree>
+          </tree-node>
+          <tree-node [label]="'Node 3'"></tree-node>
+        </tree>
+      </tree-node>
+      <tree-node [label]="'Node 1'" [selectable]="true"></tree-node>
+      <tree-node [label]="'Node 5'" [selectable]="true"></tree-node>
+    </tree>
+  </div>
+
+  <div class="row container-fluid">
+    <tree [nodes]="nodes1">
+      <ng-template let-label="label" let-model="model">
+        <code><strong>{{label}}</strong> | {{model.type}}</code>
+      </ng-template>
+    </tree>
+  </div>
+</div>
