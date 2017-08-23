@@ -1,6 +1,6 @@
 import { Component, EventEmitter, ContentChild, ContentChildren, TemplateRef, forwardRef } from '@angular/core';
 
-import { treeNodeComponent } from './tree-node.component.js';
+import treeNodeComponent from './tree-node.component.js';
 
 export default class treeComponent {
 	static get annotations() {
@@ -16,20 +16,17 @@ export default class treeComponent {
           [children]="node.children"
           [selectable]="node.selectable"
           [template]="template"
+					[depth]="depth"
+					[selected]="selected"
           (expand)="expand.emit($event)"
           (collapse)="collapse.emit($event)"
           (select)="select.emit($event)">
         </tree-node>
-        <ng-content *ngIf="!nodes"></ng-content>
-        <div class="tree-bar" *ngIf="nodes?.length || nodeElements?.length"></div>`,
-        inputs: ['nodes', 'template'],
+        <ng-content *ngIf="!nodes"></ng-content>`,
+        inputs: ['nodes', 'template', 'depth', 'selected'],
         outputs: ['expand', 'collapse', 'select'],
         queries: {
           template: new ContentChild(TemplateRef),
-          nodeElements: new ContentChildren( forwardRef(() => treeNodeComponent))
-        },
-        host: {
-          '[class.one-leaf]':'hasOneLeaf'
         }
 	  	})
 		];
@@ -38,13 +35,9 @@ export default class treeComponent {
     this.expand = new EventEmitter();
     this.collapse = new EventEmitter();
     this.select = new EventEmitter();
+		this.depth = 1;
   }
 
-  get hasOneLeaf(){
-    return (this.nodes && this.nodes.length === 1) || (this.nodeElements.length === 1);
-  }
 
-  ngAfterViewInit(){
-    console.log(this);
-  }
+
 }
