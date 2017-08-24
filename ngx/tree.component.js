@@ -8,7 +8,8 @@ export default class treeComponent {
 			new Component({
         selector: 'tree',
         template: `
-        <tree-node *ngFor="let node of nodes"
+        <tree-node *ngFor="let node of _nodes"
+					[node]="node"
           [expandable]="node.expandable"
           [expanded]="node.expanded"
           [label]="node.label"
@@ -37,7 +38,5 @@ export default class treeComponent {
     this.select = new EventEmitter();
 		this.depth = 1;
   }
-
-
 
 }

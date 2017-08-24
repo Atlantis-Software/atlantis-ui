@@ -12,12 +12,12 @@ export default class treeNodeComponent {
 						'icon-folder': !expanded,
 						'icon-disabled': disabled
 					}" (click)='ExpandClick()'></span>
-	        <span *ngIf="!template" [innerHTML]="label" class="tree-node-label"></span>
+	        <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="tree-node-label"></span>
 	        <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngOutletContext]="data"></ng-template>
 					<input *ngIf="selectable" type="checkbox" [(ngModel)]="_selected" class="tree-node-checkbox" (click)="onClick()">
 				</div>
         <ng-content *ngIf="expanded"></ng-content>
-        <tree *ngIf="children?.length && expandable && expanded"
+        <tree [hidden]="!children?.length || !expandable || !expanded"
           class="sub-tree"
           [nodes]="children"
           [template]="template"
@@ -25,7 +25,7 @@ export default class treeNodeComponent {
 					[selected]="selected"
 					(select)="onSelect($event)">
 				</tree>`,
-        inputs: ['label', 'model', 'children', 'expandable', 'expanded', 'selectable', 'disabled', 'template', 'depth', 'selected'],
+        inputs: ['node', 'label', 'model', 'children', 'expandable', 'expanded', 'selectable', 'disabled', 'template', 'depth', 'selected'],
 				outputs: ['expand', 'collapse', 'select'],
 				host: {
 					'[class.selectable]':'selectable'
@@ -45,7 +45,9 @@ export default class treeNodeComponent {
 	}
 
 	ngOnChanges() {
-		this.selectable = true || this.selectable;
+		if ( this.selectable !== true && this.selectable !== false) {
+			this.selectable = true;
+		}
 		this.data = {
 			label: this.label,
 			children: this.children,
@@ -54,8 +56,14 @@ export default class treeNodeComponent {
 
 		if(this.selected) {
 			this._selected = true;
+			if (this.children) {
+				this._nbData = this.children.length;
+			} else {
+				this._nbData = 0;
+			}
 		} else {
 			this._selected = false;
+			this._nbData = 0;
 		}
 	}
 
@@ -108,17 +116,24 @@ export default class treeNodeComponent {
 			if (this._nbData < 0) {
 				this._nbData = 0;
 			}
-		} else {
+		} else if (data.selected === true) {
 			data.selected = false;
 			this._nbData += 1;
+			this._nbData = Math.trunc(this._nbData)
+		} else if (data.selected === "indeterminate"){
+			this._nbData += 0.5;
 		}
 		var checkbox = this.elementRef.nativeElement.querySelector('.tree-node-checkbox');
 		checkbox.indeterminate = false;
 		if (this._nbData === this.children.length) {
 			this._selected = true;
 			data.selected = true;
+		} else if (this._nbData > 1) {
+			checkbox.indeterminate = true;
+			data.selected = "other";
 		} else if (this._nbData > 0) {
 			checkbox.indeterminate = true;
+			data.selected = "indeterminate"
 		}
 
 		this.select.emit(data);
