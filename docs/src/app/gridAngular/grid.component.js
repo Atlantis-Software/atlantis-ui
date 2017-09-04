@@ -13,97 +13,128 @@ export default  class GridAngularComponent {
     this.columns= [
       {
         label:"test",
-        alignment: "center"
-      }
-      ,{
-        label:"test2",
-        width : "150px"
-      }
-      ,{
-        label:"test3",
-        class: "btn"
-      }
-      ,{
-        label:"test4",
+        alignment: "center",
+        notSortable: true,
+        notEditable: true
+      },
+      {
+        label:"testNumber",
+        width: "150px",
+        type: "number"
+      },
+      {
+        label:"testText"
+      },
+      {
+        label:"testDate",
         type: 'date'
+      },
+      {
+        label:"testBoolean",
+        type: 'boolean'
       }
     ]
 
-    this.rows = [
+    this.originalRows = [
       {
         test: "1",
-        test2 : "2",
-        test3 : "3",
-        test4 : new Date()
+        testNumber : 2,
+        testText : "1",
+        testDate : new Date(),
+        testBoolean: 0
       },
       {
         test: "2",
-        test2 : "6",
-        test3 : "7",
-        test4 : new Date(0)
+        testNumber : 6,
+        testText : "5",
+        testDate : new Date(0),
+        testBoolean: 1
       },
       {
         test : "3",
-        test2 : '2',
-        test3 : '3',
-        test4 : new Date()
+        testNumber : 5,
+        testText : '4',
+        testDate : new Date(),
+        testBoolean: 1
       },
       {
         test : "4",
-        test2 : "2",
-        test3 : "3",
-        test4 : new Date()
+        testNumber : 42,
+        testText : "8",
+        testDate : new Date('05/09/2005'),
+        testBoolean: 1
       },
       {
         test : "5",
-        test2 : "2",
-        test3 : "3",
-        test4 : new Date()
+        testNumber : 27,
+        testText : "4",
+        testDate : new Date(),
+        testBoolean: 0
       },
       {
         test : "6",
-        test2 : "2",
-        test3 : "3",
-        test4 : new Date()
+        testNumber : 3,
+        testText : "7",
+        testDate : new Date('07/03/2015'),
+        testBoolean: 0
       },
       {
         test : "7",
-        test2 : "2",
-        test3 : "3",
-        test4 : new Date()
+        testNumber : 27,
+        testText : "9",
+        testDate : new Date('05/09/2005'),
+        testBoolean: 0
       },
       {
         test : "8",
-        test2 : "2",
-        test3 : '3',
-        test4 : new Date()
+        testNumber : 152,
+        testText : '32',
+        testDate : new Date(),
+        testBoolean: 1
       }
-    ]
+    ];
+
+    this.rows = [...this.originalRows];
 
     this.selection = [];
 
   }
 
-  selectiontest(row) {
+  selectionTest(row) {
     this.selection = row;
     console.log("selection ", row)
   }
 
   onSort(sorting) {
+    if (!sorting.length) {
+      return this.rows = [...this.originalRows];
+    }
     console.log('Sort Event', sorting);
     this.loading = true;
-    setTimeout(() => {
-      const rows = [...this.rows];
-      console.log(rows);
-      const sort = sorting.sort;
-      rows.sort((a, b) => {
-        return a[sort.label].localeCompare(b[sort.label]) * (sort.dir === 'desc' ? -1 : 1);
-      });
-
-      this.rows = rows;
-      this.sorting = sorting
-      this.loading = false;
-    }, 1000);
+    var columnToSort = sorting[sorting.length - 1];
+    var sortingFunc = function(a, b) {};
+    switch (columnToSort.type) {
+      case 'text':
+        sortingFunc = function(a, b) {
+          return a[columnToSort.label].localeCompare(b[columnToSort.label]) * (columnToSort.order === 'desc' ? -1 : 1);
+        }
+        break;
+      case 'boolean':
+      case 'number':
+        sortingFunc = function(a, b) {
+          var comparison = a[columnToSort.label] > b[columnToSort.label];
+          return columnToSort.order === 'desc' ? !comparison : comparison;
+        }
+        break;
+      case 'date':
+        sortingFunc = function(a, b) {
+          var comparison = moment(a[columnToSort.label]).isAfter(moment(b[columnToSort.label]));
+          return columnToSort.order === 'desc' ? !comparison : comparison;
+        }
+        break;
+    }
+    this.rows = this.rows.sort(sortingFunc);
+    this.loading = false;
   }
 }
 

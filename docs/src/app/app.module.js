@@ -55,11 +55,37 @@ var types = [
     type: "date",
     alignment: "right",
     pipes: [DatePipe, UpperCasePipe],
-    optionsPipe : ['shortDate:longDate', ["test", "test2"]]
+    optionsPipe: ['shortDate:longDate', ["test", "test2"]],
+    transformation: function(val) {
+      if (moment(val).isValid()) {
+        return moment(val).toString();
+      } else {
+        return moment().toString();
+      }
+    }
   },
   {
-    type : 'number'
-  }
+    type: 'number',
+    transformation: function(val) {
+      if (!isNaN(val)) {
+        return val;
+      } else {
+        return 0;
+      }
+    }
+  },
+  {
+    type: 'boolean',
+    transformation: function(val) {
+      if (typeof val === void 0 || val === null) {
+        return val;
+      }
+      if (!val || val == '0' || val == 'false') {
+        return 0;
+      }
+      return 1;
+    }
+  },
 ]
 
 

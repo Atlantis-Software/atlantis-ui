@@ -38320,6 +38320,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _core = __webpack_require__(0);
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var GridAngularComponent = function () {
@@ -38336,35 +38338,119 @@ var GridAngularComponent = function () {
     _classCallCheck(this, GridAngularComponent);
 
     this.columns = [{
-      label: "testdsqdsqdsqdsqdqs",
-      alignment: "center"
+      label: "test",
+      alignment: "center",
+      notSortable: true,
+      notEditable: true
     }, {
-      label: "test2",
-      width: "150px"
+      label: "testNumber",
+      width: "150px",
+      type: "number"
     }, {
-      label: "test3",
-      class: "btn"
+      label: "testText"
     }, {
-      label: "test4",
+      label: "testDate",
       type: 'date'
-    }];
-
-    var test = new Date() + " | date: 'shortDate'";
-
-    this.rows = [{
-      testdsqdsqdsqdsqdqs: 1,
-      test2: 2,
-      test3: 3,
-      test4: new Date()
     }, {
-      testdsqdsqdsqdsqdqs: 5,
-      test2: 6,
-      test3: 7,
-      test4: new Date(0)
+      label: "testBoolean",
+      type: 'boolean'
     }];
 
-    this.Display = "Example";
+    this.originalRows = [{
+      test: "1",
+      testNumber: 2,
+      testText: "1",
+      testDate: new Date(),
+      testBoolean: 0
+    }, {
+      test: "2",
+      testNumber: 6,
+      testText: "5",
+      testDate: new Date(0),
+      testBoolean: 1
+    }, {
+      test: "3",
+      testNumber: 5,
+      testText: '4',
+      testDate: new Date(),
+      testBoolean: 1
+    }, {
+      test: "4",
+      testNumber: 42,
+      testText: "8",
+      testDate: new Date('05/09/2005'),
+      testBoolean: 1
+    }, {
+      test: "5",
+      testNumber: 27,
+      testText: "4",
+      testDate: new Date(),
+      testBoolean: 0
+    }, {
+      test: "6",
+      testNumber: 3,
+      testText: "7",
+      testDate: new Date('07/03/2015'),
+      testBoolean: 0
+    }, {
+      test: "7",
+      testNumber: 27,
+      testText: "9",
+      testDate: new Date('05/09/2005'),
+      testBoolean: 0
+    }, {
+      test: "8",
+      testNumber: 152,
+      testText: '32',
+      testDate: new Date(),
+      testBoolean: 1
+    }];
+
+    this.rows = [].concat(_toConsumableArray(this.originalRows));
+
+    this.selection = [];
   }
+
+  _createClass(GridAngularComponent, [{
+    key: 'selectionTest',
+    value: function selectionTest(row) {
+      this.selection = row;
+      console.log("selection ", row);
+    }
+  }, {
+    key: 'onSort',
+    value: function onSort(sorting) {
+      if (!sorting.length) {
+        return this.rows = [].concat(_toConsumableArray(this.originalRows));
+      }
+      console.log('Sort Event', sorting);
+      this.loading = true;
+      var columnToSort = sorting[sorting.length - 1];
+      var sortingFunc = function sortingFunc(a, b) {};
+      switch (columnToSort.type) {
+        case 'text':
+          sortingFunc = function sortingFunc(a, b) {
+            return a[columnToSort.label].localeCompare(b[columnToSort.label]) * (columnToSort.order === 'desc' ? -1 : 1);
+          };
+          break;
+        case 'boolean':
+        case 'number':
+          sortingFunc = function sortingFunc(a, b) {
+            var comparison = a[columnToSort.label] > b[columnToSort.label];
+            return columnToSort.order === 'desc' ? !comparison : comparison;
+          };
+          break;
+        case 'date':
+          sortingFunc = function sortingFunc(a, b) {
+            var comparison = moment(a[columnToSort.label]).isAfter(moment(b[columnToSort.label]));
+            return columnToSort.order === 'desc' ? !comparison : comparison;
+          };
+          break;
+      }
+      this.rows = this.rows.sort(sortingFunc);
+      this.loading = false;
+    }
+  }]);
 
   return GridAngularComponent;
 }();
@@ -88206,25 +88292,102 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           get: function get() {
             return [new _core.Component({
               selector: 'grid-body',
-              template: '\n\t\t\t\t<div *ngFor="let row of rows" class="gridRow">\n          <div *ngFor="let column of columns" class="gridCell" [ngClass]="column.class" [attr.align]="column.alignment">\n\t\t\t\t\t\t<grid-cell [content] = "row[column.label]" [type]="column.type" [pipes]="pipes">\n\t\t\t\t\t\t</grid-cell>\n          </div>\n        </div>',
-              styles: ['\n          :host { display : table-row-group; }\n          .gridRow { display : table-row; }\n          .gridCell { display : table-cell; }\n          '],
-              inputs: ['columns', 'rows', 'pipes']
+              template: '\n\t\t\t\t<div *ngFor="let row of rows; let i = index" (click)="!changingCellContent && selectRow(row, $event, i)" [class.active]=\'!changingCellContent && selected.includes(row)\' class="gridRow">\n          <div *ngFor="let column of columns; let y = index" class="gridCell" [ngClass]="column.class" [attr.align]="column.alignment" (dblclick)="!changingCellContent && modifyContent($event, i, y)">\n          <input class="form-control" [ngModel]="row[column.label]" *ngIf="changingCellContent === i + \'\' + y" (blur)="modifyContent($event, i, y, true)" (keyup.enter)="modifyContent($event, i, y, true)" focus/>\n\t\t\t\t\t\t<grid-cell [content]="row[column.label]" [type]="column.type" [pipes]="pipes" *ngIf="changingCellContent !== i + \'\' + y">\n\t\t\t\t\t\t</grid-cell>\n          </div>\n        </div>',
+              styles: ['\n          :host { display : table-row-group; }\n          .gridRow { display : table-row; }\n          .gridCell { display : table-cell; }\n\t\t\t\t\t.active { background-color: lightblue; }\n          '],
+              inputs: ['columns', 'rows', 'pipes', 'selected', 'types'],
+              outputs: ['selectedRows']
             })];
           }
         }]);
 
-        function gridBodyComponent(elementRef) {
+        function gridBodyComponent() {
           _classCallCheck(this, gridBodyComponent);
+
+          this.selectedRows = new _core.EventEmitter();
+          this.previousSelectedIndex;
         }
+
+        _createClass(gridBodyComponent, [{
+          key: 'selectRow',
+          value: function selectRow(row, e) {
+            if (this.changingCellContent) {
+              return;
+            }
+            var selected = Array.from(this.selected);
+            console.log("this.selected ", this.selected);
+            console.log("selected ", selected);
+            if (e.ctrlKey) {
+              var index = selected.indexOf(row);
+              if (index > -1) {
+                selected.splice(index, 1);
+              } else {
+                selected.push(row);
+                console.log("test");
+                this.previousSelectedIndex = this.rows.indexOf(row);
+              }
+            } else if (e.shiftKey) {
+              if (typeof this.previousSelectedIndex !== "undefined" && this.previousSelectedIndex !== null) {
+                selected = [];
+                var indexRow = this.rows.indexOf(row);
+                var prev = this.previousSelectedIndex < indexRow ? true : false;
+                var i = this.previousSelectedIndex;
+                if (prev) {
+                  for (i; i <= indexRow; i++) {
+                    selected.push(this.rows[i]);
+                  }
+                } else {
+                  for (i; i >= indexRow; i--) {
+                    selected.push(this.rows[i]);
+                  }
+                }
+              }
+            } else {
+              if (this.rows.indexOf(row) === this.previousSelectedIndex) {
+                selected = [];
+              } else {
+                selected = row ? new Array(row) : [];
+                this.previousSelectedIndex = this.rows.indexOf(row);
+              }
+            }
+            if (selected.length === 0) {
+              this.previousSelectedIndex = null;
+            }
+            console.log('PUTAIN DE TABLEAU : ', selected);
+            this.selectedRows.emit(selected);
+          }
+        }, {
+          key: 'modifyContent',
+          value: function modifyContent(e, i, y, validateChange) {
+            var _this = this;
+
+            if (this.columns[y].notEditable || !validateChange && this.changingCellContent) {
+              return;
+            }
+            console.log("Modify Content");
+            var coordinate = i + '' + y;
+            if (validateChange) {
+              var value = e.target.value;
+              if (this.columns[y].type) {
+                this.types.forEach(function (type) {
+                  if (type.type === _this.columns[y].type && type.transformation) {
+                    value = type.transformation(value);
+                  }
+                });
+              }
+              this.rows[i][this.columns[y].label] = value;
+              this.changingCellContent = false;
+            } else {
+              this.changingCellContent = coordinate;
+            }
+          }
+        }]);
 
         return gridBodyComponent;
       }();
 
       exports.default = gridBodyComponent;
 
-      gridBodyComponent.parameters = [_core.ElementRef];
-
-      // {{row[column.label] | dynamic:'date'}}
+      gridBodyComponent.parameters = [];
 
       /***/
     },
@@ -88261,8 +88424,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           get: function get() {
             return [new _core.Component({
               selector: 'grid-cell-header',
-              template: '\n\t\t\t\t{{content}}',
-              inputs: ['content', 'pipes']
+              template: '\n\t\t\t\t<span>{{content}}</span>\n\t\t\t\t<span [class]="sortingClass"></span>',
+              inputs: ['content', 'pipes', 'sortingClass']
             })];
           }
         }]);
@@ -88295,8 +88458,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               } else {
                 self.pipes[index].pipeInjected = self.injector.get(self.pipe[index], null);
                 if (self.pipes[index].pipeInjected !== null) {
-                  var args = [self.content].concat(pipeType.option);
-                  self.content = pipeType.pipeInjected.transform.apply(self, args);
+                  var args = [self.content].concat(self.pipes[index].option);
+                  self.content = self.pipes[index].pipeInjected.transform.apply(self, args);
                 }
               }
             }
@@ -88345,7 +88508,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           get: function get() {
             return [new _core.Component({
               selector: 'grid-cell',
-              template: '\n\t\t\t\t{{content}}',
+              template: '{{content}}',
               inputs: ['content', 'type', 'pipes']
             })];
           }
@@ -88379,8 +88542,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               } else {
                 self.pipes[index].pipeInjected = self.injector.get(self.pipe[index], null);
                 if (self.pipes[index].pipeInjected !== null) {
-                  var args = [self.content].concat(pipeType.option);
-                  self.content = pipeType.pipeInjected.transform.apply(self, args);
+                  var args = [self.content].concat(self.pipes[index].option);
+                  self.content = self.pipes[index].pipeInjected.transform.apply(self, args);
                 }
               }
             }
@@ -88436,7 +88599,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           }
         }]);
 
-        function gridFooterComponent(elementRef) {
+        function gridFooterComponent() {
           _classCallCheck(this, gridFooterComponent);
         }
 
@@ -88444,8 +88607,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       }();
 
       exports.default = gridFooterComponent;
-
-      gridFooterComponent.parameters = [_core.ElementRef];
 
       /***/
     },
@@ -88482,26 +88643,60 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           get: function get() {
             return [new _core.Component({
               selector: 'grid-header',
-              template: '\n\t\t\t\t<div class="gridRow">\n\t\t\t\t\t<div *ngFor= "let column of columns" class="gridHead" [ngClass]="column.class" [style.width]="column.width">\n\t\t\t\t\t\t<grid-cell-header [content]="column.label" [pipes]= pipes>\n\t\t\t\t\t\t</grid-cell-header>\n\t        </div>\n\t\t\t\t</div>',
+              template: '\n\t\t\t\t<div class="gridRow">\n\t\t\t\t\t<div *ngFor= "let column of columns; let i = index;" class="gridHead" [ngClass]="column.class" [style.width]="column.width" (click)="onSort(column, i)">\n\t\t\t\t\t\t<grid-cell-header [content]="column.label" [pipes]="pipes" [sortingClass]="column.sortingClass">\n\t\t\t\t\t\t</grid-cell-header>\n\t        </div>\n\t\t\t\t</div>',
               styles: ['\n          :host { display : table-header-group; }\n          .gridHead { display : table-cell; }\n\t\t\t\t\t.gridRow { display : table-row; }\n          '],
               inputs: ['columns', 'pipes'],
-              outputs: ['tableChanged']
+              outputs: ['sort']
             })];
           }
         }]);
 
-        function gridHeaderComponent(elementRef) {
+        function gridHeaderComponent() {
           _classCallCheck(this, gridHeaderComponent);
 
-          this.tableChanged = new _core.EventEmitter();
+          this.sort = new _core.EventEmitter();
+          this.sortColumns = [];
         }
+
+        _createClass(gridHeaderComponent, [{
+          key: 'onSort',
+          value: function onSort(column, id) {
+            var _this = this;
+
+            if (column.notSortable) {
+              return;
+            }
+            // var sort = {label: column.label};
+            var alreadyOrdered = false;
+            this.sortColumns.forEach(function (sortColumn, index) {
+              if (sortColumn.label === column.label) {
+                if (sortColumn.order === 'asc') {
+                  _this.columns[id].sortingClass = 'icon icon-sort-desc';
+                  sortColumn.order = 'desc';
+                } else {
+                  _this.columns[id].sortingClass = '';
+                  _this.sortColumns.splice(index, 1);
+                }
+                alreadyOrdered = true;
+              }
+            });
+            if (!alreadyOrdered) {
+              this.columns[id].sortingClass = 'icon icon-sort-asc';
+              this.sortColumns.push({
+                label: column.label,
+                order: 'asc',
+                type: column.type || 'text'
+              });
+            }
+
+            this.sort.emit(this.sortColumns);
+          }
+        }]);
 
         return gridHeaderComponent;
       }();
 
       exports.default = gridHeaderComponent;
-
-      gridHeaderComponent.parameters = [_core.ElementRef];
 
       /***/
     },
@@ -88540,9 +88735,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           get: function get() {
             return [new _core.Component({
               selector: 'grid',
-              template: '\n\t\t\t\t<grid-header class="gridHeader" [columns]="columns" [pipes]="pipes">\n        </grid-header>\n        <grid-body class="gridBody" [columns]="columns" [rows]="rows" [pipes]="pipes">\n        </grid-body>\n        <grid-footer class="gridFooter" *ngIf="config.footer !==\'none\'" [columns]="columns" [rows]="rows">\n        </grid-footer>',
+              template: '\n\t\t\t\t<grid-header class="gridHeader" [columns]="columns" [pipes]="pipes" (sort)="sort.emit($event)">\n        </grid-header>\n        <grid-body class="gridBody" [types]="types" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected" (selectedRows)="onSelect($event)">\n        </grid-body>\n        <grid-footer class="gridFooter" *ngIf="config.footer !==\'none\'" [columns]="columns" [rows]="rows">\n        </grid-footer>',
               styles: [':host { display : table;}'],
-              inputs: ['columns', 'rows', 'config']
+              inputs: ['columns', 'rows', 'config', 'selected'],
+              outputs: ['selectedRows', 'sort']
             })];
           }
         }]);
@@ -88554,6 +88750,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           this.injector = injector;
           this.pipes = [];
           this.types = gridConfig;
+          this.selectedRows = new _core.EventEmitter();
+          this.sort = new _core.EventEmitter();
           this.types.forEach(function (type, i) {
             if (type.pipes) {
               if (Array.isArray(type.pipes)) {
@@ -88584,65 +88782,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           key: 'ngOnInit',
           value: function ngOnInit() {
             var self = this;
-            // this.rows.forEach(function(row){
-            // 	self.columns.forEach(function(column){
-            // 		var index = -1;
-            // 		self.types.forEach(function(type, i){
-            // 			if (column.type === type.type) {
-            // 				index = i;
-            // 			}
-            // 		})
-            // 		if ( index !== -1) {
-            // 			if( Array.isArray(self.pipes[index])) {
-            // 				self.pipes[index].forEach(function( pipe, i) {
-            // 					if (pipe !== null) {
-            // 						if ( self.types[index].optionsPipe[i] ){
-            // 							row[column.label] = self.pipes[index].transform( row[column.label], self.types[index].optionsPipe[i]);
-            // 						} else {
-            // 							row[column.label] = self.pipes[index].transform( row[column.label]);
-            // 						}
-            // 					}
-            // 				})
-            // 			} else {
-            // 				if (self.pipes[index] !== null) {
-            // 					row[column.label] = self.pipes[index].transform( row[column.label], self.types[index].optionsPipe);
-            // 				}
-            // 			}
-            // 		}
-            // 	})
-            // })
             this.columns.forEach(function (column) {
-              var indexHeader = -1;
               var indexType = -1;
               self.types.forEach(function (type, i) {
-                // if (column.type === "header") {
-                // 	indexHeader = i;
-                // }
                 if (column.type === type.type) {
                   indexType = i;
                 }
               });
-              // if ( indexHeader !== -1 && self.pipes[indexHeader] !== null) {
-              // 	column.label = self.pipes[indexHeader].transform( column.label, self.types[indexHeader].optionsPipe );
-              // }
-
-              // if ( indexHeader !== -1) {
-              // 	if( Array.isArray(self.pipes[indexHeader])) {
-              // 		self.pipes[indexHeader].forEach(function( pipe, i) {
-              // 			if (pipe !== null) {
-              // 				if ( self.types[indexHeader].optionsPipe[i] ){
-              // 					row[column.label] = self.pipes[indexHeader].transform( row[column.label], self.types[indexHeader].optionsPipe[i]);
-              // 				} else {
-              // 					row[column.label] = self.pipes[indexHeader].transform( row[column.label]);
-              // 				}
-              // 			}
-              // 		})
-              // 	} else {
-              // 		if (self.pipes[indexHeader] !== null) {
-              // 			row[column.label] = self.pipes[indexHeader].transform( row[column.label], self.types[indexHeader].optionsPipe);
-              // 		}
-              // 	}
-              // }
 
               if (indexType !== -1) {
                 column.class = column.class || self.types[indexType].class;
@@ -88653,6 +88799,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             this.config = {};
             this.config.footer = "none" || this.config.footer;
+          }
+        }, {
+          key: 'onSelect',
+          value: function onSelect(row) {
+            console.log('tèfctufctfèv : ', row);
+            this.selectedRows.emit(row);
           }
         }]);
 
@@ -90164,6 +90316,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.AppModule = undefined;
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+// import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+
 var _core = __webpack_require__(0);
 
 var _router = __webpack_require__(13);
@@ -90274,16 +90430,40 @@ var _app4 = _interopRequireDefault(_app3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 var AppModule = exports.AppModule = function AppModule() {};
 
 var types = [{
   type: "date",
   alignment: "right",
   pipes: [_common.DatePipe, _common.UpperCasePipe],
-  optionsPipe: ['shortDate:longDate', ["test", "test2"]]
+  optionsPipe: ['shortDate:longDate', ["test", "test2"]],
+  transformation: function transformation(val) {
+    if (moment(val).isValid()) {
+      return moment(val).toString();
+    } else {
+      return moment().toString();
+    }
+  }
 }, {
-  type: 'number'
+  type: 'number',
+  transformation: function transformation(val) {
+    if (!isNaN(val)) {
+      return val;
+    } else {
+      return 0;
+    }
+  }
+}, {
+  type: 'boolean',
+  transformation: function transformation(val) {
+    if ((typeof val === 'undefined' ? 'undefined' : _typeof(val)) === void 0 || val === null) {
+      return val;
+    }
+    if (!val || val == '0' || val == 'false') {
+      return 0;
+    }
+    return 1;
+  }
 }];
 
 AppModule.annotations = [new _core.NgModule({
@@ -90462,7 +90642,7 @@ module.exports = "<div class=\"container\"> <h3> Example : </h3> <div class=\"ro
 /* 83 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"sidebar-wrapper\"> <ul class=\"sidebar-nav\"> <li> <a [routerLink]=\"['/home']\">Home</a> </li> <li> <a [routerLink]=\"['/accordion']\">Accordion</a> </li> <li> <a [routerLink]=\"['/button']\">Button</a> </li> <li> <a [routerLink]=\"['/buttongroups']\">Button groups</a> </li> <li> <a [routerLink]=\"['/carouselAngular']\">Carousel</a> </li> <li> <a [routerLink]=\"['/datepickerAngular']\">Datepicker</a> </li> <li> <a [routerLink]=\"['/dropdownAngular']\">Dropdown</a> </li> <li> <a [routerLink]=\"['/forms']\">Forms</a> </li> <li> <a [routerLink]=\"['/grid']\">Grid</a> </li> <li> <a [routerLink]=\"['/icon']\">Icon</a> </li> <li> <a [routerLink]=\"['/input']\">Input</a> </li> <li> <a [routerLink]=\"['/inputgroup']\">Inputgroup</a> </li> <li> <a [routerLink]=\"['/modalAngular']\">Modal</a> </li> <li> <a [routerLink]=\"['/navbar']\">Navbar</a> </li> <li> <a [routerLink]=\"['/paginationAngular']\">Pagination</a> </li> <li> <a [routerLink]=\"['/popover']\">Popover</a> </li> <li> <a [routerLink]=\"['/progressBar']\">Progress bar</a> </li> <li> <a [routerLink]=\"['/selectpickerAngular']\">Selectpicker</a> </li> <li> <a [routerLink]=\"['/slidepickerAngular']\">Slidepicker</a> </li> <li> <a [routerLink]=\"['/table']\">Table</a> </li> <li> <a [routerLink]=\"['/tooltip']\">Tooltip</a> </li> </ul> </div> <div> <main> <router-outlet></router-outlet> </main> </div> <footer> </footer> ";
+module.exports = "<div id=\"sidebar-wrapper\"> <ul class=\"sidebar-nav\"> <li> <a [routerLink]=\"['/home']\">Home</a> </li> <li> <a [routerLink]=\"['/accordion']\">Accordion</a> </li> <li> <a [routerLink]=\"['/button']\">Button</a> </li> <li> <a [routerLink]=\"['/buttongroups']\">Button groups</a> </li> <li> <a [routerLink]=\"['/carouselAngular']\">Carousel</a> </li> <li> <a [routerLink]=\"['/datepickerAngular']\">Datepicker</a> </li> <li> <a [routerLink]=\"['/dropdownAngular']\">Dropdown</a> </li> <li> <a [routerLink]=\"['/forms']\">Forms</a> </li> <li> <a [routerLink]=\"['/grid']\">Grid</a> </li> <li> <a [routerLink]=\"['/gridAngular']\">Grid angular</a> </li> <li> <a [routerLink]=\"['/icon']\">Icon</a> </li> <li> <a [routerLink]=\"['/input']\">Input</a> </li> <li> <a [routerLink]=\"['/inputgroup']\">Inputgroup</a> </li> <li> <a [routerLink]=\"['/modalAngular']\">Modal</a> </li> <li> <a [routerLink]=\"['/navbar']\">Navbar</a> </li> <li> <a [routerLink]=\"['/paginationAngular']\">Pagination</a> </li> <li> <a [routerLink]=\"['/popover']\">Popover</a> </li> <li> <a [routerLink]=\"['/progressBar']\">Progress bar</a> </li> <li> <a [routerLink]=\"['/selectpickerAngular']\">Selectpicker</a> </li> <li> <a [routerLink]=\"['/slidepickerAngular']\">Slidepicker</a> </li> <li> <a [routerLink]=\"['/table']\">Table</a> </li> <li> <a [routerLink]=\"['/tooltip']\">Tooltip</a> </li> </ul> </div> <div> <main> <router-outlet></router-outlet> </main> </div> <footer> </footer> ";
 
 /***/ }),
 /* 84 */
@@ -90510,7 +90690,7 @@ module.exports = "<div class=\"container\"> <h3> Classic grid </h3> <div class=\
 /* 91 */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\"> <div class=\"container-fluid\"> <div class=\"navbar-header\"> <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\"> <span class=\"sr-only\">Toggle navigation</span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span> </button> </div> <div class=\"collapse navbar-collapse\"> <ul class=\"nav navbar-nav\"> <li> <a (click)=\"Display = 'Example'\"> Example </a> </li> <li> <a (click)=\"Display = 'Api'\"> Api </a> </li> </ul> </div> </div> </nav> <div [ngSwitch]=\"Display\"> <div class=\"container\" *ngSwitchCase=\"'Example'\"> <div class=\"row\"> <grid class=\"table table-bordered\" [columns]=\"columns\" [rows]=\"rows\"> </grid> </div> </div> <div class=\"container\" *ngSwitchCase=\"'Api'\"> <pre>\n      {{navbarHtml}}\n    </pre> <p> Class css li: <br> -dropdown : Allow to create a dropdown into the navbar for add another link like a menu <br> -disabled : deactivate the li. </p> </div> </div> ";
+module.exports = " <div class=\"container\"> <div class=\"row\"> <grid class=\"table table-bordered\" [columns]=\"columns\" [rows]=\"rows\" (selectedRows)=\"selectionTest($event)\" [selected]=\"selection\" (sort)=\"onSort($event)\"> </grid> </div> </div> ";
 
 /***/ }),
 /* 92 */
