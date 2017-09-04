@@ -1,14 +1,17 @@
-import { Component, ElementRef, EventEmitter} from '@angular/core';
+import {
+  Component,
+  EventEmitter
+} from '@angular/core';
 
 export default class gridHeaderComponent {
-	static get annotations() {
-		return [
-			new Component({
+  static get annotations() {
+    return [
+      new Component({
         selector: 'grid-header',
         template: `
 				<div class="gridRow">
-					<div *ngFor= "let column of columns" class="gridHead" [ngClass]="column.class" [style.width]="column.width">
-						<grid-cell-header [content]="column.label" [pipes]="pipes" [sorting]="sorting" [column]="column" (sort)="sort.emit($event)">
+					<div *ngFor= "let column of columns; let i = index;" class="gridHead" [ngClass]="column.class" [style.width]="column.width" (click)="onSort(column, i)">
+						<grid-cell-header [content]="column.label" [pipes]="pipes" [sortingClass]="column.sortingClass">
 						</grid-cell-header>
 	        </div>
 				</div>`,
@@ -17,18 +20,45 @@ export default class gridHeaderComponent {
           .gridHead { display : table-cell; }
 					.gridRow { display : table-row; }
           `],
-        inputs: ['columns', 'pipes', 'sorting'],
-				outputs: ['sort']
-	  	})
-		];
-	}
-
-  constructor(elementRef) {
-		this.sort = new EventEmitter();
+        inputs: ['columns', 'pipes'],
+        outputs: ['sort']
+      })
+    ];
   }
 
+  constructor() {
+    this.sort = new EventEmitter();
+    this.sortColumns = [];
+  }
 
+  onSort(column, id) {
+    if (column.notSortable) {
+      return;
+    }
+    // var sort = {label: column.label};
+    var alreadyOrdered = false;
+    this.sortColumns.forEach((sortColumn, index) => {
+      if (sortColumn.label === column.label) {
+        if (sortColumn.order === 'asc') {
+          this.columns[id].sortingClass = 'icon icon-sort-desc';
+          sortColumn.order = 'desc';
+        } else {
+          this.columns[id].sortingClass = '';
+          this.sortColumns.splice(index, 1);
+        }
+        alreadyOrdered = true;
+      }
+    });
+    if (!alreadyOrdered) {
+      this.columns[id].sortingClass = 'icon icon-sort-asc';
+      this.sortColumns.push({
+        label: column.label,
+        order: 'asc',
+        type: column.type || 'text'
+      });
+    }
+
+    this.sort.emit(this.sortColumns);
+  }
 
 }
-
-gridHeaderComponent.parameters = [ElementRef];

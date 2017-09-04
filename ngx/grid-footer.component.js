@@ -1,9 +1,11 @@
-import { Component, ElementRef} from '@angular/core';
+import {
+  Component
+} from '@angular/core';
 
 export default class gridFooterComponent {
-	static get annotations() {
-		return [
-			new Component({
+  static get annotations() {
+    return [
+      new Component({
         selector: 'grid-footer',
         template: `
 				<div *ngFor= "let column of columns" class="gridHead" [ngClass]="column.class">
@@ -14,13 +16,10 @@ export default class gridFooterComponent {
           .gridHead { display : table-cell}
           `],
         inputs: ['columns', 'rows']
-	  	})
-		];
-	}
-
-  constructor(elementRef) {
+      })
+    ];
   }
 
-}
+  constructor() {}
 
-gridFooterComponent.parameters = [ElementRef];
+}
