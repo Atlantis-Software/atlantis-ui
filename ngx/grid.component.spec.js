@@ -22,7 +22,7 @@ var types = [
       if (moment(val).isValid()) {
         return moment(val).toString();
       } else {
-        return moment().toString();
+        return "invalid value";
       }
     }
   },
@@ -32,7 +32,7 @@ var types = [
       if (!isNaN(val)) {
         return val;
       } else {
-        return 0;
+        return "invalid value";
       }
     }
   },
@@ -228,10 +228,10 @@ describe('grid', function() {
           var correctDate = cell.querySelector('grid-cell').innerText;
           correctDate = correctDate.split("/");
           correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString())
+          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString());
           return;
         }
-        assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label])
+        assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       })
     })
 
@@ -327,7 +327,7 @@ describe('grid', function() {
     var testComponent = fixture.componentInstance;
     var rows = document.querySelector('grid-body').querySelectorAll('.gridRow');
 
-    rows[0].click()
+    rows[0].click();
     tick();
     fixture.detectChanges();
 
@@ -381,10 +381,10 @@ describe('grid', function() {
           var correctDate = cell.querySelector('grid-cell').innerText;
           correctDate = correctDate.split("/");
           correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString())
+          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString());
           return;
         }
-        assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label])
+        assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       })
     })
 
@@ -401,10 +401,10 @@ describe('grid', function() {
           var correctDate = cell.querySelector('grid-cell').innerText;
           correctDate = correctDate.split("/");
           correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString())
+          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString());
           return;
         }
-        assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label])
+        assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       })
     })
   }));
@@ -439,10 +439,10 @@ describe('grid', function() {
           var correctDate = cell.querySelector('grid-cell').innerText;
           correctDate = correctDate.split("/");
           correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString())
+          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString());
           return;
         }
-        assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label])
+        assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       })
     })
 
@@ -459,10 +459,10 @@ describe('grid', function() {
           var correctDate = cell.querySelector('grid-cell').innerText;
           correctDate = correctDate.split("/");
           correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString())
+          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString());
           return;
         }
-        assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label])
+        assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       })
     })
   }));
@@ -497,10 +497,10 @@ describe('grid', function() {
           var correctDate = cell.querySelector('grid-cell').innerText;
           correctDate = correctDate.split("/");
           correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString())
+          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString());
           return;
         }
-        assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label])
+        assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       })
     })
 
@@ -517,10 +517,10 @@ describe('grid', function() {
           var correctDate = cell.querySelector('grid-cell').innerText;
           correctDate = correctDate.split("/");
           correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString())
+          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString());
           return;
         }
-        assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label])
+        assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       })
     })
   }));
@@ -555,10 +555,10 @@ describe('grid', function() {
           var correctDate = cell.querySelector('grid-cell').innerText;
           correctDate = correctDate.split("/");
           correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString())
+          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString());
           return;
         }
-        assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label])
+        assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       })
     })
 
@@ -575,10 +575,10 @@ describe('grid', function() {
           var correctDate = cell.querySelector('grid-cell').innerText;
           correctDate = correctDate.split("/");
           correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString())
+          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString());
           return;
         }
-        assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label])
+        assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       })
     })
   }));
@@ -591,7 +591,6 @@ describe('grid', function() {
     fixture.detectChanges();
 
     gridComponent = fixture.componentInstance;
-    var columns = document.querySelectorAll('.gridHead');
     var rows = document.querySelector('grid-body').querySelectorAll('.gridRow');
     var cells = rows[0].querySelectorAll('.gridCell');
 
@@ -603,23 +602,24 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     var input = document.querySelector('input');
-    input.value = "test"
+    var oldValue = input.value;
+    input.value = "test";
     input.dispatchEvent(new Event('blur'));
-    fixture.detectChanges()
+    fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    assert.equal(cells[1].querySelector('grid-cell').innerText, 0)
+    assert.equal(cells[1].querySelector('grid-cell').innerText, oldValue);
 
     cells[1].dispatchEvent(doubleClick);
     tick();
     fixture.detectChanges();
     input = document.querySelector('input');
-    input.value = 123
+    input.value = 123;
     input.dispatchEvent(new Event('blur'));
-    fixture.detectChanges()
+    fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    assert.equal(cells[1].querySelector('grid-cell').innerText, 123)
+    assert.equal(cells[1].querySelector('grid-cell').innerText, 123);
 
   }));
 
@@ -631,7 +631,6 @@ describe('grid', function() {
     fixture.detectChanges();
 
     gridComponent = fixture.componentInstance;
-    var columns = document.querySelectorAll('.gridHead');
     var rows = document.querySelector('grid-body').querySelectorAll('.gridRow');
     var cells = rows[0].querySelectorAll('.gridCell');
 
@@ -648,7 +647,7 @@ describe('grid', function() {
     fixture.detectChanges()
     tick();
     fixture.detectChanges();
-    assert.equal(cells[2].querySelector('grid-cell').innerText, "test")
+    assert.equal(cells[2].querySelector('grid-cell').innerText, "test");
 
     cells[2].dispatchEvent(doubleClick);
     tick();
@@ -659,7 +658,7 @@ describe('grid', function() {
     fixture.detectChanges()
     tick();
     fixture.detectChanges();
-    assert.equal(cells[2].querySelector('grid-cell').innerText, "123")
+    assert.equal(cells[2].querySelector('grid-cell').innerText, "123");
 
   }));
 
@@ -671,7 +670,6 @@ describe('grid', function() {
     fixture.detectChanges();
 
     gridComponent = fixture.componentInstance;
-    var columns = document.querySelectorAll('.gridHead');
     var rows = document.querySelector('grid-body').querySelectorAll('.gridRow');
     var cells = rows[0].querySelectorAll('.gridCell');
 
@@ -683,6 +681,7 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     var input = document.querySelector('input');
+    var oldValue = input.value;
     input.value = "123456789"
     input.dispatchEvent(new Event('blur'));
     fixture.detectChanges()
@@ -691,7 +690,7 @@ describe('grid', function() {
     var correctDate = cells[3].querySelector('grid-cell').innerText;
     correctDate = correctDate.split("/");
     correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-    assert.strictEqual(new Date(correctDate).toDateString(), new Date().toDateString());
+    assert.strictEqual(new Date(correctDate).toDateString(), new Date(oldValue).toDateString());
 
     cells[3].dispatchEvent(doubleClick);
     tick();
@@ -717,7 +716,6 @@ describe('grid', function() {
     fixture.detectChanges();
 
     gridComponent = fixture.componentInstance;
-    var columns = document.querySelectorAll('.gridHead');
     var rows = document.querySelector('grid-body').querySelectorAll('.gridRow');
     var cells = rows[0].querySelectorAll('.gridCell');
 
@@ -734,7 +732,7 @@ describe('grid', function() {
     fixture.detectChanges()
     tick();
     fixture.detectChanges();
-    assert.equal(cells[4].querySelector('grid-cell').innerText, true)
+    assert.equal(cells[4].querySelector('grid-cell').innerText, true);
 
     cells[4].dispatchEvent(doubleClick);
     tick();
@@ -745,7 +743,7 @@ describe('grid', function() {
     fixture.detectChanges()
     tick();
     fixture.detectChanges();
-    assert.equal(cells[4].querySelector('grid-cell').innerText, true)
+    assert.equal(cells[4].querySelector('grid-cell').innerText, true);
 
     cells[4].dispatchEvent(doubleClick);
     tick();

@@ -101,7 +101,9 @@ export default class gridBodyComponent {
           }
         });
       }
-      this.rows[i][this.columns[y].label] = value;
+      if (value !== "invalid value") {
+        this.rows[i][this.columns[y].label] = value;
+      }
       this.changingCellContent = false;
     } else {
       this.changingCellContent = coordinate;

@@ -60,7 +60,7 @@ var types = [
       if (moment(val).isValid()) {
         return moment(val).toString();
       } else {
-        return moment().toString();
+        return "invalid value";
       }
     }
   },
@@ -70,7 +70,7 @@ var types = [
       if (!isNaN(val)) {
         return val;
       } else {
-        return 0;
+        return "invalid value";
       }
     }
   },

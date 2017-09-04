@@ -17,7 +17,7 @@ require('./dist/css/atlantis-ui.css');
 
 global.moment = require('moment');
 
-var appContext = require.context('./ngx', true,/\.spec\.js/);
+var appContext = require.context('./ngx', true,/grid\.component\.spec\.js/);
 
 appContext.keys().forEach(appContext);
 
