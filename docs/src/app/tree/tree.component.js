@@ -11,7 +11,7 @@ export default  class TreeComponent {
   constructor(){
     this.nodes = [
       { label: 'Node 1',
-        selectable : false
+        selectable: false
       },
       {
         label: 'Node 2',
@@ -77,9 +77,10 @@ export default  class TreeComponent {
     ];
   }
 
-  onSelect(data){
-    console.log(data);
+  onClick() {
+    console.log(this.nodes)
   }
+
 }
 
 

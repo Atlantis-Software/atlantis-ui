@@ -39378,6 +39378,11 @@ var TreeComponent = function () {
   }
 
   _createClass(TreeComponent, [{
+    key: 'onClick',
+    value: function onClick() {
+      console.log(this.nodes);
+    }
+  }, {
     key: 'onSelect',
     value: function onSelect(data) {
       console.log(data);
@@ -85745,7 +85750,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       /******/__webpack_require__.p = "";
       /******/
       /******/ // Load entry module and return exports
-      /******/return __webpack_require__(__webpack_require__.s = 13);
+      /******/return __webpack_require__(__webpack_require__.s = 12);
       /******/
     }(
     /************************************************************************/
@@ -86259,213 +86264,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       Object.defineProperty(exports, "__esModule", {
         value: true
       });
-
-      var _createClass = function () {
-        function defineProperties(target, props) {
-          for (var i = 0; i < props.length; i++) {
-            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-          }
-        }return function (Constructor, protoProps, staticProps) {
-          if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-        };
-      }();
-
-      var _core = __webpack_require__(0);
-
-      function _classCallCheck(instance, Constructor) {
-        if (!(instance instanceof Constructor)) {
-          throw new TypeError("Cannot call a class as a function");
-        }
-      }
-
-      var treeNodeComponent = function () {
-        _createClass(treeNodeComponent, null, [{
-          key: 'annotations',
-          get: function get() {
-            return [new _core.Component({
-              selector: 'tree-node',
-              template: '\n\t\t\t\t<div class="tree-node-line" style="padding-left:">\n\t        <span *ngIf="expandable" class="tree-expander icon" [ngClass]="{\n\t\t\t\t\t\t\'icon-folder-open\': expanded,\n\t\t\t\t\t\t\'icon-folder\': !expanded,\n\t\t\t\t\t\t\'icon-disabled\': disabled\n\t\t\t\t\t}" (click)=\'ExpandClick()\'></span>\n\t        <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="tree-node-label"></span>\n\t        <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngOutletContext]="data"></ng-template>\n\t\t\t\t\t<input *ngIf="selectable" type="checkbox" [ngModel]="selected" class="tree-node-checkbox" (click)="onClick()">\n\t\t\t\t</div>\n        <ng-content *ngIf="expanded"></ng-content>\n        <tree-node *ngFor="let child of children" [hidden]="!children?.length || !expandable || !expanded"\n          [expandable]="child.expandable"\n          [expanded]="child.expanded"\n          [label]="child.label"\n          [model]="child.model"\n          [id]="child.id"\n          [children]="child.children"\n          [selectable]="child.selectable"\n          [template]="template"\n          [depth]="depth+1"\n          [selected]="child.selected"\n          (expand)="expand.emit($event)"\n          (collapse)="collapse.emit($event)"\n          (select)="onSelect($event)">\n        </tree-node>',
-              inputs: ['node', 'label', 'model', 'children', 'expandable', 'expanded', 'selectable', 'disabled', 'template', 'depth', 'selected', 'id'],
-              outputs: ['expand', 'collapse', 'select'],
-              host: {
-                '[class.selectable]': 'selectable'
-              },
-              queries: {
-                nodeChildren: new _core.ViewChildren(treeNodeComponent)
-              }
-            })];
-          }
-        }]);
-
-        function treeNodeComponent(ElementRef, _treeNodeComponent) {
-          _classCallCheck(this, treeNodeComponent);
-
-          this.elementRef = ElementRef;
-          this.expand = new _core.EventEmitter();
-          this.collapse = new _core.EventEmitter();
-          this.select = new _core.EventEmitter();
-          this.data = {};
-          this.selected = false;
-          this.indeterminate = false;
-          this.parent = _treeNodeComponent;
-        }
-
-        _createClass(treeNodeComponent, [{
-          key: '_getCheckbox',
-          value: function _getCheckbox() {
-            return this.elementRef.nativeElement.querySelector('.tree-node-checkbox') || {};
-          }
-        }, {
-          key: 'ngOnInit',
-          value: function ngOnInit() {
-            this.selected = false;
-          }
-        }, {
-          key: 'ngOnChanges',
-          value: function ngOnChanges(changes) {
-            var _this = this;
-
-            if (!this.data || !this.data.id) {
-              this.data = {
-                id: this.id
-              };
-            }
-            if (this.selectable !== true && this.selectable !== false) {
-              this.selectable = true;
-            }
-
-            // Prevents parent onSelect update to cascade on children
-            if (changes.selected && typeof changes.selected.currentValue === "string" && changes.selected.currentValue.includes('no change')) {
-              this.selected = changes.selected.currentValue.replace('no change', '') === 'true';
-              return;
-            }
-
-            var checkbox = this._getCheckbox();
-
-            this.indeterminate = false;
-            checkbox.indeterminate = false;
-
-            if (this.nodeChildren) {
-              this.nodeChildren.forEach(function (child) {
-                child.indeterminate = false;
-                child.selected = _this.selected;
-              });
-            }
-            if (this.children) {
-              this.children.forEach(function (child) {
-                child.selected = _this.selected;
-              });
-            }
-          }
-        }, {
-          key: 'ngAfterViewInit',
-          value: function ngAfterViewInit() {
-            this.elementRef.nativeElement.querySelector('.tree-node-line').style.paddingLeft = 30 * this.depth + "px";
-          }
-        }, {
-          key: 'ExpandClick',
-          value: function ExpandClick() {
-            if (this.disabled) {
-              return;
-            }
-            this.expanded = !this.expanded;
-
-            if (this.expanded) {
-              this.expand.emit(this.date);
-            } else if (!this.expand) {
-              this.collapse.emit(this.data);
-            }
-          }
-        }, {
-          key: 'onClick',
-          value: function onClick() {
-            var _this2 = this;
-
-            if (this.disabled) {
-              return;
-            }
-            this.selected = !this.selected;
-            this.indeterminate = false;
-            this.data.selected = this.selected;
-            this.data.indeterminate = this.indeterminate;
-
-            if (this.nodeChildren) {
-              this.nodeChildren.forEach(function (child) {
-                child.indeterminate = false;
-                child.selected = _this2.selected;
-              });
-            }
-            if (this.children) {
-              this.children.forEach(function (child) {
-                child.selected = _this2.selected;
-              });
-            }
-            this.select.emit(this.data);
-          }
-        }, {
-          key: 'onSelect',
-          value: function onSelect(data) {
-            var checkbox = this._getCheckbox();
-            var nbSelected = 0;
-            var isIndeterminate = false;
-
-            this.nodeChildren.forEach(function (child) {
-              if (child.selected) {
-                ++nbSelected;
-              }
-              if (child.indeterminate) {
-                isIndeterminate = true;
-              }
-            });
-
-            // Update list of children
-            this.children.forEach(function (child) {
-              if (child.id === data.id) {
-                child.selected = data.selected + "no change";
-              }
-            });
-
-            if (isIndeterminate) {
-              this.selected = false;
-              checkbox.indeterminate = true;
-              this.indeterminate = true;
-            } else if (!nbSelected) {
-              this.selected = false;
-              checkbox.indeterminate = false;
-              this.indeterminate = false;
-            } else if (nbSelected === this.nodeChildren.length) {
-              this.selected = true;
-              checkbox.indeterminate = false;
-              this.indeterminate = false;
-            } else {
-              this.selected = false;
-              checkbox.indeterminate = true;
-              this.indeterminate = true;
-            }
-
-            this.data.selected = this.selected;
-            this.data.indeterminate = this.indeterminate;
-            this.select.emit(this.data);
-          }
-        }]);
-
-        return treeNodeComponent;
-      }();
-
-      exports.default = treeNodeComponent;
-
-      treeNodeComponent.parameters = [_core.ElementRef, [new _core.Optional(), new _core.SkipSelf(), new _core.Inject(treeNodeComponent)]];
-
-      /***/
-    },
-    /* 10 */
-    /***/function (module, exports, __webpack_require__) {
-
-      "use strict";
-
-      Object.defineProperty(exports, "__esModule", {
-        value: true
-      });
       exports.ngxAtlUiModule = undefined;
 
       var _createClass = function () {
@@ -86484,19 +86282,19 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       var _forms = __webpack_require__(1);
 
-      var _paginationComponent = __webpack_require__(33);
+      var _paginationComponent = __webpack_require__(32);
 
       var _paginationComponent2 = _interopRequireDefault(_paginationComponent);
 
-      var _datepickerComponent = __webpack_require__(19);
+      var _datepickerComponent = __webpack_require__(18);
 
       var _datepickerComponent2 = _interopRequireDefault(_datepickerComponent);
 
-      var _datepickerRangeComponent = __webpack_require__(18);
+      var _datepickerRangeComponent = __webpack_require__(17);
 
       var _datepickerRangeComponent2 = _interopRequireDefault(_datepickerRangeComponent);
 
-      var _selectpickerComponent = __webpack_require__(35);
+      var _selectpickerComponent = __webpack_require__(34);
 
       var _selectpickerComponent2 = _interopRequireDefault(_selectpickerComponent);
 
@@ -86504,21 +86302,21 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       var _selectpickerOptionComponent2 = _interopRequireDefault(_selectpickerOptionComponent);
 
-      var _slidepickerComponent = __webpack_require__(36);
+      var _slidepickerComponent = __webpack_require__(35);
 
       var _modalComponent = __webpack_require__(7);
 
       var _modalComponent2 = _interopRequireDefault(_modalComponent);
 
-      var _modalHeaderComponent = __webpack_require__(32);
+      var _modalHeaderComponent = __webpack_require__(31);
 
       var _modalHeaderComponent2 = _interopRequireDefault(_modalHeaderComponent);
 
-      var _modalBodyComponent = __webpack_require__(30);
+      var _modalBodyComponent = __webpack_require__(29);
 
       var _modalBodyComponent2 = _interopRequireDefault(_modalBodyComponent);
 
-      var _modalFooterComponent = __webpack_require__(31);
+      var _modalFooterComponent = __webpack_require__(30);
 
       var _modalFooterComponent2 = _interopRequireDefault(_modalFooterComponent);
 
@@ -86526,27 +86324,27 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       var _backdropComponent2 = _interopRequireDefault(_backdropComponent);
 
-      var _gridComponent = __webpack_require__(29);
+      var _gridComponent = __webpack_require__(28);
 
       var _gridComponent2 = _interopRequireDefault(_gridComponent);
 
-      var _gridHeaderComponent = __webpack_require__(28);
+      var _gridHeaderComponent = __webpack_require__(27);
 
       var _gridHeaderComponent2 = _interopRequireDefault(_gridHeaderComponent);
 
-      var _gridBodyComponent = __webpack_require__(24);
+      var _gridBodyComponent = __webpack_require__(23);
 
       var _gridBodyComponent2 = _interopRequireDefault(_gridBodyComponent);
 
-      var _gridFooterComponent = __webpack_require__(27);
+      var _gridFooterComponent = __webpack_require__(26);
 
       var _gridFooterComponent2 = _interopRequireDefault(_gridFooterComponent);
 
-      var _gridCellComponent = __webpack_require__(26);
+      var _gridCellComponent = __webpack_require__(25);
 
       var _gridCellComponent2 = _interopRequireDefault(_gridCellComponent);
 
-      var _gridCellHeaderComponent = __webpack_require__(25);
+      var _gridCellHeaderComponent = __webpack_require__(24);
 
       var _gridCellHeaderComponent2 = _interopRequireDefault(_gridCellHeaderComponent);
 
@@ -86556,43 +86354,43 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       var _treeComponent2 = _interopRequireDefault(_treeComponent);
 
-      var _treeNodeComponent = __webpack_require__(9);
+      var _treeNodeComponent = __webpack_require__(37);
 
       var _treeNodeComponent2 = _interopRequireDefault(_treeNodeComponent);
 
-      var _carouselComponent = __webpack_require__(16);
+      var _carouselComponent = __webpack_require__(15);
 
-      var _accordionComponent = __webpack_require__(14);
+      var _accordionComponent = __webpack_require__(13);
 
       var _dropdownComponent = __webpack_require__(3);
 
       var _dropdownComponent2 = _interopRequireDefault(_dropdownComponent);
 
-      var _dropdownOptionComponent = __webpack_require__(22);
+      var _dropdownOptionComponent = __webpack_require__(21);
 
       var _dropdownOptionComponent2 = _interopRequireDefault(_dropdownOptionComponent);
 
-      var _dropdownDividerComponent = __webpack_require__(20);
+      var _dropdownDividerComponent = __webpack_require__(19);
 
       var _dropdownDividerComponent2 = _interopRequireDefault(_dropdownDividerComponent);
 
-      var _dropdownHeaderComponent = __webpack_require__(21);
+      var _dropdownHeaderComponent = __webpack_require__(20);
 
       var _dropdownHeaderComponent2 = _interopRequireDefault(_dropdownHeaderComponent);
 
-      var _circleProgressBarComponent = __webpack_require__(17);
+      var _circleProgressBarComponent = __webpack_require__(16);
 
       var _circleProgressBarComponent2 = _interopRequireDefault(_circleProgressBarComponent);
 
-      var _popoverComponent = __webpack_require__(34);
+      var _popoverComponent = __webpack_require__(33);
 
-      var _tooltipComponent = __webpack_require__(37);
+      var _tooltipComponent = __webpack_require__(36);
 
-      var _focusDirective = __webpack_require__(23);
+      var _focusDirective = __webpack_require__(22);
 
       var _focusDirective2 = _interopRequireDefault(_focusDirective);
 
-      var _affixDirective = __webpack_require__(15);
+      var _affixDirective = __webpack_require__(14);
 
       var _affixDirective2 = _interopRequireDefault(_affixDirective);
 
@@ -86635,9 +86433,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },,,
+    /* 10 */
     /* 11 */
     /* 12 */
-    /* 13 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -86646,7 +86444,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         value: true
       });
 
-      var _ngxAtlantisUiModule = __webpack_require__(10);
+      var _ngxAtlantisUiModule = __webpack_require__(9);
 
       Object.defineProperty(exports, 'ngxAtlUiModule', {
         enumerable: true,
@@ -86657,7 +86455,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 14 */
+    /* 13 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -86808,7 +86606,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 15 */
+    /* 14 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -86871,7 +86669,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 16 */
+    /* 15 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -87148,7 +86946,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 17 */
+    /* 16 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -87273,7 +87071,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 18 */
+    /* 17 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -87808,7 +87606,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 19 */
+    /* 18 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -88220,7 +88018,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 20 */
+    /* 19 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -88279,7 +88077,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 21 */
+    /* 20 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -88338,7 +88136,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 22 */
+    /* 21 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -88410,7 +88208,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 23 */
+    /* 22 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -88470,7 +88268,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 24 */
+    /* 23 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -88525,7 +88323,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 25 */
+    /* 24 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -88609,7 +88407,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 26 */
+    /* 25 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -88693,7 +88491,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 27 */
+    /* 26 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -88746,7 +88544,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 28 */
+    /* 27 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -88802,7 +88600,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 29 */
+    /* 28 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -88962,7 +88760,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 30 */
+    /* 29 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -89013,7 +88811,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 31 */
+    /* 30 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -89064,7 +88862,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 32 */
+    /* 31 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -89144,7 +88942,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 33 */
+    /* 32 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -89330,7 +89128,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 34 */
+    /* 33 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -89487,7 +89285,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 35 */
+    /* 34 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -89839,7 +89637,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 36 */
+    /* 35 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -90226,7 +90024,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
-    /* 37 */
+    /* 36 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -90373,6 +90171,190 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       /***/
     },
+    /* 37 */
+    /***/function (module, exports, __webpack_require__) {
+
+      "use strict";
+
+      Object.defineProperty(exports, "__esModule", {
+        value: true
+      });
+
+      var _createClass = function () {
+        function defineProperties(target, props) {
+          for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+          }
+        }return function (Constructor, protoProps, staticProps) {
+          if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+        };
+      }();
+
+      var _core = __webpack_require__(0);
+
+      function _classCallCheck(instance, Constructor) {
+        if (!(instance instanceof Constructor)) {
+          throw new TypeError("Cannot call a class as a function");
+        }
+      }
+
+      var treeNodeComponent = function () {
+        _createClass(treeNodeComponent, null, [{
+          key: 'annotations',
+          get: function get() {
+            return [new _core.Component({
+              selector: 'tree-node',
+              template: '\n\t\t\t\t<div class="tree-node-line" style="padding-left:">\n\t        <span *ngIf="children?.length" class="tree-expander icon" [ngClass]="{\n\t\t\t\t\t\t\'icon-folder-open\': expanded,\n\t\t\t\t\t\t\'icon-folder\': !expanded,\n\t\t\t\t\t\t\'icon-disabled\': disabled\n\t\t\t\t\t}" (click)=\'ExpandClick()\'></span>\n\t        <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="tree-node-label"></span>\n          <span *ngIf="!template" [innerHTML]="selected" [class.disabled]="disabled"></span>\n\t        <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngOutletContext]="data"></ng-template>\n\t\t\t\t\t<input *ngIf="selectable" type="checkbox" [ngModel]="selected" class="tree-node-checkbox" (click)="onClick()">\n\t\t\t\t</div>\n        <ng-content *ngIf="expanded"></ng-content>\n        <tree-node *ngFor="let child of children" [hidden]="!children?.length || !expandable || !expanded"\n          [expandable]="child.expandable"\n          [expanded]="child.expanded"\n          [label]="child.label"\n          [model]="child.model"\n          [id]="child.id"\n          [children]="child.children"\n          [selectable]="child.selectable"\n          [template]="template"\n          [depth]="depth+1"\n          [(selected)]="child.selected"\n          (expand)="expand.emit($event)"\n          (collapse)="collapse.emit($event)"\n          (select)="onSelect($event)">\n        </tree-node>',
+              inputs: ['node', 'label', 'model', 'children', 'expandable', 'expanded', 'selectable', 'disabled', 'template', 'depth', 'selected', 'id'],
+              outputs: ['expand', 'collapse', 'select', 'selectedChange'],
+              host: {
+                '[class.selectable]': 'selectable'
+              },
+              queries: {
+                nodeChildren: new _core.ViewChildren(treeNodeComponent)
+              }
+            })];
+          }
+        }]);
+
+        function treeNodeComponent(ElementRef, _treeNodeComponent) {
+          _classCallCheck(this, treeNodeComponent);
+
+          this.elementRef = ElementRef;
+          this.expand = new _core.EventEmitter();
+          this.collapse = new _core.EventEmitter();
+          this.select = new _core.EventEmitter();
+          this.selectedChange = new _core.EventEmitter();
+          this.indeterminate = false;
+          this.parent = _treeNodeComponent;
+        }
+
+        _createClass(treeNodeComponent, [{
+          key: '_getCheckbox',
+          value: function _getCheckbox() {
+            return this.elementRef.nativeElement.querySelector('.tree-node-checkbox') || {};
+          }
+        }, {
+          key: 'ngOnInit',
+          value: function ngOnInit() {
+            if (!this.selected) {
+              // this.selected = false;
+            }
+          }
+        }, {
+          key: 'ngOnChanges',
+          value: function ngOnChanges() {
+            var _this = this;
+
+            if (this.selected === void 0) {
+              return;
+            }
+
+            if (this.selectable !== true && this.selectable !== false) {
+              this.selectable = true;
+            }
+
+            if (!this.parent || this.parent.indeterminate) {
+              return;
+            }
+
+            var checkbox = this._getCheckbox();
+
+            this.indeterminate = false;
+            checkbox.indeterminate = false;
+
+            if (this.children) {
+              this.children.forEach(function (child) {
+                child.selected = _this.selected;
+              });
+            }
+            this.selectedChange.emit(this.selected);
+          }
+        }, {
+          key: 'ngAfterViewInit',
+          value: function ngAfterViewInit() {
+            this.elementRef.nativeElement.querySelector('.tree-node-line').style.paddingLeft = 30 * this.depth + "px";
+          }
+        }, {
+          key: 'ExpandClick',
+          value: function ExpandClick() {
+            if (this.disabled) {
+              return;
+            }
+            this.expanded = !this.expanded;
+
+            if (this.expanded) {
+              this.expand.emit(this.date);
+            } else if (!this.expand) {
+              this.collapse.emit(this.data);
+            }
+          }
+        }, {
+          key: 'onClick',
+          value: function onClick() {
+            var _this2 = this;
+
+            if (this.disabled) {
+              return;
+            }
+            this.selected = !this.selected;
+            this.indeterminate = false;
+            if (this.children) {
+              this.children.forEach(function (child) {
+                child.selected = _this2.selected;
+              });
+            }
+            this.selectedChange.emit(this.selected);
+            this.select.emit();
+          }
+        }, {
+          key: 'onSelect',
+          value: function onSelect() {
+            var checkbox = this._getCheckbox();
+            var nbSelected = 0;
+            var isIndeterminate = false;
+
+            this.nodeChildren.forEach(function (child) {
+              if (child.selected) {
+                ++nbSelected;
+              }
+              if (child.indeterminate) {
+                isIndeterminate = true;
+              }
+            });
+
+            if (isIndeterminate) {
+              this.selected = false;
+              checkbox.indeterminate = true;
+              this.indeterminate = true;
+            } else if (!nbSelected) {
+              this.selected = false;
+              checkbox.indeterminate = false;
+              this.indeterminate = false;
+            } else if (nbSelected === this.nodeChildren.length) {
+              this.selected = true;
+              checkbox.indeterminate = false;
+              this.indeterminate = false;
+            } else {
+              this.selected = false;
+              checkbox.indeterminate = true;
+              this.indeterminate = true;
+            }
+
+            this.selectedChange.emit(this.selected);
+            this.select.emit();
+          }
+        }]);
+
+        return treeNodeComponent;
+      }();
+
+      exports.default = treeNodeComponent;
+
+      treeNodeComponent.parameters = [_core.ElementRef, [new _core.Optional(), new _core.SkipSelf(), new _core.Inject(treeNodeComponent)]];
+
+      /***/
+    },
     /* 38 */
     /***/function (module, exports, __webpack_require__) {
 
@@ -90394,14 +90376,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       var _core = __webpack_require__(0);
 
-      var _treeNodeComponent = __webpack_require__(9);
-
-      var _treeNodeComponent2 = _interopRequireDefault(_treeNodeComponent);
-
-      function _interopRequireDefault(obj) {
-        return obj && obj.__esModule ? obj : { default: obj };
-      }
-
       function _classCallCheck(instance, Constructor) {
         if (!(instance instanceof Constructor)) {
           throw new TypeError("Cannot call a class as a function");
@@ -90416,9 +90390,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           get: function get() {
             return [new _core.Component({
               selector: 'tree',
-              template: '\n        <tree-node *ngFor="let node of nodes"\n          [expandable]="node.expandable"\n          [expanded]="node.expanded"\n          [label]="node.label"\n          [model]="node.model"\n          [id]="node.id"\n          [children]="node.children"\n          [selectable]="node.selectable"\n          [template]="template"\n          [depth]="depth"\n          [selected]="node.selected"\n          (expand)="expand.emit($event)"\n          (collapse)="collapse.emit($event)"\n          (select)="select.emit($event)">\n        </tree-node>\n        <ng-content *ngIf="!nodes"></ng-content>',
+              template: '\n        <tree-node *ngFor="let node of nodes"\n          [expandable]="node.expandable"\n          [expanded]="node.expanded"\n          [label]="node.label"\n          [model]="node.model"\n          [id]="node.id"\n          [children]="node.children"\n          [selectable]="node.selectable"\n          [template]="template"\n          [depth]="depth"\n          [(selected)]="node.selected"\n          (expand)="expand.emit($event)"\n          (collapse)="collapse.emit($event)"\n          (select)="onSelect($event)">\n        </tree-node>\n        <ng-content *ngIf="!nodes"></ng-content>',
               inputs: ['nodes', 'template', 'depth'],
-              outputs: ['expand', 'collapse', 'select'],
+              outputs: ['expand', 'collapse', 'select', 'nodesChanges'],
               queries: {
                 template: new _core.ContentChild(_core.TemplateRef)
               }
@@ -90432,6 +90406,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           this.expand = new _core.EventEmitter();
           this.collapse = new _core.EventEmitter();
           this.select = new _core.EventEmitter();
+          this.nodesChanges = new _core.EventEmitter();
           this.depth = 1;
           this.cdr = changeDetectorRef;
         }
@@ -90441,6 +90416,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           value: function ngAfterViewInit() {
             var recursiveSetId = function recursiveSetId(node) {
               node.id = ++id;
+              node.selected = node.selected || false;
               if (node.children) {
                 node.children.forEach(function (child) {
                   recursiveSetId(child);
@@ -90451,6 +90427,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               recursiveSetId(node);
             });
             this.cdr.detectChanges();
+          }
+        }, {
+          key: 'onSelect',
+          value: function onSelect() {
+            this.nodesChanges.emit(this.nodes);
           }
         }]);
 
@@ -90990,7 +90971,7 @@ module.exports = "<div class=\"container\"> <h3> Example </h3> <div class=\"row 
 /* 106 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\"> <h3> Example with nodes object </h3> <div class=\"row container-fluid\"> <tree class=\"col-md-4\" [nodes]=\"nodes\" (select)=\"onSelect($event)\"></tree> </div> <h3> Example with custom template </h3> </div> ";
+module.exports = "<div class=\"container\"> <h3> Example with nodes object </h3> <div class=\"row container-fluid\"> <tree class=\"col-md-4\" [nodes]=\"nodes\" (select)=\"onSelect($event)\"></tree> </div> <button (click)=\"onClick()\">grjskdjslkf</button> <h3> Example with custom template </h3> </div> ";
 
 /***/ }),
 /* 107 */
