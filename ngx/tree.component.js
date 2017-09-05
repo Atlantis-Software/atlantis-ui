@@ -2,12 +2,9 @@ import {
   Component,
   EventEmitter,
   ContentChild,
-  ContentChildren,
   TemplateRef,
   ChangeDetectorRef
 } from '@angular/core';
-
-import treeNodeComponent from './tree-node.component.js';
 
 var id = 0;
 
@@ -27,14 +24,14 @@ export default class treeComponent {
           [selectable]="node.selectable"
           [template]="template"
           [depth]="depth"
-          [selected]="node.selected"
+          [(selected)]="node.selected"
           (expand)="expand.emit($event)"
           (collapse)="collapse.emit($event)"
-          (select)="select.emit($event)">
+          (select)="onSelect($event)">
         </tree-node>
         <ng-content *ngIf="!nodes"></ng-content>`,
         inputs: ['nodes', 'template', 'depth'],
-        outputs: ['expand', 'collapse', 'select'],
+        outputs: ['expand', 'collapse', 'select', 'nodesChanges'],
         queries: {
           template: new ContentChild(TemplateRef),
         }
@@ -45,6 +42,7 @@ export default class treeComponent {
     this.expand = new EventEmitter();
     this.collapse = new EventEmitter();
     this.select = new EventEmitter();
+    this.nodesChanges = new EventEmitter();
     this.depth = 1;
     this.cdr = changeDetectorRef;
   }
@@ -52,6 +50,7 @@ export default class treeComponent {
   ngAfterViewInit() {
     var recursiveSetId = function(node) {
       node.id = ++id;
+      node.selected = node.selected || false;
       if (node.children) {
         node.children.forEach(function(child) {
           recursiveSetId(child);
@@ -62,6 +61,10 @@ export default class treeComponent {
       recursiveSetId(node);
     });
     this.cdr.detectChanges();
+  }
+
+  onSelect() {
+    this.nodesChanges.emit(this.nodes);
   }
 
 }

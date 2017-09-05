@@ -1,6 +1,10 @@
-import { getTestBed, TestBed, async, fakeAsync, tick, DebugElement} from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import atlantisUI from './ngx-atlantis-ui-module.js';
+import {
+  getTestBed,
+  TestBed,
+  async,
+  fakeAsync,
+  tick
+} from '@angular/core/testing';
 import { Component } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
@@ -24,24 +28,37 @@ var getNode = function(label) {
 class treeTestComponent {
   constructor() {
     this.nodes = [
-      { label: 'Node 1'
+      {
+        label: 'Node 1'
       },
       {
         label: 'Node 2',
         expandable: true,
         expanded: true,
         children: [
-          { label: 'Node 21' },
-          { label: 'Node 22' },
+          {
+            label: 'Node 21'
+          },
+          {
+            label: 'Node 22'
+          },
           {
             label: 'Node 23',
             expanded: false,
             expandable: true,
             children: [
-              { label: 'Node 231' },
-              { label: 'Node 232' },
-              { label: 'Node 233' },
-              { label: 'Node 234' }
+              {
+                label: 'Node 231'
+              },
+              {
+                label: 'Node 232'
+              },
+              {
+                label: 'Node 233'
+              },
+              {
+                label: 'Node 234'
+              }
             ]
           },
           {
@@ -49,48 +66,69 @@ class treeTestComponent {
             expandable: true,
             expanded: true,
             children: [
-              { label: 'Node 241' },
-              { label: 'Node 242' },
-              { label: 'Node 243' },
+              {
+                label: 'Node 241'
+              },
+              {
+                label: 'Node 242'
+              },
+              {
+                label: 'Node 243'
+              },
               {
                 label: 'Node 244',
                 expandable: true,
                 expanded: true,
                 children: [
-                  { label: 'Node 2441' },
-                  { label: 'Node 2442' },
-                  { label: 'Node 2443' }
+                  {
+                    label: 'Node 2441'
+                  },
+                  {
+                    label: 'Node 2442'
+                  },
+                  {
+                    label: 'Node 2443'
+                  }
                 ]
               }
             ]
           }
         ]
       },
-      { label: 'Node 3' },
+      {
+        label: 'Node 3'
+      },
       {
         label: 'Node 4',
         children: [
-          { label: 'Node 41' },
-          { label: 'Node 42' },
-          { label: 'Node 43' },
-          { label: 'Node 44' }
+          {
+            label: 'Node 41'
+          },
+          {
+            label: 'Node 42'
+          },
+          {
+            label: 'Node 43'
+          },
+          {
+            label: 'Node 44'
+          }
         ],
         expandable: true
       }
     ];
   }
-	static get annotations() {
-		return [
-			new Component({
+  static get annotations() {
+    return [
+      new Component({
         template: `
         <tree [nodes]="nodes"></tree>`
-	  	})
-		];
-	}
+      })
+    ];
+  }
 }
 
 describe('tree', function() {
-  var testComponent;
 
   beforeEach(async(function() {
     TestBed.configureTestingModule({
@@ -121,7 +159,7 @@ describe('tree', function() {
           if (treeNodeLine.querySelector('.tree-node-label').innerText === node.label) {
             assert(!found, 'Duplicate node');
             found = true;
-            assert.strictEqual(window.getComputedStyle(treeNodeLine).paddingLeft, depth*30 + "px");
+            assert.strictEqual(window.getComputedStyle(treeNodeLine).paddingLeft, depth * 30 + "px");
             var label = node.label.substring(5);
             if (parent) {
               var parentLabel = parent.label.substring(5);
@@ -134,13 +172,13 @@ describe('tree', function() {
         })
         assert(found, 'Node not found');
         if (node.children) {
-          checkNodes(node.children, depth+1, node);
+          checkNodes(node.children, depth + 1, node);
         }
       });
     }
     checkNodes(testComponent.nodes, 1);
 
-    treeNodeLines.forEach((treeNodeLine)=> {
+    treeNodeLines.forEach((treeNodeLine) => {
       assert.strictEqual(treeNodeLine.querySelector('.tree-node-checkbox').checked, false);
     })
   }));
@@ -161,7 +199,7 @@ describe('tree', function() {
     fixture.detectChanges();
 
     var treeNodeLines = document.querySelectorAll('.tree-node-line');
-    treeNodeLines.forEach((treeNodeLine)=> {
+    treeNodeLines.forEach((treeNodeLine) => {
       if (treeNodeLine.querySelector('.tree-node-label').innerText === 'Node 2442') {
         assert(treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node should be checked');
         return;
@@ -190,7 +228,7 @@ describe('tree', function() {
     fixture.detectChanges();
 
     var treeNodeLines = document.querySelectorAll('.tree-node-line');
-    treeNodeLines.forEach((treeNodeLine)=> {
+    treeNodeLines.forEach((treeNodeLine) => {
       if (treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 2')) {
         assert(treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node should be checked');
         return;
@@ -216,7 +254,7 @@ describe('tree', function() {
     fixture.detectChanges();
 
     var treeNodeLines = document.querySelectorAll('.tree-node-line');
-    treeNodeLines.forEach((treeNodeLine)=> {
+    treeNodeLines.forEach((treeNodeLine) => {
       if (treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 24')) {
         assert(treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node should be checked');
         return;
@@ -228,7 +266,7 @@ describe('tree', function() {
     })
   }));
 
-  it('should render new selected value when clicking on deepest element', fakeAsync(() => {
+  it('should render new selected value when clicking on parent element then on deepest children', fakeAsync(() => {
     var fixture = TestBed.createComponent(treeTestComponent);
     fixture.detectChanges();
     tick();
@@ -245,7 +283,7 @@ describe('tree', function() {
     fixture.detectChanges();
 
     var treeNodeLines = document.querySelectorAll('.tree-node-line');
-    treeNodeLines.forEach((treeNodeLine)=> {
+    treeNodeLines.forEach((treeNodeLine) => {
       if (treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 24')) {
         assert(treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node should be checked');
         return;
@@ -256,9 +294,9 @@ describe('tree', function() {
       assert(!treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node shouldn\'t be checked');
     })
 
-    var node = getNode('Node 2442');
+    node = getNode('Node 2442');
     assert(node, 'Node not found');
-    var checkbox = node.querySelector('.tree-node-checkbox');
+    checkbox = node.querySelector('.tree-node-checkbox');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -266,10 +304,10 @@ describe('tree', function() {
     tick();
     fixture.detectChanges();
 
-    var treeNodeLines = document.querySelectorAll('.tree-node-line');
-    treeNodeLines.forEach((treeNodeLine)=> {
+    treeNodeLines = document.querySelectorAll('.tree-node-line');
+    treeNodeLines.forEach((treeNodeLine) => {
       if (treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 24') &&
-          (['Node 2', 'Node 24', 'Node 244', 'Node 2442'].indexOf(treeNodeLine.querySelector('.tree-node-label').innerText) === -1)) {
+        (['Node 2', 'Node 24', 'Node 244', 'Node 2442'].indexOf(treeNodeLine.querySelector('.tree-node-label').innerText) === -1)) {
         assert(treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node should be checked');
         return;
       }
@@ -296,9 +334,9 @@ describe('tree', function() {
     tick();
     fixture.detectChanges();
 
-    var node = getNode('Node 244');
+    node = getNode('Node 244');
     assert(node, 'Node not found');
-    var checkbox = node.querySelector('.tree-node-checkbox');
+    checkbox = node.querySelector('.tree-node-checkbox');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -307,10 +345,10 @@ describe('tree', function() {
     fixture.detectChanges();
 
     var treeNodeLines = document.querySelectorAll('.tree-node-line');
-    treeNodeLines.forEach((treeNodeLine)=> {
+    treeNodeLines.forEach((treeNodeLine) => {
       if (treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 24') &&
-          !treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 244') &&
-          treeNodeLine.querySelector('.tree-node-label').innerText !== 'Node 24') {
+        !treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 244') &&
+        treeNodeLine.querySelector('.tree-node-label').innerText !== 'Node 24') {
         assert(treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node should be checked');
         return;
       }
@@ -337,9 +375,9 @@ describe('tree', function() {
     tick();
     fixture.detectChanges();
 
-    var node = getNode('Node 24');
+    node = getNode('Node 24');
     assert(node, 'Node not found');
-    var checkbox = node.querySelector('.tree-node-checkbox');
+    checkbox = node.querySelector('.tree-node-checkbox');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -348,7 +386,7 @@ describe('tree', function() {
     fixture.detectChanges();
 
     var treeNodeLines = document.querySelectorAll('.tree-node-line');
-    treeNodeLines.forEach((treeNodeLine)=> {
+    treeNodeLines.forEach((treeNodeLine) => {
       if (treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 24')) {
         assert(treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node should be checked');
         return;
@@ -376,9 +414,9 @@ describe('tree', function() {
     tick();
     fixture.detectChanges();
 
-    var node = getNode('Node 2443');
+    node = getNode('Node 2443');
     assert(node, 'Node not found');
-    var checkbox = node.querySelector('.tree-node-checkbox');
+    checkbox = node.querySelector('.tree-node-checkbox');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -386,9 +424,9 @@ describe('tree', function() {
     tick();
     fixture.detectChanges();
 
-    var node = getNode('Node 24');
+    node = getNode('Node 24');
     assert(node, 'Node not found');
-    var checkbox = node.querySelector('.tree-node-checkbox');
+    checkbox = node.querySelector('.tree-node-checkbox');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -397,7 +435,7 @@ describe('tree', function() {
     fixture.detectChanges();
 
     var treeNodeLines = document.querySelectorAll('.tree-node-line');
-    treeNodeLines.forEach((treeNodeLine)=> {
+    treeNodeLines.forEach((treeNodeLine) => {
       if (treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 24')) {
         assert(treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node should be checked');
         return;
@@ -425,9 +463,9 @@ describe('tree', function() {
     tick();
     fixture.detectChanges();
 
-    var node = getNode('Node 2443');
+    node = getNode('Node 2443');
     assert(node, 'Node not found');
-    var checkbox = node.querySelector('.tree-node-checkbox');
+    checkbox = node.querySelector('.tree-node-checkbox');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -435,9 +473,9 @@ describe('tree', function() {
     tick();
     fixture.detectChanges();
 
-    var node = getNode('Node 244');
+    node = getNode('Node 244');
     assert(node, 'Node not found');
-    var checkbox = node.querySelector('.tree-node-checkbox');
+    checkbox = node.querySelector('.tree-node-checkbox');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -446,7 +484,7 @@ describe('tree', function() {
     fixture.detectChanges();
 
     var treeNodeLines = document.querySelectorAll('.tree-node-line');
-    treeNodeLines.forEach((treeNodeLine)=> {
+    treeNodeLines.forEach((treeNodeLine) => {
       if (treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 24')) {
         assert(treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node should be checked');
         return;

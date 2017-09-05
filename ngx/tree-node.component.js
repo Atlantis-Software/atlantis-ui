@@ -15,12 +15,13 @@ export default class treeNodeComponent {
         selector: 'tree-node',
         template: `
 				<div class="tree-node-line" style="padding-left:">
-	        <span *ngIf="expandable" class="tree-expander icon" [ngClass]="{
+	        <span *ngIf="children?.length" class="tree-expander icon" [ngClass]="{
 						'icon-folder-open': expanded,
 						'icon-folder': !expanded,
 						'icon-disabled': disabled
 					}" (click)='ExpandClick()'></span>
 	        <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="tree-node-label"></span>
+          <span *ngIf="!template" [innerHTML]="selected" [class.disabled]="disabled"></span>
 	        <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngOutletContext]="data"></ng-template>
 					<input *ngIf="selectable" type="checkbox" [ngModel]="selected" class="tree-node-checkbox" (click)="onClick()">
 				</div>
@@ -35,19 +36,19 @@ export default class treeNodeComponent {
           [selectable]="child.selectable"
           [template]="template"
           [depth]="depth+1"
-          [selected]="child.selected"
+          [(selected)]="child.selected"
           (expand)="expand.emit($event)"
           (collapse)="collapse.emit($event)"
           (select)="onSelect($event)">
         </tree-node>`,
         inputs: ['node', 'label', 'model', 'children', 'expandable', 'expanded', 'selectable', 'disabled', 'template', 'depth', 'selected', 'id'],
-        outputs: ['expand', 'collapse', 'select'],
+        outputs: ['expand', 'collapse', 'select', 'selectedChange'],
         host: {
           '[class.selectable]': 'selectable'
         },
         queries: {
           nodeChildren: new ViewChildren(treeNodeComponent),
-        },
+        }
       })
     ];
   }
@@ -56,8 +57,7 @@ export default class treeNodeComponent {
     this.expand = new EventEmitter();
     this.collapse = new EventEmitter();
     this.select = new EventEmitter();
-    this.data = {};
-    this.selected = false;
+    this.selectedChange = new EventEmitter();
     this.indeterminate = false;
     this.parent = treeNodeComponent;
   }
@@ -67,23 +67,21 @@ export default class treeNodeComponent {
   }
 
   ngOnInit() {
-    this.selected = false;
+    if (!this.selected) {
+      // this.selected = false;
+    }
   }
 
-  ngOnChanges(changes) {
-    if (!this.data || !this.data.id) {
-      this.data = {
-        id: this.id
-      };
+  ngOnChanges() {
+    if (this.selected === void 0) {
+      return;
     }
+
     if (this.selectable !== true && this.selectable !== false) {
       this.selectable = true;
     }
 
-
-    // Prevents parent onSelect update to cascade on children
-    if (changes.selected && typeof changes.selected.currentValue === "string" && changes.selected.currentValue.includes('no change')) {
-      this.selected = (changes.selected.currentValue.replace('no change', '') === 'true');
+    if (!this.parent || this.parent.indeterminate) {
       return;
     }
 
@@ -92,17 +90,12 @@ export default class treeNodeComponent {
     this.indeterminate = false;
     checkbox.indeterminate = false;
 
-    if (this.nodeChildren) {
-      this.nodeChildren.forEach((child) => {
-        child.indeterminate = false;
-        child.selected = this.selected;
-      });
-    }
     if (this.children) {
       this.children.forEach((child) => {
         child.selected = this.selected;
       });
     }
+    this.selectedChange.emit(this.selected);
   }
 
   ngAfterViewInit() {
@@ -128,24 +121,16 @@ export default class treeNodeComponent {
     }
     this.selected = !this.selected;
     this.indeterminate = false;
-    this.data.selected = this.selected;
-    this.data.indeterminate = this.indeterminate;
-
-    if (this.nodeChildren) {
-      this.nodeChildren.forEach((child) => {
-        child.indeterminate = false;
-        child.selected = this.selected;
-      });
-    }
     if (this.children) {
       this.children.forEach((child) => {
         child.selected = this.selected;
       });
     }
-    this.select.emit(this.data);
+    this.selectedChange.emit(this.selected);
+    this.select.emit();
   }
 
-  onSelect(data) {
+  onSelect() {
     var checkbox = this._getCheckbox();
     var nbSelected = 0;
     var isIndeterminate = false;
@@ -158,13 +143,6 @@ export default class treeNodeComponent {
         isIndeterminate = true;
       }
     });
-
-    // Update list of children
-    this.children.forEach((child) => {
-      if (child.id === data.id) {
-        child.selected = data.selected + "no change";
-      }
-    })
 
     if (isIndeterminate) {
       this.selected = false;
@@ -184,9 +162,8 @@ export default class treeNodeComponent {
       this.indeterminate = true;
     }
 
-    this.data.selected = this.selected;
-    this.data.indeterminate = this.indeterminate;
-    this.select.emit(this.data);
+    this.selectedChange.emit(this.selected);
+    this.select.emit();
   }
 }
 
