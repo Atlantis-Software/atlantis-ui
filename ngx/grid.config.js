@@ -4,4 +4,4 @@ export class gridConfig {
   }
 }
 
-gridConfig.parameters= []
+gridConfig.parameters= [];

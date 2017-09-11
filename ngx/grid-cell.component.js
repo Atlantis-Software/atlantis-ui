@@ -28,7 +28,7 @@ export default class gridCellComponent {
       if (pipe.type === self.type) {
         index = i;
       }
-    })
+    });
     if (index !== -1) {
       if (Array.isArray(this.pipes[index])) {
         this.pipes[index].forEach(function(pipeType) {
@@ -37,7 +37,7 @@ export default class gridCellComponent {
             var args = [self.content].concat(pipeType.option);
             self.content = pipeType.pipeInjected.transform.apply(self, args);
           }
-        })
+        });
       } else {
         self.pipes[index].pipeInjected = self.injector.get(self.pipe[index], null);
         if (self.pipes[index].pipeInjected !== null) {

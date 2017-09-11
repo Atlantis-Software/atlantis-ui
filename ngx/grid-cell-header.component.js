@@ -28,7 +28,7 @@ export default class gridCellHeaderComponent {
       if (pipe.type === self.type) {
         index = i;
       }
-    })
+    });
     if (index !== -1) {
       if (Array.isArray(this.pipes[index])) {
         this.pipes[index].forEach(function(pipeType) {

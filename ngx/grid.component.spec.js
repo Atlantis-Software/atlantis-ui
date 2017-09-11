@@ -48,7 +48,7 @@ var types = [
       return 1;
     }
   },
-]
+];
 
 class gridTestComponent {
   static get annotations() {
@@ -85,7 +85,7 @@ class gridTestComponent {
         label: "testBoolean",
         type: 'boolean'
       }
-    ]
+    ];
 
     this.originalRows = [
       {
@@ -167,20 +167,20 @@ class gridTestComponent {
       case 'text':
         sortingFunc = function(a, b) {
           return a[columnToSort.label].localeCompare(b[columnToSort.label]) * (columnToSort.order === 'desc' ? -1 : 1);
-        }
+        };
         break;
       case 'boolean':
       case 'number':
         sortingFunc = function(a, b) {
           var comparison = a[columnToSort.label] > b[columnToSort.label];
           return columnToSort.order === 'desc' ? !comparison : comparison;
-        }
+        };
         break;
       case 'date':
         sortingFunc = function(a, b) {
           var comparison = moment(a[columnToSort.label]).isAfter(moment(b[columnToSort.label]));
           return columnToSort.order === 'desc' ? !comparison : comparison;
-        }
+        };
         break;
     }
     this.rows = this.rows.sort(sortingFunc);
@@ -219,7 +219,7 @@ describe('grid', function() {
 
     columns.forEach((column, index) => {
       assert.strictEqual(column.querySelector('span').innerText, gridComponent.columns[index].label);
-    })
+    });
 
     rows.forEach((row, indexRow) => {
       var cells = row.querySelectorAll('.gridCell');
@@ -232,8 +232,8 @@ describe('grid', function() {
           return;
         }
         assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
-      })
-    })
+      });
+    });
 
   }));
 
@@ -366,7 +366,7 @@ describe('grid', function() {
 
     columns.forEach((column, index) => {
       assert.strictEqual(column.querySelector('span').innerText, gridComponent.columns[index].label);
-    })
+    });
 
     columns[1].click();
     tick();
@@ -385,8 +385,8 @@ describe('grid', function() {
           return;
         }
         assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
-      })
-    })
+      });
+    });
 
     columns[1].click();
     tick();
@@ -405,8 +405,8 @@ describe('grid', function() {
           return;
         }
         assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
-      })
-    })
+      });
+    });
   }));
 
   it('should render sorted value, click on type text', fakeAsync(() => {
@@ -424,7 +424,7 @@ describe('grid', function() {
 
     columns.forEach((column, index) => {
       assert.strictEqual(column.querySelector('span').innerText, gridComponent.columns[index].label);
-    })
+    });
 
     columns[1].click();
     tick();
@@ -443,8 +443,8 @@ describe('grid', function() {
           return;
         }
         assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
-      })
-    })
+      });
+    });
 
     columns[1].click();
     tick();
@@ -463,8 +463,8 @@ describe('grid', function() {
           return;
         }
         assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
-      })
-    })
+      });
+    });
   }));
 
   it('should render sorted value, click on type date', fakeAsync(() => {
@@ -482,7 +482,7 @@ describe('grid', function() {
 
     columns.forEach((column, index) => {
       assert.strictEqual(column.querySelector('span').innerText, gridComponent.columns[index].label);
-    })
+    });
 
     columns[1].click();
     tick();
@@ -501,8 +501,8 @@ describe('grid', function() {
           return;
         }
         assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
-      })
-    })
+      });
+    });
 
     columns[1].click();
     tick();
@@ -521,8 +521,8 @@ describe('grid', function() {
           return;
         }
         assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
-      })
-    })
+      });
+    });
   }));
 
   it('should render sorted value, click on type boolean', fakeAsync(() => {
@@ -540,7 +540,7 @@ describe('grid', function() {
 
     columns.forEach((column, index) => {
       assert.strictEqual(column.querySelector('span').innerText, gridComponent.columns[index].label);
-    })
+    });
 
     columns[1].click();
     tick();
@@ -559,8 +559,8 @@ describe('grid', function() {
           return;
         }
         assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
-      })
-    })
+      });
+    });
 
     columns[1].click();
     tick();
@@ -579,8 +579,8 @@ describe('grid', function() {
           return;
         }
         assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
-      })
-    })
+      });
+    });
   }));
 
   it('should render correct value when we modify content, type number', fakeAsync(() => {
@@ -642,9 +642,9 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     var input = document.querySelector('input');
-    input.value = "test"
+    input.value = "test";
     input.dispatchEvent(new Event('blur'));
-    fixture.detectChanges()
+    fixture.detectChanges();
     tick();
     fixture.detectChanges();
     assert.equal(cells[2].querySelector('grid-cell').innerText, "test");
@@ -653,9 +653,9 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     input = document.querySelector('input');
-    input.value = 123
+    input.value = 123;
     input.dispatchEvent(new Event('blur'));
-    fixture.detectChanges()
+    fixture.detectChanges();
     tick();
     fixture.detectChanges();
     assert.equal(cells[2].querySelector('grid-cell').innerText, "123");
@@ -682,9 +682,9 @@ describe('grid', function() {
     fixture.detectChanges();
     var input = document.querySelector('input');
     var oldValue = input.value;
-    input.value = "123456789"
+    input.value = "123456789";
     input.dispatchEvent(new Event('blur'));
-    fixture.detectChanges()
+    fixture.detectChanges();
     tick();
     fixture.detectChanges();
     var correctDate = cells[3].querySelector('grid-cell').innerText;
@@ -696,9 +696,9 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     input = document.querySelector('input');
-    input.value = "2003-03-03"
+    input.value = "2003-03-03";
     input.dispatchEvent(new Event('blur'));
-    fixture.detectChanges()
+    fixture.detectChanges();
     tick();
     fixture.detectChanges();
     correctDate = cells[3].querySelector('grid-cell').innerText;
@@ -727,9 +727,9 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     var input = document.querySelector('input');
-    input.value = "test"
+    input.value = "test";
     input.dispatchEvent(new Event('blur'));
-    fixture.detectChanges()
+    fixture.detectChanges();
     tick();
     fixture.detectChanges();
     assert.equal(cells[4].querySelector('grid-cell').innerText, true);
@@ -738,9 +738,9 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     input = document.querySelector('input');
-    input.value = "true"
+    input.value = "true";
     input.dispatchEvent(new Event('blur'));
-    fixture.detectChanges()
+    fixture.detectChanges();
     tick();
     fixture.detectChanges();
     assert.equal(cells[4].querySelector('grid-cell').innerText, true);
@@ -749,7 +749,7 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     input = document.querySelector('input');
-    input.value = ""
+    input.value = "";
     input.dispatchEvent(new Event('blur'));
     fixture.detectChanges();
     tick();
@@ -760,7 +760,7 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     input = document.querySelector('input');
-    input.value = "0"
+    input.value = "0";
     input.dispatchEvent(new Event('blur'));
     fixture.detectChanges();
     tick();

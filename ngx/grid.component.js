@@ -44,9 +44,9 @@ export default class gridComponent {
             self.pipes[i][indexPipe] = {
               pipe: pipe,
               option: options || []
-            }
-          })
-          self.pipes[i].type = type.type
+            };
+          });
+          self.pipes[i].type = type.type;
         } else {
           var options = type.optionsPipe[i] || [];
           options = Array.isArray(options) ? options : options.split(':');
@@ -54,7 +54,7 @@ export default class gridComponent {
             pipe: self.pipes[i],
             type: type.type,
             option: options
-          }
+          };
         }
       }
     });
@@ -68,16 +68,16 @@ export default class gridComponent {
         if (column.type === type.type) {
           indexType = i;
         }
-      })
+      });
 
       if (indexType !== -1) {
         column.class = column.class || self.types[indexType].class;
         column.alignment = column.alignment || self.types[indexType].alignment;
         column.width = column.width || "auto";
       }
-    })
+    });
 
-    this.config = {}
+    this.config = {};
     this.config.footer = "none" || this.config.footer;
   }
 

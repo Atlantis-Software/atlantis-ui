@@ -6,7 +6,7 @@ export default  class GridAngularComponent {
       new Component({
         template: require('./grid.html')
       })
-    ]
+    ];
   }
   constructor(){
 
@@ -33,7 +33,7 @@ export default  class GridAngularComponent {
         label:"testBoolean",
         type: 'boolean'
       }
-    ]
+    ];
 
     this.originalRows = [
       {
@@ -117,20 +117,20 @@ export default  class GridAngularComponent {
       case 'text':
         sortingFunc = function(a, b) {
           return a[columnToSort.label].localeCompare(b[columnToSort.label]) * (columnToSort.order === 'desc' ? -1 : 1);
-        }
+        };
         break;
       case 'boolean':
       case 'number':
         sortingFunc = function(a, b) {
           var comparison = a[columnToSort.label] > b[columnToSort.label];
           return columnToSort.order === 'desc' ? !comparison : comparison;
-        }
+        };
         break;
       case 'date':
         sortingFunc = function(a, b) {
           var comparison = moment(a[columnToSort.label]).isAfter(moment(b[columnToSort.label]));
           return columnToSort.order === 'desc' ? !comparison : comparison;
-        }
+        };
         break;
     }
     this.rows = this.rows.sort(sortingFunc);
