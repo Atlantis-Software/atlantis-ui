@@ -39382,11 +39382,6 @@ var TreeComponent = function () {
     value: function onClick() {
       console.log(this.nodes);
     }
-  }, {
-    key: 'onSelect',
-    value: function onSelect(data) {
-      console.log(data);
-    }
   }]);
 
   return TreeComponent;
@@ -90204,7 +90199,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           get: function get() {
             return [new _core.Component({
               selector: 'tree-node',
-              template: '\n\t\t\t\t<div class="tree-node-line" style="padding-left:">\n\t        <span *ngIf="children?.length" class="tree-expander icon" [ngClass]="{\n\t\t\t\t\t\t\'icon-folder-open\': expanded,\n\t\t\t\t\t\t\'icon-folder\': !expanded,\n\t\t\t\t\t\t\'icon-disabled\': disabled\n\t\t\t\t\t}" (click)=\'ExpandClick()\'></span>\n\t        <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="tree-node-label"></span>\n          <span *ngIf="!template" [innerHTML]="selected" [class.disabled]="disabled"></span>\n\t        <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngOutletContext]="data"></ng-template>\n\t\t\t\t\t<input *ngIf="selectable" type="checkbox" [ngModel]="selected" class="tree-node-checkbox" (click)="onClick()">\n\t\t\t\t</div>\n        <ng-content *ngIf="expanded"></ng-content>\n        <tree-node *ngFor="let child of children" [hidden]="!children?.length || !expandable || !expanded"\n          [expandable]="child.expandable"\n          [expanded]="child.expanded"\n          [label]="child.label"\n          [model]="child.model"\n          [id]="child.id"\n          [children]="child.children"\n          [selectable]="child.selectable"\n          [template]="template"\n          [depth]="depth+1"\n          [(selected)]="child.selected"\n          (expand)="expand.emit($event)"\n          (collapse)="collapse.emit($event)"\n          (select)="onSelect($event)">\n        </tree-node>',
+              template: '\n\t\t\t\t<div class="tree-node-line" style="padding-left:">\n\t        <span *ngIf="children?.length" class="tree-expander icon" [ngClass]="{\n\t\t\t\t\t\t\'icon-folder-open\': expanded,\n\t\t\t\t\t\t\'icon-folder\': !expanded,\n\t\t\t\t\t\t\'icon-disabled\': disabled\n\t\t\t\t\t}" (click)=\'ExpandClick()\'></span>\n\t        <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="tree-node-label"></span>\n          <span *ngIf="!template" [innerHTML]="selected" [class.disabled]="disabled"></span>\n          <span *ngIf="!template" [innerHTML]="id" [class.disabled]="disabled"></span>\n\t        <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngOutletContext]="data"></ng-template>\n\t\t\t\t\t<input *ngIf="selectable" type="checkbox" [ngModel]="selected" class="tree-node-checkbox" (click)="onClick()">\n\t\t\t\t</div>\n        <ng-content *ngIf="expanded"></ng-content>\n        <tree-node *ngFor="let child of children" [hidden]="!children?.length || !expandable || !expanded"\n          [expandable]="child.expandable"\n          [expanded]="child.expanded"\n          [label]="child.label"\n          [model]="child.model"\n          [id]="child.id"\n          [children]="child.children"\n          [selectable]="child.selectable"\n          [template]="template"\n          [depth]="depth+1"\n          [(selected)]="child.selected"\n          (expand)="expand.emit($event)"\n          (collapse)="collapse.emit($event)"\n          (select)="onSelect($event)">\n        </tree-node>',
               inputs: ['node', 'label', 'model', 'children', 'expandable', 'expanded', 'selectable', 'disabled', 'template', 'depth', 'selected', 'id'],
               outputs: ['expand', 'collapse', 'select', 'selectedChange'],
               host: {
@@ -90414,17 +90409,17 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(treeComponent, [{
           key: 'ngAfterViewInit',
           value: function ngAfterViewInit() {
-            var recursiveSetId = function recursiveSetId(node) {
-              node.id = ++id;
+            var recursiveSetId = function recursiveSetId(node, index) {
+              node.id = index + 1;
               node.selected = node.selected || false;
               if (node.children) {
-                node.children.forEach(function (child) {
-                  recursiveSetId(child);
+                node.children.forEach(function (child, index) {
+                  recursiveSetId(child, index);
                 });
               }
             };
-            this.nodes.forEach(function (node) {
-              recursiveSetId(node);
+            this.nodes.forEach(function (node, index) {
+              recursiveSetId(node, index);
             });
             this.cdr.detectChanges();
           }
