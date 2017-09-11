@@ -23,7 +23,7 @@ var getNode = function(label) {
     }
   });
   return result;
-}
+};
 
 class treeTestComponent {
   constructor() {
@@ -169,18 +169,18 @@ describe('tree', function() {
             }
           }
 
-        })
+        });
         assert(found, 'Node not found');
         if (node.children) {
           checkNodes(node.children, depth + 1, node);
         }
       });
-    }
+    };
     checkNodes(testComponent.nodes, 1);
 
     treeNodeLines.forEach((treeNodeLine) => {
       assert.strictEqual(treeNodeLine.querySelector('.tree-node-checkbox').checked, false);
-    })
+    });
   }));
 
   it('should render new selected value when clicking on deepest element', fakeAsync(() => {
@@ -208,7 +208,7 @@ describe('tree', function() {
         assert(treeNodeLine.querySelector('.tree-node-checkbox').indeterminate, 'Node should be indeterminate');
       }
       assert(!treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node shouldn\'t be checked');
-    })
+    });
   }));
 
   it('should render new selected value when clicking on first element', fakeAsync(() => {
@@ -234,7 +234,7 @@ describe('tree', function() {
         return;
       }
       assert(!treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node shouldn\'t be checked');
-    })
+    });
   }));
 
   it('should render new selected value when clicking on middle depth element', fakeAsync(() => {
@@ -263,7 +263,7 @@ describe('tree', function() {
         assert(treeNodeLine.querySelector('.tree-node-checkbox').indeterminate, 'Node should be indeterminate');
       }
       assert(!treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node shouldn\'t be checked');
-    })
+    });
   }));
 
   it('should render new selected value when clicking on parent element then on deepest children', fakeAsync(() => {
@@ -292,7 +292,7 @@ describe('tree', function() {
         assert(treeNodeLine.querySelector('.tree-node-checkbox').indeterminate, 'Node should be indeterminate');
       }
       assert(!treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node shouldn\'t be checked');
-    })
+    });
 
     node = getNode('Node 2442');
     assert(node, 'Node not found');
@@ -315,7 +315,7 @@ describe('tree', function() {
         assert(treeNodeLine.querySelector('.tree-node-checkbox').indeterminate, 'Node should be indeterminate');
       }
       assert(!treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node shouldn\'t be checked');
-    })
+    });
   }));
 
   it('should render new selected value when clicking on parent then child', fakeAsync(() => {
@@ -356,7 +356,7 @@ describe('tree', function() {
         assert(treeNodeLine.querySelector('.tree-node-checkbox').indeterminate, 'Node should be indeterminate');
       }
       assert(!treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node shouldn\'t be checked');
-    })
+    });
   }));
 
   it('should render new selected value when clicking on child then parent', fakeAsync(() => {
@@ -395,7 +395,7 @@ describe('tree', function() {
         assert(treeNodeLine.querySelector('.tree-node-checkbox').indeterminate, 'Node should be indeterminate');
       }
       assert(!treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node shouldn\'t be checked');
-    })
+    });
   }));
 
   it('should render new selected value when clicking on parent then deepest child then parent again', fakeAsync(() => {
@@ -444,7 +444,7 @@ describe('tree', function() {
         assert(treeNodeLine.querySelector('.tree-node-checkbox').indeterminate, 'Node should be indeterminate');
       }
       assert(!treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node shouldn\'t be checked');
-    })
+    });
   }));
 
   it('should render new selected value when clicking on parent then deepest child then child\'s direct parent', fakeAsync(() => {
@@ -493,6 +493,6 @@ describe('tree', function() {
         assert(treeNodeLine.querySelector('.tree-node-checkbox').indeterminate, 'Node should be indeterminate');
       }
       assert(!treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node shouldn\'t be checked');
-    })
+    });
   }));
 });

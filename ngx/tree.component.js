@@ -6,8 +6,6 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 
-var id = 0;
-
 export default class treeComponent {
   static get annotations() {
     return [
@@ -48,17 +46,17 @@ export default class treeComponent {
   }
 
   ngAfterViewInit() {
-    var recursiveSetId = function(node) {
-      node.id = ++id;
+    var recursiveSetId = function(node, index) {
+      node.id = index+1;
       node.selected = node.selected || false;
       if (node.children) {
-        node.children.forEach(function(child) {
-          recursiveSetId(child);
+        node.children.forEach(function(child, index) {
+          recursiveSetId(child, index);
         });
       }
-    }
-    this.nodes.forEach(function(node) {
-      recursiveSetId(node);
+    };
+    this.nodes.forEach(function(node, index) {
+      recursiveSetId(node, index);
     });
     this.cdr.detectChanges();
   }

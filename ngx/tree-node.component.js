@@ -22,6 +22,7 @@ export default class treeNodeComponent {
 					}" (click)='ExpandClick()'></span>
 	        <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="tree-node-label"></span>
           <span *ngIf="!template" [innerHTML]="selected" [class.disabled]="disabled"></span>
+          <span *ngIf="!template" [innerHTML]="id" [class.disabled]="disabled"></span>
 	        <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngOutletContext]="data"></ng-template>
 					<input *ngIf="selectable" type="checkbox" [ngModel]="selected" class="tree-node-checkbox" (click)="onClick()">
 				</div>
