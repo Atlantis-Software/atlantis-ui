@@ -54,8 +54,8 @@ var types = [
   {
     type: "date",
     alignment: "right",
-    pipes: [DatePipe, UpperCasePipe],
-    optionsPipe: ['shortDate:longDate', ["test", "test2"]],
+    pipes: [DatePipe],
+    optionsPipe: ['shortDate'],
     transformation: function(val) {
       if (moment(val).isValid()) {
         return moment(val).toString();
@@ -86,7 +86,7 @@ var types = [
       return 1;
     }
   },
-]
+];
 
 
 AppModule.annotations = [

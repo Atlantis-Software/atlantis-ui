@@ -15,7 +15,7 @@
         Step 2 : Import the component Modules, use standard widget and CSS or less
       </h3>
       <p>
-        Import the ngModule for each component you want to use or in a shared module :
+        Import the ngModule for each component you want to use with the function forRoot() or in a shared module :
       </p>
       <pre>
         {{importHtml}}
@@ -29,6 +29,91 @@
       <p>
         For use less, add link to less and add less compiler or loader.
       </p>
+      <p>
+        In the function forRoot we just need to add a parameters objects for the grid component
+      </p>
+      <h3>
+        Example of parameters :
+      </h3>
+      <pre>
+        {{gridParameters}}
+      </pre>
+      <h3>
+        Parameters :
+      </h3>
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>
+              Parameter
+            </th>
+            <th>
+              Type
+            </th>
+            <th>
+              Description
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              type
+            </td>
+            <td>
+              string
+            </td>
+            <td>
+              It's the type you want to define, it allow to put default parameters to a type column
+            </td>
+          </tr>
+          <tr>
+            <td>
+              alignment
+            </td>
+            <td>
+              string
+            </td>
+            <td>
+              Optional; Change the alignment of the column and all the cell of this column; it's use like css property
+            </td>
+          </tr>
+          <tr>
+            <td>
+              pipes
+            </td>
+            <td>
+              Array of pipes
+            </td>
+            <td>
+              Optional; That need to provide first the pipes in your module.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              optionsPipe
+            </td>
+            <td>
+              Array of string
+            </td>
+            <td>
+              Should define in same order has pipes; You can have multiple options, that just need to add a array in place of string
+            </td>
+          </tr>
+          <tr>
+            <td>
+              transformation
+            </td>
+            <td>
+              function
+            </td>
+            <td>
+              That allow to pass a function that be fire when we modify content into a cell. That allow to have correct value; for incorrect value always return "invalid value"
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
     </div>
 
   </div>

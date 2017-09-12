@@ -1,12 +1,225 @@
-
 <div class="container">
-
+  <h3>
+    Example :
+  </h3>
   <div class="row">
-
-    <grid class="table table-bordered" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
-
-    </grid>
-
+    <grid class="table table-bordered" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)"></grid>
   </div>
+  <h4>
+    Html :
+  </h4>
+  <pre>
+    {{gridHtml}}
+  </pre>
+  <blockquote>
+    <p>
+      A grid component is like a table so we can use class like table
+    </p>
+  </blockquote>
 
+  <h3>
+    grid parameters:
+  </h3>
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>
+          Parameter
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          columns
+        </td>
+        <td>
+          Array of objects
+        </td>
+        <td>
+          Different columns with all default parameters, columns name, and type of the columns
+        </td>
+      </tr>
+      <tr>
+        <td>
+          rows
+        </td>
+        <td>
+          Array of objects
+        </td>
+        <td>
+          The value of rows we send to widget
+        </td>
+      </tr>
+      <tr>
+        <td>
+          selected
+        </td>
+        <td>
+          Array of objects
+        </td>
+        <td>
+          The value we selected in rows for changes selection in widget
+        </td>
+      </tr>
+      <tr>
+        <td>
+          selectedRows
+        </td>
+        <td>
+          Function with $event
+        </td>
+        <td>
+          Allow to collect what we select into widget
+        </td>
+      </tr>
+      <tr>
+        <td>
+          sort
+        </td>
+        <td>
+          Function with $event
+        </td>
+        <td>
+          Collect all the sort we define in widget, when we click on a column, this update the $event value
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    Columns object:
+  </h3>
+  <h4>
+    Exemple :
+  </h4>
+  <pre>
+    {{gridColumns}}
+  </pre>
+  <h4>
+    Parameters:
+  </h4>
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>
+          Parameter
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          value
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          label
+        </td>
+        <td>
+          string
+        </td>
+        <td>
+          any
+        </td>
+        <td>
+          It's the name of the column
+        </td>
+      </tr>
+      <tr>
+        <td>
+          alignment
+        </td>
+        <td>
+          string
+        </td>
+        <td>
+          like the css property
+        </td>
+        <td>
+          Optional; Change the alignment of the column and all the cell of this column
+        </td>
+      </tr>
+      <tr>
+        <td>
+          width
+        </td>
+        <td>
+          String
+        </td>
+        <td>
+          Value + "em" or "px" or "%"
+        </td>
+        <td>
+          Optional; Define the width of the column
+        </td>
+      </tr>
+      <tr>
+        <td>
+          type
+        </td>
+        <td>
+          string
+        </td>
+        <td>
+          Any you defined in ngx-atlantis-ui module
+        </td>
+        <td>
+          Per default: string; Define default value of the column with the param we send to ngx-atlantis-ui module.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          notSortable
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          true, false
+        </td>
+        <td>
+          Optional per default : false; Define if we can sort the column
+        </td>
+      </tr>
+      <tr>
+        <td>
+          notEditable
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          true, false
+        </td>
+        <td>
+          Optional per default : false; Define if we edit the content of the column
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h4>
+    Rows object:
+  </h4>
+  <pre>
+    {{gridRows}}
+  </pre>
+  <blockquote>
+    <p>
+      Any rows have same syntax, we create attribute with column name.
+    </p>
+    <p>
+      It's better to create a copy of the original rows to avoid to modify the rows.
+    </p>
+  </blockquote>
 </div>
