@@ -39346,7 +39346,9 @@ var TreeComponent = function () {
       label: 'Node 2',
       expandable: true,
       expanded: true,
-      children: [{ label: 'Node 21' }, { label: 'Node 22' }, {
+      children: [{ label: 'Node 21' }, { label: 'Node 22',
+        disabled: true
+      }, {
         label: 'Node 23',
         expanded: false,
         expandable: true,
@@ -39362,27 +39364,10 @@ var TreeComponent = function () {
       children: [{ label: 'Node 41' }, { label: 'Node 42' }, { label: 'Node 43' }, { label: 'Node 44' }],
       expandable: true
     }];
+    this.treeHtml = '\n    <tree class="col-md-4" [nodes]="nodes" (select)=\'onSelect($event)\'></tree>';
 
-    this.nodes1 = [{
-      label: 'Node1', model: { type: 'Array', count: 1 }
-    }, {
-      label: 'Node2',
-      expandable: true,
-      model: { type: 'Object' },
-      children: [{
-        label: 'Node1', model: { type: 'Array', count: 1 }
-      }]
-    }, {
-      label: 'Node3', model: { type: 'Array', count: 1 }
-    }];
+    this.treeNodes = '\n    this.nodes = [\n      { label: \'Node 1\',\n        selectable: false\n      },\n      {\n        label: \'Node 2\',\n        expandable: true,\n        expanded: true,\n        children: [\n          { label: \'Node 21\' },\n          { label: \'Node 22\' },\n          {\n            label: \'Node 23\',\n            expanded: false,\n            expandable: true,\n            children: [\n              { label: \'Node 231\' },\n              { label: \'Node 232\' },\n              { label: \'Node 233\' },\n              { label: \'Node 234\' }\n            ]\n          },\n          {\n            label: \'Node 24\',\n            expandable: true,\n            expanded: true,\n            children: [\n              { label: \'Node 241\' },\n              { label: \'Node 242\' },\n              { label: \'Node 243\' },\n              { label: \'Node 244\' }\n            ]\n          }\n        ]\n      },\n      { label: \'Node 3\' },\n      {\n        label: \'Node 4\',\n        children: [\n          { label: \'Node 41\' },\n          { label: \'Node 42\' },\n          { label: \'Node 43\' },\n          { label: \'Node 44\' }\n        ],\n        expandable: true\n      }\n    ];';
   }
-
-  _createClass(TreeComponent, [{
-    key: 'onClick',
-    value: function onClick() {
-      console.log(this.nodes);
-    }
-  }]);
 
   return TreeComponent;
 }();
@@ -90199,7 +90184,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           get: function get() {
             return [new _core.Component({
               selector: 'tree-node',
-              template: '\n\t\t\t\t<div class="tree-node-line" style="padding-left:">\n\t        <span *ngIf="children?.length" class="tree-expander icon" [ngClass]="{\n\t\t\t\t\t\t\'icon-folder-open\': expanded,\n\t\t\t\t\t\t\'icon-folder\': !expanded,\n\t\t\t\t\t\t\'icon-disabled\': disabled\n\t\t\t\t\t}" (click)=\'ExpandClick()\'></span>\n\t        <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="tree-node-label"></span>\n          <span *ngIf="!template" [innerHTML]="selected" [class.disabled]="disabled"></span>\n          <span *ngIf="!template" [innerHTML]="id" [class.disabled]="disabled"></span>\n\t        <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngOutletContext]="data"></ng-template>\n\t\t\t\t\t<input *ngIf="selectable" type="checkbox" [ngModel]="selected" class="tree-node-checkbox" (click)="onClick()">\n\t\t\t\t</div>\n        <ng-content *ngIf="expanded"></ng-content>\n        <tree-node *ngFor="let child of children" [hidden]="!children?.length || !expandable || !expanded"\n          [expandable]="child.expandable"\n          [expanded]="child.expanded"\n          [label]="child.label"\n          [model]="child.model"\n          [id]="child.id"\n          [children]="child.children"\n          [selectable]="child.selectable"\n          [template]="template"\n          [depth]="depth+1"\n          [(selected)]="child.selected"\n          (expand)="expand.emit($event)"\n          (collapse)="collapse.emit($event)"\n          (select)="onSelect($event)">\n        </tree-node>',
+              template: '\n\t\t\t\t<div class="tree-node-line" style="padding-left:">\n\t        <span *ngIf="children?.length" class="tree-expander icon" [ngClass]="{\n\t\t\t\t\t\t\'icon-folder-open\': expanded,\n\t\t\t\t\t\t\'icon-folder\': !expanded,\n\t\t\t\t\t\t\'icon-disabled\': disabled\n\t\t\t\t\t}" (click)=\'ExpandClick()\'></span>\n\t        <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="tree-node-label"></span>\n          <span *ngIf="!template" [innerHTML]="selected" [class.disabled]="disabled"></span>\n          <span *ngIf="!template" [innerHTML]="id" [class.disabled]="disabled"></span>\n\t        <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngOutletContext]="data"></ng-template>\n\t\t\t\t\t<input *ngIf="selectable" type="checkbox" [ngModel]="selected" class="tree-node-checkbox" (click)="onClick()" [attr.disabled]="disabled">\n\t\t\t\t</div>\n        <ng-content *ngIf="expanded"></ng-content>\n        <tree-node *ngFor="let child of children" [hidden]="!children?.length || !expandable || !expanded"\n          [expandable]="child.expandable"\n          [expanded]="child.expanded"\n          [label]="child.label"\n          [model]="child.model"\n          [id]="child.id"\n          [children]="child.children"\n          [selectable]="child.selectable"\n          [template]="template"\n          [depth]="depth+1"\n          [disabled]="child.disabled"\n          [(selected)]="child.selected"\n          (expand)="expand.emit($event)"\n          (collapse)="collapse.emit($event)"\n          (select)="onSelect($event)">\n        </tree-node>',
               inputs: ['node', 'label', 'model', 'children', 'expandable', 'expanded', 'selectable', 'disabled', 'template', 'depth', 'selected', 'id'],
               outputs: ['expand', 'collapse', 'select', 'selectedChange'],
               host: {
@@ -90230,23 +90215,24 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             return this.elementRef.nativeElement.querySelector('.tree-node-checkbox') || {};
           }
         }, {
-          key: 'ngOnInit',
-          value: function ngOnInit() {
-            if (!this.selected) {
-              // this.selected = false;
-            }
-          }
-        }, {
           key: 'ngOnChanges',
           value: function ngOnChanges() {
             var _this = this;
 
-            if (this.selected === void 0) {
+            if (this.selectable !== true && this.selectable !== false) {
+              this.selectable = true;
+            }
+
+            if (this.disabled) {
               return;
             }
 
-            if (this.selectable !== true && this.selectable !== false) {
-              this.selectable = true;
+            if (!this.selectable) {
+              return;
+            }
+
+            if (this.selected === void 0) {
+              return;
             }
 
             if (!this.parent || this.parent.indeterminate) {
@@ -90260,7 +90246,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             if (this.children) {
               this.children.forEach(function (child) {
-                child.selected = _this.selected;
+                if (!child.disabled && !child.selectable) {
+                  child.selected = _this.selected;
+                }
               });
             }
             this.selectedChange.emit(this.selected);
@@ -90296,7 +90284,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             this.indeterminate = false;
             if (this.children) {
               this.children.forEach(function (child) {
-                child.selected = _this2.selected;
+                if (!child.disabled && !child.selectable) {
+                  child.selected = _this2.selected;
+                }
               });
             }
             this.selectedChange.emit(this.selected);
@@ -90305,18 +90295,30 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
           key: 'onSelect',
           value: function onSelect() {
+            if (this.disabled) {
+              return;
+            }
             var checkbox = this._getCheckbox();
             var nbSelected = 0;
             var isIndeterminate = false;
+            var childIsSelected = false;
 
             this.nodeChildren.forEach(function (child) {
               if (child.selected) {
+                ++nbSelected;
+                childIsSelected = true;
+              }
+              if (child.disabled) {
                 ++nbSelected;
               }
               if (child.indeterminate) {
                 isIndeterminate = true;
               }
             });
+
+            if (!childIsSelected) {
+              nbSelected = 0;
+            }
 
             if (isIndeterminate) {
               this.selected = false;
@@ -90377,15 +90379,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }
       }
 
-      var id = 0;
-
       var treeComponent = function () {
         _createClass(treeComponent, null, [{
           key: 'annotations',
           get: function get() {
             return [new _core.Component({
               selector: 'tree',
-              template: '\n        <tree-node *ngFor="let node of nodes"\n          [expandable]="node.expandable"\n          [expanded]="node.expanded"\n          [label]="node.label"\n          [model]="node.model"\n          [id]="node.id"\n          [children]="node.children"\n          [selectable]="node.selectable"\n          [template]="template"\n          [depth]="depth"\n          [(selected)]="node.selected"\n          (expand)="expand.emit($event)"\n          (collapse)="collapse.emit($event)"\n          (select)="onSelect($event)">\n        </tree-node>\n        <ng-content *ngIf="!nodes"></ng-content>',
+              template: '\n        <tree-node *ngFor="let node of nodes"\n          [expandable]="node.expandable"\n          [expanded]="node.expanded"\n          [label]="node.label"\n          [model]="node.model"\n          [id]="node.id"\n          [children]="node.children"\n          [selectable]="node.selectable"\n          [template]="template"\n          [depth]="depth"\n          [disabled]="node.disabled"\n          [(selected)]="node.selected"\n          (expand)="expand.emit($event)"\n          (collapse)="collapse.emit($event)"\n          (select)="onSelect($event)">\n        </tree-node>\n        <ng-content *ngIf="!nodes"></ng-content>',
               inputs: ['nodes', 'template', 'depth'],
               outputs: ['expand', 'collapse', 'select', 'nodesChanges'],
               queries: {
@@ -90966,7 +90966,7 @@ module.exports = "<div class=\"container\"> <h3> Example </h3> <div class=\"row 
 /* 106 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\"> <h3> Example with nodes object </h3> <div class=\"row container-fluid\"> <tree class=\"col-md-4\" [nodes]=\"nodes\" (select)=\"onSelect($event)\"></tree> </div> <button (click)=\"onClick()\">grjskdjslkf</button> <h3> Example with custom template </h3> </div> ";
+module.exports = "<div class=\"container\"> <h3> Example : </h3> <div class=\"row container-fluid form-group\"> <tree class=\"col-md-4\" [nodes]=\"nodes\" (select)=\"onSelect($event)\"></tree> </div> <pre>\n    {{treeHtml}}\n  </pre> <pre>\n    {{treeNodes}}\n  </pre> <h3> Nodes attribut description : </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> attribut </th> <th> Type </th> <th> Description </th> </tr> </thead> <tbody> <tr> <td> label </td> <td> string </td> <td> It's represent the content of a node for shown in tree </td> </tr> <tr> <td> selectable </td> <td> boolean </td> <td> Optional; per default : true; allow to deactivate the possibility to select a node </td> </tr> <tr> <td> expandable </td> <td> boolean </td> <td> It's require for a node with node's children </td> </tr> <tr> <td> expanded </td> <td> boolean </td> <td> Optional; per default : false; Define if the node is expanded or not; </td> </tr> <tr> <td> children </td> <td> Array of nodes </td> <td> Require if we want a sub-tree, all object in children have same syntax that standard node </td> </tr> <tr> <td> disabled </td> <td> boolean </td> <td> Define if a node is disabled or not, that causes to desactive selection and possibility to expand the node </td> </tr> </tbody> </table> <blockquote> <p> An id is automaticly add to add node, this id is define compared to the index in the parent </p> </blockquote> </div> ";
 
 /***/ }),
 /* 107 */

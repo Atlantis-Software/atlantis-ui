@@ -1,53 +1,105 @@
 <div class="container">
   <h3>
-    Example with nodes object
+    Example :
   </h3>
-  <div class="row container-fluid">
+  <div class="row container-fluid form-group">
     <tree class="col-md-4" [nodes]="nodes" (select)='onSelect($event)'></tree>
   </div>
-
-  <button (click)="onClick()">grjskdjslkf</button>
-
-  <!-- <h3>
-    Example with html tags
-  </h3>
-  <div class="row container-fluid">
-    <tree class="col-md-4">
-      <tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [selectable]="true" [depth]=1>
-        <tree>
-          <tree-node [label]="'Node 1'" [depth]=2></tree-node>
-          <tree-node [label]="'Node 2'" [depth]=2></tree-node>
-          <tree-node [label]="'Node 3'" [depth]=2></tree-node>
-        </tree>
-      </tree-node>
-      <tree-node [label]="'Node 3'" [depth]=1 [selectable]="true"></tree-node>
-      <tree-node [label]="'Node 4'" [depth]=1 [selectable]="true" [expandable]="true" [expanded]="false">
-        <tree>
-          <tree-node [label]="'Node 1'" [depth]=2></tree-node>
-          <tree-node [label]="'Node 2'" [depth]=2 [expandable]="true" [expanded]="true" [disabled]="true">
-            <tree>
-              <tree-node [label]="'Node 1'" [depth]=3></tree-node>
-              <tree-node [label]="'Node 2'" [depth]=3></tree-node>
-              <tree-node [label]="'Node 3'" [depth]=3></tree-node>
-            </tree>
-          </tree-node>
-          <tree-node [label]="'Node 3'" [depth]=2></tree-node>
-        </tree>
-      </tree-node>
-      <tree-node [label]="'Node 1'" [depth]=1 [selectable]="true"></tree-node>
-      <tree-node [label]="'Node 5'" [depth]=1 [selectable]="true"></tree-node>
-    </tree>
-  </div> -->
-
+  <pre>
+    {{treeHtml}}
+  </pre>
+  <pre>
+    {{treeNodes}}
+  </pre>
   <h3>
-    Example with custom template
+    Nodes attribut description :
   </h3>
-
-  <!-- <div class="row container-fluid">
-    <tree [nodes]="nodes1">
-      <ng-template let-label="label" let-model="model">
-        <code><strong>{{label}}</strong> | {{model.type}}</code>
-      </ng-template>
-    </tree>
-  </div> -->
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>
+          attribut
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          label
+        </td>
+        <td>
+          string
+        </td>
+        <td>
+          It's represent the content of a node for shown in tree
+        </td>
+      </tr>
+      <tr>
+        <td>
+          selectable
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          Optional; per default : true; allow to deactivate the possibility to select a node
+        </td>
+      </tr>
+      <tr>
+        <td>
+          expandable
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          It's require for a node with node's children
+        </td>
+      </tr>
+      <tr>
+        <td>
+          expanded
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          Optional; per default : false; Define if the node is expanded or not;
+        </td>
+      </tr>
+      <tr>
+        <td>
+          children
+        </td>
+        <td>
+          Array of nodes
+        </td>
+        <td>
+          Require if we want a sub-tree, all object in children have same syntax that standard node
+        </td>
+      </tr>
+      <tr>
+        <td>
+          disabled
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          Define if a node is disabled or not, that causes to desactive selection and possibility to expand the node
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <blockquote>
+    <p>
+      An id is automaticly add to add node, this id is define compared to the index in the parent
+    </p>
+  </blockquote>
 </div>
