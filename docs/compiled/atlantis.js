@@ -38337,6 +38337,12 @@ var GridAngularComponent = function () {
   function GridAngularComponent() {
     _classCallCheck(this, GridAngularComponent);
 
+    this.gridHtml = '\n    <grid class="table table-bordered" [columns]= "columns" [rows]= "rows"\n      (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">\n    </grid>';
+
+    this.gridRows = '\n    this.originalRows = [\n      {\n        test: "1",\n        testNumber : 2,\n        testText : "1",\n        testDate : new Date(),\n        testBoolean: 0\n      },\n      {\n        test: "2",\n        testNumber : 6,\n        testText : "5",\n        testDate : new Date(0),\n        testBoolean: 1\n      },\n      {\n        test : "3",\n        testNumber : 5,\n        testText : \'4\',\n        testDate : new Date(),\n        testBoolean: 1\n      },\n      {\n        test : "4",\n        testNumber : 42,\n        testText : "8",\n        testDate : new Date(\'05/09/2005\'),\n        testBoolean: 1\n      },\n      {\n        test : "5",\n        testNumber : 27,\n        testText : "4",\n        testDate : new Date(),\n        testBoolean: 0\n      },\n      {\n        test : "6",\n        testNumber : 3,\n        testText : "7",\n        testDate : new Date(\'07/03/2015\'),\n        testBoolean: 0\n      },\n      {\n        test : "7",\n        testNumber : 27,\n        testText : "9",\n        testDate : new Date(\'05/09/2005\'),\n        testBoolean: 0\n      },\n      {\n        test : "8",\n        testNumber : 152,\n        testText : \'32\',\n        testDate : new Date(),\n        testBoolean: 1\n      }\n    ];\n\n    this.rows = [...this.originalRows];';
+
+    this.gridColumns = '\n    this.columns= [\n      {\n        label:"test",\n        alignment: "center",\n        notSortable: true,\n        notEditable: true\n      },\n      {\n        label:"testNumber",\n        width: "150px",\n        type: "number"\n      },\n      {\n        label:"testText"\n      },\n      {\n        label:"testDate",\n        type: \'date\'\n      },\n      {\n        label:"testBoolean",\n        type: \'boolean\'\n      }\n    ];';
+
     this.columns = [{
       label: "test",
       alignment: "center",
@@ -38493,7 +38499,8 @@ var HomeComponent = function () {
   function HomeComponent() {
     _classCallCheck(this, HomeComponent);
 
-    this.importHtml = '\n    import {ngxAtlUiModule} from \'path/atlantis-ui-ngx\' or \'aliasWithWebpack\'\n\n    @NgModule({\n      ...\n      import: [ngxAtlUiModule],\n      ...\n    })';
+    this.importHtml = '\n    import {ngxAtlUiModule} from \'path/atlantis-ui-ngx\' or \'aliasWithWebpack\'\n\n    @NgModule({\n      ...\n      import: [ngxAtlUiModule.forRoot(object)],\n      ...\n    })';
+    this.gridParameters = '\n    var types = [\n      {\n        type: "date",\n        alignment: "right",\n        pipes: [DatePipe],\n        optionsPipe: [\'shortDate\'],\n        transformation: function(val) {\n          if (moment(val).isValid()) {\n            return moment(val).toString();\n          } else {\n            return "invalid value";\n          }\n        }\n      },\n      {\n        type: \'number\',\n        transformation: function(val) {\n          if (!isNaN(val)) {\n            return val;\n          } else {\n            return "invalid value";\n          }\n        }\n      },\n      {\n        type: \'boolean\',\n        transformation: function(val) {\n          if (typeof val === void 0 || val === null) {\n            return val;\n          }\n          if (!val || val == \'0\' || val == \'false\') {\n            return 0;\n          }\n          return 1;\n        }\n      },\n    ];';
   }
 
   return HomeComponent;
@@ -88374,7 +88381,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                   }
                 });
               }
-              this.rows[i][this.columns[y].label] = value;
+              if (value !== "invalid value") {
+                this.rows[i][this.columns[y].label] = value;
+              }
               this.changingCellContent = false;
             } else {
               this.changingCellContent = coordinate;
@@ -88509,7 +88518,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             return [new _core.Component({
               selector: 'grid-cell',
               template: '{{content}}',
-              inputs: ['content', 'type', 'pipes']
+              inputs: ['content', 'type', 'pipes'],
+              styles: [":host { user-select: none; -moz-user-select: none; }"]
             })];
           }
         }]);
@@ -88643,8 +88653,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           get: function get() {
             return [new _core.Component({
               selector: 'grid-header',
-              template: '\n\t\t\t\t<div class="gridRow">\n\t\t\t\t\t<div *ngFor= "let column of columns; let i = index;" class="gridHead" [ngClass]="column.class" [style.width]="column.width" (click)="onSort(column, i)">\n\t\t\t\t\t\t<grid-cell-header [content]="column.label" [pipes]="pipes" [sortingClass]="column.sortingClass">\n\t\t\t\t\t\t</grid-cell-header>\n\t        </div>\n\t\t\t\t</div>',
-              styles: ['\n          :host { display : table-header-group; }\n          .gridHead { display : table-cell; }\n\t\t\t\t\t.gridRow { display : table-row; }\n          '],
+              template: '\n\t\t\t\t<div class="gridRow">\n\t\t\t\t\t<div *ngFor= "let column of columns; let i = index;" class="gridHead" [ngClass]="column.class" [class.sortable]="!column.notSortable" [style.width]="column.width" (click)="onSort(column, i)">\n\t\t\t\t\t\t<grid-cell-header [content]="column.label" [pipes]="pipes" [sortingClass]="column.sortingClass">\n\t\t\t\t\t\t</grid-cell-header>\n\t        </div>\n\t\t\t\t</div>',
+              styles: ['\n          :host { display : table-header-group; }\n          .gridHead { display : table-cell; }\n\t\t\t\t\t.gridRow { display : table-row; }\n          .sortable { cursor : pointer }\n          '],
               inputs: ['columns', 'pipes'],
               outputs: ['sort']
             })];
@@ -90435,13 +90445,13 @@ var AppModule = exports.AppModule = function AppModule() {};
 var types = [{
   type: "date",
   alignment: "right",
-  pipes: [_common.DatePipe, _common.UpperCasePipe],
-  optionsPipe: ['shortDate:longDate', ["test", "test2"]],
+  pipes: [_common.DatePipe],
+  optionsPipe: ['shortDate:longDate'],
   transformation: function transformation(val) {
     if (moment(val).isValid()) {
       return moment(val).toString();
     } else {
-      return moment().toString();
+      return "invalid value";
     }
   }
 }, {
@@ -90450,7 +90460,7 @@ var types = [{
     if (!isNaN(val)) {
       return val;
     } else {
-      return 0;
+      return "invalid value";
     }
   }
 }, {
@@ -90642,7 +90652,7 @@ module.exports = "<div class=\"container\"> <h3> Example : </h3> <div class=\"ro
 /* 83 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"sidebar-wrapper\"> <ul class=\"sidebar-nav\"> <li> <a [routerLink]=\"['/home']\">Home</a> </li> <li> <a [routerLink]=\"['/accordion']\">Accordion</a> </li> <li> <a [routerLink]=\"['/button']\">Button</a> </li> <li> <a [routerLink]=\"['/buttongroups']\">Button groups</a> </li> <li> <a [routerLink]=\"['/carouselAngular']\">Carousel</a> </li> <li> <a [routerLink]=\"['/datepickerAngular']\">Datepicker</a> </li> <li> <a [routerLink]=\"['/dropdownAngular']\">Dropdown</a> </li> <li> <a [routerLink]=\"['/forms']\">Forms</a> </li> <li> <a [routerLink]=\"['/grid']\">Grid</a> </li> <li> <a [routerLink]=\"['/gridAngular']\">Grid angular</a> </li> <li> <a [routerLink]=\"['/icon']\">Icon</a> </li> <li> <a [routerLink]=\"['/input']\">Input</a> </li> <li> <a [routerLink]=\"['/inputgroup']\">Inputgroup</a> </li> <li> <a [routerLink]=\"['/modalAngular']\">Modal</a> </li> <li> <a [routerLink]=\"['/navbar']\">Navbar</a> </li> <li> <a [routerLink]=\"['/paginationAngular']\">Pagination</a> </li> <li> <a [routerLink]=\"['/popover']\">Popover</a> </li> <li> <a [routerLink]=\"['/progressBar']\">Progress bar</a> </li> <li> <a [routerLink]=\"['/selectpickerAngular']\">Selectpicker</a> </li> <li> <a [routerLink]=\"['/slidepickerAngular']\">Slidepicker</a> </li> <li> <a [routerLink]=\"['/table']\">Table</a> </li> <li> <a [routerLink]=\"['/tooltip']\">Tooltip</a> </li> </ul> </div> <div> <main> <router-outlet></router-outlet> </main> </div> <footer> </footer> ";
+module.exports = "<div id=\"sidebar-wrapper\"> <ul class=\"sidebar-nav\"> <li> <a [routerLink]=\"['/home']\">Home</a> </li> <li> <a [routerLink]=\"['/accordion']\">Accordion</a> </li> <li> <a [routerLink]=\"['/button']\">Button</a> </li> <li> <a [routerLink]=\"['/buttongroups']\">Button groups</a> </li> <li> <a [routerLink]=\"['/carouselAngular']\">Carousel</a> </li> <li> <a [routerLink]=\"['/datepickerAngular']\">Datepicker</a> </li> <li> <a [routerLink]=\"['/dropdownAngular']\">Dropdown</a> </li> <li> <a [routerLink]=\"['/forms']\">Forms</a> </li> <li> <a [routerLink]=\"['/grid']\">Grid HTML</a> </li> <li> <a [routerLink]=\"['/gridAngular']\">Grid angular</a> </li> <li> <a [routerLink]=\"['/icon']\">Icon</a> </li> <li> <a [routerLink]=\"['/input']\">Input</a> </li> <li> <a [routerLink]=\"['/inputgroup']\">Inputgroup</a> </li> <li> <a [routerLink]=\"['/modalAngular']\">Modal</a> </li> <li> <a [routerLink]=\"['/navbar']\">Navbar</a> </li> <li> <a [routerLink]=\"['/paginationAngular']\">Pagination</a> </li> <li> <a [routerLink]=\"['/popover']\">Popover</a> </li> <li> <a [routerLink]=\"['/progressBar']\">Progress bar</a> </li> <li> <a [routerLink]=\"['/selectpickerAngular']\">Selectpicker</a> </li> <li> <a [routerLink]=\"['/slidepickerAngular']\">Slidepicker</a> </li> <li> <a [routerLink]=\"['/table']\">Table</a> </li> <li> <a [routerLink]=\"['/tooltip']\">Tooltip</a> </li> </ul> </div> <div> <main> <router-outlet></router-outlet> </main> </div> <footer> </footer> ";
 
 /***/ }),
 /* 84 */
@@ -90690,13 +90700,13 @@ module.exports = "<div class=\"container\"> <h3> Classic grid </h3> <div class=\
 /* 91 */
 /***/ (function(module, exports) {
 
-module.exports = " <div class=\"container\"> <div class=\"row\"> <grid class=\"table table-bordered\" [columns]=\"columns\" [rows]=\"rows\" (selectedRows)=\"selectionTest($event)\" [selected]=\"selection\" (sort)=\"onSort($event)\"> </grid> </div> </div> ";
+module.exports = "<div class=\"container\"> <h3> Example : </h3> <div class=\"row\"> <grid class=\"table table-bordered\" [columns]=\"columns\" [rows]=\"rows\" (selectedRows)=\"selectionTest($event)\" [selected]=\"selection\" (sort)=\"onSort($event)\"></grid> </div> <h4> Html : </h4> <pre>\n    {{gridHtml}}\n  </pre> <blockquote> <p> A grid component is like a table so we can use class like table </p> </blockquote> <h3> grid parameters: </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Parameter </th> <th> Type </th> <th> Description </th> </tr> </thead> <tbody> <tr> <td> columns </td> <td> Array of objects </td> <td> Different columns with all default parameters, columns name, and type of the columns </td> </tr> <tr> <td> rows </td> <td> Array of objects </td> <td> The value of rows we send to widget </td> </tr> <tr> <td> selected </td> <td> Array of objects </td> <td> The value we selected in rows for changes selection in widget </td> </tr> <tr> <td> selectedRows </td> <td> Function with $event </td> <td> Allow to collect what we select into widget </td> </tr> <tr> <td> sort </td> <td> Function with $event </td> <td> Collect all the sort we define in widget, when we click on a column, this update the $event value </td> </tr> </tbody> </table> <h3> Columns object: </h3> <h4> Exemple : </h4> <pre>\n    {{gridColumns}}\n  </pre> <h4> Parameters: </h4> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Parameter </th> <th> Type </th> <th> value </th> <th> Description </th> </tr> </thead> <tbody> <tr> <td> label </td> <td> string </td> <td> any </td> <td> It's the name of the column </td> </tr> <tr> <td> alignment </td> <td> string </td> <td> like the css property </td> <td> Optional; Change the alignment of the column and all the cell of this column </td> </tr> <tr> <td> width </td> <td> String </td> <td> Value + \"em\" or \"px\" or \"%\" </td> <td> Optional; Define the width of the column </td> </tr> <tr> <td> type </td> <td> string </td> <td> Any you defined in ngx-atlantis-ui module </td> <td> Per default: string; Define default value of the column with the param we send to ngx-atlantis-ui module. </td> </tr> <tr> <td> notSortable </td> <td> boolean </td> <td> true, false </td> <td> Optional per default : false; Define if we can sort the column </td> </tr> <tr> <td> notEditable </td> <td> boolean </td> <td> true, false </td> <td> Optional per default : false; Define if we edit the content of the column </td> </tr> </tbody> </table> <h4> Rows object: </h4> <pre>\n    {{gridRows}}\n  </pre> <blockquote> <p> Any rows have same syntax, we create attribute with column name. </p> <p> It's better to create a copy of the original rows to avoid to modify the rows. </p> </blockquote> </div> ";
 
 /***/ }),
 /* 92 */
 /***/ (function(module, exports) {
 
-module.exports = "<div> <div class=\"container\"> <div class=\"row\"> <h3> Getting started : </h3> <h3> Step 1 : Install atlantis-ui </h3> <p> npm install atlantis-ui </p> <h3> Step 2 : Import the component Modules, use standard widget and CSS or less </h3> <p> Import the ngModule for each component you want to use or in a shared module : </p> <pre>\n        {{importHtml}}\n      </pre> <p> For use standard widget, add with script atlantis-ui-js </p> <p> For use css, add link to atlantis-ui-css </p> <p> For use less, add link to less and add less compiler or loader. </p> </div> </div> </div> ";
+module.exports = "<div> <div class=\"container\"> <div class=\"row\"> <h3> Getting started : </h3> <h3> Step 1 : Install atlantis-ui </h3> <p> npm install atlantis-ui </p> <h3> Step 2 : Import the component Modules, use standard widget and CSS or less </h3> <p> Import the ngModule for each component you want to use with the function forRoot() or in a shared module : </p> <pre>\n        {{importHtml}}\n      </pre> <p> For use standard widget, add with script atlantis-ui-js </p> <p> For use css, add link to atlantis-ui-css </p> <p> For use less, add link to less and add less compiler or loader. </p> <p> In the function forRoot we just need to add a parameters objects for the grid component </p> <h3> Example of parameters : </h3> <pre>\n        {{gridParameters}}\n      </pre> <h3> Parameters : </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Parameter </th> <th> Type </th> <th> Description </th> </tr> </thead> <tbody> <tr> <td> type </td> <td> string </td> <td> It's the type you want to define, it allow to put default parameters to a type column </td> </tr> <tr> <td> alignment </td> <td> string </td> <td> Optional; Change the alignment of the column and all the cell of this column; it's use like css property </td> </tr> <tr> <td> pipes </td> <td> Array of pipes </td> <td> Optional; That need to provide first the pipes in your module. </td> </tr> <tr> <td> optionsPipe </td> <td> Array of string </td> <td> Should define in same order has pipes; You can have multiple options, that just need to add a array in place of string </td> </tr> <tr> <td> transformation </td> <td> function </td> <td> That allow to pass a function that be fire when we modify content into a cell. That allow to have correct value; for incorrect value always return \"invalid value\" </td> </tr> </tbody> </table> </div> </div> </div> ";
 
 /***/ }),
 /* 93 */
