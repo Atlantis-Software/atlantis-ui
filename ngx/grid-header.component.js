@@ -10,7 +10,7 @@ export default class gridHeaderComponent {
         selector: 'grid-header',
         template: `
 				<div class="gridRow">
-					<div *ngFor= "let column of columns; let i = index;" class="gridHead" [ngClass]="column.class" [style.width]="column.width" (click)="onSort(column, i)">
+					<div *ngFor= "let column of columns; let i = index;" class="gridHead" [ngClass]="column.class" [class.sortable]="!column.notSortable" [style.width]="column.width" (click)="onSort(column, i)">
 						<grid-cell-header [content]="column.label" [pipes]="pipes" [sortingClass]="column.sortingClass">
 						</grid-cell-header>
 	        </div>
@@ -19,6 +19,7 @@ export default class gridHeaderComponent {
           :host { display : table-header-group; }
           .gridHead { display : table-cell; }
 					.gridRow { display : table-row; }
+          .sortable { cursor : pointer }
           `],
         inputs: ['columns', 'pipes'],
         outputs: ['sort']
