@@ -24,7 +24,7 @@ export default class treeNodeComponent {
           <span *ngIf="!template" [innerHTML]="selected" [class.disabled]="disabled"></span>
           <span *ngIf="!template" [innerHTML]="id" [class.disabled]="disabled"></span>
 	        <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngOutletContext]="data"></ng-template>
-					<input *ngIf="selectable" type="checkbox" [ngModel]="selected" class="tree-node-checkbox" (click)="onClick()">
+					<input *ngIf="selectable" type="checkbox" [ngModel]="selected" class="tree-node-checkbox" (click)="onClick()" [attr.disabled]="disabled">
 				</div>
         <ng-content *ngIf="expanded"></ng-content>
         <tree-node *ngFor="let child of children" [hidden]="!children?.length || !expandable || !expanded"
@@ -37,6 +37,7 @@ export default class treeNodeComponent {
           [selectable]="child.selectable"
           [template]="template"
           [depth]="depth+1"
+          [disabled]="child.disabled"
           [(selected)]="child.selected"
           (expand)="expand.emit($event)"
           (collapse)="collapse.emit($event)"
@@ -67,19 +68,22 @@ export default class treeNodeComponent {
     return this.elementRef.nativeElement.querySelector('.tree-node-checkbox') || {};
   }
 
-  ngOnInit() {
-    if (!this.selected) {
-      // this.selected = false;
-    }
-  }
-
   ngOnChanges() {
-    if (this.selected === void 0) {
-      return;
-    }
 
     if (this.selectable !== true && this.selectable !== false) {
       this.selectable = true;
+    }
+
+    if (this.disabled) {
+      return;
+    }
+
+    if (!this.selectable) {
+      return;
+    }
+
+    if (this.selected === void 0) {
+      return;
     }
 
     if (!this.parent || this.parent.indeterminate) {
@@ -93,7 +97,9 @@ export default class treeNodeComponent {
 
     if (this.children) {
       this.children.forEach((child) => {
-        child.selected = this.selected;
+        if (!child.disabled && !child.selectable) {
+          child.selected = this.selected;
+        }
       });
     }
     this.selectedChange.emit(this.selected);
@@ -124,7 +130,9 @@ export default class treeNodeComponent {
     this.indeterminate = false;
     if (this.children) {
       this.children.forEach((child) => {
-        child.selected = this.selected;
+        if (!child.disabled && !child.selectable) {
+          child.selected = this.selected;
+        }
       });
     }
     this.selectedChange.emit(this.selected);
@@ -132,18 +140,30 @@ export default class treeNodeComponent {
   }
 
   onSelect() {
+    if (this.disabled) {
+      return;
+    }
     var checkbox = this._getCheckbox();
     var nbSelected = 0;
     var isIndeterminate = false;
+    var childIsSelected = false;
 
     this.nodeChildren.forEach((child) => {
       if (child.selected) {
+        ++nbSelected;
+        childIsSelected = true;
+      }
+      if (child.disabled) {
         ++nbSelected;
       }
       if (child.indeterminate) {
         isIndeterminate = true;
       }
     });
+
+    if (!childIsSelected) {
+      nbSelected = 0;
+    }
 
     if (isIndeterminate) {
       this.selected = false;

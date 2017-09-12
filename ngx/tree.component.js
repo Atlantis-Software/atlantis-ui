@@ -22,6 +22,7 @@ export default class treeComponent {
           [selectable]="node.selectable"
           [template]="template"
           [depth]="depth"
+          [disabled]="node.disabled"
           [(selected)]="node.selected"
           (expand)="expand.emit($event)"
           (collapse)="collapse.emit($event)"
