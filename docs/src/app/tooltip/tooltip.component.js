@@ -9,6 +9,7 @@ export default  class TooltipComponent {
     ]
   }
   constructor(){
+    this.left = 'left';
 
     this.tooltipHtml = `
     <button type="button" class="btn btn-default" tooltip tooltipDirection="left" [tooltipContent]="time">

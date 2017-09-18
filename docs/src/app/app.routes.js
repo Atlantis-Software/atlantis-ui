@@ -35,6 +35,8 @@ import GridAngularComponent from './gridAngular/grid.component.js';
 import ButtongroupsComponent from './buttongroups/buttongroups.component.js';
 import FormsComponent from './forms/forms.component.js';
 
+import dragAndDropComponent from './dragAndDrop/dragAndDrop.component.js';
+
 export default [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -72,6 +74,8 @@ export default [
   { path: 'grid', component: GridComponent },
   { path: 'gridAngular', component: GridAngularComponent },
   { path: 'buttongroups', component: ButtongroupsComponent },
-  { path: 'forms', component: FormsComponent }
+  { path: 'forms', component: FormsComponent },
+  { path: 'dragAndDrop', component: dragAndDropComponent }
+
 
 ];

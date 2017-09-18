@@ -43,6 +43,9 @@ import GridAngularComponent from './gridAngular/grid.component.js';
 
 import ButtongroupsComponent from './buttongroups/buttongroups.component.js';
 import FormsComponent from './forms/forms.component.js';
+
+import dragAndDropComponent from './dragAndDrop/dragAndDrop.component.js';
+
 import { ngxAtlUiModule } from 'atlantis-ui-ngx';
 
 
@@ -60,7 +63,7 @@ var types = [
   {
     type : 'number'
   }
-]
+];
 
 
 AppModule.annotations = [
@@ -88,7 +91,8 @@ AppModule.annotations = [
       ButtongroupsComponent,
       FormsComponent,
       ProgressBarComponent,
-      GridAngularComponent
+      GridAngularComponent,
+      dragAndDropComponent
     ],
     imports: [
       BrowserModule,
