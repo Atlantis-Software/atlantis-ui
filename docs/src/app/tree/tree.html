@@ -1,0 +1,105 @@
+<div class="container">
+  <h3>
+    Example :
+  </h3>
+  <div class="row container-fluid form-group">
+    <tree class="col-md-4" [nodes]="nodes" (select)='onSelect($event)'></tree>
+  </div>
+  <pre>
+    {{treeHtml}}
+  </pre>
+  <pre>
+    {{treeNodes}}
+  </pre>
+  <h3>
+    Nodes attribut description :
+  </h3>
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>
+          attribut
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          label
+        </td>
+        <td>
+          string
+        </td>
+        <td>
+          It's represent the content of a node for shown in tree
+        </td>
+      </tr>
+      <tr>
+        <td>
+          selectable
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          Optional; per default : true; allow to deactivate the possibility to select a node
+        </td>
+      </tr>
+      <tr>
+        <td>
+          expandable
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          It's require for a node with node's children
+        </td>
+      </tr>
+      <tr>
+        <td>
+          expanded
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          Optional; per default : false; Define if the node is expanded or not;
+        </td>
+      </tr>
+      <tr>
+        <td>
+          children
+        </td>
+        <td>
+          Array of nodes
+        </td>
+        <td>
+          Require if we want a sub-tree, all object in children have same syntax that standard node
+        </td>
+      </tr>
+      <tr>
+        <td>
+          disabled
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          Define if a node is disabled or not, that causes to desactive selection and possibility to expand the node
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <blockquote>
+    <p>
+      An id is automaticly add to add node, this id is define compared to the index in the parent
+    </p>
+  </blockquote>
+</div>

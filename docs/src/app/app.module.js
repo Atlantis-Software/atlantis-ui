@@ -33,6 +33,8 @@ import CarouselAngularComponent from './carouselAngular/carousel.component.js';
 import PopoverComponent from './popover/popover.component.js';
 import TooltipComponent from './tooltip/tooltip.component.js';
 
+import TreeComponent from './tree/tree.component.js';
+
 import AccordionComponent from './accordion/accordion.component.js';
 
 import ProgressBarComponent from './progress-bar/progress-bar.component.js';
@@ -92,7 +94,8 @@ AppModule.annotations = [
       FormsComponent,
       ProgressBarComponent,
       GridAngularComponent,
-      dragAndDropComponent
+      dragAndDropComponent,
+      TreeComponent
     ],
     imports: [
       BrowserModule,

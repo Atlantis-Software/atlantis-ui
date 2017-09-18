@@ -1,0 +1,39 @@
+//Tree component
+
+
+tree {
+  position:  relative;
+  display:block;
+  tree-node {
+    position : relative;
+    line-height: 25px;
+    min-height: 25px;
+    display: block;
+
+    .tree-expander {
+      position: absolute;
+      margin-left : -20px;
+      top : 3px;
+      z-index: 1;
+      user-select: none;
+
+      &:not(.icon-disabled) {
+        cursor : pointer;
+      }
+    }
+
+    .tree-node-label {
+      color : black;
+    }
+
+    .tree-node-line {
+      border: 1px solid @tree-default-color
+    }
+
+    .tree-node-checkbox {
+      right: 5px;
+      position:absolute;
+    }
+  }
+
+}
