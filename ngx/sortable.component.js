@@ -158,7 +158,6 @@ export class sortableHandler extends dragAndDropAbstractHandleComponent {
   }
   constructor(elementRef, dragAndDropService, sortableComponent, cdr) {
     super(elementRef, dragAndDropService, sortableComponent, cdr);
-    console.log(this);
   }
 }
 

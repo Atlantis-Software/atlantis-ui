@@ -44,33 +44,6 @@ export class dragAndDropAbstractComponent {
       //
       if (event.dataTransfer != null) {
         event.dataTransfer.setData('text', '');
-        // Change drag effect
-        // event.dataTransfer.effectAllowed = this.effectAllowed || this._config.dragEffect.name;
-        // Change drag image
-        // if (this.dragImage !== undefined && this.dragImage !== null) {
-        //   if (typeof this.dragImage === "string") {
-        //     let img = new HTMLImageElement();
-        //     img.src = this.dragImage;
-        //     (event.dataTransfer).setDragImage(img);
-        //   } else if (typeof this.dragImage === "function") {
-        //     (event.dataTransfer).setDragImage(this.dragImage());
-        //   } else {
-        //     let img = this.dragImage;
-        //     (event.dataTransfer).setDragImage(img.imageElement, img.x_offset, img.y_offset);
-        //   }
-        // } else if (this._config.dragImage !== undefined && this._config.dragImage !== null) {
-        //   let dragImage = this._config.dragImage;
-        //   ( event.dataTransfer).setDragImage(dragImage.imageElement, dragImage.x_offset, dragImage.y_offset);
-        // } else if (this.cloneItem) {
-        //   this._dragHelper = this._elem.cloneNode(true);
-        //   this._dragHelper.classList.add('dnd-drag-item');
-        //   this._dragHelper.style.position = "absolute";
-        //   this._dragHelper.style.top = "0px";
-        //   this._dragHelper.style.left = "-1000px";
-        //   this._elem.parentElement.appendChild(this._dragHelper);
-        //   ( event.dataTransfer).setDragImage(this._dragHelper, event.offsetX, event.offsetY);
-        // }
-        //
         // // Change drag cursor
         let cursorelem = (this._dragHandle) ? this._dragHandle : this._element;
         //
@@ -91,6 +64,9 @@ export class dragAndDropAbstractComponent {
   }
 
   setDragHandle(elem) {
+    if (this._dragHandle) {
+      return;
+    }
     this._dragHandle = elem;
     this._element.style.cursor = "auto";
     this._dragHandle.style.cursor = "pointer";
@@ -183,7 +159,7 @@ export class dragAndDropAbstractComponent {
 }
 
 export class dragAndDropAbstractHandleComponent {
-  constructor(elementRef, dragAndDropService, dragAndDropAbstractComponent, cdr) {
+  constructor(elementRef, dragAndDropService, dragAndDropAbstractComponent) {
     this._element = elementRef.nativeElement;
     dragAndDropAbstractComponent.setDragHandle(this._element);
   }
