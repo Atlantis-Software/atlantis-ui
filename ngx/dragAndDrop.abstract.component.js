@@ -1,7 +1,7 @@
 export class dragAndDropAbstractComponent {
   constructor(ElementRef, ChangeDetectorRef, dragAndDropService) {
     this._element = ElementRef.nativeElement;
-    // this._element.style.cursor = "pointer";
+    this._element.style.cursor = "pointer";
     this._dragAndDropService = dragAndDropService;
     this.dropZones = [];
     this._cdr = ChangeDetectorRef;
@@ -72,19 +72,28 @@ export class dragAndDropAbstractComponent {
         // }
         //
         // // Change drag cursor
-        // let cursorelem = (this._dragHandle) ? this._dragHandle : this._elem;
+        let cursorelem = (this._dragHandle) ? this._dragHandle : this._element;
         //
-        // if (this._dragEnabled) {
-        //   cursorelem.style.cursor = this.effectCursor ? this.effectCursor : this._config.dragCursor;
-        // } else {
-        //   cursorelem.style.cursor = this._defaultCursor;
-        // }
+        if (this._dragEnabled) {
+          cursorelem.style.cursor = this.effectCursor ? this.effectCursor : "move";
+        } else {
+          cursorelem.style.cursor = "auto";
+        }
       }
     };
 
     this._element.ondragend = (event) => {
       this._onDragEnd(event);
+
+      let cursorelem = (this._dragHandle) ? this._dragHandle : this._element;
+      cursorelem.style.cursor = "pointer";
     };
+  }
+
+  setDragHandle(elem) {
+    this._dragHandle = elem;
+    this._element.style.cursor = "auto";
+    this._dragHandle.style.cursor = "pointer";
   }
 
   set dragEnabled(enabled) {
@@ -171,4 +180,11 @@ export class dragAndDropAbstractComponent {
   _onDragStartCallback() {}
   _onDragEndCallback() {}
 
+}
+
+export class dragAndDropAbstractHandleComponent {
+  constructor(elementRef, dragAndDropService, dragAndDropAbstractComponent, cdr) {
+    this._element = elementRef.nativeElement;
+    dragAndDropAbstractComponent.setDragHandle(this._element);
+  }
 }

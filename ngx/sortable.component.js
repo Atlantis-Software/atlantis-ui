@@ -1,5 +1,5 @@
 import { Directive, ElementRef, ChangeDetectorRef, EventEmitter } from '@angular/core';
-import { dragAndDropAbstractComponent } from './dragAndDrop.abstract.component.js';
+import { dragAndDropAbstractComponent, dragAndDropAbstractHandleComponent } from './dragAndDrop.abstract.component.js';
 
 import { dragAndDropSortableService, dragAndDropService } from './dragAndDrop.service.js';
 
@@ -147,3 +147,19 @@ export class sortableComponents extends dragAndDropAbstractComponent {
 }
 
 sortableComponents.parameters = [ElementRef, ChangeDetectorRef, sortableContainer, dragAndDropSortableService, dragAndDropService];
+
+export class sortableHandler extends dragAndDropAbstractHandleComponent {
+  static get annotations() {
+    return [
+      new Directive({
+        selector: '[sortable-handle]'
+      })
+    ];
+  }
+  constructor(elementRef, dragAndDropService, sortableComponent, cdr) {
+    super(elementRef, dragAndDropService, sortableComponent, cdr);
+    console.log(this);
+  }
+}
+
+sortableHandler.parameters = [ElementRef, dragAndDropService, sortableComponents, ChangeDetectorRef];

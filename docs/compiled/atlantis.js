@@ -274,7 +274,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__);
 
 /**
- * @license Angular v4.3.6
+ * @license Angular v4.4.2
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -1070,7 +1070,7 @@ var Version = (function () {
 /**
  * \@stable
  */
-var VERSION = new Version('4.3.6');
+var VERSION = new Version('4.4.2');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -5853,6 +5853,14 @@ var QueryList = (function () {
         enumerable: true,
         configurable: true
     });
+    /**
+     * internal
+     * @return {?}
+     */
+    QueryList.prototype.destroy = function () {
+        this._emitter.complete();
+        this._emitter.unsubscribe();
+    };
     return QueryList;
 }());
 /**
@@ -12794,6 +12802,9 @@ function destroyViewNodes(view) {
         else if (def.flags & 2 /* TypeText */) {
             ((view.renderer.destroyNode))(asTextData(view, i).renderText);
         }
+        else if (def.flags & 67108864 /* TypeContentQuery */ || def.flags & 134217728 /* TypeViewQuery */) {
+            asQueryList(view, i).destroy();
+        }
     }
 }
 var ViewAction = {};
@@ -15887,7 +15898,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 
 /**
- * @license Angular v4.3.6
+ * @license Angular v4.4.2
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -19854,7 +19865,7 @@ function isPlatformWorkerUi(platformId) {
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.3.6');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.4.2');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -20462,7 +20473,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 
 /**
- * @license Angular v4.3.6
+ * @license Angular v4.4.2
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -24869,7 +24880,7 @@ var By = (function () {
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.3.6');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.4.2');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -25433,7 +25444,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_rxjs_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21_rxjs_operator_filter__);
 
 /**
- * @license Angular v4.3.6
+ * @license Angular v4.4.2
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -31686,7 +31697,7 @@ function provideRouterInitializer() {
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.3.6');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.4.2');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -31843,7 +31854,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(11);
 
 /**
- * @license Angular v4.3.6
+ * @license Angular v4.4.2
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -36409,12 +36420,12 @@ var formControlBinding$1 = {
  * {\@link AbstractControl}.
  *
  * **Set the value**: You can pass in an initial value when instantiating the {\@link FormControl},
- * or you can set it programmatically later using {\@link AbstractControl#setValue} or
- * {\@link AbstractControl#patchValue}.
+ * or you can set it programmatically later using {\@link AbstractControl#setValue setValue} or
+ * {\@link AbstractControl#patchValue patchValue}.
  *
  * **Listen to value**: If you want to listen to changes in the value of the control, you can
- * subscribe to the {\@link AbstractControl#valueChanges} event.  You can also listen to
- * {\@link AbstractControl#statusChanges} to be notified when the validation status is
+ * subscribe to the {\@link AbstractControl#valueChanges valueChanges} event.  You can also listen to
+ * {\@link AbstractControl#statusChanges statusChanges} to be notified when the validation status is
  * re-calculated.
  *
  * ### Example
@@ -36559,12 +36570,13 @@ var formDirectiveProvider$1 = {
  *
  * **Set value**: You can set the form's initial value when instantiating the
  * {\@link FormGroup}, or you can set it programmatically later using the {\@link FormGroup}'s
- * {\@link AbstractControl#setValue} or {\@link AbstractControl#patchValue} methods.
+ * {\@link AbstractControl#setValue setValue} or {\@link AbstractControl#patchValue patchValue}
+ * methods.
  *
  * **Listen to value**: If you want to listen to changes in the value of the form, you can subscribe
- * to the {\@link FormGroup}'s {\@link AbstractControl#valueChanges} event.  You can also listen to
- * its {\@link AbstractControl#statusChanges} event to be notified when the validation status is
- * re-calculated.
+ * to the {\@link FormGroup}'s {\@link AbstractControl#valueChanges valueChanges} event.  You can also
+ * listen to its {\@link AbstractControl#statusChanges statusChanges} event to be notified when the
+ * validation status is re-calculated.
  *
  * Furthermore, you can listen to the directive's `ngSubmit` event to be notified when the user has
  * triggered a form submission. The `ngSubmit` event will be emitted with the original form
@@ -36847,11 +36859,11 @@ var formGroupNameProvider = {
  *
  * **Set the value**: You can set an initial value for each child control when instantiating
  * the {\@link FormGroup}, or you can set it programmatically later using
- * {\@link AbstractControl#setValue} or {\@link AbstractControl#patchValue}.
+ * {\@link AbstractControl#setValue setValue} or {\@link AbstractControl#patchValue patchValue}.
  *
  * **Listen to value**: If you want to listen to changes in the value of the group, you can
- * subscribe to the {\@link AbstractControl#valueChanges} event.  You can also listen to
- * {\@link AbstractControl#statusChanges} to be notified when the validation status is
+ * subscribe to the {\@link AbstractControl#valueChanges valueChanges} event.  You can also listen to
+ * {\@link AbstractControl#statusChanges statusChanges} to be notified when the validation status is
  * re-calculated.
  *
  * ### Example
@@ -37089,7 +37101,7 @@ var controlNameBinding = {
  * closest {\@link FormGroup} or {\@link FormArray} above it.
  *
  * **Access the control**: You can access the {\@link FormControl} associated with
- * this directive by using the {\@link AbstractControl#get} method.
+ * this directive by using the {\@link AbstractControl#get get} method.
  * Ex: `this.form.get('first');`
  *
  * **Get value**: the `value` property is always synced and available on the {\@link FormControl}.
@@ -37097,11 +37109,11 @@ var controlNameBinding = {
  *
  *  **Set value**: You can set an initial value for the control when instantiating the
  *  {\@link FormControl}, or you can set it programmatically later using
- *  {\@link AbstractControl#setValue} or {\@link AbstractControl#patchValue}.
+ *  {\@link AbstractControl#setValue setValue} or {\@link AbstractControl#patchValue patchValue}.
  *
  * **Listen to value**: If you want to listen to changes in the value of the control, you can
- * subscribe to the {\@link AbstractControl#valueChanges} event.  You can also listen to
- * {\@link AbstractControl#statusChanges} to be notified when the validation status is
+ * subscribe to the {\@link AbstractControl#valueChanges valueChanges} event.  You can also listen to
+ * {\@link AbstractControl#statusChanges statusChanges} to be notified when the validation status is
  * re-calculated.
  *
  * ### Example
@@ -37767,7 +37779,7 @@ FormBuilder.ctorParameters = function () { return []; };
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.3.6');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.4.2');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -58673,7 +58685,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(11);
 
 /**
- * @license Angular v4.3.6
+ * @license Angular v4.4.2
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -58806,7 +58818,7 @@ var CachedResourceLoader = (function (_super) {
 /**
  * @stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.3.6');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.4.2');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -58847,6 +58859,7 @@ var platformBrowserDynamic = Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__[
 /* unused harmony export VERSION */
 /* unused harmony export TEMPLATE_TRANSFORMS */
 /* unused harmony export CompilerConfig */
+/* unused harmony export preserveWhitespacesDefault */
 /* unused harmony export JitCompiler */
 /* unused harmony export DirectiveResolver */
 /* unused harmony export PipeResolver */
@@ -59048,6 +59061,7 @@ var platformBrowserDynamic = Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__[
 /* unused harmony export getNsPrefix */
 /* unused harmony export mergeNsAndName */
 /* unused harmony export NAMED_ENTITIES */
+/* unused harmony export NGSP_UNICODE */
 /* unused harmony export debugOutputAstAsTypeScript */
 /* unused harmony export TypeScriptEmitter */
 /* unused harmony export ParseLocation */
@@ -59074,7 +59088,7 @@ var platformBrowserDynamic = Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__[
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 
 /**
- * @license Angular v4.3.6
+ * @license Angular v4.4.2
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -59094,7 +59108,7 @@ var platformBrowserDynamic = Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__[
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.3.6');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.4.2');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -60084,6 +60098,10 @@ var NAMED_ENTITIES = {
     'zwj': '\u200D',
     'zwnj': '\u200C',
 };
+// The &ngsp; pseudo-entity is denoting a space. see:
+// https://github.com/dart-lang/angular/blob/0bb611387d29d65b5af7f9d2515ab571fd3fbee4/_tests/test/compiler/preserve_whitespace_test.dart
+var NGSP_UNICODE = '\uE500';
+NAMED_ENTITIES['ngsp'] = NGSP_UNICODE;
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -61107,7 +61125,7 @@ var CompileTemplateMetadata = (function () {
      * @param {?} __0
      */
     function CompileTemplateMetadata(_a) {
-        var encapsulation = _a.encapsulation, template = _a.template, templateUrl = _a.templateUrl, styles = _a.styles, styleUrls = _a.styleUrls, externalStylesheets = _a.externalStylesheets, animations = _a.animations, ngContentSelectors = _a.ngContentSelectors, interpolation = _a.interpolation, isInline = _a.isInline;
+        var encapsulation = _a.encapsulation, template = _a.template, templateUrl = _a.templateUrl, styles = _a.styles, styleUrls = _a.styleUrls, externalStylesheets = _a.externalStylesheets, animations = _a.animations, ngContentSelectors = _a.ngContentSelectors, interpolation = _a.interpolation, isInline = _a.isInline, preserveWhitespaces = _a.preserveWhitespaces;
         this.encapsulation = encapsulation;
         this.template = template;
         this.templateUrl = templateUrl;
@@ -61121,6 +61139,7 @@ var CompileTemplateMetadata = (function () {
         }
         this.interpolation = interpolation;
         this.isInline = isInline;
+        this.preserveWhitespaces = preserveWhitespaces;
     }
     /**
      * @return {?}
@@ -61277,7 +61296,8 @@ function createHostComponentMeta(hostTypeReference, compMeta, hostViewType) {
             animations: [],
             isInline: true,
             externalStylesheets: [],
-            interpolation: null
+            interpolation: null,
+            preserveWhitespaces: false,
         }),
         exportAs: null,
         changeDetection: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ChangeDetectionStrategy"].Default,
@@ -61605,14 +61625,24 @@ var CompilerConfig = (function () {
      * @param {?=} __0
      */
     function CompilerConfig(_a) {
-        var _b = _a === void 0 ? {} : _a, _c = _b.defaultEncapsulation, defaultEncapsulation = _c === void 0 ? __WEBPACK_IMPORTED_MODULE_1__angular_core__["ViewEncapsulation"].Emulated : _c, _d = _b.useJit, useJit = _d === void 0 ? true : _d, missingTranslation = _b.missingTranslation, enableLegacyTemplate = _b.enableLegacyTemplate;
+        var _b = _a === void 0 ? {} : _a, _c = _b.defaultEncapsulation, defaultEncapsulation = _c === void 0 ? __WEBPACK_IMPORTED_MODULE_1__angular_core__["ViewEncapsulation"].Emulated : _c, _d = _b.useJit, useJit = _d === void 0 ? true : _d, missingTranslation = _b.missingTranslation, enableLegacyTemplate = _b.enableLegacyTemplate, preserveWhitespaces = _b.preserveWhitespaces;
         this.defaultEncapsulation = defaultEncapsulation;
         this.useJit = !!useJit;
         this.missingTranslation = missingTranslation || null;
         this.enableLegacyTemplate = enableLegacyTemplate !== false;
+        this.preserveWhitespaces = preserveWhitespacesDefault(noUndefined(preserveWhitespaces));
     }
     return CompilerConfig;
 }());
+/**
+ * @param {?} preserveWhitespacesOption
+ * @param {?=} defaultSetting
+ * @return {?}
+ */
+function preserveWhitespacesDefault(preserveWhitespacesOption, defaultSetting) {
+    if (defaultSetting === void 0) { defaultSetting = true; }
+    return preserveWhitespacesOption === null ? defaultSetting : preserveWhitespacesOption;
+}
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -70229,6 +70259,111 @@ function createTokenForExternalReference(reflector, reference) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+var PRESERVE_WS_ATTR_NAME = 'ngPreserveWhitespaces';
+var SKIP_WS_TRIM_TAGS = new Set(['pre', 'template', 'textarea', 'script', 'style']);
+/**
+ * @param {?} attrs
+ * @return {?}
+ */
+function hasPreserveWhitespacesAttr(attrs) {
+    return attrs.some(function (attr) { return attr.name === PRESERVE_WS_ATTR_NAME; });
+}
+/**
+ * Angular Dart introduced &ngsp; as a placeholder for non-removable space, see:
+ * https://github.com/dart-lang/angular/blob/0bb611387d29d65b5af7f9d2515ab571fd3fbee4/_tests/test/compiler/preserve_whitespace_test.dart#L25-L32
+ * In Angular Dart &ngsp; is converted to the 0xE500 PUA (Private Use Areas) unicode character
+ * and later on replaced by a space. We are re-implementing the same idea here.
+ * @param {?} value
+ * @return {?}
+ */
+function replaceNgsp(value) {
+    // lexer is replacing the &ngsp; pseudo-entity with NGSP_UNICODE
+    return value.replace(new RegExp(NGSP_UNICODE, 'g'), ' ');
+}
+/**
+ * This visitor can walk HTML parse tree and remove / trim text nodes using the following rules:
+ * - consider spaces, tabs and new lines as whitespace characters;
+ * - drop text nodes consisting of whitespace characters only;
+ * - for all other text nodes replace consecutive whitespace characters with one space;
+ * - convert &ngsp; pseudo-entity to a single space;
+ *
+ * Removal and trimming of whitespaces have positive performance impact (less code to generate
+ * while compiling templates, faster view creation). At the same time it can be "destructive"
+ * in some cases (whitespaces can influence layout). Because of the potential of breaking layout
+ * this visitor is not activated by default in Angular 4 and people need to explicitly opt-in for
+ * whitespace removal. The default option for whitespace removal will be revisited post Angular 5
+ * and might be changed to "on" by default.
+ */
+var WhitespaceVisitor = (function () {
+    function WhitespaceVisitor() {
+    }
+    /**
+     * @param {?} element
+     * @param {?} context
+     * @return {?}
+     */
+    WhitespaceVisitor.prototype.visitElement = function (element, context) {
+        if (SKIP_WS_TRIM_TAGS.has(element.name) || hasPreserveWhitespacesAttr(element.attrs)) {
+            // don't descent into elements where we need to preserve whitespaces
+            // but still visit all attributes to eliminate one used as a market to preserve WS
+            return new Element(element.name, visitAll(this, element.attrs), element.children, element.sourceSpan, element.startSourceSpan, element.endSourceSpan);
+        }
+        return new Element(element.name, element.attrs, visitAll(this, element.children), element.sourceSpan, element.startSourceSpan, element.endSourceSpan);
+    };
+    /**
+     * @param {?} attribute
+     * @param {?} context
+     * @return {?}
+     */
+    WhitespaceVisitor.prototype.visitAttribute = function (attribute, context) {
+        return attribute.name !== PRESERVE_WS_ATTR_NAME ? attribute : null;
+    };
+    /**
+     * @param {?} text
+     * @param {?} context
+     * @return {?}
+     */
+    WhitespaceVisitor.prototype.visitText = function (text, context) {
+        var /** @type {?} */ isBlank = text.value.trim().length === 0;
+        if (!isBlank) {
+            return new Text(replaceNgsp(text.value).replace(/\s\s+/g, ' '), text.sourceSpan);
+        }
+        return null;
+    };
+    /**
+     * @param {?} comment
+     * @param {?} context
+     * @return {?}
+     */
+    WhitespaceVisitor.prototype.visitComment = function (comment, context) { return comment; };
+    /**
+     * @param {?} expansion
+     * @param {?} context
+     * @return {?}
+     */
+    WhitespaceVisitor.prototype.visitExpansion = function (expansion, context) { return expansion; };
+    /**
+     * @param {?} expansionCase
+     * @param {?} context
+     * @return {?}
+     */
+    WhitespaceVisitor.prototype.visitExpansionCase = function (expansionCase, context) { return expansionCase; };
+    return WhitespaceVisitor;
+}());
+/**
+ * @param {?} htmlAstWithErrors
+ * @return {?}
+ */
+function removeWhitespaces(htmlAstWithErrors) {
+    return new ParseTreeResult(visitAll(new WhitespaceVisitor(), htmlAstWithErrors.rootNodes), htmlAstWithErrors.errors);
+}
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 // http://cldr.unicode.org/index/cldr-spec/plural-rules
 var PLURAL_CASES = ['zero', 'one', 'two', 'few', 'many', 'other'];
 /**
@@ -71869,10 +72004,11 @@ var TemplateParser = (function () {
      * @param {?} pipes
      * @param {?} schemas
      * @param {?} templateUrl
+     * @param {?} preserveWhitespaces
      * @return {?}
      */
-    TemplateParser.prototype.parse = function (component, template, directives, pipes, schemas, templateUrl) {
-        var /** @type {?} */ result = this.tryParse(component, template, directives, pipes, schemas, templateUrl);
+    TemplateParser.prototype.parse = function (component, template, directives, pipes, schemas, templateUrl, preserveWhitespaces) {
+        var /** @type {?} */ result = this.tryParse(component, template, directives, pipes, schemas, templateUrl, preserveWhitespaces);
         var /** @type {?} */ warnings = ((result.errors)).filter(function (error) { return error.level === ParseErrorLevel.WARNING; })
             .filter(warnOnlyOnce([TEMPLATE_ATTR_DEPRECATION_WARNING, TEMPLATE_ELEMENT_DEPRECATION_WARNING]));
         var /** @type {?} */ errors = ((result.errors)).filter(function (error) { return error.level === ParseErrorLevel.ERROR; });
@@ -71892,10 +72028,15 @@ var TemplateParser = (function () {
      * @param {?} pipes
      * @param {?} schemas
      * @param {?} templateUrl
+     * @param {?} preserveWhitespaces
      * @return {?}
      */
-    TemplateParser.prototype.tryParse = function (component, template, directives, pipes, schemas, templateUrl) {
-        return this.tryParseHtml(this.expandHtml(/** @type {?} */ ((this._htmlParser)).parse(template, templateUrl, true, this.getInterpolationConfig(component))), component, directives, pipes, schemas);
+    TemplateParser.prototype.tryParse = function (component, template, directives, pipes, schemas, templateUrl, preserveWhitespaces) {
+        var /** @type {?} */ htmlParseResult = ((this._htmlParser)).parse(template, templateUrl, true, this.getInterpolationConfig(component));
+        if (!preserveWhitespaces) {
+            htmlParseResult = removeWhitespaces(htmlParseResult);
+        }
+        return this.tryParseHtml(this.expandHtml(htmlParseResult), component, directives, pipes, schemas);
     };
     /**
      * @param {?} htmlAstWithErrors
@@ -72051,9 +72192,10 @@ var TemplateParseVisitor = (function () {
      */
     TemplateParseVisitor.prototype.visitText = function (text, parent) {
         var /** @type {?} */ ngContentIndex = ((parent.findNgContentIndex(TEXT_CSS_SELECTOR)));
-        var /** @type {?} */ expr = this._bindingParser.parseInterpolation(text.value, /** @type {?} */ ((text.sourceSpan)));
+        var /** @type {?} */ valueNoNgsp = replaceNgsp(text.value);
+        var /** @type {?} */ expr = this._bindingParser.parseInterpolation(valueNoNgsp, /** @type {?} */ ((text.sourceSpan)));
         return expr ? new BoundTextAst(expr, ngContentIndex, /** @type {?} */ ((text.sourceSpan))) :
-            new TextAst(text.value, ngContentIndex, /** @type {?} */ ((text.sourceSpan)));
+            new TextAst(valueNoNgsp, ngContentIndex, /** @type {?} */ ((text.sourceSpan)));
     };
     /**
      * @param {?} attribute
@@ -72335,7 +72477,7 @@ var TemplateParseVisitor = (function () {
             _this._createDirectivePropertyAsts(directive.inputs, props, directiveProperties, targetBoundDirectivePropNames);
             elementOrDirectiveRefs.forEach(function (elOrDirRef) {
                 if ((elOrDirRef.value.length === 0 && directive.isComponent) ||
-                    (directive.exportAs == elOrDirRef.value)) {
+                    (elOrDirRef.isReferenceToDirective(directive))) {
                     targetReferences.push(new ReferenceAst(elOrDirRef.name, createTokenForReference(directive.type.reference), elOrDirRef.sourceSpan));
                     matchedReferences.add(elOrDirRef.name);
                 }
@@ -72599,6 +72741,13 @@ var NonBindableVisitor = (function () {
     NonBindableVisitor.prototype.visitExpansionCase = function (expansionCase, context) { return expansionCase; };
     return NonBindableVisitor;
 }());
+/**
+ * A reference to an element or directive in a template. E.g., the reference in this template:
+ *
+ * <div #myMenu="coolMenu">
+ *
+ * would be {name: 'myMenu', value: 'coolMenu', sourceSpan: ...}
+ */
 var ElementOrDirectiveRef = (function () {
     /**
      * @param {?} name
@@ -72610,8 +72759,24 @@ var ElementOrDirectiveRef = (function () {
         this.value = value;
         this.sourceSpan = sourceSpan;
     }
+    /**
+     * Gets whether this is a reference to the given directive.
+     * @param {?} directive
+     * @return {?}
+     */
+    ElementOrDirectiveRef.prototype.isReferenceToDirective = function (directive) {
+        return splitExportAs(directive.exportAs).indexOf(this.value) !== -1;
+    };
     return ElementOrDirectiveRef;
 }());
+/**
+ * Splits a raw, potentially comma-delimted `exportAs` value into an array of names.
+ * @param {?} exportAs
+ * @return {?}
+ */
+function splitExportAs(exportAs) {
+    return exportAs ? exportAs.split(',').map(function (e) { return e.trim(); }) : [];
+}
 /**
  * @param {?} classAttrValue
  * @return {?}
@@ -73167,6 +73332,10 @@ var DirectiveNormalizer = (function () {
         else {
             throw syntaxError("No template specified for component " + Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["ɵstringify"])(prenormData.componentType));
         }
+        if (isDefined(prenormData.preserveWhitespaces) &&
+            typeof prenormData.preserveWhitespaces !== 'boolean') {
+            throw syntaxError("The preserveWhitespaces option for component " + Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["ɵstringify"])(prenormData.componentType) + " must be a boolean");
+        }
         return SyncAsync.then(this.normalizeTemplateOnly(prenormData), function (result) { return _this.normalizeExternalStylesheets(result); });
     };
     /**
@@ -73226,7 +73395,8 @@ var DirectiveNormalizer = (function () {
             ngContentSelectors: visitor.ngContentSelectors,
             animations: prenormData.animations,
             interpolation: prenormData.interpolation, isInline: isInline,
-            externalStylesheets: []
+            externalStylesheets: [],
+            preserveWhitespaces: preserveWhitespacesDefault(prenormData.preserveWhitespaces, this._config.preserveWhitespaces),
         });
     };
     /**
@@ -73245,6 +73415,7 @@ var DirectiveNormalizer = (function () {
             animations: templateMeta.animations,
             interpolation: templateMeta.interpolation,
             isInline: templateMeta.isInline,
+            preserveWhitespaces: templateMeta.preserveWhitespaces,
         }); });
     };
     /**
@@ -73526,7 +73697,8 @@ var DirectiveResolver = (function () {
                 styleUrls: directive.styleUrls,
                 encapsulation: directive.encapsulation,
                 animations: directive.animations,
-                interpolation: directive.interpolation
+                interpolation: directive.interpolation,
+                preserveWhitespaces: directive.preserveWhitespaces,
             });
         }
         else {
@@ -74206,7 +74378,8 @@ var CompileMetadataResolver = (function () {
                 styles: template.styles,
                 styleUrls: template.styleUrls,
                 animations: template.animations,
-                interpolation: template.interpolation
+                interpolation: template.interpolation,
+                preserveWhitespaces: template.preserveWhitespaces
             });
             if (Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["ɵisPromise"])(templateMeta) && isSync) {
                 this._reportError(componentStillLoadingError(directiveType), directiveType);
@@ -74255,7 +74428,8 @@ var CompileMetadataResolver = (function () {
                 interpolation: noUndefined(dirMeta.interpolation),
                 isInline: !!dirMeta.template,
                 externalStylesheets: [],
-                ngContentSelectors: []
+                ngContentSelectors: [],
+                preserveWhitespaces: noUndefined(dirMeta.preserveWhitespaces),
             });
         }
         var /** @type {?} */ changeDetectionStrategy = ((null));
@@ -83003,9 +83177,10 @@ var AotCompiler = (function () {
         var /** @type {?} */ ngModule = ((this._metadataResolver.getNgModuleMetadata(ngModuleType)));
         var /** @type {?} */ providers = [];
         if (this._localeId) {
+            var /** @type {?} */ normalizedLocale = this._localeId.replace(/_/g, '-');
             providers.push({
                 token: createTokenForExternalReference(this._reflector, Identifiers.LOCALE_ID),
-                useValue: this._localeId,
+                useValue: normalizedLocale,
             });
         }
         if (this._translationFormat) {
@@ -83063,7 +83238,8 @@ var AotCompiler = (function () {
         var _this = this;
         var /** @type {?} */ directives = directiveIdentifiers.map(function (dir) { return _this._metadataResolver.getDirectiveSummary(dir.reference); });
         var /** @type {?} */ pipes = ngModule.transitiveModule.pipes.map(function (pipe) { return _this._metadataResolver.getPipeSummary(pipe.reference); });
-        var _a = this._templateParser.parse(compMeta, /** @type {?} */ ((((compMeta.template)).template)), directives, pipes, ngModule.schemas, templateSourceUrl(ngModule.type, compMeta, /** @type {?} */ ((compMeta.template)))), parsedTemplate = _a.template, usedPipes = _a.pipes;
+        var /** @type {?} */ preserveWhitespaces = ((((compMeta)).template)).preserveWhitespaces;
+        var _a = this._templateParser.parse(compMeta, /** @type {?} */ ((((compMeta.template)).template)), directives, pipes, ngModule.schemas, templateSourceUrl(ngModule.type, compMeta, /** @type {?} */ ((compMeta.template))), preserveWhitespaces), parsedTemplate = _a.template, usedPipes = _a.pipes;
         var /** @type {?} */ stylesExpr = componentStyles ? variable(componentStyles.stylesVar) : literalArr([]);
         var /** @type {?} */ viewResult = this._viewCompiler.compileComponent(outputCtx, compMeta, parsedTemplate, stylesExpr, usedPipes);
         if (componentStyles) {
@@ -84792,6 +84968,7 @@ function createAotCompiler(compilerHost, options) {
         useJit: false,
         enableLegacyTemplate: options.enableLegacyTemplate !== false,
         missingTranslation: options.missingTranslation,
+        preserveWhitespaces: options.preserveWhitespaces,
     });
     var /** @type {?} */ normalizer = new DirectiveNormalizer({ get: function (url) { return compilerHost.loadResource(url); } }, urlResolver, htmlParser, config);
     var /** @type {?} */ expressionParser = new Parser(new Lexer());
@@ -86025,7 +86202,8 @@ var JitCompiler = (function () {
         var /** @type {?} */ compMeta = template.compMeta;
         var /** @type {?} */ externalStylesheetsByModuleUrl = new Map();
         var /** @type {?} */ outputContext = createOutputContext();
-        var /** @type {?} */ componentStylesheet = this._styleCompiler.compileComponent(outputContext, compMeta); /** @type {?} */
+        var /** @type {?} */ componentStylesheet = this._styleCompiler.compileComponent(outputContext, compMeta);
+        var /** @type {?} */ preserveWhitespaces = ((((compMeta)).template)).preserveWhitespaces; /** @type {?} */
         ((compMeta.template)).externalStylesheets.forEach(function (stylesheetMeta) {
             var /** @type {?} */ compiledStylesheet = _this._styleCompiler.compileStyles(createOutputContext(), compMeta, stylesheetMeta);
             externalStylesheetsByModuleUrl.set(/** @type {?} */ ((stylesheetMeta.moduleUrl)), compiledStylesheet);
@@ -86033,7 +86211,7 @@ var JitCompiler = (function () {
         this._resolveStylesCompileResult(componentStylesheet, externalStylesheetsByModuleUrl);
         var /** @type {?} */ directives = template.directives.map(function (dir) { return _this._metadataResolver.getDirectiveSummary(dir.reference); });
         var /** @type {?} */ pipes = template.ngModule.transitiveModule.pipes.map(function (pipe) { return _this._metadataResolver.getPipeSummary(pipe.reference); });
-        var _a = this._templateParser.parse(compMeta, /** @type {?} */ ((((compMeta.template)).template)), directives, pipes, template.ngModule.schemas, templateSourceUrl(template.ngModule.type, template.compMeta, /** @type {?} */ ((template.compMeta.template)))), parsedTemplate = _a.template, usedPipes = _a.pipes;
+        var _a = this._templateParser.parse(compMeta, /** @type {?} */ ((((compMeta.template)).template)), directives, pipes, template.ngModule.schemas, templateSourceUrl(template.ngModule.type, template.compMeta, /** @type {?} */ ((template.compMeta.template))), preserveWhitespaces), parsedTemplate = _a.template, usedPipes = _a.pipes;
         var /** @type {?} */ compileResult = this._viewCompiler.compileComponent(outputContext, compMeta, parsedTemplate, variable(componentStylesheet.stylesVar), usedPipes);
         var /** @type {?} */ evalResult;
         if (!this._compilerConfig.useJit) {
@@ -86585,6 +86763,7 @@ var JitCompilerFactory = (function () {
             defaultEncapsulation: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ViewEncapsulation"].Emulated,
             missingTranslation: __WEBPACK_IMPORTED_MODULE_1__angular_core__["MissingTranslationStrategy"].Warning,
             enableLegacyTemplate: true,
+            preserveWhitespaces: true,
         };
         this._defaultOptions = [compilerOptions].concat(defaultOptions);
     }
@@ -86608,6 +86787,7 @@ var JitCompilerFactory = (function () {
                         defaultEncapsulation: opts.defaultEncapsulation,
                         missingTranslation: opts.missingTranslation,
                         enableLegacyTemplate: opts.enableLegacyTemplate,
+                        preserveWhitespaces: opts.preserveWhitespaces,
                     });
                 },
                 deps: []
@@ -86646,6 +86826,7 @@ function _mergeOptions(optionsArr) {
         providers: _mergeArrays(optionsArr.map(function (options) { return ((options.providers)); })),
         missingTranslation: _lastDefined(optionsArr.map(function (options) { return options.missingTranslation; })),
         enableLegacyTemplate: _lastDefined(optionsArr.map(function (options) { return options.enableLegacyTemplate; })),
+        preserveWhitespaces: _lastDefined(optionsArr.map(function (options) { return options.preserveWhitespaces; })),
     };
 }
 /**
@@ -89240,7 +89421,7 @@ module.exports = "<div class=\"container\"> <h3> Simple button </h3> <div class=
 /* 123 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\"> <div class=\"row container-fluid\"> <h3>Icons available : </h3> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-add\"></i> add </div> <div class=\"col-md-3\"> <i class=\"icon icon-delete\"></i> delete </div> <div class=\"col-md-3\"> <i class=\"icon icon-close\"></i> close </div> <div class=\"col-md-3\"> <i class=\"icon icon-edit\"></i> edit </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-search\"></i> search </div> <div class=\"col-md-3\"> <i class=\"icon icon-about\"></i> about </div> <div class=\"col-md-3\"> <i class=\"icon icon-import\"></i> import </div> <div class=\"col-md-3\"> <i class=\"icon icon-export\"></i> export </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-save\"></i> save </div> <div class=\"col-md-3\"> <i class=\"icon icon-print\"></i> print </div> <div class=\"col-md-3\"> <i class=\"icon icon-parameter\"></i> parameter </div> <div class=\"col-md-3\"> <i class=\"icon icon-info\"></i> info </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-question\"></i> question </div> <div class=\"col-md-3\"> <i class=\"icon icon-link\"></i> link </div> <div class=\"col-md-3\"> <i class=\"icon icon-next\"></i> next </div> <div class=\"col-md-3\"> <i class=\"icon icon-previous\"></i> previous </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-exchange\"></i> exchange </div> <div class=\"col-md-3\"> <i class=\"icon icon-warning\"></i> warning </div> <div class=\"col-md-3\"> <i class=\"icon icon-copy\"></i> copy </div> <div class=\"col-md-3\"> <i class=\"icon icon-star\"></i> star </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-archive\"></i> archive </div> <div class=\"col-md-3\"> <i class=\"icon icon-date\"></i> date </div> <div class=\"col-md-3\"> <i class=\"icon icon-share\"></i> share </div> <div class=\"col-md-3\"> <i class=\"icon icon-back\"></i> back </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-comment\"></i> comment </div> <div class=\"col-md-3\"> <i class=\"icon icon-users\"></i> users </div> <div class=\"col-md-3\"> <i class=\"icon icon-user\"></i> user </div> <div class=\"col-md-3\"> <i class=\"icon icon-folder\"></i> folder </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-folder-open\"></i> folder-open </div> <div class=\"col-md-3\"> <i class=\"icon icon-stats\"></i> stats </div> <div class=\"col-md-3\"> <i class=\"icon icon-sort-asc\"></i> sort-asc </div> <div class=\"col-md-3\"> <i class=\"icon icon-sort-desc\"></i> sort-desc </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-ticket\"></i> ticket </div> <div class=\"col-md-3\"> <i class=\"icon icon-lock\"></i> lock </div> <div class=\"col-md-3\"> <i class=\"icon icon-unlock\"></i> unlock </div> <div class=\"col-md-3\"> <i class=\"icon icon-show\"></i> show </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-hide\"></i> hide </div> <div class=\"col-md-3\"> <i class=\"icon icon-fax\"></i> fax </div> <div class=\"col-md-3\"> <i class=\"icon icon-home\"></i> home </div> <div class=\"col-md-3\"> <i class=\"icon icon-sign-in\"></i> sign-in </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-sign-out\"></i> sign-out </div> <div class=\"col-md-3\"> <i class=\"icon icon-purchase\"></i> purchase </div> <div class=\"col-md-3\"> <i class=\"icon icon-file-pdf\"></i> file-pdf </div> <div class=\"col-md-3\"> <i class=\"icon icon-file-zip\"></i> file-zip </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-file-text\"></i> file-text </div> <div class=\"col-md-3\"> <i class=\"icon icon-list\"></i> list </div> </div> </div> <pre>\n    {{iconHtml}}\n  </pre> <blockquote> <p>Remplace name by the icon you want</p> </blockquote> <h3> Different size </h3> <div class=\"row\"> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-1x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-2x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-3x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-4x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-5x\"></i> add </div> </div> <pre>\n    {{iconSize}}\n  </pre> <h3> Disabled icon </h3> <div class=\"row\"> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-disabled\"> </i> add </div> </div> <pre>\n    {{iconDisabled}}\n  </pre> </div> ";
+module.exports = "<div class=\"container\"> <div class=\"row container-fluid\"> <h3>Icons available : </h3> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-add\"></i> add </div> <div class=\"col-md-3\"> <i class=\"icon icon-delete\"></i> delete </div> <div class=\"col-md-3\"> <i class=\"icon icon-close\"></i> close </div> <div class=\"col-md-3\"> <i class=\"icon icon-edit\"></i> edit </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-search\"></i> search </div> <div class=\"col-md-3\"> <i class=\"icon icon-about\"></i> about </div> <div class=\"col-md-3\"> <i class=\"icon icon-import\"></i> import </div> <div class=\"col-md-3\"> <i class=\"icon icon-export\"></i> export </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-save\"></i> save </div> <div class=\"col-md-3\"> <i class=\"icon icon-print\"></i> print </div> <div class=\"col-md-3\"> <i class=\"icon icon-parameter\"></i> parameter </div> <div class=\"col-md-3\"> <i class=\"icon icon-info\"></i> info </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-question\"></i> question </div> <div class=\"col-md-3\"> <i class=\"icon icon-link\"></i> link </div> <div class=\"col-md-3\"> <i class=\"icon icon-next\"></i> next </div> <div class=\"col-md-3\"> <i class=\"icon icon-previous\"></i> previous </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-exchange\"></i> exchange </div> <div class=\"col-md-3\"> <i class=\"icon icon-warning\"></i> warning </div> <div class=\"col-md-3\"> <i class=\"icon icon-copy\"></i> copy </div> <div class=\"col-md-3\"> <i class=\"icon icon-star\"></i> star </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-archive\"></i> archive </div> <div class=\"col-md-3\"> <i class=\"icon icon-date\"></i> date </div> <div class=\"col-md-3\"> <i class=\"icon icon-share\"></i> share </div> <div class=\"col-md-3\"> <i class=\"icon icon-back\"></i> back </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-comment\"></i> comment </div> <div class=\"col-md-3\"> <i class=\"icon icon-users\"></i> users </div> <div class=\"col-md-3\"> <i class=\"icon icon-user\"></i> user </div> <div class=\"col-md-3\"> <i class=\"icon icon-folder\"></i> folder </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-folder-open\"></i> folder-open </div> <div class=\"col-md-3\"> <i class=\"icon icon-stats\"></i> stats </div> <div class=\"col-md-3\"> <i class=\"icon icon-sort-asc\"></i> sort-asc </div> <div class=\"col-md-3\"> <i class=\"icon icon-sort-desc\"></i> sort-desc </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-ticket\"></i> ticket </div> <div class=\"col-md-3\"> <i class=\"icon icon-lock\"></i> lock </div> <div class=\"col-md-3\"> <i class=\"icon icon-unlock\"></i> unlock </div> <div class=\"col-md-3\"> <i class=\"icon icon-show\"></i> show </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-hide\"></i> hide </div> <div class=\"col-md-3\"> <i class=\"icon icon-fax\"></i> fax </div> <div class=\"col-md-3\"> <i class=\"icon icon-home\"></i> home </div> <div class=\"col-md-3\"> <i class=\"icon icon-sign-in\"></i> sign-in </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-sign-out\"></i> sign-out </div> <div class=\"col-md-3\"> <i class=\"icon icon-purchase\"></i> purchase </div> <div class=\"col-md-3\"> <i class=\"icon icon-file-pdf\"></i> file-pdf </div> <div class=\"col-md-3\"> <i class=\"icon icon-file-zip\"></i> file-zip </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-file-text\"></i> file-text </div> <div class=\"col-md-3\"> <i class=\"icon icon-notification\"></i> notification </div> <div class=\"col-md-3\"> <i class=\"icon icon-up\"></i> up </div> <div class=\"col-md-3\"> <i class=\"icon icon-down\"></i> down </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-parameter\"></i> parameter </div> <div class=\"col-md-3\"> <i class=\"icon icon-check\"></i> check </div> <div class=\"col-md-3\"> <i class=\"icon icon-list\"></i> list </div> </div> </div> <pre>\n    {{iconHtml}}\n  </pre> <blockquote> <p>Remplace name by the icon you want</p> </blockquote> <h3> Different size </h3> <div class=\"row\"> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-1x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-2x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-3x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-4x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-5x\"></i> add </div> </div> <pre>\n    {{iconSize}}\n  </pre> <h3> Disabled icon </h3> <div class=\"row\"> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-disabled\"> </i> add </div> </div> <pre>\n    {{iconDisabled}}\n  </pre> </div> ";
 
 /***/ }),
 /* 124 */
@@ -89318,7 +89499,7 @@ module.exports = "<div class=\"container\"> <div class=\"row\" style=\"display:f
 /* 136 */
 /***/ (function(module, exports) {
 
-module.exports = "<div> <h4>Simple sortable</h4> <div class=\"row\"> <div class=\"col-sm-3\"> <div class=\"panel panel-success\"> <div class=\"panel-heading\"> Favorite drinks </div> <div class=\"panel-body\"> <ul class=\"list-group\" sortable-container [sortableData]=\"listOne\"> <li *ngFor=\"let item of listOne; let i = index\" class=\"list-group-item\" sortable [sortableIndex]=\"i\">{{item}}</li> </ul> </div> </div> </div> <div class=\"col-sm-6\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> My prefences:<br/> <span *ngFor=\"let item of listOne; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> </div> </div> ";
+module.exports = "<div> <h4>Simple sortable</h4> <div class=\"row\"> <div class=\"col-sm-3\"> <div class=\"panel panel-success\"> <div class=\"panel-heading\"> Favorite drinks </div> <div class=\"panel-body\"> <ul class=\"list-group\" sortable-container [sortableData]=\"listOne\"> <li *ngFor=\"let item of listOne; let i = index\" class=\"list-group-item\" sortable [sortableIndex]=\"i\"> <span sortable-handle>=</span>&nbsp; {{item}} </li> </ul> </div> </div> </div> <div class=\"col-sm-6\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> My prefences:<br/> <span *ngFor=\"let item of listOne; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> </div> </div> ";
 
 /***/ }),
 /* 137 */
@@ -90198,8 +90379,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       ngxAtlUiModule.annotations = [new _core.NgModule({
         imports: [_common.CommonModule, _forms.FormsModule],
-        declarations: [_paginationComponent2.default, _datepickerComponent2.default, _datepickerRangeComponent2.default, _selectpickerComponent2.default, _selectpickerOptionComponent2.default, _slidepickerComponent.slidepickerComponent, _slidepickerComponent.slidepickeroptionComponent, _focusDirective2.default, _modalComponent2.default, _modalHeaderComponent2.default, _modalBodyComponent2.default, _modalFooterComponent2.default, _carouselComponent.carouselComponent, _carouselComponent.carouselItemComponent, _accordionComponent.accordionComponent, _accordionComponent.accordionPanelComponent, _dropdownComponent2.default, _dropdownOptionComponent2.default, _dropdownDividerComponent2.default, _dropdownHeaderComponent2.default, _circleProgressBarComponent2.default, _affixDirective2.default, _gridComponent2.default, _gridHeaderComponent2.default, _gridBodyComponent2.default, _gridFooterComponent2.default, _gridCellComponent2.default, _gridCellHeaderComponent2.default, _popoverComponent.popoverComponent, _popoverComponent.popoverDirective, _tooltipComponent.tooltipComponent, _tooltipComponent.tooltipDirective, _backdropComponent2.default, _sortableComponent.sortableContainer, _sortableComponent.sortableComponents],
-        exports: [_paginationComponent2.default, _datepickerComponent2.default, _datepickerRangeComponent2.default, _selectpickerComponent2.default, _selectpickerOptionComponent2.default, _slidepickerComponent.slidepickerComponent, _slidepickerComponent.slidepickeroptionComponent, _focusDirective2.default, _modalComponent2.default, _modalHeaderComponent2.default, _modalBodyComponent2.default, _modalFooterComponent2.default, _carouselComponent.carouselComponent, _carouselComponent.carouselItemComponent, _accordionComponent.accordionComponent, _accordionComponent.accordionPanelComponent, _dropdownComponent2.default, _dropdownOptionComponent2.default, _dropdownDividerComponent2.default, _dropdownHeaderComponent2.default, _circleProgressBarComponent2.default, _affixDirective2.default, _gridComponent2.default, _gridHeaderComponent2.default, _gridBodyComponent2.default, _gridFooterComponent2.default, _gridCellComponent2.default, _gridCellHeaderComponent2.default, _popoverComponent.popoverComponent, _popoverComponent.popoverDirective, _tooltipComponent.tooltipComponent, _tooltipComponent.tooltipDirective, _backdropComponent2.default, _sortableComponent.sortableContainer, _sortableComponent.sortableComponents],
+        declarations: [_paginationComponent2.default, _datepickerComponent2.default, _datepickerRangeComponent2.default, _selectpickerComponent2.default, _selectpickerOptionComponent2.default, _slidepickerComponent.slidepickerComponent, _slidepickerComponent.slidepickeroptionComponent, _focusDirective2.default, _modalComponent2.default, _modalHeaderComponent2.default, _modalBodyComponent2.default, _modalFooterComponent2.default, _carouselComponent.carouselComponent, _carouselComponent.carouselItemComponent, _accordionComponent.accordionComponent, _accordionComponent.accordionPanelComponent, _dropdownComponent2.default, _dropdownOptionComponent2.default, _dropdownDividerComponent2.default, _dropdownHeaderComponent2.default, _circleProgressBarComponent2.default, _affixDirective2.default, _gridComponent2.default, _gridHeaderComponent2.default, _gridBodyComponent2.default, _gridFooterComponent2.default, _gridCellComponent2.default, _gridCellHeaderComponent2.default, _popoverComponent.popoverComponent, _popoverComponent.popoverDirective, _tooltipComponent.tooltipComponent, _tooltipComponent.tooltipDirective, _backdropComponent2.default, _sortableComponent.sortableContainer, _sortableComponent.sortableComponents, _sortableComponent.sortableHandler],
+        exports: [_paginationComponent2.default, _datepickerComponent2.default, _datepickerRangeComponent2.default, _selectpickerComponent2.default, _selectpickerOptionComponent2.default, _slidepickerComponent.slidepickerComponent, _slidepickerComponent.slidepickeroptionComponent, _focusDirective2.default, _modalComponent2.default, _modalHeaderComponent2.default, _modalBodyComponent2.default, _modalFooterComponent2.default, _carouselComponent.carouselComponent, _carouselComponent.carouselItemComponent, _accordionComponent.accordionComponent, _accordionComponent.accordionPanelComponent, _dropdownComponent2.default, _dropdownOptionComponent2.default, _dropdownDividerComponent2.default, _dropdownHeaderComponent2.default, _circleProgressBarComponent2.default, _affixDirective2.default, _gridComponent2.default, _gridHeaderComponent2.default, _gridBodyComponent2.default, _gridFooterComponent2.default, _gridCellComponent2.default, _gridCellHeaderComponent2.default, _popoverComponent.popoverComponent, _popoverComponent.popoverDirective, _tooltipComponent.tooltipComponent, _tooltipComponent.tooltipDirective, _backdropComponent2.default, _sortableComponent.sortableContainer, _sortableComponent.sortableComponents, _sortableComponent.sortableHandler],
         entryComponents: [_tooltipComponent.tooltipComponent, _popoverComponent.popoverComponent, _backdropComponent2.default]
       })];
 
@@ -93957,7 +94138,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       Object.defineProperty(exports, "__esModule", {
         value: true
       });
-      exports.sortableComponents = exports.sortableContainer = undefined;
+      exports.sortableHandler = exports.sortableComponents = exports.sortableContainer = undefined;
 
       var _createClass = function () {
         function defineProperties(target, props) {
@@ -94091,7 +94272,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(sortableComponents, [{
           key: '_onDragStartCallback',
           value: function _onDragStartCallback() {
-            console.log(this);
             this._sortableDataService.isDragged = true;
             this._sortableDataService.sortableContainer = this._sortableContainer;
             this._sortableDataService.index = this.index;
@@ -94109,7 +94289,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             if (this._sortableDataService.isDragged) {
               this._sortableDataService.markSortable(this._elem);
               if (this.index !== this._sortableDataService.index || this._sortableDataService.sortableContainer.sortableData !== this._sortableContainer.sortableData) {
-                console.log('Component._onDragEnterCallback. drag node [' + this.index + '] over node [' + this._sortableDataService.index + ']');
                 // Get item
                 var item = this._sortableDataService.sortableContainer.sortableData[this._sortableDataService.index];
                 // Remove item from previouse list
@@ -94131,7 +94310,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           key: '_onDragOverCallback',
           value: function _onDragOverCallback() {
             if (this._sortableDataService.isDragged && this._elem !== this._sortableDataService.elem) {
-              console.log('_onDragOverCallback. dragging elem with index ' + this.index);
               this._sortableDataService.sortableContainer = this._sortableContainer;
               this._sortableDataService.index = this.index;
               this._sortableDataService.markSortable(this._elem);
@@ -94141,7 +94319,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
           key: '_onDragEndCallback',
           value: function _onDragEndCallback() {
-            console.log('_onDragEndCallback. end dragging elem with index ' + this.index);
             this._sortableDataService.isDragged = false;
             this._sortableDataService.sortableContainer = null;
             this._sortableDataService.index = null;
@@ -94170,6 +94347,32 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       }(_dragAndDropAbstractComponent.dragAndDropAbstractComponent);
 
       sortableComponents.parameters = [_core.ElementRef, _core.ChangeDetectorRef, sortableContainer, _dragAndDropService.dragAndDropSortableService, _dragAndDropService.dragAndDropService];
+
+      var sortableHandler = exports.sortableHandler = function (_dragAndDropAbstractH) {
+        _inherits(sortableHandler, _dragAndDropAbstractH);
+
+        _createClass(sortableHandler, null, [{
+          key: 'annotations',
+          get: function get() {
+            return [new _core.Directive({
+              selector: '[sortable-handle]'
+            })];
+          }
+        }]);
+
+        function sortableHandler(elementRef, dragAndDropService, sortableComponent, cdr) {
+          _classCallCheck(this, sortableHandler);
+
+          var _this3 = _possibleConstructorReturn(this, (sortableHandler.__proto__ || Object.getPrototypeOf(sortableHandler)).call(this, elementRef, dragAndDropService, sortableComponent, cdr));
+
+          console.log(_this3);
+          return _this3;
+        }
+
+        return sortableHandler;
+      }(_dragAndDropAbstractComponent.dragAndDropAbstractHandleComponent);
+
+      sortableHandler.parameters = [_core.ElementRef, _dragAndDropService.dragAndDropService, sortableComponents, _core.ChangeDetectorRef];
 
       /***/
     },
@@ -94205,7 +94408,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           _classCallCheck(this, dragAndDropAbstractComponent);
 
           this._element = ElementRef.nativeElement;
-          // this._element.style.cursor = "pointer";
+          this._element.style.cursor = "pointer";
           this._dragAndDropService = dragAndDropService;
           this.dropZones = [];
           this._cdr = ChangeDetectorRef;
@@ -94276,22 +94479,32 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               // }
               //
               // // Change drag cursor
-              // let cursorelem = (this._dragHandle) ? this._dragHandle : this._elem;
+              var cursorelem = _this._dragHandle ? _this._dragHandle : _this._element;
               //
-              // if (this._dragEnabled) {
-              //   cursorelem.style.cursor = this.effectCursor ? this.effectCursor : this._config.dragCursor;
-              // } else {
-              //   cursorelem.style.cursor = this._defaultCursor;
-              // }
+              if (_this._dragEnabled) {
+                cursorelem.style.cursor = _this.effectCursor ? _this.effectCursor : "move";
+              } else {
+                cursorelem.style.cursor = "auto";
+              }
             }
           };
 
           this._element.ondragend = function (event) {
             _this._onDragEnd(event);
+
+            var cursorelem = _this._dragHandle ? _this._dragHandle : _this._element;
+            cursorelem.style.cursor = "pointer";
           };
         }
 
         _createClass(dragAndDropAbstractComponent, [{
+          key: 'setDragHandle',
+          value: function setDragHandle(elem) {
+            this._dragHandle = elem;
+            this._element.style.cursor = "auto";
+            this._dragHandle.style.cursor = "pointer";
+          }
+        }, {
           key: '_onDragEnter',
           value: function _onDragEnter(event) {
             if (this._isDropAllowed(event)) {
@@ -94399,6 +94612,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
         return dragAndDropAbstractComponent;
       }();
+
+      var dragAndDropAbstractHandleComponent = exports.dragAndDropAbstractHandleComponent = function dragAndDropAbstractHandleComponent(elementRef, dragAndDropService, dragAndDropAbstractComponent, cdr) {
+        _classCallCheck(this, dragAndDropAbstractHandleComponent);
+
+        this._element = elementRef.nativeElement;
+        dragAndDropAbstractComponent.setDragHandle(this._element);
+      };
 
       /***/
     }]

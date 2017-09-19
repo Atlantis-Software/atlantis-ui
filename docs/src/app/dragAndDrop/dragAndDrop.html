@@ -10,7 +10,10 @@
           </div>
           <div class="panel-body">
             <ul class="list-group" sortable-container [sortableData]="listOne">
-              <li *ngFor="let item of listOne; let i = index" class="list-group-item" sortable [sortableIndex]="i">{{item}}</li>
+              <li *ngFor="let item of listOne; let i = index" class="list-group-item" sortable [sortableIndex]="i">
+                <span sortable-handle>=</span>&nbsp;
+                {{item}}
+              </li>
             </ul>
           </div>
         </div>
