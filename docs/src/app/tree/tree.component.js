@@ -111,6 +111,10 @@ export default  class TreeComponent {
     ];`;
   }
 
+  test() {
+    console.log(this.nodes);
+  }
+
 }
 
 

@@ -9,7 +9,10 @@ export default  class dragAndDropComponent {
     ];
   }
   constructor(){
-    this.listOne = ['Coffee', 'Orange Juice', 'Red Wine', 'Unhealty drink!', 'Water'];
+    this.listOne = ['A', 'B', 'C', 'D', 'E'];
+    this.listOneOriginal = ['A', 'B', 'C', 'D', 'E'];
+    this.listTwo = ['1', '2', '3', '4!', '5'];
+    this.listTwoOriginal = ['1', '2', '3', '4!', '5'];
     this.Display = "Example";
   }
 }

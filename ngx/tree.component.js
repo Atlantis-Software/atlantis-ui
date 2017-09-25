@@ -6,18 +6,17 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 
-import { sortableComponents } from './sortable.component.js'
-
 export default class treeComponent {
   static get annotations() {
     return [
       new Component({
         selector: 'tree',
         template: `
-        <div sortable-container [sortableData]="nodes">
+        <div sortable-container [sortableData]="nodes" [dropzones]="dropZones">
+        <span>{{dropZones}}</span>
           <tree-node *ngFor="let node of nodes; let i = index"
             [expandable]="node.expandable"
-            [expanded]="node.expanded"
+            [(expanded)]="node.expanded"
             [label]="node.label"
             [model]="node.model"
             [id]="node.id"
@@ -27,15 +26,19 @@ export default class treeComponent {
             [depth]="depth"
             [disabled]="node.disabled"
             [(selected)]="node.selected"
+            [sortableZones]="dropZonesNested"
+            [nestedSortable]='nestedSortable'
             (expand)="expand.emit($event)"
             (collapse)="collapse.emit($event)"
             (select)="onSelect($event)"
             sortable
-            [sortableIndex]=i>
+            [sortableIndex]="i"
+            (onDragStartCallback)="onDragCallback(i, true)"
+            (onDragEndCallback)="onDragCallback(i, false)">
           </tree-node>
         <ng-content *ngIf="!nodes"></ng-content>
         </div>`,
-        inputs: ['nodes', 'template', 'depth'],
+        inputs: ['nodes', 'template', 'depth', 'nestedSortable'],
         outputs: ['expand', 'collapse', 'select', 'nodesChanges'],
         queries: {
           template: new ContentChild(TemplateRef),
@@ -50,11 +53,45 @@ export default class treeComponent {
     this.nodesChanges = new EventEmitter();
     this.depth = 1;
     this.cdr = changeDetectorRef;
+    this.dropZones = "zone"+Math.floor(Math.random()*100000) +1;
+  }
+
+  onDragCallback(node, value){
+    if (!this.nodes) {
+      return;
+    }
+    if (this.nestedSortable) {
+      if (value && this.nodes[node].expanded) {
+        this.nodes[node].oldExpanded = this.nodes[node].expanded;
+        this.nodes[node].expanded = false;
+      } else if (!value) {
+        if (this.nodes[node].oldExpanded) {
+          this.nodes[node].expanded = this.nodes[node].oldExpanded;
+        }
+      }
+      return;
+    }
+    this.nodes.forEach((child)=> {
+      if (value) {
+        child.oldExpanded = child.expanded;
+        child.expanded = false;
+      } else {
+        child.expanded = child.oldExpanded;
+      }
+    });
   }
 
   ngAfterViewInit() {
-    var recursiveSetId = function(node, index) {
+    if (this.nestedSortable) {
+      this.dropZonesNested = this.dropZones;
+    } else {
+      this.dropZonesNested = undefined;
+    }
+    var recursiveSetId = function(node, index, dropZones) {
       node.id = index+1;
+      if (dropZones !== undefined) {
+        node.dropZones = dropZones;
+      }
       node.selected = node.selected || false;
       if (node.children) {
         node.children.forEach(function(child, index) {
@@ -62,8 +99,8 @@ export default class treeComponent {
         });
       }
     };
-    this.nodes.forEach(function(node, index) {
-      recursiveSetId(node, index);
+    this.nodes.forEach((node, index) => {
+      recursiveSetId(node, index, this.dropZonesNested);
     });
     this.cdr.detectChanges();
   }

@@ -22,29 +22,38 @@ export default class treeNodeComponent {
 					}" (click)='ExpandClick()'></span>
 	        <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="tree-node-label"></span>
           <span *ngIf="!template" [innerHTML]="selected" [class.disabled]="disabled"></span>
-          <span *ngIf="!template" [innerHTML]="id" [class.disabled]="disabled"></span>
+          <span sortable-handle>=</span>
 	        <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngOutletContext]="data"></ng-template>
 					<input *ngIf="selectable" type="checkbox" [ngModel]="selected" class="tree-node-checkbox" (click)="onClick()" [attr.disabled]="disabled">
 				</div>
         <ng-content *ngIf="expanded"></ng-content>
-        <tree-node *ngFor="let child of children" [hidden]="!children?.length || !expandable || !expanded"
-          [expandable]="child.expandable"
-          [expanded]="child.expanded"
-          [label]="child.label"
-          [model]="child.model"
-          [id]="child.id"
-          [children]="child.children"
-          [selectable]="child.selectable"
-          [template]="template"
-          [depth]="depth+1"
-          [disabled]="child.disabled"
-          [(selected)]="child.selected"
-          (expand)="expand.emit($event)"
-          (collapse)="collapse.emit($event)"
-          (select)="onSelect($event)">
-        </tree-node>`,
-        inputs: ['node', 'label', 'model', 'children', 'expandable', 'expanded', 'selectable', 'disabled', 'template', 'depth', 'selected', 'id'],
-        outputs: ['expand', 'collapse', 'select', 'selectedChange'],
+        <div *ngIf="children?.length" [hidden]="!expandable || !expanded" sortable-container [sortableData]="children" [dropzones]="sortableZones">
+          <tree-node *ngFor="let child of children; let i = index"
+            [expandable]="child.expandable"
+            [(expanded)]="child.expanded"
+            [label]="child.label"
+            [model]="child.model"
+            [id]="child.id"
+            [children]="child.children"
+            [selectable]="child.selectable"
+            [template]="template"
+            [depth]="depth+1"
+            [disabled]="child.disabled"
+            [(selected)]="child.selected"
+            [sortableZones]="sortableZones"
+            [nestedSortable]="nestedSortable"
+            (expand)="expand.emit($event)"
+            (collapse)="collapse.emit($event)"
+            (select)="onSelect($event)"
+            sortable
+            [sortableIndex]="i"
+            [dropzones]="sortableZones"
+            (onDragStartCallback)="onDragCallback(i, true)"
+            (onDragEndCallback)="onDragCallback(i, false)">
+          </tree-node>
+        </div>`,
+        inputs: ['node', 'label', 'model', 'children', 'expandable', 'expanded', 'selectable', 'disabled', 'template', 'depth', 'selected', 'id', 'sortableZones', 'nestedSortable'],
+        outputs: ['expand', 'collapse', 'select', 'selectedChange', 'expandedChange'],
         host: {
           '[class.selectable]': 'selectable'
         },
@@ -60,8 +69,34 @@ export default class treeNodeComponent {
     this.collapse = new EventEmitter();
     this.select = new EventEmitter();
     this.selectedChange = new EventEmitter();
+    this.expandedChange = new EventEmitter();
     this.indeterminate = false;
     this.parent = treeNodeComponent;
+  }
+
+  onDragCallback(node, value){
+    if (!this.children) {
+      return;
+    }
+    if (this.nestedSortable) {
+      if (value && this.children[node].expanded) {
+        this.children[node].oldExpanded = this.children[node].expanded;
+        this.children[node].expanded = false;
+      } else if (!value) {
+        if (this.children[node].oldExpanded) {
+          this.children[node].expanded = this.children[node].oldExpanded;
+        }
+      }
+      return;
+    }
+    this.children.forEach((child)=> {
+      if (value) {
+        child.oldExpanded = child.expanded;
+        child.expanded = false;
+      } else {
+        child.expanded = child.oldExpanded;
+      }
+    });
   }
 
   _getCheckbox() {
@@ -78,6 +113,10 @@ export default class treeNodeComponent {
       return;
     }
 
+    if (!this.nestedSortable) {
+      this.sortableZones = "zone"+Math.floor(Math.random()*100000) +1;
+    }
+
     if (!this.selectable) {
       return;
     }
@@ -89,6 +128,8 @@ export default class treeNodeComponent {
     if (!this.parent || this.parent.indeterminate) {
       return;
     }
+
+
 
     var checkbox = this._getCheckbox();
 
@@ -116,10 +157,12 @@ export default class treeNodeComponent {
     this.expanded = !this.expanded;
 
     if (this.expanded) {
-      this.expand.emit(this.date);
+      this.expand.emit(this.data);
     } else if (!this.expand) {
       this.collapse.emit(this.data);
     }
+    this.expandedChange.emit(this.expanded);
+
   }
 
   onClick() {
