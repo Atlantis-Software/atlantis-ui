@@ -7,18 +7,18 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@angular/common": "^4.3.3",
-    "@angular/compiler": "^4.3.3",
-    "@angular/core": "^4.3.3",
-    "@angular/forms": "^4.3.3",
-    "@angular/http": "^4.3.3",
-    "@angular/platform-browser": "^4.3.3",
-    "@angular/platform-browser-dynamic": "^4.3.3",
-    "@angular/router": "^4.3.3",
+    "@angular/common": "^4.4.3",
+    "@angular/compiler": "^4.4.3",
+    "@angular/core": "^4.4.3",
+    "@angular/forms": "^4.4.3",
+    "@angular/http": "^4.4.3",
+    "@angular/platform-browser": "^4.4.3",
+    "@angular/platform-browser-dynamic": "^4.4.3",
+    "@angular/router": "^4.4.3",
+    "moment": "~2.18.1",
     "reflect-metadata": "~0.1.8",
     "rxjs": "^5.4.2",
-    "zone.js": "^0.8.12",
-    "moment": "~2.18.1"
+    "zone.js": "^0.8.12"
   },
   "devDependencies": {
     "babel-core": "^6.7.0",
