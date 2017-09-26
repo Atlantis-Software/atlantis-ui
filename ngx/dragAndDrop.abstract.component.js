@@ -7,11 +7,6 @@ export class dragAndDropAbstractComponent {
     this._cdr = ChangeDetectorRef;
     this.dropEnabled = false;
 
-    this._element.onclick = (event) => {
-      event.stopPropagation();
-      console.log(this.dropZones);
-    }
-
     this._element.ondragenter = (event) => {
       this._onDragEnter(event);
     };
@@ -161,7 +156,7 @@ export class dragAndDropAbstractComponent {
   }
 
   _onDragStart(event) {
-    console.log("abstract OnDragStart");
+    // console.log("abstract OnDragStart");
     if (event.stopPropagation) {
       event.stopPropagation();
     }
@@ -172,7 +167,7 @@ export class dragAndDropAbstractComponent {
   }
 
   _onDragEnd(event) {
-    console.log("abstract OnDragEnd");
+    // console.log("abstract OnDragEnd");
     if (event.stopPropagation) {
       event.stopPropagation();
     }

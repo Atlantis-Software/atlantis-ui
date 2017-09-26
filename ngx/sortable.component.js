@@ -99,7 +99,6 @@ export class sortableComponents extends dragAndDropAbstractComponent {
   }
 
   _onDragLeave(){
-    console.log("sortable OnDragLeave");
     this._element.classList.remove('sortableOver');
   }
 
