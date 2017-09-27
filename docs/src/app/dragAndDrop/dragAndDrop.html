@@ -70,4 +70,38 @@
     </div>
   </div>
 
+  <h4>Simple sortable</h4>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          Favorite drinks
+        </div>
+        <div class="panel-body" sortable-container [sortableData]="listThree">
+          <ul class="list-group"  >
+            <li *ngFor="let item of listThree; let i = index" class="list-group-item" sortable [sortableIndex]="i">
+              {{item}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          My prefences:<br/>
+          <span *ngFor="let item of listThree; let i = index">{{i + 1}}) {{item}}<br/></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          My prefences:<br/>
+          <span *ngFor="let item of listThreeOriginal; let i = index">{{i + 1}}) {{item}}<br/></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

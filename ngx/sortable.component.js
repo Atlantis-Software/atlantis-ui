@@ -8,7 +8,7 @@ export class sortableContainer extends dragAndDropAbstractComponent {
     return [
       new Directive({
         selector: '[sortable-container]',
-        inputs: ['sortableData', 'draggable', 'dropzones']
+        inputs: ['sortableData', 'draggable', 'dropzones', 'notSortable: sortable-container']
       })
     ];
   }
@@ -16,6 +16,7 @@ export class sortableContainer extends dragAndDropAbstractComponent {
   constructor(elementRef, cdr, sortableDataService, dragAndDropService) {
     super(elementRef, cdr, dragAndDropService);
     this.dragEnabled = false;
+    this.notSortable = false;
     this._sortableDataService = sortableDataService;
     this._sortableData = [];
   }
@@ -38,6 +39,23 @@ export class sortableContainer extends dragAndDropAbstractComponent {
   get sortableData() {
     return this._sortableData;
   }
+
+  _onDropCallback() {
+    if (this._sortableDataService.isDragged && this._sortableData.length === 0) {
+      let item = this._sortableDataService.sortableContainer._sortableData[this._sortableDataService.index];
+      // Check does element exist in sortableData of this Container
+      if (this._sortableData.indexOf(item) === -1) {
+        this._sortableDataService.sortableContainer._sortableData.splice(this._sortableDataService.index, 1);
+        if (this._sortableDataService.sortableContainer._sortableData.length === 0) {
+          this._sortableDataService.sortableContainer.dropEnabled = true;
+        }
+        this._sortableData.unshift(item);
+        this._sortableDataService.sortableContainer = this;
+        this._sortableDataService.index = 0;
+      }
+      this.detectChanges();
+    }
+  }
 }
 
 sortableContainer.parameters = [ElementRef, ChangeDetectorRef, dragAndDropSortableService, dragAndDropService];
@@ -47,13 +65,14 @@ export class sortableComponents extends dragAndDropAbstractComponent {
     return [
       new Directive({
         selector: '[sortable]',
-        inputs: ['index: sortableIndex', 'draggable', 'droppable', 'dragData', 'dropzones'],
+        inputs: ['index: sortableIndex', 'draggable', 'droppable', 'dragData', 'dropzones', 'nested', 'notSortable: sortable'],
         outputs: ['onDragSuccessCallback', 'onDragStartCallback', 'onDragOverCallback', 'onDragEndCallback', 'onDropSuccessCallback']
       })
     ];
   }
   constructor(elementRef, cdr, sortableContainer, dragAndDropSortableService, dragAndDropService) {
     super(elementRef, cdr, dragAndDropService);
+    this.notSortable = false;
     this.dragEnabled = true;
     this.dropEnabled = true;
     this.onDragSuccessCallback = new EventEmitter();
@@ -94,11 +113,21 @@ export class sortableComponents extends dragAndDropAbstractComponent {
   }
 
   _onDragEnterCallback() {
+    if (this.index !== this._sortableDataService.newIndex) {
+      var listDraggable = document.querySelectorAll('.sortableOver');
+      listDraggable.forEach((itemDraggable)=>{
+        itemDraggable.classList.remove('sortableOver');
+      });
+    }
     this._sortableDataService.newIndex = this.index;
     this._element.classList.add('sortableOver');
   }
 
   _onDragLeave(){
+    if (this.index === this._sortableDataService.newIndex) {
+      return;
+    }
+    this._sortableDataService.oldIndex = this.index;
     this._element.classList.remove('sortableOver');
   }
 

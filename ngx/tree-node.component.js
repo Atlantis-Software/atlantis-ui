@@ -22,15 +22,16 @@ export default class treeNodeComponent {
 					}" (click)='ExpandClick()'></span>
 	        <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="tree-node-label"></span>
           <span *ngIf="!template" [innerHTML]="selected" [class.disabled]="disabled"></span>
-          <span sortable-handle>=</span>
 	        <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngOutletContext]="data"></ng-template>
 					<input *ngIf="selectable" type="checkbox" [ngModel]="selected" class="tree-node-checkbox" (click)="onClick()" [attr.disabled]="disabled">
+          <span *ngIf="!notSortable" sortable-handle>=</span>
 				</div>
         <ng-content *ngIf="expanded"></ng-content>
-        <div *ngIf="children?.length" [hidden]="!expandable || !expanded" sortable-container [sortableData]="children" [dropzones]="sortableZones">
+        <div *ngIf="children?.length" [hidden]="!expandable || !expanded" [sortable-container]="notSortable" [sortableData]="children" [dropzones]="sortableZones">
           <tree-node *ngFor="let child of children; let i = index"
-            [expandable]="child.expandable"
             [(expanded)]="child.expanded"
+            [(selected)]="child.selected"
+            [expandable]="child.expandable"
             [label]="child.label"
             [model]="child.model"
             [id]="child.id"
@@ -39,20 +40,22 @@ export default class treeNodeComponent {
             [template]="template"
             [depth]="depth+1"
             [disabled]="child.disabled"
-            [(selected)]="child.selected"
             [sortableZones]="sortableZones"
             [nestedSortable]="nestedSortable"
+            [notSortable]="notSortable"
             (expand)="expand.emit($event)"
             (collapse)="collapse.emit($event)"
             (select)="onSelect($event)"
-            sortable
+            [sortable]="notSortable"
             [sortableIndex]="i"
             [dropzones]="sortableZones"
+            [nested]="nestedSortable"
             (onDragStartCallback)="onDragCallback(i, true)"
             (onDragEndCallback)="onDragCallback(i, false)">
           </tree-node>
         </div>`,
-        inputs: ['node', 'label', 'model', 'children', 'expandable', 'expanded', 'selectable', 'disabled', 'template', 'depth', 'selected', 'id', 'sortableZones', 'nestedSortable'],
+        inputs: ['node', 'label', 'model', 'children', 'expandable', 'expanded', 'selectable', 'disabled',
+          'template', 'depth', 'selected', 'id', 'sortableZones', 'nestedSortable', 'notSortable'],
         outputs: ['expand', 'collapse', 'select', 'selectedChange', 'expandedChange'],
         host: {
           '[class.selectable]': 'selectable'
@@ -87,16 +90,7 @@ export default class treeNodeComponent {
           this.children[node].expanded = this.children[node].oldExpanded;
         }
       }
-      return;
     }
-    this.children.forEach((child)=> {
-      if (value) {
-        child.oldExpanded = child.expanded;
-        child.expanded = false;
-      } else {
-        child.expanded = child.oldExpanded;
-      }
-    });
   }
 
   _getCheckbox() {

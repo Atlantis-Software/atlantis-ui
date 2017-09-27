@@ -8,10 +8,16 @@ export class dragAndDropAbstractComponent {
     this.dropEnabled = false;
 
     this._element.ondragenter = (event) => {
+      if (this.notSortable) {
+        return;
+      }
       this._onDragEnter(event);
     };
 
     this._element.ondragover = (event) => {
+      if (this.notSortable) {
+        return;
+      }
       this._onDragOver(event);
 
       if (event.dataTransfer != null) {
@@ -22,18 +28,51 @@ export class dragAndDropAbstractComponent {
     };
 
     this._element.ondragleave = (event) => {
+      if (this.notSortable) {
+        return;
+      }
       this._onDragLeave(event);
     };
 
     this._element.ondrop = (event) => {
+      if (this.notSortable) {
+        return;
+      }
       this._onDrop(event);
     };
 
     this._element.onmousedown = (event) => {
+      if (this.notSortable) {
+        return;
+      }
       this._target = event.target;
     };
 
+    this._element.onmouseover = () => {
+      if (this.notSortable) {
+        this._element.style.cursor = "auto";
+        return;
+      }
+      if (this._dragHandle) {
+        return;
+      }
+      this._element.style.cursor = "pointer";
+    };
+
+    this._element.onmouseout = () => {
+      if (this.notSortable) {
+        return;
+      }
+      if (this._dragHandle) {
+        return;
+      }
+      this._element.style.cursor = "auto";
+    };
+
     this._element.ondragstart = (event) => {
+      if (this.notSortable) {
+        return;
+      }
       if (this._dragHandle) {
         if (!this._dragHandle.contains(this._target)) {
           event.preventDefault();
@@ -59,6 +98,9 @@ export class dragAndDropAbstractComponent {
     };
 
     this._element.ondragend = (event) => {
+      if (this.notSortable) {
+        return;
+      }
       this._onDragEnd(event);
 
       let cursorelem = (this._dragHandle) ? this._dragHandle : this._element;
@@ -76,6 +118,9 @@ export class dragAndDropAbstractComponent {
   }
 
   set dragEnabled(enabled) {
+    if (this.notSortable || this.notSortable === undefined) {
+      return;
+    }
     this._dragEnabled = !!enabled;
     this._element.draggable = this._dragEnabled;
   }
@@ -85,8 +130,8 @@ export class dragAndDropAbstractComponent {
   }
 
   _onDragEnter(event) {
-    console.log("abstract OnDragEnter");
-    if (event.stopPropagation) {
+    // console.log("abstract OnDragEnter");
+    if (event.stopPropagation  && this.nested) {
       event.stopPropagation();
     }
     if (this._isDropAllowed(event)) {
@@ -95,7 +140,7 @@ export class dragAndDropAbstractComponent {
   }
 
   _onDragOver(event) {
-    console.log("abstract OnDragOver");
+    // console.log("abstract OnDragOver");
     if (event.stopPropagation) {
       event.stopPropagation();
     }
@@ -108,19 +153,19 @@ export class dragAndDropAbstractComponent {
   }
 
   _onDragLeave(event) {
-    console.log("abstract OnDragLeave");
+    // console.log("abstract OnDragLeave");
     if (this._isDropAllowed(event)) {
       this._onDragLeaveCallback(event);
     }
   }
 
   _onDrop(event) {
-    console.log("abstract OnDragDrop");
+    // console.log("abstract OnDragDrop");
     if (event.preventDefault) {
       event.preventDefault();
     }
 
-    if (event.stopPropagation) {
+    if (event.stopPropagation && this.nested) {
       event.stopPropagation();
     }
 

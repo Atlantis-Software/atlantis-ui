@@ -12,11 +12,12 @@ export default class treeComponent {
       new Component({
         selector: 'tree',
         template: `
-        <div sortable-container [sortableData]="nodes" [dropzones]="dropZones">
+        <div [sortable-container]="notSortable" [sortableData]="nodes" [dropzones]="dropZones">
         <span>{{dropZones}}</span>
           <tree-node *ngFor="let node of nodes; let i = index"
             [expandable]="node.expandable"
             [(expanded)]="node.expanded"
+            [(selected)]="node.selected"
             [label]="node.label"
             [model]="node.model"
             [id]="node.id"
@@ -25,20 +26,21 @@ export default class treeComponent {
             [template]="template"
             [depth]="depth"
             [disabled]="node.disabled"
-            [(selected)]="node.selected"
             [sortableZones]="dropZonesNested"
             [nestedSortable]='nestedSortable'
+            [notSortable]="notSortable"
             (expand)="expand.emit($event)"
             (collapse)="collapse.emit($event)"
             (select)="onSelect($event)"
-            sortable
+            [sortable]="notSortable"
             [sortableIndex]="i"
             (onDragStartCallback)="onDragCallback(i, true)"
-            (onDragEndCallback)="onDragCallback(i, false)">
+            (onDragEndCallback)="onDragCallback(i, false)"
+            [nested]="nestedSortable">
           </tree-node>
         <ng-content *ngIf="!nodes"></ng-content>
         </div>`,
-        inputs: ['nodes', 'template', 'depth', 'nestedSortable'],
+        inputs: ['nodes', 'template', 'depth', 'nestedSortable', 'notSortable'],
         outputs: ['expand', 'collapse', 'select', 'nodesChanges'],
         queries: {
           template: new ContentChild(TemplateRef),
@@ -69,16 +71,7 @@ export default class treeComponent {
           this.nodes[node].expanded = this.nodes[node].oldExpanded;
         }
       }
-      return;
     }
-    this.nodes.forEach((child)=> {
-      if (value) {
-        child.oldExpanded = child.expanded;
-        child.expanded = false;
-      } else {
-        child.expanded = child.oldExpanded;
-      }
-    });
   }
 
   ngAfterViewInit() {

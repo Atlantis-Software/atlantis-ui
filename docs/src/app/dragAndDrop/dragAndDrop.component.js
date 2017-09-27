@@ -13,6 +13,8 @@ export default  class dragAndDropComponent {
     this.listOneOriginal = ['A', 'B', 'C', 'D', 'E'];
     this.listTwo = ['1', '2', '3', '4!', '5'];
     this.listTwoOriginal = ['1', '2', '3', '4!', '5'];
+    this.listThree = [];
+    this.listThreeOriginal = [];
     this.Display = "Example";
   }
 }
