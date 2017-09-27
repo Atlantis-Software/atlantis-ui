@@ -1,14 +1,5 @@
 import { EventEmitter } from '@angular/core';
 
-// import { DragDropConfig } from './dnd.config';
-
-export class dragAndDropData {
-  constructor() {
-    this.dragData;
-    this.mouseEvent;
-  }
-}
-
 export function dragDropServiceFactory() {
   return new dragAndDropService();
 }
@@ -31,20 +22,6 @@ export class dragAndDropSortableService {
     this.index;
     this.sortableContainer;
     this.isDragged;
-    this._elem;
-  }
-
-  get elem() {
-    return this._elem;
-  }
-
-  markSortable(elem) {
-    if (this._elem) {
-      this._elem.classList.remove(this._config.onSortableDragClass);
-    }
-    if (elem) {
-      this._elem = elem;
-      this._elem.classList.add(this._config.onSortableDragClass);
-    }
+    this._element;
   }
 }

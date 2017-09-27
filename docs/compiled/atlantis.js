@@ -274,7 +274,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__);
 
 /**
- * @license Angular v4.4.2
+ * @license Angular v4.4.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -1070,7 +1070,7 @@ var Version = (function () {
 /**
  * \@stable
  */
-var VERSION = new Version('4.4.2');
+var VERSION = new Version('4.4.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -15898,7 +15898,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 
 /**
- * @license Angular v4.4.2
+ * @license Angular v4.4.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -19865,7 +19865,7 @@ function isPlatformWorkerUi(platformId) {
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.4.2');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.4.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -20473,7 +20473,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 
 /**
- * @license Angular v4.4.2
+ * @license Angular v4.4.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -24880,7 +24880,7 @@ var By = (function () {
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.4.2');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.4.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -25444,7 +25444,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_rxjs_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21_rxjs_operator_filter__);
 
 /**
- * @license Angular v4.4.2
+ * @license Angular v4.4.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -31697,7 +31697,7 @@ function provideRouterInitializer() {
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.4.2');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.4.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -31854,7 +31854,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(11);
 
 /**
- * @license Angular v4.4.2
+ * @license Angular v4.4.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -37779,7 +37779,7 @@ FormBuilder.ctorParameters = function () { return []; };
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.4.2');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.4.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -40549,7 +40549,12 @@ var dragAndDropComponent = function () {
   function dragAndDropComponent() {
     _classCallCheck(this, dragAndDropComponent);
 
-    this.listOne = ['Coffee', 'Orange Juice', 'Red Wine', 'Unhealty drink!', 'Water'];
+    this.listOne = ['A', 'B', 'C', 'D', 'E'];
+    this.listOneOriginal = ['A', 'B', 'C', 'D', 'E'];
+    this.listTwo = ['1', '2', '3', '4!', '5'];
+    this.listTwoOriginal = ['1', '2', '3', '4!', '5'];
+    this.listThree = [];
+    this.listThreeOriginal = [];
     this.Display = "Example";
   }
 
@@ -58685,7 +58690,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(11);
 
 /**
- * @license Angular v4.4.2
+ * @license Angular v4.4.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -58818,7 +58823,7 @@ var CachedResourceLoader = (function (_super) {
 /**
  * @stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.4.2');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.4.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -59088,7 +59093,7 @@ var platformBrowserDynamic = Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__[
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 
 /**
- * @license Angular v4.4.2
+ * @license Angular v4.4.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -59108,7 +59113,7 @@ var platformBrowserDynamic = Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__[
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.4.2');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.4.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -89421,7 +89426,7 @@ module.exports = "<div class=\"container\"> <h3> Simple button </h3> <div class=
 /* 123 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\"> <div class=\"row container-fluid\"> <h3>Icons available : </h3> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-add\"></i> add </div> <div class=\"col-md-3\"> <i class=\"icon icon-delete\"></i> delete </div> <div class=\"col-md-3\"> <i class=\"icon icon-close\"></i> close </div> <div class=\"col-md-3\"> <i class=\"icon icon-edit\"></i> edit </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-search\"></i> search </div> <div class=\"col-md-3\"> <i class=\"icon icon-about\"></i> about </div> <div class=\"col-md-3\"> <i class=\"icon icon-import\"></i> import </div> <div class=\"col-md-3\"> <i class=\"icon icon-export\"></i> export </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-save\"></i> save </div> <div class=\"col-md-3\"> <i class=\"icon icon-print\"></i> print </div> <div class=\"col-md-3\"> <i class=\"icon icon-parameter\"></i> parameter </div> <div class=\"col-md-3\"> <i class=\"icon icon-info\"></i> info </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-question\"></i> question </div> <div class=\"col-md-3\"> <i class=\"icon icon-link\"></i> link </div> <div class=\"col-md-3\"> <i class=\"icon icon-next\"></i> next </div> <div class=\"col-md-3\"> <i class=\"icon icon-previous\"></i> previous </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-exchange\"></i> exchange </div> <div class=\"col-md-3\"> <i class=\"icon icon-warning\"></i> warning </div> <div class=\"col-md-3\"> <i class=\"icon icon-copy\"></i> copy </div> <div class=\"col-md-3\"> <i class=\"icon icon-star\"></i> star </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-archive\"></i> archive </div> <div class=\"col-md-3\"> <i class=\"icon icon-date\"></i> date </div> <div class=\"col-md-3\"> <i class=\"icon icon-share\"></i> share </div> <div class=\"col-md-3\"> <i class=\"icon icon-back\"></i> back </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-comment\"></i> comment </div> <div class=\"col-md-3\"> <i class=\"icon icon-users\"></i> users </div> <div class=\"col-md-3\"> <i class=\"icon icon-user\"></i> user </div> <div class=\"col-md-3\"> <i class=\"icon icon-folder\"></i> folder </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-folder-open\"></i> folder-open </div> <div class=\"col-md-3\"> <i class=\"icon icon-stats\"></i> stats </div> <div class=\"col-md-3\"> <i class=\"icon icon-sort-asc\"></i> sort-asc </div> <div class=\"col-md-3\"> <i class=\"icon icon-sort-desc\"></i> sort-desc </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-ticket\"></i> ticket </div> <div class=\"col-md-3\"> <i class=\"icon icon-lock\"></i> lock </div> <div class=\"col-md-3\"> <i class=\"icon icon-unlock\"></i> unlock </div> <div class=\"col-md-3\"> <i class=\"icon icon-show\"></i> show </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-hide\"></i> hide </div> <div class=\"col-md-3\"> <i class=\"icon icon-fax\"></i> fax </div> <div class=\"col-md-3\"> <i class=\"icon icon-home\"></i> home </div> <div class=\"col-md-3\"> <i class=\"icon icon-sign-in\"></i> sign-in </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-sign-out\"></i> sign-out </div> <div class=\"col-md-3\"> <i class=\"icon icon-purchase\"></i> purchase </div> <div class=\"col-md-3\"> <i class=\"icon icon-file-pdf\"></i> file-pdf </div> <div class=\"col-md-3\"> <i class=\"icon icon-file-zip\"></i> file-zip </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-file-text\"></i> file-text </div> <div class=\"col-md-3\"> <i class=\"icon icon-notification\"></i> notification </div> <div class=\"col-md-3\"> <i class=\"icon icon-up\"></i> up </div> <div class=\"col-md-3\"> <i class=\"icon icon-down\"></i> down </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-parameter\"></i> parameter </div> <div class=\"col-md-3\"> <i class=\"icon icon-check\"></i> check </div> <div class=\"col-md-3\"> <i class=\"icon icon-list\"></i> list </div> </div> </div> <pre>\n    {{iconHtml}}\n  </pre> <blockquote> <p>Remplace name by the icon you want</p> </blockquote> <h3> Different size </h3> <div class=\"row\"> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-1x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-2x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-3x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-4x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-5x\"></i> add </div> </div> <pre>\n    {{iconSize}}\n  </pre> <h3> Disabled icon </h3> <div class=\"row\"> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-disabled\"> </i> add </div> </div> <pre>\n    {{iconDisabled}}\n  </pre> </div> ";
+module.exports = "<div class=\"container\"> <div class=\"row container-fluid\"> <h3>Icons available : </h3> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-add\"></i> add </div> <div class=\"col-md-3\"> <i class=\"icon icon-delete\"></i> delete </div> <div class=\"col-md-3\"> <i class=\"icon icon-close\"></i> close </div> <div class=\"col-md-3\"> <i class=\"icon icon-edit\"></i> edit </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-search\"></i> search </div> <div class=\"col-md-3\"> <i class=\"icon icon-about\"></i> about </div> <div class=\"col-md-3\"> <i class=\"icon icon-import\"></i> import </div> <div class=\"col-md-3\"> <i class=\"icon icon-export\"></i> export </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-save\"></i> save </div> <div class=\"col-md-3\"> <i class=\"icon icon-print\"></i> print </div> <div class=\"col-md-3\"> <i class=\"icon icon-parameter\"></i> parameter </div> <div class=\"col-md-3\"> <i class=\"icon icon-info\"></i> info </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-question\"></i> question </div> <div class=\"col-md-3\"> <i class=\"icon icon-link\"></i> link </div> <div class=\"col-md-3\"> <i class=\"icon icon-next\"></i> next </div> <div class=\"col-md-3\"> <i class=\"icon icon-previous\"></i> previous </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-exchange\"></i> exchange </div> <div class=\"col-md-3\"> <i class=\"icon icon-warning\"></i> warning </div> <div class=\"col-md-3\"> <i class=\"icon icon-copy\"></i> copy </div> <div class=\"col-md-3\"> <i class=\"icon icon-star\"></i> star </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-archive\"></i> archive </div> <div class=\"col-md-3\"> <i class=\"icon icon-date\"></i> date </div> <div class=\"col-md-3\"> <i class=\"icon icon-share\"></i> share </div> <div class=\"col-md-3\"> <i class=\"icon icon-back\"></i> back </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-comment\"></i> comment </div> <div class=\"col-md-3\"> <i class=\"icon icon-users\"></i> users </div> <div class=\"col-md-3\"> <i class=\"icon icon-user\"></i> user </div> <div class=\"col-md-3\"> <i class=\"icon icon-folder\"></i> folder </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-folder-open\"></i> folder-open </div> <div class=\"col-md-3\"> <i class=\"icon icon-stats\"></i> stats </div> <div class=\"col-md-3\"> <i class=\"icon icon-sort-asc\"></i> sort-asc </div> <div class=\"col-md-3\"> <i class=\"icon icon-sort-desc\"></i> sort-desc </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-ticket\"></i> ticket </div> <div class=\"col-md-3\"> <i class=\"icon icon-lock\"></i> lock </div> <div class=\"col-md-3\"> <i class=\"icon icon-unlock\"></i> unlock </div> <div class=\"col-md-3\"> <i class=\"icon icon-show\"></i> show </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-hide\"></i> hide </div> <div class=\"col-md-3\"> <i class=\"icon icon-fax\"></i> fax </div> <div class=\"col-md-3\"> <i class=\"icon icon-home\"></i> home </div> <div class=\"col-md-3\"> <i class=\"icon icon-sign-in\"></i> sign-in </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-sign-out\"></i> sign-out </div> <div class=\"col-md-3\"> <i class=\"icon icon-purchase\"></i> purchase </div> <div class=\"col-md-3\"> <i class=\"icon icon-file-pdf\"></i> file-pdf </div> <div class=\"col-md-3\"> <i class=\"icon icon-file-zip\"></i> file-zip </div> </div> <div class=\"row\"> <div class=\"col-md-3\"> <i class=\"icon icon-file-text\"></i> file-text </div> <div class=\"col-md-3\"> <i class=\"icon icon-list\"></i> list </div> </div> </div> <pre>\n    {{iconHtml}}\n  </pre> <blockquote> <p>Remplace name by the icon you want</p> </blockquote> <h3> Different size </h3> <div class=\"row\"> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-1x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-2x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-3x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-4x\"></i> add </div> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-5x\"></i> add </div> </div> <pre>\n    {{iconSize}}\n  </pre> <h3> Disabled icon </h3> <div class=\"row\"> <div class=\"col-md-2\"> <i class=\"icon icon-add icon-disabled\"> </i> add </div> </div> <pre>\n    {{iconDisabled}}\n  </pre> </div> ";
 
 /***/ }),
 /* 124 */
@@ -89499,7 +89504,7 @@ module.exports = "<div class=\"container\"> <div class=\"row\" style=\"display:f
 /* 136 */
 /***/ (function(module, exports) {
 
-module.exports = "<div> <h4>Simple sortable</h4> <div class=\"row\"> <div class=\"col-sm-3\"> <div class=\"panel panel-success\"> <div class=\"panel-heading\"> Favorite drinks </div> <div class=\"panel-body\"> <ul class=\"list-group\" sortable-container [sortableData]=\"listOne\"> <li *ngFor=\"let item of listOne; let i = index\" class=\"list-group-item\" sortable [sortableIndex]=\"i\"> <span sortable-handle>=</span>&nbsp; {{item}} </li> </ul> </div> </div> </div> <div class=\"col-sm-6\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> My prefences:<br/> <span *ngFor=\"let item of listOne; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> </div> </div> ";
+module.exports = "<div> <h4>Simple sortable</h4> <div class=\"row\"> <div class=\"col-sm-3\"> <div class=\"panel panel-success\"> <div class=\"panel-heading\"> Favorite drinks </div> <div class=\"panel-body\"> <ul class=\"list-group\" sortable-container [sortableData]=\"listOne\"> <li *ngFor=\"let item of listOne; let i = index\" class=\"list-group-item\" sortable [sortableIndex]=\"i\"> {{item}} <span sortable-handle>=</span> </li> </ul> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> My prefences:<br/> <span *ngFor=\"let item of listOne; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> My prefences:<br/> <span *ngFor=\"let item of listOneOriginal; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> </div> <h4>Simple sortable</h4> <div class=\"row\"> <div class=\"col-sm-3\"> <div class=\"panel panel-success\"> <div class=\"panel-heading\"> Favorite drinks </div> <div class=\"panel-body\"> <ul class=\"list-group\" sortable-container [sortableData]=\"listTwo\"> <li *ngFor=\"let item of listTwo; let i = index\" class=\"list-group-item\" sortable [sortableIndex]=\"i\"> {{item}} </li> </ul> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> My prefences:<br/> <span *ngFor=\"let item of listTwo; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> My prefences:<br/> <span *ngFor=\"let item of listTwoOriginal; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> </div> <h4>Simple sortable</h4> <div class=\"row\"> <div class=\"col-sm-3\"> <div class=\"panel panel-success\"> <div class=\"panel-heading\"> Favorite drinks </div> <div class=\"panel-body\" sortable-container [sortableData]=\"listThree\"> <ul class=\"list-group\"> <li *ngFor=\"let item of listThree; let i = index\" class=\"list-group-item\" sortable [sortableIndex]=\"i\"> {{item}} </li> </ul> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> My prefences:<br/> <span *ngFor=\"let item of listThree; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> My prefences:<br/> <span *ngFor=\"let item of listThreeOriginal; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> </div> </div> ";
 
 /***/ }),
 /* 137 */
@@ -90109,18 +90114,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       Object.defineProperty(exports, "__esModule", {
         value: true
       });
-      exports.dragAndDropSortableService = exports.dragAndDropService = exports.dragAndDropData = undefined;
-
-      var _createClass = function () {
-        function defineProperties(target, props) {
-          for (var i = 0; i < props.length; i++) {
-            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-          }
-        }return function (Constructor, protoProps, staticProps) {
-          if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-        };
-      }();
-
+      exports.dragAndDropSortableService = exports.dragAndDropService = undefined;
       exports.dragDropServiceFactory = dragDropServiceFactory;
       exports.dragDropSortableServiceFactory = dragDropSortableServiceFactory;
 
@@ -90131,15 +90125,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           throw new TypeError("Cannot call a class as a function");
         }
       }
-
-      // import { DragDropConfig } from './dnd.config';
-
-      var dragAndDropData = exports.dragAndDropData = function dragAndDropData() {
-        _classCallCheck(this, dragAndDropData);
-
-        this.dragData;
-        this.mouseEvent;
-      };
 
       function dragDropServiceFactory() {
         return new dragAndDropService();
@@ -90158,36 +90143,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         return new dragAndDropSortableService();
       }
 
-      var dragAndDropSortableService = exports.dragAndDropSortableService = function () {
-        function dragAndDropSortableService() {
-          _classCallCheck(this, dragAndDropSortableService);
+      var dragAndDropSortableService = exports.dragAndDropSortableService = function dragAndDropSortableService() {
+        _classCallCheck(this, dragAndDropSortableService);
 
-          this.index;
-          this.sortableContainer;
-          this.isDragged;
-          this._elem;
-        }
-
-        _createClass(dragAndDropSortableService, [{
-          key: 'markSortable',
-          value: function markSortable(elem) {
-            if (this._elem) {
-              this._elem.classList.remove(this._config.onSortableDragClass);
-            }
-            if (elem) {
-              this._elem = elem;
-              this._elem.classList.add(this._config.onSortableDragClass);
-            }
-          }
-        }, {
-          key: 'elem',
-          get: function get() {
-            return this._elem;
-          }
-        }]);
-
-        return dragAndDropSortableService;
-      }();
+        this.index;
+        this.sortableContainer;
+        this.isDragged;
+        this._element;
+      };
 
       /***/
     },,,
@@ -94182,7 +94145,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           get: function get() {
             return [new _core.Directive({
               selector: '[sortable-container]',
-              inputs: ['sortableData', 'draggable']
+              inputs: ['sortableData', 'draggable', 'dropzones', 'notSortable: sortable-container']
             })];
           }
         }]);
@@ -94193,27 +94156,34 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           var _this = _possibleConstructorReturn(this, (sortableContainer.__proto__ || Object.getPrototypeOf(sortableContainer)).call(this, elementRef, cdr, dragAndDropService));
 
           _this.dragEnabled = false;
+          _this.notSortable = false;
           _this._sortableDataService = sortableDataService;
+          _this._sortableData = [];
           return _this;
         }
 
         _createClass(sortableContainer, [{
-          key: '_onDragEnterCallback',
-          value: function _onDragEnterCallback() {
-            if (this._sortableDataService.isDragged) {
+          key: '_onDropCallback',
+          value: function _onDropCallback() {
+            if (this._sortableDataService.isDragged && this._sortableData.length === 0) {
               var item = this._sortableDataService.sortableContainer._sortableData[this._sortableDataService.index];
-
               if (this._sortableData.indexOf(item) === -1) {
                 this._sortableDataService.sortableContainer._sortableData.splice(this._sortableDataService.index, 1);
                 if (this._sortableDataService.sortableContainer._sortableData.length === 0) {
                   this._sortableDataService.sortableContainer.dropEnabled = true;
                 }
-                // Add item to new list
                 this._sortableData.unshift(item);
                 this._sortableDataService.sortableContainer = this;
                 this._sortableDataService.index = 0;
               }
               this.detectChanges();
+            }
+          }
+        }, {
+          key: 'dropzones',
+          set: function set(value) {
+            if (value !== undefined) {
+              this.dropZones = value.split('.');
             }
           }
         }, {
@@ -94245,7 +94215,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           get: function get() {
             return [new _core.Directive({
               selector: '[sortable]',
-              inputs: ['index: sortableIndex', 'draggable', 'droppable', 'dragData'],
+              inputs: ['index: sortableIndex', 'draggable', 'droppable', 'dragData', 'dropzones', 'nested', 'notSortable: sortable'],
               outputs: ['onDragSuccessCallback', 'onDragStartCallback', 'onDragOverCallback', 'onDragEndCallback', 'onDropSuccessCallback']
             })];
           }
@@ -94256,6 +94226,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
           var _this2 = _possibleConstructorReturn(this, (sortableComponents.__proto__ || Object.getPrototypeOf(sortableComponents)).call(this, elementRef, cdr, dragAndDropService));
 
+          _this2.notSortable = false;
           _this2.dragEnabled = true;
           _this2.dropEnabled = true;
           _this2.onDragSuccessCallback = new _core.EventEmitter();
@@ -94265,6 +94236,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           _this2.onDropSuccessCallback = new _core.EventEmitter();
           _this2._sortableContainer = sortableContainer;
           _this2._sortableDataService = dragAndDropSortableService;
+          _this2.dropZones = _this2._sortableContainer.dropZones;
           _this2._dragDropService = {};
           return _this2;
         }
@@ -94275,46 +94247,39 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             this._sortableDataService.isDragged = true;
             this._sortableDataService.sortableContainer = this._sortableContainer;
             this._sortableDataService.index = this.index;
-            this._sortableDataService.markSortable(this._elem);
             // Add dragData
+            this._element.style.opacity = '0.4';
             this._dragDropService.isDragged = true;
             this._dragDropService.dragData = this.dragData;
             this._dragDropService.onDragSuccessCallback = this.onDragSuccessCallback;
-            //
             this.onDragStartCallback.emit(this._dragDropService.dragData);
           }
         }, {
           key: '_onDragEnterCallback',
           value: function _onDragEnterCallback() {
-            if (this._sortableDataService.isDragged) {
-              this._sortableDataService.markSortable(this._elem);
-              if (this.index !== this._sortableDataService.index || this._sortableDataService.sortableContainer.sortableData !== this._sortableContainer.sortableData) {
-                // Get item
-                var item = this._sortableDataService.sortableContainer.sortableData[this._sortableDataService.index];
-                // Remove item from previouse list
-                this._sortableDataService.sortableContainer.sortableData.splice(this._sortableDataService.index, 1);
-                if (this._sortableDataService.sortableContainer.sortableData.length === 0) {
-                  this._sortableDataService.sortableContainer.dropEnabled = true;
-                }
-                // Add item to new list
-                this._sortableContainer.sortableData.splice(this.index, 0, item);
-                if (this._sortableContainer.dropEnabled) {
-                  this._sortableContainer.dropEnabled = false;
-                }
-                this._sortableDataService.sortableContainer = this._sortableContainer;
-                this._sortableDataService.index = this.index;
-              }
+            if (this.index !== this._sortableDataService.newIndex) {
+              var listDraggable = document.querySelectorAll('.sortableOver');
+              listDraggable.forEach(function (itemDraggable) {
+                itemDraggable.classList.remove('sortableOver');
+              });
             }
+            this._sortableDataService.newIndex = this.index;
+            this._element.classList.add('sortableOver');
+          }
+        }, {
+          key: '_onDragLeave',
+          value: function _onDragLeave() {
+            if (this.index === this._sortableDataService.newIndex) {
+              return;
+            }
+            this._sortableDataService.oldIndex = this.index;
+            this._element.classList.remove('sortableOver');
           }
         }, {
           key: '_onDragOverCallback',
-          value: function _onDragOverCallback() {
-            if (this._sortableDataService.isDragged && this._elem !== this._sortableDataService.elem) {
-              this._sortableDataService.sortableContainer = this._sortableContainer;
-              this._sortableDataService.index = this.index;
-              this._sortableDataService.markSortable(this._elem);
-              this.onDragOverCallback.emit(this._dragDropService.dragData);
-            }
+          value: function _onDragOverCallback(event) {
+            event.dataTransfer.dropEffect = "move";
+            this.onDragOverCallback.emit(this._dragDropService.dragData);
           }
         }, {
           key: '_onDragEndCallback',
@@ -94322,12 +94287,16 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             this._sortableDataService.isDragged = false;
             this._sortableDataService.sortableContainer = null;
             this._sortableDataService.index = null;
-            this._sortableDataService.markSortable(null);
             // Add dragGata
             this._dragDropService.isDragged = false;
             this._dragDropService.dragData = null;
             this._dragDropService.onDragSuccessCallback = null;
             //
+            var listDraggable = document.querySelectorAll('.sortableOver');
+            listDraggable.forEach(function (itemDraggable) {
+              itemDraggable.classList.remove('sortableOver');
+            });
+            this._element.style.opacity = '1';
             this.onDragEndCallback.emit(this._dragDropService.dragData);
           }
         }, {
@@ -94335,11 +94304,42 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           value: function _onDropCallback() {
             if (this._sortableDataService.isDragged) {
               this.onDropSuccessCallback.emit(this._dragDropService.dragData);
+
+              var item = this._sortableDataService.sortableContainer.sortableData[this._sortableDataService.index];
+
+              this._sortableDataService.sortableContainer.sortableData.splice(this._sortableDataService.index, 1);
+              if (this._sortableDataService.sortableContainer.sortableData.length === 0) {
+                this._sortableDataService.sortableContainer.dropEnabled = true;
+              }
+              // Add item to new list
+              this._sortableContainer.sortableData.splice(this._sortableDataService.newIndex, 0, item);
+              if (this._sortableContainer.dropEnabled) {
+                this._sortableContainer.dropEnabled = false;
+              }
+              this._sortableDataService.sortableContainer = this._sortableContainer;
+              this._sortableDataService.index = this._sortableDataService.newIndex;
               if (this._dragDropService.onDragSuccessCallback) {
                 this._dragDropService.onDragSuccessCallback.emit(this._dragDropService.dragData);
               }
               this._sortableContainer.detectChanges();
             }
+          }
+        }, {
+          key: 'dropzones',
+          set: function set(value) {
+            if (value !== undefined) {
+              this.dropZones = value.split('.');
+            }
+          }
+        }, {
+          key: 'draggable',
+          set: function set(value) {
+            this.dragEnabled = !!value;
+          }
+        }, {
+          key: 'droppable',
+          set: function set(value) {
+            this.dropEnabled = !!value;
           }
         }]);
 
@@ -94363,10 +94363,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         function sortableHandler(elementRef, dragAndDropService, sortableComponent, cdr) {
           _classCallCheck(this, sortableHandler);
 
-          var _this3 = _possibleConstructorReturn(this, (sortableHandler.__proto__ || Object.getPrototypeOf(sortableHandler)).call(this, elementRef, dragAndDropService, sortableComponent, cdr));
-
-          console.log(_this3);
-          return _this3;
+          return _possibleConstructorReturn(this, (sortableHandler.__proto__ || Object.getPrototypeOf(sortableHandler)).call(this, elementRef, dragAndDropService, sortableComponent, cdr));
         }
 
         return sortableHandler;
@@ -94412,12 +94409,19 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           this._dragAndDropService = dragAndDropService;
           this.dropZones = [];
           this._cdr = ChangeDetectorRef;
+          this.dropEnabled = false;
 
           this._element.ondragenter = function (event) {
+            if (_this.notSortable) {
+              return;
+            }
             _this._onDragEnter(event);
           };
 
           this._element.ondragover = function (event) {
+            if (_this.notSortable) {
+              return;
+            }
             _this._onDragOver(event);
 
             if (event.dataTransfer != null) {
@@ -94428,18 +94432,51 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           };
 
           this._element.ondragleave = function (event) {
+            if (_this.notSortable) {
+              return;
+            }
             _this._onDragLeave(event);
           };
 
           this._element.ondrop = function (event) {
+            if (_this.notSortable) {
+              return;
+            }
             _this._onDrop(event);
           };
 
           this._element.onmousedown = function (event) {
+            if (_this.notSortable) {
+              return;
+            }
             _this._target = event.target;
           };
 
+          this._element.onmouseover = function () {
+            if (_this.notSortable) {
+              _this._element.style.cursor = "auto";
+              return;
+            }
+            if (_this._dragHandle) {
+              return;
+            }
+            _this._element.style.cursor = "pointer";
+          };
+
+          this._element.onmouseout = function () {
+            if (_this.notSortable) {
+              return;
+            }
+            if (_this._dragHandle) {
+              return;
+            }
+            _this._element.style.cursor = "auto";
+          };
+
           this._element.ondragstart = function (event) {
+            if (_this.notSortable) {
+              return;
+            }
             if (_this._dragHandle) {
               if (!_this._dragHandle.contains(_this._target)) {
                 event.preventDefault();
@@ -94451,33 +94488,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             //
             if (event.dataTransfer != null) {
               event.dataTransfer.setData('text', '');
-              // Change drag effect
-              // event.dataTransfer.effectAllowed = this.effectAllowed || this._config.dragEffect.name;
-              // Change drag image
-              // if (this.dragImage !== undefined && this.dragImage !== null) {
-              //   if (typeof this.dragImage === "string") {
-              //     let img = new HTMLImageElement();
-              //     img.src = this.dragImage;
-              //     (event.dataTransfer).setDragImage(img);
-              //   } else if (typeof this.dragImage === "function") {
-              //     (event.dataTransfer).setDragImage(this.dragImage());
-              //   } else {
-              //     let img = this.dragImage;
-              //     (event.dataTransfer).setDragImage(img.imageElement, img.x_offset, img.y_offset);
-              //   }
-              // } else if (this._config.dragImage !== undefined && this._config.dragImage !== null) {
-              //   let dragImage = this._config.dragImage;
-              //   ( event.dataTransfer).setDragImage(dragImage.imageElement, dragImage.x_offset, dragImage.y_offset);
-              // } else if (this.cloneItem) {
-              //   this._dragHelper = this._elem.cloneNode(true);
-              //   this._dragHelper.classList.add('dnd-drag-item');
-              //   this._dragHelper.style.position = "absolute";
-              //   this._dragHelper.style.top = "0px";
-              //   this._dragHelper.style.left = "-1000px";
-              //   this._elem.parentElement.appendChild(this._dragHelper);
-              //   ( event.dataTransfer).setDragImage(this._dragHelper, event.offsetX, event.offsetY);
-              // }
-              //
+
+              event.dataTransfer.effectAllowed = 'move';
               // // Change drag cursor
               var cursorelem = _this._dragHandle ? _this._dragHandle : _this._element;
               //
@@ -94490,6 +94502,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           };
 
           this._element.ondragend = function (event) {
+            if (_this.notSortable) {
+              return;
+            }
             _this._onDragEnd(event);
 
             var cursorelem = _this._dragHandle ? _this._dragHandle : _this._element;
@@ -94498,45 +94513,57 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }
 
         _createClass(dragAndDropAbstractComponent, [{
-          key: 'setDragHandle',
+          key: "setDragHandle",
           value: function setDragHandle(elem) {
+            if (this._dragHandle) {
+              return;
+            }
             this._dragHandle = elem;
             this._element.style.cursor = "auto";
             this._dragHandle.style.cursor = "pointer";
           }
         }, {
-          key: '_onDragEnter',
+          key: "_onDragEnter",
           value: function _onDragEnter(event) {
+            // console.log("abstract OnDragEnter");
+            if (event.stopPropagation && this.nested) {
+              event.stopPropagation();
+            }
             if (this._isDropAllowed(event)) {
               this._onDragEnterCallback(event);
             }
           }
         }, {
-          key: '_onDragOver',
+          key: "_onDragOver",
           value: function _onDragOver(event) {
-
+            // console.log("abstract OnDragOver");
+            if (event.stopPropagation) {
+              event.stopPropagation();
+            }
+            if (event.preventDefault) {
+              event.preventDefault();
+            }
             if (this._isDropAllowed(event)) {
-              if (event.preventDefault) {
-                event.preventDefault();
-              }
               this._onDragOverCallback(event);
             }
           }
         }, {
-          key: '_onDragLeave',
+          key: "_onDragLeave",
           value: function _onDragLeave(event) {
+            // console.log("abstract OnDragLeave");
             if (this._isDropAllowed(event)) {
               this._onDragLeaveCallback(event);
             }
           }
         }, {
-          key: '_onDrop',
+          key: "_onDrop",
           value: function _onDrop(event) {
+            // console.log("abstract OnDragDrop");
             if (event.preventDefault) {
               event.preventDefault();
             }
 
-            if (event.stopPropagation) {
+            if (event.stopPropagation && this.nested) {
               event.stopPropagation();
             }
 
@@ -94547,61 +94574,77 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             }
           }
         }, {
-          key: 'detectChanges',
+          key: "detectChanges",
           value: function detectChanges() {
-            var _this2 = this;
-
             // Programmatically run change detection to fix issue in Safari
-            setTimeout(function () {
-              _this2._cdr.detectChanges();
-            }, 250);
+            this._cdr.detectChanges();
           }
         }, {
-          key: '_isDropAllowed',
+          key: "_isDropAllowed",
           value: function _isDropAllowed(event) {
             if ((this._dragAndDropService.isDragged || event.dataTransfer && event.dataTransfer.files) && this.dropEnabled) {
               if (this.allowDrop) {
                 return this.allowDrop(this._dragAndDropService.dragData);
               }
+
               if (this.dropZones.length === 0 && this._dragAndDropService.allowedDropZones.length === 0) {
                 return true;
+              }
+              for (var i = 0; i < this._dragAndDropService.allowedDropZones.length; i++) {
+                var dragZone = this._dragAndDropService.allowedDropZones[i];
+                if (this.dropZones.indexOf(dragZone) !== -1) {
+                  return true;
+                }
               }
             }
             return false;
           }
         }, {
-          key: '_onDragStart',
+          key: "_onDragStart",
           value: function _onDragStart(event) {
+            // console.log("abstract OnDragStart");
+            if (event.stopPropagation) {
+              event.stopPropagation();
+            }
             if (this._dragEnabled) {
+              this._dragAndDropService.allowedDropZones = this.dropZones;
               this._onDragStartCallback(event);
             }
           }
         }, {
-          key: '_onDragEnd',
+          key: "_onDragEnd",
           value: function _onDragEnd(event) {
+            // console.log("abstract OnDragEnd");
+            if (event.stopPropagation) {
+              event.stopPropagation();
+            }
+            this._dragAndDropService.allowedDropZones = [];
             this._onDragEndCallback(event);
           }
         }, {
-          key: '_onDragEnterCallback',
+          key: "_onDragEnterCallback",
           value: function _onDragEnterCallback() {}
         }, {
-          key: '_onDragOverCallback',
+          key: "_onDragOverCallback",
           value: function _onDragOverCallback() {}
         }, {
-          key: '_onDragLeaveCallback',
+          key: "_onDragLeaveCallback",
           value: function _onDragLeaveCallback() {}
         }, {
-          key: '_onDropCallback',
+          key: "_onDropCallback",
           value: function _onDropCallback() {}
         }, {
-          key: '_onDragStartCallback',
+          key: "_onDragStartCallback",
           value: function _onDragStartCallback() {}
         }, {
-          key: '_onDragEndCallback',
+          key: "_onDragEndCallback",
           value: function _onDragEndCallback() {}
         }, {
-          key: 'dragEnabled',
+          key: "dragEnabled",
           set: function set(enabled) {
+            if (this.notSortable || this.notSortable === undefined) {
+              return;
+            }
             this._dragEnabled = !!enabled;
             this._element.draggable = this._dragEnabled;
           },
@@ -94613,7 +94656,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         return dragAndDropAbstractComponent;
       }();
 
-      var dragAndDropAbstractHandleComponent = exports.dragAndDropAbstractHandleComponent = function dragAndDropAbstractHandleComponent(elementRef, dragAndDropService, dragAndDropAbstractComponent, cdr) {
+      var dragAndDropAbstractHandleComponent = exports.dragAndDropAbstractHandleComponent = function dragAndDropAbstractHandleComponent(elementRef, dragAndDropService, dragAndDropAbstractComponent) {
         _classCallCheck(this, dragAndDropAbstractHandleComponent);
 
         this._element = elementRef.nativeElement;

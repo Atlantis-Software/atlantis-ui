@@ -1,31 +1,107 @@
 <div>
 
 
-    <h4>Simple sortable</h4>
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="panel panel-success">
-          <div class="panel-heading">
-            Favorite drinks
-          </div>
-          <div class="panel-body">
-            <ul class="list-group" sortable-container [sortableData]="listOne">
-              <li *ngFor="let item of listOne; let i = index" class="list-group-item" sortable [sortableIndex]="i">
-                <span sortable-handle>=</span>&nbsp;
-                {{item}}
-              </li>
-            </ul>
-          </div>
+  <h4>Simple sortable</h4>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          Favorite drinks
         </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            My prefences:<br/>
-            <span *ngFor="let item of listOne; let i = index">{{i + 1}}) {{item}}<br/></span>
-          </div>
+        <div class="panel-body">
+          <ul class="list-group" sortable-container [sortableData]="listOne">
+            <li *ngFor="let item of listOne; let i = index" class="list-group-item" sortable [sortableIndex]="i">
+              {{item}}
+              <span sortable-handle>=</span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
+    <div class="col-sm-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          My prefences:<br/>
+          <span *ngFor="let item of listOne; let i = index">{{i + 1}}) {{item}}<br/></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          My prefences:<br/>
+          <span *ngFor="let item of listOneOriginal; let i = index">{{i + 1}}) {{item}}<br/></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h4>Simple sortable</h4>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          Favorite drinks
+        </div>
+        <div class="panel-body">
+          <ul class="list-group" sortable-container [sortableData]="listTwo">
+            <li *ngFor="let item of listTwo; let i = index" class="list-group-item" sortable [sortableIndex]="i">
+              {{item}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          My prefences:<br/>
+          <span *ngFor="let item of listTwo; let i = index">{{i + 1}}) {{item}}<br/></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          My prefences:<br/>
+          <span *ngFor="let item of listTwoOriginal; let i = index">{{i + 1}}) {{item}}<br/></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h4>Simple sortable</h4>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          Favorite drinks
+        </div>
+        <div class="panel-body" sortable-container [sortableData]="listThree">
+          <ul class="list-group"  >
+            <li *ngFor="let item of listThree; let i = index" class="list-group-item" sortable [sortableIndex]="i">
+              {{item}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          My prefences:<br/>
+          <span *ngFor="let item of listThree; let i = index">{{i + 1}}) {{item}}<br/></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          My prefences:<br/>
+          <span *ngFor="let item of listThreeOriginal; let i = index">{{i + 1}}) {{item}}<br/></span>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
