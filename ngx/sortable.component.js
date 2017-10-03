@@ -14,7 +14,7 @@ export class sortableContainer extends dragAndDropAbstractComponent {
   }
 
   constructor(elementRef, cdr, sortableDataService, dragAndDropService) {
-    super(elementRef, cdr, dragAndDropService);
+    super(elementRef, cdr, dragAndDropService, true);
     this.dragEnabled = false;
     this.notSortable = false;
     this._sortableDataService = sortableDataService;
@@ -40,6 +40,17 @@ export class sortableContainer extends dragAndDropAbstractComponent {
     return this._sortableData;
   }
 
+  _onDragEnterCallback() {
+    if (this._sortableDataService.isDragged && this._sortableData.length === 0) {
+      this.oldBorder = this._element.style.border;
+      this._element.style.border= "1px dashed #1C6EA4";
+    }
+  }
+
+  _onDragLeave() {
+    this._element.style.border = this.oldBorder;
+  }
+
   _onDropCallback() {
     if (this._sortableDataService.isDragged && this._sortableData.length === 0) {
       let item = this._sortableDataService.sortableContainer._sortableData[this._sortableDataService.index];
@@ -52,6 +63,7 @@ export class sortableContainer extends dragAndDropAbstractComponent {
         this._sortableDataService.sortableContainer = this;
         this._sortableDataService.index = 0;
       }
+      this._element.style.border = this.oldBorder;
       this.detectChanges();
     }
   }
@@ -70,7 +82,7 @@ export class sortableComponents extends dragAndDropAbstractComponent {
     ];
   }
   constructor(elementRef, cdr, sortableContainer, dragAndDropSortableService, dragAndDropService) {
-    super(elementRef, cdr, dragAndDropService);
+    super(elementRef, cdr, dragAndDropService, false);
     this.notSortable = false;
     this.dragEnabled = true;
     this.dropEnabled = true;
@@ -131,7 +143,9 @@ export class sortableComponents extends dragAndDropAbstractComponent {
   }
 
   _onDragOverCallback(event) {
-    event.dataTransfer.dropEffect = "move";
+    if (event.dataTransfer !== null) {
+      event.dataTransfer.dropEffect = "move";
+    }
     this.onDragOverCallback.emit(this._dragDropService.dragData);
   }
 
