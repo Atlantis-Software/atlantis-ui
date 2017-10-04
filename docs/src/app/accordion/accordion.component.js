@@ -6,12 +6,12 @@ export default  class AccordionComponent {
       new Component({
         template: require('./accordion.html')
       })
-    ]
+    ];
   }
   constructor(){
 
     this.accordionHtml = `
-    <accordion [options]="optionsAccordion">
+    <accordion openDefault="2" style="success">
       <accordion-panel [title]="'test1'">
         qsdfghjklm
       </accordion-panel>
@@ -22,7 +22,7 @@ export default  class AccordionComponent {
     </accordion>`;
 
     this.accordionNgFor= `
-    <accordion [options]="{style: 'danger'}">
+    <accordion [style]="danger">
       <accordion-panel *ngFor="let panel of panels" [title]="panel.title">
         {{panel.content}}
       </accordion-panel>
@@ -42,14 +42,8 @@ export default  class AccordionComponent {
         title: "test3",
         content: "wxcvbn"
       }
-    ]`
+    ]`;
 
-    this.optionsAccordion= {
-      openDefault: 2,
-      style: "success"
-    }
-
-    this.Display = "Example";
     this.changehours();
 
     this.panels = [
@@ -65,7 +59,7 @@ export default  class AccordionComponent {
         title: "test3",
         content: "wxcvbn"
       }
-    ]
+    ];
   }
 
   changehours(){

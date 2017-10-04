@@ -6,7 +6,7 @@ var language = ((
       nav.userLanguage
     ) || '').split('-')[0].split('_')[0];
 var locale;
-switch(language) {
+switch (language) {
   case 'en':
     locale = 'en-US';
     break;

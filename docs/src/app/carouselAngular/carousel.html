@@ -3,7 +3,7 @@
     Example :
   </h3>
   <div class="row container-fluid form-group">
-    <carousel [options]="optionsCarousel">
+    <carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
       <carousel-item>
         <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">
         <div class="carousel-caption">
@@ -29,7 +29,7 @@
     Carousel :
   </h3>
   <h3>
-    Options
+    Settings
   </h3>
   <table class="table table-striped table-bordered table-hover">
     <thead>
@@ -83,7 +83,7 @@
           2000 - infinite
         </td>
         <td>
-
+          If 0 or not present the carousel will not slide
         </td>
       </tr>
       <tr>
@@ -111,7 +111,7 @@
   </h3>
 
   <div class="row container-fluid form-group">
-    <carousel [options]="optionsCarousel">
+    <carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
       <carousel-item *ngIf="show1">
         <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">
         <div class="carousel-caption">
@@ -156,7 +156,7 @@
   </h3>
 
   <div class="row container-fluid form-group">
-    <carousel [options]="optionsCarousel">
+    <carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
       <carousel-item *ngFor="let carouselItem of carouselItems">
         <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">
         <div class="carousel-caption">

@@ -4,7 +4,7 @@ import selectpickeroptionComponent from './selectpicker-option.component';
 
 
 export default class selectpickerComponent {
-  constructor (changeDetectorRef, differs, elementRef) {
+  constructor(changeDetectorRef, differs, elementRef) {
     this.elementRef = elementRef;
     this.onModelTouched = function() {};
     this.onModelChange = function() {};
@@ -12,9 +12,9 @@ export default class selectpickerComponent {
     this.isOpen = false;
     this.differ = differs.find([]).create(null);
   }
-	static get annotations() {
-		return [
-			new Component({
+  static get annotations() {
+    return [
+      new Component({
         selector: 'selectpicker',
         template: require('./selectpicker.html'),
         inputs: ['multiple'],
@@ -30,10 +30,10 @@ export default class selectpickerComponent {
         host: {
           '(document:click)': 'handleClick($event)',
         }
-	  	})
-		];
+      })
+    ];
 
-	}
+  }
   get value() {
     return this.val;
   }
@@ -42,7 +42,6 @@ export default class selectpickerComponent {
     if (val !== this.val) {
       this.val = val;
       this.onModelChange(val);
-      var self = this;
       // iniliaze list with selected values
       this.updateOptions();
     }
@@ -100,7 +99,7 @@ export default class selectpickerComponent {
   }
 
   // click outsite component to close select
-  handleClick(event){
+  handleClick(event) {
     var clickedComponent = event.target;
     var inside = false;
     do {
@@ -109,14 +108,13 @@ export default class selectpickerComponent {
       }
       clickedComponent = clickedComponent.parentNode;
     } while (clickedComponent);
-    if(!inside){
+    if (!inside) {
       this.isOpen = false;
     }
   }
 
   //That check for every selectpicker widget's change.
   ngDoCheck() {
-    var self = this;
     // if this.val change we must update options
     // only for the select multiple because detect change is not fired
     // we must create a new instance to have a detect change
@@ -134,7 +132,7 @@ export default class selectpickerComponent {
     this.cdr.detectChanges();
   }
 
-  selectOption(option, event){
+  selectOption(option, event) {
     var self = this;
     // id select multiple
     if (this.multiple) {
@@ -151,13 +149,13 @@ export default class selectpickerComponent {
       });
       this.val.forEach(function(value) {
         var index = options.indexOf(value);
-        if ( index <= -1) {
-          var index = self.val.indexOf(value);
+        if (index <= -1) {
+          index = self.val.indexOf(value);
           self.val.splice(index, 1);
         }
-      })
+      });
       // key press ctrl
-      if(event.ctrlKey) {
+      if (event.ctrlKey) {
         // option already selected , unselect value
         if (option.selected) {
           // delete value
@@ -175,9 +173,9 @@ export default class selectpickerComponent {
               this.SelectedValuesText.splice(indexText, 1);
             }
           }
-        } else {  // option not selected , select value
+        } else { // option not selected , select value
           // add value
-          var index = options.indexOf(option.value);
+          index = options.indexOf(option.value);
           this.previousSelectedIndex = index;
           this.previousSelectedValue = option.value;
           option.selected = true;
@@ -186,7 +184,7 @@ export default class selectpickerComponent {
           this.SelectedValuesText.push(option.text);
           this.ctrlKey = true;
         }
-      } else if(event.shiftKey) { // if key press shift
+      } else if (event.shiftKey) { // if key press shift
         if (!option.selected) {
           var indexOption;
           var currentIndexVal;
@@ -198,7 +196,7 @@ export default class selectpickerComponent {
             this.options.forEach(function(option4) {
               indexOption = options.indexOf(option4.value);
               currentIndexVal = self.val.indexOf(option.value);
-              currentIndexOption =  options.indexOf(option.value);
+              currentIndexOption = options.indexOf(option.value);
               // if current value is not selected, we select current value
               if (currentIndexVal <= -1) {
                 self.val.push(option.value);
@@ -209,13 +207,13 @@ export default class selectpickerComponent {
                 self.val.push(self.previousSelectedValue);
               }
               // we select value between previous Value and current value
-              if ( indexOption < currentIndexOption && indexOption > self.previousSelectedIndex) {
+              if (indexOption < currentIndexOption && indexOption > self.previousSelectedIndex) {
                 var index = self.val.indexOf(option4.value);
                 if (index <= -1) {
                   self.val.push(option4.value);
                 }
-              } else if (indexOption > currentIndexOption && indexOption < self.previousSelectedIndex ) {
-                var index = self.val.indexOf(option4.value);
+              } else if (indexOption > currentIndexOption && indexOption < self.previousSelectedIndex) {
+                index = self.val.indexOf(option4.value);
                 if (index <= -1) {
                   self.val.push(option4.value);
                 }
@@ -223,13 +221,13 @@ export default class selectpickerComponent {
             });
           }
         } else {
-            this.options.forEach(function(option4) {
-              var index = options.indexOf(option4.value);
-              var currentIndex = options.indexOf(option.value);
-              // if not key press ctrl delete all item below value selected
-              // if key press ctrl before delete all item above value selected
-              if ( !self.ctrlKey && index > currentIndex || self.ctrlKey &&  index < currentIndex ) {
-              var index = self.val.indexOf(option4.value);
+          this.options.forEach(function(option4) {
+            var index = options.indexOf(option4.value);
+            var currentIndex = options.indexOf(option.value);
+            // if not key press ctrl delete all item below value selected
+            // if key press ctrl before delete all item above value selected
+            if (!self.ctrlKey && index > currentIndex || self.ctrlKey && index < currentIndex) {
+              index = self.val.indexOf(option4.value);
               if (index > -1) {
                 self.val.splice(index, 1);
               }
@@ -237,7 +235,7 @@ export default class selectpickerComponent {
           });
         }
       } else { // click on value
-        var index = options.indexOf(option.value);
+        index = options.indexOf(option.value);
         this.previousSelectedIndex = index;
         this.previousSelectedValue = option.value;
         option.selected = true;
@@ -257,9 +255,9 @@ export default class selectpickerComponent {
       this.SelectedValuesText = null;
       // toutes les valeurs sont déselectionnées
       this.options.forEach(function(option) {
-         option.selected = false;
-       });
-       // on selectionne la valeur selectionnée
+        option.selected = false;
+      });
+      // on selectionne la valeur selectionnée
       option.selected = true;
       this.val = option.value;
       // mise a jour du text

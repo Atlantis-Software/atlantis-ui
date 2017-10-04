@@ -9,7 +9,7 @@ export class accordionComponent {
         selector: 'accordion',
         template: `
           <ng-content></ng-content>`,
-        inputs: ["options"],
+        inputs: ["style", "openDefault"],
         host : {
           'class' : 'panel-group'
         }
@@ -23,7 +23,7 @@ export class accordionComponent {
   }
 
   addPanel(panel) {
-    this.panels.push(panel)
+    this.panels.push(panel);
   }
 
   removePanel(panel) {
@@ -38,7 +38,7 @@ export class accordionComponent {
       if (panel !== panelOpen) {
         panel.isOpen = false;
       }
-    })
+    });
   }
 
   ngAfterViewInit() {
@@ -46,21 +46,21 @@ export class accordionComponent {
     var panelsHTML = this.elementRef.nativeElement.getElementsByClassName("panel");
 
     for (var i = 0; i < panelsHTML.length; i++) {
-      if (this.options.style) {
-        panelsHTML[i].classList.add("panel-" + this.options.style);
+      if (this.panelStyle) {
+        panelsHTML[i].classList.add("panel-" + this.panelStyle);
       } else {
         panelsHTML[i].classList.add("panel-default");
       }
     }
 
-    if (this.options.openDefault >= 0) {
-      if (this.options.openDefault === panelsHTML.length) {
-        this.options.openDefault = panelsHTML.length - 1;
-      } else if (this.options.openDefault > panelsHTML.length) {
-        this.options.openDefault = 0;
+    if (this.openDefault >= 0) {
+      if (this.openDefault === panelsHTML.length) {
+        this.openDefault = panelsHTML.length - 1;
+      } else if (this.openDefault > panelsHTML.length) {
+        this.openDefault = 0;
       }
       setTimeout(function() {
-        self.panels[self.options.openDefault].isOpen = true;
+        self.panels[self.openDefault].isOpen = true;
       }, 0);
     }
 
@@ -100,7 +100,7 @@ export class accordionPanelComponent {
     this.accordion = accordion;
     this.accordion.addPanel(this);
     this._isOpen = false;
-    this.cdr = ChangeDetectorRef
+    this.cdr = ChangeDetectorRef;
   }
 
   ngOnDestroy() {
@@ -110,7 +110,7 @@ export class accordionPanelComponent {
   toggleOpen(e) {
     e.preventDefault();
     this.isOpen = !this.isOpen;
-    if(this.isOpen) {
+    if (this.isOpen) {
       this.accordion.closeOthers(this);
     }
   }

@@ -1,32 +1,32 @@
-import { Component, Directive, ElementRef, Injector, ComponentFactoryResolver, ApplicationRef} from '@angular/core';
+import { Component, Directive, ElementRef, Injector, ComponentFactoryResolver, ApplicationRef } from '@angular/core';
 
 export class tooltipComponent {
-  constructor (elementRef) {
+  constructor(elementRef) {
     this.elementRef = elementRef;
     this.show = false;
     this.placementCorrect = false;
     this.active = false;
   }
-	static get annotations() {
-		return [
-			new Component({
+  static get annotations() {
+    return [
+      new Component({
         selector: 'tooltipComponent',
         template: `
           <div class="tooltip-arrow"></div>
           <div class="tooltip-inner">{{tooltipContent}}</div>`,
-        inputs: ["tooltipDirection","tooltipContent"],
+        inputs: ["tooltipDirection", "tooltipContent"],
         host: {
-          '[class]':'"tooltip fade "+tooltipDirection',
-          '[class.in]':"classIn"
+          '[class]': '"tooltip fade "+tooltipDirection',
+          '[class.in]': "classIn"
         },
-        styles : [
+        styles: [
           `:host {
             display: block;
           }`
         ]
-	  	})
-		];
-	}
+      })
+    ];
+  }
 
 }
 
@@ -34,7 +34,7 @@ tooltipComponent.parameters = [ElementRef];
 
 
 export class tooltipDirective {
-  constructor (ComponentFactoryResolver, ElementRef, Injector, ApplicationRef){
+  constructor(ComponentFactoryResolver, ElementRef, Injector, ApplicationRef) {
     this.ElementRef = ElementRef;
     this.injector = Injector;
     this.applicationRef = ApplicationRef;
@@ -47,11 +47,11 @@ export class tooltipDirective {
         selector: '[tooltip]',
         inputs: ["tooltipDirection", "tooltipContent"],
         host: {
-          "(mouseenter)":"open()",
-          "(mouseleave)":"close()"
+          "(mouseenter)": "open()",
+          "(mouseleave)": "close()"
         }
       })
-    ]
+    ];
   }
 
   ngAfterContentInit() {
@@ -77,21 +77,20 @@ export class tooltipDirective {
     }
   }
 
-  open(){
-    this.position = this.getPosition(this.ElementRef.nativeElement)
+  open() {
+    this.position = this.getPosition(this.ElementRef.nativeElement);
     this.tooltip = this.tooltipRef.location.nativeElement;
     var tooltipHeight = this.tooltip.clientHeight;
     var tooltipWidth = this.tooltip.clientWidth;
-    var placement = this.tooltipDirection == 'bottom' ? { top : this.position.top + this.position.height, left: this.position.left + this.position.width / 2 - tooltipWidth / 2} :
-      this.tooltipDirection == 'top' ? { top : this.position.top - tooltipHeight, left: this.position.left + this.position.width / 2 - tooltipWidth / 2 } :
-      this.tooltipDirection == 'left'? { top : this.position.top + this.position.height / 2 - tooltipHeight / 2, left : this.position.left - tooltipWidth} :
-      { top : this.position.top + this.position.height / 2 - tooltipHeight / 2, left : this.position.left + tooltipWidth}
+    var placement = this.tooltipDirection == 'bottom' ? { top: this.position.top + this.position.height, left: this.position.left + this.position.width / 2 - tooltipWidth / 2 } :
+      this.tooltipDirection == 'top' ? { top: this.position.top - tooltipHeight, left: this.position.left + this.position.width / 2 - tooltipWidth / 2 } :
+      this.tooltipDirection == 'left' ? { top: this.position.top + this.position.height / 2 - tooltipHeight / 2, left: this.position.left - tooltipWidth } : { top: this.position.top + this.position.height / 2 - tooltipHeight / 2, left: this.position.left + tooltipWidth };
     this.tooltip.style.top = placement.top + "px";
     this.tooltip.style.left = placement.left + "px";
     this.tooltipRef.instance.classIn = true;
   }
 
-  close(){
+  close() {
     this.tooltipRef.instance.classIn = false;
   }
 
@@ -99,13 +98,13 @@ export class tooltipDirective {
     var left = 0;
     var top = 0;
     var height = element.clientHeight;
-    var width = element.clientWidth
-    while (element.offsetParent != undefined && element.offsetParent != null ) {
+    var width = element.clientWidth;
+    while (element.offsetParent != undefined && element.offsetParent != null) {
       left += element.offsetLeft + (element.clientLeft != null ? element.clientLeft : 0);
       top += element.offsetTop + (element.clientTop != null ? element.clientTop : 0);
       element = element.offsetParent;
     }
-    return {"left": left, "top": top, "height" : height, "width" : width }
+    return { "left": left, "top": top, "height": height, "width": width };
   }
 
 }

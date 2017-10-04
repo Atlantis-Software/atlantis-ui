@@ -6,22 +6,22 @@ export default  class CarouselAngularComponent {
       new Component({
         template: require('./carousel.html')
       })
-    ]
+    ];
   }
   constructor(){
 
     this.carouselHtml = `
-    <carousel [idCarousel]="'test'" [options]="optionsCarousel">
+    <carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
       <carousel-item>
         <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">
         <div class="carousel-caption">
           Slide 1
         </div>
       </carousel-item>
-      <carousel-item [options]="optionsItem2">
+      <carousel-item>
         test2
       </carousel-item>
-    </carousel>`
+    </carousel>`;
     this.carrouselSlideNgIf= `
     <carousel-item *ngIf="show1">
       <img class="img-responsive center-block" src="../../img/carousel02.jpg" alt="">
@@ -31,7 +31,7 @@ export default  class CarouselAngularComponent {
     </carousel-item>`;
 
     this.carouselNgFor= `
-    <carousel [options]="optionsCarousel">
+    <carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
       <carousel-item *ngFor="let carouselItem of carouselItems">
         <img class="img-responsive center-block" src="../../img/carousel03.jpg" alt="">
         <div class="carousel-caption">
@@ -51,12 +51,7 @@ export default  class CarouselAngularComponent {
       {
         label: ""
       }
-    ]`
-
-    this.optionsCarousel = {
-      indicator: true,
-      interval: 4000
-    }
+    ]`;
 
     this.carouselItems = [
       {
@@ -68,13 +63,13 @@ export default  class CarouselAngularComponent {
       {
         label: ""
       }
-    ]
+    ];
 
-    this.test = "test"
+    this.test = "test";
 
-    this.show1 = true
-    this.show2 = true
-    this.show3 = true
+    this.show1 = true;
+    this.show2 = true;
+    this.show3 = true;
 
 
   }

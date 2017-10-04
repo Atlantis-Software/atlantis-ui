@@ -1,6 +1,4 @@
 import { getTestBed, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import atlantisUI from './ngx-atlantis-ui-module.js';
 import { Component } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
@@ -17,9 +15,9 @@ class dropdownTestComponent {
   constructor() {
 
   }
-	static get annotations() {
-		return [
-			new Component({
+  static get annotations() {
+    return [
+      new Component({
         template: `
         <dropdown title="Menu A">
           <dropdown-option><a>Sub-menu A</a></dropdown-option>
@@ -33,13 +31,12 @@ class dropdownTestComponent {
         </dropdown>
         <dropdown [options]="{alignement: 'right'}" title="Menu A">
         </dropdown>`
-	  	})
-		];
-	}
+      })
+    ];
+  }
 }
 
 describe('dropdown', function() {
-  var testComponent;
 
   beforeEach(async(function() {
     TestBed.configureTestingModule({
@@ -58,7 +55,6 @@ describe('dropdown', function() {
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
 
     var dropdown = document.querySelectorAll('dropdown');
     var dropdownMenu = document.querySelectorAll('.dropdown-menu');
@@ -97,24 +93,23 @@ describe('dropdown', function() {
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
     var button = document.querySelector('button');
     button.click();
     tick();
     fixture.detectChanges();
 
-    var dropdown = document.querySelector("dropdown")
+    var dropdown = document.querySelector("dropdown");
 
-    assert.strictEqual(dropdown.classList[1], "open")
+    assert.strictEqual(dropdown.classList[1], "open");
 
     var option = document.querySelector('dropdown-option');
     option.click();
     tick();
     fixture.detectChanges();
 
-    var dropdown = document.querySelector("dropdown")
+    dropdown = document.querySelector("dropdown");
 
-    assert.strictEqual(dropdown.classList[1], void 0)
+    assert.strictEqual(dropdown.classList[1], void 0);
 
   }));
 

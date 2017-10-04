@@ -3,7 +3,7 @@
     Example :
   </h3>
   <div class="row container-fluid form-group">
-    <accordion [options]="optionsAccordion">
+    <accordion openDefault="2" style="success">
       <accordion-panel [title]="'test1'">
         {{time | date : 'shortDate'}}
       </accordion-panel>
@@ -46,36 +46,36 @@
     <tbody>
       <tr>
         <td>
-          class
+          openDefault
         </td>
         <td>
-          String
+          number
         </td>
         <td>
-          Change style per default of any panel
+          Define if we want a panel open by default
+        </td>
+        <td>
+
+        </td>
+        <td>
+          if no value, all panel will be close
+        </td>
+      </tr>
+      <tr>
+        <td>
+          style
+        </td>
+        <td>
+          string
+        </td>
+        <td>
+          Define the style of the panel
         </td>
         <td>
           default, primary, success, info, warning, danger
         </td>
         <td>
-          Per default : default
-        </td>
-      </tr>
-      <tr>
-        <td>
-          options
-        </td>
-        <td>
-          Object
-        </td>
-        <td>
-          Define options we want for accordion
-        </td>
-        <td>
-          See option's section
-        </td>
-        <td>
-
+          per default : "default"
         </td>
       </tr>
     </tbody>
@@ -157,7 +157,7 @@
     Example with ngFor
   </h3>
   <div class="row container-fluid form-group">
-    <accordion [options]="{style: 'danger'}">
+    <accordion [style]="danger">
       <accordion-panel *ngFor="let panel of panels" [title]="panel.title">
         {{panel.content}}
       </accordion-panel>
