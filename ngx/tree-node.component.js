@@ -21,10 +21,15 @@ export default class treeNodeComponent {
 						'icon-disabled': disabled
 					}" (click)='ExpandClick()'></span>
 	        <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="tree-node-label"></span>
-          <span *ngIf="!template" [innerHTML]="selected" [class.disabled]="disabled"></span>
-          <span *ngIf="!template" [innerHTML]="id" [class.disabled]="disabled"></span>
 	        <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngOutletContext]="data"></ng-template>
-					<input *ngIf="selectable" type="checkbox" [ngModel]="selected" class="tree-node-checkbox" (click)="onClick()" [attr.disabled]="disabled">
+          <div *ngIf="selectable" class="tree-node-checkbox">
+            <div class="checkbox">
+              <input type="checkbox" [ngModel]="selected" (click)="onClick()" [attr.disabled]="disabled">
+              <label>
+                &nbsp;
+              </label>
+            </div>
+          </div>
 				</div>
         <ng-content *ngIf="expanded"></ng-content>
         <tree-node *ngFor="let child of children" [hidden]="!children?.length || !expandable || !expanded"
@@ -65,7 +70,7 @@ export default class treeNodeComponent {
   }
 
   _getCheckbox() {
-    return this.elementRef.nativeElement.querySelector('.tree-node-checkbox') || {};
+    return this.elementRef.nativeElement.querySelector('input[type="checkbox"]') || {};
   }
 
   ngOnChanges() {

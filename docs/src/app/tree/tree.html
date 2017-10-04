@@ -3,7 +3,9 @@
     Example :
   </h3>
   <div class="row container-fluid form-group">
-    <tree class="col-md-4" [nodes]="nodes" (select)='onSelect($event)'></tree>
+    <div class="col-md-4">
+      <tree [nodes]="nodes" (select)='onSelect($event)'></tree>
+    </div>
   </div>
   <pre>
     {{treeHtml}}
