@@ -274,7 +274,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__);
 
 /**
- * @license Angular v4.4.2
+ * @license Angular v4.4.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -1070,7 +1070,7 @@ var Version = (function () {
 /**
  * \@stable
  */
-var VERSION = new Version('4.4.2');
+var VERSION = new Version('4.4.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -15898,7 +15898,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 
 /**
- * @license Angular v4.4.2
+ * @license Angular v4.4.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -19865,7 +19865,7 @@ function isPlatformWorkerUi(platformId) {
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.4.2');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.4.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -20473,7 +20473,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 
 /**
- * @license Angular v4.4.2
+ * @license Angular v4.4.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -24880,7 +24880,7 @@ var By = (function () {
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.4.2');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.4.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -25444,7 +25444,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_rxjs_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21_rxjs_operator_filter__);
 
 /**
- * @license Angular v4.4.2
+ * @license Angular v4.4.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -31697,7 +31697,7 @@ function provideRouterInitializer() {
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.4.2');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.4.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -31854,7 +31854,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(11);
 
 /**
- * @license Angular v4.4.2
+ * @license Angular v4.4.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -37779,7 +37779,7 @@ FormBuilder.ctorParameters = function () { return []; };
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.4.2');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.4.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -39583,19 +39583,11 @@ var DropdownAngularComponent = function () {
   function DropdownAngularComponent() {
     _classCallCheck(this, DropdownAngularComponent);
 
-    this.dropdownHtml = '\n    <dropdown [options]="{orientation:\'up\'}" title="Menu A">\n      <dropdown-option><a>Sub-menu A</a></dropdown-option>\n      <dropdown-option><a>Sub-menu B</a></dropdown-option>\n      <dropdown-divider></dropdown-divider>\n      <dropdown-option><a>Sub-menu separated A</a></dropdown-option>\n      <dropdown-header>Menu</dropdown-header>\n      <dropdown-option><a>Sub-menu separated B</a></dropdown-option>\n    </dropdown>';
+    this.dropdownHtml = '\n    <dropdown title="Menu A">\n      <dropdown-option><a>Sub-menu A</a></dropdown-option>\n      <dropdown-option><a>Sub-menu B</a></dropdown-option>\n      <dropdown-divider></dropdown-divider>\n      <dropdown-option><a>Sub-menu separated A</a></dropdown-option>\n      <dropdown-header>Menu</dropdown-header>\n      <dropdown-option><a>Sub-menu separated B</a></dropdown-option>\n    </dropdown>';
 
-    this.dropup = '\n    <dropdown [options]="{orientation:\'up\'}" title="Menu A">\n    </dropdown>';
+    this.dropup = '\n    <dropdown orientation="up" title="Menu A">\n    </dropdown>';
 
-    this.dropdownAlignement = '\n    <dropdown [options]="{alignement:\'left\'}" title="Menu A">\n    </dropdown>\n    <dropdown [options]="{alignement:\'right\'}" title="Menu A">\n    </dropdown>';
-
-    this.options1 = {
-      type: "header"
-    };
-
-    this.options2 = {
-      type: "divider"
-    };
+    this.dropdownAlignement = '\n    <dropdown alignement="left" title="Menu A">\n    </dropdown>\n    <dropdown alignement="right" title="Menu A">\n    </dropdown>';
 
     this.dropdownoptions = [{
       label: "Sub-menu A"
@@ -39607,7 +39599,7 @@ var DropdownAngularComponent = function () {
       label: "Sub-menu separated B"
     }];
 
-    this.dropdownNgForJS = '\n    this.dropdownoptions = [\n      {\n        label: "Sub-menu A"\n      },\n      {\n        label: "Sub-menu B"\n      },\n      {\n        label: "",\n        options : {\n          type : "divider"\n        }\n      },\n      {\n        label: "Sub-menu separated A"\n      },\n      {\n        label: "",\n        options : {\n          type : "header"\n        }\n      },\n      {\n        label: "Sub-menu separated B"\n      }\n    ];';
+    this.dropdownNgForJS = '\n    this.dropdownoptions = [\n      {\n        label: "Sub-menu A"\n      },{\n        label: "Sub-menu B"\n      },{\n        label: "Sub-menu separated A"\n      },{\n        label: "Sub-menu separated B"\n      }\n    ];';
 
     this.dropdownNgFor = '\n    <dropdown class="form-group" [options]="{alignement:\'left\'}" title="Menu A">\n      <dropdown-option *ngFor="let dropdownoption of dropdownoptions" [options]="dropdownoption.options">\n        {{dropdownoption.label}}\n      </dropdown-option>\n    </dropdown>';
 
@@ -39789,32 +39781,8 @@ var ModalAngularComponent = function () {
 
     this.time = new Date();
 
-    this.modalHtml = '\n    <modal idModal="test" [options]="modalOptionsLeft" [(show)]="showLeft">\n      <modal-header [options]="modalHeaderOptions">\n        <h3 class="modal-title">Modal Header</h3>\n      </modal-header>\n      <modal-body>\n        <p>Some text in the modal.</p>\n      </modal-body>\n      <modal-footer>\n        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeLeft()">Close</button>\n      </modal-footer>\n    </modal>';
+    this.modalHtml = '\n    <modal fade="true" orientation="left" backdrop="true" [(show)]="showLeft">\n      <modal-header>\n        <h3 class="modal-title">Modal Header</h3>\n      </modal-header>\n      <modal-body>\n        <p>Some text in the modal.</p>\n      </modal-body>\n      <modal-footer>\n        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeLeft()">Close</button>\n      </modal-footer>\n    </modal>';
 
-    this.modalVar = '\n    this.modalOptionsLeft = {\n      fade : true,\n      orientation:"left"\n    }\n\n    this.modalHeaderOptions = {\n      close : true\n    }\n\n    this.showLeft = false;\n\n    openLeft() {\n      this.showLeft = true;\n    }\n    closeLeft() {\n      this.showLeft = false;\n    }';
-
-    this.modalOptionsRight = {
-      fade: false,
-      orientation: "right",
-      backdrop: false
-    };
-
-    this.modalOptionsTop = {
-      fade: false,
-      orientation: "top"
-    };
-
-    this.modalOptionsBottom = {
-      fade: true,
-      orientation: "bottom",
-      backdrop: true
-    };
-
-    this.modalOptionsLeft = {
-      fade: true,
-      orientation: "left",
-      backdrop: true
-    };
     this.showLeft = false;
     this.showRight = false;
     this.showTop = false;
@@ -39956,17 +39924,12 @@ var CarouselAngularComponent = function () {
   function CarouselAngularComponent() {
     _classCallCheck(this, CarouselAngularComponent);
 
-    this.carouselHtml = '\n    <carousel [idCarousel]="\'test\'" [options]="optionsCarousel">\n      <carousel-item>\n        <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">\n        <div class="carousel-caption">\n          Slide 1\n        </div>\n      </carousel-item>\n      <carousel-item [options]="optionsItem2">\n        test2\n      </carousel-item>\n    </carousel>';
+    this.carouselHtml = '\n    <carousel indicator="true" interval="4000" activeDefault="2" pause="hover">\n      <carousel-item>\n        <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">\n        <div class="carousel-caption">\n          Slide 1\n        </div>\n      </carousel-item>\n      <carousel-item>\n        test2\n      </carousel-item>\n    </carousel>';
     this.carrouselSlideNgIf = '\n    <carousel-item *ngIf="show1">\n      <img class="img-responsive center-block" src="../../img/carousel02.jpg" alt="">\n      <div class="carousel-caption">\n        Slide 1\n      </div>\n    </carousel-item>';
 
-    this.carouselNgFor = '\n    <carousel [options]="optionsCarousel">\n      <carousel-item *ngFor="let carouselItem of carouselItems">\n        <img class="img-responsive center-block" src="../../img/carousel03.jpg" alt="">\n        <div class="carousel-caption">\n          {{carouselItem.label}}\n        </div>\n      </carousel-item>\n    </carousel>';
+    this.carouselNgFor = '\n    <carousel indicator="true" interval="4000" activeDefault="2" pause="hover">\n      <carousel-item *ngFor="let carouselItem of carouselItems">\n        <img class="img-responsive center-block" src="../../img/carousel03.jpg" alt="">\n        <div class="carousel-caption">\n          {{carouselItem.label}}\n        </div>\n      </carousel-item>\n    </carousel>';
 
     this.carouselNgForItems = '\n    this.carouselItems = [\n      {\n        label: "slide1",\n      },\n      {\n        label: "slide2",\n      },\n      {\n        label: ""\n      }\n    ]';
-
-    this.optionsCarousel = {
-      indicator: true,
-      interval: 4000
-    };
 
     this.carouselItems = [{
       label: "slide1"
@@ -40150,18 +40113,12 @@ var AccordionComponent = function () {
   function AccordionComponent() {
     _classCallCheck(this, AccordionComponent);
 
-    this.accordionHtml = '\n    <accordion [options]="optionsAccordion">\n      <accordion-panel [title]="\'test1\'">\n        qsdfghjklm\n      </accordion-panel>\n      <accordion-panel [title]="\'test2\'">\n        azertyuiop\n        <button type="button" class="btn btn-block">Basic</button>\n      </accordion-panel>\n    </accordion>';
+    this.accordionHtml = '\n    <accordion openDefault="2" style="success">\n      <accordion-panel [title]="\'test1\'">\n        qsdfghjklm\n      </accordion-panel>\n      <accordion-panel [title]="\'test2\'">\n        azertyuiop\n        <button type="button" class="btn btn-block">Basic</button>\n      </accordion-panel>\n    </accordion>';
 
-    this.accordionNgFor = '\n    <accordion [options]="{style: \'danger\'}">\n      <accordion-panel *ngFor="let panel of panels" [title]="panel.title">\n        {{panel.content}}\n      </accordion-panel>\n    </accordion>';
+    this.accordionNgFor = '\n    <accordion [style]="danger">\n      <accordion-panel *ngFor="let panel of panels" [title]="panel.title">\n        {{panel.content}}\n      </accordion-panel>\n    </accordion>';
 
     this.accordionNgForPanel = '\n    this.panels = [\n      {\n        title: "test1",\n        content: "azertyuiop"\n      },\n      {\n        title: "test2",\n        content: "qsdfghjklm"\n      },\n      {\n        title: "test3",\n        content: "wxcvbn"\n      }\n    ]';
 
-    this.optionsAccordion = {
-      openDefault: 2,
-      style: "success"
-    };
-
-    this.Display = "Example";
     this.changehours();
 
     this.panels = [{
@@ -58641,7 +58598,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(11);
 
 /**
- * @license Angular v4.4.2
+ * @license Angular v4.4.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -58774,7 +58731,7 @@ var CachedResourceLoader = (function (_super) {
 /**
  * @stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.4.2');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.4.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -59044,7 +59001,7 @@ var platformBrowserDynamic = Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__[
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 
 /**
- * @license Angular v4.4.2
+ * @license Angular v4.4.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -59064,7 +59021,7 @@ var platformBrowserDynamic = Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__[
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.4.2');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.4.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -89354,7 +89311,7 @@ module.exports = "<div class=\"container\"> <div class=\"row container-fluid\"> 
 /* 119 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\"> <h3>Exemple : </h3> <div class=\"form-group\"> <div class=\"row container-fluid\"> <dropdown title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> </div> <pre>\n    {{dropdownHtml}}\n  </pre> <h3> Dropup </h3> <div class=\"form-group\"> <div class=\"row container-fluid\"> <dropdown [options]=\"{orientation:'up'}\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> </div> <blockquote> Just add to options the attribute orientation with value 'up' </blockquote> <pre>\n    {{dropup}}\n  </pre> <h3> Alignement </h3> <div class=\"form-group\"> <div class=\"row container-fluid\"> <dropdown class=\"form-group\" [options]=\"{alignement:'left'}\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> <dropdown [options]=\"{alignement:'right'}\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown-divider></dropdown> </div> </div> <pre>\n    {{dropdownAlignement}}\n  </pre> <h3> Dropdown options with ngFor </h3> <div class=\"form-group\"> <div class=\"row container-fluid\"> <dropdown class=\"form-group\" [options]=\"{alignement:'left'}\" title=\"Menu A\"> <dropdown-option *ngFor=\"let dropdownoption of dropdownoptions\"><a>{{dropdownoption.label}}</a></dropdown-option> </dropdown> </div> </div> <pre>\n    {{dropdownNgFor}}\n  </pre> <pre>\n    {{dropdownNgForJS}}\n  </pre> <h3> Dropdown : </h3> <h3> Settings </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Setting </th> <th> Description </th> </tr> </thead> <tbody> <tr> <td> title </td> <td> Define the title of the button what open dropdown </td> </tr> <tr> <td> Option </td> <td> Allow to send options to dropdown </td> </tr> </tbody> </table> <h3> Options </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Attribut </th> <th> Type </th> <th> Description </th> <th> Value </th> <th> Info </th> </tr> </thead> <tbody> <tr> <td> orientation </td> <td> String </td> <td> Define the orientation of the dropdown, up or down </td> <td> Up, down </td> <td> Per default : down </td> </tr> <tr> <td> alignement </td> <td> String </td> <td> Define the alignement of dropdown </td> <td> right, left </td> <td> Per default : left </td> </tr> </tbody> </table> <h3> Dropdown-option : </h3> <h3> Options </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Attribut </th> <th> Type </th> <th> Description </th> <th> Value </th> <th> Info </th> </tr> </thead> <tbody> <tr> <td> disabled </td> <td> boolean </td> <td> Define if a option is disabled or not </td> <td> true, false </td> <td> Per default : false </td> </tr> <tr> <td> type </td> <td> String </td> <td> Define the type of li </td> <td> action, divider, header </td> <td> Per default : action </td> </tr> </tbody> </table> </div> ";
+module.exports = "<div class=\"container\"> <h3>Exemple : </h3> <div class=\"form-group\"> <div class=\"row container-fluid\"> <dropdown title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> </div> <pre>\n    {{dropdownHtml}}\n  </pre> <h3> Dropup </h3> <div class=\"form-group\"> <div class=\"row container-fluid\"> <dropdown orientation=\"up\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> </div> <blockquote> Just add to options the attribute orientation with value 'up' </blockquote> <pre>\n    {{dropup}}\n  </pre> <h3> Alignement </h3> <div class=\"form-group\"> <div class=\"row container-fluid\"> <dropdown class=\"form-group\" alignement=\"left\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> <dropdown alignement=\"right\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown-divider></dropdown> </div> </div> <pre>\n    {{dropdownAlignement}}\n  </pre> <h3> Dropdown options with ngFor </h3> <div class=\"form-group\"> <div class=\"row container-fluid\"> <dropdown class=\"form-group\" alignement=\"left\" title=\"Menu A\"> <dropdown-option *ngFor=\"let dropdownoption of dropdownoptions\"><a>{{dropdownoption.label}}</a></dropdown-option> </dropdown> </div> </div> <pre>\n    {{dropdownNgFor}}\n  </pre> <pre>\n    {{dropdownNgForJS}}\n  </pre> <h3> Dropdown : </h3> <h3> Settings </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Attribut </th> <th> Type </th> <th> Description </th> <th> Value </th> <th> Info </th> </tr> </thead> <tbody> <tr> <td> title </td> <td> String </td> <td> Define the text of the button </td> <td> </td> <td> Per default : Dropdown button </td> </tr> <tr> <td> orientation </td> <td> String </td> <td> Define the orientation of the dropdown, up or down </td> <td> Up, down </td> <td> Per default : down </td> </tr> <tr> <td> alignement </td> <td> String </td> <td> Define the alignement of dropdown </td> <td> right, left </td> <td> Per default : left </td> </tr> </tbody> </table> </div> ";
 
 /***/ }),
 /* 120 */
@@ -89378,7 +89335,7 @@ module.exports = "<div class=\"container\"> <div class=\"row container-fluid\"> 
 /* 123 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\"> <h3> Modal </h3> <div class=\"row\"> <div class=\"col-md-2 col-md-offset-1\"> <button type=\"button\" class=\"btn btn-default btn-sm\" (click)=\"openLeft()\"> orientation=\"left\"<br> fade=true<br> backdrop=true </button> <modal idModal=\"test\" [options]=\"modalOptionsLeft\" [(show)]=\"showLeft\"> <modal-header [options]=\"modalHeaderOptions\"> <h3 class=\"modal-title\">Modal Header</h3> </modal-header> <modal-body> <p>Some text in the modal.</p> </modal-body> <modal-footer> <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"closeLeft()\">Close</button> </modal-footer> </modal> </div> <div class=\"col-md-2\"> <button type=\"button\" class=\"btn btn-default btn-sm\" (click)=\"openRight()\"> orientation=\"right\"<br> fade=false<br> backdrop=false </button> <modal idModal=\"test\" [options]=\"modalOptionsRight\" [(show)]=\"showRight\"> <modal-header [options]=\"modalHeaderOptions\"> <h3 class=\"modal-title\">Modal Header</h3> </modal-header> <modal-body> <p>Some text in the modal.</p> </modal-body> <modal-footer> <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"closeRight()\">Close</button> </modal-footer> </modal> </div> <div class=\"col-md-2\"> <button type=\"button\" class=\"btn btn-default btn-sm\" (click)=\"openTop()\"> orientation=\"top\"<br> fade=false<br> backdrop=true </button> <modal idModal=\"test\" [options]=\"modalOptionsTop\" [(show)]=\"showTop\"> <modal-header [options]=\"modalHeaderOptions\"> <h3 class=\"modal-title\">Modal Header</h3> </modal-header> <modal-body> <p>Some text in the modal.</p> </modal-body> <modal-footer> <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"closeTop()\">Close</button> </modal-footer> </modal> </div> <div class=\"col-md-2\"> <button type=\"button\" class=\"btn btn-default btn-sm\" (click)=\"openBottom()\"> orientation = bottom<br> fade=true<br> backdrop=true </button> <modal idModal=\"test\" [options]=\"modalOptionsBottom\" [(show)]=\"showBottom\"> <modal-header [options]=\"modalHeaderOptions\"> <h3 class=\"modal-title\">Modal Header</h3> </modal-header> <modal-body> <p>Some text in the modal.</p> </modal-body> <modal-footer> <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"closeBottom()\">Close</button> </modal-footer> </modal> </div> <div class=\"col-md-2\"> <button type=\"button\" class=\"btn btn-default btn-sm\" (click)=\"openStandard()\"> No Options defined </button> <modal idModal=\"test\" [(show)]=\"showStandard\"> <modal-header [options]=\"modalHeaderOptions\"> <h3 class=\"modal-title\">Modal Header</h3> </modal-header> <modal-body> <p>Some text in the modal.</p> </modal-body> <modal-footer> <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"closeStandard()\">Close</button> </modal-footer> </modal> </div> </div> <h3> For a modal use : </h3> <pre>\n    {{ modalHtml }}\n  </pre> <h3> with variables : </h3> <pre>\n    {{ modalVar }}\n  </pre> <blockquote> <p> ShowLeft is a boolean, is used to open (true) or close (false) the modal.<br> Test is use for the id modal, by default the value is modal + random number.<br> ModalOptionsLeft is the options of the modal.<br> ModalHeaderOptions is the options of the header modal.<br> </p> </blockquote> <h3> modal options </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Parameters </th> <th> Type </th> <th> Description </th> <th> Value </th> <th> Default value </th> </tr> </thead> <tbody> <tr> <td> orientation </td> <td> String </td> <td> Position of the modal </td> <td> left, bottom, right, top </td> <td> left </td> </tr> <tr> <td> fade </td> <td> boolean </td> <td> Define if we use animation or not </td> <td> true, false </td> <td> true </td> </tr> <tr> <td> backdrop </td> <td> string </td> <td> Define if the backdrop is present </td> <td> true, false </td> <td> true. </td> </tr> </tbody> </table> <h3> modal-header option </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Parameters </th> <th> Type </th> <th> Description </th> <th> Value </th> <th> Default value </th> </tr> </thead> <tbody> <tr> <td> close </td> <td> boolean </td> <td> Define if the button close is present </td> <td> true, false </td> <td> true </td> </tr> </tbody> </table> </div> ";
+module.exports = "<div class=\"container\"> <h3> Modal </h3> <div class=\"row\"> <div class=\"col-md-2 col-md-offset-1\"> <button type=\"button\" class=\"btn btn-default btn-sm\" (click)=\"openLeft()\"> orientation=\"left\"<br> fade=true<br> backdrop=true </button> <modal fade=\"true\" orientation=\"left\" backdrop=\"true\" [(show)]=\"showLeft\"> <modal-header> <h3 class=\"modal-title\">Modal Header</h3> </modal-header> <modal-body> <p>Some text in the modal.</p> </modal-body> <modal-footer> <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"closeLeft()\">Close</button> </modal-footer> </modal> </div> <div class=\"col-md-2\"> <button type=\"button\" class=\"btn btn-default btn-sm\" (click)=\"openRight()\"> orientation=\"right\"<br> fade=false<br> backdrop=false </button> <modal fade=\"false\" orientation=\"right\" backdrop=\"false\" [(show)]=\"showRight\"> <modal-header> <h3 class=\"modal-title\">Modal Header</h3> </modal-header> <modal-body> <p>Some text in the modal.</p> </modal-body> <modal-footer> <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"closeRight()\">Close</button> </modal-footer> </modal> </div> <div class=\"col-md-2\"> <button type=\"button\" class=\"btn btn-default btn-sm\" (click)=\"openTop()\"> orientation=\"top\"<br> fade=false<br> backdrop=true </button> <modal fade=\"false\" orientation=\"top\" [(show)]=\"showTop\"> <modal-header> <h3 class=\"modal-title\">Modal Header</h3> </modal-header> <modal-body> <p>Some text in the modal.</p> </modal-body> <modal-footer> <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"closeTop()\">Close</button> </modal-footer> </modal> </div> <div class=\"col-md-2\"> <button type=\"button\" class=\"btn btn-default btn-sm\" (click)=\"openBottom()\"> orientation = bottom<br> fade=true<br> backdrop=true </button> <modal fade=\"true\" orientation=\"bottom\" backdrop=\"true\" [(show)]=\"showBottom\"> <modal-header> <h3 class=\"modal-title\">Modal Header</h3> </modal-header> <modal-body> <p>Some text in the modal.</p> </modal-body> <modal-footer> <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"closeBottom()\">Close</button> </modal-footer> </modal> </div> <div class=\"col-md-2\"> <button type=\"button\" class=\"btn btn-default btn-sm\" (click)=\"openStandard()\"> No Options defined </button> <modal [(show)]=\"showStandard\"> <modal-header> <h3 class=\"modal-title\">Modal Header</h3> </modal-header> <modal-body> <p>Some text in the modal.</p> </modal-body> <modal-footer> <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"closeStandard()\">Close</button> </modal-footer> </modal> </div> </div> <h3> For a modal use : </h3> <pre>\n    {{ modalHtml }}\n  </pre> <h3> with variables : </h3> <pre>\n    {{ modalVar }}\n  </pre> <blockquote> <p> ShowLeft is a boolean, is used to open (true) or close (false) the modal.<br> Test is use for the id modal, by default the value is modal + random number.<br> ModalOptionsLeft is the options of the modal.<br> ModalHeaderOptions is the options of the header modal.<br> </p> </blockquote> <h3> modal options </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Parameters </th> <th> Type </th> <th> Description </th> <th> Value </th> <th> Default value </th> </tr> </thead> <tbody> <tr> <td> orientation </td> <td> String </td> <td> Position of the modal </td> <td> left, bottom, right, top </td> <td> left </td> </tr> <tr> <td> fade </td> <td> boolean </td> <td> Define if we use animation or not </td> <td> true, false </td> <td> true </td> </tr> <tr> <td> backdrop </td> <td> string </td> <td> Define if the backdrop is present </td> <td> true, false </td> <td> true. </td> </tr> </tbody> </table> <h3> modal-header option </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Parameters </th> <th> Type </th> <th> Description </th> <th> Value </th> <th> Default value </th> </tr> </thead> <tbody> <tr> <td> close </td> <td> boolean </td> <td> Define if the button close is present </td> <td> true, false </td> <td> true </td> </tr> </tbody> </table> </div> ";
 
 /***/ }),
 /* 124 */
@@ -89390,7 +89347,7 @@ module.exports = "<div class=\"container\"> <h3> Example : </h3> <div class=\"ro
 /* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div class=\"container\"> <h3> Example : </h3> <div class=\"row container-fluid form-group\"> <carousel [options]=\"optionsCarousel\"> <carousel-item> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(22) + "\" alt=\"\"> <div class=\"carousel-caption\"> Slide 1 </div> </carousel-item> <carousel-item> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(54) + "\" alt=\"\"> </carousel-item> <carousel-item> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(55) + "\" alt=\"\"> <div class=\"carousel-caption\"> slide 3 </div> </carousel-item> </carousel> </div> <pre>\n    {{carouselHtml}}\n  </pre> <h3> Carousel : </h3> <h3> Options </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Attribut </th> <th> Type </th> <th> Description </th> <th> Value </th> <th> Info </th> </tr> </thead> <tbody> <tr> <td> indicator </td> <td> boolean </td> <td> Define if we want indicator in bottom of carousel </td> <td> true, false </td> <td> Per default : false </td> </tr> <tr> <td> interval </td> <td> number </td> <td> Modify the time between slide </td> <td> 2000 - infinite </td> <td> </td> </tr> <tr> <td> pause </td> <td> String | null </td> <td> Define if we want pauses the cycling on mouseenter </td> <td> hover, null </td> <td> Per default : hover </td> </tr> </tbody> </table> <h3> Exemple with add and suppress slide </h3> <div class=\"row container-fluid form-group\"> <carousel [options]=\"optionsCarousel\"> <carousel-item *ngIf=\"show1\"> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(22) + "\" alt=\"\"> <div class=\"carousel-caption\"> Slide 1 </div> </carousel-item> <carousel-item *ngIf=\"show2\"> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(54) + "\" alt=\"\"> </carousel-item> <carousel-item *ngIf=\"show3\"> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(55) + "\" alt=\"\"> <div class=\"carousel-caption\"> slide 3 </div> </carousel-item> </carousel> </div> <div class=\"row container-fluid\"> <div class=\"form-group\"> <label for=\"ButtonA\">Toggle test1</label> <button class=\"btn btn-block\" (click)=\"toggle1()\">toggle test1</button> <label for=\"ButtonA\">Toggle test2</label> <button class=\"btn btn-block\" (click)=\"toggle2()\">toggle test2</button> <label for=\"ButtonA\">Toggle test3</label> <button class=\"btn btn-block\" (click)=\"toggle3()\">toggle test3</button> </div> </div> <blockquote> <p> We can use ngIf for carousel-item to add or suppress slide, if active is suppress, the first slide will be the new active slide </p> </blockquote> <pre>\n    {{carrouselSlideNgIf}}\n  </pre> <h3> Exemple with ngFor </h3> <div class=\"row container-fluid form-group\"> <carousel [options]=\"optionsCarousel\"> <carousel-item *ngFor=\"let carouselItem of carouselItems\"> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(22) + "\" alt=\"\"> <div class=\"carousel-caption\"> {{carouselItem.label}} </div> </carousel-item> </carousel> </div> <pre>\n    {{carouselNgFor}}\n  </pre> <pre>\n    {{carouselNgForItems}}\n  </pre> </div> ";
+module.exports = "<div class=\"container\"> <h3> Example : </h3> <div class=\"row container-fluid form-group\"> <carousel indicator=\"true\" interval=\"4000\" activeDefault=\"2\" pause=\"hover\"> <carousel-item> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(22) + "\" alt=\"\"> <div class=\"carousel-caption\"> Slide 1 </div> </carousel-item> <carousel-item> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(54) + "\" alt=\"\"> </carousel-item> <carousel-item> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(55) + "\" alt=\"\"> <div class=\"carousel-caption\"> slide 3 </div> </carousel-item> </carousel> </div> <pre>\n    {{carouselHtml}}\n  </pre> <h3> Carousel : </h3> <h3> Settings </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Attribut </th> <th> Type </th> <th> Description </th> <th> Value </th> <th> Info </th> </tr> </thead> <tbody> <tr> <td> indicator </td> <td> boolean </td> <td> Define if we want indicator in bottom of carousel </td> <td> true, false </td> <td> Per default : false </td> </tr> <tr> <td> interval </td> <td> number </td> <td> Modify the time between slide </td> <td> 2000 - infinite </td> <td> If 0 or not present the carousel will not slide </td> </tr> <tr> <td> pause </td> <td> String | null </td> <td> Define if we want pauses the cycling on mouseenter </td> <td> hover, null </td> <td> Per default : hover </td> </tr> </tbody> </table> <h3> Exemple with add and suppress slide </h3> <div class=\"row container-fluid form-group\"> <carousel indicator=\"true\" interval=\"4000\" activeDefault=\"2\" pause=\"hover\"> <carousel-item *ngIf=\"show1\"> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(22) + "\" alt=\"\"> <div class=\"carousel-caption\"> Slide 1 </div> </carousel-item> <carousel-item *ngIf=\"show2\"> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(54) + "\" alt=\"\"> </carousel-item> <carousel-item *ngIf=\"show3\"> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(55) + "\" alt=\"\"> <div class=\"carousel-caption\"> slide 3 </div> </carousel-item> </carousel> </div> <div class=\"row container-fluid\"> <div class=\"form-group\"> <label for=\"ButtonA\">Toggle test1</label> <button class=\"btn btn-block\" (click)=\"toggle1()\">toggle test1</button> <label for=\"ButtonA\">Toggle test2</label> <button class=\"btn btn-block\" (click)=\"toggle2()\">toggle test2</button> <label for=\"ButtonA\">Toggle test3</label> <button class=\"btn btn-block\" (click)=\"toggle3()\">toggle test3</button> </div> </div> <blockquote> <p> We can use ngIf for carousel-item to add or suppress slide, if active is suppress, the first slide will be the new active slide </p> </blockquote> <pre>\n    {{carrouselSlideNgIf}}\n  </pre> <h3> Exemple with ngFor </h3> <div class=\"row container-fluid form-group\"> <carousel indicator=\"true\" interval=\"4000\" activeDefault=\"2\" pause=\"hover\"> <carousel-item *ngFor=\"let carouselItem of carouselItems\"> <img class=\"img-responsive center-block\" src=\"" + __webpack_require__(22) + "\" alt=\"\"> <div class=\"carousel-caption\"> {{carouselItem.label}} </div> </carousel-item> </carousel> </div> <pre>\n    {{carouselNgFor}}\n  </pre> <pre>\n    {{carouselNgForItems}}\n  </pre> </div> ";
 
 /***/ }),
 /* 126 */
@@ -89408,7 +89365,7 @@ module.exports = "<div class=\"container\"> <h3> Example </h3> <div class=\"row 
 /* 128 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\"> <h3> Example : </h3> <div class=\"row container-fluid form-group\"> <accordion [options]=\"optionsAccordion\"> <accordion-panel [title]=\"'test1'\"> {{time | date : 'shortDate'}} </accordion-panel> <accordion-panel [title]=\"'test2'\"> azertyuiop <button type=\"button\" class=\"btn btn-block\">Basic</button> </accordion-panel> </accordion> </div> <pre>\n    {{accordionHtml}}\n  </pre> <h3> Accordion : </h3> <h3> Settings </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th class=\"col-md-2\"> Setting </th> <th class=\"col-md-1\"> Type </th> <th class=\"col-md-3\"> Description </th> <th class=\"col-md-3\"> value </th> <th class=\"col-md-3\"> Info </th> </tr> </thead> <tbody> <tr> <td> class </td> <td> String </td> <td> Change style per default of any panel </td> <td> default, primary, success, info, warning, danger </td> <td> Per default : default </td> </tr> <tr> <td> options </td> <td> Object </td> <td> Define options we want for accordion </td> <td> See option's section </td> <td> </td> </tr> </tbody> </table> <h3> Options </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th class=\"col-md-2\"> Attribut </th> <th class=\"col-md-1\"> Type </th> <th class=\"col-md-3\"> Description </th> <th class=\"col-md-3\"> value </th> <th class=\"col-md-3\"> Info </th> </tr> </thead> <tbody> <tr> <td> openDefault </td> <td> number </td> <td> Define if we want a panel open by default </td> <td> any </td> <td> if no value, all panel will be close </td> </tr> </tbody> </table> <h3> Carousel-item </h3> <h3> Settings </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Setting </th> <th> Description </th> </tr> </thead> <tbody> <tr> <td> title </td> <td> Define the title of a panel </td> </tr> </tbody> </table> <h3> Example with ngFor </h3> <div class=\"row container-fluid form-group\"> <accordion [options]=\"{style: 'danger'}\"> <accordion-panel *ngFor=\"let panel of panels\" [title]=\"panel.title\"> {{panel.content}} </accordion-panel> </accordion> </div> <pre>\n    {{accordionNgFor}}\n  </pre> <pre>\n    {{accordionNgForPanel}}\n  </pre> </div> ";
+module.exports = "<div class=\"container\"> <h3> Example : </h3> <div class=\"row container-fluid form-group\"> <accordion openDefault=\"2\" panelStyle=\"success\"> <accordion-panel [title]=\"'test1'\"> {{time | date : 'shortDate'}} </accordion-panel> <accordion-panel [title]=\"'test2'\"> azertyuiop <button type=\"button\" class=\"btn btn-block\">Basic</button> </accordion-panel> </accordion> </div> <pre>\n    {{accordionHtml}}\n  </pre> <h3> Accordion : </h3> <h3> Settings </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th class=\"col-md-2\"> Setting </th> <th class=\"col-md-1\"> Type </th> <th class=\"col-md-3\"> Description </th> <th class=\"col-md-3\"> value </th> <th class=\"col-md-3\"> Info </th> </tr> </thead> <tbody> <tr> <td> openDefault </td> <td> number </td> <td> Define if we want a panel open by default </td> <td> </td> <td> if no value, all panel will be close </td> </tr> <tr> <td> panelStyle </td> <td> string </td> <td> Define the style of the panel </td> <td> default, primary, success, info, warning, danger </td> <td> per default : \"default\" </td> </tr> </tbody> </table> <h3> Options </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th class=\"col-md-2\"> Attribut </th> <th class=\"col-md-1\"> Type </th> <th class=\"col-md-3\"> Description </th> <th class=\"col-md-3\"> value </th> <th class=\"col-md-3\"> Info </th> </tr> </thead> <tbody> <tr> <td> openDefault </td> <td> number </td> <td> Define if we want a panel open by default </td> <td> any </td> <td> if no value, all panel will be close </td> </tr> </tbody> </table> <h3> Carousel-item </h3> <h3> Settings </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Setting </th> <th> Description </th> </tr> </thead> <tbody> <tr> <td> title </td> <td> Define the title of a panel </td> </tr> </tbody> </table> <h3> Example with ngFor </h3> <div class=\"row container-fluid form-group\"> <accordion panelStyle=\"danger\"> <accordion-panel *ngFor=\"let panel of panels\" [title]=\"panel.title\"> {{panel.content}} </accordion-panel> </accordion> </div> <pre>\n    {{accordionNgFor}}\n  </pre> <pre>\n    {{accordionNgForPanel}}\n  </pre> </div> ";
 
 /***/ }),
 /* 129 */
@@ -89420,7 +89377,7 @@ module.exports = "<div class=\"container\"> <h3> Example : </h3> <div class=\"ro
 /* 130 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\"> <div class=\"row\"> <h3> Inputgroup basic : </h3> <div class=\"form-group\"> <div class=\"input-group\"> <span class=\"input-group-addon\" id=\"basic-inputgroup1\">@</span> <input type=\"text\" class=\"form-control\" placeholder=\"Username\" aria-describedby=\"basic-inputgroup1\"> </div> </div> <div class=\"form-group\"> <div class=\"input-group\"> <input type=\"text\" class=\"form-control\" placeholder=\"Recipient's username\" aria-describedby=\"basic-inputgroup2\"> <span class=\"input-group-addon\" id=\"basic-inputgroup2\">@example.com</span> </div> </div> <pre>\n      {{inputgroupBasicHtml}}\n    </pre> <h3> Inputgroup with checkboxs and radio : </h3> <div class=\"form-group\"> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"checkbox\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> <div class=\"form-group\"> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"radio\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> <pre>\n      {{inputgroupCheckHtml}}\n    </pre> <h3> Inputgroup with buttons : </h3> <div class=\"form-group\"> <div class=\"input-group\"> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> <span class=\"input-group-btn\"> <button class=\"btn btn-default\" type=\"button\">Action</button> </span> </div> </div> <div class=\"form-group\"> <div class=\"input-group\"> <div class=\"input-group-btn\"> <button class=\"btn btn-default\" type=\"button\">Action1</button> <button class=\"btn btn-default\" type=\"button\">Action2</button> </div> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> <pre>\n      {{inputgroupButtonHtml}}\n    </pre> <h3> Inputgroup with dropdown </h3> <div class=\"form-group\"> <div class=\"input-group\"> <div class=\"input-group-btn\"> <dropdown [options]=\"{orientation:'up'}\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> <div class=\"input-group-btn\"> <dropdown [options]=\"{orientation:'up'}\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> </div> </div> <pre>\n    {{inputgroupDropdownHtml}}\n  </pre> </div> </div> ";
+module.exports = "<div class=\"container\"> <div class=\"row\"> <h3> Inputgroup basic : </h3> <div class=\"form-group\"> <div class=\"input-group\"> <span class=\"input-group-addon\" id=\"basic-inputgroup1\">@</span> <input type=\"text\" class=\"form-control\" placeholder=\"Username\" aria-describedby=\"basic-inputgroup1\"> </div> </div> <div class=\"form-group\"> <div class=\"input-group\"> <input type=\"text\" class=\"form-control\" placeholder=\"Recipient's username\" aria-describedby=\"basic-inputgroup2\"> <span class=\"input-group-addon\" id=\"basic-inputgroup2\">@example.com</span> </div> </div> <pre>\n      {{inputgroupBasicHtml}}\n    </pre> <h3> Inputgroup with checkboxs and radio : </h3> <div class=\"form-group\"> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"checkbox\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> <div class=\"form-group\"> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"radio\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> <pre>\n      {{inputgroupCheckHtml}}\n    </pre> <h3> Inputgroup with buttons : </h3> <div class=\"form-group\"> <div class=\"input-group\"> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> <span class=\"input-group-btn\"> <button class=\"btn btn-default\" type=\"button\">Action</button> </span> </div> </div> <div class=\"form-group\"> <div class=\"input-group\"> <div class=\"input-group-btn\"> <button class=\"btn btn-default\" type=\"button\">Action1</button> <button class=\"btn btn-default\" type=\"button\">Action2</button> </div> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> <pre>\n      {{inputgroupButtonHtml}}\n    </pre> <h3> Inputgroup with dropdown </h3> <div class=\"form-group\"> <div class=\"input-group\"> <div class=\"input-group-btn\"> <dropdown orientation=\"up\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> <div class=\"input-group-btn\"> <dropdown orientation=\"up\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> </div> </div> <pre>\n    {{inputgroupDropdownHtml}}\n  </pre> </div> </div> ";
 
 /***/ }),
 /* 131 */
@@ -89444,7 +89401,7 @@ module.exports = "<div class=\"container\"> <h3> Basic example : </h3> <div clas
 /* 134 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\"> <div class=\"row\" style=\"display:flex;flex-wrap:wrap\"> <h3 style=\"width:100%\"> The forms </h3> <p>html code example : </p> <pre>\n      {{formHtml}}\n    </pre> <form> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"ExamplePassword\">Password</label> <input type=\"text\" class=\"form-control\" id=\"ExampleUsername\" placeholder=\"Username\" [(ngModel)]=\"person.username\" name=\"ExampleUsername\"/> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <selectpicker [(ngModel)]=\"person.Language\" multiple=\"true\" name=\"ExampleLanguage\"> <selectpicker-option value=\"English\">English</selectpicker-option> <selectpicker-option value=\"French\">French</selectpicker-option> <selectpicker-option value=\"Spanish\">Spanish</selectpicker-option> </selectpicker> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"ExampleBirthday\">Birthday</label> <div class=\"radio\"> <input type=\"radio\" id=\"radio3\" name=\"radioset3\" value=\"Male\"> <label for=\"radio3\"> Male </label> </div> <div class=\"radio\"> <input type=\"radio\" id=\"radio4\" name=\"radioset3\" value=\"Female\" checked=\"\"> <label for=\"radio4\"> Female </label> </div> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"radio\"> <input type=\"radio\" id=\"radio1\" name=\"radioset\" value=\"option1\"> <label for=\"radio1\"> Option 1 </label> </div> <div class=\"radio\"> <input type=\"radio\" id=\"radio2\" name=\"radioset\" value=\"option2\" checked=\"\"> <label for=\"radio2\"> Option 2 </label> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"ExampleBirthday\">Birthday</label> <datepicker [(ngModel)]=\"person.birthday\" name=\"ExampleBirthday\"></datepicker> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"rangeDatePicker\">Example Datepicker range</label> <datepicker-range [(start)]=\"start1\" [(end)]=\"end1\"></datepicker-range> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"button-succes\">Bouton succes</label> <button type=\"button\" id=\"button-succes\" class=\"btn btn-success\"> Success </button> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"ExampleLanguage2\">Language 2</label> <selectpicker [(ngModel)]=\"Selectpicker2\" name=\"ExampleLanguage2\"> <selectpicker-option value=\"English\">English</selectpicker-option> <selectpicker-option value=\"French\">French</selectpicker-option> <selectpicker-option value=\"Spanish\">Spanish</selectpicker-option> </selectpicker> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"rangeDatePicker\">Example Datepicker range</label> <datepicker-range [(start)]=\"start1\" [(end)]=\"end1\"></datepicker-range> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"basic-inputgroup2\">Example input bouton texte</label> <div class=\"input-group\"> <input type=\"text\" class=\"form-control\" placeholder=\"Recipient's username\" aria-describedby=\"basic-inputgroup2\"> <span class=\"input-group-addon\" id=\"basic-inputgroup2\">@example.com</span> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"radio\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"checkbox\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"inputgroup-radio\">Example input bouton radio</label> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"radio\" id=\"inputgroup-radio\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"radio\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"inputgroup-checkbox\">Example input bouton checkbox</label> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"checkbox\" id=\"inputgroup-checkbox\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <textarea rows=\"4\" class=\"form-control\" name=\"inputActive\" placeholder=\"active\" [(ngModel)]=\"input2\">\n          </textarea></div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <button type=\"button\" class=\"btn btn-block\">Basic</button> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <datepicker-range [(start)]=\"start1\" [(end)]=\"end1\"></datepicker-range> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"ExamplePassword\">Password</label> <div class=\"input-group\"> <span class=\"input-group-btn\"> <button class=\"btn btn-default\" type=\"button\">Action</button> </span> <input type=\"text\" class=\"form-control\" aria-label=\"Amount (to the nearest dollar)\"> <span class=\"input-group-addon\">.00</span> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"dropdown\">Language 2</label> <dropdown title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <input type=\"password\" class=\"form-control\" id=\"ExamplePassword\" placeholder=\"Password\" [(ngModel)]=\"person.password\" name=\"ExamplePassword\"/> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"ExamplePassword\">Password</label> <input type=\"password\" class=\"form-control\" id=\"ExamplePassword\" placeholder=\"Password\" [(ngModel)]=\"person.password\" name=\"ExamplePassword\"/> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <dropdown title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"input-group\"> <div class=\"input-group-btn\"> <button class=\"btn btn-default\" type=\"button\">Action1</button> <button class=\"btn btn-default\" type=\"button\">Action2</button> </div> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"checkbox\">Checkbox</label> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk1\"> <label for=\"chk1\"> checkbox </label> </div> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk2\" checked=\"\"> <label for=\"chk2\"> checkbox checked </label> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckbox1\" value=\"option1\"> <label for=\"inlineCheckbox1\">1</label> </div> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckbox2\" value=\"option2\"> <label for=\"inlineCheckbox2\">2</label> </div> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckbox3\" value=\"option3\"> <label for=\"inlineCheckbox3\">3</label> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"checkboxInline\">Checkbox inline</label> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckboxText1\" value=\"optionText1\"> <label for=\"inlineCheckboxText1\">1</label> </div> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckboxText2\" value=\"optionText2\"> <label for=\"inlineCheckboxText2\">2</label> </div> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckboxText3\" value=\"optionText3\"> <label for=\"inlineCheckboxText3\">3</label> </div> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"radio-inline\"> <input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio1\" value=\"option1\"> <label for=\"inlineRadio1\">1</label> </div> <div class=\"radio-inline\"> <input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio2\" value=\"option2\" checked=\"\"> <label for=\"inlineRadio2\">2</label> </div> <div class=\"radio-inline\"> <input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio3\" value=\"option3\" disabled=\"\"> <label for=\"inlineRadio3\">3</label> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk1\"> <label for=\"chk1\"> checkbox </label> </div> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk2\" checked=\"\"> <label for=\"chk2\"> checkbox checked </label> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"inputActive\">Textarea</label> <textarea rows=\"4\" class=\"form-control\" name=\"inputActive\" placeholder=\"active\" [(ngModel)]=\"input2\">\n          </textarea></div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"input-group\"> <div class=\"input-group-btn\"> <dropdown [options]=\"{orientation:'up'}\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk1\"> <label for=\"chk1\"> checkbox </label> </div> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk2\" checked=\"\"> <label for=\"chk2\"> checkbox checked </label> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label>Dropdown input</label> <div class=\"input-group\"> <div class=\"input-group-btn\"> <dropdown [options]=\"{orientation:'up'}\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-12\"> <div class=\"btn-group\"> <button type=\"submit\" class=\"btn btn-default\">Submit</button> <button type=\"reset\" class=\"btn btn-default\">Reset</button> </div> </div> </div> </form> </div> </div> ";
+module.exports = "<div class=\"container\"> <div class=\"row\" style=\"display:flex;flex-wrap:wrap\"> <h3 style=\"width:100%\"> The forms </h3> <p>html code example : </p> <pre>\n      {{formHtml}}\n    </pre> <form> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"ExamplePassword\">Password</label> <input type=\"text\" class=\"form-control\" id=\"ExampleUsername\" placeholder=\"Username\" [(ngModel)]=\"person.username\" name=\"ExampleUsername\"/> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <selectpicker [(ngModel)]=\"person.Language\" multiple=\"true\" name=\"ExampleLanguage\"> <selectpicker-option value=\"English\">English</selectpicker-option> <selectpicker-option value=\"French\">French</selectpicker-option> <selectpicker-option value=\"Spanish\">Spanish</selectpicker-option> </selectpicker> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"ExampleBirthday\">Birthday</label> <div class=\"radio\"> <input type=\"radio\" id=\"radio3\" name=\"radioset3\" value=\"Male\"> <label for=\"radio3\"> Male </label> </div> <div class=\"radio\"> <input type=\"radio\" id=\"radio4\" name=\"radioset3\" value=\"Female\" checked=\"\"> <label for=\"radio4\"> Female </label> </div> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"radio\"> <input type=\"radio\" id=\"radio1\" name=\"radioset\" value=\"option1\"> <label for=\"radio1\"> Option 1 </label> </div> <div class=\"radio\"> <input type=\"radio\" id=\"radio2\" name=\"radioset\" value=\"option2\" checked=\"\"> <label for=\"radio2\"> Option 2 </label> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"ExampleBirthday\">Birthday</label> <datepicker [(ngModel)]=\"person.birthday\" name=\"ExampleBirthday\"></datepicker> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"rangeDatePicker\">Example Datepicker range</label> <datepicker-range [(start)]=\"start1\" [(end)]=\"end1\"></datepicker-range> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"button-succes\">Bouton succes</label> <button type=\"button\" id=\"button-succes\" class=\"btn btn-success\"> Success </button> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"ExampleLanguage2\">Language 2</label> <selectpicker [(ngModel)]=\"Selectpicker2\" name=\"ExampleLanguage2\"> <selectpicker-option value=\"English\">English</selectpicker-option> <selectpicker-option value=\"French\">French</selectpicker-option> <selectpicker-option value=\"Spanish\">Spanish</selectpicker-option> </selectpicker> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"rangeDatePicker\">Example Datepicker range</label> <datepicker-range [(start)]=\"start1\" [(end)]=\"end1\"></datepicker-range> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"basic-inputgroup2\">Example input bouton texte</label> <div class=\"input-group\"> <input type=\"text\" class=\"form-control\" placeholder=\"Recipient's username\" aria-describedby=\"basic-inputgroup2\"> <span class=\"input-group-addon\" id=\"basic-inputgroup2\">@example.com</span> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"radio\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"checkbox\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"inputgroup-radio\">Example input bouton radio</label> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"radio\" id=\"inputgroup-radio\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"radio\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"inputgroup-checkbox\">Example input bouton checkbox</label> <div class=\"input-group\"> <span class=\"input-group-addon\"> <input type=\"checkbox\" id=\"inputgroup-checkbox\" aria-label=\"...\"> </span> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <textarea rows=\"4\" class=\"form-control\" name=\"inputActive\" placeholder=\"active\" [(ngModel)]=\"input2\">\n          </textarea></div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <button type=\"button\" class=\"btn btn-block\">Basic</button> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <datepicker-range [(start)]=\"start1\" [(end)]=\"end1\"></datepicker-range> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"ExamplePassword\">Password</label> <div class=\"input-group\"> <span class=\"input-group-btn\"> <button class=\"btn btn-default\" type=\"button\">Action</button> </span> <input type=\"text\" class=\"form-control\" aria-label=\"Amount (to the nearest dollar)\"> <span class=\"input-group-addon\">.00</span> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"dropdown\">Language 2</label> <dropdown title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <input type=\"password\" class=\"form-control\" id=\"ExamplePassword\" placeholder=\"Password\" [(ngModel)]=\"person.password\" name=\"ExamplePassword\"/> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"ExamplePassword\">Password</label> <input type=\"password\" class=\"form-control\" id=\"ExamplePassword\" placeholder=\"Password\" [(ngModel)]=\"person.password\" name=\"ExamplePassword\"/> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <dropdown title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"input-group\"> <div class=\"input-group-btn\"> <button class=\"btn btn-default\" type=\"button\">Action1</button> <button class=\"btn btn-default\" type=\"button\">Action2</button> </div> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"checkbox\">Checkbox</label> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk1\"> <label for=\"chk1\"> checkbox </label> </div> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk2\" checked=\"\"> <label for=\"chk2\"> checkbox checked </label> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckbox1\" value=\"option1\"> <label for=\"inlineCheckbox1\">1</label> </div> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckbox2\" value=\"option2\"> <label for=\"inlineCheckbox2\">2</label> </div> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckbox3\" value=\"option3\"> <label for=\"inlineCheckbox3\">3</label> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"checkboxInline\">Checkbox inline</label> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckboxText1\" value=\"optionText1\"> <label for=\"inlineCheckboxText1\">1</label> </div> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckboxText2\" value=\"optionText2\"> <label for=\"inlineCheckboxText2\">2</label> </div> <div class=\"checkbox-inline\"> <input type=\"checkbox\" id=\"inlineCheckboxText3\" value=\"optionText3\"> <label for=\"inlineCheckboxText3\">3</label> </div> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"radio-inline\"> <input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio1\" value=\"option1\"> <label for=\"inlineRadio1\">1</label> </div> <div class=\"radio-inline\"> <input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio2\" value=\"option2\" checked=\"\"> <label for=\"inlineRadio2\">2</label> </div> <div class=\"radio-inline\"> <input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio3\" value=\"option3\" disabled=\"\"> <label for=\"inlineRadio3\">3</label> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk1\"> <label for=\"chk1\"> checkbox </label> </div> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk2\" checked=\"\"> <label for=\"chk2\"> checkbox checked </label> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label for=\"inputActive\">Textarea</label> <textarea rows=\"4\" class=\"form-control\" name=\"inputActive\" placeholder=\"active\" [(ngModel)]=\"input2\">\n          </textarea></div> </div> </div> <div class=\"row\"> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"input-group\"> <div class=\"input-group-btn\"> <dropdown orientation=\"up\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk1\"> <label for=\"chk1\"> checkbox </label> </div> <div class=\"checkbox\"> <input type=\"checkbox\" value=\"\" id=\"chk2\" checked=\"\"> <label for=\"chk2\"> checkbox checked </label> </div> </div> </div> <div class=\"col-md-4\"> <div class=\"form-group\"> <label>Dropdown input</label> <div class=\"input-group\"> <div class=\"input-group-btn\"> <dropdown orientation=\"up\" title=\"Menu A\"> <dropdown-option><a>Sub-menu A</a></dropdown-option> <dropdown-option><a>Sub-menu B</a></dropdown-option> <dropdown-divider></dropdown-divider> <dropdown-option><a>Sub-menu separated A</a></dropdown-option> <dropdown-header>Menu</dropdown-header> <dropdown-option><a>Sub-menu separated B</a></dropdown-option> </dropdown> </div> <input type=\"text\" class=\"form-control\" aria-label=\"...\"> </div> </div> </div> </div> <div class=\"row\"> <div class=\"col-md-12\"> <div class=\"btn-group\"> <button type=\"submit\" class=\"btn btn-default\">Submit</button> <button type=\"reset\" class=\"btn btn-default\">Reset</button> </div> </div> </div> </form> </div> </div> ";
 
 /***/ }),
 /* 135 */
@@ -89680,7 +89637,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _createClass(selectpickeroptionComponent, [{
           key: 'ngAfterViewInit',
 
-          // for the bind value work we must do it in the ngAfterViewInit function 
+          // for the bind value work we must do it in the ngAfterViewInit function
           // baecause wa can't not acces to bind value before in the Lifecycle Hooks
           value: function ngAfterViewInit() {
             this.text = this.elementRef.nativeElement.innerHTML.trim();
@@ -89751,7 +89708,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             return [new _core.Component({
               selector: 'modal',
               template: '\n\t\t\t\t\t<div (click)="close($event)" class="modal" [ngStyle]="{\'display\': visible ? \'block\' : \'none\', \'opacity\': visibleAnimate ? 1 : 0}" [ngClass]="{\'in\': visibleAnimate}">\n            <div class="modal-dialog" role="document" *ngIf="visible">\n              <div class="modal-content">\n                <ng-content></ng-content>\n              </div>\n\t\t\t\t\t\t</div>\n\t\t\t\t  </div>\n          ',
-              inputs: ['options', "show"],
+              inputs: ['backdrop', "show", "fade", "orientation"],
               outputs: ['showChange']
             })];
           }
@@ -89766,12 +89723,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           this.injector = Injector;
           this.applicationRef = ApplicationRef;
           this.backdropFactory = ComponentFactoryResolver.resolveComponentFactory(_backdropComponent2.default);
+          this.backdrop = true;
+          this.fade = true;
         }
 
         _createClass(modalComponent, [{
           key: 'open',
           value: function open() {
-            if (this.options && this.options.backdrop) {
+            if (this.backdrop) {
               // create backdrop dynamically
               this.backdropRef = this.backdropFactory.create(this.injector);
               this.applicationRef.attachView(this.backdropRef.hostView);
@@ -89797,7 +89756,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             this.showChange.emit(this.model);
 
             this.visibleAnimate = false;
-            if (this.options && this.options.backdrop && this.backdropRef) {
+            if (this.backdrop && this.backdropRef) {
               // delete the backdrop
               this.backdropRef.destroy();
             }
@@ -89807,29 +89766,15 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
           key: 'ngOnInit',
           value: function ngOnInit() {
-            ;
 
             this.modal = this.elementRef.nativeElement.getElementsByClassName("modal")[0];
 
-            // options by default
-            if (typeof this.options === "undefined" || this.options === "") {
-              this.options = {};
-            }
-
-            if (typeof this.options.backdrop === "undefined" || this.options.backdrop === "") {
-              this.options.backdrop = true;
-            }
-
-            if (typeof this.options.fade === "undefined" || this.options.fade === "") {
-              this.options.fade = true;
-            }
-
-            if (this.options.fade === true) {
+            if (this.fade === true) {
               this.modal.classList.add("fade");
             }
 
-            if (this.options.orientation) {
-              this.modal.classList.add("modal-" + this.options.orientation);
+            if (this.orientation) {
+              this.modal.classList.add("modal-" + this.orientation);
             }
           }
         }, {
@@ -89969,7 +89914,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             return [new _core.Component({
               selector: 'dropdown',
               template: '\n          <button *ngIf="!parentIsLi" class="btn btn-default" type="button" (click)="openDropdown()">\n            {{title}}\n            <span class="caret"></span>\n          </button>\n          <a *ngIf="parentIsLi" href="#" (click)="toggle($event)">\n            {{title}}\n            <span class="caret"></span>\n          </a>\n          <div class="dropdown-menu">\n            <ng-content>\n            </ng-content>\n          </div>',
-              inputs: ["title", "options"],
+              inputs: ["title", "orientation", "alignement"],
               host: {
                 "(focusout)": "closeDropdown()"
               }
@@ -89985,6 +89930,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           this.parentIsLi = false;
           this.disabled = false;
           this.cdr = ChangeDetectorRef;
+          this.title = "Dropdown button";
         }
 
         _createClass(dropdownComponent, [{
@@ -90001,13 +89947,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               this.disabled = true;
             }
 
-            if (this.options && this.options.orientation === "up") {
+            if (this.orientation === "up") {
               this.dropdown.classList.add("dropup");
             } else {
               this.dropdown.classList.add("dropdown");
             }
 
-            if (this.options && this.options.alignement === "right") {
+            if (this.alignement === "right") {
               dropdownMenu.classList.add("dropdown-menu-right");
             }
             this.cdr.detectChanges();
@@ -90475,7 +90421,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           this.i18n = _i18n.i18n;
           this.visible = false;
           this.modalOptions = {
-            size: "small",
             fade: true,
             orientation: "right"
           };
@@ -90502,7 +90447,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             var dayOfWeek = firstDay.day();
 
             //initialize a 6 rows x 7 columns array for the calendar
-            var calendar = [];
+            calendar = [];
             calendar.firstDay = firstDay;
             calendar.lastDay = lastDay;
 
@@ -90531,9 +90476,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             //make the calendar object available to hoverDate/clickDate
             this.classes[calendarNumber] = [];
-            for (var row = 0; row < 6; row++) {
+            for (row = 0; row < 6; row++) {
               this.classes[calendarNumber][row] = [];
-              for (var col = 0; col < 7; col++) {
+              for (col = 0; col < 7; col++) {
                 calendar[row][col] = curDate.clone();
                 this.calendar[calendarNumber].calendar = calendar;
                 // class for each date
@@ -90569,7 +90514,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
           // on load page
           value: function writeValue(val) {
-            var self = this;
             if (val !== this.val) {
               if (!this.numberOfMonths) {
                 this.numberOfMonths = 3;
@@ -90728,7 +90672,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           }
         }, {
           key: 'clickPrev',
-          value: function clickPrev(event) {
+          value: function clickPrev() {
             // subtract one month to all calendars
             for (var i = 0; i < this.numberOfMonths; i++) {
               this.calendar[i].subtract(1, 'month');
@@ -90748,7 +90692,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
         }, {
           key: 'clickNext',
-          value: function clickNext(event) {
+          value: function clickNext() {
             // add one month to all calendars
             for (var i = 0; i < this.numberOfMonths; i++) {
               this.calendar[i].add(1, 'month');
@@ -90783,7 +90727,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
           key: 'selectDate',
           value: function selectDate(date, style) {
-            var self = this;
             this.predefinedDate = null;
             // if a date disabled return
             var index = style.indexOf("off");
@@ -90845,7 +90788,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     /* 16 */
     /***/function (module, exports) {
 
-      module.exports = "<input type=\"date\" class=\"form-control\" [ngModel]=\"val\" (click)=\"open()\" (change)=\"valueChange($event)\"/> <modal idModal=\"test\" [options]=\"modalOptions\" [(show)]=\"visible\"> <modal-header [options]=\"modalHeaderOptions\"> <div class=\"row\"> <div class=\"col-md-12 text-center date-letter\"> <span>{{ before }}</span> <span>{{ day }}</span> <span>{{ after }}</span> </div> </div> <div class=\"calendar-bg row\" data-date-type=\"single\"> <div class=\"col-md-12 text-center\"> <div class=\"col-md-1 text-center\"> <div class=\"prev arrow\" (click)=\"clickPrev($event)\"> <i class=\"icon icon-previous icon-2x\"></i> </div> </div> <div class=\"col-md-5\"> <input type=\"date\" class=\"form-control\" [ngModel]=\"val\" (ngModelChange)=\"valueChange($event)\" [ngClass]=\"{'active': true}\" (keyup.enter)=\"close()\"> </div> <div class=\"col-md-5\"> <selectpicker name=\"selectPredefinedDate\" [ngModel]=\"predefinedDate\" (ngModelChange)=\"onChange($event)\"> <selectpicker-option value=\"toDay\">{{ i18n[language][\"today\"] }}</selectpicker-option> <selectpicker-option value=\"lastWeek\">{{ i18n[language][\"lastWeek\"] }}</selectpicker-option> <selectpicker-option value=\"lastMonth\">{{ i18n[language][\"lastMonth\"] }}</selectpicker-option> <selectpicker-option value=\"last7day\">{{ i18n[language][\"last7day\"] }}</selectpicker-option> <selectpicker-option value=\"last30day\">{{ i18n[language][\"last30day\"] }}</selectpicker-option> <selectpicker-option value=\"lastYear\">{{ i18n[language][\"lastYear\"] }}</selectpicker-option> </selectpicker> </div> <div class=\"col-md-1 text-center\"> <div class=\"next arrow\" (click)=\"clickNext($event)\"> <i class=\"icon icon-next icon-2x\"></i> </div> </div> </div> </div> </modal-header> <modal-body> <div class=\"datepicker show-calendar\"> <div *ngFor=\"let item of createRange(numberOfMonths);let i=index\" class=\"calendar calendar {{ i }}\"> <div class=\"calendar-table\"> <table class=\"table-condensed\"> <thead *ngIf=\"i === 0\" class=\"arrows\"> <tr> <th> </th> <th colspan=\"5\" class=\"month\">{{ locale.monthNames[calendar[i].month()] + calendar[i].format(\" YYYY\") }}</th> <th> </th> </tr> </thead> <thead *ngIf=\"i != 0\"> <tr> <th></th> <th colspan=\"5\" class=\"month\">{{ locale.monthNames[calendar[i].month()] + calendar[i].format(\" YYYY\") }}</th> <th></th> </tr> </thead> <tbody> <tr> <td class=\"dayweek\" *ngFor=\"let item of createRange(7);let col=index\">{{ locale.weekdayNames[calendar[i].calendar[0][col].day()] }}</td> </tr> <tr *ngFor=\"let item of createRange(6);let row=index\"> <td *ngFor=\"let item of createRange(7);let col=index\" [ngClass]=\"classes[i][row][col]\" (click)=\"selectDate(calendar[i].calendar[row][col], classes[i][row][col])\"> {{ calendar[i].calendar[row][col].date() }} </td> </tr> </tbody> </table> </div> </div> </div> </modal-body> <modal-footer> </modal-footer> </modal> ";
+      module.exports = "<input type=\"date\" class=\"form-control\" [ngModel]=\"val\" (click)=\"open()\" (change)=\"valueChange($event)\"/> <modal fade=\"true\" orientation=\"right\" [(show)]=\"visible\"> <modal-header> <div class=\"row\"> <div class=\"col-md-12 text-center date-letter\"> <span>{{ before }}</span> <span>{{ day }}</span> <span>{{ after }}</span> </div> </div> <div class=\"calendar-bg row\" data-date-type=\"single\"> <div class=\"col-md-12 text-center\"> <div class=\"col-md-1 text-center\"> <div class=\"prev arrow\" (click)=\"clickPrev($event)\"> <i class=\"icon icon-previous icon-2x\"></i> </div> </div> <div class=\"col-md-5\"> <input type=\"date\" class=\"form-control\" [ngModel]=\"val\" (ngModelChange)=\"valueChange($event)\" [ngClass]=\"{'active': true}\" (keyup.enter)=\"close()\"> </div> <div class=\"col-md-5\"> <selectpicker name=\"selectPredefinedDate\" [ngModel]=\"predefinedDate\" (ngModelChange)=\"onChange($event)\"> <selectpicker-option value=\"toDay\">{{ i18n[language][\"today\"] }}</selectpicker-option> <selectpicker-option value=\"lastWeek\">{{ i18n[language][\"lastWeek\"] }}</selectpicker-option> <selectpicker-option value=\"lastMonth\">{{ i18n[language][\"lastMonth\"] }}</selectpicker-option> <selectpicker-option value=\"last7day\">{{ i18n[language][\"last7day\"] }}</selectpicker-option> <selectpicker-option value=\"last30day\">{{ i18n[language][\"last30day\"] }}</selectpicker-option> <selectpicker-option value=\"lastYear\">{{ i18n[language][\"lastYear\"] }}</selectpicker-option> </selectpicker> </div> <div class=\"col-md-1 text-center\"> <div class=\"next arrow\" (click)=\"clickNext($event)\"> <i class=\"icon icon-next icon-2x\"></i> </div> </div> </div> </div> </modal-header> <modal-body> <div class=\"datepicker show-calendar\"> <div *ngFor=\"let item of createRange(numberOfMonths);let i=index\" class=\"calendar calendar {{ i }}\"> <div class=\"calendar-table\"> <table class=\"table-condensed\"> <thead *ngIf=\"i === 0\" class=\"arrows\"> <tr> <th> </th> <th colspan=\"5\" class=\"month\">{{ locale.monthNames[calendar[i].month()] + calendar[i].format(\" YYYY\") }}</th> <th> </th> </tr> </thead> <thead *ngIf=\"i != 0\"> <tr> <th></th> <th colspan=\"5\" class=\"month\">{{ locale.monthNames[calendar[i].month()] + calendar[i].format(\" YYYY\") }}</th> <th></th> </tr> </thead> <tbody> <tr> <td class=\"dayweek\" *ngFor=\"let item of createRange(7);let col=index\">{{ locale.weekdayNames[calendar[i].calendar[0][col].day()] }}</td> </tr> <tr *ngFor=\"let item of createRange(6);let row=index\"> <td *ngFor=\"let item of createRange(7);let col=index\" [ngClass]=\"classes[i][row][col]\" (click)=\"selectDate(calendar[i].calendar[row][col], classes[i][row][col])\"> {{ calendar[i].calendar[row][col].date() }} </td> </tr> </tbody> </table> </div> </div> </div> </modal-body> <modal-footer> </modal-footer> </modal> ";
 
       /***/
     },
@@ -90869,8 +90812,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       }();
 
       var _core = __webpack_require__(0);
-
-      var _forms = __webpack_require__(1);
 
       var _locale = __webpack_require__(2);
 
@@ -90897,7 +90838,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           this.i18n = _i18n.i18n;
           this.visible = false;
           this.modalOptions = {
-            size: "small",
             fade: true,
             orientation: "right"
           };
@@ -90927,7 +90867,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             var dayOfWeek = firstDay.day();
 
             //initialize a 6 rows x 7 columns array for the calendar
-            var calendar = [];
+            calendar = [];
             calendar.firstDay = firstDay;
             calendar.lastDay = lastDay;
 
@@ -90956,9 +90896,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             //make the calendar object available to hoverDate/clickDate
             this.classes[calendarNumber] = [];
-            for (var row = 0; row < 6; row++) {
+            for (row = 0; row < 6; row++) {
               this.classes[calendarNumber][row] = [];
-              for (var col = 0; col < 7; col++) {
+              for (col = 0; col < 7; col++) {
                 calendar[row][col] = curDate.clone();
                 this.calendar[calendarNumber].calendar = calendar;
                 // class for each date
@@ -91015,7 +90955,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           value: function ngOnInit() {
             var _this = this;
 
-            var self = this;
             if (!this.numberOfMonths) {
               this.numberOfMonths = 3;
             }
@@ -91218,7 +91157,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           }
         }, {
           key: 'clickPrev',
-          value: function clickPrev(event) {
+          value: function clickPrev() {
             // subtract one month to all calendars
             for (var i = 0; i < this.numberOfMonths; i++) {
               this.calendar[i].subtract(1, 'month');
@@ -91238,7 +91177,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
         }, {
           key: 'clickNext',
-          value: function clickNext(event) {
+          value: function clickNext() {
             // add one month to all calendars
             for (var i = 0; i < this.numberOfMonths; i++) {
               this.calendar[i].add(1, 'month');
@@ -91314,7 +91253,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
           key: 'selectDate',
           value: function selectDate(date, style) {
-            var self = this;
             this.predefinedDate = null;
             // if a date disabled return
             var index = style.indexOf("off");
@@ -91387,7 +91325,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     /* 18 */
     /***/function (module, exports) {
 
-      module.exports = "<div class=\"input-group\" id=\"rangeDatePicker\" class=\"input-group\"> <input class=\"form-control start\" [ngModel]=\"start\" (change)=\"setStart($event)\" type=\"date\" (click)=\"open('start')\"/> <span class=\"input-group-addon\"></span> <input class=\"form-control end\" [ngModel]=\"end\" (change)=\"setEnd($event)\" type=\"date\" (click)=\"open('end')\"/> </div> <modal idModal=\"test\" [options]=\"modalOptions\" [(show)]=\"visible\"> <modal-header [options]=\"modalHeaderOptions\"> <div *ngIf=\"!modalHeaderOptions.close\" class=\"row withoutClose\"> </div> <div class=\"row\"> <div class=\"col-md-5 text-center date-letter\"> <span>{{ beforeDayDateStart }}</span> <span>{{ dayDateStart }}</span> <span>{{ afterDayDateStart }}</span> </div> <div class=\"col-md-2 text-center\"> <i class=\"icon icon-next icon-4x icon-disabled\"></i> </div> <div class=\"col-md-5 text-center date-letter\"> <span>{{ beforeDayDateEnd }}</span> <span>{{ dayDateEnd }}</span> <span>{{ afterDayDateEnd }}</span> </div> </div> <div class=\"calendar-bg row\" data-date-type=\"single\"> <div class=\"col-md-1 text-center\"> <div class=\"prev arrow\" (click)=\"clickPrev($event)\"> <i class=\"icon icon-previous icon-2x\"></i> </div> </div> <div class=\"col-md-3\"> <div class=\"form-group\" [ngClass]=\"{'has-error': hasErrorStart }\"> <input type=\"date\" class=\"form-control input-md\" [ngModel]=\"start\" (ngModelChange)=\"setStart($event)\" (focus)=\"selectInputDateStart()\" [ngClass]=\"{'active': (focus === 'start') }\" (keyup.tab)=\"focusEnd($event, inputend)\" (keyup.enter)=\"closeAfterCheck()\"> </div> </div> <div class=\"col-md-3\"> <div class=\"form-group\" [ngClass]=\"{'has-error': hasErrorEnd }\"> <input #inputend type=\"date\" class=\"form-control input-md\" [ngModel]=\"end\" (ngModelChange)=\"setEnd($event)\" (keyup.enter)=\"closeAfterCheck()\" (focus)=\"selectInputDateEnd()\" [ngClass]=\"{'active': (focus === 'end')}\"> </div> </div> <div class=\"col-md-4\"> <selectpicker name=\"selectPredefinedDate\" [ngModel]=\"predefinedDate\" (ngModelChange)=\"onChange($event)\"> <selectpicker-option value=\"toDay\">{{ i18n[language][\"today\"] }}</selectpicker-option> <selectpicker-option value=\"lastWeek\">{{ i18n[language][\"lastWeek\"] }}</selectpicker-option> <selectpicker-option value=\"lastMonth\">{{ i18n[language][\"lastMonth\"] }}</selectpicker-option> <selectpicker-option value=\"last7day\">{{ i18n[language][\"last7day\"] }}</selectpicker-option> <selectpicker-option value=\"last30day\">{{ i18n[language][\"last30day\"] }}</selectpicker-option> <selectpicker-option value=\"lastYear\">{{ i18n[language][\"lastYear\"] }}</selectpicker-option> </selectpicker> </div> <div class=\"col-md-1 text-center\"> <div class=\"next arrow\" (click)=\"clickNext($event)\"> <i class=\"icon icon-next icon-2x\"></i> </div> </div> </div> </modal-header> <modal-body> <div class=\"datepicker show-calendar\"> <div *ngFor=\"let item of arrayMonths;let i = index;\" class=\"calendar calendar {{ i }}\"> <div class=\"calendar-table\"> <table class=\"table-condensed\"> <thead> <tr> <th></th> <th colspan=\"5\" class=\"month\">{{ locale.monthNames[calendar[i].month()] + calendar[i].format(\" YYYY\") }}</th> <th></th> </tr> </thead> <tbody> <tr> <td class=\"dayweek\" *ngFor=\"let item of createRange(7);let col=index\">{{ locale.weekdayNames[calendar[i].calendar[0][col].day()] }}</td> </tr> <tr *ngFor=\"let itemRow of arrayRows;let row = index;\"> <td *ngFor=\"let itemCol of arrayCols;let col = index;\" (click)=\"selectDate(calendar[i].calendar[row][col], classes[i][row][col])\" [ngClass]=\"classes[i][row][col]\"> {{ calendar[i].calendar[row][col].date() }} </td> </tr> </tbody> </table> </div> </div> </div> </modal-body> <modal-footer> </modal-footer> </modal> ";
+      module.exports = "<div class=\"input-group\" id=\"rangeDatePicker\" class=\"input-group\"> <input class=\"form-control start\" [ngModel]=\"start\" (change)=\"setStart($event)\" type=\"date\" (click)=\"open('start')\"/> <span class=\"input-group-addon\"></span> <input class=\"form-control end\" [ngModel]=\"end\" (change)=\"setEnd($event)\" type=\"date\" (click)=\"open('end')\"/> </div> <modal fade=\"true\" orientation=\"right\" [(show)]=\"visible\"> <modal-header> <div *ngIf=\"!modalHeaderOptions.close\" class=\"row withoutClose\"> </div> <div class=\"row\"> <div class=\"col-md-5 text-center date-letter\"> <span>{{ beforeDayDateStart }}</span> <span>{{ dayDateStart }}</span> <span>{{ afterDayDateStart }}</span> </div> <div class=\"col-md-2 text-center\"> <i class=\"icon icon-next icon-4x icon-disabled\"></i> </div> <div class=\"col-md-5 text-center date-letter\"> <span>{{ beforeDayDateEnd }}</span> <span>{{ dayDateEnd }}</span> <span>{{ afterDayDateEnd }}</span> </div> </div> <div class=\"calendar-bg row\" data-date-type=\"single\"> <div class=\"col-md-1 text-center\"> <div class=\"prev arrow\" (click)=\"clickPrev($event)\"> <i class=\"icon icon-previous icon-2x\"></i> </div> </div> <div class=\"col-md-3\"> <div class=\"form-group\" [ngClass]=\"{'has-error': hasErrorStart }\"> <input type=\"date\" class=\"form-control input-md\" [ngModel]=\"start\" (ngModelChange)=\"setStart($event)\" (focus)=\"selectInputDateStart()\" [ngClass]=\"{'active': (focus === 'start') }\" (keyup.tab)=\"focusEnd($event, inputend)\" (keyup.enter)=\"closeAfterCheck()\"> </div> </div> <div class=\"col-md-3\"> <div class=\"form-group\" [ngClass]=\"{'has-error': hasErrorEnd }\"> <input #inputend type=\"date\" class=\"form-control input-md\" [ngModel]=\"end\" (ngModelChange)=\"setEnd($event)\" (keyup.enter)=\"closeAfterCheck()\" (focus)=\"selectInputDateEnd()\" [ngClass]=\"{'active': (focus === 'end')}\"> </div> </div> <div class=\"col-md-4\"> <selectpicker name=\"selectPredefinedDate\" [ngModel]=\"predefinedDate\" (ngModelChange)=\"onChange($event)\"> <selectpicker-option value=\"toDay\">{{ i18n[language][\"today\"] }}</selectpicker-option> <selectpicker-option value=\"lastWeek\">{{ i18n[language][\"lastWeek\"] }}</selectpicker-option> <selectpicker-option value=\"lastMonth\">{{ i18n[language][\"lastMonth\"] }}</selectpicker-option> <selectpicker-option value=\"last7day\">{{ i18n[language][\"last7day\"] }}</selectpicker-option> <selectpicker-option value=\"last30day\">{{ i18n[language][\"last30day\"] }}</selectpicker-option> <selectpicker-option value=\"lastYear\">{{ i18n[language][\"lastYear\"] }}</selectpicker-option> </selectpicker> </div> <div class=\"col-md-1 text-center\"> <div class=\"next arrow\" (click)=\"clickNext($event)\"> <i class=\"icon icon-next icon-2x\"></i> </div> </div> </div> </modal-header> <modal-body> <div class=\"datepicker show-calendar\"> <div *ngFor=\"let item of arrayMonths;let i = index;\" class=\"calendar calendar {{ i }}\"> <div class=\"calendar-table\"> <table class=\"table-condensed\"> <thead> <tr> <th></th> <th colspan=\"5\" class=\"month\">{{ locale.monthNames[calendar[i].month()] + calendar[i].format(\" YYYY\") }}</th> <th></th> </tr> </thead> <tbody> <tr> <td class=\"dayweek\" *ngFor=\"let item of createRange(7);let col=index\">{{ locale.weekdayNames[calendar[i].calendar[0][col].day()] }}</td> </tr> <tr *ngFor=\"let itemRow of arrayRows;let row = index;\"> <td *ngFor=\"let itemCol of arrayCols;let col = index;\" (click)=\"selectDate(calendar[i].calendar[row][col], classes[i][row][col])\" [ngClass]=\"classes[i][row][col]\"> {{ calendar[i].calendar[row][col].date() }} </td> </tr> </tbody> </table> </div> </div> </div> </modal-body> <modal-footer> </modal-footer> </modal> ";
 
       /***/
     },
@@ -91446,7 +91384,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             if (val !== this.val) {
               this.val = val;
               this.onModelChange(val);
-              var self = this;
               // iniliaze list with selected values
               this.updateOptions();
             }
@@ -91532,7 +91469,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
           key: 'ngDoCheck',
           value: function ngDoCheck() {
-            var self = this;
             // if this.val change we must update options
             // only for the select multiple because detect change is not fired
             // we must create a new instance to have a detect change
@@ -91570,7 +91506,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               this.val.forEach(function (value) {
                 var index = options.indexOf(value);
                 if (index <= -1) {
-                  var index = self.val.indexOf(value);
+                  index = self.val.indexOf(value);
                   self.val.splice(index, 1);
                 }
               });
@@ -91596,7 +91532,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 } else {
                   // option not selected , select value
                   // add value
-                  var index = options.indexOf(option.value);
+                  index = options.indexOf(option.value);
                   this.previousSelectedIndex = index;
                   this.previousSelectedValue = option.value;
                   option.selected = true;
@@ -91635,7 +91571,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                           self.val.push(option4.value);
                         }
                       } else if (indexOption > currentIndexOption && indexOption < self.previousSelectedIndex) {
-                        var index = self.val.indexOf(option4.value);
+                        index = self.val.indexOf(option4.value);
                         if (index <= -1) {
                           self.val.push(option4.value);
                         }
@@ -91649,7 +91585,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     // if not key press ctrl delete all item below value selected
                     // if key press ctrl before delete all item above value selected
                     if (!self.ctrlKey && index > currentIndex || self.ctrlKey && index < currentIndex) {
-                      var index = self.val.indexOf(option4.value);
+                      index = self.val.indexOf(option4.value);
                       if (index > -1) {
                         self.val.splice(index, 1);
                       }
@@ -91658,7 +91594,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 }
               } else {
                 // click on value
-                var index = options.indexOf(option.value);
+                index = options.indexOf(option.value);
                 this.previousSelectedIndex = index;
                 this.previousSelectedValue = option.value;
                 option.selected = true;
@@ -91846,7 +91782,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           value: function ngAfterViewInit() {
             var _this = this;
 
-            var labelsChanges = this.labels.changes.subscribe(function (labels) {
+            this.labels.changes.subscribe(function (labels) {
               if (labels.length > 0) {
                 var oneActive = false;
                 labels.forEach(function (label) {
@@ -91904,13 +91840,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
                 if (label.isActive) {
                   var labelDom = label.elementRef.nativeElement.getElementsByTagName("a")[0];
-                  var posLabel;
+                  var posLabel, handleAdjustment;
                   if (self.vertical) {
                     posLabel = labelDom.offsetTop;
-                    var handleAdjustment = labelDom.clientHeight / 2;
+                    handleAdjustment = labelDom.clientHeight / 2;
                   } else {
                     posLabel = labelDom.offsetLeft;
-                    var handleAdjustment = labelDom.clientWidht / 2;
+                    handleAdjustment = labelDom.clientWidht / 2;
                   }
                   var posReal = posLabel + handleAdjustment;
                   self.positionReal(posReal);
@@ -91947,8 +91883,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               var trackHeight = track.offsetHeight;
               var trackWidth = track.offsetWidth;
               var offset = this.getPosition(track);
+              var pageY, pageX;
               if (this.vertical) {
-                var pageY;
                 if (originalE && typeof originalE.targetTouches !== "undefined") {
                   pageY = originalE.targetTouches[0].pageY;
                 } else {
@@ -91956,11 +91892,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 }
                 this.perc = (pageY - offset.top) / trackHeight;
               } else {
-                var pageY;
-                if (originelE && typeof originalE.targetTouches !== "undefined") {
-                  pageY = originalE.targetTouches[0].pageX;
+                if (originalE && typeof originalE.targetTouches !== "undefined") {
+                  pageX = originalE.targetTouches[0].pageX;
                 } else {
-                  pageY = e.pageX;
+                  pageX = e.pageX;
                 }
                 this.perc = (pageX - offset.left) / trackWidth;
               }
@@ -91973,13 +91908,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             e.preventDefault();
             e.stopPropagation();
 
-            var track = this.slidepicker.getElementsByClassName("slidepicker-track")[0];
-
-            var originalE = e.originalEvent;
             var countlabel = this.labels.length;
-            var trackHeight = track.offsetHeight;
-            var trackWidth = track.offsetWidth;
-
             var numberLabel = Math.floor(this.perc * countlabel);
 
             if (numberLabel >= countlabel) {
@@ -92083,7 +92012,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
           key: 'toggleActive',
           value: function toggleActive(e) {
-            if (typeof e === "event") {
+            if (e.preventDefault) {
               e.preventDefault();
             }
             this.isActive = !this.isActive;
@@ -92101,13 +92030,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               this.toggleActive(e);
 
               var label = e.target;
-              var posLabel;
+              var posLabel, handleAdjustment;
               if (this.slidepicker.vertical) {
                 posLabel = label.offsetTop;
-                var handleAdjustment = label.clientHeight / 2;
+                handleAdjustment = label.clientHeight / 2;
               } else {
                 posLabel = label.offsetLeft;
-                var handleAdjustment = label.clientWidht / 2;
+                handleAdjustment = label.clientWidht / 2;
               }
               var posReal = posLabel + handleAdjustment;
               this.slidepicker.positionReal(posReal);
@@ -92178,30 +92107,20 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           get: function get() {
             return [new _core.Component({
               selector: 'modal-header',
-              template: '\n\t\t\t\t<div class="modal-header">\n          <div class="row"> \n          <div class="col-md-12">\n\t          <button *ngIf="options.close" type="button" class="close" (click)="close()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\n          </div>\n          </div>\n\t        <ng-content></ng-content>\n\t\t\t\t</div>',
-              inputs: ['options']
+              template: '\n\t\t\t\t<div class="modal-header">\n          <div class="row">\n          <div class="col-md-12">\n\t          <button *ngIf="close" type="button" class="close" (click)="close()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\n          </div>\n          </div>\n\t        <ng-content></ng-content>\n\t\t\t\t</div>',
+              inputs: ['close']
             })];
           }
         }]);
 
-        function modalHeaderComponent(elementRef, modal) {
+        function modalHeaderComponent(modal) {
           _classCallCheck(this, modalHeaderComponent);
 
           this.modal = modal;
+          this.close = true;
         }
 
         _createClass(modalHeaderComponent, [{
-          key: 'ngOnInit',
-          value: function ngOnInit() {
-            if (typeof this.options === "undefined" || this.options === "") {
-              this.options = {};
-            }
-
-            if (typeof this.options.close === "undefined" || this.options.close === "") {
-              this.options.close = true;
-            }
-          }
-        }, {
           key: 'close',
           value: function close() {
             this.modal.show = false;
@@ -92213,7 +92132,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       exports.default = modalHeaderComponent;
 
-      modalHeaderComponent.parameters = [_core.ElementRef, _modal2.default];
+      modalHeaderComponent.parameters = [_modal2.default];
 
       /***/
     },
@@ -92255,7 +92174,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           }
         }]);
 
-        function modalBodyComponent(elementRef) {
+        function modalBodyComponent() {
           _classCallCheck(this, modalBodyComponent);
         }
 
@@ -92264,7 +92183,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       exports.default = modalBodyComponent;
 
-      modalBodyComponent.parameters = [_core.ElementRef];
+      modalBodyComponent.parameters = [];
 
       /***/
     },
@@ -92306,7 +92225,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           }
         }]);
 
-        function modalFooterComponent(elementRef) {
+        function modalFooterComponent() {
           _classCallCheck(this, modalFooterComponent);
         }
 
@@ -92315,7 +92234,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       exports.default = modalFooterComponent;
 
-      modalFooterComponent.parameters = [_core.ElementRef];
+      modalFooterComponent.parameters = [];
 
       /***/
     },
@@ -92848,11 +92767,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           get: function get() {
             return [new _core.Component({
               selector: 'carousel',
-              template: '\n        <ol [hidden]="items.length <= 0 || !options.indicator" class="carousel-indicators">\n          <li *ngFor="let item of items;" (click)="changeItem(item)" [class.active]="item.isActive"></li>\n        </ol>\n\n        <div class="carousel-inner">\n          <ng-content></ng-content>\n        </div>\n\n        <a [hidden]="items.length <= 1" class="left carousel-control" role="button" (click)="previousItem()">\n          <i class="icon icon-previous" aria-hidden="true"></i>\n          <span class="sr-only">Previous</span>\n        </a>\n        <a [hidden]="items.length <= 1" class="right carousel-control" role="button" (click)="nextItem()">\n          <i class="icon icon-next" aria-hidden="true"></i>\n          <span class="sr-only">Next</span>\n        </a>',
+              template: '\n        <ol [hidden]="items.length <= 0 || !indicator" class="carousel-indicators">\n          <li *ngFor="let item of items;" (click)="changeItem(item)" [class.active]="item.isActive"></li>\n        </ol>\n\n        <div class="carousel-inner">\n          <ng-content></ng-content>\n        </div>\n\n        <a [hidden]="items.length <= 1" class="left carousel-control" role="button" (click)="previousItem()">\n          <i class="icon icon-previous" aria-hidden="true"></i>\n          <span class="sr-only">Previous</span>\n        </a>\n        <a [hidden]="items.length <= 1" class="right carousel-control" role="button" (click)="nextItem()">\n          <i class="icon icon-next" aria-hidden="true"></i>\n          <span class="sr-only">Next</span>\n        </a>',
               queries: {
                 items: new _core.ContentChildren(carouselItemComponent)
               },
-              inputs: ["options"],
+              inputs: ["indicator", "activeDefault", "interval", "pause"],
               host: {
                 "class": "carousel",
                 "[hidden]": "items.length === 0",
@@ -92878,9 +92797,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           value: function ngAfterViewInit() {
             var _this = this;
 
-            var self = this;
             var items = this.items.toArray();
-            var itemsChanges = this.items.changes.subscribe(function (items) {
+            this.items.changes.subscribe(function (items) {
               if (items.length > 0) {
                 var oneActive = false;
                 items.forEach(function (item) {
@@ -92896,12 +92814,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               }
             });
 
-            if (this.options && this.options.activeDefault > 0) {
-              if (this.options.activeDefault > this.items.length - 1) {
-                this.options.activeDefault = 0;
+            if (this.activeDefault > 0) {
+              if (this.activeDefault > this.items.length - 1) {
+                this.activeDefault = 0;
               }
               setTimeout(function () {
-                _this.changeItem(items[_this.options.activeDefault], "none");
+                _this.changeItem(items[_this.activeDefault], "none");
               }, 0);
             } else {
               setTimeout(function () {
@@ -92909,19 +92827,19 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               }, 0);
             }
 
-            if (this.options && this.options.interval) {
-              if (this.options.interval < 0) {
-                this.options.interval = 2000;
+            if (this.interval) {
+              if (this.interval < 0) {
+                this.interval = 2000;
               }
               this.slide = setInterval(function () {
-                if (_this.items.length > 1 && !_this.hover || _this.options.pause === "none") {
+                if (_this.items.length > 1 && (!_this.hover || _this.pause === "none")) {
                   var nextActive = _this.activeItem + 1;
                   if (nextActive >= _this.items.length) {
                     nextActive = 0;
                   }
                   _this.nextItem();
                 }
-              }, this.options.interval);
+              }, this.interval);
             }
             this.click = false;
           }
@@ -92941,9 +92859,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           }
         }, {
           key: 'changeItem',
-          value: function changeItem(itemActive, direction, type) {
-            var _this2 = this;
-
+          value: function changeItem(itemActive, direction) {
             if (!this.items.length > 0) {
               return;
             }
@@ -92957,12 +92873,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             }
             var items = this.items.toArray();
             var indexNewActive = items.indexOf(itemActive);
-            var direction = direction || this.getDirection(indexNewActive, this.activeItem);
-            if (direction === "left") {
-              type = type || "next";
-            } else if (direction === "right") {
-              type = type || "prev";
-            }
+            direction = direction || this.getDirection(indexNewActive, this.activeItem);
             if (itemActive.delete) {
               this.items.forEach(function (item) {
                 if (!item.delete) {
@@ -92970,26 +92881,18 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 }
               });
             }
-            if (this.options && this.options.slide && this.activeItem !== undefined) {
-              // itemActive[type] = true;
-              // itemActive[direction] = true;
-              // items[this.activeItem][direction] = true;
-              //
+            if (this.slide && this.activeItem !== undefined) {
               itemActive.state = direction;
               items[this.activeItem].state = direction;
-              setTimeout(function () {
-                itemActive.isActive = true;
-                _this2.items.forEach(function (item) {
-                  if (item !== itemActive) {
-                    item.isActive = false;
-                  }
-                });
-                itemActive.state = "active";
-                items[_this2.activeItem].state = "";
-                // items[this.activeItem].left = false;
-                // items[this.activeItem].right = false;
-                _this2.activeItem = indexNewActive;
-              }, 600);
+              itemActive.isActive = true;
+              this.items.forEach(function (item) {
+                if (item !== itemActive) {
+                  item.isActive = false;
+                }
+              });
+              itemActive.state = "active";
+              items[this.activeItem].state = "";
+              this.activeItem = indexNewActive;
             } else {
               this.activeItem = indexNewActive;
               itemActive.isActive = true;
@@ -93004,14 +92907,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
           key: 'nextItem',
           value: function nextItem() {
-            var _this3 = this;
+            var _this2 = this;
 
             var items = this.items.toArray();
             var index;
             this.items.forEach(function (item, indexItem) {
               if (item.isActive) {
                 index = indexItem + 1;
-                if (index >= _this3.items.length) {
+                if (index >= _this2.items.length) {
                   index = 0;
                 }
               }
@@ -93021,7 +92924,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
           key: 'previousItem',
           value: function previousItem() {
-            var _this4 = this;
+            var _this3 = this;
 
             var items = this.items.toArray();
             var index;
@@ -93029,7 +92932,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               if (item.isActive) {
                 index = indexItem - 1;
                 if (index < 0) {
-                  index = _this4.items.length - 1;
+                  index = _this3.items.length - 1;
                 }
               }
             });
@@ -93123,7 +93026,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             return [new _core.Component({
               selector: 'accordion',
               template: '\n          <ng-content></ng-content>',
-              inputs: ["options"],
+              inputs: ["panelStyle", "openDefault"],
               host: {
                 'class': 'panel-group'
               }
@@ -93166,23 +93069,27 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           value: function ngAfterViewInit() {
             var self = this;
             var panelsHTML = this.elementRef.nativeElement.getElementsByClassName("panel");
+            if (panelsHTML.length < 0) {
+              return;
+            }
 
             for (var i = 0; i < panelsHTML.length; i++) {
-              if (this.options.style) {
-                panelsHTML[i].classList.add("panel-" + this.options.style);
+              if (this.panelStyle) {
+                panelsHTML[i].classList.add("panel-" + this.panelStyle);
               } else {
                 panelsHTML[i].classList.add("panel-default");
               }
             }
 
-            if (this.options.openDefault >= 0) {
-              if (this.options.openDefault === panelsHTML.length) {
-                this.options.openDefault = panelsHTML.length - 1;
-              } else if (this.options.openDefault > panelsHTML.length) {
-                this.options.openDefault = 0;
+            if (parseInt(this.openDefault) >= 0) {
+              this.openDefault = parseInt(this.openDefault);
+              if (this.openDefault === panelsHTML.length) {
+                this.openDefault = panelsHTML.length - 1;
+              } else if (this.openDefault > panelsHTML.length) {
+                this.openDefault = 0;
               }
               setTimeout(function () {
-                self.panels[self.options.openDefault].isOpen = true;
+                self.panels[self.openDefault].isOpen = true;
               }, 0);
             }
 
@@ -93504,7 +93411,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             this.style.forEach(function (style) {
               self.content.classList.add(style);
             });
-            // this.content = this.elementRef.nativeElement.getElementsByClassName("circle-progress-bar")[0]
             if (typeof this.value !== "number" || this.value === "") {
               this.value = 0;
             }

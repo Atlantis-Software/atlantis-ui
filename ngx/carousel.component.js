@@ -131,17 +131,15 @@ export class carouselComponent {
     if (this.slide && this.activeItem !== undefined) {
       itemActive.state = direction;
       items[this.activeItem].state = direction;
-      setTimeout(() => {
-        itemActive.isActive = true;
-        this.items.forEach((item) => {
-          if (item !== itemActive) {
-            item.isActive = false;
-          }
-        });
-        itemActive.state = "active";
-        items[this.activeItem].state = "";
-        this.activeItem = indexNewActive;
-      }, 600);
+      itemActive.isActive = true;
+      this.items.forEach((item) => {
+        if (item !== itemActive) {
+          item.isActive = false;
+        }
+      });
+      itemActive.state = "active";
+      items[this.activeItem].state = "";
+      this.activeItem = indexNewActive;
     } else {
       this.activeItem = indexNewActive;
       itemActive.isActive = true;

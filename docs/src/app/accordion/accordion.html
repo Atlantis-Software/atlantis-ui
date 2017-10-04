@@ -3,7 +3,7 @@
     Example :
   </h3>
   <div class="row container-fluid form-group">
-    <accordion openDefault="2" style="success">
+    <accordion openDefault=2 panelStyle="success">
       <accordion-panel [title]="'test1'">
         {{time | date : 'shortDate'}}
       </accordion-panel>
@@ -63,7 +63,7 @@
       </tr>
       <tr>
         <td>
-          style
+          panelStyle
         </td>
         <td>
           string
@@ -157,7 +157,7 @@
     Example with ngFor
   </h3>
   <div class="row container-fluid form-group">
-    <accordion [style]="danger">
+    <accordion panelStyle="danger">
       <accordion-panel *ngFor="let panel of panels" [title]="panel.title">
         {{panel.content}}
       </accordion-panel>

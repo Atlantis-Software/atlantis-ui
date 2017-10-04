@@ -4,8 +4,8 @@
   <input class="form-control end" [ngModel]="end" (change)="setEnd($event)" type="date" (click)="open('end')"/>
 </div>
 
-<modal idModal="test" [options]="modalOptions" [(show)]="visible">
-  <modal-header [options]="modalHeaderOptions">
+<modal fade="true" orientation="right" [(show)]="visible">
+  <modal-header>
     <div *ngIf="!modalHeaderOptions.close" class="row withoutClose">
     </div>
     <div class="row">
@@ -16,7 +16,7 @@
       </div>
       <div class="col-md-2 text-center">
         <i class="icon icon-next icon-4x icon-disabled" ></i>
-      </div>  
+      </div>
       <div class="col-md-5 text-center date-letter">
         <span>{{ beforeDayDateEnd }}</span>
         <span>{{ dayDateEnd }}</span>
@@ -34,10 +34,10 @@
           <input type="date" class="form-control input-md" [ngModel]="start" (ngModelChange)="setStart($event)" (focus)="selectInputDateStart()"
           [ngClass]="{'active': (focus === 'start') }" (keyup.tab)="focusEnd($event, inputend)" (keyup.enter)="closeAfterCheck()" >
         </div>
-      </div>    
+      </div>
       <div class="col-md-3">
         <div class="form-group" [ngClass]="{'has-error': hasErrorEnd }">
-          <input #inputend type="date" class="form-control input-md" [ngModel]="end" (ngModelChange)="setEnd($event)" (keyup.enter)="closeAfterCheck()" 
+          <input #inputend type="date" class="form-control input-md" [ngModel]="end" (ngModelChange)="setEnd($event)" (keyup.enter)="closeAfterCheck()"
           (focus)="selectInputDateEnd()" [ngClass]="{'active': (focus === 'end')}">
         </div>
       </div>
@@ -50,7 +50,7 @@
           <selectpicker-option value="last30day">{{ i18n[language]["last30day"] }}</selectpicker-option>
           <selectpicker-option value="lastYear">{{ i18n[language]["lastYear"] }}</selectpicker-option>
         </selectpicker>
-      </div>  
+      </div>
       <div class="col-md-1 text-center" >
         <div class="next arrow" (click)="clickNext($event)">
           <i class="icon icon-next icon-2x" ></i>
@@ -63,27 +63,27 @@
       <div *ngFor="let item of arrayMonths;let i = index;" class="calendar calendar {{ i }}">
         <div class="calendar-table">
           <table class="table-condensed">
-            <thead> 
+            <thead>
               <tr>
-                <th></th>  
+                <th></th>
                 <th colspan="5" class="month">{{ locale.monthNames[calendar[i].month()] + calendar[i].format(" YYYY") }}</th>
-                <th></th> 
-              </tr>  
+                <th></th>
+              </tr>
             </thead>
             <tbody>
               <tr>
                 <td class="dayweek" *ngFor="let item of createRange(7);let col=index">{{ locale.weekdayNames[calendar[i].calendar[0][col].day()] }}</td>
-              </tr>   
+              </tr>
               <tr *ngFor="let itemRow of arrayRows;let row = index;">
                 <td *ngFor="let itemCol of arrayCols;let col = index;" (click)="selectDate(calendar[i].calendar[row][col], classes[i][row][col])" [ngClass]="classes[i][row][col]">
                    {{ calendar[i].calendar[row][col].date() }}
                 </td>
-              </tr> 
-            </tbody>  
+              </tr>
+            </tbody>
           </table>
         </div>
-      </div> 
-    </div> 
+      </div>
+    </div>
   </modal-body>
   <modal-footer>
   </modal-footer>

@@ -12,29 +12,6 @@ var assert = require('assert');
 class modalTestComponent {
   constructor() {
 
-    this.modalOptionsRight = {
-      fade: false,
-      orientation: "right",
-      backdrop: false
-    };
-
-    this.modalOptionsTop = {
-      fade: false,
-      orientation: "top"
-    };
-
-    this.modalOptionsBottom = {
-      fade: true,
-      orientation: "bottom",
-      backdrop: true
-    };
-
-    this.modalOptionsLeft = {
-      fade: true,
-      orientation: "left",
-      backdrop: true
-    };
-
     this.showLeft = false;
     this.showRight = false;
     this.showTop = false;

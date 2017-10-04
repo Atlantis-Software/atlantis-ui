@@ -9,7 +9,7 @@ export class accordionComponent {
         selector: 'accordion',
         template: `
           <ng-content></ng-content>`,
-        inputs: ["style", "openDefault"],
+        inputs: ["panelStyle", "openDefault"],
         host : {
           'class' : 'panel-group'
         }
@@ -44,6 +44,9 @@ export class accordionComponent {
   ngAfterViewInit() {
     var self = this;
     var panelsHTML = this.elementRef.nativeElement.getElementsByClassName("panel");
+    if (panelsHTML.length < 0) {
+      return;
+    }
 
     for (var i = 0; i < panelsHTML.length; i++) {
       if (this.panelStyle) {
@@ -53,7 +56,8 @@ export class accordionComponent {
       }
     }
 
-    if (this.openDefault >= 0) {
+    if (parseInt(this.openDefault) >= 0) {
+      this.openDefault = parseInt(this.openDefault);
       if (this.openDefault === panelsHTML.length) {
         this.openDefault = panelsHTML.length - 1;
       } else if (this.openDefault > panelsHTML.length) {

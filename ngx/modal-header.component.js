@@ -22,7 +22,7 @@ export default class modalHeaderComponent {
 
   constructor(modal) {
     this.modal = modal;
-    this.clode = true;
+    this.close = true;
   }
 
   close() {

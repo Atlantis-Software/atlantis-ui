@@ -27,9 +27,9 @@ class dropdownTestComponent {
           <dropdown-header>menu</dropdown-header>
           <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
         </dropdown>
-        <dropdown [options]="{orientation: 'up'}" title="Menu A">
+        <dropdown orientation="up" title="Menu A">
         </dropdown>
-        <dropdown [options]="{alignement: 'right'}" title="Menu A">
+        <dropdown alignement="left" title="Menu A">
         </dropdown>`
       })
     ];

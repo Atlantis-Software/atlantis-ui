@@ -15,7 +15,6 @@ export default class datepickerComponent {
     this.i18n = i18n;
     this.visible = false;
     this.modalOptions = {
-      size: "small",
       fade: true,
       orientation: "right"
     };
