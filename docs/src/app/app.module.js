@@ -94,7 +94,7 @@ AppModule.annotations = [
       BrowserModule,
       FormsModule,
       RouterModule.forRoot(route),
-      ngxAtlUiModule.forRoot(types)
+      ngxAtlUiModule.forRoot()
     ],
     bootstrap: [ AppComponent ],
     providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, DatePipe, UpperCasePipe]

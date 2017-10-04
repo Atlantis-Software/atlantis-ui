@@ -88,12 +88,12 @@ describe('datepicker-range', function() {
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    var input = document.querySelectorAll('input')[0];
+    var input = document.querySelectorAll('datepicker-range')[0].querySelectorAll('input')[0];
     input.click();
     tick();
     fixture.detectChanges();
 
-    var months = document.querySelectorAll(".calendar.calendar");
+    var months = document.querySelectorAll('datepicker-range')[0].querySelectorAll(".calendar.calendar");
 
     assert.strictEqual(months.length, 3);
 
@@ -102,12 +102,12 @@ describe('datepicker-range', function() {
     tick();
     fixture.detectChanges();
 
-    input = document.querySelectorAll('input')[2];
+    input = document.querySelectorAll('datepicker-range')[1].querySelectorAll('input')[0];
     input.click();
     tick();
     fixture.detectChanges();
 
-    months = document.querySelectorAll(".calendar.calendar");
+    months = document.querySelectorAll('datepicker-range')[1].querySelectorAll(".calendar.calendar");
 
     assert.strictEqual(months.length, 5);
 

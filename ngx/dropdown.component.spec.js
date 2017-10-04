@@ -29,7 +29,7 @@ class dropdownTestComponent {
         </dropdown>
         <dropdown orientation="up" title="Menu A">
         </dropdown>
-        <dropdown alignement="left" title="Menu A">
+        <dropdown alignement="right" title="Menu A">
         </dropdown>`
       })
     ];

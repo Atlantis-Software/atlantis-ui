@@ -54,6 +54,15 @@ export class ngxAtlUiModule {
       ]
     };
   }
+
+  static forChild(config) {
+    return {
+      ngModule: ngxAtlUiModule,
+      providers: [
+        { provide: gridConfig, useValue: config}
+      ]
+    };
+  }
 }
 
 

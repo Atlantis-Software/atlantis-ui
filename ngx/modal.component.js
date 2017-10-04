@@ -49,7 +49,7 @@ export default class modalComponent {
   }
 
   open() {
-    if (this.backdrop) {
+    if (this.backdrop === true) {
       // create backdrop dynamically
       this.backdropRef = this.backdropFactory.create(this.injector);
       this.applicationRef.attachView(this.backdropRef.hostView);
@@ -76,7 +76,7 @@ export default class modalComponent {
     this.showChange.emit(this.model);
 
     this.visibleAnimate = false;
-    if (this.backdrop && this.backdropRef) {
+    if (this.backdrop === true && this.backdropRef) {
       // delete the backdrop
       this.backdropRef.destroy();
     }

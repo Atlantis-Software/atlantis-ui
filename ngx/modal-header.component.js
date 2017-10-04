@@ -9,9 +9,9 @@ export default class modalHeaderComponent {
         template: `
 				<div class="modal-header">
           <div class="row">
-          <div class="col-md-12">
-	          <button *ngIf="close" type="button" class="close" (click)="close()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          </div>
+            <div class="col-md-12">
+  	          <button *ngIf="close" type="button" class="close" (click)="onClose()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
           </div>
 	        <ng-content></ng-content>
 				</div>`,
@@ -25,7 +25,7 @@ export default class modalHeaderComponent {
     this.close = true;
   }
 
-  close() {
+  onClose() {
     this.modal.show = false;
   }
 }

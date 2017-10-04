@@ -39,7 +39,7 @@ describe('tooltip', function() {
 
   beforeEach(async(function() {
     TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, ngxAtlUiModule.forRoot({})],
+      imports: [CommonModule, FormsModule, ngxAtlUiModule.forRoot()],
       declarations: [tooltipTestComponent]
     });
     TestBed.compileComponents();

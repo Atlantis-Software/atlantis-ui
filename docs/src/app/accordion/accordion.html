@@ -3,12 +3,12 @@
     Example :
   </h3>
   <div class="row container-fluid form-group">
-    <accordion openDefault=2 panelStyle="success">
+    <accordion [openDefault]=2>
       <accordion-panel [title]="'test1'">
-        {{time | date : 'shortDate'}}
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
       </accordion-panel>
       <accordion-panel [title]="'test2'">
-        azertyuiop
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
         <button type="button" class="btn btn-block">Basic</button>
       </accordion-panel>
     </accordion>
@@ -154,10 +154,64 @@
   </table>
 
   <h3>
+    Example with different style
+  </h3>
+  <div class="row container-fluid form-group">
+    <accordion panelStyle="primary">
+      <accordion-panel [title]="'test1'">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      </accordion-panel>
+      <accordion-panel [title]="'test2'">
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+      </accordion-panel>
+    </accordion>
+  </div>
+  <div class="row container-fluid form-group">
+    <accordion panelStyle="success">
+      <accordion-panel [title]="'test1'">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      </accordion-panel>
+      <accordion-panel [title]="'test2'">
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+      </accordion-panel>
+    </accordion>
+  </div>
+  <div class="row container-fluid form-group">
+    <accordion panelStyle="info">
+      <accordion-panel [title]="'test1'">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      </accordion-panel>
+      <accordion-panel [title]="'test2'">
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+      </accordion-panel>
+    </accordion>
+  </div>
+  <div class="row container-fluid form-group">
+    <accordion panelStyle="warning">
+      <accordion-panel [title]="'test1'">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      </accordion-panel>
+      <accordion-panel [title]="'test2'">
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+      </accordion-panel>
+    </accordion>
+  </div>
+  <div class="row container-fluid form-group">
+    <accordion panelStyle="danger">
+      <accordion-panel [title]="'test1'">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      </accordion-panel>
+      <accordion-panel [title]="'test2'">
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+      </accordion-panel>
+    </accordion>
+  </div>
+
+  <h3>
     Example with ngFor
   </h3>
   <div class="row container-fluid form-group">
-    <accordion panelStyle="danger">
+    <accordion>
       <accordion-panel *ngFor="let panel of panels" [title]="panel.title">
         {{panel.content}}
       </accordion-panel>

@@ -56,8 +56,7 @@ export class accordionComponent {
       }
     }
 
-    if (parseInt(this.openDefault) >= 0) {
-      this.openDefault = parseInt(this.openDefault);
+    if (this.openDefault >= 0) {
       if (this.openDefault === panelsHTML.length) {
         this.openDefault = panelsHTML.length - 1;
       } else if (this.openDefault > panelsHTML.length) {
