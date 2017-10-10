@@ -1,4 +1,4 @@
-import { Component, ContentChildren, ElementRef, ChangeDetectorRef} from '@angular/core';
+import { Component, ElementRef, ChangeDetectorRef } from '@angular/core';
 
 export default class dropdownComponent {
 
@@ -19,7 +19,7 @@ export default class dropdownComponent {
             <ng-content>
             </ng-content>
           </div>`,
-        inputs: ["title","options"],
+        inputs: ["title", "orientation", "alignement"],
         host: {
           "(focusout)": "closeDropdown()"
         }
@@ -32,9 +32,10 @@ export default class dropdownComponent {
     this.parentIsLi = false;
     this.disabled = false;
     this.cdr = ChangeDetectorRef;
+    this.title = "Dropdown button";
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.dropdown = this.elementRef.nativeElement;
     var dropdownMenu = this.elementRef.nativeElement.getElementsByClassName("dropdown-menu")[0];
 
@@ -47,35 +48,35 @@ export default class dropdownComponent {
     }
 
 
-    if (this.options && this.options.orientation === "up") {
+    if (this.orientation === "up") {
       this.dropdown.classList.add("dropup");
-    }else {
+    } else {
       this.dropdown.classList.add("dropdown");
     }
 
-    if (this.options && this.options.alignement === "right") {
+    if (this.alignement === "right") {
       dropdownMenu.classList.add("dropdown-menu-right");
     }
     this.cdr.detectChanges();
   }
 
-  openDropdown(){
-    if (!this.disabled){
+  openDropdown() {
+    if (!this.disabled) {
       this.open = true;
       this.dropdown.classList.add("open");
     }
   }
 
-  toggle(e){
+  toggle(e) {
     e.preventDefault();
-    if (!this.disabled){
+    if (!this.disabled) {
       this.open = !this.open;
       this.dropdown.classList.toggle("open");
     }
 
   }
 
-  closeDropdown(){
+  closeDropdown() {
     this.open = false;
     this.dropdown.classList.remove("open");
   }

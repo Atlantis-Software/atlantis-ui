@@ -1,6 +1,6 @@
 <input  type="date" class="form-control" [ngModel]="val" (click)="open()" (change)="valueChange($event)"/>
-<modal idModal="test" [options]="modalOptions" [(show)]="visible" >
-  <modal-header [options]="modalHeaderOptions">
+<modal [fade]="true" orientation="right" [(show)]="visible" >
+  <modal-header>
     <div class="row">
       <div class="col-md-12 text-center date-letter">
         <span>{{ before }}</span>

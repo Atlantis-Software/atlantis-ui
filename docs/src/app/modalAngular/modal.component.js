@@ -6,71 +6,56 @@ export default  class ModalAngularComponent {
       new Component({
         template: require('./modal.html')
       })
-    ]
+    ];
   }
   constructor(){
 
     this.time = new Date();
 
     this.modalHtml = `
-    <modal idModal="test" [options]="modalOptionsLeft" [(show)]="showLeft">
-      <modal-header [options]="modalHeaderOptions">
+    <button type="button" class="btn btn-primary btn-sm"  (click)="openStandard() || showStandard = true">
+      Default modal
+    </button>
+    <modal [(show)]="showStandard">
+      <modal-header>
         <h3 class="modal-title">Modal Header</h3>
       </modal-header>
       <modal-body>
         <p>Some text in the modal.</p>
       </modal-body>
       <modal-footer>
-        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeLeft()">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeStandard() || showStandard = false">Close</button>
       </modal-footer>
-    </modal>`
+    </modal>`;
 
-    this.modalVar = `
-    this.modalOptionsLeft = {
-      fade : true,
-      orientation:"left"
-    }
+    this.modalHtml2 = `
+    <button type="button" class="btn btn-primary btn-sm"  (click)="showStandard2 = true">
+      Default modal
+    </button>
+    <modal [(show)]="showStandard2" [fade]="false" [backdrop]="false">
+      <modal-header>
+        <h3 class="modal-title">Modal Header</h3>
+      </modal-header>
+      <modal-body>
+        <p>Some text in the modal.</p>
+      </modal-body>
+      <modal-footer>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="showStandard2 = false">Close</button>
+      </modal-footer>
+    </modal>`;
 
-    this.modalHeaderOptions = {
-      close : true
-    }
+    this.modalOrientationHtml = `
+    <modal [(show)]="showStandard2" [orientation]="left">
+    <modal [(show)]="showStandard2" [orientation]="right">
+    <modal [(show)]="showStandard2" [orientation]="top">
+    <modal [(show)]="showStandard2" [orientation]="bottom">`;
 
-    this.showLeft = false;
-
-    openLeft() {
-      this.showLeft = true;
-    }
-    closeLeft() {
-      this.showLeft = false;
-    }`
-
-    this.modalOptionsRight = {
-      fade : false,
-      orientation:"right",
-      backdrop: false
-    }
-
-    this.modalOptionsTop = {
-      fade : false,
-      orientation:"top"
-    }
-
-    this.modalOptionsBottom = {
-      fade : true,
-      orientation:"bottom",
-      backdrop: true
-    }
-
-    this.modalOptionsLeft = {
-      fade : true,
-      orientation:"left",
-      backdrop: true
-    }
     this.showLeft = false;
     this.showRight = false;
     this.showTop = false;
     this.showBottom = false;
     this.showStandard = false;
+    this.showStandard2 = false;
 
     this.Display = "Example";
   }

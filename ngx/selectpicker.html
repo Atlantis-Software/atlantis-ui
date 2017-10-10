@@ -1,4 +1,4 @@
-<div class="select"  [ngClass]="{'open': isOpen }" [attr.aria-multiple]="multiple">
+<div class="select"  [ngClass]="{'open': isOpen, 'multiple': multiple }" [attr.aria-multiple]="multiple">
   <input type="hidden" class="select-value" (change)="valueChange($event)" />
   <button class="btn btn-default select-toggle" type="button" (click)="Open()" data-toggle="select" [attr.aria-expanded]="isOpen">
     <span class="select-text" [innerHTML]="SelectedValuesText"></span>
@@ -10,4 +10,3 @@
       </li>
   </ul>
 </div>
-
