@@ -9,7 +9,7 @@ export default class modalComponent {
         selector: 'modal',
         template: `
 					<div (click)="close($event)" class="modal" [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}" [ngClass]="{'in': visibleAnimate}">
-            <div class="modal-dialog" role="document" *ngIf="visible">
+            <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <ng-content></ng-content>
               </div>
@@ -31,6 +31,7 @@ export default class modalComponent {
     this.backdropFactory = ComponentFactoryResolver.resolveComponentFactory(backdropComponent);
     this.backdrop = true;
     this.fade = true;
+    this.show = false;
   }
 
   get show() {
@@ -57,6 +58,8 @@ export default class modalComponent {
       this.backdropRef.changeDetectorRef.detectChanges();
     }
 
+    document.body.classList.add("modal-open");
+
 
     this.model = true;
     this.showChange.emit(this.model);
@@ -74,7 +77,7 @@ export default class modalComponent {
     }
     this.model = false;
     this.showChange.emit(this.model);
-
+    document.body.classList.remove("modal-open");
     this.visibleAnimate = false;
     if (this.backdrop === true && this.backdropRef) {
       // delete the backdrop
@@ -88,7 +91,7 @@ export default class modalComponent {
 
     this.modal = this.elementRef.nativeElement.getElementsByClassName("modal")[0];
 
-    if (this.fade === true) {
+    if (this.fade) {
       this.modal.classList.add("fade");
     }
 
