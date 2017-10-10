@@ -1,407 +1,370 @@
 <div class="container">
-  <div class="row" style="display: flex;flex-wrap: wrap;">
-    <h3 style="width: 100%">
-      The forms
+  <h2>
+    Example of forms
+  </h2>
+  <div class="row">
+    <h3>
+      Basic example (Login)
     </h3>
-    <p>html code example : </p>
-    <pre>
-      {{formHtml}}
-    </pre>
-
     <form>
-      <div class='row'>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <label for="ExamplePassword">Password</label>
-            <input type="text" class="form-control" id="ExampleUsername" placeholder="Username" [(ngModel)]="person.username" name="ExampleUsername"/>
-          </div>
-        </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-              <selectpicker [(ngModel)]="person.Language" multiple="true" name="ExampleLanguage">
-                <selectpicker-option value="English">English</selectpicker-option>
-                <selectpicker-option value="French">French</selectpicker-option>
-                <selectpicker-option value="Spanish">Spanish</selectpicker-option>
-              </selectpicker>
-          </div>
-        </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <label for="ExampleBirthday">Birthday</label>
-            <div class="radio">
-              <input type="radio" id="radio3" name="radioset3" value="Male">
-              <label for="radio3">
-                Male
-              </label>
-            </div>
-            <div class="radio">
-              <input type="radio" id="radio4" name="radioset3" value="Female" checked="">
-              <label for="radio4">
-                Female
-              </label>
-            </div>
-          </div>
-        </diV>
+      <div class="form-group">
+        <label for="ExampleInputLogin1">Login</label>
+        <input type="text" class="form-control" id="ExampleInputLogin1" placeholder="Login">
       </div>
-
-      <div class='row'>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <div class="radio">
-              <input type="radio" id="radio1" name="radioset" value="option1">
-              <label for="radio1">
-                Option 1
-              </label>
-            </div>
-            <div class="radio">
-              <input type="radio" id="radio2" name="radioset" value="option2" checked="">
-              <label for="radio2">
-                Option 2
-              </label>
-            </div>
-          </div>
-        </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <label for="ExampleBirthday">Birthday</label>
-            <datepicker [(ngModel)]="person.birthday" name="ExampleBirthday"></datepicker>
-          </div>
-        </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-              <label for="rangeDatePicker">Example Datepicker range</label>
-              <datepicker-range [(start)]="start1" [(end)]="end1"></datepicker-range>
-          </div>
-        </diV>
+      <div class="form-group">
+        <label for="ExampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="ExampleInputPassword1" placeholder="Password">
       </div>
-      <div class='row'>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <label for="button-succes">Bouton succes</label>
-            <button type="button" id="button-succes" class="btn btn-success">
-              Success
-            </button>
-          </div>
-        </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <label for="ExampleLanguage2">Language 2</label>
-            <selectpicker [(ngModel)]="Selectpicker2"name="ExampleLanguage2">
-              <selectpicker-option value="English">English</selectpicker-option>
-              <selectpicker-option value="French">French</selectpicker-option>
-              <selectpicker-option value="Spanish">Spanish</selectpicker-option>
-            </selectpicker>
-          </div>
-        </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <label for="rangeDatePicker">Example Datepicker range</label>
-            <datepicker-range [(start)]="start1" [(end)]="end1"></datepicker-range>
-          </div>
-        </diV>
+      <div class="checkbox">
+        <input type="checkbox" id="ExampleCheckbox1">
+        <label for="ExampleCheckbox1">Remember me</label>
       </div>
-
-      <div class='row'>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <label for="basic-inputgroup2">Example input bouton texte</label>
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="basic-inputgroup2">
-              <span class="input-group-addon" id="basic-inputgroup2">@example.com</span>
-            </div>
-          </div>
-        </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon">
-                <input type="radio" aria-label="...">
-              </span>
-              <input type="text" class="form-control" aria-label="...">
-            </div>
-          </div>
-        </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon">
-                <input type="checkbox" aria-label="...">
-              </span>
-              <input type="text" class="form-control" aria-label="...">
-            </div>
-          </div>
-        </diV>
+      <button type="submit" class="btn btn-default">Connection</button>
+    </form>
+  </div>
+  <br>
+  <pre>
+    {{forms1}}
+  </pre>
+  <div class="row">
+    <h3>
+      Inline form (Search)
+    </h3>
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="ExampleInputSearch1">Search</label>
+        <input type="text" class="form-control" id="ExampleInputSearch1" placeholder="Search">
       </div>
-
-      <div class='row'>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <label for="inputgroup-radio">Example input bouton radio</label>
-            <div class="input-group">
-              <span class="input-group-addon">
-                <input type="radio" id="inputgroup-radio" aria-label="...">
-              </span>
-              <input type="text" class="form-control" aria-label="...">
-            </div>
-          </div>
-        </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon">
-                <input type="radio" aria-label="...">
-              </span>
-              <input type="text" class="form-control" aria-label="...">
-            </div>
-          </div>
-        </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <label for="inputgroup-checkbox">Example input bouton checkbox</label>
-            <div class="input-group">
-              <span class="input-group-addon">
-                <input type="checkbox"  id="inputgroup-checkbox" aria-label="...">
-              </span>
-              <input type="text" class="form-control" aria-label="...">
-            </div>
-          </div>
-        </diV>
+      <div class="form-group">
+        <label for="ExampleSelectpicker1">Filter</label>
+        <selectpicker name="ExampleSelectpicker1" [(ngModel)]="Selectpicker1" multiple="true">
+          <selectpicker-option [value]="name">name</selectpicker-option>
+          <selectpicker-option [value]="surname">surname</selectpicker-option>
+          <selectpicker-option [value]="place">place</selectpicker-option>
+          <selectpicker-option [value]="age">age</selectpicker-option>
+        </selectpicker>
       </div>
-
-      <div class='row'>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <textarea rows="4" class="form-control" name="inputActive" placeholder="active" [(ngModel)]="input2">
-          </div>
+      <button type="submit" class="btn btn-default">Search</button>
+    </form>
+    <br>
+    <pre>
+      {{forms2}}
+    </pre>
+  </div>
+  <div class="row">
+    <h3>
+      Horizontal form (Register)
+    </h3>
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="ExampleInputEmail1" class="col-md-3 control-label">Email</label>
+        <div class="col-md-9">
+          <input type="email" class="form-control" id="ExampleInputEmail1" placeholder="Email">
         </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <button type="button" class="btn btn-block">Basic</button>
-          </div>
-        </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <datepicker-range [(start)]="start1" [(end)]="end1"></datepicker-range>
-          </div>
-        </diV>
       </div>
-
-      <div class='row'>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <label for="ExamplePassword">Password</label>
-            <div class="input-group">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Action</button>
-              </span>
-              <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-              <span class="input-group-addon">.00</span>
-            </div>
-          </div>
+      <div class="form-group">
+        <label for="ExampleInputEmail2" class="col-md-3 control-label">Confirm Email</label>
+        <div class="col-md-9">
+          <input type="email" class="form-control" id="ExampleInputEmail2" placeholder="Confirm Email">
         </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <label for="dropdown">Language 2</label>
-            <dropdown title="Menu A">
-              <dropdown-option><a>Sub-menu A</a></dropdown-option>
-              <dropdown-option><a>Sub-menu B</a></dropdown-option>
-              <dropdown-divider></dropdown-divider>
-              <dropdown-option><a>Sub-menu separated A</a></dropdown-option>
-              <dropdown-header>Menu</dropdown-header>
-              <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
-            </dropdown>
-          </div>
-        </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <input type="password" class="form-control" id="ExamplePassword" placeholder="Password" [(ngModel)]="person.password" name="ExamplePassword"/>
-          </div>
-        </diV>
       </div>
-      <div class='row'>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <label for="ExamplePassword">Password</label>
-            <input type="password" class="form-control" id="ExamplePassword" placeholder="Password" [(ngModel)]="person.password" name="ExamplePassword"/>
-          </div>
+      <div class="form-group">
+        <label for="ExampleInputLogin2" class="col-md-3 control-label">Login</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" id="ExampleInputLogin2" placeholder="Login">
         </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <dropdown title="Menu A">
-              <dropdown-option><a>Sub-menu A</a></dropdown-option>
-              <dropdown-option><a>Sub-menu B</a></dropdown-option>
-              <dropdown-divider></dropdown-divider>
-              <dropdown-option><a>Sub-menu separated A</a></dropdown-option>
-              <dropdown-header>Menu</dropdown-header>
-              <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
-            </dropdown>
-          </div>
-        </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-btn">
-                <button class="btn btn-default" type="button">Action1</button>
-                <button class="btn btn-default" type="button">Action2</button>
-              </div>
-              <input type="text" class="form-control" aria-label="...">
-            </div>
-          </div>
-        </diV>
       </div>
-      <div class='row'>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <label for="checkbox">Checkbox</label>
-            <div class="checkbox">
-              <input type="checkbox" value="" id="chk1">
-              <label for="chk1">
-                checkbox
-              </label>
-            </div>
-            <div class="checkbox">
-              <input type="checkbox" value="" id="chk2" checked="">
-              <label for="chk2">
-                checkbox checked
-              </label>
-            </div>
-          </div>
+      <div class="form-group">
+        <label for="ExampleInputPassword2" class="col-md-3 control-label">Password</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" id="ExampleInputPassword2" placeholder="Password">
         </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <div class="checkbox-inline">
-              <input type="checkbox" id="inlineCheckbox1" value="option1">
-              <label for="inlineCheckbox1">1</label>
-            </div>
-            <div class="checkbox-inline">
-              <input type="checkbox" id="inlineCheckbox2" value="option2">
-              <label for="inlineCheckbox2">2</label>
-            </div>
-            <div class="checkbox-inline">
-              <input type="checkbox" id="inlineCheckbox3" value="option3">
-              <label for="inlineCheckbox3">3</label>
-            </div>
-          </div>
-        </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <label for="checkboxInline">Checkbox inline</label>
-            <div class="checkbox-inline">
-              <input type="checkbox" id="inlineCheckboxText1" value="optionText1">
-              <label for="inlineCheckboxText1">1</label>
-            </div>
-            <div class="checkbox-inline">
-              <input type="checkbox" id="inlineCheckboxText2" value="optionText2">
-              <label for="inlineCheckboxText2">2</label>
-            </div>
-            <div class="checkbox-inline">
-              <input type="checkbox" id="inlineCheckboxText3" value="optionText3">
-              <label for="inlineCheckboxText3">3</label>
-            </div>
-          </div>
-        </diV>
       </div>
-      <div class='row'>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <div class="radio-inline">
-              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-              <label for="inlineRadio1">1</label>
-            </div>
-            <div class="radio-inline">
-              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked="">
-              <label for="inlineRadio2">2</label>
-            </div>
-            <div class="radio-inline">
-              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled="">
-              <label for="inlineRadio3">3</label>
-            </div>
+      <div class="form-group">
+        <label for="ExampleRadioGender" class="col-md-3 control-label">Gender</label>
+        <div class="col-md-9">
+          <div class="radio-inline">
+            <input type="radio" name="ExampleRadioGender" id="inlineRadio1" value="Male" [(ngModel)]="Gender">
+            <label for="inlineRadio1">Male</label>
+          </div>
+          <div class="radio-inline">
+            <input type="radio" name="ExampleRadioGender" id="inlineRadio2" value="Female" [(ngModel)]="Gender">
+            <label for="inlineRadio2">Female</label>
           </div>
         </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <div class="checkbox">
-              <input type="checkbox" value="" id="chk1">
-              <label for="chk1">
-                checkbox
-              </label>
-            </div>
-            <div class="checkbox">
-              <input type="checkbox" value="" id="chk2" checked="">
-              <label for="chk2">
-                checkbox checked
-              </label>
-            </div>
-          </div>
-        </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <label for="inputActive">Textarea</label>
-            <textarea rows="4" class="form-control" name="inputActive" placeholder="active" [(ngModel)]="input2">
-          </div>
-        </diV>
       </div>
-      <div class='row'>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-btn">
-                <dropdown orientation="up" title="Menu A">
-                  <dropdown-option><a>Sub-menu A</a></dropdown-option>
-                  <dropdown-option><a>Sub-menu B</a></dropdown-option>
-                  <dropdown-divider></dropdown-divider>
-                  <dropdown-option><a>Sub-menu separated A</a></dropdown-option>
-                  <dropdown-header>Menu</dropdown-header>
-                  <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
-                </dropdown>
-              </div>
-              <input type="text" class="form-control" aria-label="...">
-            </div>
-          </div>
-        </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <div class="checkbox">
-              <input type="checkbox" value="" id="chk1">
-              <label for="chk1">
-                checkbox
-              </label>
-            </div>
-            <div class="checkbox">
-              <input type="checkbox" value="" id="chk2" checked="">
-              <label for="chk2">
-                checkbox checked
-              </label>
-            </div>
-          </div>
-        </div>
-        <div class='col-md-4'>
-          <div class="form-group">
-            <label>Dropdown input</label>
-            <div class="input-group">
-              <div class="input-group-btn">
-                <dropdown orientation="up" title="Menu A">
-                  <dropdown-option><a>Sub-menu A</a></dropdown-option>
-                  <dropdown-option><a>Sub-menu B</a></dropdown-option>
-                  <dropdown-divider></dropdown-divider>
-                  <dropdown-option><a>Sub-menu separated A</a></dropdown-option>
-                  <dropdown-header>Menu</dropdown-header>
-                  <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
-                </dropdown>
-              </div>
-              <input type="text" class="form-control" aria-label="...">
-            </div>
-          </div>
-        </diV>
-      </div>
-      <div class='row'>
-        <div class='col-md-12'>
-          <div class="btn-group">
-            <button type="submit" class="btn btn-default">Submit</button>
-            <button type="reset" class="btn btn-default">Reset</button>
-          </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-md-10">
+          <button type="submit" class="btn btn-default">Register</button>
         </div>
       </div>
     </form>
+    <br>
+    <pre>
+      {{forms3}}
+    </pre>
   </div>
+  <h2>
+    Different controls supported
+  </h2>
+  <div class="row">
+    <h3>
+      Inputs
+    </h3>
+    <p>
+      We can use form-control classes for different HTML5 types on inputs : <code>text</code>,<code>password</code>,<code>date</code>,<code>datetime</code> ,
+      <code>datetime-local</code>,<code>number</code>,<code>email</code>
+    </p>
+    <form>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Text input">
+      </div>
+    </form>
+    <form>
+      <div class="form-group">
+        <textarea class="form-control" rows="3" placeholder="Textarea"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+
+    <h3>
+      Checkboxes and radios
+    </h3>
+    <h4>
+      Default example
+    </h4>
+    <form>
+      <div class="checkbox">
+        <input id="ExampleCheckbox2" type="checkbox" value="">
+        <label for="ExampleCheckbox2">First option</label>
+      </div>
+      <div class="checkbox">
+        <input id="ExampleCheckbox3" type="checkbox" value="" checked>
+        <label for="ExampleCheckbox3">Second option checked</label>
+      </div>
+      <div class="checkbox disabled">
+        <input id="ExampleCheckbox4" type="checkbox" value="" disabled>
+        <label for="ExampleCheckbox4">Third option disabled</label>
+      </div>
+      <div class="checkbox disabled">
+        <input id="ExampleCheckbox4" type="checkbox" value="" disabled checked>
+        <label for="ExampleCheckbox4">Third option disabled</label>
+      </div>
+      <br>
+      <div class="radio">
+        <input type="radio" id="ExampleRadio1" name="ExampleRadio" value="option1">
+        <label for="ExampleRadio1">
+          Option 1
+        </label>
+      </div>
+      <div class="radio">
+        <input type="radio" id="ExampleRadio2" name="ExampleRadio" value="option2" checked="">
+        <label for="ExampleRadio2">
+          Option 2 checked per default
+        </label>
+      </div>
+      <div class="radio disabled">
+        <input type="radio" id="ExampleRadio3" name="ExampleRadio" value="option3" disabled="">
+        <label for="ExampleRadio3">
+          Option 3 disabled
+        </label>
+      </div>
+    </form>
+    <h4>
+      Inline example
+    </h4>
+    <form>
+      <div class="checkbox-inline">
+        <input type="checkbox" id="inlineCheckbox1" value="option1">
+        <label for="inlineCheckbox1">1</label>
+      </div>
+      <div class="checkbox-inline">
+        <input type="checkbox" id="inlineCheckbox2" value="option2">
+        <label for="inlineCheckbox2">2</label>
+      </div>
+      <div class="checkbox-inline disabled">
+        <input type="checkbox" id="inlineCheckbox3" value="option3" disabled>
+        <label for="inlineCheckbox3">3</label>
+      </div>
+      <div class="checkbox-inline disabled">
+        <input type="checkbox" id="inlineCheckbox3" value="option3" disabled checked>
+        <label for="inlineCheckbox3">3</label>
+      </div>
+      <br>
+      <div class="radio-inline">
+        <input type="radio" name="inlineRadioOptions" id="ExampleinlineRadio1" value="option1">
+        <label for="ExampleinlineRadio1">1</label>
+      </div>
+      <div class="radio-inline">
+        <input type="radio" name="inlineRadioOptions" id="ExampleinlineRadio2" value="option2" checked="">
+        <label for="ExampleinlineRadio2">2</label>
+      </div>
+      <div class="radio-inline">
+        <input type="radio" name="inlineRadioOptions" id="ExampleinlineRadio3" value="option3" disabled="">
+        <label for="ExampleinlineRadio3">3</label>
+      </div>
+    </form>
+  </div>
+  <h2>
+    Static control
+  </h2>
+  <form>
+    <div class="form-group">
+      <label for="ExampleInputLogin3">Login</label>
+      <p type="text" class="form-control-static">Admin</p>
+    </div>
+    <div class="form-group">
+      <label for="ExampleInputPassword3">Password</label>
+      <input type="password" class="form-control" id="ExampleInputPassword3" placeholder="Password">
+    </div>
+  </form>
+  <h2>
+    Different state
+  </h2>
+  <h3>
+    Disabled state
+  </h3>
+  <h4>
+    Basic example
+  </h4>
+  <form>
+    <div class="form-group">
+      <label for="ExampleInputTextDisabled1">Input text</label>
+      <input type="text" class="form-control" id="ExampleInputTextDisabled1" placeholder="Disabled input text" disabled>
+    </div>
+  </form>
+  <h4>
+    Disabled fieldset
+  </h4>
+  <p>
+    We can add <code>disabled</code> attribute to a fieldset for disable all the controls within it.
+  </p>
+  <form class="form-horizontal">
+    <fieldset disabled>
+      <div class="form-group">
+        <label for="ExampleInputEmail1" class="col-md-3 control-label">Email</label>
+        <div class="col-md-9">
+          <input type="email" class="form-control" id="ExampleInputEmail1" placeholder="Email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="ExampleInputLogin2" class="col-md-3 control-label">Login</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" id="ExampleInputLogin2" placeholder="Login">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="ExampleInputPassword2" class="col-md-3 control-label">Password</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" id="ExampleInputPassword2" placeholder="Password">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="ExampleRadioGender" class="col-md-3 control-label">Gender</label>
+        <div class="col-md-9">
+          <div class="radio-inline">
+            <input type="radio" name="ExampleRadioGender" id="inlineRadio1" value="Male" [(ngModel)]="Gender">
+            <label for="inlineRadio1">Male</label>
+          </div>
+          <div class="radio-inline">
+            <input type="radio" name="ExampleRadioGender" id="inlineRadio2" value="Female" [(ngModel)]="Gender">
+            <label for="inlineRadio2">Female</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-md-10">
+          <button type="submit" class="btn btn-default">Register</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+  <h3>
+    Readonly state
+  </h3>
+  <p>
+    Add the readonly attribute on a input to prevent modification
+  </p>
+  <form>
+    <div class="form-group">
+      <label for="ExampleInputReadonly1">Example Readonly</label>
+      <input type="text" class="form-control" id="ExampleInputReadonly1" placeholder="Readonly input" readonly>
+    </div>
+  </form>
+  <h3>
+    Validation states
+  </h3>
+  <p>
+    We can add a validation styles for error, warning and success states on form controls. We just need to add <code>.has-warning</code>,
+    <code>.has-error</code> or <code>.has-success</code> to the parent element.
+  </p>
+  <form>
+    <div class="form-group has-success">
+      <label class="control-label" for="inputSuccess1">Input with success</label>
+      <input type="text" class="form-control" id="inputSuccess1">
+    </div>
+    <div class="form-group has-warning">
+      <label class="control-label" for="inputWarning1">Input with warning</label>
+      <input type="text" class="form-control" id="inputWarning1">
+    </div>
+    <div class="form-group has-error">
+      <label class="control-label" for="inputError1">Input with error</label>
+      <input type="text" class="form-control" id="inputError1">
+    </div>
+    <div class="has-success">
+      <div class="checkbox">
+        <input type="checkbox" id="checkboxSuccess" value="option1">
+        <label for="checkboxSuccess">Checkbox with success</label>
+      </div>
+    </div>
+    <div class="has-warning">
+      <div class="checkbox">
+        <input type="checkbox" id="checkboxWarning" value="option1">
+        <label for="checkboxWarning">Checkbox with warning</label>
+      </div>
+    </div>
+    <div class="has-error">
+      <div class="checkbox">
+        <input type="checkbox" id="checkboxError" value="option1">
+        <label for="checkboxError">Checkbox with error</label>
+      </div>
+    </div>
+  </form>
+  <h2>
+    Different size
+  </h2>
+  <h3>
+    Height sizing
+  </h3>
+  <form>
+    <div class="form-group">
+      <input type="text" class="form-control input-lg" placeholder=".input-lg">
+    </div>
+    <div class="form-group">
+      <input type="text" placeholder="Default input" class="form-control">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control input-sm" placeholder=".input-sm">
+    </div>
+  </form>
+  <h3>
+    Column sizing
+  </h3>
+  <p>
+    we can define horizontal size with the grid system.
+  </p>
+  <form>
+    <div class="row">
+      <div class="col-md-3">
+        <input type="text" class="form-control" placeholder=".col-md-3">
+      </div>
+      <div class="col-md-5">
+        <input type="text" class="form-control" placeholder=".col-md-5">
+      </div>
+      <div class="col-md-4">
+        <input type="text" class="form-control" placeholder=".col-md-4">
+      </div>
+    </div>
+  </form>
 </div>

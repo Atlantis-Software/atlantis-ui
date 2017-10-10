@@ -117,6 +117,12 @@ export default  class SelectpickerAngularComponent {
       </selectpicker-option>
     </selectpicker>`;
 
+    this.options = [];
+
+    // for(var i = 0; i< 10000; i++) {
+    //   this.options.push({value:i,label:"test"+i});
+    // }
+
     this.options = [
       {
         value: this.A,

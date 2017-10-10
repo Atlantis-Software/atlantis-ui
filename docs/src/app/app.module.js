@@ -20,7 +20,6 @@ import navbarComponent from './navbar/navbar.component.js';
 
 import DropdownAngularComponent from './dropdownAngular/dropdown.component.js';
 
-import InputComponent from './input/input.component.js';
 import ButtonComponent from './button/button.component.js';
 import IconComponent from './icon/icon.component.js';
 
@@ -74,7 +73,6 @@ AppModule.annotations = [
       SlidepickerAngularComponent,
       navbarComponent,
       DropdownAngularComponent,
-      InputComponent,
       ButtonComponent,
       IconComponent,
       ModalAngularComponent,
