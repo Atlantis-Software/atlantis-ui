@@ -287,7 +287,7 @@ describe('modal', function() {
     assert.strictEqual(modal.classList[2], "in");
     assert.strictEqual(testComponent.showRight, true);
 
-    var closeButton = document.querySelector(".close");
+    var closeButton = modal.querySelector(".close");
     closeButton.click();
     tick();
     fixture.detectChanges();
@@ -316,7 +316,7 @@ describe('modal', function() {
     assert.strictEqual(modal.classList[2], "in");
     assert.strictEqual(testComponent.showTop, true);
 
-    var closeButton = document.querySelector(".close");
+    var closeButton = modal.querySelector(".close");
     closeButton.click();
     tick();
     fixture.detectChanges();
@@ -344,7 +344,7 @@ describe('modal', function() {
     assert.strictEqual(modal.classList[3], "in");
     assert.strictEqual(testComponent.showBottom, true);
 
-    var closeButton = document.querySelector(".close");
+    var closeButton = modal.querySelector(".close");
     closeButton.click();
     tick();
     fixture.detectChanges();
@@ -374,7 +374,7 @@ describe('modal', function() {
     assert.strictEqual(modal.classList[2], "in");
     assert.strictEqual(testComponent.showStandard, true);
 
-    var closeButton = document.querySelector(".close");
+    var closeButton = modal.querySelector(".close");
     closeButton.click();
     tick();
     fixture.detectChanges();

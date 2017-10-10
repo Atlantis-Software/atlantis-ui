@@ -81,7 +81,7 @@ describe('datepicker', function() {
     tick();
     fixture.detectChanges();
 
-    var months = document.querySelectorAll(".calendar.calendar");
+    var months = document.querySelectorAll("datepicker")[0].querySelectorAll(".calendar.calendar");
 
     assert.strictEqual(months.length, 3);
 
@@ -95,7 +95,7 @@ describe('datepicker', function() {
     tick();
     fixture.detectChanges();
 
-    months = document.querySelectorAll(".calendar.calendar");
+    months = document.querySelectorAll("datepicker")[1].querySelectorAll(".calendar.calendar");
 
     assert.strictEqual(months.length, 5);
 

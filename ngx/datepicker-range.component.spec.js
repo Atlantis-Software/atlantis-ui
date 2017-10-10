@@ -356,8 +356,8 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"), moment().subtract(1, 'weeks').startOf('months').format('YYYY-MM-DD'));
-    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'), moment().subtract(1, 'weeks').endOf('months').format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"), moment().subtract(1, 'months').startOf('months').format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'), moment().subtract(1, 'months').endOf('months').format('YYYY-MM-DD'));
 
     assert.strictEqual(modal.classList[3], void 0);
   }));
