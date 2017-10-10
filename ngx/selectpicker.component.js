@@ -16,7 +16,19 @@ export default class selectpickerComponent {
     return [
       new Component({
         selector: 'selectpicker',
-        template: require('./selectpicker.html'),
+        template: `
+        <div class="select"  [ngClass]="{'open': isOpen, 'multiple': multiple }" [attr.aria-multiple]="multiple">
+          <input type="hidden" class="select-value" (change)="valueChange($event)" />
+          <button class="btn btn-default select-toggle" type="button" (click)="Open()" data-toggle="select" [attr.aria-expanded]="isOpen">
+            <span class="select-text" [innerHTML]="SelectedValuesText"></span>
+            <span class="caret"></span>
+          </button>
+          <ul  class="select-options">
+              <li *ngFor="let option of options" (click)="selectOption(option, $event)" [attr.aria-selected]="option.selected">
+                <a [ngStyle]="{'cursor': cursor}" (mouseover)="onHover($event)" class="noselect">{{ option.text }}</a>
+              </li>
+          </ul>
+        </div>`,
         inputs: ['multiple'],
         queries: {
           options: new ContentChildren(selectpickeroptionComponent)
@@ -82,7 +94,8 @@ export default class selectpickerComponent {
       });
       // space html if empty array to avoid a small select
       if (!this.SelectedValuesText || this.SelectedValuesText == "") {
-        this.SelectedValuesText = "&nbsp;";
+        this.options.first.selected = true;
+        this.SelectedValuesText = this.options.first.text;
       }
     }
   }

@@ -6,22 +6,25 @@ export default  class SelectpickerAngularComponent {
       new Component({
         template: require('./selectpicker.html')
       })
-    ]
+    ];
   }
   constructor(){
     this.selectpickerMultipleHtml = `
-    <selectpicker name="Selectpicker1" [(ngModel)]="Selectpicker1" multiple="true">
+    <selectpicker name="Selectpicker1" [(ngModel)]="Selectpicker" multiple="true">
       <selectpicker-option [value]="A">AAAA</selectpicker-option>
       <selectpicker-option value="B">BBBB</selectpicker-option>
       <selectpicker-option value="C">CCCC</selectpicker-option>
-      <selectpicker-option [value]="booleanFalse">boolean test</selectpicker-option>
-      <selectpicker-option [value]="un">11111</selectpicker-option>
-      <selectpicker-option [value]="arrayOneTwoThree">one, two, three</selectpicker-option>
-      <selectpicker-option [value]="objetWithArray">objet javascript</selectpicker-option>
-    </selectpicker>`
+    </selectpicker>`;
 
     this.selectpickerSimpleHtml = `
-    <selectpicker name="Selectpicker2" [(ngModel)]="Selectpicker2">
+    <selectpicker name="Selectpicker2" [(ngModel)]="Selectpicker">
+        <selectpicker-option [value]="A">AAAA</selectpicker-option>
+        <selectpicker-option value="B">BBBB</selectpicker-option>
+        <selectpicker-option value="C">CCCC</selectpicker-option>
+    </selectpicker>`;
+
+    this.selectpickerType = `
+    <selectpicker name="Selectpicker2" [(ngModel)]="Selectpicker">
         <selectpicker-option [value]="A">AAAA</selectpicker-option>
         <selectpicker-option value="B">BBBB</selectpicker-option>
         <selectpicker-option value="C">CCCC</selectpicker-option>
@@ -30,8 +33,8 @@ export default  class SelectpickerAngularComponent {
         <selectpicker-option [value]="arrayOneTwoThree">one, two, three</selectpicker-option>
         <selectpicker-option [value]="objetWithArray">objet javascript</selectpicker-option>
         <selectpicker-option> {{ AucuneValeur }} </selectpicker-option>
-    </selectpicker>
-    `
+    </selectpicker>`;
+
     this.selectpickerOptionHtml = `
     var arrayUnDeuxTrois = ["un", "deux", "trois"];
     <selectpicker-option [value]="arrayUnDeuxTrois"> un, deux, trois </selectpicker-option>`;
@@ -66,94 +69,16 @@ export default  class SelectpickerAngularComponent {
 
     this.Display = "Example";
     this.Selectpicker3 = [];
-    this.arrayOneTwoThree = ["un", "deux", "trois"];
+    this.arrayOneTwoThree = ["one", "two", "three"];
     this.one = 1;
     this.objetWithArray  = { fsdfds: 1, array: [1,2,3], texte: "test"};
     this.optionArrayOneTwoThree = {value: this.arrayOneTwoThree, text: "arrayOneTwoThree"};
     this.optionOne = {value: this.one, text: "one"};
     this.optionObjetWithArray = {value: this.objetWithArray, text: "objetWithArray"};
     this.optionsSelect = [ this.optionArrayOneTwoThree , this.optionOne , this.optionObjetWithArray ];
-    this.Selectpicker1 = [this.optionArrayOneTwoThree.value];
     this.Selectpicker3 = [this.one, this.objetWithArray, "D"];
     this.booleanFalse = false;
     this.A = "A";
-
-    this.selectpickerNgForOptions = `
-    this.options = [
-      {
-        value: this.A,
-        label: "AAAA"
-      },
-      {
-        value: "B",
-        label: "BBBB"
-      },
-      {
-        value: "C",
-        label: "CCCC"
-      },
-      {
-        value: this.booleanFalse,
-        label: "boolean test"
-      },
-      {
-        value: this.one,
-        label: "11111"
-      },
-      {
-        value: this.arrayOneTwoThree,
-        label: "one, two, three"
-      },
-      {
-        value: this.objetWithArray,
-        label: "object javascript"
-      }
-    ]`;
-
-    this.selectpickerNgFor = `
-    <selectpicker name="Selectpicker10" [(ngModel)]="Selectpicker10" multiple="true">
-      <selectpicker-option *ngFor="let option of options" [value]="option.value">
-        {{option.label}}
-      </selectpicker-option>
-    </selectpicker>`;
-
-    this.options = [];
-
-    // for(var i = 0; i< 10000; i++) {
-    //   this.options.push({value:i,label:"test"+i});
-    // }
-
-    this.options = [
-      {
-        value: this.A,
-        label: "AAAA"
-      },
-      {
-        value: "B",
-        label: "BBBB"
-      },
-      {
-        value: "C",
-        label: "CCCC"
-      },
-      {
-        value: this.booleanFalse,
-        label: "boolean test"
-      },
-      {
-        value: this.one,
-        label: "11111"
-      },
-      {
-        value: this.arrayOneTwoThree,
-        label: "one, two, three"
-      },
-      {
-        value: this.objetWithArray,
-        label: "object javascript"
-      }
-    ]
-
 
   }
 
@@ -162,17 +87,15 @@ export default  class SelectpickerAngularComponent {
   }
 
   changeBinding(binding, value){
-    var self = this;
-
     if (this[binding].indexOf(value) != -1 ) {
       this[binding].splice(this[binding].indexOf(value), 1);
     } else {
-      this[binding].push(value)
+      this[binding].push(value);
     }
   }
 
   AddRemoveASelectPicker3() {
-     var index = this.Selectpicker3.indexOf(this.A);
+    var index = this.Selectpicker3.indexOf(this.A);
     if (index > -1 ) {
       this.Selectpicker3.splice(index, 1);
     } else {
@@ -208,7 +131,6 @@ export default  class SelectpickerAngularComponent {
   }
 
   AddRemoveArray() {
-    var self = this;
     var index = this.Selectpicker1.indexOf(this.arrayOneTwoThree);
     if (index > -1 ) {
       this.Selectpicker1.splice(index, 1);
@@ -218,7 +140,6 @@ export default  class SelectpickerAngularComponent {
   }
 
   AddRemoveArraySelectPicker3() {
-    var self = this;
     var index = this.Selectpicker3.indexOf(this.arrayOneTwoThree);
     if (index > -1 ) {
       this.Selectpicker3.splice(index, 1);
@@ -232,7 +153,6 @@ export default  class SelectpickerAngularComponent {
   }
 
   AddRemoveObjet() {
-    var self = this;
     var index = this.Selectpicker1.indexOf(this.objetWithArray);
     if (index > -1 ) {
       this.Selectpicker1.splice(index, 1);
@@ -243,7 +163,6 @@ export default  class SelectpickerAngularComponent {
   }
 
   AddRemoveObjetSelectPicker3() {
-    var self = this;
     var index = this.Selectpicker3.indexOf(this.objetWithArray);
     if (index > -1 ) {
       this.Selectpicker3.splice(index, 1);
