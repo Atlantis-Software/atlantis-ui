@@ -300,11 +300,7 @@ describe('datepicker-range', function() {
     assert.strictEqual(modal.classList[3], void 0);
   }));
 
-<<<<<<< HEAD
   it('should render last week in value when choose last week in selectList', fakeAsync(function(){
-=======
-  it('should render today in value when choose last week in selectList', fakeAsync(function() {
->>>>>>> 2d96d735fc53c9296506426c8f3490dee75e95bb
     var fixture = TestBed.createComponent(datepickerRangeTestComponent);
     fixture.detectChanges();
     tick();
@@ -335,11 +331,7 @@ describe('datepicker-range', function() {
     assert.strictEqual(modal.classList[3], void 0);
   }));
 
-<<<<<<< HEAD
   it('should render last month in value when choose last month in selectList', fakeAsync(function(){
-=======
-  it('should render today in value when choose last month in selectList', fakeAsync(function() {
->>>>>>> 2d96d735fc53c9296506426c8f3490dee75e95bb
     var fixture = TestBed.createComponent(datepickerRangeTestComponent);
     fixture.detectChanges();
     tick();
@@ -364,22 +356,13 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-<<<<<<< HEAD
     assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"),  moment().subtract(1, 'months').startOf('months').format('YYYY-MM-DD'));
     assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'),  moment().subtract(1, 'months').endOf('months').format('YYYY-MM-DD'));
-=======
-    assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"), moment().subtract(1, 'months').startOf('months').format('YYYY-MM-DD'));
-    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'), moment().subtract(1, 'months').endOf('months').format('YYYY-MM-DD'));
->>>>>>> 2d96d735fc53c9296506426c8f3490dee75e95bb
 
     assert.strictEqual(modal.classList[3], void 0);
   }));
 
-<<<<<<< HEAD
   it('should render last 7 day in value when choose last 7 day in selectList', fakeAsync(function(){
-=======
-  it('should render today in value when choose last 7 day in selectList', fakeAsync(function() {
->>>>>>> 2d96d735fc53c9296506426c8f3490dee75e95bb
     var fixture = TestBed.createComponent(datepickerRangeTestComponent);
     fixture.detectChanges();
     tick();
@@ -410,11 +393,7 @@ describe('datepicker-range', function() {
     assert.strictEqual(modal.classList[3], void 0);
   }));
 
-<<<<<<< HEAD
   it('should render last 30 day in value when choose last 30 day in selectList', fakeAsync(function(){
-=======
-  it('should render today in value when choose last 30 day in selectList', fakeAsync(function() {
->>>>>>> 2d96d735fc53c9296506426c8f3490dee75e95bb
     var fixture = TestBed.createComponent(datepickerRangeTestComponent);
     fixture.detectChanges();
     tick();
@@ -445,11 +424,7 @@ describe('datepicker-range', function() {
     assert.strictEqual(modal.classList[3], void 0);
   }));
 
-<<<<<<< HEAD
   it('should render last year in value when choose last year in selectList', fakeAsync(function(){
-=======
-  it('should render today in value when choose last year in selectList', fakeAsync(function() {
->>>>>>> 2d96d735fc53c9296506426c8f3490dee75e95bb
     var fixture = TestBed.createComponent(datepickerRangeTestComponent);
     fixture.detectChanges();
     tick();
