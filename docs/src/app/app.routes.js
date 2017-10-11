@@ -11,7 +11,6 @@ import navbarComponent from './navbar/navbar.component';
 
 import DropdownAngularComponent from './dropdownAngular/dropdown.component.js';
 
-import InputComponent from './input/input.component.js';
 import ButtonComponent from './button/button.component.js';
 import IconComponent from './icon/icon.component.js';
 
@@ -55,7 +54,6 @@ export default [
 
   { path: 'dropdownAngular', component: DropdownAngularComponent },
 
-  { path: 'input', component: InputComponent },
   { path: 'button', component: ButtonComponent },
   { path: 'icon', component: IconComponent },
 

@@ -80,20 +80,19 @@ export default class treeComponent {
     } else {
       this.dropZonesNested = undefined;
     }
-    var recursiveSetId = function(node, index, dropZones) {
-      node.id = index+1;
+    var recursiveSetId = function(node, dropZones) {
       if (dropZones !== undefined) {
         node.dropZones = dropZones;
       }
       node.selected = node.selected || false;
       if (node.children) {
-        node.children.forEach(function(child, index) {
-          recursiveSetId(child, index);
+        node.children.forEach(function(child) {
+          recursiveSetId(child);
         });
       }
     };
-    this.nodes.forEach((node, index) => {
-      recursiveSetId(node, index, this.dropZonesNested);
+    this.nodes.forEach(function(node) {
+      recursiveSetId(node);
     });
     this.cdr.detectChanges();
   }

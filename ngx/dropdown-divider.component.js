@@ -1,23 +1,22 @@
-import { Component, ElementRef} from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 
 export default class dropdownDividerComponent {
-  constructor (elementRef) {
+  constructor(elementRef) {
     this.elementRef = elementRef;
   }
-	static get annotations() {
-		return [
-			new Component({
+  static get annotations() {
+    return [
+      new Component({
         selector: 'dropdown-divider',
         template: "",
-        host:{
-          "class":"divider"
+        host: {
+          "class": "divider"
         }
-	  	})
-		];
-	}
-
-  ngAfterViewInit(){
+      })
+    ];
   }
+
+  ngAfterViewInit() {}
 }
 
 dropdownDividerComponent.parameters = [ElementRef];

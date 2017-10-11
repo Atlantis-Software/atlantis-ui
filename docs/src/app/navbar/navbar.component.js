@@ -6,7 +6,7 @@ export default  class navbarComponent {
       new Component({
         template: require('./navbar.html')
       })
-    ]
+    ];
   }
   constructor(){
 
@@ -70,8 +70,73 @@ export default  class navbarComponent {
 
       </div>
 
-    </div>`
+    </div>`;
 
-    this.Display = "Example"
+    this.navbarBasic = `
+    <div class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand">Test</a>
+        </div>
+        <div class="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#/navbar">Menu A</a></li>
+            <li><a href="#/navbar">Menu B</a></li>
+            <li class="disabled"><a href="#/navbar">Menu C</a></li>
+            <li><a href="#/navbar">Menu D</a></li>
+            <li class="active"><a href="#/navbar">Menu E</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>`;
+
+    this.navbarForms = `
+    <div class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="#/navbar" class="navbar-brand">Company</a>
+        </div>
+        <form class="navbar-form navbar-left">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Action">
+          </div>
+          <button type="submit" class="btn btn-default">Search</button>
+        </form>
+      </div>
+    </div>`;
+
+    this.navbarButton = `
+    <div class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="#/navbar" class="navbar-brand">Company</a>
+        </div>
+        <button type="button" class="btn btn-default navbar-btn">Register</button>
+      </div>
+    </div>`;
+
+    this.navbarInverse = `
+    <div class="navbar navbar-inverse">
+      ...
+    </div>`;
+
+    this.navbarDropdown = `
+    <ul class="nav navbar-nav">
+      <li>
+        <dropdown title="Menu A">
+          <dropdown-option><a href="#/navbar">Sub-menu A</a></dropdown-option>
+          <dropdown-option><a href="#/navbar">Sub-menu B</a></dropdown-option>
+          <dropdown-divider></dropdown-divider>
+          <dropdown-option><a href="#/navbar">Sub-menu separated A</a></dropdown-option>
+          <dropdown-header>Menu</dropdown-header>
+          <dropdown-option><a href="#/navbar">Sub-menu separated B</a></dropdown-option>
+        </dropdown>
+      </li>
+    </ul>`;
+
+    this.navbarText = `
+    <p class="navbar-text">Test text</p>`;
+
+    this.Display = "Example";
   }
 }

@@ -179,7 +179,7 @@ describe('tree', function() {
     checkNodes(testComponent.nodes, 1);
 
     treeNodeLines.forEach((treeNodeLine) => {
-      assert.strictEqual(treeNodeLine.querySelector('.tree-node-checkbox').checked, false);
+      assert.strictEqual(treeNodeLine.querySelector('input[type="checkbox"]').checked, false);
     });
   }));
 
@@ -191,7 +191,7 @@ describe('tree', function() {
 
     var node = getNode('Node 2442');
     assert(node, 'Node not found');
-    var checkbox = node.querySelector('.tree-node-checkbox');
+    var checkbox = node.querySelector('input[type="checkbox"]');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -201,13 +201,13 @@ describe('tree', function() {
     var treeNodeLines = document.querySelectorAll('.tree-node-line');
     treeNodeLines.forEach((treeNodeLine) => {
       if (treeNodeLine.querySelector('.tree-node-label').innerText === 'Node 2442') {
-        assert(treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node should be checked');
+        assert(treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node should be checked');
         return;
       }
       if (['Node 2', 'Node 24', 'Node 244'].indexOf(treeNodeLine.querySelector('.tree-node-label').innerText) !== -1) {
-        assert(treeNodeLine.querySelector('.tree-node-checkbox').indeterminate, 'Node should be indeterminate');
+        assert(treeNodeLine.querySelector('input[type="checkbox"]').indeterminate, 'Node should be indeterminate');
       }
-      assert(!treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node shouldn\'t be checked');
+      assert(!treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node shouldn\'t be checked');
     });
   }));
 
@@ -219,7 +219,7 @@ describe('tree', function() {
 
     var node = getNode('Node 2');
     assert(node, 'Node not found');
-    var checkbox = node.querySelector('.tree-node-checkbox');
+    var checkbox = node.querySelector('input[type="checkbox"]');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -230,10 +230,10 @@ describe('tree', function() {
     var treeNodeLines = document.querySelectorAll('.tree-node-line');
     treeNodeLines.forEach((treeNodeLine) => {
       if (treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 2')) {
-        assert(treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node should be checked');
+        assert(treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node should be checked');
         return;
       }
-      assert(!treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node shouldn\'t be checked');
+      assert(!treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node shouldn\'t be checked');
     });
   }));
 
@@ -245,7 +245,7 @@ describe('tree', function() {
 
     var node = getNode('Node 24');
     assert(node, 'Node not found');
-    var checkbox = node.querySelector('.tree-node-checkbox');
+    var checkbox = node.querySelector('input[type="checkbox"]');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -256,13 +256,13 @@ describe('tree', function() {
     var treeNodeLines = document.querySelectorAll('.tree-node-line');
     treeNodeLines.forEach((treeNodeLine) => {
       if (treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 24')) {
-        assert(treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node should be checked');
+        assert(treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node should be checked');
         return;
       }
       if (treeNodeLine.querySelector('.tree-node-label').innerText === "Node 2") {
-        assert(treeNodeLine.querySelector('.tree-node-checkbox').indeterminate, 'Node should be indeterminate');
+        assert(treeNodeLine.querySelector('input[type="checkbox"]').indeterminate, 'Node should be indeterminate');
       }
-      assert(!treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node shouldn\'t be checked');
+      assert(!treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node shouldn\'t be checked');
     });
   }));
 
@@ -274,7 +274,7 @@ describe('tree', function() {
 
     var node = getNode('Node 24');
     assert(node, 'Node not found');
-    var checkbox = node.querySelector('.tree-node-checkbox');
+    var checkbox = node.querySelector('input[type="checkbox"]');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -285,18 +285,18 @@ describe('tree', function() {
     var treeNodeLines = document.querySelectorAll('.tree-node-line');
     treeNodeLines.forEach((treeNodeLine) => {
       if (treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 24')) {
-        assert(treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node should be checked');
+        assert(treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node should be checked');
         return;
       }
       if (treeNodeLine.querySelector('.tree-node-label').innerText === "Node 2") {
-        assert(treeNodeLine.querySelector('.tree-node-checkbox').indeterminate, 'Node should be indeterminate');
+        assert(treeNodeLine.querySelector('input[type="checkbox"]').indeterminate, 'Node should be indeterminate');
       }
-      assert(!treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node shouldn\'t be checked');
+      assert(!treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node shouldn\'t be checked');
     });
 
     node = getNode('Node 2442');
     assert(node, 'Node not found');
-    checkbox = node.querySelector('.tree-node-checkbox');
+    checkbox = node.querySelector('input[type="checkbox"]');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -308,13 +308,13 @@ describe('tree', function() {
     treeNodeLines.forEach((treeNodeLine) => {
       if (treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 24') &&
         (['Node 2', 'Node 24', 'Node 244', 'Node 2442'].indexOf(treeNodeLine.querySelector('.tree-node-label').innerText) === -1)) {
-        assert(treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node should be checked');
+        assert(treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node should be checked');
         return;
       }
       if (['Node 2', 'Node 24', 'Node 244'].indexOf(treeNodeLine.querySelector('.tree-node-label').innerText) !== -1) {
-        assert(treeNodeLine.querySelector('.tree-node-checkbox').indeterminate, 'Node should be indeterminate');
+        assert(treeNodeLine.querySelector('input[type="checkbox"]').indeterminate, 'Node should be indeterminate');
       }
-      assert(!treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node shouldn\'t be checked');
+      assert(!treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node shouldn\'t be checked');
     });
   }));
 
@@ -326,7 +326,7 @@ describe('tree', function() {
 
     var node = getNode('Node 24');
     assert(node, 'Node not found');
-    var checkbox = node.querySelector('.tree-node-checkbox');
+    var checkbox = node.querySelector('input[type="checkbox"]');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -336,7 +336,7 @@ describe('tree', function() {
 
     node = getNode('Node 244');
     assert(node, 'Node not found');
-    checkbox = node.querySelector('.tree-node-checkbox');
+    checkbox = node.querySelector('input[type="checkbox"]');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -349,13 +349,13 @@ describe('tree', function() {
       if (treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 24') &&
         !treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 244') &&
         treeNodeLine.querySelector('.tree-node-label').innerText !== 'Node 24') {
-        assert(treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node should be checked');
+        assert(treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node should be checked');
         return;
       }
       if (['Node 2', 'Node 24'].indexOf(treeNodeLine.querySelector('.tree-node-label').innerText) !== -1) {
-        assert(treeNodeLine.querySelector('.tree-node-checkbox').indeterminate, 'Node should be indeterminate');
+        assert(treeNodeLine.querySelector('input[type="checkbox"]').indeterminate, 'Node should be indeterminate');
       }
-      assert(!treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node shouldn\'t be checked');
+      assert(!treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node shouldn\'t be checked');
     });
   }));
 
@@ -367,7 +367,7 @@ describe('tree', function() {
 
     var node = getNode('Node 244');
     assert(node, 'Node not found');
-    var checkbox = node.querySelector('.tree-node-checkbox');
+    var checkbox = node.querySelector('input[type="checkbox"]');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -377,7 +377,7 @@ describe('tree', function() {
 
     node = getNode('Node 24');
     assert(node, 'Node not found');
-    checkbox = node.querySelector('.tree-node-checkbox');
+    checkbox = node.querySelector('input[type="checkbox"]');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -388,13 +388,13 @@ describe('tree', function() {
     var treeNodeLines = document.querySelectorAll('.tree-node-line');
     treeNodeLines.forEach((treeNodeLine) => {
       if (treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 24')) {
-        assert(treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node should be checked');
+        assert(treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node should be checked');
         return;
       }
       if (treeNodeLine.querySelector('.tree-node-label').innerText === "Node 2") {
-        assert(treeNodeLine.querySelector('.tree-node-checkbox').indeterminate, 'Node should be indeterminate');
+        assert(treeNodeLine.querySelector('input[type="checkbox"]').indeterminate, 'Node should be indeterminate');
       }
-      assert(!treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node shouldn\'t be checked');
+      assert(!treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node shouldn\'t be checked');
     });
   }));
 
@@ -406,7 +406,7 @@ describe('tree', function() {
 
     var node = getNode('Node 24');
     assert(node, 'Node not found');
-    var checkbox = node.querySelector('.tree-node-checkbox');
+    var checkbox = node.querySelector('input[type="checkbox"]');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -416,7 +416,7 @@ describe('tree', function() {
 
     node = getNode('Node 2443');
     assert(node, 'Node not found');
-    checkbox = node.querySelector('.tree-node-checkbox');
+    checkbox = node.querySelector('input[type="checkbox"]');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -426,7 +426,7 @@ describe('tree', function() {
 
     node = getNode('Node 24');
     assert(node, 'Node not found');
-    checkbox = node.querySelector('.tree-node-checkbox');
+    checkbox = node.querySelector('input[type="checkbox"]');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -437,13 +437,13 @@ describe('tree', function() {
     var treeNodeLines = document.querySelectorAll('.tree-node-line');
     treeNodeLines.forEach((treeNodeLine) => {
       if (treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 24')) {
-        assert(treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node should be checked');
+        assert(treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node should be checked');
         return;
       }
       if (treeNodeLine.querySelector('.tree-node-label').innerText === "Node 2") {
-        assert(treeNodeLine.querySelector('.tree-node-checkbox').indeterminate, 'Node should be indeterminate');
+        assert(treeNodeLine.querySelector('input[type="checkbox"]').indeterminate, 'Node should be indeterminate');
       }
-      assert(!treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node shouldn\'t be checked');
+      assert(!treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node shouldn\'t be checked');
     });
   }));
 
@@ -455,7 +455,7 @@ describe('tree', function() {
 
     var node = getNode('Node 24');
     assert(node, 'Node not found');
-    var checkbox = node.querySelector('.tree-node-checkbox');
+    var checkbox = node.querySelector('input[type="checkbox"]');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -465,7 +465,7 @@ describe('tree', function() {
 
     node = getNode('Node 2443');
     assert(node, 'Node not found');
-    checkbox = node.querySelector('.tree-node-checkbox');
+    checkbox = node.querySelector('input[type="checkbox"]');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -475,7 +475,7 @@ describe('tree', function() {
 
     node = getNode('Node 244');
     assert(node, 'Node not found');
-    checkbox = node.querySelector('.tree-node-checkbox');
+    checkbox = node.querySelector('input[type="checkbox"]');
     assert(checkbox, 'Checkbox not found');
 
     checkbox.click();
@@ -486,13 +486,13 @@ describe('tree', function() {
     var treeNodeLines = document.querySelectorAll('.tree-node-line');
     treeNodeLines.forEach((treeNodeLine) => {
       if (treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 24')) {
-        assert(treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node should be checked');
+        assert(treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node should be checked');
         return;
       }
       if (treeNodeLine.querySelector('.tree-node-label').innerText === "Node 2") {
-        assert(treeNodeLine.querySelector('.tree-node-checkbox').indeterminate, 'Node should be indeterminate');
+        assert(treeNodeLine.querySelector('input[type="checkbox"]').indeterminate, 'Node should be indeterminate');
       }
-      assert(!treeNodeLine.querySelector('.tree-node-checkbox').checked, 'Node shouldn\'t be checked');
+      assert(!treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node shouldn\'t be checked');
     });
   }));
 });

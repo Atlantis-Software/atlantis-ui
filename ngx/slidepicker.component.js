@@ -1,4 +1,4 @@
-import { Component, ElementRef, forwardRef, ContentChildren} from '@angular/core';
+import { Component, ElementRef, forwardRef, ContentChildren } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export class slidepickerComponent {
@@ -26,7 +26,7 @@ export class slidepickerComponent {
     ];
   }
 
-  constructor (elementRef) {
+  constructor(elementRef) {
     this.elementRef = elementRef;
     this.onModelTouched = function() {};
     this.onModelChange = function() {};
@@ -36,18 +36,18 @@ export class slidepickerComponent {
 
   writeValue(val) {
     if (this.labels) {
-      if (val === undefined ) {
+      if (val === undefined) {
         val = this.labels.first.value;
       }
       if (val !== this.val) {
         var labelActive = this.labels.first;
         this.val = val;
         this.onModelChange(val);
-        this.labels.forEach(function(label){
+        this.labels.forEach(function(label) {
           if (val === label.value) {
             labelActive = label;
           }
-        })
+        });
         this.changeActive(labelActive);
       }
     }
@@ -62,26 +62,26 @@ export class slidepickerComponent {
 
 
   ngAfterViewInit() {
-    var labelsChanges = this.labels.changes.subscribe(labels => {
-      if (labels.length > 0 ) {
+    this.labels.changes.subscribe(labels => {
+      if (labels.length > 0) {
         var oneActive = false;
-        labels.forEach((label)=>{
+        labels.forEach((label) => {
           if (label.isActive) {
             oneActive = true;
-            setTimeout(()=>{
+            setTimeout(() => {
               this.changeActive(label);
-            },0)
+            }, 0);
           }
-        })
-        if(oneActive) {
+        });
+        if (oneActive) {
           return;
         } else {
-          setTimeout(()=>{
-            this.changeActive(this.labels.first)
-          },0);
+          setTimeout(() => {
+            this.changeActive(this.labels.first);
+          }, 0);
         }
       }
-    })
+    });
 
     this.slidepickerClassList = this.elementRef.nativeElement.classList;
     this.slidepicker = this.elementRef.nativeElement;
@@ -103,35 +103,35 @@ export class slidepickerComponent {
 
         var labels = this.labels.toArray();
         var index = labels.indexOf(labelActive);
-        if (index !== -1){
+        if (index !== -1) {
           labelActive.isActive = true;
           this.labels.forEach(function(label) {
             if (label !== labelActive) {
               label.isActive = false;
             }
-          })
+          });
           this.val = labelActive.value;
         }
         this.onModelChange(this.val);
       }
 
 
-      this.labels.forEach(function(label){
+      this.labels.forEach(function(label) {
 
-        if(label.isActive){
+        if (label.isActive) {
           var labelDom = label.elementRef.nativeElement.getElementsByTagName("a")[0];
-          var posLabel;
+          var posLabel, handleAdjustment;
           if (self.vertical) {
             posLabel = labelDom.offsetTop;
-            var handleAdjustment = labelDom.clientHeight/2;
+            handleAdjustment = labelDom.clientHeight / 2;
           } else {
             posLabel = labelDom.offsetLeft;
-            var handleAdjustment = labelDom.clientWidht/2;
+            handleAdjustment = labelDom.clientWidht / 2;
           }
           var posReal = posLabel + handleAdjustment;
-          self.positionReal(posReal)
+          self.positionReal(posReal);
         }
-      })
+      });
     }
 
   }
@@ -161,20 +161,19 @@ export class slidepickerComponent {
       var trackHeight = track.offsetHeight;
       var trackWidth = track.offsetWidth;
       var offset = this.getPosition(track);
+      var pageY, pageX;
       if (this.vertical) {
-        var pageY;
         if (originalE && typeof originalE.targetTouches !== "undefined") {
-          pageY = originalE.targetTouches[0].pageY
+          pageY = originalE.targetTouches[0].pageY;
         } else {
           pageY = e.pageY;
         }
         this.perc = (pageY - offset.top) / trackHeight;
       } else {
-        var pageY;
-        if (originelE && typeof originalE.targetTouches !== "undefined") {
-          pageY = originalE.targetTouches[0].pageX
+        if (originalE && typeof originalE.targetTouches !== "undefined") {
+          pageX = originalE.targetTouches[0].pageX;
         } else {
-          pageY = e.pageX;
+          pageX = e.pageX;
         }
         this.perc = (pageX - offset.left) / trackWidth;
       }
@@ -186,17 +185,11 @@ export class slidepickerComponent {
     e.preventDefault();
     e.stopPropagation();
 
-    var track = this.slidepicker.getElementsByClassName("slidepicker-track")[0];
-
-    var originalE = e.originalEvent;
     var countlabel = this.labels.length;
-    var trackHeight = track.offsetHeight;
-    var trackWidth = track.offsetWidth;
+    var numberLabel = Math.floor(this.perc * (countlabel));
 
-    var numberLabel = Math.floor(this.perc * (countlabel))
-
-    if(numberLabel >= countlabel) {
-      numberLabel = countlabel -1;
+    if (numberLabel >= countlabel) {
+      numberLabel = countlabel - 1;
     }
 
     this.handleClick = false;
@@ -204,13 +197,13 @@ export class slidepickerComponent {
     this.changeActive(labels[numberLabel]);
   }
 
-  positionReal(position){
+  positionReal(position) {
     var handle = this.slidepicker.getElementsByClassName("slidepicker-handle")[0];
     if (this.vertical) {
-      handle.style.transform = "translateY("+position+"px)";
+      handle.style.transform = "translateY(" + position + "px)";
       handle.style.top = "";
     } else {
-      handle.style.transform = "translateX("+position+"px)";
+      handle.style.transform = "translateX(" + position + "px)";
       handle.style.left = "";
     }
   }
@@ -224,10 +217,10 @@ export class slidepickerComponent {
 
     if (this.vertical) {
       increment = trackHeight / 1000;
-      this.perc = (Math.round(this.perc * 1000) * increment ) / trackHeight;
+      this.perc = (Math.round(this.perc * 1000) * increment) / trackHeight;
     } else {
       increment = trackWidth / 1000;
-      this.perc = (Math.round(this.perc * 1000) * increment ) / trackWidth;
+      this.perc = (Math.round(this.perc * 1000) * increment) / trackWidth;
     }
 
     if (this.perc < 0) {
@@ -250,12 +243,12 @@ export class slidepickerComponent {
   getPosition(element) {
     var left = 0;
     var top = 0;
-    while (element.offsetParent != undefined && element.offsetParent != null ) {
+    while (element.offsetParent != undefined && element.offsetParent != null) {
       left += element.offsetLeft + (element.clientLeft != null ? element.clientLeft : 0);
       top += element.offsetTop + (element.clientTop != null ? element.clientTop : 0);
       element = element.offsetParent;
     }
-    return {"left": left, "top": top}
+    return { "left": left, "top": top };
   }
 
 }
@@ -263,35 +256,35 @@ export class slidepickerComponent {
 slidepickerComponent.parameters = [ElementRef];
 
 export class slidepickeroptionComponent {
-	static get annotations() {
-		return [
-			new Component({
+  static get annotations() {
+    return [
+      new Component({
         selector: 'slidepicker-option',
         template: `
           <a (click)="clickLabel($event)"><ng-content></ng-content></a>`,
         inputs: ['value'],
-        styles : [
+        styles: [
           ":host { display: list-item; }"
         ],
         host: {
           "[class.active]": "isActive"
         }
-	  	})
-		];
-	}
+      })
+    ];
+  }
 
-  constructor (elementRef, slidepicker) {
+  constructor(elementRef, slidepicker) {
     this.elementRef = elementRef;
     this.slidepicker = slidepicker;
     this.isActive = false;
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
 
   }
 
   toggleActive(e) {
-    if (typeof e === "event") {
+    if (e.preventDefault) {
       e.preventDefault();
     }
     this.isActive = !this.isActive;
@@ -305,19 +298,19 @@ export class slidepickeroptionComponent {
     e.preventDefault();
 
     if (!this.isActive) {
-      this.toggleActive(e)
+      this.toggleActive(e);
 
       var label = e.target;
-      var posLabel;
+      var posLabel, handleAdjustment;
       if (this.slidepicker.vertical) {
         posLabel = label.offsetTop;
-        var handleAdjustment = label.clientHeight/2;
+        handleAdjustment = label.clientHeight / 2;
       } else {
         posLabel = label.offsetLeft;
-        var handleAdjustment = label.clientWidht/2;
+        handleAdjustment = label.clientWidht / 2;
       }
       var posReal = posLabel + handleAdjustment;
-      this.slidepicker.positionReal(posReal)
+      this.slidepicker.positionReal(posReal);
 
     }
   }
@@ -328,11 +321,11 @@ export class slidepickeroptionComponent {
     }
     if (this.slidepicker.labels) {
       var self = this;
-      this.slidepicker.labels.forEach(function(label){
+      this.slidepicker.labels.forEach(function(label) {
         if (label.isActive) {
-          self.slidepicker.changeActive(label)
+          self.slidepicker.changeActive(label);
         }
-      })
+      });
     }
   }
 }

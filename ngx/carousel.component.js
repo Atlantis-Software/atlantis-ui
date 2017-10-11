@@ -1,4 +1,4 @@
-import { Component, ContentChildren, ElementRef, ChangeDetectorRef} from '@angular/core';
+import { Component, ContentChildren, ElementRef, ChangeDetectorRef } from '@angular/core';
 // import { trigger, state, style, animate, transition } from '@angular/animations'
 
 
@@ -9,7 +9,7 @@ export class carouselComponent {
       new Component({
         selector: 'carousel',
         template: `
-        <ol [hidden]="items.length <= 0 || !options.indicator" class="carousel-indicators">
+        <ol [hidden]="items.length <= 0 || !indicator" class="carousel-indicators">
           <li *ngFor="let item of items;" (click)="changeItem(item)" [class.active]="item.isActive"></li>
         </ol>
 
@@ -28,12 +28,12 @@ export class carouselComponent {
         queries: {
           items: new ContentChildren(carouselItemComponent)
         },
-        inputs: ["options"],
+        inputs: ["indicator", "activeDefault", "interval", "pause"],
         host: {
-          "class":"carousel",
-          "[hidden]":"items.length === 0",
-          "(mouseenter)":"hover=true",
-          "(mouseleave)":"hover=false"
+          "class": "carousel",
+          "[hidden]": "items.length === 0",
+          "(mouseenter)": "hover=true",
+          "(mouseleave)": "hover=false"
         }
       })
     ];
@@ -43,54 +43,53 @@ export class carouselComponent {
     this.activeItem;
     this.hover = false;
     this.click = false;
-    this.cdr = ChangeDetectorRef
+    this.cdr = ChangeDetectorRef;
   }
 
-  ngAfterViewInit(){
-    var self = this;
+  ngAfterViewInit() {
     var items = this.items.toArray();
-    var itemsChanges = this.items.changes.subscribe((items)=>{
-      if (items.length > 0 ) {
+    this.items.changes.subscribe((items) => {
+      if (items.length > 0) {
         var oneActive = false;
-        items.forEach((item)=>{
+        items.forEach((item) => {
           if (item.isActive) {
             oneActive = true;
           }
-        })
+        });
         if (!oneActive) {
-          setTimeout(()=>{
+          setTimeout(() => {
             this.changeItem(items.first);
           }, 0);
         }
       }
-    })
+    });
 
-    if (this.options && this.options.activeDefault > 0) {
-      if (this.options.activeDefault > this.items.length - 1) {
-        this.options.activeDefault = 0;
+    if (this.activeDefault > 0) {
+      if (this.activeDefault > this.items.length - 1) {
+        this.activeDefault = 0;
       }
-      setTimeout(()=>{
-        this.changeItem(items[this.options.activeDefault], "none")
+      setTimeout(() => {
+        this.changeItem(items[this.activeDefault], "none");
       }, 0);
     } else {
-      setTimeout(()=>{
+      setTimeout(() => {
         this.changeItem(this.items.first, "none");
       }, 0);
     }
 
-    if (this.options && this.options.interval) {
-      if (this.options.interval < 0) {
-        this.options.interval = 2000
+    if (this.interval) {
+      if (this.interval < 0) {
+        this.interval = 2000;
       }
       this.slide = setInterval(() => {
-        if(this.items.length > 1 && !this.hover || this.options.pause === "none") {
+        if (this.items.length > 1 && (!this.hover || this.pause === "none")) {
           var nextActive = this.activeItem + 1;
           if (nextActive >= this.items.length) {
             nextActive = 0;
           }
-          this.nextItem()
+          this.nextItem();
         }
-      }, this.options.interval)
+      }, this.interval);
     }
     this.click = false;
   }
@@ -101,14 +100,14 @@ export class carouselComponent {
 
   getDirection(newActive, oldActive) {
     if (newActive > oldActive) {
-      return "left"
+      return "left";
     } else {
-      return "right"
+      return "right";
     }
   }
 
-  changeItem(itemActive, direction, type) {
-    if (!this.items.length>0) {
+  changeItem(itemActive, direction) {
+    if (!this.items.length > 0) {
       return;
     }
 
@@ -119,41 +118,28 @@ export class carouselComponent {
     if (this.click) {
       return;
     }
-    var items = this.items.toArray()
+    var items = this.items.toArray();
     var indexNewActive = items.indexOf(itemActive);
-    var direction = direction || this.getDirection(indexNewActive, this.activeItem);
-    if (direction === "left") {
-      type = type || "next"
-    } else if (direction === "right") {
-      type = type || "prev"
-    }
-    if(itemActive.delete) {
-      this.items.forEach((item)=> {
+    direction = direction || this.getDirection(indexNewActive, this.activeItem);
+    if (itemActive.delete) {
+      this.items.forEach((item) => {
         if (!item.delete) {
           itemActive = item;
         }
-      })
+      });
     }
-    if (this.options && this.options.slide && this.activeItem !== undefined) {
-      // itemActive[type] = true;
-      // itemActive[direction] = true;
-      // items[this.activeItem][direction] = true;
-      //
+    if (this.slide && this.activeItem !== undefined) {
       itemActive.state = direction;
       items[this.activeItem].state = direction;
-      setTimeout(()=>{
-        itemActive.isActive = true;
-        this.items.forEach((item) => {
-          if (item !== itemActive) {
-            item.isActive = false;
-          }
-        });
-        itemActive.state = "active";
-        items[this.activeItem].state = "";
-        // items[this.activeItem].left = false;
-        // items[this.activeItem].right = false;
-        this.activeItem = indexNewActive;
-      }, 600);
+      itemActive.isActive = true;
+      this.items.forEach((item) => {
+        if (item !== itemActive) {
+          item.isActive = false;
+        }
+      });
+      itemActive.state = "active";
+      items[this.activeItem].state = "";
+      this.activeItem = indexNewActive;
     } else {
       this.activeItem = indexNewActive;
       itemActive.isActive = true;
@@ -167,32 +153,32 @@ export class carouselComponent {
 
   }
 
-  nextItem(){
+  nextItem() {
     var items = this.items.toArray();
     var index;
     this.items.forEach((item, indexItem) => {
       if (item.isActive) {
-        index = indexItem +1;
+        index = indexItem + 1;
         if (index >= this.items.length) {
           index = 0;
         }
       }
-    })
-    this.changeItem(items[index], "left", "next")
+    });
+    this.changeItem(items[index], "left", "next");
   }
 
-  previousItem(){
+  previousItem() {
     var items = this.items.toArray();
     var index;
     this.items.forEach((item, indexItem) => {
       if (item.isActive) {
         index = indexItem - 1;
         if (index < 0) {
-          index = this.items.length - 1 ;
+          index = this.items.length - 1;
         }
       }
-    })
-    this.changeItem(items[index], "right", "prev")
+    });
+    this.changeItem(items[index], "right", "prev");
   }
 
 
@@ -201,9 +187,9 @@ export class carouselComponent {
 carouselComponent.parameters = [ElementRef, ChangeDetectorRef];
 
 export class carouselItemComponent {
-	static get annotations() {
-		return [
-			new Component({
+  static get annotations() {
+    return [
+      new Component({
         selector: 'carousel-item',
         template: `
           <ng-content >
@@ -223,11 +209,11 @@ export class carouselItemComponent {
         //     transition('* => left', animate('600ms')),
         //   ])
         // ]
-	  	})
-		];
-	}
+      })
+    ];
+  }
 
-  constructor (elementRef, carousel) {
+  constructor(elementRef, carousel) {
     this.elementRef = elementRef;
     this.carousel = carousel;
     this.isActive = false;

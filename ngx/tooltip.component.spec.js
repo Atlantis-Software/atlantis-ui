@@ -1,6 +1,5 @@
-import { getTestBed, TestBed, async, fakeAsync, tick, DebugElement} from '@angular/core/testing';
+import { getTestBed, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import atlantisUI from './ngx-atlantis-ui-module.js';
 import { Component } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
@@ -11,11 +10,10 @@ import { ngxAtlUiModule } from './ngx-atlantis-ui-module.js';
 var assert = require('assert');
 
 class tooltipTestComponent {
-  constructor() {
-  }
-	static get annotations() {
-		return [
-			new Component({
+  constructor() {}
+  static get annotations() {
+    return [
+      new Component({
         template: `
         <button type="button" class="btn btn-default" tooltip tooltipDirection="left" [tooltipContent]="'test1'">
           tooltip on left
@@ -32,17 +30,16 @@ class tooltipTestComponent {
         <button type="button" class="btn btn-default" tooltip tooltipDirection="right" tooltipContent="test4">
           tooltip on right
         </button>`
-	  	})
-		];
-	}
+      })
+    ];
+  }
 }
 
 describe('tooltip', function() {
-  var testComponent;
 
   beforeEach(async(function() {
     TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, ngxAtlUiModule.forRoot({})],
+      imports: [CommonModule, FormsModule, ngxAtlUiModule.forRoot()],
       declarations: [tooltipTestComponent]
     });
     TestBed.compileComponents();
@@ -59,9 +56,8 @@ describe('tooltip', function() {
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
     var tooltip = document.querySelectorAll('tooltipcomponent');
-    var content = document.querySelectorAll('.tooltip-inner')
+    var content = document.querySelectorAll('.tooltip-inner');
 
     assert.strictEqual(tooltip.length, 4);
     assert.strictEqual(tooltip[0].classList[2], 'left');
@@ -83,7 +79,6 @@ describe('tooltip', function() {
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
     var button = fixture.debugElement.queryAll(By.css('button'));
     var tooltip = document.querySelectorAll('tooltipcomponent');
     button[0].triggerEventHandler("mouseenter", {});

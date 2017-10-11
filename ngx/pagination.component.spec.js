@@ -1,6 +1,4 @@
 import { getTestBed, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import atlantisUI from './ngx-atlantis-ui-module.js';
 import { Component } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
@@ -15,16 +13,16 @@ class paginationTestComponent {
     this.page = 15;
     this.pages = 100;
   }
-	static get annotations() {
-		return [
-			new Component({
+  static get annotations() {
+    return [
+      new Component({
         template: `
         <pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>`
-	  	})
-		];
-	}
-  testPagination(page){
-    this.page = page
+      })
+    ];
+  }
+  testPagination(page) {
+    this.page = page;
   }
 }
 
@@ -34,7 +32,7 @@ describe('pagination', function() {
   beforeEach(async(function() {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, ngxAtlUiModule.forRoot({})],
-      declarations: [paginationTestComponent ]
+      declarations: [paginationTestComponent]
     });
     TestBed.compileComponents();
   }));
@@ -122,7 +120,7 @@ describe('pagination', function() {
     tick();
     fixture.detectChanges();
 
-    var page = document.querySelectorAll('li');
+    page = document.querySelectorAll('li');
 
     assert.strictEqual(page.length, 7);
 

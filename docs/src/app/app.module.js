@@ -20,7 +20,6 @@ import navbarComponent from './navbar/navbar.component.js';
 
 import DropdownAngularComponent from './dropdownAngular/dropdown.component.js';
 
-import InputComponent from './input/input.component.js';
 import ButtonComponent from './button/button.component.js';
 import IconComponent from './icon/icon.component.js';
 
@@ -79,7 +78,6 @@ AppModule.annotations = [
       SlidepickerAngularComponent,
       navbarComponent,
       DropdownAngularComponent,
-      InputComponent,
       ButtonComponent,
       IconComponent,
       ModalAngularComponent,
@@ -101,7 +99,7 @@ AppModule.annotations = [
       BrowserModule,
       FormsModule,
       RouterModule.forRoot(route),
-      ngxAtlUiModule.forRoot(types)
+      ngxAtlUiModule.forRoot()
     ],
     bootstrap: [ AppComponent ],
     providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, DatePipe, UpperCasePipe]

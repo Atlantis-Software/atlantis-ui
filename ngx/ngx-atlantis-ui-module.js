@@ -40,7 +40,7 @@ import dropdownDividerComponent from './dropdown-divider.component.js';
 import dropdownHeaderComponent from './dropdown-header.component.js';
 
 import circleProgessBarComponent from './circle-progress-bar.component.js';
-import { popoverComponent, popoverDirective} from './popover.component.js';
+import { popoverComponent, popoverDirective } from './popover.component.js';
 import { tooltipComponent, tooltipDirective } from './tooltip.component.js';
 
 import focusDirective from './focus.directive.js';
@@ -52,14 +52,25 @@ import { dragAndDropService, dragAndDropSortableService, dragDropServiceFactory,
 
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-export class ngxAtlUiModule{
-  static forRoot(config){
+export class ngxAtlUiModule {
+  static forRoot(config) {
     return {
       ngModule: ngxAtlUiModule,
-      providers : [
-        {provide: gridConfig, useValue : config},
-        {provide: dragAndDropService, useFactory: dragDropServiceFactory},
-        {provide: dragAndDropSortableService, useFactory: dragDropSortableServiceFactory}
+      providers: [
+        { provide: gridConfig, useValue: config },
+        { provide: dragAndDropService, useFactory: dragDropServiceFactory },
+        { provide: dragAndDropSortableService, useFactory: dragDropSortableServiceFactory }
+      ]
+    };
+  }
+
+  static forChild(config) {
+    return {
+      ngModule: ngxAtlUiModule,
+      providers: [
+        { provide: gridConfig, useValue: config},
+        { provide: dragAndDropService, useFactory: dragDropServiceFactory },
+        { provide: dragAndDropSortableService, useFactory: dragDropSortableServiceFactory }
       ]
     };
   }

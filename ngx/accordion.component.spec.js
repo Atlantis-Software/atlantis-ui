@@ -1,6 +1,4 @@
 import { getTestBed, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import atlantisUI from './ngx-atlantis-ui-module.js';
 import { Component } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
@@ -12,34 +10,28 @@ import { accordionPanelComponent } from './accordion.component.js';
 var assert = require('assert');
 
 class accordionTestComponent {
-  constructor() {
-    this.optionsAccordion = {
-      openDefault: 1,
-      style: "success"
-}
-  }
-	static get annotations() {
-		return [
-			new Component({
+  constructor() {}
+  static get annotations() {
+    return [
+      new Component({
         template: `
-    <accordion [options]="optionsAccordion">
-      <accordion-panel [title]="'test1'">
-        Panel1
-      </accordion-panel>
-      <accordion-panel [title]="'test2'">
-        Panel2
-      </accordion-panel>
-      <accordion-panel [title]="'test3'">
-        Panel3
-      </accordion-panel>
-    </accordion>`
-	  	})
-		];
-	}
+        <accordion openDefault="1" style="success">
+          <accordion-panel [title]="'test1'">
+            Panel1
+          </accordion-panel>
+          <accordion-panel [title]="'test2'">
+            Panel2
+          </accordion-panel>
+          <accordion-panel [title]="'test3'">
+            Panel3
+          </accordion-panel>
+        </accordion>`
+      })
+    ];
+  }
 }
 
 describe('accordion', function() {
-  var testComponent;
 
   beforeEach(async(function() {
     TestBed.configureTestingModule({
@@ -58,7 +50,6 @@ describe('accordion', function() {
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
     var options = document.querySelectorAll('a');
     var panels = document.querySelectorAll('.panel');
 
@@ -78,7 +69,6 @@ describe('accordion', function() {
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
     var options = document.querySelectorAll('a');
     options[0].click();
     tick();
@@ -95,7 +85,6 @@ describe('accordion', function() {
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
     var options = document.querySelectorAll('a');
     options[1].click();
     tick();

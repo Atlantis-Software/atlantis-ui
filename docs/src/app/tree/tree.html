@@ -1,9 +1,14 @@
 <div class="container">
+  <h2>
+    Tree
+  </h2>
   <h3>
     Example :
   </h3>
   <div class="row container-fluid form-group">
-    <tree class="col-md-4" [nodes]="nodes" (select)='onSelect($event)' [nestedSortable]="true"></tree>
+    <div class="col-md-4">
+      <tree [nodes]="nodes" (select)='onSelect($event)'></tree>
+    </div>
   </div>
   <button type="button" name="button" (click)="test()">nodes</button>
   <pre>
@@ -15,7 +20,7 @@
   <h3>
     Nodes attribut description :
   </h3>
-  <table class="table table-striped table-bordered table-hover">
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
         <th>

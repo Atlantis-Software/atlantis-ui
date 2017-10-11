@@ -2,6 +2,8 @@
 
 
 tree {
+  border: 1px solid @tree-default-color;
+  border-top:none;
   position:  relative;
   display:block;
   tree-node {
@@ -27,7 +29,7 @@ tree {
     }
 
     .tree-node-line {
-      border: 1px solid @tree-default-color
+      border-top: 1px solid @tree-default-color;
     }
 
     .tree-node-checkbox {
@@ -38,6 +40,16 @@ tree {
     span[sortable-handle] {
       right: 8px;
       position:absolute;
+      .checkbox {
+        margin-top: 0;
+        margin-bottom: 0;
+        label {
+          cursor: default;
+          &::before {
+            cursor: pointer;
+          }
+        }
+      }
     }
   }
 

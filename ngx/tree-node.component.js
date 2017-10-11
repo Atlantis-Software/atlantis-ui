@@ -55,7 +55,7 @@ export default class treeNodeComponent {
           </tree-node>
         </div>`,
         inputs: ['node', 'label', 'model', 'children', 'expandable', 'expanded', 'selectable', 'disabled',
-          'template', 'depth', 'selected', 'id', 'sortableZones', 'nestedSortable', 'notSortable'],
+          'template', 'depth', 'selected', 'sortableZones', 'nestedSortable', 'notSortable'],
         outputs: ['expand', 'collapse', 'select', 'selectedChange', 'expandedChange'],
         host: {
           '[class.selectable]': 'selectable'
@@ -94,7 +94,7 @@ export default class treeNodeComponent {
   }
 
   _getCheckbox() {
-    return this.elementRef.nativeElement.querySelector('.tree-node-checkbox') || {};
+    return this.elementRef.nativeElement.querySelector('input[type="checkbox"]') || {};
   }
 
   ngOnChanges() {

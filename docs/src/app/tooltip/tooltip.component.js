@@ -6,7 +6,7 @@ export default  class TooltipComponent {
       new Component({
         template: require('./tooltip.html')
       })
-    ]
+    ];
   }
   constructor(){
     this.left = 'left';

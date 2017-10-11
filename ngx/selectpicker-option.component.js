@@ -1,22 +1,22 @@
-import { Component, ElementRef} from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 
 export default class selectpickeroptionComponent {
-  constructor (elementRef) {
+  constructor(elementRef) {
     this.elementRef = elementRef;
     // by default value is not selected
     this.selected = false;
   }
-	static get annotations() {
-		return [
-			new Component({
+  static get annotations() {
+    return [
+      new Component({
         selector: 'selectpicker-option',
         template: "<ng-content></ng-content>",
         inputs: ['value']
-	  	})
-		];
-	}
+      })
+    ];
+  }
 
-  // for the bind value work we must do it in the ngAfterViewInit function 
+  // for the bind value work we must do it in the ngAfterViewInit function
   // baecause wa can't not acces to bind value before in the Lifecycle Hooks
   ngAfterViewInit() {
     this.text = this.elementRef.nativeElement.innerHTML.trim();

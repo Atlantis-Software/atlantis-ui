@@ -1,9 +1,6 @@
-import { getTestBed, TestBed, async, fakeAsync, tick} from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import atlantisUI from './ngx-atlantis-ui-module.js';
+import { getTestBed, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { Component } from '@angular/core';
 
-import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ngxAtlUiModule } from './ngx-atlantis-ui-module.js';
@@ -17,23 +14,22 @@ class datepickerRangeTestComponent {
     var date2 = new Date('02/10/2004');
     this.endDate = date2;
   }
-	static get annotations() {
-		return [
-			new Component({
+  static get annotations() {
+    return [
+      new Component({
         template: `<datepicker-range id="datepicker" [(start)]="startDate" [(end)]="endDate"></datepicker-range>
         <div id="dataStart">{{startDate}}</div>
         <div id="dataEnd">{{endDate}}</div>
         <datepicker-range [(start)]="noDateStart" [(end)]="noDateEnd" [numberOfMonths]="5"></datepicker-range>
         <div id="data2Start">{{noDateStart}}</div>
         <div id="data2End">{{noDateEnd}}</div>`
-	  	})
-		];
-	}
+      })
+    ];
+  }
 }
 
 
 describe('datepicker-range', function() {
-  var testComponent;
 
   beforeEach(async(function() {
     TestBed.configureTestingModule({
@@ -52,7 +48,6 @@ describe('datepicker-range', function() {
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
     var datepickerStart = document.querySelector('#dataStart');
     var datepickerEnd = document.querySelector('#dataEnd');
 
@@ -65,12 +60,11 @@ describe('datepicker-range', function() {
     assert.strictEqual(new Date(datepicker2End.textContent).toDateString(), new Date().toDateString());
   }));
 
-  it('should render correct value into input datepicker modal', fakeAsync(function(){
+  it('should render correct value into input datepicker modal', fakeAsync(function() {
     var fixture = TestBed.createComponent(datepickerRangeTestComponent);
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
     var input = document.querySelectorAll('input')[0];
     input.click();
     tick();
@@ -89,18 +83,17 @@ describe('datepicker-range', function() {
 
   }));
 
-  it('should render correct number of month', fakeAsync(function(){
+  it('should render correct number of month', fakeAsync(function() {
     var fixture = TestBed.createComponent(datepickerRangeTestComponent);
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
-    var input = document.querySelectorAll('input')[0];
+    var input = document.querySelectorAll('datepicker-range')[0].querySelectorAll('input')[0];
     input.click();
     tick();
     fixture.detectChanges();
 
-    var months = document.querySelectorAll(".calendar.calendar");
+    var months = document.querySelectorAll('datepicker-range')[0].querySelectorAll(".calendar.calendar");
 
     assert.strictEqual(months.length, 3);
 
@@ -109,28 +102,27 @@ describe('datepicker-range', function() {
     tick();
     fixture.detectChanges();
 
-    var input = document.querySelectorAll('input')[2];
+    input = document.querySelectorAll('datepicker-range')[1].querySelectorAll('input')[0];
     input.click();
     tick();
     fixture.detectChanges();
 
-    var months = document.querySelectorAll(".calendar.calendar");
+    months = document.querySelectorAll('datepicker-range')[1].querySelectorAll(".calendar.calendar");
 
     assert.strictEqual(months.length, 5);
 
-    var closeButton = document.querySelector(".close");
+    closeButton = document.querySelector(".close");
     closeButton.click();
     tick();
     fixture.detectChanges();
 
   }));
 
-  it('should render new value when click on other date', fakeAsync(function(){
+  it('should render new value when click on other date', fakeAsync(function() {
     var fixture = TestBed.createComponent(datepickerRangeTestComponent);
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
     var input = document.querySelectorAll('input')[0];
     input.click();
     tick();
@@ -139,12 +131,12 @@ describe('datepicker-range', function() {
     var modal = document.querySelector('.modal');
     assert.strictEqual(modal.classList[3], "in");
 
-    var firstAvailable = document.querySelector('.available')
+    var firstAvailable = document.querySelector('.available');
     firstAvailable.click();
     tick();
     fixture.detectChanges();
 
-    var secondAvailable = document.querySelectorAll('.available')[1]
+    var secondAvailable = document.querySelectorAll('.available')[1];
     secondAvailable.click();
     tick();
     fixture.detectChanges();
@@ -152,7 +144,7 @@ describe('datepicker-range', function() {
     var datepickerStart = document.querySelector('#dataStart');
     var datepickerEnd = document.querySelector('#dataEnd');
 
-    var modal = document.querySelector('.modal');
+    modal = document.querySelector('.modal');
 
     assert.strictEqual(new Date(datepickerStart.textContent).toDateString(), new Date("02/01/2004").toDateString());
     assert.strictEqual(new Date(datepickerEnd.textContent).toDateString(), new Date("02/02/2004").toDateString());
@@ -161,12 +153,11 @@ describe('datepicker-range', function() {
 
   }));
 
-  it('should reselect start date when we click before end start date', fakeAsync(function(){
+  it('should reselect start date when we click before end start date', fakeAsync(function() {
     var fixture = TestBed.createComponent(datepickerRangeTestComponent);
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
     var input = document.querySelectorAll('input')[0];
     input.click();
     tick();
@@ -175,7 +166,7 @@ describe('datepicker-range', function() {
     var modal = document.querySelector('.modal');
     assert.strictEqual(modal.classList[3], "in");
 
-    var available = document.querySelectorAll('.available')[3]
+    var available = document.querySelectorAll('.available')[3];
     available.click();
     tick();
     fixture.detectChanges();
@@ -184,15 +175,15 @@ describe('datepicker-range', function() {
 
     assert.strictEqual(new Date(datepickerStart.textContent).toDateString(), new Date("02/04/2004").toDateString());
 
-    var firstAvailable = document.querySelectorAll('.available')[0]
+    var firstAvailable = document.querySelectorAll('.available')[0];
     firstAvailable.click();
     tick();
     fixture.detectChanges();
 
-    var datepickerStart = document.querySelector('#dataStart');
+    datepickerStart = document.querySelector('#dataStart');
     var datepickerEnd = document.querySelector('#dataEnd');
 
-    var modal = document.querySelector('.modal');
+    modal = document.querySelector('.modal');
 
     assert.strictEqual(new Date(datepickerStart.textContent).toDateString(), new Date("02/01/2004").toDateString());
     assert.strictEqual(new Date(datepickerEnd.textContent).toDateString(), new Date("02/10/2004").toDateString());
@@ -205,12 +196,11 @@ describe('datepicker-range', function() {
     fixture.detectChanges();
   }));
 
-  it('should render previous month when click prev arrow', fakeAsync(function(){
+  it('should render previous month when click prev arrow', fakeAsync(function() {
     var fixture = TestBed.createComponent(datepickerRangeTestComponent);
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
     var input = document.querySelectorAll('input')[0];
     input.click();
     tick();
@@ -221,7 +211,7 @@ describe('datepicker-range', function() {
     tick();
     fixture.detectChanges();
 
-    var firstAvailable = document.querySelector('.available')
+    var firstAvailable = document.querySelector('.available');
     firstAvailable.click();
     tick();
     fixture.detectChanges();
@@ -240,12 +230,11 @@ describe('datepicker-range', function() {
     assert.strictEqual(modal.classList[3], void 0);
   }));
 
-  it('should render next month when click next arrow', fakeAsync(function(){
+  it('should render next month when click next arrow', fakeAsync(function() {
     var fixture = TestBed.createComponent(datepickerRangeTestComponent);
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
     var input = document.querySelectorAll('input')[0];
     input.click();
     tick();
@@ -256,12 +245,12 @@ describe('datepicker-range', function() {
     tick();
     fixture.detectChanges();
 
-    var firstAvailable = document.querySelector('.available')
+    var firstAvailable = document.querySelector('.available');
     firstAvailable.click();
     tick();
     fixture.detectChanges();
 
-    var firstAvailable = document.querySelector('.available')
+    firstAvailable = document.querySelector('.available');
     firstAvailable.click();
     tick();
     fixture.detectChanges();
@@ -280,12 +269,11 @@ describe('datepicker-range', function() {
     assert.strictEqual(modal.classList[3], void 0);
   }));
 
-  it('should render today in value when choose today in selectList', fakeAsync(function(){
+  it('should render today in value when choose today in selectList', fakeAsync(function() {
     var fixture = TestBed.createComponent(datepickerRangeTestComponent);
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
     var input = document.querySelectorAll('input')[0];
     input.click();
     tick();
@@ -296,7 +284,7 @@ describe('datepicker-range', function() {
     tick();
     fixture.detectChanges();
 
-    var today = document.querySelector('li')
+    var today = document.querySelector('li');
     today.click();
     tick();
     fixture.detectChanges();
@@ -306,8 +294,8 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"),  moment().format('YYYY-MM-DD'));
-    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'),  moment().format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"), moment().format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));
 
     assert.strictEqual(modal.classList[3], void 0);
   }));
@@ -317,7 +305,6 @@ describe('datepicker-range', function() {
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
     var input = document.querySelectorAll('input')[0];
     input.click();
     tick();
@@ -328,7 +315,7 @@ describe('datepicker-range', function() {
     tick();
     fixture.detectChanges();
 
-    var selectOptions = document.querySelectorAll('li')
+    var selectOptions = document.querySelectorAll('li');
     selectOptions[1].click();
     tick();
     fixture.detectChanges();
@@ -338,8 +325,8 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"),  moment().subtract(1, 'weeks').startOf('isoweek').format('YYYY-MM-DD'));
-    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'),  moment().subtract(1, 'weeks').endOf('isoweek').format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"), moment().subtract(1, 'weeks').startOf('isoweek').format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'), moment().subtract(1, 'weeks').endOf('isoweek').format('YYYY-MM-DD'));
 
     assert.strictEqual(modal.classList[3], void 0);
   }));
@@ -349,7 +336,6 @@ describe('datepicker-range', function() {
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
     var input = document.querySelectorAll('input')[0];
     input.click();
     tick();
@@ -360,7 +346,7 @@ describe('datepicker-range', function() {
     tick();
     fixture.detectChanges();
 
-    var selectOptions = document.querySelectorAll('li')
+    var selectOptions = document.querySelectorAll('li');
     selectOptions[2].click();
     tick();
     fixture.detectChanges();
@@ -381,7 +367,6 @@ describe('datepicker-range', function() {
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
     var input = document.querySelectorAll('input')[0];
     input.click();
     tick();
@@ -392,7 +377,7 @@ describe('datepicker-range', function() {
     tick();
     fixture.detectChanges();
 
-    var selectOptions = document.querySelectorAll('li')
+    var selectOptions = document.querySelectorAll('li');
     selectOptions[3].click();
     tick();
     fixture.detectChanges();
@@ -402,8 +387,8 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"),  moment().subtract(1, 'weeks').format('YYYY-MM-DD'));
-    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'),  moment().format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"), moment().subtract(1, 'weeks').format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));
 
     assert.strictEqual(modal.classList[3], void 0);
   }));
@@ -413,7 +398,6 @@ describe('datepicker-range', function() {
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
     var input = document.querySelectorAll('input')[0];
     input.click();
     tick();
@@ -424,7 +408,7 @@ describe('datepicker-range', function() {
     tick();
     fixture.detectChanges();
 
-    var selectOptions = document.querySelectorAll('li')
+    var selectOptions = document.querySelectorAll('li');
     selectOptions[4].click();
     tick();
     fixture.detectChanges();
@@ -434,8 +418,8 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"),  moment().subtract(1, 'months').format('YYYY-MM-DD'));
-    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'),  moment().format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"), moment().subtract(1, 'months').format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));
 
     assert.strictEqual(modal.classList[3], void 0);
   }));
@@ -445,7 +429,6 @@ describe('datepicker-range', function() {
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
     var input = document.querySelectorAll('input')[0];
     input.click();
     tick();
@@ -456,7 +439,7 @@ describe('datepicker-range', function() {
     tick();
     fixture.detectChanges();
 
-    var selectOptions = document.querySelectorAll('li')
+    var selectOptions = document.querySelectorAll('li');
     selectOptions[5].click();
     tick();
     fixture.detectChanges();
@@ -466,18 +449,17 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"),  moment().subtract(1, 'years').startOf('year').format('YYYY-MM-DD'));
-    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'),  moment().subtract(1, 'years').endOf('year').format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"), moment().subtract(1, 'years').startOf('year').format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'), moment().subtract(1, 'years').endOf('year').format('YYYY-MM-DD'));
 
     assert.strictEqual(modal.classList[3], void 0);
   }));
 
-  it('should render same value when click on off date', fakeAsync(function(){
+  it('should render same value when click on off date', fakeAsync(function() {
     var fixture = TestBed.createComponent(datepickerRangeTestComponent);
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
     var input = document.querySelectorAll('input')[0];
     input.click();
     tick();
@@ -485,7 +467,7 @@ describe('datepicker-range', function() {
 
     var off = document.querySelector(".off");
     off.click();
-    tick()
+    tick();
     fixture.detectChanges();
 
     var datepickerStart = document.querySelector('#dataStart');
@@ -504,12 +486,11 @@ describe('datepicker-range', function() {
     fixture.detectChanges();
   }));
 
-  it('should render new end value when click on endDate', fakeAsync(function(){
+  it('should render new end value when click on endDate', fakeAsync(function() {
     var fixture = TestBed.createComponent(datepickerRangeTestComponent);
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
     var input = document.querySelectorAll('input')[1];
     input.click();
     tick();
@@ -517,7 +498,7 @@ describe('datepicker-range', function() {
 
     var newEnd = document.querySelectorAll(".available")[6];
     newEnd.click();
-    tick()
+    tick();
     fixture.detectChanges();
 
     var datepickerStart = document.querySelector('#dataStart');
@@ -532,12 +513,11 @@ describe('datepicker-range', function() {
 
   }));
 
-  it('should render new end value when open with startDate and click on end input', fakeAsync(function(){
+  it('should render new end value when open with startDate and click on end input', fakeAsync(function() {
     var fixture = TestBed.createComponent(datepickerRangeTestComponent);
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    testComponent = fixture.componentInstance;
     var input = document.querySelectorAll('input')[0];
     input.click();
     tick();
