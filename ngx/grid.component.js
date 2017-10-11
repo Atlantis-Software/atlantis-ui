@@ -34,30 +34,32 @@ export default class gridComponent {
     this.types = gridConfig;
     this.selectedRows = new EventEmitter();
     this.sort = new EventEmitter();
-    this.types.forEach(function(type, i) {
-      if (type.pipes) {
-        if (Array.isArray(type.pipes)) {
-          self.pipes[i] = [];
-          type.pipes.forEach(function(pipe, indexPipe) {
-            var options = type.optionsPipe[indexPipe] || [];
+    if (this.types) {
+      this.types.forEach(function(type, i) {
+        if (type.pipes) {
+          if (Array.isArray(type.pipes)) {
+            self.pipes[i] = [];
+            type.pipes.forEach(function(pipe, indexPipe) {
+              var options = type.optionsPipe[indexPipe] || [];
+              options = Array.isArray(options) ? options : options.split(':');
+              self.pipes[i][indexPipe] = {
+                pipe: pipe,
+                option: options || []
+              };
+            });
+            self.pipes[i].type = type.type;
+          } else {
+            var options = type.optionsPipe[i] || [];
             options = Array.isArray(options) ? options : options.split(':');
-            self.pipes[i][indexPipe] = {
-              pipe: pipe,
-              option: options || []
+            self.pipes[i] = {
+              pipe: self.pipes[i],
+              type: type.type,
+              option: options
             };
-          });
-          self.pipes[i].type = type.type;
-        } else {
-          var options = type.optionsPipe[i] || [];
-          options = Array.isArray(options) ? options : options.split(':');
-          self.pipes[i] = {
-            pipe: self.pipes[i],
-            type: type.type,
-            option: options
-          };
+          }
         }
-      }
-    });
+      });
+    }
   }
 
   ngOnInit() {
@@ -82,7 +84,6 @@ export default class gridComponent {
   }
 
   onSelect(row) {
-    console.log('tèfctufctfèv : ', row);
     this.selectedRows.emit(row);
   }
 }

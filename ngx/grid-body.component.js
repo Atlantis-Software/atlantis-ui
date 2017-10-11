@@ -44,15 +44,12 @@ export default class gridBodyComponent {
       return;
     }
     var selected = Array.from(this.selected);
-    console.log("this.selected ", this.selected)
-    console.log("selected ", selected)
     if (e.ctrlKey) {
       var index = selected.indexOf(row);
       if (index > -1) {
         selected.splice(index, 1);
       } else {
         selected.push(row);
-        console.log("test")
         this.previousSelectedIndex = this.rows.indexOf(row);
       }
     } else if (e.shiftKey) {
@@ -82,7 +79,6 @@ export default class gridBodyComponent {
     if (selected.length === 0) {
       this.previousSelectedIndex = null;
     }
-    console.log('PUTAIN DE TABLEAU : ', selected);
     this.selectedRows.emit(selected);
   }
 
@@ -90,7 +86,6 @@ export default class gridBodyComponent {
     if (this.columns[y].notEditable || (!validateChange && this.changingCellContent)) {
       return;
     }
-    console.log("Modify Content")
     var coordinate = i + '' + y;
     if (validateChange) {
       var value = e.target.value;

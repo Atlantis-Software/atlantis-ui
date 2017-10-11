@@ -39067,7 +39067,8 @@ var HomeComponent = function () {
   function HomeComponent() {
     _classCallCheck(this, HomeComponent);
 
-    this.importHtml = '\n    import {ngxAtlUiModule} from \'path/atlantis-ui-ngx\' or \'aliasWithWebpack\'\n\n    @NgModule({\n      ...\n      import: [ngxAtlUiModule],\n      ...\n    })';
+    this.importHtml = '\n    import {ngxAtlUiModule} from \'path/atlantis-ui-ngx\' or \'aliasWithWebpack\'\n\n    @NgModule({\n      ...\n      import: [ngxAtlUiModule.forRoot(object)],\n      ...\n    })';
+    this.gridParameters = '\n    var types = [\n      {\n        type: "date",\n        alignment: "right",\n        pipes: [DatePipe],\n        optionsPipe: [\'shortDate\'],\n        transformation: function(val) {\n          if (moment(val).isValid()) {\n            return moment(val).toString();\n          } else {\n            return "invalid value";\n          }\n        }\n      },\n      {\n        type: \'number\',\n        transformation: function(val) {\n          if (!isNaN(val)) {\n            return val;\n          } else {\n            return "invalid value";\n          }\n        }\n      },\n      {\n        type: \'boolean\',\n        transformation: function(val) {\n          if (typeof val === void 0 || val === null) {\n            return val;\n          }\n          if (!val || val == \'0\' || val == \'false\') {\n            return 0;\n          }\n          return 1;\n        }\n      },\n    ];';
   }
 
   return HomeComponent;
@@ -39562,8 +39563,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _core = __webpack_require__(0);
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var DropdownAngularComponent = function () {
@@ -39579,82 +39578,6 @@ var DropdownAngularComponent = function () {
   function DropdownAngularComponent() {
     _classCallCheck(this, DropdownAngularComponent);
 
-<<<<<<< HEAD
-    this.gridHtml = '\n    <grid class="table table-bordered" [columns]= "columns" [rows]= "rows"\n      (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">\n    </grid>';
-
-    this.gridRows = '\n    this.originalRows = [\n      {\n        test: "1",\n        testNumber : 2,\n        testText : "1",\n        testDate : new Date(),\n        testBoolean: 0\n      },\n      {\n        test: "2",\n        testNumber : 6,\n        testText : "5",\n        testDate : new Date(0),\n        testBoolean: 1\n      },\n      {\n        test : "3",\n        testNumber : 5,\n        testText : \'4\',\n        testDate : new Date(),\n        testBoolean: 1\n      },\n      {\n        test : "4",\n        testNumber : 42,\n        testText : "8",\n        testDate : new Date(\'05/09/2005\'),\n        testBoolean: 1\n      },\n      {\n        test : "5",\n        testNumber : 27,\n        testText : "4",\n        testDate : new Date(),\n        testBoolean: 0\n      },\n      {\n        test : "6",\n        testNumber : 3,\n        testText : "7",\n        testDate : new Date(\'07/03/2015\'),\n        testBoolean: 0\n      },\n      {\n        test : "7",\n        testNumber : 27,\n        testText : "9",\n        testDate : new Date(\'05/09/2005\'),\n        testBoolean: 0\n      },\n      {\n        test : "8",\n        testNumber : 152,\n        testText : \'32\',\n        testDate : new Date(),\n        testBoolean: 1\n      }\n    ];\n\n    this.rows = [...this.originalRows];';
-
-    this.gridColumns = '\n    this.columns= [\n      {\n        label:"test",\n        alignment: "center",\n        notSortable: true,\n        notEditable: true\n      },\n      {\n        label:"testNumber",\n        width: "150px",\n        type: "number"\n      },\n      {\n        label:"testText"\n      },\n      {\n        label:"testDate",\n        type: \'date\'\n      },\n      {\n        label:"testBoolean",\n        type: \'boolean\'\n      }\n    ];';
-
-    this.columns = [{
-      label: "test",
-      alignment: "center",
-      notSortable: true,
-      notEditable: true
-    }, {
-      label: "testNumber",
-      width: "150px",
-      type: "number"
-    }, {
-      label: "testText"
-    }, {
-      label: "testDate",
-      type: 'date'
-    }, {
-      label: "testBoolean",
-      type: 'boolean'
-    }];
-
-    this.originalRows = [{
-      test: "1",
-      testNumber: 2,
-      testText: "1",
-      testDate: new Date(),
-      testBoolean: 0
-    }, {
-      test: "2",
-      testNumber: 6,
-      testText: "5",
-      testDate: new Date(0),
-      testBoolean: 1
-    }, {
-      test: "3",
-      testNumber: 5,
-      testText: '4',
-      testDate: new Date(),
-      testBoolean: 1
-    }, {
-      test: "4",
-      testNumber: 42,
-      testText: "8",
-      testDate: new Date('05/09/2005'),
-      testBoolean: 1
-    }, {
-      test: "5",
-      testNumber: 27,
-      testText: "4",
-      testDate: new Date(),
-      testBoolean: 0
-    }, {
-      test: "6",
-      testNumber: 3,
-      testText: "7",
-      testDate: new Date('07/03/2015'),
-      testBoolean: 0
-    }, {
-      test: "7",
-      testNumber: 27,
-      testText: "9",
-      testDate: new Date('05/09/2005'),
-      testBoolean: 0
-    }, {
-      test: "8",
-      testNumber: 152,
-      testText: '32',
-      testDate: new Date(),
-      testBoolean: 1
-    }];
-=======
     this.dropdownHtml = '\n    <dropdown title="Menu A">\n      <dropdown-option><a>Sub-menu A</a></dropdown-option>\n      <dropdown-option><a>Sub-menu B</a></dropdown-option>\n      <dropdown-divider></dropdown-divider>\n      <dropdown-option><a>Sub-menu separated A</a></dropdown-option>\n      <dropdown-header>Menu</dropdown-header>\n      <dropdown-option><a>Sub-menu separated B</a></dropdown-option>\n    </dropdown>';
 
     this.dropup = '\n    <dropdown orientation="up" title="Menu A">\n    </dropdown>';
@@ -39674,59 +39597,11 @@ var DropdownAngularComponent = function () {
     this.dropdownNgForJS = '\n    this.dropdownoptions = [\n      {\n        label: "Sub-menu A"\n      },{\n        label: "Sub-menu B"\n      },{\n        label: "Sub-menu separated A"\n      },{\n        label: "Sub-menu separated B"\n      }\n    ];';
 
     this.dropdownNgFor = '\n    <dropdown class="form-group" [options]="{alignement:\'left\'}" title="Menu A">\n      <dropdown-option *ngFor="let dropdownoption of dropdownoptions" [options]="dropdownoption.options">\n        {{dropdownoption.label}}\n      </dropdown-option>\n    </dropdown>';
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
 
-    this.rows = [].concat(_toConsumableArray(this.originalRows));
-
-    this.selection = [];
+    this.Display = "Example";
   }
 
-<<<<<<< HEAD
-  _createClass(GridAngularComponent, [{
-    key: 'selectionTest',
-    value: function selectionTest(row) {
-      this.selection = row;
-      console.log("selection ", row);
-    }
-  }, {
-    key: 'onSort',
-    value: function onSort(sorting) {
-      if (!sorting.length) {
-        return this.rows = [].concat(_toConsumableArray(this.originalRows));
-      }
-      console.log('Sort Event', sorting);
-      this.loading = true;
-      var columnToSort = sorting[sorting.length - 1];
-      var sortingFunc = function sortingFunc(a, b) {};
-      switch (columnToSort.type) {
-        case 'text':
-          sortingFunc = function sortingFunc(a, b) {
-            return a[columnToSort.label].localeCompare(b[columnToSort.label]) * (columnToSort.order === 'desc' ? -1 : 1);
-          };
-          break;
-        case 'boolean':
-        case 'number':
-          sortingFunc = function sortingFunc(a, b) {
-            var comparison = a[columnToSort.label] > b[columnToSort.label];
-            return columnToSort.order === 'desc' ? !comparison : comparison;
-          };
-          break;
-        case 'date':
-          sortingFunc = function sortingFunc(a, b) {
-            var comparison = moment(a[columnToSort.label]).isAfter(moment(b[columnToSort.label]));
-            return columnToSort.order === 'desc' ? !comparison : comparison;
-          };
-          break;
-      }
-      this.rows = this.rows.sort(sortingFunc);
-      this.loading = false;
-    }
-  }]);
-
-  return GridAngularComponent;
-=======
   return DropdownAngularComponent;
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
 }();
 
 exports.default = DropdownAngularComponent;
@@ -39764,10 +39639,6 @@ var ButtonComponent = function () {
   function ButtonComponent() {
     _classCallCheck(this, ButtonComponent);
 
-<<<<<<< HEAD
-    this.importHtml = '\n    import {ngxAtlUiModule} from \'path/atlantis-ui-ngx\' or \'aliasWithWebpack\'\n\n    @NgModule({\n      ...\n      import: [ngxAtlUiModule.forRoot(object)],\n      ...\n    })';
-    this.gridParameters = '\n    var types = [\n      {\n        type: "date",\n        alignment: "right",\n        pipes: [DatePipe],\n        optionsPipe: [\'shortDate\'],\n        transformation: function(val) {\n          if (moment(val).isValid()) {\n            return moment(val).toString();\n          } else {\n            return "invalid value";\n          }\n        }\n      },\n      {\n        type: \'number\',\n        transformation: function(val) {\n          if (!isNaN(val)) {\n            return val;\n          } else {\n            return "invalid value";\n          }\n        }\n      },\n      {\n        type: \'boolean\',\n        transformation: function(val) {\n          if (typeof val === void 0 || val === null) {\n            return val;\n          }\n          if (!val || val == \'0\' || val == \'false\') {\n            return 0;\n          }\n          return 1;\n        }\n      },\n    ];';
-=======
     this.buttonHtml = '\n    <div class="form-group">\n      <button type="button" class="btn">Basic</button>\n    </div>';
     this.buttonLinkInputHtml = '\n    <div class="form-group">\n      <button type="button" class="btn">Basic</button>\n    </div>\n    <div class="form-group">\n      <a class="btn btn-default" role="button">\n        Link button\n      </a>\n    </div>\n    <div class="form-group">\n      <input type="button" class="btn btn-default" value="Input Button"/>\n    </div>\n    <div class="form-group">\n      <input type="submit" class="btn btn-default" value="Submit Button"/>\n    </div>';
     this.buttonStyleHtml = '\n    <button type="button" class="btn"></button>\n    <button type="button" class="btn btn-default"></button>\n    <button type="button" class="btn btn-primary"></button>\n    <button type="button" class="btn btn-success"></button>\n    <button type="button" class="btn btn-info"></button>\n    <button type="button" class="btn btn-warning"></button>\n    <button type="button" class="btn btn-danger></button>\n    <button type="button" class="btn btn-link"></button>';
@@ -39775,7 +39646,6 @@ var ButtonComponent = function () {
     this.buttonDisabled = '\n    <button class="btn btn-default" disabled>\n      Default disabled\n    </button>';
     this.buttonBlock = '\n    <button class="btn btn-default btn-block"></button>';
     this.buttonSize = '\n    <button class="btn btn-default btn-lg">\n      Large\n    </button>\n    <button class="btn btn-default btn-md">\n      Medium\n    </button>\n    <button class="btn btn-default btn-sm">\n      Small\n    </button>\n    <button class="btn btn-default btn-xs">\n      XSmall\n    </button>';
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
   }
 
   return ButtonComponent;
@@ -40474,6 +40344,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _core = __webpack_require__(0);
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var GridAngularComponent = function () {
@@ -40489,36 +40361,126 @@ var GridAngularComponent = function () {
   function GridAngularComponent() {
     _classCallCheck(this, GridAngularComponent);
 
+    this.gridHtml = '\n    <grid class="table table-bordered" [columns]= "columns" [rows]= "rows"\n      (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">\n    </grid>';
+
+    this.gridRows = '\n    this.originalRows = [\n      {\n        test: "1",\n        testNumber : 2,\n        testText : "1",\n        testDate : new Date(),\n        testBoolean: 0\n      },\n      {\n        test: "2",\n        testNumber : 6,\n        testText : "5",\n        testDate : new Date(0),\n        testBoolean: 1\n      },\n      {\n        test : "3",\n        testNumber : 5,\n        testText : \'4\',\n        testDate : new Date(),\n        testBoolean: 1\n      },\n      {\n        test : "4",\n        testNumber : 42,\n        testText : "8",\n        testDate : new Date(\'05/09/2005\'),\n        testBoolean: 1\n      },\n      {\n        test : "5",\n        testNumber : 27,\n        testText : "4",\n        testDate : new Date(),\n        testBoolean: 0\n      },\n      {\n        test : "6",\n        testNumber : 3,\n        testText : "7",\n        testDate : new Date(\'07/03/2015\'),\n        testBoolean: 0\n      },\n      {\n        test : "7",\n        testNumber : 27,\n        testText : "9",\n        testDate : new Date(\'05/09/2005\'),\n        testBoolean: 0\n      },\n      {\n        test : "8",\n        testNumber : 152,\n        testText : \'32\',\n        testDate : new Date(),\n        testBoolean: 1\n      }\n    ];\n\n    this.rows = [...this.originalRows];';
+
+    this.gridColumns = '\n    this.columns= [\n      {\n        label:"test",\n        alignment: "center",\n        notSortable: true,\n        notEditable: true\n      },\n      {\n        label:"testNumber",\n        width: "150px",\n        type: "number"\n      },\n      {\n        label:"testText"\n      },\n      {\n        label:"testDate",\n        type: \'date\'\n      },\n      {\n        label:"testBoolean",\n        type: \'boolean\'\n      }\n    ];';
+
     this.columns = [{
-      label: "testdsqdsqdsqdsqdqs",
-      alignment: "center"
+      label: "test",
+      alignment: "center",
+      notSortable: true,
+      notEditable: true
     }, {
-      label: "test2",
-      width: "150px"
+      label: "testNumber",
+      width: "150px",
+      type: "number"
     }, {
-      label: "test3",
-      class: "btn"
+      label: "testText"
     }, {
-      label: "test4",
+      label: "testDate",
       type: 'date'
-    }];
-
-    var test = new Date() + " | date: 'shortDate'";
-
-    this.rows = [{
-      testdsqdsqdsqdsqdqs: 1,
-      test2: 2,
-      test3: 3,
-      test4: new Date()
     }, {
-      testdsqdsqdsqdsqdqs: 5,
-      test2: 6,
-      test3: 7,
-      test4: new Date(0)
+      label: "testBoolean",
+      type: 'boolean'
     }];
 
-    this.Display = "Example";
+    this.originalRows = [{
+      test: "1",
+      testNumber: 2,
+      testText: "1",
+      testDate: new Date(),
+      testBoolean: 0
+    }, {
+      test: "2",
+      testNumber: 6,
+      testText: "5",
+      testDate: new Date(0),
+      testBoolean: 1
+    }, {
+      test: "3",
+      testNumber: 5,
+      testText: '4',
+      testDate: new Date(),
+      testBoolean: 1
+    }, {
+      test: "4",
+      testNumber: 42,
+      testText: "8",
+      testDate: new Date('05/09/2005'),
+      testBoolean: 1
+    }, {
+      test: "5",
+      testNumber: 27,
+      testText: "4",
+      testDate: new Date(),
+      testBoolean: 0
+    }, {
+      test: "6",
+      testNumber: 3,
+      testText: "7",
+      testDate: new Date('07/03/2015'),
+      testBoolean: 0
+    }, {
+      test: "7",
+      testNumber: 27,
+      testText: "9",
+      testDate: new Date('05/09/2005'),
+      testBoolean: 0
+    }, {
+      test: "8",
+      testNumber: 152,
+      testText: '32',
+      testDate: new Date(),
+      testBoolean: 1
+    }];
+
+    this.rows = [].concat(_toConsumableArray(this.originalRows));
+
+    this.selection = [];
   }
+
+  _createClass(GridAngularComponent, [{
+    key: 'selectionTest',
+    value: function selectionTest(row) {
+      this.selection = row;
+      console.log("selection ", row);
+    }
+  }, {
+    key: 'onSort',
+    value: function onSort(sorting) {
+      if (!sorting.length) {
+        return this.rows = [].concat(_toConsumableArray(this.originalRows));
+      }
+      console.log('Sort Event', sorting);
+      this.loading = true;
+      var columnToSort = sorting[sorting.length - 1];
+      var sortingFunc = function sortingFunc(a, b) {};
+      switch (columnToSort.type) {
+        case 'text':
+          sortingFunc = function sortingFunc(a, b) {
+            return a[columnToSort.label].localeCompare(b[columnToSort.label]) * (columnToSort.order === 'desc' ? -1 : 1);
+          };
+          break;
+        case 'boolean':
+        case 'number':
+          sortingFunc = function sortingFunc(a, b) {
+            var comparison = a[columnToSort.label] > b[columnToSort.label];
+            return columnToSort.order === 'desc' ? !comparison : comparison;
+          };
+          break;
+        case 'date':
+          sortingFunc = function sortingFunc(a, b) {
+            var comparison = moment(a[columnToSort.label]).isAfter(moment(b[columnToSort.label]));
+            return columnToSort.order === 'desc' ? !comparison : comparison;
+          };
+          break;
+      }
+      this.rows = this.rows.sort(sortingFunc);
+      this.loading = false;
+    }
+  }]);
 
   return GridAngularComponent;
 }();
@@ -87617,6 +87579,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.AppModule = undefined;
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+// import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+
 var _core = __webpack_require__(0);
 
 var _router = __webpack_require__(20);
@@ -87732,21 +87698,44 @@ var _app4 = _interopRequireDefault(_app3);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var AppModule = exports.AppModule = function AppModule() {};
-// import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
 
 var types = [{
   type: "date",
   alignment: "right",
-  pipes: [_common.DatePipe, _common.UpperCasePipe],
-  optionsPipe: ['shortDate:longDate', ["test", "test2"]]
+  pipes: [_common.DatePipe],
+  optionsPipe: ['shortDate'],
+  transformation: function transformation(val) {
+    if (moment(val).isValid()) {
+      return moment(val).toString();
+    } else {
+      return "invalid value";
+    }
+  }
 }, {
-  type: 'number'
+  type: 'number',
+  transformation: function transformation(val) {
+    if (!isNaN(val)) {
+      return val;
+    } else {
+      return "invalid value";
+    }
+  }
+}, {
+  type: 'boolean',
+  transformation: function transformation(val) {
+    if ((typeof val === 'undefined' ? 'undefined' : _typeof(val)) === void 0 || val === null) {
+      return val;
+    }
+    if (!val || val == '0' || val == 'false') {
+      return 0;
+    }
+    return 1;
+  }
 }];
 
 AppModule.annotations = [new _core.NgModule({
   declarations: [_app2.default, _homeComponent2.default, _datepicker2.default, _paginationComponent2.default, _selectpickerComponent2.default, _slidepickerComponent2.default, _navbarComponent2.default, _dropdownComponent2.default, _buttonComponent2.default, _iconComponent2.default, _modalComponent2.default, _tableComponent2.default, _carouselComponent2.default, _popoverComponent2.default, _tooltipComponent2.default, _accordionComponent2.default, _inputgroupComponent2.default, _gridComponent2.default, _buttongroupsComponent2.default, _formsComponent2.default, _progressBarComponent2.default, _gridComponent4.default, _dragAndDropComponent2.default, _treeComponent2.default],
-  imports: [_platformBrowser.BrowserModule, _forms.FormsModule, _router.RouterModule.forRoot(_app4.default), _atlantisUiNgx.ngxAtlUiModule.forRoot()],
+  imports: [_platformBrowser.BrowserModule, _forms.FormsModule, _router.RouterModule.forRoot(_app4.default), _atlantisUiNgx.ngxAtlUiModule.forRoot(types)],
   bootstrap: [_app2.default],
   providers: [{ provide: _common.LocationStrategy, useClass: _common.HashLocationStrategy }, _common.DatePipe, _common.UpperCasePipe]
 })];
@@ -89348,7 +89337,7 @@ AppComponent.parameters = [];
 /* 111 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"sidebar-wrapper\"> <ul class=\"sidebar-nav\"> <li> <a [routerLink]=\"['/home']\">Home</a> </li> <li> <a [routerLink]=\"['/accordion']\">Accordion</a> </li> <li> <a [routerLink]=\"['/button']\">Button</a> </li> <li> <a [routerLink]=\"['/buttongroups']\">Button groups</a> </li> <li> <a [routerLink]=\"['/carouselAngular']\">Carousel</a> </li> <li> <a [routerLink]=\"['/datepickerAngular']\">Datepicker</a> </li> <li> <a [routerLink]=\"['/dragAndDrop']\">Drag and Drop</a> </li> <li> <a [routerLink]=\"['/dropdownAngular']\">Dropdown</a> </li> <li> <a [routerLink]=\"['/forms']\">Forms</a> </li> <li> <a [routerLink]=\"['/grid']\">Grid</a> </li> <li> <a [routerLink]=\"['/icon']\">Icon</a> </li> <li> <a [routerLink]=\"['/inputgroup']\">Inputgroup</a> </li> <li> <a [routerLink]=\"['/modalAngular']\">Modal</a> </li> <li> <a [routerLink]=\"['/navbar']\">Navbar</a> </li> <li> <a [routerLink]=\"['/paginationAngular']\">Pagination</a> </li> <li> <a [routerLink]=\"['/popover']\">Popover</a> </li> <li> <a [routerLink]=\"['/progressBar']\">Progress bar</a> </li> <li> <a [routerLink]=\"['/selectpickerAngular']\">Selectpicker</a> </li> <li> <a [routerLink]=\"['/slidepickerAngular']\">Slidepicker</a> </li> <li> <a [routerLink]=\"['/table']\">Table</a> </li> <li> <a [routerLink]=\"['/tooltip']\">Tooltip</a> </li> <li> <a [routerLink]=\"['/tree']\">Tree</a> </li> </ul> </div> <div> <main> <router-outlet></router-outlet> </main> </div> <footer> </footer> ";
+module.exports = "<div id=\"sidebar-wrapper\"> <ul class=\"sidebar-nav\"> <li> <a [routerLink]=\"['/home']\">Home</a> </li> <li> <a [routerLink]=\"['/accordion']\">Accordion</a> </li> <li> <a [routerLink]=\"['/button']\">Button</a> </li> <li> <a [routerLink]=\"['/buttongroups']\">Button groups</a> </li> <li> <a [routerLink]=\"['/carouselAngular']\">Carousel</a> </li> <li> <a [routerLink]=\"['/datepickerAngular']\">Datepicker</a> </li> <li> <a [routerLink]=\"['/dragAndDrop']\">Drag and Drop</a> </li> <li> <a [routerLink]=\"['/dropdownAngular']\">Dropdown</a> </li> <li> <a [routerLink]=\"['/forms']\">Forms</a> </li> <li> <a [routerLink]=\"['/grid']\">Grid HTML</a> </li> <li> <a [routerLink]=\"['/gridAngular']\">Grid angular</a> </li> <li> <a [routerLink]=\"['/icon']\">Icon</a> </li> <li> <a [routerLink]=\"['/inputgroup']\">Inputgroup</a> </li> <li> <a [routerLink]=\"['/modalAngular']\">Modal</a> </li> <li> <a [routerLink]=\"['/navbar']\">Navbar</a> </li> <li> <a [routerLink]=\"['/paginationAngular']\">Pagination</a> </li> <li> <a [routerLink]=\"['/popover']\">Popover</a> </li> <li> <a [routerLink]=\"['/progressBar']\">Progress bar</a> </li> <li> <a [routerLink]=\"['/selectpickerAngular']\">Selectpicker</a> </li> <li> <a [routerLink]=\"['/slidepickerAngular']\">Slidepicker</a> </li> <li> <a [routerLink]=\"['/table']\">Table</a> </li> <li> <a [routerLink]=\"['/tooltip']\">Tooltip</a> </li> <li> <a [routerLink]=\"['/tree']\">Tree</a> </li> </ul> </div> <div> <main> <router-outlet></router-outlet> </main> </div> <footer> </footer> ";
 
 /***/ }),
 /* 112 */
@@ -89482,7 +89471,7 @@ var ForkJoinSubscriber = (function (_super) {
 /* 114 */
 /***/ (function(module, exports) {
 
-module.exports = "<div> <div class=\"container\"> <div class=\"row\"> <h3> Getting started : </h3> <h3> Step 1 : Install atlantis-ui </h3> <p> npm install atlantis-ui </p> <h3> Step 2 : Import the component Modules, use standard widget and CSS or less </h3> <p> Import the ngModule for each component you want to use or in a shared module : </p> <pre>\n        {{importHtml}}\n      </pre> <p> For use standard widget, add with script atlantis-ui-js </p> <p> For use css, add link to atlantis-ui-css </p> <p> For use less, add link to less and add less compiler or loader. </p> </div> </div> </div> ";
+module.exports = "<div> <div class=\"container\"> <div class=\"row\"> <h3> Getting started : </h3> <h3> Step 1 : Install atlantis-ui </h3> <p> npm install atlantis-ui </p> <h3> Step 2 : Import the component Modules, use standard widget and CSS or less </h3> <p> Import the ngModule for each component you want to use with the function forRoot() or in a shared module : </p> <pre>\n        {{importHtml}}\n      </pre> <p> For use standard widget, add with script atlantis-ui-js </p> <p> For use css, add link to atlantis-ui-css </p> <p> For use less, add link to less and add less compiler or loader. </p> <p> In the function forRoot we just need to add a parameters objects for the grid component </p> <h3> Example of parameters : </h3> <pre>\n        {{gridParameters}}\n      </pre> <h3> Parameters : </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Parameter </th> <th> Type </th> <th> Description </th> </tr> </thead> <tbody> <tr> <td> type </td> <td> string </td> <td> It's the type you want to define, it allow to put default parameters to a type column </td> </tr> <tr> <td> alignment </td> <td> string </td> <td> Optional; Change the alignment of the column and all the cell of this column; it's use like css property </td> </tr> <tr> <td> pipes </td> <td> Array of pipes </td> <td> Optional; That need to provide first the pipes in your module. </td> </tr> <tr> <td> optionsPipe </td> <td> Array of string </td> <td> Should define in same order has pipes; You can have multiple options, that just need to add a array in place of string </td> </tr> <tr> <td> transformation </td> <td> function </td> <td> That allow to pass a function that be fire when we modify content into a cell. That allow to have correct value; for incorrect value always return \"invalid value\" </td> </tr> </tbody> </table> </div> </div> </div> ";
 
 /***/ }),
 /* 115 */
@@ -89596,7 +89585,7 @@ module.exports = "<div class=\"container\"> <h3> Classic grid </h3> <div class=\
 /* 133 */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\"> <div class=\"container-fluid\"> <div class=\"navbar-header\"> <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\"> <span class=\"sr-only\">Toggle navigation</span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span> </button> </div> <div class=\"collapse navbar-collapse\"> <ul class=\"nav navbar-nav\"> <li> <a (click)=\"Display = 'Example'\"> Example </a> </li> <li> <a (click)=\"Display = 'Api'\"> Api </a> </li> </ul> </div> </div> </nav> <div [ngSwitch]=\"Display\"> <div class=\"container\" *ngSwitchCase=\"'Example'\"> <div class=\"row\"> <grid class=\"table table-bordered\" [columns]=\"columns\" [rows]=\"rows\"> </grid> </div> </div> <div class=\"container\" *ngSwitchCase=\"'Api'\"> <pre>\n      {{navbarHtml}}\n    </pre> <p> Class css li: <br> -dropdown : Allow to create a dropdown into the navbar for add another link like a menu <br> -disabled : deactivate the li. </p> </div> </div> ";
+module.exports = "<div class=\"container\"> <h3> Example : </h3> <div class=\"row\"> <grid class=\"table table-bordered\" [columns]=\"columns\" [rows]=\"rows\" (selectedRows)=\"selectionTest($event)\" [selected]=\"selection\" (sort)=\"onSort($event)\"></grid> </div> <h4> Html : </h4> <pre>\n    {{gridHtml}}\n  </pre> <blockquote> <p> A grid component is like a table so we can use class like table </p> </blockquote> <h3> grid parameters: </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Parameter </th> <th> Type </th> <th> Description </th> </tr> </thead> <tbody> <tr> <td> columns </td> <td> Array of objects </td> <td> Different columns with all default parameters, columns name, and type of the columns </td> </tr> <tr> <td> rows </td> <td> Array of objects </td> <td> The value of rows we send to widget </td> </tr> <tr> <td> selected </td> <td> Array of objects </td> <td> The value we selected in rows for changes selection in widget </td> </tr> <tr> <td> selectedRows </td> <td> Function with $event </td> <td> Allow to collect what we select into widget </td> </tr> <tr> <td> sort </td> <td> Function with $event </td> <td> Collect all the sort we define in widget, when we click on a column, this update the $event value </td> </tr> </tbody> </table> <h3> Columns object: </h3> <h4> Exemple : </h4> <pre>\n    {{gridColumns}}\n  </pre> <h4> Parameters: </h4> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Parameter </th> <th> Type </th> <th> value </th> <th> Description </th> </tr> </thead> <tbody> <tr> <td> label </td> <td> string </td> <td> any </td> <td> It's the name of the column </td> </tr> <tr> <td> alignment </td> <td> string </td> <td> like the css property </td> <td> Optional; Change the alignment of the column and all the cell of this column </td> </tr> <tr> <td> width </td> <td> String </td> <td> Value + \"em\" or \"px\" or \"%\" </td> <td> Optional; Define the width of the column </td> </tr> <tr> <td> type </td> <td> string </td> <td> Any you defined in ngx-atlantis-ui module </td> <td> Per default: string; Define default value of the column with the param we send to ngx-atlantis-ui module. </td> </tr> <tr> <td> notSortable </td> <td> boolean </td> <td> true, false </td> <td> Optional per default : false; Define if we can sort the column </td> </tr> <tr> <td> notEditable </td> <td> boolean </td> <td> true, false </td> <td> Optional per default : false; Define if we edit the content of the column </td> </tr> </tbody> </table> <h4> Rows object: </h4> <pre>\n    {{gridRows}}\n  </pre> <blockquote> <p> Any rows have same syntax, we create attribute with column name. </p> <p> It's better to create a copy of the original rows to avoid to modify the rows. </p> </blockquote> </div> ";
 
 /***/ }),
 /* 134 */
@@ -90055,120 +90044,19 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           key: 'annotations',
           get: function get() {
             return [new _core.Component({
-<<<<<<< HEAD
-              selector: 'grid-body',
-              template: '\n\t\t\t\t<div *ngFor="let row of rows; let i = index" (click)="!changingCellContent && selectRow(row, $event, i)" [class.active]=\'!changingCellContent && selected.includes(row)\' class="gridRow">\n          <div *ngFor="let column of columns; let y = index" class="gridCell" [ngClass]="column.class" [attr.align]="column.alignment" (dblclick)="!changingCellContent && modifyContent($event, i, y)">\n          <input class="form-control" [ngModel]="row[column.label]" *ngIf="changingCellContent === i + \'\' + y" (blur)="modifyContent($event, i, y, true)" (keyup.enter)="modifyContent($event, i, y, true)" focus/>\n\t\t\t\t\t\t<grid-cell [content]="row[column.label]" [type]="column.type" [pipes]="pipes" *ngIf="changingCellContent !== i + \'\' + y">\n\t\t\t\t\t\t</grid-cell>\n          </div>\n        </div>',
-              styles: ['\n          :host { display : table-row-group; }\n          .gridRow { display : table-row; }\n          .gridCell { display : table-cell; }\n\t\t\t\t\t.active { background-color: lightblue; }\n          '],
-              inputs: ['columns', 'rows', 'pipes', 'selected', 'types'],
-              outputs: ['selectedRows']
-=======
               selector: 'backdrop',
               template: '',
               host: {
                 "class": "modal-backdrop fade in"
               }
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
             })];
           }
         }]);
 
-<<<<<<< HEAD
-        function gridBodyComponent() {
-          _classCallCheck(this, gridBodyComponent);
-
-          this.selectedRows = new _core.EventEmitter();
-          this.previousSelectedIndex;
-        }
-
-        _createClass(gridBodyComponent, [{
-          key: 'selectRow',
-          value: function selectRow(row, e) {
-            if (this.changingCellContent) {
-              return;
-            }
-            var selected = Array.from(this.selected);
-            console.log("this.selected ", this.selected);
-            console.log("selected ", selected);
-            if (e.ctrlKey) {
-              var index = selected.indexOf(row);
-              if (index > -1) {
-                selected.splice(index, 1);
-              } else {
-                selected.push(row);
-                console.log("test");
-                this.previousSelectedIndex = this.rows.indexOf(row);
-              }
-            } else if (e.shiftKey) {
-              if (typeof this.previousSelectedIndex !== "undefined" && this.previousSelectedIndex !== null) {
-                selected = [];
-                var indexRow = this.rows.indexOf(row);
-                var prev = this.previousSelectedIndex < indexRow ? true : false;
-                var i = this.previousSelectedIndex;
-                if (prev) {
-                  for (i; i <= indexRow; i++) {
-                    selected.push(this.rows[i]);
-                  }
-                } else {
-                  for (i; i >= indexRow; i--) {
-                    selected.push(this.rows[i]);
-                  }
-                }
-              }
-            } else {
-              if (this.rows.indexOf(row) === this.previousSelectedIndex) {
-                selected = [];
-              } else {
-                selected = row ? new Array(row) : [];
-                this.previousSelectedIndex = this.rows.indexOf(row);
-              }
-            }
-            if (selected.length === 0) {
-              this.previousSelectedIndex = null;
-            }
-            console.log('PUTAIN DE TABLEAU : ', selected);
-            this.selectedRows.emit(selected);
-          }
-        }, {
-          key: 'modifyContent',
-          value: function modifyContent(e, i, y, validateChange) {
-            var _this = this;
-
-            if (this.columns[y].notEditable || !validateChange && this.changingCellContent) {
-              return;
-            }
-            console.log("Modify Content");
-            var coordinate = i + '' + y;
-            if (validateChange) {
-              var value = e.target.value;
-              if (this.columns[y].type) {
-                this.types.forEach(function (type) {
-                  if (type.type === _this.columns[y].type && type.transformation) {
-                    value = type.transformation(value);
-                  }
-                });
-              }
-              if (value !== "invalid value") {
-                this.rows[i][this.columns[y].label] = value;
-              }
-              this.changingCellContent = false;
-            } else {
-              this.changingCellContent = coordinate;
-            }
-          }
-        }]);
-
-        return gridBodyComponent;
-      }();
-
-      exports.default = gridBodyComponent;
-
-      gridBodyComponent.parameters = [];
-=======
         return backdropComponent;
       }();
 
       exports.default = backdropComponent;
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
 
       /***/
     },
@@ -90187,61 +90075,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }
       }
 
-<<<<<<< HEAD
-      var gridCellHeaderComponent = function () {
-        _createClass(gridCellHeaderComponent, null, [{
-          key: 'annotations',
-          get: function get() {
-            return [new _core.Component({
-              selector: 'grid-cell-header',
-              template: '\n\t\t\t\t<span>{{content}}</span>\n\t\t\t\t<span [class]="sortingClass"></span>',
-              inputs: ['content', 'pipes', 'sortingClass']
-            })];
-          }
-        }]);
-
-        function gridCellHeaderComponent(elementRef, injector) {
-          _classCallCheck(this, gridCellHeaderComponent);
-
-          this.injector = injector;
-        }
-
-        _createClass(gridCellHeaderComponent, [{
-          key: 'ngOnInit',
-          value: function ngOnInit() {
-            var index = -1;
-            var self = this;
-            this.pipes.forEach(function (pipe, i) {
-              if (pipe.type === self.type) {
-                index = i;
-              }
-            });
-            if (index !== -1) {
-              if (Array.isArray(this.pipes[index])) {
-                this.pipes[index].forEach(function (pipeType) {
-                  pipeType.pipeInjected = self.injector.get(pipeType.pipe, null);
-                  if (pipeType.pipeInjected !== null) {
-                    var args = [self.content].concat(pipeType.option);
-                    self.content = pipeType.pipeInjected.transform.apply(self, args);
-                  }
-                });
-              } else {
-                self.pipes[index].pipeInjected = self.injector.get(self.pipe[index], null);
-                if (self.pipes[index].pipeInjected !== null) {
-                  var args = [self.content].concat(self.pipes[index].option);
-                  self.content = self.pipes[index].pipeInjected.transform.apply(self, args);
-                }
-              }
-            }
-          }
-        }]);
-
-        return gridCellHeaderComponent;
-      }();
-=======
       var gridConfig = exports.gridConfig = function gridConfig(config) {
         _classCallCheck(this, gridConfig);
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
 
         this.types = config;
       };
@@ -90282,19 +90117,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           key: 'annotations',
           get: function get() {
             return [new _core.Component({
-<<<<<<< HEAD
-              selector: 'grid-cell',
-              template: '{{content}}',
-              inputs: ['content', 'type', 'pipes'],
-              styles: [":host { user-select: none; -moz-user-select: none; }"]
-=======
               selector: 'dropdown',
               template: '\n          <button *ngIf="!parentIsLi" class="btn btn-default" type="button" (click)="openDropdown()">\n            {{title}}\n            <span class="caret"></span>\n          </button>\n          <a *ngIf="parentIsLi" href="#" (click)="toggle($event)">\n            {{title}}\n            <span class="caret"></span>\n          </a>\n          <div class="dropdown-menu">\n            <ng-content>\n            </ng-content>\n          </div>',
               inputs: ["title", "orientation", "alignement"],
               host: {
                 "(focusout)": "closeDropdown()"
               }
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
             })];
           }
         }]);
@@ -90310,34 +90138,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           this.title = "Dropdown button";
         }
 
-<<<<<<< HEAD
-        _createClass(gridCellComponent, [{
-          key: 'ngOnInit',
-          value: function ngOnInit() {
-            var index = -1;
-            var self = this;
-            this.pipes.forEach(function (pipe, i) {
-              if (pipe.type === self.type) {
-                index = i;
-              }
-            });
-            if (index !== -1) {
-              if (Array.isArray(this.pipes[index])) {
-                this.pipes[index].forEach(function (pipeType) {
-                  pipeType.pipeInjected = self.injector.get(pipeType.pipe, null);
-                  if (pipeType.pipeInjected !== null) {
-                    var args = [self.content].concat(pipeType.option);
-                    self.content = pipeType.pipeInjected.transform.apply(self, args);
-                  }
-                });
-              } else {
-                self.pipes[index].pipeInjected = self.injector.get(self.pipe[index], null);
-                if (self.pipes[index].pipeInjected !== null) {
-                  var args = [self.content].concat(self.pipes[index].option);
-                  self.content = self.pipes[index].pipeInjected.transform.apply(self, args);
-                }
-              }
-=======
         _createClass(dropdownComponent, [{
           key: 'ngAfterViewInit',
           value: function ngAfterViewInit() {
@@ -90369,7 +90169,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             if (!this.disabled) {
               this.open = true;
               this.dropdown.classList.add("open");
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
             }
           }
         }, {
@@ -90422,14 +90221,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         return new dragAndDropService();
       }
 
-<<<<<<< HEAD
-        function gridFooterComponent() {
-          _classCallCheck(this, gridFooterComponent);
-        }
-=======
       var dragAndDropService = exports.dragAndDropService = function dragAndDropService() {
         _classCallCheck(this, dragAndDropService);
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
 
         this.allowedDropZones = [];
         this.onDragSuccessCallback = new _core.EventEmitter();
@@ -90441,8 +90234,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         return new dragAndDropSortableService();
       }
 
-<<<<<<< HEAD
-=======
       var dragAndDropSortableService = exports.dragAndDropSortableService = function dragAndDropSortableService() {
         _classCallCheck(this, dragAndDropSortableService);
 
@@ -90474,7 +90265,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }
       });
 
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
       /***/
     },
     /* 13 */
@@ -90629,65 +90419,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }
       }
 
-<<<<<<< HEAD
-      var gridHeaderComponent = function () {
-        _createClass(gridHeaderComponent, null, [{
-          key: 'annotations',
-          get: function get() {
-            return [new _core.Component({
-              selector: 'grid-header',
-              template: '\n\t\t\t\t<div class="gridRow">\n\t\t\t\t\t<div *ngFor= "let column of columns; let i = index;" class="gridHead" [ngClass]="column.class" [class.sortable]="!column.notSortable" [style.width]="column.width" (click)="onSort(column, i)">\n\t\t\t\t\t\t<grid-cell-header [content]="column.label" [pipes]="pipes" [sortingClass]="column.sortingClass">\n\t\t\t\t\t\t</grid-cell-header>\n\t        </div>\n\t\t\t\t</div>',
-              styles: ['\n          :host { display : table-header-group; }\n          .gridHead { display : table-cell; }\n\t\t\t\t\t.gridRow { display : table-row; }\n          .sortable { cursor : pointer }\n          '],
-              inputs: ['columns', 'pipes'],
-              outputs: ['sort']
-            })];
-          }
-        }]);
-
-        function gridHeaderComponent() {
-          _classCallCheck(this, gridHeaderComponent);
-
-          this.sort = new _core.EventEmitter();
-          this.sortColumns = [];
-        }
-
-        _createClass(gridHeaderComponent, [{
-          key: 'onSort',
-          value: function onSort(column, id) {
-            var _this = this;
-
-            if (column.notSortable) {
-              return;
-            }
-            // var sort = {label: column.label};
-            var alreadyOrdered = false;
-            this.sortColumns.forEach(function (sortColumn, index) {
-              if (sortColumn.label === column.label) {
-                if (sortColumn.order === 'asc') {
-                  _this.columns[id].sortingClass = 'icon icon-sort-desc';
-                  sortColumn.order = 'desc';
-                } else {
-                  _this.columns[id].sortingClass = '';
-                  _this.sortColumns.splice(index, 1);
-                }
-                alreadyOrdered = true;
-              }
-            });
-            if (!alreadyOrdered) {
-              this.columns[id].sortingClass = 'icon icon-sort-asc';
-              this.sortColumns.push({
-                label: column.label,
-                order: 'asc',
-                type: column.type || 'text'
-              });
-            }
-
-            this.sort.emit(this.sortColumns);
-          }
-        }]);
-
-        return gridHeaderComponent;
-=======
       // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
       var ngxAtlUiModule = exports.ngxAtlUiModule = function () {
@@ -90714,7 +90445,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }]);
 
         return ngxAtlUiModule;
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
       }();
 
       ngxAtlUiModule.annotations = [new _core.NgModule({
@@ -90724,8 +90454,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         entryComponents: [_tooltipComponent.tooltipComponent, _popoverComponent.popoverComponent, _backdropComponent2.default]
       })];
 
-<<<<<<< HEAD
-=======
       /***/
     },
     /* 14 */
@@ -90733,7 +90461,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       module.exports = __WEBPACK_EXTERNAL_MODULE_14__;
 
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
       /***/
     },
     /* 15 */
@@ -90768,18 +90495,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           key: 'annotations',
           get: function get() {
             return [new _core.Component({
-<<<<<<< HEAD
-              selector: 'grid',
-              template: '\n\t\t\t\t<grid-header class="gridHeader" [columns]="columns" [pipes]="pipes" (sort)="sort.emit($event)">\n        </grid-header>\n        <grid-body class="gridBody" [types]="types" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected" (selectedRows)="onSelect($event)">\n        </grid-body>\n        <grid-footer class="gridFooter" *ngIf="config.footer !==\'none\'" [columns]="columns" [rows]="rows">\n        </grid-footer>',
-              styles: [':host { display : table;}'],
-              inputs: ['columns', 'rows', 'config', 'selected'],
-              outputs: ['selectedRows', 'sort']
-=======
               selector: 'pagination',
               inputs: ['page', 'pages'],
               outputs: ['pagechange'],
               template: '\n        <ul class="pagination">\n          <li (click)="previousPage($event)" [class.disabled]="page === 1">\n            <a href="#">\n              <i class="icon icon-previous"></i>\n            </a>\n          </li>\n          <li [class.active]="pageSh === page" *ngFor="let pageSh of pageShow; let i = index" (click)="changePage($event, pageSh)">\n            <a href="#">{{pageSh}}</a>\n          </li>\n          <li *ngIf="page <= pages - (numberPageShowPrevious+1) && pages > numberPageShow">\n            <a *ngIf="!changingPage" href="#" (click)="inputPage($event)">...</a>\n            <input class="pagination-input form-control" *ngIf="changingPage" type="number" (blur)="choosePage($event)" (keyup.enter)="choosePage($event)" focus/>\n          </li>\n          <li *ngIf="page <= pages - numberPageShowPrevious && pages > numberPageShow" (click)="changePage($event, pages)">\n            <a href="#">{{pages}}</a>\n          </li>\n          <li (click)="nextPage($event)" [class.disabled]="page === pages">\n            <a href="#">\n              <i class="icon icon-next"></i>\n            </a>\n          </li>\n        </ul>'
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
             })];
           }
 
@@ -90790,38 +90509,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         function pagination(elementRef, ChangeDetectorRef) {
           _classCallCheck(this, pagination);
 
-<<<<<<< HEAD
-          var self = this;
-          this.injector = injector;
-          this.pipes = [];
-          this.types = gridConfig;
-          this.selectedRows = new _core.EventEmitter();
-          this.sort = new _core.EventEmitter();
-          this.types.forEach(function (type, i) {
-            if (type.pipes) {
-              if (Array.isArray(type.pipes)) {
-                self.pipes[i] = [];
-                type.pipes.forEach(function (pipe, indexPipe) {
-                  var options = type.optionsPipe[indexPipe] || [];
-                  options = Array.isArray(options) ? options : options.split(':');
-                  self.pipes[i][indexPipe] = {
-                    pipe: pipe,
-                    option: options || []
-                  };
-                });
-                self.pipes[i].type = type.type;
-              } else {
-                var options = type.optionsPipe[i] || [];
-                options = Array.isArray(options) ? options : options.split(':');
-                self.pipes[i] = {
-                  pipe: self.pipes[i],
-                  type: type.type,
-                  option: options
-                };
-              }
-            }
-          });
-=======
           this.elementRef = elementRef;
           this.paginationClassList = this.elementRef.nativeElement.classList;
           this.paginationDom = this.elementRef.nativeElement.getElementsByClassName("pagination");
@@ -90832,22 +90519,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           this.pagechange = new _core.EventEmitter();
           this.size = "";
           this.cdr = ChangeDetectorRef;
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
         }
 
         _createClass(pagination, [{
           key: 'ngAfterViewInit',
           value: function ngAfterViewInit() {
             var self = this;
-<<<<<<< HEAD
-            this.columns.forEach(function (column) {
-              var indexType = -1;
-              self.types.forEach(function (type, i) {
-                if (column.type === type.type) {
-                  indexType = i;
-                }
-              });
-=======
             if (this.paginationClassList.length > 0) {
               this.paginationClassList.forEach(function (paginationClass) {
                 self.paginationDom[0].classList.add(paginationClass);
@@ -90856,7 +90533,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           }
 
           //initialize local variable with @Input
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
 
         }, {
           key: 'ngOnChanges',
@@ -90961,12 +90637,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               pageChoose = Math.floor(pageChoose);
               self.changePage(e, +pageChoose);
             }
-          }
-        }, {
-          key: 'onSelect',
-          value: function onSelect(row) {
-            console.log('tèfctufctfèv : ', row);
-            this.selectedRows.emit(row);
           }
         }]);
 
@@ -92536,408 +92206,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             var track = this.slidepicker.getElementsByClassName("slidepicker-track")[0];
             var trackHeight = track.offsetHeight;
             var trackWidth = track.offsetWidth;
-<<<<<<< HEAD
-
-            if (this.vertical) {
-              increment = trackHeight / 1000;
-              this.perc = Math.round(this.perc * 1000) * increment / trackHeight;
-            } else {
-              increment = trackWidth / 1000;
-              this.perc = Math.round(this.perc * 1000) * increment / trackWidth;
-            }
-
-            if (this.perc < 0) {
-              this.perc = 0;
-            }
-            if (this.perc > 1) {
-              this.perc = 1;
-            }
-
-            if (this.vertical) {
-              handle.style.transform = "";
-              handle.style.top = this.perc * 100 + "%";
-            } else {
-              handle.style.transform = "";
-              handle.style.left = this.perc * 100 + "%";
-            }
-          }
-        }, {
-          key: 'getPosition',
-          value: function getPosition(element) {
-            var left = 0;
-            var top = 0;
-            while (element.offsetParent != undefined && element.offsetParent != null) {
-              left += element.offsetLeft + (element.clientLeft != null ? element.clientLeft : 0);
-              top += element.offsetTop + (element.clientTop != null ? element.clientTop : 0);
-              element = element.offsetParent;
-            }
-            return { "left": left, "top": top };
-          }
-        }]);
-
-        return slidepickerComponent;
-      }();
-
-      slidepickerComponent.parameters = [_core.ElementRef];
-
-      var slidepickeroptionComponent = exports.slidepickeroptionComponent = function () {
-        _createClass(slidepickeroptionComponent, null, [{
-          key: 'annotations',
-          get: function get() {
-            return [new _core.Component({
-              selector: 'slidepicker-option',
-              template: '\n          <a (click)="clickLabel($event)"><ng-content></ng-content></a>',
-              inputs: ['value'],
-              styles: [":host { display: list-item; }"],
-              host: {
-                "[class.active]": "isActive"
-              }
-            })];
-          }
-        }]);
-
-        function slidepickeroptionComponent(elementRef, slidepicker) {
-          _classCallCheck(this, slidepickeroptionComponent);
-
-          this.elementRef = elementRef;
-          this.slidepicker = slidepicker;
-          this.isActive = false;
-        }
-
-        _createClass(slidepickeroptionComponent, [{
-          key: 'ngOnDestroy',
-          value: function ngOnDestroy() {}
-        }, {
-          key: 'toggleActive',
-          value: function toggleActive(e) {
-            if (typeof e === "event") {
-              e.preventDefault();
-            }
-            this.isActive = !this.isActive;
-
-            if (this.isActive) {
-              this.slidepicker.changeActive(this);
-            }
-          }
-        }, {
-          key: 'clickLabel',
-          value: function clickLabel(e) {
-            e.preventDefault();
-
-            if (!this.isActive) {
-              this.toggleActive(e);
-
-              var label = e.target;
-              var posLabel;
-              if (this.slidepicker.vertical) {
-                posLabel = label.offsetTop;
-                var handleAdjustment = label.clientHeight / 2;
-              } else {
-                posLabel = label.offsetLeft;
-                var handleAdjustment = label.clientWidht / 2;
-              }
-              var posReal = posLabel + handleAdjustment;
-              this.slidepicker.positionReal(posReal);
-            }
-          }
-        }, {
-          key: 'ngAfterViewInit',
-          value: function ngAfterViewInit() {
-            if (!this.value) {
-              this.value = this.elementRef.nativeElement.innerText.trim();
-            }
-            if (this.slidepicker.labels) {
-              var self = this;
-              this.slidepicker.labels.forEach(function (label) {
-                if (label.isActive) {
-                  self.slidepicker.changeActive(label);
-                }
-              });
-            }
-          }
-        }]);
-
-        return slidepickeroptionComponent;
-      }();
-
-      slidepickeroptionComponent.parameters = [_core.ElementRef, slidepickerComponent];
-
-      /***/
-    },
-    /* 36 */
-    /***/function (module, exports, __webpack_require__) {
-
-      "use strict";
-
-      Object.defineProperty(exports, "__esModule", {
-        value: true
-      });
-      exports.tooltipDirective = exports.tooltipComponent = undefined;
-
-      var _createClass = function () {
-        function defineProperties(target, props) {
-          for (var i = 0; i < props.length; i++) {
-            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-          }
-        }return function (Constructor, protoProps, staticProps) {
-          if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-        };
-      }();
-
-      var _core = __webpack_require__(0);
-
-      function _classCallCheck(instance, Constructor) {
-        if (!(instance instanceof Constructor)) {
-          throw new TypeError("Cannot call a class as a function");
-        }
-      }
-
-      var tooltipComponent = exports.tooltipComponent = function () {
-        function tooltipComponent(elementRef) {
-          _classCallCheck(this, tooltipComponent);
-
-          this.elementRef = elementRef;
-          this.show = false;
-          this.placementCorrect = false;
-          this.active = false;
-        }
-
-        _createClass(tooltipComponent, null, [{
-          key: 'annotations',
-          get: function get() {
-            return [new _core.Component({
-              selector: 'tooltipComponent',
-              template: '\n          <div class="tooltip-arrow"></div>\n          <div class="tooltip-inner">{{tooltipContent}}</div>',
-              inputs: ["tooltipDirection", "tooltipContent"],
-              host: {
-                '[class]': '"tooltip fade "+tooltipDirection',
-                '[class.in]': "classIn"
-              },
-              styles: [':host {\n            display: block;\n          }']
-            })];
-          }
-        }]);
-
-        return tooltipComponent;
-      }();
-
-      tooltipComponent.parameters = [_core.ElementRef];
-
-      var tooltipDirective = exports.tooltipDirective = function () {
-        function tooltipDirective(ComponentFactoryResolver, ElementRef, Injector, ApplicationRef) {
-          _classCallCheck(this, tooltipDirective);
-
-          this.ElementRef = ElementRef;
-          this.injector = Injector;
-          this.applicationRef = ApplicationRef;
-          this.tooltipComponentFactory = ComponentFactoryResolver.resolveComponentFactory(tooltipComponent);
-        }
-
-        _createClass(tooltipDirective, [{
-          key: 'ngAfterContentInit',
-          value: function ngAfterContentInit() {
-            this.tooltipRef = this.tooltipComponentFactory.create(this.injector);
-            this.applicationRef.attachView(this.tooltipRef.hostView);
-            document.querySelector('body').appendChild(this.tooltipRef.location.nativeElement);
-            this.tooltipRef.instance.tooltipDirection = this.tooltipDirection;
-            this.tooltipRef.instance.tooltipContent = this.tooltipContent;
-            this.tooltipRef.changeDetectorRef.detectChanges();
-          }
-        }, {
-          key: 'ngOnChanges',
-          value: function ngOnChanges() {
-            if (this.tooltipRef) {
-              this.tooltipRef.instance.tooltipDirection = this.tooltipDirection;
-              this.tooltipRef.instance.tooltipContent = this.tooltipContent;
-            }
-          }
-        }, {
-          key: 'ngOnDestroy',
-          value: function ngOnDestroy() {
-            if (this.tooltipRef) {
-              this.tooltipRef.destroy();
-              this.tooltipRef = null;
-            }
-          }
-        }, {
-          key: 'open',
-          value: function open() {
-            this.position = this.getPosition(this.ElementRef.nativeElement);
-            this.tooltip = this.tooltipRef.location.nativeElement;
-            var tooltipHeight = this.tooltip.clientHeight;
-            var tooltipWidth = this.tooltip.clientWidth;
-            var placement = this.tooltipDirection == 'bottom' ? { top: this.position.top + this.position.height, left: this.position.left + this.position.width / 2 - tooltipWidth / 2 } : this.tooltipDirection == 'top' ? { top: this.position.top - tooltipHeight, left: this.position.left + this.position.width / 2 - tooltipWidth / 2 } : this.tooltipDirection == 'left' ? { top: this.position.top + this.position.height / 2 - tooltipHeight / 2, left: this.position.left - tooltipWidth } : { top: this.position.top + this.position.height / 2 - tooltipHeight / 2, left: this.position.left + tooltipWidth };
-            this.tooltip.style.top = placement.top + "px";
-            this.tooltip.style.left = placement.left + "px";
-            this.tooltipRef.instance.classIn = true;
-          }
-        }, {
-          key: 'close',
-          value: function close() {
-            this.tooltipRef.instance.classIn = false;
-          }
-        }, {
-          key: 'getPosition',
-          value: function getPosition(element) {
-            var left = 0;
-            var top = 0;
-            var height = element.clientHeight;
-            var width = element.clientWidth;
-            while (element.offsetParent != undefined && element.offsetParent != null) {
-              left += element.offsetLeft + (element.clientLeft != null ? element.clientLeft : 0);
-              top += element.offsetTop + (element.clientTop != null ? element.clientTop : 0);
-              element = element.offsetParent;
-            }
-            return { "left": left, "top": top, "height": height, "width": width };
-          }
-        }], [{
-          key: 'annotations',
-          get: function get() {
-            return [new _core.Directive({
-              selector: '[tooltip]',
-              inputs: ["tooltipDirection", "tooltipContent"],
-              host: {
-                "(mouseenter)": "open()",
-                "(mouseleave)": "close()"
-              }
-            })];
-          }
-        }]);
-
-        return tooltipDirective;
-      }();
-
-      tooltipDirective.parameters = [_core.ComponentFactoryResolver, _core.ElementRef, _core.Injector, _core.ApplicationRef];
-
-      /***/
-    },
-    /* 37 */
-    /***/function (module, exports) {
-
-      module.exports = "<div class=\"input-group\" id=\"rangeDatePicker\" class=\"input-group\"> <input class=\"form-control start\" [ngModel]=\"start\" (change)=\"setStart($event)\" type=\"date\" (click)=\"open('start')\"/> <span class=\"input-group-addon\"></span> <input class=\"form-control end\" [ngModel]=\"end\" (change)=\"setEnd($event)\" type=\"date\" (click)=\"open('end')\"/> </div> <modal idModal=\"test\" [options]=\"modalOptions\" [(show)]=\"visible\"> <modal-header [options]=\"modalHeaderOptions\"> <div *ngIf=\"!modalHeaderOptions.close\" class=\"row withoutClose\"> </div> <div class=\"row\"> <div class=\"col-md-5 text-center date-letter\"> <span>{{ beforeDayDateStart }}</span> <span>{{ dayDateStart }}</span> <span>{{ afterDayDateStart }}</span> </div> <div class=\"col-md-2 text-center\"> <i class=\"icon icon-next icon-4x icon-disabled\"></i> </div> <div class=\"col-md-5 text-center date-letter\"> <span>{{ beforeDayDateEnd }}</span> <span>{{ dayDateEnd }}</span> <span>{{ afterDayDateEnd }}</span> </div> </div> <div class=\"calendar-bg row\" data-date-type=\"single\"> <div class=\"col-md-1 text-center\"> <div class=\"prev arrow\" (click)=\"clickPrev($event)\"> <i class=\"icon icon-previous icon-2x\"></i> </div> </div> <div class=\"col-md-3\"> <div class=\"form-group\" [ngClass]=\"{'has-error': hasErrorStart }\"> <input type=\"date\" class=\"form-control input-md\" [ngModel]=\"start\" (ngModelChange)=\"setStart($event)\" (focus)=\"selectInputDateStart()\" [ngClass]=\"{'active': (focus === 'start') }\" (keyup.tab)=\"focusEnd($event, inputend)\" (keyup.enter)=\"closeAfterCheck()\"> </div> </div> <div class=\"col-md-3\"> <div class=\"form-group\" [ngClass]=\"{'has-error': hasErrorEnd }\"> <input #inputend type=\"date\" class=\"form-control input-md\" [ngModel]=\"end\" (ngModelChange)=\"setEnd($event)\" (keyup.enter)=\"closeAfterCheck()\" (focus)=\"selectInputDateEnd()\" [ngClass]=\"{'active': (focus === 'end')}\"> </div> </div> <div class=\"col-md-4\"> <selectpicker name=\"selectPredefinedDate\" [ngModel]=\"predefinedDate\" (ngModelChange)=\"onChange($event)\"> <selectpicker-option value=\"toDay\">{{ i18n[language][\"today\"] }}</selectpicker-option> <selectpicker-option value=\"lastWeek\">{{ i18n[language][\"lastWeek\"] }}</selectpicker-option> <selectpicker-option value=\"lastMonth\">{{ i18n[language][\"lastMonth\"] }}</selectpicker-option> <selectpicker-option value=\"last7day\">{{ i18n[language][\"last7day\"] }}</selectpicker-option> <selectpicker-option value=\"last30day\">{{ i18n[language][\"last30day\"] }}</selectpicker-option> <selectpicker-option value=\"lastYear\">{{ i18n[language][\"lastYear\"] }}</selectpicker-option> </selectpicker> </div> <div class=\"col-md-1 text-center\"> <div class=\"next arrow\" (click)=\"clickNext($event)\"> <i class=\"icon icon-next icon-2x\"></i> </div> </div> </div> </modal-header> <modal-body> <div class=\"datepicker show-calendar\"> <div *ngFor=\"let item of arrayMonths;let i = index;\" class=\"calendar calendar {{ i }}\"> <div class=\"calendar-table\"> <table class=\"table-condensed\"> <thead> <tr> <th></th> <th colspan=\"5\" class=\"month\">{{ locale.monthNames[calendar[i].month()] + calendar[i].format(\" YYYY\") }}</th> <th></th> </tr> </thead> <tbody> <tr> <td class=\"dayweek\" *ngFor=\"let item of createRange(7);let col=index\">{{ locale.weekdayNames[calendar[i].calendar[0][col].day()] }}</td> </tr> <tr *ngFor=\"let itemRow of arrayRows;let row = index;\"> <td *ngFor=\"let itemCol of arrayCols;let col = index;\" (click)=\"selectDate(calendar[i].calendar[row][col], classes[i][row][col])\" [ngClass]=\"classes[i][row][col]\"> {{ calendar[i].calendar[row][col].date() }} </td> </tr> </tbody> </table> </div> </div> </div> </modal-body> <modal-footer> </modal-footer> </modal> ";
-
-      /***/
-    },
-    /* 38 */
-    /***/function (module, exports) {
-
-      module.exports = "<input type=\"date\" class=\"form-control\" [ngModel]=\"val\" (click)=\"open()\" (change)=\"valueChange($event)\"/> <modal idModal=\"test\" [options]=\"modalOptions\" [(show)]=\"visible\"> <modal-header [options]=\"modalHeaderOptions\"> <div class=\"row\"> <div class=\"col-md-12 text-center date-letter\"> <span>{{ before }}</span> <span>{{ day }}</span> <span>{{ after }}</span> </div> </div> <div class=\"calendar-bg row\" data-date-type=\"single\"> <div class=\"col-md-12 text-center\"> <div class=\"col-md-1 text-center\"> <div class=\"prev arrow\" (click)=\"clickPrev($event)\"> <i class=\"icon icon-previous icon-2x\"></i> </div> </div> <div class=\"col-md-5\"> <input type=\"date\" class=\"form-control\" [ngModel]=\"val\" (ngModelChange)=\"valueChange($event)\" [ngClass]=\"{'active': true}\" (keyup.enter)=\"close()\"> </div> <div class=\"col-md-5\"> <selectpicker name=\"selectPredefinedDate\" [ngModel]=\"predefinedDate\" (ngModelChange)=\"onChange($event)\"> <selectpicker-option value=\"toDay\">{{ i18n[language][\"today\"] }}</selectpicker-option> <selectpicker-option value=\"lastWeek\">{{ i18n[language][\"lastWeek\"] }}</selectpicker-option> <selectpicker-option value=\"lastMonth\">{{ i18n[language][\"lastMonth\"] }}</selectpicker-option> <selectpicker-option value=\"last7day\">{{ i18n[language][\"last7day\"] }}</selectpicker-option> <selectpicker-option value=\"last30day\">{{ i18n[language][\"last30day\"] }}</selectpicker-option> <selectpicker-option value=\"lastYear\">{{ i18n[language][\"lastYear\"] }}</selectpicker-option> </selectpicker> </div> <div class=\"col-md-1 text-center\"> <div class=\"next arrow\" (click)=\"clickNext($event)\"> <i class=\"icon icon-next icon-2x\"></i> </div> </div> </div> </div> </modal-header> <modal-body> <div class=\"datepicker show-calendar\"> <div *ngFor=\"let item of createRange(numberOfMonths);let i=index\" class=\"calendar calendar {{ i }}\"> <div class=\"calendar-table\"> <table class=\"table-condensed\"> <thead *ngIf=\"i === 0\" class=\"arrows\"> <tr> <th> </th> <th colspan=\"5\" class=\"month\">{{ locale.monthNames[calendar[i].month()] + calendar[i].format(\" YYYY\") }}</th> <th> </th> </tr> </thead> <thead *ngIf=\"i != 0\"> <tr> <th></th> <th colspan=\"5\" class=\"month\">{{ locale.monthNames[calendar[i].month()] + calendar[i].format(\" YYYY\") }}</th> <th></th> </tr> </thead> <tbody> <tr> <td class=\"dayweek\" *ngFor=\"let item of createRange(7);let col=index\">{{ locale.weekdayNames[calendar[i].calendar[0][col].day()] }}</td> </tr> <tr *ngFor=\"let item of createRange(6);let row=index\"> <td *ngFor=\"let item of createRange(7);let col=index\" [ngClass]=\"classes[i][row][col]\" (click)=\"selectDate(calendar[i].calendar[row][col], classes[i][row][col])\"> {{ calendar[i].calendar[row][col].date() }} </td> </tr> </tbody> </table> </div> </div> </div> </modal-body> <modal-footer> </modal-footer> </modal> ";
-
-      /***/
-    },
-    /* 39 */
-    /***/function (module, exports) {
-
-      module.exports = "<div class=\"select\" [ngClass]=\"{'open': isOpen }\" [attr.aria-multiple]=\"multiple\"> <input type=\"hidden\" class=\"select-value\" (change)=\"valueChange($event)\"/> <button class=\"btn btn-default select-toggle\" type=\"button\" (click)=\"Open()\" data-toggle=\"select\" [attr.aria-expanded]=\"isOpen\"> <span class=\"select-text\" [innerHTML]=\"SelectedValuesText\"></span> <span class=\"caret\"></span> </button> <ul class=\"select-options\"> <li *ngFor=\"let option of options\" (click)=\"selectOption(option, $event)\" [attr.aria-selected]=\"option.selected\"> <a [ngStyle]=\"{'cursor': cursor}\" (mouseover)=\"onHover($event)\" class=\"noselect\">{{ option.text }}</a> </li> </ul> </div> ";
-
-      /***/
-    },
-    /* 40 */
-    /***/function (module, exports) {
-
-      module.exports = __WEBPACK_EXTERNAL_MODULE_40__;
-
-      /***/
-    }]
-    /******/)
-  );
-});
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(64)(module)))
-
-/***/ }),
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _core = __webpack_require__(0);
-
-var _router = __webpack_require__(13);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var AppComponent = function () {
-  _createClass(AppComponent, null, [{
-    key: 'annotations',
-    get: function get() {
-      return [new _core.Component({
-        selector: 'my-app',
-        template: __webpack_require__(83),
-        directives: [_router.ROUTER_DIRECTIVES]
-      })];
-    }
-  }]);
-
-  function AppComponent() {
-    _classCallCheck(this, AppComponent);
-  }
-
-  return AppComponent;
-}();
-
-exports.default = AppComponent;
-
-
-AppComponent.parameters = [];
-
-/***/ }),
-/* 75 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.AppModule = undefined;
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-// import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
-
-var _core = __webpack_require__(0);
-
-var _router = __webpack_require__(13);
-
-var _app = __webpack_require__(74);
-
-var _app2 = _interopRequireDefault(_app);
-
-var _forms = __webpack_require__(12);
-
-var _platformBrowser = __webpack_require__(8);
-
-var _common = __webpack_require__(5);
-
-var _homeComponent = __webpack_require__(33);
-
-var _homeComponent2 = _interopRequireDefault(_homeComponent);
-
-var _datepicker = __webpack_require__(28);
-
-var _datepicker2 = _interopRequireDefault(_datepicker);
-
-var _paginationComponent = __webpack_require__(39);
-
-var _paginationComponent2 = _interopRequireDefault(_paginationComponent);
-
-var _selectpickerComponent = __webpack_require__(42);
-
-var _selectpickerComponent2 = _interopRequireDefault(_selectpickerComponent);
-
-var _slidepickerComponent = __webpack_require__(43);
-
-var _slidepickerComponent2 = _interopRequireDefault(_slidepickerComponent);
-=======
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
 
             if (this.vertical) {
               increment = trackHeight / 1000;
@@ -93177,48 +92445,10 @@ var _slidepickerComponent2 = _interopRequireDefault(_slidepickerComponent);
           _classCallCheck(this, modalBodyComponent);
         }
 
-<<<<<<< HEAD
-var AppModule = exports.AppModule = function AppModule() {};
-
-var types = [{
-  type: "date",
-  alignment: "right",
-  pipes: [_common.DatePipe],
-  optionsPipe: ['shortDate:longDate'],
-  transformation: function transformation(val) {
-    if (moment(val).isValid()) {
-      return moment(val).toString();
-    } else {
-      return "invalid value";
-    }
-  }
-}, {
-  type: 'number',
-  transformation: function transformation(val) {
-    if (!isNaN(val)) {
-      return val;
-    } else {
-      return "invalid value";
-    }
-  }
-}, {
-  type: 'boolean',
-  transformation: function transformation(val) {
-    if ((typeof val === 'undefined' ? 'undefined' : _typeof(val)) === void 0 || val === null) {
-      return val;
-    }
-    if (!val || val == '0' || val == 'false') {
-      return 0;
-    }
-    return 1;
-  }
-}];
-=======
         return modalBodyComponent;
       }();
 
       exports.default = modalBodyComponent;
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
 
       modalBodyComponent.parameters = [];
 
@@ -93310,9 +92540,10 @@ var types = [{
           get: function get() {
             return [new _core.Component({
               selector: 'grid',
-              template: '\n\t\t\t\t<grid-header class="gridHeader" [columns]="columns" [pipes]="pipes">\n        </grid-header>\n        <grid-body class="gridBody" [columns]="columns" [rows]="rows" [pipes]="pipes">\n        </grid-body>\n        <grid-footer class="gridFooter" *ngIf="config.footer !==\'none\'" [columns]="columns" [rows]="rows">\n        </grid-footer>',
+              template: '\n\t\t\t\t<grid-header class="gridHeader" [columns]="columns" [pipes]="pipes" (sort)="sort.emit($event)">\n        </grid-header>\n        <grid-body class="gridBody" [types]="types" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected" (selectedRows)="onSelect($event)">\n        </grid-body>\n        <grid-footer class="gridFooter" *ngIf="config.footer !==\'none\'" [columns]="columns" [rows]="rows">\n        </grid-footer>',
               styles: [':host { display : table;}'],
-              inputs: ['columns', 'rows', 'config']
+              inputs: ['columns', 'rows', 'config', 'selected'],
+              outputs: ['selectedRows', 'sort']
             })];
           }
         }]);
@@ -93324,95 +92555,47 @@ var types = [{
           this.injector = injector;
           this.pipes = [];
           this.types = gridConfig;
-          this.types.forEach(function (type, i) {
-            if (type.pipes) {
-              if (Array.isArray(type.pipes)) {
-                self.pipes[i] = [];
-                type.pipes.forEach(function (pipe, indexPipe) {
-                  var options = type.optionsPipe[indexPipe] || [];
+          this.selectedRows = new _core.EventEmitter();
+          this.sort = new _core.EventEmitter();
+          if (this.types) {
+            this.types.forEach(function (type, i) {
+              if (type.pipes) {
+                if (Array.isArray(type.pipes)) {
+                  self.pipes[i] = [];
+                  type.pipes.forEach(function (pipe, indexPipe) {
+                    var options = type.optionsPipe[indexPipe] || [];
+                    options = Array.isArray(options) ? options : options.split(':');
+                    self.pipes[i][indexPipe] = {
+                      pipe: pipe,
+                      option: options || []
+                    };
+                  });
+                  self.pipes[i].type = type.type;
+                } else {
+                  var options = type.optionsPipe[i] || [];
                   options = Array.isArray(options) ? options : options.split(':');
-                  self.pipes[i][indexPipe] = {
-                    pipe: pipe,
-                    option: options || []
+                  self.pipes[i] = {
+                    pipe: self.pipes[i],
+                    type: type.type,
+                    option: options
                   };
-                });
-                self.pipes[i].type = type.type;
-              } else {
-                var options = type.optionsPipe[i] || [];
-                options = Array.isArray(options) ? options : options.split(':');
-                self.pipes[i] = {
-                  pipe: self.pipes[i],
-                  type: type.type,
-                  option: options
-                };
+                }
               }
-            }
-          });
+            });
+          }
         }
 
         _createClass(gridComponent, [{
           key: 'ngOnInit',
           value: function ngOnInit() {
             var self = this;
-            // this.rows.forEach(function(row){
-            // 	self.columns.forEach(function(column){
-            // 		var index = -1;
-            // 		self.types.forEach(function(type, i){
-            // 			if (column.type === type.type) {
-            // 				index = i;
-            // 			}
-            // 		})
-            // 		if ( index !== -1) {
-            // 			if( Array.isArray(self.pipes[index])) {
-            // 				self.pipes[index].forEach(function( pipe, i) {
-            // 					if (pipe !== null) {
-            // 						if ( self.types[index].optionsPipe[i] ){
-            // 							row[column.label] = self.pipes[index].transform( row[column.label], self.types[index].optionsPipe[i]);
-            // 						} else {
-            // 							row[column.label] = self.pipes[index].transform( row[column.label]);
-            // 						}
-            // 					}
-            // 				})
-            // 			} else {
-            // 				if (self.pipes[index] !== null) {
-            // 					row[column.label] = self.pipes[index].transform( row[column.label], self.types[index].optionsPipe);
-            // 				}
-            // 			}
-            // 		}
-            // 	})
-            // })
             this.columns.forEach(function (column) {
-              var indexHeader = -1;
               var indexType = -1;
               self.types.forEach(function (type, i) {
-                // if (column.type === "header") {
-                // 	indexHeader = i;
-                // }
                 if (column.type === type.type) {
                   indexType = i;
                 }
               });
-              // if ( indexHeader !== -1 && self.pipes[indexHeader] !== null) {
-              // 	column.label = self.pipes[indexHeader].transform( column.label, self.types[indexHeader].optionsPipe );
-              // }
-
-              // if ( indexHeader !== -1) {
-              // 	if( Array.isArray(self.pipes[indexHeader])) {
-              // 		self.pipes[indexHeader].forEach(function( pipe, i) {
-              // 			if (pipe !== null) {
-              // 				if ( self.types[indexHeader].optionsPipe[i] ){
-              // 					row[column.label] = self.pipes[indexHeader].transform( row[column.label], self.types[indexHeader].optionsPipe[i]);
-              // 				} else {
-              // 					row[column.label] = self.pipes[indexHeader].transform( row[column.label]);
-              // 				}
-              // 			}
-              // 		})
-              // 	} else {
-              // 		if (self.pipes[indexHeader] !== null) {
-              // 			row[column.label] = self.pipes[indexHeader].transform( row[column.label], self.types[indexHeader].optionsPipe);
-              // 		}
-              // 	}
-              // }
 
               if (indexType !== -1) {
                 column.class = column.class || self.types[indexType].class;
@@ -93423,6 +92606,11 @@ var types = [{
 
             this.config = {};
             this.config.footer = "none" || this.config.footer;
+          }
+        }, {
+          key: 'onSelect',
+          value: function onSelect(row) {
+            this.selectedRows.emit(row);
           }
         }]);
 
@@ -93468,26 +92656,60 @@ var types = [{
           get: function get() {
             return [new _core.Component({
               selector: 'grid-header',
-              template: '\n\t\t\t\t<div class="gridRow">\n\t\t\t\t\t<div *ngFor= "let column of columns" class="gridHead" [ngClass]="column.class" [style.width]="column.width">\n\t\t\t\t\t\t<grid-cell-header [content]="column.label" [pipes]= pipes>\n\t\t\t\t\t\t</grid-cell-header>\n\t        </div>\n\t\t\t\t</div>',
-              styles: ['\n          :host { display : table-header-group; }\n          .gridHead { display : table-cell; }\n\t\t\t\t\t.gridRow { display : table-row; }\n          '],
+              template: '\n\t\t\t\t<div class="gridRow">\n\t\t\t\t\t<div *ngFor= "let column of columns; let i = index;" class="gridHead" [ngClass]="column.class" [class.sortable]="!column.notSortable" [style.width]="column.width" (click)="onSort(column, i)">\n\t\t\t\t\t\t<grid-cell-header [content]="column.label" [pipes]="pipes" [sortingClass]="column.sortingClass">\n\t\t\t\t\t\t</grid-cell-header>\n\t        </div>\n\t\t\t\t</div>',
+              styles: ['\n          :host { display : table-header-group; }\n          .gridHead { display : table-cell; }\n\t\t\t\t\t.gridRow { display : table-row; }\n          .sortable { cursor : pointer }\n          '],
               inputs: ['columns', 'pipes'],
-              outputs: ['tableChanged']
+              outputs: ['sort']
             })];
           }
         }]);
 
-        function gridHeaderComponent(elementRef) {
+        function gridHeaderComponent() {
           _classCallCheck(this, gridHeaderComponent);
 
-          this.tableChanged = new _core.EventEmitter();
+          this.sort = new _core.EventEmitter();
+          this.sortColumns = [];
         }
+
+        _createClass(gridHeaderComponent, [{
+          key: 'onSort',
+          value: function onSort(column, id) {
+            var _this = this;
+
+            if (column.notSortable) {
+              return;
+            }
+            // var sort = {label: column.label};
+            var alreadyOrdered = false;
+            this.sortColumns.forEach(function (sortColumn, index) {
+              if (sortColumn.label === column.label) {
+                if (sortColumn.order === 'asc') {
+                  _this.columns[id].sortingClass = 'icon icon-sort-desc';
+                  sortColumn.order = 'desc';
+                } else {
+                  _this.columns[id].sortingClass = '';
+                  _this.sortColumns.splice(index, 1);
+                }
+                alreadyOrdered = true;
+              }
+            });
+            if (!alreadyOrdered) {
+              this.columns[id].sortingClass = 'icon icon-sort-asc';
+              this.sortColumns.push({
+                label: column.label,
+                order: 'asc',
+                type: column.type || 'text'
+              });
+            }
+
+            this.sort.emit(this.sortColumns);
+          }
+        }]);
 
         return gridHeaderComponent;
       }();
 
       exports.default = gridHeaderComponent;
-
-      gridHeaderComponent.parameters = [_core.ElementRef];
 
       /***/
     },
@@ -93524,25 +92746,99 @@ var types = [{
           get: function get() {
             return [new _core.Component({
               selector: 'grid-body',
-              template: '\n\t\t\t\t<div *ngFor="let row of rows" class="gridRow">\n          <div *ngFor="let column of columns" class="gridCell" [ngClass]="column.class" [attr.align]="column.alignment">\n\t\t\t\t\t\t<grid-cell [content] = "row[column.label]" [type]="column.type" [pipes]="pipes">\n\t\t\t\t\t\t</grid-cell>\n          </div>\n        </div>',
-              styles: ['\n          :host { display : table-row-group; }\n          .gridRow { display : table-row; }\n          .gridCell { display : table-cell; }\n          '],
-              inputs: ['columns', 'rows', 'pipes']
+              template: '\n\t\t\t\t<div *ngFor="let row of rows; let i = index" (click)="!changingCellContent && selectRow(row, $event, i)" [class.active]=\'!changingCellContent && selected.includes(row)\' class="gridRow">\n          <div *ngFor="let column of columns; let y = index" class="gridCell" [ngClass]="column.class" [attr.align]="column.alignment" (dblclick)="!changingCellContent && modifyContent($event, i, y)">\n          <input class="form-control" [ngModel]="row[column.label]" *ngIf="changingCellContent === i + \'\' + y" (blur)="modifyContent($event, i, y, true)" (keyup.enter)="modifyContent($event, i, y, true)" focus/>\n\t\t\t\t\t\t<grid-cell [content]="row[column.label]" [type]="column.type" [pipes]="pipes" *ngIf="changingCellContent !== i + \'\' + y">\n\t\t\t\t\t\t</grid-cell>\n          </div>\n        </div>',
+              styles: ['\n          :host { display : table-row-group; }\n          .gridRow { display : table-row; }\n          .gridCell { display : table-cell; }\n\t\t\t\t\t.active { background-color: lightblue; }\n          '],
+              inputs: ['columns', 'rows', 'pipes', 'selected', 'types'],
+              outputs: ['selectedRows']
             })];
           }
         }]);
 
-        function gridBodyComponent(elementRef) {
+        function gridBodyComponent() {
           _classCallCheck(this, gridBodyComponent);
+
+          this.selectedRows = new _core.EventEmitter();
+          this.previousSelectedIndex;
         }
+
+        _createClass(gridBodyComponent, [{
+          key: 'selectRow',
+          value: function selectRow(row, e) {
+            if (this.changingCellContent) {
+              return;
+            }
+            var selected = Array.from(this.selected);
+            if (e.ctrlKey) {
+              var index = selected.indexOf(row);
+              if (index > -1) {
+                selected.splice(index, 1);
+              } else {
+                selected.push(row);
+                this.previousSelectedIndex = this.rows.indexOf(row);
+              }
+            } else if (e.shiftKey) {
+              if (typeof this.previousSelectedIndex !== "undefined" && this.previousSelectedIndex !== null) {
+                selected = [];
+                var indexRow = this.rows.indexOf(row);
+                var prev = this.previousSelectedIndex < indexRow ? true : false;
+                var i = this.previousSelectedIndex;
+                if (prev) {
+                  for (i; i <= indexRow; i++) {
+                    selected.push(this.rows[i]);
+                  }
+                } else {
+                  for (i; i >= indexRow; i--) {
+                    selected.push(this.rows[i]);
+                  }
+                }
+              }
+            } else {
+              if (this.rows.indexOf(row) === this.previousSelectedIndex) {
+                selected = [];
+              } else {
+                selected = row ? new Array(row) : [];
+                this.previousSelectedIndex = this.rows.indexOf(row);
+              }
+            }
+            if (selected.length === 0) {
+              this.previousSelectedIndex = null;
+            }
+            this.selectedRows.emit(selected);
+          }
+        }, {
+          key: 'modifyContent',
+          value: function modifyContent(e, i, y, validateChange) {
+            var _this = this;
+
+            if (this.columns[y].notEditable || !validateChange && this.changingCellContent) {
+              return;
+            }
+            var coordinate = i + '' + y;
+            if (validateChange) {
+              var value = e.target.value;
+              if (this.columns[y].type) {
+                this.types.forEach(function (type) {
+                  if (type.type === _this.columns[y].type && type.transformation) {
+                    value = type.transformation(value);
+                  }
+                });
+              }
+              if (value !== "invalid value") {
+                this.rows[i][this.columns[y].label] = value;
+              }
+              this.changingCellContent = false;
+            } else {
+              this.changingCellContent = coordinate;
+            }
+          }
+        }]);
 
         return gridBodyComponent;
       }();
 
       exports.default = gridBodyComponent;
 
-      gridBodyComponent.parameters = [_core.ElementRef];
-
-      // {{row[column.label] | dynamic:'date'}}
+      gridBodyComponent.parameters = [];
 
       /***/
     },
@@ -93586,7 +92882,7 @@ var types = [{
           }
         }]);
 
-        function gridFooterComponent(elementRef) {
+        function gridFooterComponent() {
           _classCallCheck(this, gridFooterComponent);
         }
 
@@ -93594,8 +92890,6 @@ var types = [{
       }();
 
       exports.default = gridFooterComponent;
-
-      gridFooterComponent.parameters = [_core.ElementRef];
 
       /***/
     },
@@ -93632,8 +92926,9 @@ var types = [{
           get: function get() {
             return [new _core.Component({
               selector: 'grid-cell',
-              template: '\n\t\t\t\t{{content}}',
-              inputs: ['content', 'type', 'pipes']
+              template: '{{content}}',
+              inputs: ['content', 'type', 'pipes'],
+              styles: [":host { user-select: none; -moz-user-select: none; }"]
             })];
           }
         }]);
@@ -93666,20 +92961,16 @@ var types = [{
               } else {
                 self.pipes[index].pipeInjected = self.injector.get(self.pipe[index], null);
                 if (self.pipes[index].pipeInjected !== null) {
-                  var args = [self.content].concat(pipeType.option);
-                  self.content = pipeType.pipeInjected.transform.apply(self, args);
+                  var args = [self.content].concat(self.pipes[index].option);
+                  self.content = self.pipes[index].pipeInjected.transform.apply(self, args);
                 }
               }
             }
           }
         }]);
 
-<<<<<<< HEAD
-module.exports = "<div id=\"sidebar-wrapper\"> <ul class=\"sidebar-nav\"> <li> <a [routerLink]=\"['/home']\">Home</a> </li> <li> <a [routerLink]=\"['/accordion']\">Accordion</a> </li> <li> <a [routerLink]=\"['/button']\">Button</a> </li> <li> <a [routerLink]=\"['/buttongroups']\">Button groups</a> </li> <li> <a [routerLink]=\"['/carouselAngular']\">Carousel</a> </li> <li> <a [routerLink]=\"['/datepickerAngular']\">Datepicker</a> </li> <li> <a [routerLink]=\"['/dropdownAngular']\">Dropdown</a> </li> <li> <a [routerLink]=\"['/forms']\">Forms</a> </li> <li> <a [routerLink]=\"['/grid']\">Grid HTML</a> </li> <li> <a [routerLink]=\"['/gridAngular']\">Grid angular</a> </li> <li> <a [routerLink]=\"['/icon']\">Icon</a> </li> <li> <a [routerLink]=\"['/input']\">Input</a> </li> <li> <a [routerLink]=\"['/inputgroup']\">Inputgroup</a> </li> <li> <a [routerLink]=\"['/modalAngular']\">Modal</a> </li> <li> <a [routerLink]=\"['/navbar']\">Navbar</a> </li> <li> <a [routerLink]=\"['/paginationAngular']\">Pagination</a> </li> <li> <a [routerLink]=\"['/popover']\">Popover</a> </li> <li> <a [routerLink]=\"['/progressBar']\">Progress bar</a> </li> <li> <a [routerLink]=\"['/selectpickerAngular']\">Selectpicker</a> </li> <li> <a [routerLink]=\"['/slidepickerAngular']\">Slidepicker</a> </li> <li> <a [routerLink]=\"['/table']\">Table</a> </li> <li> <a [routerLink]=\"['/tooltip']\">Tooltip</a> </li> </ul> </div> <div> <main> <router-outlet></router-outlet> </main> </div> <footer> </footer> ";
-=======
         return gridCellComponent;
       }();
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
 
       exports.default = gridCellComponent;
 
@@ -93720,8 +93011,8 @@ module.exports = "<div id=\"sidebar-wrapper\"> <ul class=\"sidebar-nav\"> <li> <
           get: function get() {
             return [new _core.Component({
               selector: 'grid-cell-header',
-              template: '\n\t\t\t\t{{content}}',
-              inputs: ['content', 'pipes']
+              template: '\n\t\t\t\t<span>{{content}}</span>\n\t\t\t\t<span [class]="sortingClass"></span>',
+              inputs: ['content', 'pipes', 'sortingClass']
             })];
           }
         }]);
@@ -93754,8 +93045,8 @@ module.exports = "<div id=\"sidebar-wrapper\"> <ul class=\"sidebar-nav\"> <li> <
               } else {
                 self.pipes[index].pipeInjected = self.injector.get(self.pipe[index], null);
                 if (self.pipes[index].pipeInjected !== null) {
-                  var args = [self.content].concat(pipeType.option);
-                  self.content = pipeType.pipeInjected.transform.apply(self, args);
+                  var args = [self.content].concat(self.pipes[index].option);
+                  self.content = self.pipes[index].pipeInjected.transform.apply(self, args);
                 }
               }
             }
@@ -93769,24 +93060,16 @@ module.exports = "<div id=\"sidebar-wrapper\"> <ul class=\"sidebar-nav\"> <li> <
 
       gridCellHeaderComponent.parameters = [_core.ElementRef, _core.Injector];
 
-<<<<<<< HEAD
-module.exports = "<div class=\"container\"> <h3> Example : </h3> <div class=\"row\"> <grid class=\"table table-bordered\" [columns]=\"columns\" [rows]=\"rows\" (selectedRows)=\"selectionTest($event)\" [selected]=\"selection\" (sort)=\"onSort($event)\"></grid> </div> <h4> Html : </h4> <pre>\n    {{gridHtml}}\n  </pre> <blockquote> <p> A grid component is like a table so we can use class like table </p> </blockquote> <h3> grid parameters: </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Parameter </th> <th> Type </th> <th> Description </th> </tr> </thead> <tbody> <tr> <td> columns </td> <td> Array of objects </td> <td> Different columns with all default parameters, columns name, and type of the columns </td> </tr> <tr> <td> rows </td> <td> Array of objects </td> <td> The value of rows we send to widget </td> </tr> <tr> <td> selected </td> <td> Array of objects </td> <td> The value we selected in rows for changes selection in widget </td> </tr> <tr> <td> selectedRows </td> <td> Function with $event </td> <td> Allow to collect what we select into widget </td> </tr> <tr> <td> sort </td> <td> Function with $event </td> <td> Collect all the sort we define in widget, when we click on a column, this update the $event value </td> </tr> </tbody> </table> <h3> Columns object: </h3> <h4> Exemple : </h4> <pre>\n    {{gridColumns}}\n  </pre> <h4> Parameters: </h4> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Parameter </th> <th> Type </th> <th> value </th> <th> Description </th> </tr> </thead> <tbody> <tr> <td> label </td> <td> string </td> <td> any </td> <td> It's the name of the column </td> </tr> <tr> <td> alignment </td> <td> string </td> <td> like the css property </td> <td> Optional; Change the alignment of the column and all the cell of this column </td> </tr> <tr> <td> width </td> <td> String </td> <td> Value + \"em\" or \"px\" or \"%\" </td> <td> Optional; Define the width of the column </td> </tr> <tr> <td> type </td> <td> string </td> <td> Any you defined in ngx-atlantis-ui module </td> <td> Per default: string; Define default value of the column with the param we send to ngx-atlantis-ui module. </td> </tr> <tr> <td> notSortable </td> <td> boolean </td> <td> true, false </td> <td> Optional per default : false; Define if we can sort the column </td> </tr> <tr> <td> notEditable </td> <td> boolean </td> <td> true, false </td> <td> Optional per default : false; Define if we edit the content of the column </td> </tr> </tbody> </table> <h4> Rows object: </h4> <pre>\n    {{gridRows}}\n  </pre> <blockquote> <p> Any rows have same syntax, we create attribute with column name. </p> <p> It's better to create a copy of the original rows to avoid to modify the rows. </p> </blockquote> </div> ";
-=======
       /***/
     },
     /* 31 */
     /***/function (module, exports, __webpack_require__) {
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
 
       "use strict";
 
-<<<<<<< HEAD
-module.exports = "<div> <div class=\"container\"> <div class=\"row\"> <h3> Getting started : </h3> <h3> Step 1 : Install atlantis-ui </h3> <p> npm install atlantis-ui </p> <h3> Step 2 : Import the component Modules, use standard widget and CSS or less </h3> <p> Import the ngModule for each component you want to use with the function forRoot() or in a shared module : </p> <pre>\n        {{importHtml}}\n      </pre> <p> For use standard widget, add with script atlantis-ui-js </p> <p> For use css, add link to atlantis-ui-css </p> <p> For use less, add link to less and add less compiler or loader. </p> <p> In the function forRoot we just need to add a parameters objects for the grid component </p> <h3> Example of parameters : </h3> <pre>\n        {{gridParameters}}\n      </pre> <h3> Parameters : </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th> Parameter </th> <th> Type </th> <th> Description </th> </tr> </thead> <tbody> <tr> <td> type </td> <td> string </td> <td> It's the type you want to define, it allow to put default parameters to a type column </td> </tr> <tr> <td> alignment </td> <td> string </td> <td> Optional; Change the alignment of the column and all the cell of this column; it's use like css property </td> </tr> <tr> <td> pipes </td> <td> Array of pipes </td> <td> Optional; That need to provide first the pipes in your module. </td> </tr> <tr> <td> optionsPipe </td> <td> Array of string </td> <td> Should define in same order has pipes; You can have multiple options, that just need to add a array in place of string </td> </tr> <tr> <td> transformation </td> <td> function </td> <td> That allow to pass a function that be fire when we modify content into a cell. That allow to have correct value; for incorrect value always return \"invalid value\" </td> </tr> </tbody> </table> </div> </div> </div> ";
-=======
       Object.defineProperty(exports, "__esModule", {
         value: true
       });
->>>>>>> d7dc6be6b907356347a61cc674e106e8862927cd
 
       var _createClass = function () {
         function defineProperties(target, props) {
