@@ -91532,11 +91532,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }
 
         _createClass(selectpickerComponent, [{
-          key: 'trackByFn',
-          value: function trackByFn(index, item) {
-            return index;
-          }
-        }, {
           key: 'writeValue',
           value: function writeValue(val) {
             if (val !== this.val) {
@@ -91654,17 +91649,17 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               if (!this.val) {
                 this.val = [];
               }
-              // if (!this.SelectedValuesText || this.val.length <= 0) {
-              //   this.SelectedValuesText = [];
-              // }
+              if (!this.SelectedValuesText || this.val.length <= 0) {
+                this.SelectedValuesText = [];
+              }
               // delete all value not in the options
-              var options = this.options.toArray();
-              // this.options.forEach(function(option) {
-              //   options.push(option.value);
-              // });
+              var options = [];
+              this.options.forEach(function (option) {
+                options.push(option.value);
+              });
               this.val.forEach(function (value) {
                 var index = options.indexOf(value);
-                if (index == -1) {
+                if (index <= -1) {
                   index = self.val.indexOf(value);
                   self.val.splice(index, 1);
                 }
@@ -91809,7 +91804,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           get: function get() {
             return [new _core.Component({
               selector: 'selectpicker',
-              template: '\n        <div class="select"  [ngClass]="{\'open\': isOpen, \'multiple\': multiple }" [attr.aria-multiple]="multiple">\n          <input type="hidden" class="select-value" (change)="valueChange($event)" />\n          <button class="btn btn-default select-toggle" type="button" (click)="Open()" data-toggle="select" [attr.aria-expanded]="isOpen">\n            <span class="select-text" [innerHTML]="SelectedValuesText"></span>\n            <span class="caret"></span>\n          </button>\n          <ul  class="select-options">\n              <li *ngFor="let option of options;let i = index;trackBy: trackByFn">\n                <a [ngStyle]="{\'cursor\': cursor}" class="noselect">{{ option.text }}</a>\n              </li>\n          </ul>\n        </div>',
+              template: '\n        <div class="select"  [ngClass]="{\'open\': isOpen, \'multiple\': multiple }" [attr.aria-multiple]="multiple">\n          <input type="hidden" class="select-value" (change)="valueChange($event)" />\n          <button class="btn btn-default select-toggle" type="button" (click)="Open()" data-toggle="select" [attr.aria-expanded]="isOpen">\n            <span class="select-text" [innerHTML]="SelectedValuesText"></span>\n            <span class="caret"></span>\n          </button>\n          <ul  class="select-options">\n              <li *ngFor="let option of options" (click)="selectOption(option, $event)" [attr.aria-selected]="option.selected">\n                <a [ngStyle]="{\'cursor\': cursor}" (mouseover)="onHover($event)" class="noselect">{{ option.text }}</a>\n              </li>\n          </ul>\n        </div>',
               inputs: ['multiple'],
               queries: {
                 options: new _core.ContentChildren(_selectpickerOption2.default)
