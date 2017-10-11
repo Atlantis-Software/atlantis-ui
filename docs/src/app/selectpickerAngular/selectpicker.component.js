@@ -75,11 +75,16 @@ export default  class SelectpickerAngularComponent {
     this.optionArrayOneTwoThree = {value: this.arrayOneTwoThree, text: "arrayOneTwoThree"};
     this.optionOne = {value: this.one, text: "one"};
     this.optionObjetWithArray = {value: this.objetWithArray, text: "objetWithArray"};
-    this.optionsSelect = [ this.optionArrayOneTwoThree , this.optionOne , this.optionObjetWithArray ];
+    // this.optionsSelect = [ this.optionArrayOneTwoThree , this.optionOne , this.optionObjetWithArray ];
     this.Selectpicker3 = [this.one, this.objetWithArray, "D"];
     this.booleanFalse = false;
     this.A = "A";
 
+    this.optionsSelect = [];
+
+    for (var i = 0; i<10000;i++) {
+      this.optionsSelect.push({value: i, text: i});
+    }
   }
 
   ngOnInit() {

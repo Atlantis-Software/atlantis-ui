@@ -12,9 +12,9 @@
         <div class="panel-heading">
           Single list
         </div>
-        <div class="panel-body" sortable-container [sortableData]="listSingle" [dropzones]="'single1'">
+        <div class="panel-body" sortable-container [sortableData]="listSingle" [dropzones]="['single1']">
           <ul class="list-group">
-            <li *ngFor="let item of listSingle; let i = index" class="list-group-item" sortable [sortableIndex]="i">
+            <li *ngFor="let item of listSingle; let i = index" class="list-group-item" sortable>
               {{item}}
             </li>
           </ul>
@@ -52,9 +52,9 @@
         <div class="panel-heading">
           Single list with handle
         </div>
-        <div class="panel-body" sortable-container [sortableData]="listHandle" [dropzones]="'handle'">
+        <div class="panel-body" sortable-container [sortableData]="listHandle" [dropzones]="['handle']">
           <ul class="list-group">
-            <li *ngFor="let item of listHandle; let i = index" class="list-group-item" sortable [sortableIndex]="i">
+            <li *ngFor="let item of listHandle; let i = index" class="list-group-item" sortable>
               {{item}}
               <span sortable-handle>=</span>
             </li>
@@ -88,9 +88,9 @@
         <div class="panel-heading">
           Multiple list 1
         </div>
-        <div class="panel-body" sortable-container [sortableData]="listMultiple1" [dropzones]="'multiple'">
+        <div class="panel-body" sortable-container [sortableData]="listMultiple1" [dropzones]="['multiple']">
           <ul class="list-group"  >
-            <li *ngFor="let item of listMultiple1; let i = index" class="list-group-item" sortable [sortableIndex]="i">
+            <li *ngFor="let item of listMultiple1; let i = index" class="list-group-item" sortable>
               {{item}}
             </li>
           </ul>
@@ -110,9 +110,9 @@
         <div class="panel-heading">
           Multiple list 2
         </div>
-        <div class="panel-body" sortable-container [sortableData]="listMultiple2" [dropzones]="'multiple'">
+        <div class="panel-body" sortable-container [sortableData]="listMultiple2" [dropzones]="['multiple']">
           <ul class="list-group"  >
-            <li *ngFor="let item of listMultiple2; let i = index" class="list-group-item" sortable [sortableIndex]="i">
+            <li *ngFor="let item of listMultiple2; let i = index" class="list-group-item" sortable>
               {{item}}
             </li>
           </ul>
@@ -142,9 +142,9 @@
         <div class="panel-heading">
           List not empty
         </div>
-        <div class="panel-body" sortable-container [sortableData]="listSingle2" [dropzones]="'empty'">
+        <div class="panel-body" sortable-container [sortableData]="listSingle2" [dropzones]="['empty']">
           <ul class="list-group"  >
-            <li *ngFor="let item of listSingle2; let i = index" class="list-group-item" sortable [sortableIndex]="i">
+            <li *ngFor="let item of listSingle2; let i = index" class="list-group-item" sortable>
               {{item}}
             </li>
           </ul>
@@ -164,9 +164,9 @@
         <div class="panel-heading">
           List empty
         </div>
-        <div class="panel-body" sortable-container [sortableData]="listEmpty" [dropzones]="'empty'">
+        <div class="panel-body" sortable-container [sortableData]="listEmpty" [dropzones]="['empty']">
           <ul class="list-group"  >
-            <li *ngFor="let item of listEmpty; let i = index" class="list-group-item" sortable [sortableIndex]="i">
+            <li *ngFor="let item of listEmpty; let i = index" class="list-group-item" sortable>
               {{item}}
             </li>
           </ul>
@@ -197,9 +197,9 @@
         <div class="panel-heading">
           List (allow dropzone1 and dropzone2)
         </div>
-        <div class="panel-body" sortable-container [sortableData]="listDropzone" [dropzones]="'dropzone2.dropzone1'">
+        <div class="panel-body" sortable-container [sortableData]="listDropzone" [dropzones]="['dropzone2','dropzone1']">
           <ul class="list-group"  >
-            <li *ngFor="let item of listDropzone; let i = index" class="list-group-item" sortable [sortableIndex]="i">
+            <li *ngFor="let item of listDropzone; let i = index" class="list-group-item" sortable>
               {{item}}
             </li>
           </ul>
@@ -211,9 +211,9 @@
         <div class="panel-heading">
           Dropzone1 (allow dropzone 1)
         </div>
-        <div class="panel-body" sortable-container [sortableData]="listDropzone1" [dropzones]="'dropzone1'">
+        <div class="panel-body" sortable-container [sortableData]="listDropzone1" [dropzones]="['dropzone1']">
           <ul class="list-group"  >
-            <li *ngFor="let item of listDropzone1; let i = index" class="list-group-item" sortable [sortableIndex]="i">
+            <li *ngFor="let item of listDropzone1; let i = index" class="list-group-item" sortable>
               {{item}}
             </li>
           </ul>
@@ -225,9 +225,9 @@
         <div class="panel-heading">
           Dropzone2 (allow dropzone 2)
         </div>
-        <div class="panel-body" sortable-container [sortableData]="listDropzone2" [dropzones]="'dropzone2'">
+        <div class="panel-body" sortable-container [sortableData]="listDropzone2" [dropzones]="['dropzone2']">
           <ul class="list-group"  >
-            <li *ngFor="let item of listDropzone2; let i = index" class="list-group-item" sortable [sortableIndex]="i">
+            <li *ngFor="let item of listDropzone2; let i = index" class="list-group-item" sortable>
               {{item}}
             </li>
           </ul>
@@ -253,7 +253,7 @@
   <h4>
     Settings
   </h4>
-  <table class="table table-striped table-bordered table-hover">
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
         <th class="col-md-2">
@@ -308,7 +308,7 @@
   <h3>
     settings
   </h3>
-  <table class="table table-striped table-bordered table-hover">
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
         <th class="col-md-2">

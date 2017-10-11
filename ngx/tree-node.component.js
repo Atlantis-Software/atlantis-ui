@@ -33,7 +33,7 @@ export default class treeNodeComponent {
           <span *ngIf="!notSortable" sortable-handle>=</span>
           </div>
         <ng-content *ngIf="expanded"></ng-content>
-        <div *ngIf="children?.length" [hidden]="!expandable || !expanded" [sortable-container]="notSortable" [sortableData]="children" [dropzones]="sortableZones">
+        <div *ngIf="children?.length" [hidden]="!expandable || !expanded" [sortable-container]="notSortable" [sortableData]="children" [dropzones]="[sortableZones]">
           <tree-node *ngFor="let child of children; let i = index"
             [(expanded)]="child.expanded"
             [(selected)]="child.selected"
@@ -54,7 +54,7 @@ export default class treeNodeComponent {
             (select)="onSelect($event)"
             [sortable]="notSortable"
             [sortableIndex]="i"
-            [dropzones]="sortableZones"
+            [dropzones]="[sortableZones]"
             [nested]="nestedSortable"
             (onDragStartCallback)="onDragCallback(i, true)"
             (onDragEndCallback)="onDragCallback(i, false)">

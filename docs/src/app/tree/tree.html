@@ -7,7 +7,7 @@
   </h3>
   <div class="row container-fluid form-group">
     <div class="col-md-4">
-      <tree [nodes]="nodes" (select)='onSelect($event)'></tree>
+      <tree [nodes]="nodes" (select)='onSelect($event)' [nestedSortable]="true"></tree>
     </div>
   </div>
   <button type="button" name="button" (click)="test()">nodes</button>

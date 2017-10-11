@@ -6,7 +6,7 @@ export default  class ButtonComponent {
       new Component({
         template: require('./button.html')
       })
-    ]
+    ];
   }
   constructor(){
     this.buttonHtml = `
@@ -39,13 +39,13 @@ export default  class ButtonComponent {
     <button type="button" class="btn btn-link"></button>`;
     this.buttonIcon = `
     <button type="button" class="btn btn-icon icon-add"></button>
-    `
+    `;
     this.buttonDisabled= `
     <button class="btn btn-default" disabled>
       Default disabled
     </button>`;
     this.buttonBlock = `
-    <button class="btn btn-default btn-block"></button>`
+    <button class="btn btn-default btn-block"></button>`;
     this.buttonSize = `
     <button class="btn btn-default btn-lg">
       Large
@@ -58,7 +58,7 @@ export default  class ButtonComponent {
     </button>
     <button class="btn btn-default btn-xs">
       XSmall
-    </button>`
+    </button>`;
   }
 }
 

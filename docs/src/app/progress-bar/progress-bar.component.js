@@ -6,18 +6,18 @@ export default  class ProgressBarComponent {
       new Component({
         template: require('./progress-bar.html')
       })
-    ]
+    ];
   }
   constructor(){
 
     this.test = 50;
     this.options = {
       size : "lg"
-    }
+    };
 
     this.circleProgressBarHtml = `
     <circle-progress-bar [value]="test">
-    </circle-progress-bar>`
+    </circle-progress-bar>`;
 
     this.circleProgressBarSize = `
     <circle-progress-bar-sm class="circle-progress-bar-success" [value]="test">

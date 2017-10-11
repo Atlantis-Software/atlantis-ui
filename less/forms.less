@@ -235,7 +235,8 @@ input[type="search"] {
   top: 2px;
   left: 0;
   line-height: 16px;
-  font-size: @font-size-checkbox;
+  font-size: @font-size-checkbox + 1;
+  color: @input-border-color;
 }
 
 .checkbox input[type="checkbox"]:checked + label:before,
@@ -245,7 +246,7 @@ input[type="search"] {
   color: @input-border-focus;
   border-width: 0;
   line-height: 16px;
-  font-size: @font-size-checkbox - 1;
+  font-size: @font-size-checkbox;
 }
 
 .checkbox input[type="checkbox"]:indeterminate + label:before,
@@ -255,7 +256,7 @@ input[type="search"] {
   color: @input-border-focus;
   border-width: 0;
   line-height: 16px;
-  font-size: @font-size-checkbox - 1;
+  font-size: @font-size-checkbox;
 }
 
 
@@ -266,7 +267,7 @@ input[type="search"] {
   color: @input-bg-disabled;
   border-width: 0;
   line-height: 16px;
-  font-size: @font-size-checkbox - 1;
+  font-size: @font-size-checkbox;
 }
 
 .radio input[type="radio"] + label:before,

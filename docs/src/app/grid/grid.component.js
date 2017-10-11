@@ -6,14 +6,14 @@ export default  class GridComponent {
       new Component({
         template: require('./grid.html')
       })
-    ]
+    ];
   }
   constructor(){
 
     this.GridHtml = `
     <div class="col-md-6">
       Content
-    </div>`
+    </div>`;
     this.gridWrapping = `
     <div class="row">
       <div class="col-md-8">.col-md-8</div>
@@ -33,7 +33,7 @@ export default  class GridComponent {
     <div class="row show-grid container">
       <div class="col-md-8 col-md-push-4">.col-md-8 .col-md-push-4</div>
       <div class="col-md-4 col-md-pull-8">.col-md-4 .col-md-pull-8</div>
-    </div>`
+    </div>`;
 
     this.gridNesting = `
     <div class="row">

@@ -1,4 +1,4 @@
-import { Directive, ElementRef, ChangeDetectorRef, EventEmitter } from '@angular/core';
+import { Directive, ElementRef, ChangeDetectorRef, EventEmitter, ContentChildren } from '@angular/core';
 import { dragAndDropAbstractComponent, dragAndDropAbstractHandleComponent } from './dragAndDrop.abstract.component.js';
 
 import { dragAndDropSortableService, dragAndDropService } from './dragAndDrop.service.js';
@@ -8,7 +8,10 @@ export class sortableContainer extends dragAndDropAbstractComponent {
     return [
       new Directive({
         selector: '[sortable-container]',
-        inputs: ['sortableData', 'draggable', 'dropzones', 'notSortable: sortable-container']
+        inputs: ['sortableData', 'draggable', 'dropzones', 'notSortable: sortable-container'],
+        queries: {
+          sortableItems: new ContentChildren(sortableComponents)
+        }
       })
     ];
   }
@@ -19,11 +22,12 @@ export class sortableContainer extends dragAndDropAbstractComponent {
     this.notSortable = false;
     this._sortableDataService = sortableDataService;
     this._sortableData = [];
+    this.lastIndex = 0;
   }
 
   set dropzones(value) {
     if (value !== undefined) {
-      this.dropZones = value.split('.');
+      this.dropZones = value;
     }
   }
 
@@ -51,7 +55,7 @@ export class sortableContainer extends dragAndDropAbstractComponent {
     this._element.style.border = this.oldBorder;
   }
 
-  _onDropCallback() {
+  _onDropCallback(e) {
     if (this._sortableDataService.isDragged && this._sortableData.length === 0) {
       let item = this._sortableDataService.sortableContainer._sortableData[this._sortableDataService.index];
       if (this._sortableData.indexOf(item) === -1) {
@@ -66,6 +70,12 @@ export class sortableContainer extends dragAndDropAbstractComponent {
       this._element.style.border = this.oldBorder;
       this.detectChanges();
     }
+  }
+
+  resetIndex() {
+    this.sortableItems.forEach((sortableItem, index)=>{
+      sortableItem.index = index;
+    })
   }
 }
 
@@ -95,11 +105,13 @@ export class sortableComponents extends dragAndDropAbstractComponent {
     this._sortableDataService = dragAndDropSortableService;
     this.dropZones = this._sortableContainer.dropZones;
     this._dragDropService = {};
+    this.index = this._sortableContainer.lastIndex;
+    this._sortableContainer.lastIndex += 1;
   }
 
   set dropzones(value) {
     if (value !== undefined) {
-      this.dropZones = value.split('.');
+      this.dropZones = value;
     }
   }
 
@@ -163,6 +175,7 @@ export class sortableComponents extends dragAndDropAbstractComponent {
       itemDraggable.classList.remove('sortableOver');
     });
     this._element.style.opacity = '1';
+    this._sortableContainer.resetIndex();
     this.onDragEndCallback.emit(this._dragDropService.dragData);
   }
 

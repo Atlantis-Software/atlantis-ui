@@ -46,7 +46,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="Selectpicker2">Example simple selectPicker</label>
-          <selectpicker name="Selectpicker2" [(ngModel)]="Selectpicker2">
+          <selectpicker name="Selectpicker2" [(ngModel)]="Selectpicker2" [multiple]=true>
             <selectpicker-option [value]="A">AAAA</selectpicker-option>
             <selectpicker-option [value]="B">BBBB</selectpicker-option>
             <selectpicker-option [value]="C">CCCC</selectpicker-option>
@@ -122,7 +122,7 @@
     <div class="col-md-4">
       <div class="form-group">
         <label for="Selectpicker4">Example dynamic select</label>
-        <selectpicker name="Selectpicker4" [(ngModel)]="Selectpicker4" multiple="true">
+        <selectpicker name="Selectpicker4" [(ngModel)]="Selectpicker4">
           <selectpicker-option *ngFor="let option of optionsSelect" [value]="option.value">{{ option.text}}</selectpicker-option>
         </selectpicker>
       </div>
@@ -131,7 +131,8 @@
       <div class="form-group" style="height:140px">
         <label for="Binding1">Binding</label>
         <ul>
-          <li *ngFor="let value of Selectpicker4">{{ value }}</li>
+          <!-- <li *ngFor="let value of Selectpicker4">{{ value }}</li> -->
+          <li> {{ Selectpicker4}}</li>
         </ul>
       </div>
     </div>

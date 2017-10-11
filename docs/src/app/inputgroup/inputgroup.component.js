@@ -6,7 +6,7 @@ export default  class InputgroupComponent {
       new Component({
         template: require('./inputgroup.html')
       })
-    ]
+    ];
   }
   constructor(){
 
@@ -16,7 +16,7 @@ export default  class InputgroupComponent {
         <span class="input-group-addon" id="basic-inputgroup1">@</span>
         <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-inputgroup1">
       </div>
-    </div>`
+    </div>`;
 
     this.inputgroupCheckHtml=`
     <div class="form-group">
@@ -26,7 +26,7 @@ export default  class InputgroupComponent {
         </span>
         <input type="text" class="form-control" aria-label="...">
       </div>
-    </div>`
+    </div>`;
 
     this.inputgroupButtonHtml=`
     <div class="form-group">
@@ -36,7 +36,7 @@ export default  class InputgroupComponent {
         </span>
         <input type="text" class="form-control" aria-label="...">
       </div>
-    </div>`
+    </div>`;
 
     this.inputgroupDropdownHtml= `
     <div class="form-group">
@@ -53,7 +53,7 @@ export default  class InputgroupComponent {
         </div>
         <input type="text" class="form-control" aria-label="...">
       </div>
-    </div>`
+    </div>`;
 
     this.Display = "Example";
   }

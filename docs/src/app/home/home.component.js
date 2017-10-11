@@ -21,7 +21,7 @@ export default class HomeComponent {
       ...
       import: [ngxAtlUiModule],
       ...
-    })`
+    })`;
 
   }
 

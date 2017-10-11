@@ -6,7 +6,7 @@ export default  class PopoverComponent {
       new Component({
         template: require('./popover.html')
       })
-    ]
+    ];
   }
   constructor(){
 
