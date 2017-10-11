@@ -14,18 +14,18 @@ export default class treeNodeComponent {
       new Component({
         selector: 'tree-node',
         template: `
-				<div class="tree-node-line" style="padding-left:">
+        <div class="tree-node-line" style="padding-left:">
 	        <span *ngIf="children?.length" class="tree-expander icon" [ngClass]="{
-						'icon-folder-open': expanded,
-						'icon-folder': !expanded,
-						'icon-disabled': disabled
-					}" (click)='ExpandClick()'></span>
-	        <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="tree-node-label"></span>
+            'icon-folder-open': expanded,
+            'icon-folder': !expanded,
+            'icon-disabled': disabled
+          }" (click)='ExpandClick()'></span>
+          <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="tree-node-label"></span>
           <span *ngIf="!template" [innerHTML]="selected" [class.disabled]="disabled"></span>
-	        <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngOutletContext]="data"></ng-template>
-					<input *ngIf="selectable" type="checkbox" [ngModel]="selected" class="tree-node-checkbox" (click)="onClick()" [attr.disabled]="disabled">
+          <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngOutletContext]="data"></ng-template>
+          <input *ngIf="selectable" type="checkbox" [ngModel]="selected" class="tree-node-checkbox" (click)="onClick()" [attr.disabled]="disabled">
           <span *ngIf="!notSortable" sortable-handle>=</span>
-				</div>
+          </div>
         <ng-content *ngIf="expanded"></ng-content>
         <div *ngIf="children?.length" [hidden]="!expandable || !expanded" [sortable-container]="notSortable" [sortableData]="children" [dropzones]="sortableZones">
           <tree-node *ngFor="let child of children; let i = index"
@@ -55,7 +55,8 @@ export default class treeNodeComponent {
           </tree-node>
         </div>`,
         inputs: ['node', 'label', 'model', 'children', 'expandable', 'expanded', 'selectable', 'disabled',
-          'template', 'depth', 'selected', 'sortableZones', 'nestedSortable', 'notSortable'],
+          'template', 'depth', 'selected', 'sortableZones', 'nestedSortable', 'notSortable'
+        ],
         outputs: ['expand', 'collapse', 'select', 'selectedChange', 'expandedChange'],
         host: {
           '[class.selectable]': 'selectable'
@@ -77,7 +78,7 @@ export default class treeNodeComponent {
     this.parent = treeNodeComponent;
   }
 
-  onDragCallback(node, value){
+  onDragCallback(node, value) {
     if (!this.children) {
       return;
     }
@@ -108,7 +109,7 @@ export default class treeNodeComponent {
     }
 
     if (!this.nestedSortable) {
-      this.sortableZones = "zone"+Math.floor(Math.random()*100000) +1;
+      this.sortableZones = "zone" + Math.floor(Math.random() * 100000) + 1;
     }
 
     if (!this.selectable) {
