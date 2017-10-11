@@ -47,17 +47,16 @@ export default class treeComponent {
   }
 
   ngAfterViewInit() {
-    var recursiveSetId = function(node, index) {
-      node.id = index+1;
+    var recursiveSetId = function(node) {
       node.selected = node.selected || false;
       if (node.children) {
-        node.children.forEach(function(child, index) {
-          recursiveSetId(child, index);
+        node.children.forEach(function(child) {
+          recursiveSetId(child);
         });
       }
     };
-    this.nodes.forEach(function(node, index) {
-      recursiveSetId(node, index);
+    this.nodes.forEach(function(node) {
+      recursiveSetId(node);
     });
     this.cdr.detectChanges();
   }

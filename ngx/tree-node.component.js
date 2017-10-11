@@ -37,7 +37,6 @@ export default class treeNodeComponent {
           [expanded]="child.expanded"
           [label]="child.label"
           [model]="child.model"
-          [id]="child.id"
           [children]="child.children"
           [selectable]="child.selectable"
           [template]="template"
@@ -48,7 +47,7 @@ export default class treeNodeComponent {
           (collapse)="collapse.emit($event)"
           (select)="onSelect($event)">
         </tree-node>`,
-        inputs: ['node', 'label', 'model', 'children', 'expandable', 'expanded', 'selectable', 'disabled', 'template', 'depth', 'selected', 'id'],
+        inputs: ['node', 'label', 'model', 'children', 'expandable', 'expanded', 'selectable', 'disabled', 'template', 'depth', 'selected'],
         outputs: ['expand', 'collapse', 'select', 'selectedChange'],
         host: {
           '[class.selectable]': 'selectable'

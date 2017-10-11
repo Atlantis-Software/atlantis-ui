@@ -223,35 +223,50 @@ input[type="search"] {
   opacity: 0;
   z-index: 1;
   cursor: pointer;
+  width: 16px;
+  height: 16px;
 }
 
 .checkbox input[type="checkbox"] + label:before,
 .checkbox-inline input[type="checkbox"] + label:before {
-  content: "";
+  font-family: "FontAwesome";
+  content: "\f096";
   position: absolute;
   top: 2px;
   left: 0;
-  width: 16px;
-  height: 16px;
-  border: 1px solid @input-border-color;
+  line-height: 16px;
+  font-size: @font-size-checkbox;
 }
 
 .checkbox input[type="checkbox"]:checked + label:before,
 .checkbox-inline input[type="checkbox"]:checked + label:before {
   font-family: "FontAwesome";
-  content: "\f00c";
-  color: @background;
-  background-color: @input-border-focus;
+  content: "\f14a";
+  color: @input-border-focus;
   border-width: 0;
   line-height: 16px;
+  font-size: @font-size-checkbox - 1;
 }
+
+.checkbox input[type="checkbox"]:indeterminate + label:before,
+.checkbox-inline input[type="checkbox"]:indeterminate + label:before {
+  font-family: "FontAwesome";
+  content: "\f146";
+  color: @input-border-focus;
+  border-width: 0;
+  line-height: 16px;
+  font-size: @font-size-checkbox - 1;
+}
+
 
 .checkbox input[type="checkbox"]:disabled + label:before,
 .checkbox-inline input[type="checkbox"]:disabled + label:before {
-  background-color: @input-bg-disabled;
-  color: @input-color-disabled;
+  font-family: "FontAwesome";
+  content: "\f0c8";
+  color: @input-bg-disabled;
   border-width: 0;
   line-height: 16px;
+  font-size: @font-size-checkbox - 1;
 }
 
 .radio input[type="radio"] + label:before,
