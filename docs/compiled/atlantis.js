@@ -40510,13 +40510,24 @@ var dragAndDropComponent = function () {
   function dragAndDropComponent() {
     _classCallCheck(this, dragAndDropComponent);
 
-    this.listOne = ['A', 'B', 'C', 'D', 'E'];
-    this.listOneOriginal = ['A', 'B', 'C', 'D', 'E'];
-    this.listTwo = ['1', '2', '3', '4!', '5'];
-    this.listTwoOriginal = ['1', '2', '3', '4!', '5'];
-    this.listThree = [];
+    this.listSingle = ['A', 'B', 'C', 'D', 'E'];
+    this.listHandle = ['1', '2', '3', '4', '5'];
+    this.listMultiple1 = ['123', '456', '789'];
+    this.listMultiple2 = ['ABC', 'DEF', 'GHI'];
+    this.listSingle2 = ['A', 'B', 'C', 'D', 'E'];
+    this.listEmpty = [];
     this.listThreeOriginal = [];
-    this.Display = "Example";
+    this.listDropzone = ['Java', 'C', 'Python'];
+    this.listDropzone1 = ['Apple', 'Orange'];
+    this.listDropzone2 = [];
+
+    this.listJs = '\n    this.listSingle = [\'A\', \'B\', \'C\', \'D\', \'E\'];';
+
+    this.listSingleHtml = '\n    <div class="panel-body" sortable-container [sortableData]="listSingle">\n      <ul class="list-group">\n        <li *ngFor="let item of listSingle; let i = index" class="list-group-item" sortable [sortableIndex]="i">\n          {{item}}\n        </li>\n      </ul>\n    </div>';
+
+    this.listHandleHtml = '\n    <div class="panel-body" sortable-container [sortableData]="listHandle">\n      <ul class="list-group">\n        <li *ngFor="let item of listHandle; let i = index" class="list-group-item" sortable [sortableIndex]="i">\n          {{item}}\n          <span sortable-handle>=</span>\n        </li>\n      </ul>\n    </div>';
+
+    this.listDropzoneHtml = '\n    <div class="panel-body" sortable-container [sortableData]="listDropzone" [dropzones]="\'dropzone2.dropzone1\'">\n      <ul class="list-group"  >\n        <li *ngFor="let item of listDropzone; let i = index" class="list-group-item" sortable [sortableIndex]="i">\n          {{item}}\n        </li>\n      </ul>\n    </div>';
   }
 
   return dragAndDropComponent;
@@ -89465,7 +89476,7 @@ module.exports = "<div class=\"container\"> <h2> Example of forms </h2> <div cla
 /* 136 */
 /***/ (function(module, exports) {
 
-module.exports = "<div> <h4>Simple sortable</h4> <div class=\"row\"> <div class=\"col-sm-3\"> <div class=\"panel panel-success\"> <div class=\"panel-heading\"> Favorite drinks </div> <div class=\"panel-body\"> <ul class=\"list-group\" sortable-container [sortableData]=\"listOne\"> <li *ngFor=\"let item of listOne; let i = index\" class=\"list-group-item\" sortable [sortableIndex]=\"i\"> {{item}} <span sortable-handle>=</span> </li> </ul> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> My prefences:<br/> <span *ngFor=\"let item of listOne; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> My prefences:<br/> <span *ngFor=\"let item of listOneOriginal; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> </div> <h4>Simple sortable</h4> <div class=\"row\"> <div class=\"col-sm-3\"> <div class=\"panel panel-success\"> <div class=\"panel-heading\"> Favorite drinks </div> <div class=\"panel-body\"> <ul class=\"list-group\" sortable-container [sortableData]=\"listTwo\"> <li *ngFor=\"let item of listTwo; let i = index\" class=\"list-group-item\" sortable [sortableIndex]=\"i\"> {{item}} </li> </ul> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> My prefences:<br/> <span *ngFor=\"let item of listTwo; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> My prefences:<br/> <span *ngFor=\"let item of listTwoOriginal; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> </div> <h4>Simple sortable</h4> <div class=\"row\"> <div class=\"col-sm-3\"> <div class=\"panel panel-success\"> <div class=\"panel-heading\"> Favorite drinks </div> <div class=\"panel-body\" sortable-container [sortableData]=\"listThree\"> <ul class=\"list-group\"> <li *ngFor=\"let item of listThree; let i = index\" class=\"list-group-item\" sortable [sortableIndex]=\"i\"> {{item}} </li> </ul> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> My prefences:<br/> <span *ngFor=\"let item of listThree; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> My prefences:<br/> <span *ngFor=\"let item of listThreeOriginal; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> </div> </div> ";
+module.exports = "<div class=\"container\"> <h3> Example </h3> <h4> Sortable single list </h4> <div class=\"row\"> <div class=\"col-sm-3\"> <div class=\"panel panel-success\"> <div class=\"panel-heading\"> Single list </div> <div class=\"panel-body\" sortable-container [sortableData]=\"listSingle\" [dropzones]=\"'single1'\"> <ul class=\"list-group\"> <li *ngFor=\"let item of listSingle; let i = index\" class=\"list-group-item\" sortable [sortableIndex]=\"i\"> {{item}} </li> </ul> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> List :<br/> <span *ngFor=\"let item of listSingle; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> </div> <h4> Html tag : </h4> <pre>\n    {{listSingleHtml}}\n  </pre> <h4> Example of list </h4> <pre>\n    {{listJs}}\n  </pre> <h4> Sortable single list with handle </h4> <div class=\"row\"> <div class=\"col-sm-3\"> <div class=\"panel panel-success\"> <div class=\"panel-heading\"> Single list with handle </div> <div class=\"panel-body\" sortable-container [sortableData]=\"listHandle\" [dropzones]=\"'handle'\"> <ul class=\"list-group\"> <li *ngFor=\"let item of listHandle; let i = index\" class=\"list-group-item\" sortable [sortableIndex]=\"i\"> {{item}} <span sortable-handle>=</span> </li> </ul> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> List :<br/> <span *ngFor=\"let item of listHandle; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> </div> <h4> Html tag : </h4> <pre>\n    {{listHandleHtml}}\n  </pre> <h4> Sortable multiple list </h4> <div class=\"row\"> <div class=\"col-sm-3\"> <div class=\"panel panel-success\"> <div class=\"panel-heading\"> Multiple list 1 </div> <div class=\"panel-body\" sortable-container [sortableData]=\"listMultiple1\" [dropzones]=\"'multiple'\"> <ul class=\"list-group\"> <li *ngFor=\"let item of listMultiple1; let i = index\" class=\"list-group-item\" sortable [sortableIndex]=\"i\"> {{item}} </li> </ul> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> List :<br/> <span *ngFor=\"let item of listMultiple1; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-success\"> <div class=\"panel-heading\"> Multiple list 2 </div> <div class=\"panel-body\" sortable-container [sortableData]=\"listMultiple2\" [dropzones]=\"'multiple'\"> <ul class=\"list-group\"> <li *ngFor=\"let item of listMultiple2; let i = index\" class=\"list-group-item\" sortable [sortableIndex]=\"i\"> {{item}} </li> </ul> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> List :<br/> <span *ngFor=\"let item of listMultiple2; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> </div> <blockquote> You just need to have 2 list to sort between them. </blockquote> <h4> Sortable list to empty list </h4> <div class=\"row\"> <div class=\"col-sm-3\"> <div class=\"panel panel-success\"> <div class=\"panel-heading\"> List not empty </div> <div class=\"panel-body\" sortable-container [sortableData]=\"listSingle2\" [dropzones]=\"'empty'\"> <ul class=\"list-group\"> <li *ngFor=\"let item of listSingle2; let i = index\" class=\"list-group-item\" sortable [sortableIndex]=\"i\"> {{item}} </li> </ul> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> List :<br/> <span *ngFor=\"let item of listSingle2; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-success\"> <div class=\"panel-heading\"> List empty </div> <div class=\"panel-body\" sortable-container [sortableData]=\"listEmpty\" [dropzones]=\"'empty'\"> <ul class=\"list-group\"> <li *ngFor=\"let item of listEmpty; let i = index\" class=\"list-group-item\" sortable [sortableIndex]=\"i\"> {{item}} </li> </ul> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-default\"> <div class=\"panel-body\"> List :<br/> <span *ngFor=\"let item of listEmpty; let i = index\">{{i + 1}}) {{item}}<br/></span> </div> </div> </div> </div> <blockquote> You need just a sortable-container with sortableData attribute with empty array and you can move a object into this empty list </blockquote> <h4> Sortable list with dropzone defined </h4> <div class=\"row\"> <div class=\"col-sm-3\"> <div class=\"panel panel-success\"> <div class=\"panel-heading\"> List (allow dropzone1 and dropzone2) </div> <div class=\"panel-body\" sortable-container [sortableData]=\"listDropzone\" [dropzones]=\"'dropzone2.dropzone1'\"> <ul class=\"list-group\"> <li *ngFor=\"let item of listDropzone; let i = index\" class=\"list-group-item\" sortable [sortableIndex]=\"i\"> {{item}} </li> </ul> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-success\"> <div class=\"panel-heading\"> Dropzone1 (allow dropzone 1) </div> <div class=\"panel-body\" sortable-container [sortableData]=\"listDropzone1\" [dropzones]=\"'dropzone1'\"> <ul class=\"list-group\"> <li *ngFor=\"let item of listDropzone1; let i = index\" class=\"list-group-item\" sortable [sortableIndex]=\"i\"> {{item}} </li> </ul> </div> </div> </div> <div class=\"col-sm-3\"> <div class=\"panel panel-success\"> <div class=\"panel-heading\"> Dropzone2 (allow dropzone 2) </div> <div class=\"panel-body\" sortable-container [sortableData]=\"listDropzone2\" [dropzones]=\"'dropzone2'\"> <ul class=\"list-group\"> <li *ngFor=\"let item of listDropzone2; let i = index\" class=\"list-group-item\" sortable [sortableIndex]=\"i\"> {{item}} </li> </ul> </div> </div> </div> </div> <h4> Html tag : </h4> <pre>\n    {{listDropzoneHtml}}\n  </pre> <blockquote> If you want move only between 2 list or with a specific list you just need to add the attribut dropzones on all sortable-container you want. <br> You can allow several dropzone with a dot into the string </blockquote> <h3> Sortable-container : </h3> <h4> Settings </h4> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th class=\"col-md-2\"> Attribut </th> <th class=\"col-md-1\"> Type </th> <th class=\"col-md-5\"> Description </th> <th class=\"col-md-4\"> Info </th> </tr> </thead> <tbody> <tr> <td> sortableData </td> <td> array </td> <td> Define the data that use by sortable-container for sort correctly </td> <td> we can use anything we want into array like number, string or object </td> </tr> <tr> <td> dropzones </td> <td> string </td> <td> Define where we can move the items </td> <td> Optional, we can put a dot into string to define multiple dropzone </td> </tr> </tbody> </table> <h3> sortable : </h3> <h3> settings </h3> <table class=\"table table-striped table-bordered table-hover\"> <thead> <tr> <th class=\"col-md-2\"> Attribut </th> <th class=\"col-md-1\"> Type </th> <th class=\"col-md-5\"> Description </th> <th class=\"col-md-4\"> Info </th> </tr> </thead> <tbody> <tr> <td> sortableIndex </td> <td> number </td> <td> Define the index of the item </td> <td> </td> </tr> <tr> <td> dragData </td> <td> anything </td> <td> Define a data we want to send with the drag event </td> <td> Optional </td> </tr> </tbody> </table> </div> ";
 
 /***/ }),
 /* 137 */
@@ -90312,7 +90323,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       ngxAtlUiModule.annotations = [new _core.NgModule({
         imports: [_common.CommonModule, _forms.FormsModule],
         declarations: [_paginationComponent2.default, _datepickerComponent2.default, _datepickerRangeComponent2.default, _selectpickerComponent2.default, _selectpickerOptionComponent2.default, _slidepickerComponent.slidepickerComponent, _slidepickerComponent.slidepickeroptionComponent, _focusDirective2.default, _modalComponent2.default, _modalHeaderComponent2.default, _modalBodyComponent2.default, _modalFooterComponent2.default, _carouselComponent.carouselComponent, _carouselComponent.carouselItemComponent, _accordionComponent.accordionComponent, _accordionComponent.accordionPanelComponent, _dropdownComponent2.default, _dropdownOptionComponent2.default, _dropdownDividerComponent2.default, _dropdownHeaderComponent2.default, _circleProgressBarComponent2.default, _affixDirective2.default, _gridComponent2.default, _gridHeaderComponent2.default, _gridBodyComponent2.default, _gridFooterComponent2.default, _gridCellComponent2.default, _gridCellHeaderComponent2.default, _popoverComponent.popoverComponent, _popoverComponent.popoverDirective, _tooltipComponent.tooltipComponent, _tooltipComponent.tooltipDirective, _backdropComponent2.default, _sortableComponent.sortableContainer, _sortableComponent.sortableComponents, _treeComponent2.default, _treeNodeComponent2.default, _sortableComponent.sortableHandler],
-        exports: [_paginationComponent2.default, _datepickerComponent2.default, _datepickerRangeComponent2.default, _selectpickerComponent2.default, _selectpickerOptionComponent2.default, _slidepickerComponent.slidepickerComponent, _slidepickerComponent.slidepickeroptionComponent, _focusDirective2.default, _modalComponent2.default, _modalHeaderComponent2.default, _modalBodyComponent2.default, _modalFooterComponent2.default, _carouselComponent.carouselComponent, _carouselComponent.carouselItemComponent, _accordionComponent.accordionComponent, _accordionComponent.accordionPanelComponent, _dropdownComponent2.default, _dropdownOptionComponent2.default, _dropdownDividerComponent2.default, _dropdownHeaderComponent2.default, _circleProgressBarComponent2.default, _affixDirective2.default, _gridComponent2.default, _gridHeaderComponent2.default, _gridBodyComponent2.default, _gridFooterComponent2.default, _gridCellComponent2.default, _gridCellHeaderComponent2.default, _popoverComponent.popoverComponent, _popoverComponent.popoverDirective, _tooltipComponent.tooltipComponent, _tooltipComponent.tooltipDirective, _backdropComponent2.default, _sortableComponent.sortableContainer, _sortableComponent.sortableComponents, _treeComponent2.default, _treeNodeComponent2.default, _sortableComponent.sortableHandler],
+        exports: [_paginationComponent2.default, _datepickerComponent2.default, _datepickerRangeComponent2.default, _selectpickerComponent2.default, _selectpickerOptionComponent2.default, _slidepickerComponent.slidepickerComponent, _slidepickerComponent.slidepickeroptionComponent, _focusDirective2.default, _modalComponent2.default, _modalHeaderComponent2.default, _modalBodyComponent2.default, _modalFooterComponent2.default, _carouselComponent.carouselComponent, _carouselComponent.carouselItemComponent, _accordionComponent.accordionComponent, _accordionComponent.accordionPanelComponent, _dropdownComponent2.default, _dropdownOptionComponent2.default, _dropdownDividerComponent2.default, _dropdownHeaderComponent2.default, _circleProgressBarComponent2.default, _affixDirective2.default, _gridComponent2.default, _gridHeaderComponent2.default, _gridBodyComponent2.default, _gridFooterComponent2.default, _gridCellComponent2.default, _gridCellHeaderComponent2.default, _popoverComponent.popoverComponent, _popoverComponent.popoverDirective, _tooltipComponent.tooltipComponent, _tooltipComponent.tooltipDirective, _backdropComponent2.default, _sortableComponent.sortableContainer, _sortableComponent.sortableComponents, _sortableComponent.sortableHandler, _treeComponent2.default, _treeNodeComponent2.default],
         entryComponents: [_tooltipComponent.tooltipComponent, _popoverComponent.popoverComponent, _backdropComponent2.default]
       })];
 
@@ -94411,7 +94422,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         function sortableContainer(elementRef, cdr, sortableDataService, dragAndDropService) {
           _classCallCheck(this, sortableContainer);
 
-          var _this = _possibleConstructorReturn(this, (sortableContainer.__proto__ || Object.getPrototypeOf(sortableContainer)).call(this, elementRef, cdr, dragAndDropService));
+          var _this = _possibleConstructorReturn(this, (sortableContainer.__proto__ || Object.getPrototypeOf(sortableContainer)).call(this, elementRef, cdr, dragAndDropService, true));
 
           _this.dragEnabled = false;
           _this.notSortable = false;
@@ -94421,11 +94432,23 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }
 
         _createClass(sortableContainer, [{
+          key: '_onDragEnterCallback',
+          value: function _onDragEnterCallback() {
+            if (this._sortableDataService.isDragged && this._sortableData.length === 0) {
+              this.oldBorder = this._element.style.border;
+              this._element.style.border = "1px dashed #1C6EA4";
+            }
+          }
+        }, {
+          key: '_onDragLeave',
+          value: function _onDragLeave() {
+            this._element.style.border = this.oldBorder;
+          }
+        }, {
           key: '_onDropCallback',
           value: function _onDropCallback() {
             if (this._sortableDataService.isDragged && this._sortableData.length === 0) {
               var item = this._sortableDataService.sortableContainer._sortableData[this._sortableDataService.index];
-              // Check does element exist in sortableData of this Container
               if (this._sortableData.indexOf(item) === -1) {
                 this._sortableDataService.sortableContainer._sortableData.splice(this._sortableDataService.index, 1);
                 if (this._sortableDataService.sortableContainer._sortableData.length === 0) {
@@ -94435,6 +94458,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 this._sortableDataService.sortableContainer = this;
                 this._sortableDataService.index = 0;
               }
+              this._element.style.border = this.oldBorder;
               this.detectChanges();
             }
           }
@@ -94483,7 +94507,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         function sortableComponents(elementRef, cdr, sortableContainer, dragAndDropSortableService, dragAndDropService) {
           _classCallCheck(this, sortableComponents);
 
-          var _this2 = _possibleConstructorReturn(this, (sortableComponents.__proto__ || Object.getPrototypeOf(sortableComponents)).call(this, elementRef, cdr, dragAndDropService));
+          var _this2 = _possibleConstructorReturn(this, (sortableComponents.__proto__ || Object.getPrototypeOf(sortableComponents)).call(this, elementRef, cdr, dragAndDropService, false));
 
           _this2.notSortable = false;
           _this2.dragEnabled = true;
@@ -94537,7 +94561,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
           key: '_onDragOverCallback',
           value: function _onDragOverCallback(event) {
-            event.dataTransfer.dropEffect = "move";
+            if (event.dataTransfer !== null) {
+              event.dataTransfer.dropEffect = "move";
+            }
             this.onDragOverCallback.emit(this._dragDropService.dragData);
           }
         }, {
@@ -94658,17 +94684,18 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       }
 
       var dragAndDropAbstractComponent = exports.dragAndDropAbstractComponent = function () {
-        function dragAndDropAbstractComponent(ElementRef, ChangeDetectorRef, dragAndDropService) {
+        function dragAndDropAbstractComponent(ElementRef, ChangeDetectorRef, dragAndDropService, isContainer) {
           var _this = this;
 
           _classCallCheck(this, dragAndDropAbstractComponent);
 
           this._element = ElementRef.nativeElement;
-          this._element.style.cursor = "pointer";
+          this._element.style.cursor = "move";
           this._dragAndDropService = dragAndDropService;
           this.dropZones = [];
           this._cdr = ChangeDetectorRef;
           this.dropEnabled = false;
+          this._isContainer = isContainer;
 
           this._element.ondragenter = function (event) {
             if (_this.notSortable) {
@@ -94712,14 +94739,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           };
 
           this._element.onmouseover = function () {
-            if (_this.notSortable) {
+            if (_this.notSortable || _this._isContainer) {
               _this._element.style.cursor = "auto";
               return;
             }
             if (_this._dragHandle) {
               return;
             }
-            _this._element.style.cursor = "pointer";
+            _this._element.style.cursor = "move";
           };
 
           this._element.onmouseout = function () {
@@ -94767,7 +94794,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             _this._onDragEnd(event);
 
             var cursorelem = _this._dragHandle ? _this._dragHandle : _this._element;
-            cursorelem.style.cursor = "pointer";
+            cursorelem.style.cursor = "move";
           };
         }
 
@@ -94779,7 +94806,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             }
             this._dragHandle = elem;
             this._element.style.cursor = "auto";
-            this._dragHandle.style.cursor = "pointer";
+            this._dragHandle.style.cursor = "move";
           }
         }, {
           key: "_onDragEnter",
@@ -94840,8 +94867,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           }
         }, {
           key: "_isDropAllowed",
-          value: function _isDropAllowed(event) {
-            if ((this._dragAndDropService.isDragged || event.dataTransfer && event.dataTransfer.files) && this.dropEnabled) {
+          value: function _isDropAllowed() {
+            if (this._dragAndDropService.isDragged || this.dropEnabled) {
               if (this.allowDrop) {
                 return this.allowDrop(this._dragAndDropService.dragData);
               }

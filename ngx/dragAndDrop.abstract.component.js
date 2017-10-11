@@ -1,11 +1,12 @@
 export class dragAndDropAbstractComponent {
-  constructor(ElementRef, ChangeDetectorRef, dragAndDropService) {
+  constructor(ElementRef, ChangeDetectorRef, dragAndDropService, isContainer) {
     this._element = ElementRef.nativeElement;
-    this._element.style.cursor = "pointer";
+    this._element.style.cursor = "move";
     this._dragAndDropService = dragAndDropService;
     this.dropZones = [];
     this._cdr = ChangeDetectorRef;
     this.dropEnabled = false;
+    this._isContainer = isContainer;
 
     this._element.ondragenter = (event) => {
       if (this.notSortable) {
@@ -49,14 +50,14 @@ export class dragAndDropAbstractComponent {
     };
 
     this._element.onmouseover = () => {
-      if (this.notSortable) {
+      if (this.notSortable || this._isContainer) {
         this._element.style.cursor = "auto";
         return;
       }
       if (this._dragHandle) {
         return;
       }
-      this._element.style.cursor = "pointer";
+      this._element.style.cursor = "move";
     };
 
     this._element.onmouseout = () => {
@@ -104,7 +105,7 @@ export class dragAndDropAbstractComponent {
       this._onDragEnd(event);
 
       let cursorelem = (this._dragHandle) ? this._dragHandle : this._element;
-      cursorelem.style.cursor = "pointer";
+      cursorelem.style.cursor = "move";
     };
   }
 
@@ -114,7 +115,7 @@ export class dragAndDropAbstractComponent {
     }
     this._dragHandle = elem;
     this._element.style.cursor = "auto";
-    this._dragHandle.style.cursor = "pointer";
+    this._dragHandle.style.cursor = "move";
   }
 
   set dragEnabled(enabled) {
@@ -181,8 +182,8 @@ export class dragAndDropAbstractComponent {
     this._cdr.detectChanges();
   }
 
-  _isDropAllowed(event) {
-    if ((this._dragAndDropService.isDragged || (event.dataTransfer && event.dataTransfer.files)) && this.dropEnabled) {
+  _isDropAllowed() {
+    if (this._dragAndDropService.isDragged || this.dropEnabled) {
       if (this.allowDrop) {
         return this.allowDrop(this._dragAndDropService.dragData);
       }
