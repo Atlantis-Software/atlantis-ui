@@ -1,0 +1,68 @@
+//Tree component
+
+
+tree {
+  border: 1px solid @tree-default-color;
+  border-top:none;
+  position:  relative;
+  display:block;
+  tree-node {
+    position : relative;
+    line-height: 25px;
+    min-height: 25px;
+    display: block;
+
+    .tree-expander {
+      position: absolute;
+      margin-left : -20px;
+      top : 3px;
+      z-index: 1;
+      user-select: none;
+
+      &:not(.icon-disabled) {
+        cursor : pointer;
+      }
+    }
+
+    .tree-node-label {
+      color : black;
+    }
+
+    .tree-node-line {
+      border-top: 1px solid @tree-default-color;
+    }
+
+    .tree-node-checkbox {
+      display: inline-block;
+      right: 10px;
+      top: 3px;
+      position:absolute;
+      .checkbox {
+        margin-top: 0;
+        margin-bottom: 0;
+        label {
+          cursor: default;
+          &::before {
+            cursor : pointer;
+          }
+        }
+      }
+    }
+
+    span[sortable-handle] {
+      right: 8px;
+      position:absolute;
+      .checkbox {
+        margin-top: 0;
+        margin-bottom: 0;
+        label {
+          cursor: default;
+          &::before {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+}

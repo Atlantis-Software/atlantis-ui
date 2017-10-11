@@ -11,7 +11,6 @@ import navbarComponent from './navbar/navbar.component';
 
 import DropdownAngularComponent from './dropdownAngular/dropdown.component.js';
 
-import InputComponent from './input/input.component.js';
 import ButtonComponent from './button/button.component.js';
 import IconComponent from './icon/icon.component.js';
 
@@ -24,6 +23,8 @@ import CarouselAngularComponent from './carouselAngular/carousel.component.js';
 import PopoverComponent from './popover/popover.component.js';
 import TooltipComponent from './tooltip/tooltip.component.js';
 
+import TreeComponent from './tree/tree.component.js';
+
 import AccordionComponent from './accordion/accordion.component.js';
 
 import ProgressBarComponent from './progress-bar/progress-bar.component.js';
@@ -34,6 +35,8 @@ import GridAngularComponent from './gridAngular/grid.component.js';
 
 import ButtongroupsComponent from './buttongroups/buttongroups.component.js';
 import FormsComponent from './forms/forms.component.js';
+
+import dragAndDropComponent from './dragAndDrop/dragAndDrop.component.js';
 
 export default [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -51,7 +54,6 @@ export default [
 
   { path: 'dropdownAngular', component: DropdownAngularComponent },
 
-  { path: 'input', component: InputComponent },
   { path: 'button', component: ButtonComponent },
   { path: 'icon', component: IconComponent },
 
@@ -72,6 +74,8 @@ export default [
   { path: 'grid', component: GridComponent },
   { path: 'gridAngular', component: GridAngularComponent },
   { path: 'buttongroups', component: ButtongroupsComponent },
-  { path: 'forms', component: FormsComponent }
+  { path: 'forms', component: FormsComponent },
+  { path: 'dragAndDrop', component: dragAndDropComponent },
+  { path: 'tree', component: TreeComponent }
 
 ];

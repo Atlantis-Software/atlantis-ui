@@ -1,6 +1,4 @@
-import { getTestBed, TestBed, async, fakeAsync, tick, DebugElement} from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import atlantisUI from './ngx-atlantis-ui-module.js';
+import { getTestBed, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { Component } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
@@ -11,11 +9,10 @@ import { ngxAtlUiModule } from './ngx-atlantis-ui-module.js';
 var assert = require('assert');
 
 class popoverTestComponent {
-  constructor() {
-  }
-	static get annotations() {
-		return [
-			new Component({
+  constructor() {}
+  static get annotations() {
+    return [
+      new Component({
         template: `
         <button type="button" class="btn btn-default" popover popoverDirection="left" popoverTitle="test1" popoverContent="test1">
           Popover on left
@@ -32,13 +29,12 @@ class popoverTestComponent {
         <button type="button" class="btn btn-default" popover popoverDirection="right" popoverTitle="test4" popoverContent="test4">
           Popover on right
         </button>`
-	  	})
-		];
-	}
+      })
+    ];
+  }
 }
 
 describe('popover', function() {
-  var testComponent;
 
   beforeEach(async(function() {
     TestBed.configureTestingModule({
@@ -59,10 +55,9 @@ describe('popover', function() {
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
     var popover = document.querySelectorAll('popovercomponent');
-    var title = document.querySelectorAll('h3')
-    var content = document.querySelectorAll('.popover-content')
+    var title = document.querySelectorAll('h3');
+    var content = document.querySelectorAll('.popover-content');
 
     assert.strictEqual(popover.length, 4);
     assert.strictEqual(popover[0].classList[2], 'left');
@@ -90,7 +85,6 @@ describe('popover', function() {
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
     var button = document.querySelectorAll('button');
     button[0].click();
     button[1].click();
@@ -107,7 +101,7 @@ describe('popover', function() {
     assert.strictEqual(popover[2].classList[3], 'in');
     assert.strictEqual(popover[3].classList[3], 'in');
 
-    var button = document.querySelectorAll('button');
+    button = document.querySelectorAll('button');
     button[0].click();
     button[1].click();
     button[2].click();
@@ -115,7 +109,7 @@ describe('popover', function() {
     tick();
     fixture.detectChanges();
 
-    var popover = document.querySelectorAll('popovercomponent');
+    popover = document.querySelectorAll('popovercomponent');
 
     assert.strictEqual(popover.length, 4);
     assert.strictEqual(popover[0].classList[3], void 0);

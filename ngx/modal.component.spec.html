@@ -4,8 +4,8 @@
     fade=true</br>
     backdrop=true
   </button>
-  <modal idModal="test" [options]="modalOptionsLeft" [(show)]="showLeft">
-    <modal-header [options]="modalHeaderOptions">
+  <modal [fade]="true" orientation="left" [backdrop]="true" [(show)]="showLeft">
+    <modal-header>
       <h3 class="modal-title">Modal Header</h3>
     </modal-header>
     <modal-body>
@@ -22,8 +22,8 @@
     fade=false</br>
     backdrop=false
   </button>
-  <modal idModal="test" [options]="modalOptionsRight" [(show)]="showRight">
-    <modal-header [options]="modalHeaderOptions">
+  <modal [fade]="false" orientation="right" [backdrop]="false" [(show)]="showRight">
+    <modal-header>
       <h3 class="modal-title">Modal Header</h3>
     </modal-header>
     <modal-body>
@@ -40,8 +40,8 @@
     fade=false</br>
     backdrop=true
   </button>
-  <modal idModal="test" [options]="modalOptionsTop" [(show)]="showTop">
-    <modal-header [options]="modalHeaderOptions">
+  <modal [fade]="false" orientation="top" [(show)]="showTop">
+    <modal-header>
       <h3 class="modal-title">Modal Header</h3>
     </modal-header>
     <modal-body>
@@ -58,8 +58,8 @@
     fade=true</br>
     backdrop=true
   </button>
-  <modal idModal="test" [options]="modalOptionsBottom" [(show)]="showBottom">
-    <modal-header [options]="modalHeaderOptions">
+  <modal [fade]="true" orientation="bottom" [backdrop]="true" [(show)]="showBottom">
+    <modal-header>
       <h3 class="modal-title">Modal Header</h3>
     </modal-header>
     <modal-body>
@@ -75,7 +75,7 @@
     No Options defined
   </button>
   <modal id="testStandard" [(show)]="showStandard">
-    <modal-header [options]="modalHeaderOptions">
+    <modal-header>
       <h3 class="modal-title">Modal Header</h3>
     </modal-header>
     <modal-body>

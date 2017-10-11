@@ -6,7 +6,7 @@ export default  class ButtongroupsComponent {
       new Component({
         template: require('./buttongroups.html')
       })
-    ]
+    ];
   }
   constructor(){
 
@@ -54,7 +54,7 @@ export default  class ButtongroupsComponent {
     this.buttonJustified = `
     <div class="btn-group btn-group-justified">
       ..
-    </div>`
+    </div>`;
   }
 }
 

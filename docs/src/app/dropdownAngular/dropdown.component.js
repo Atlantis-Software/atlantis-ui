@@ -6,12 +6,12 @@ export default  class DropdownAngularComponent {
       new Component({
         template: require('./dropdown.html')
       })
-    ]
+    ];
   }
   constructor(){
 
     this.dropdownHtml = `
-    <dropdown [options]="{orientation:'up'}" title="Menu A">
+    <dropdown title="Menu A">
       <dropdown-option><a>Sub-menu A</a></dropdown-option>
       <dropdown-option><a>Sub-menu B</a></dropdown-option>
       <dropdown-divider></dropdown-divider>
@@ -21,22 +21,14 @@ export default  class DropdownAngularComponent {
     </dropdown>`;
 
     this.dropup = `
-    <dropdown [options]="{orientation:'up'}" title="Menu A">
+    <dropdown orientation="up" title="Menu A">
     </dropdown>`;
 
     this.dropdownAlignement = `
-    <dropdown [options]="{alignement:'left'}" title="Menu A">
+    <dropdown alignement="left" title="Menu A">
     </dropdown>
-    <dropdown [options]="{alignement:'right'}" title="Menu A">
-    </dropdown>`
-
-    this.options1 = {
-      type: "header"
-    }
-
-    this.options2 = {
-      type: "divider"
-    }
+    <dropdown alignement="right" title="Menu A">
+    </dropdown>`;
 
     this.dropdownoptions = [
       {
@@ -54,36 +46,21 @@ export default  class DropdownAngularComponent {
     this.dropdownoptions = [
       {
         label: "Sub-menu A"
-      },
-      {
+      },{
         label: "Sub-menu B"
-      },
-      {
-        label: "",
-        options : {
-          type : "divider"
-        }
-      },
-      {
+      },{
         label: "Sub-menu separated A"
-      },
-      {
-        label: "",
-        options : {
-          type : "header"
-        }
-      },
-      {
+      },{
         label: "Sub-menu separated B"
       }
-    ];`
+    ];`;
 
     this.dropdownNgFor = `
     <dropdown class="form-group" [options]="{alignement:'left'}" title="Menu A">
       <dropdown-option *ngFor="let dropdownoption of dropdownoptions" [options]="dropdownoption.options">
         {{dropdownoption.label}}
       </dropdown-option>
-    </dropdown>`
+    </dropdown>`;
 
     this.Display = "Example";
   }

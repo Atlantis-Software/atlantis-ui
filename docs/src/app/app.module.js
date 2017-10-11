@@ -20,7 +20,6 @@ import navbarComponent from './navbar/navbar.component.js';
 
 import DropdownAngularComponent from './dropdownAngular/dropdown.component.js';
 
-import InputComponent from './input/input.component.js';
 import ButtonComponent from './button/button.component.js';
 import IconComponent from './icon/icon.component.js';
 
@@ -33,6 +32,8 @@ import CarouselAngularComponent from './carouselAngular/carousel.component.js';
 import PopoverComponent from './popover/popover.component.js';
 import TooltipComponent from './tooltip/tooltip.component.js';
 
+import TreeComponent from './tree/tree.component.js';
+
 import AccordionComponent from './accordion/accordion.component.js';
 
 import ProgressBarComponent from './progress-bar/progress-bar.component.js';
@@ -43,6 +44,9 @@ import GridAngularComponent from './gridAngular/grid.component.js';
 
 import ButtongroupsComponent from './buttongroups/buttongroups.component.js';
 import FormsComponent from './forms/forms.component.js';
+
+import dragAndDropComponent from './dragAndDrop/dragAndDrop.component.js';
+
 import { ngxAtlUiModule } from 'atlantis-ui-ngx';
 
 
@@ -100,7 +104,6 @@ AppModule.annotations = [
       SlidepickerAngularComponent,
       navbarComponent,
       DropdownAngularComponent,
-      InputComponent,
       ButtonComponent,
       IconComponent,
       ModalAngularComponent,
@@ -114,13 +117,15 @@ AppModule.annotations = [
       ButtongroupsComponent,
       FormsComponent,
       ProgressBarComponent,
-      GridAngularComponent
+      GridAngularComponent,
+      dragAndDropComponent,
+      TreeComponent
     ],
     imports: [
       BrowserModule,
       FormsModule,
       RouterModule.forRoot(route),
-      ngxAtlUiModule.forRoot(types)
+      ngxAtlUiModule.forRoot()
     ],
     bootstrap: [ AppComponent ],
     providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, DatePipe, UpperCasePipe]

@@ -6,7 +6,7 @@ export default  class SlidepickerAngularComponent {
       new Component({
         template: require('./slidepicker.html')
       })
-    ]
+    ];
   }
   constructor(){
     this.slidepickerHtml = `
@@ -15,16 +15,16 @@ export default  class SlidepickerAngularComponent {
       <slidepicker-option value="test2">test2</slidepicker-option>
       <slidepicker-option value="test3">test3</slidepicker-option>
       <slidepicker-option value="test4">test4</slidepicker-option>
-    </slidepicker>`
+    </slidepicker>`;
     this.slidepickerOptionNgIf= `
-    <slidepicker-option *ngIf="showtest1" value="test1">test1</slidepicker-option>`
+    <slidepicker-option *ngIf="showtest1" value="test1">test1</slidepicker-option>`;
     this.slidepickerSizeHtml = `
     <slidepicker [(ngModel)]="slidepicker2" class="slidepicker-vertical slidepicker-sm">
     </slidepicker>
     <slidepicker [(ngModel)]="slidepicker2" class="slidepicker-vertical">
     </slidepicker>
     <slidepicker [(ngModel)]="slidepicker2" class="slidepicker-vertical slidepicker-lg">
-    </slidepicker>`
+    </slidepicker>`;
     this.show1 = true;
     this.show2 = true;
     this.show3 = true;
@@ -47,7 +47,7 @@ export default  class SlidepickerAngularComponent {
       <slidepicker-option [value]="one">11111</slidepicker-option>
       <slidepicker-option [value]="arrayOneTwoThree">one, two, three</slidepicker-option>
       <slidepicker-option [value]="objetWithArray">objet javascript</slidepicker-option>
-    </slidepicker>`
+    </slidepicker>`;
 
     this.options = [
       {
@@ -78,7 +78,7 @@ export default  class SlidepickerAngularComponent {
         value: this.objetWithArray,
         label: "object javascript"
       }
-    ]
+    ];
 
     this.slidepickerNgFor = `
     <slidepicker [(ngModel)]="slidepicker4" class="slidepicker-vertical" name="slidepicker4">
@@ -117,7 +117,7 @@ export default  class SlidepickerAngularComponent {
         value: this.objetWithArray,
         label: "object javascript"
       }
-    ]`
+    ]`;
   }
 
   changeBinding(binding, value){

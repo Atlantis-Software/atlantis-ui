@@ -1,6 +1,4 @@
-import { getTestBed, TestBed, fakeAsync, async, tick } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import atlantisUI from './ngx-atlantis-ui-module.js';
+import { getTestBed, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { Component } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
@@ -15,8 +13,8 @@ class selectpickerTestComponent {
   constructor() {
     this.arrayOneTwoThree = ["one", "two", "three"];
     this.one = 1;
-    this.objetWithArray  = { fsdfds: 1, array: [1,2,3], texte: "test"};
-    this.optionOne = {value: this.one, text: "one"};
+    this.objetWithArray = { fsdfds: 1, array: [1, 2, 3], texte: "test" };
+    this.optionOne = { value: this.one, text: "one" };
     this.booleanFalse = false;
     this.A = "A";
 
@@ -49,14 +47,14 @@ class selectpickerTestComponent {
         value: this.objetWithArray,
         label: "object javascript"
       }
-    ]
+    ];
     this.select1 = this.options[1];
-    this.select2 = [this.options[1], this.options[2]]
+    this.select2 = [this.options[1], this.options[2]];
     this.select3;
   }
-	static get annotations() {
-		return [
-			new Component({
+  static get annotations() {
+    return [
+      new Component({
         template: `<selectpicker [(ngModel)]="select1">
           <selectpicker-option *ngFor="let option of options" [value]="option">{{option.label}}</selectpicker-option>
         </selectpicker>
@@ -69,9 +67,9 @@ class selectpickerTestComponent {
           <selectpicker-option class="multipleEmpty" *ngFor="let option of options" [value]="option">{{option.label}}</selectpicker-option>
         </selectpicker>
         `
-	  	})
-		];
-	}
+      })
+    ];
+  }
 }
 
 describe('selectpicker', function() {
@@ -99,7 +97,7 @@ describe('selectpicker', function() {
     testComponent = fixture.componentInstance;
 
     var text = document.querySelector('.select-text');
-    var select = document.querySelector('selectpicker')
+    var select = document.querySelector('selectpicker');
     var options = select.querySelectorAll('a');
 
     assert.strictEqual(options.length, 7);
@@ -111,7 +109,7 @@ describe('selectpicker', function() {
     assert.strictEqual(options[5].textContent, 'one, two, three');
     assert.strictEqual(options[6].textContent, 'object javascript');
 
-    var text = document.querySelector('#selected');
+    text = document.querySelector('#selected');
 
     assert.strictEqual(testComponent.select1.value, 'B');
     assert.strictEqual(testComponent.select1.label, 'BBBB');
@@ -122,14 +120,13 @@ describe('selectpicker', function() {
     assert.strictEqual(testComponent.select2[1].label, 'CCCC');
   }));
 
-  it('should open on click and close on reclick', fakeAsync(()=>{
+  it('should open on click and close on reclick', fakeAsync(() => {
     var fixture = TestBed.createComponent(selectpickerTestComponent);
 
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
     var button = document.querySelector('.select-toggle');
 
     button.click();
@@ -146,7 +143,7 @@ describe('selectpicker', function() {
 
     assert.strictEqual(select.classList[1], void 0);
 
-  }))
+  }));
 
   it('should render selected value, string', fakeAsync(() => {
     var fixture = TestBed.createComponent(selectpickerTestComponent);
@@ -261,19 +258,17 @@ describe('selectpicker', function() {
     fixture.detectChanges();
 
     var testComponent = fixture.componentInstance;
-    var select = document.querySelectorAll('selectpicker')
+    var select = document.querySelectorAll('selectpicker');
     var options = select[1].querySelectorAll('a');
 
-    var click = new Event("click", {'bubbles': true});
+    var click = new Event("click", { 'bubbles': true });
     click.ctrlKey = true;
 
     options[0].dispatchEvent(click);
     tick();
     fixture.detectChanges();
 
-    var text = document.querySelector('#selected2');
-
-    assert.strictEqual(testComponent.select2.length, 3)
+    assert.strictEqual(testComponent.select2.length, 3);
     assert.strictEqual(testComponent.select2[0].value, "B");
     assert.strictEqual(testComponent.select2[0].label, 'BBBB');
     assert.strictEqual(testComponent.select2[1].value, "C");
@@ -290,10 +285,10 @@ describe('selectpicker', function() {
     fixture.detectChanges();
 
     var testComponent = fixture.componentInstance;
-    var select = document.querySelectorAll('selectpicker')
+    var select = document.querySelectorAll('selectpicker');
     var options = select[1].querySelectorAll('a');
 
-    var click = new Event("click", {'bubbles': true});
+    var click = new Event("click", { 'bubbles': true });
     click.ctrlKey = true;
 
     options[0].dispatchEvent(click);
@@ -304,9 +299,7 @@ describe('selectpicker', function() {
     tick();
     fixture.detectChanges();
 
-    var text = document.querySelector('#selected2');
-
-    assert.strictEqual(testComponent.select2.length, 2)
+    assert.strictEqual(testComponent.select2.length, 2);
     assert.strictEqual(testComponent.select2[0].value, "B");
     assert.strictEqual(testComponent.select2[0].label, 'BBBB');
     assert.strictEqual(testComponent.select2[1].value, "C");
@@ -329,17 +322,17 @@ describe('selectpicker', function() {
     tick();
     fixture.detectChanges();
 
-    var selectpicker = document.querySelectorAll("selectpicker")
+    var selectpicker = document.querySelectorAll("selectpicker");
     var options = selectpicker[2].querySelectorAll("a");
 
-    options[0].click()
+    options[0].click();
     tick();
     fixture.detectChanges();
 
     assert.strictEqual(testComponent.select3[0].value, "A");
     assert.strictEqual(testComponent.select3[0].label, 'AAAA');
 
-    var click = new Event("click", {'bubbles': true});
+    var click = new Event("click", { 'bubbles': true });
     click.shiftKey = true;
 
     options[2].dispatchEvent(click);
