@@ -1,6 +1,4 @@
-import { getTestBed, TestBed, async, fakeAsync, tick, DebugElement} from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import atlantisUI from './ngx-atlantis-ui-module.js';
+import { getTestBed, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { Component } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
@@ -14,8 +12,8 @@ class slidepickerTestComponent {
   constructor() {
     this.arrayOneTwoThree = ["one", "two", "three"];
     this.one = 1;
-    this.objetWithArray  = { fsdfds: 1, array: [1,2,3], texte: "test"};
-    this.optionOne = {value: this.one, text: "one"};
+    this.objetWithArray = { fsdfds: 1, array: [1, 2, 3], texte: "test" };
+    this.optionOne = { value: this.one, text: "one" };
     this.booleanFalse = false;
     this.A = "A";
 
@@ -48,21 +46,21 @@ class slidepickerTestComponent {
         value: this.objetWithArray,
         label: "object javascript"
       }
-    ]
+    ];
     this.slide = this.options[1];
   }
-	static get annotations() {
-		return [
-			new Component({
+  static get annotations() {
+    return [
+      new Component({
         template: `
         <slidepicker [(ngModel)]="slide" class="slidepicker slidepicker-vertical">
           <slidepicker-option *ngFor="let option of options" [value]="option">{{option.label}}</slidepicker-option>
         </slidepicker>
         <span id="selected">{{slide.label}}</span>
         `
-	  	})
-		];
-	}
+      })
+    ];
+  }
 }
 
 describe('slidepicker', function() {
@@ -87,7 +85,7 @@ describe('slidepicker', function() {
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
+    testComponent = fixture.componentInstance;
     var options = document.querySelectorAll('a');
 
     assert.strictEqual(options.length, 7);
@@ -113,7 +111,7 @@ describe('slidepicker', function() {
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
+    testComponent = fixture.componentInstance;
     var options = document.querySelectorAll('a');
 
     options[0].click();
@@ -134,7 +132,7 @@ describe('slidepicker', function() {
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
+    testComponent = fixture.componentInstance;
     var options = document.querySelectorAll('a');
 
     options[3].click();
@@ -155,7 +153,7 @@ describe('slidepicker', function() {
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
+    testComponent = fixture.componentInstance;
     var options = document.querySelectorAll('a');
 
     options[4].click();
@@ -176,7 +174,7 @@ describe('slidepicker', function() {
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
+    testComponent = fixture.componentInstance;
     var options = document.querySelectorAll('a');
 
     options[5].click();
@@ -197,7 +195,7 @@ describe('slidepicker', function() {
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
+    testComponent = fixture.componentInstance;
     var options = document.querySelectorAll('a');
 
     options[6].click();
@@ -218,23 +216,23 @@ describe('slidepicker', function() {
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
+    testComponent = fixture.componentInstance;
     var handle = document.querySelector('.slidepicker-handle');
 
-    var mousedown = new Event('mousedown', {'bubbles': true});
+    var mousedown = new Event('mousedown', { 'bubbles': true });
 
     handle.dispatchEvent(mousedown);
     tick();
     fixture.detectChanges();
 
-    var mouseMove = new Event('mousemove', {'bubbles': true});
+    var mouseMove = new Event('mousemove', { 'bubbles': true });
     mouseMove.pageY = 20;
 
     handle.dispatchEvent(mouseMove);
     tick();
     fixture.detectChanges();
 
-    var mouseUp = new Event('mouseup', {'bubbles' : true});
+    var mouseUp = new Event('mouseup', { 'bubbles': true });
     handle.dispatchEvent(mouseUp);
     tick();
     fixture.detectChanges();

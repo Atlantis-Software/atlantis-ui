@@ -31,7 +31,7 @@ export default class pagination {
           </li>
         </ul>`
       })
-    ]
+    ];
   }
 
   //Initialize numberPageShow, after and previous for calculate how many page we want after and previous actual page
@@ -50,10 +50,10 @@ export default class pagination {
 
   ngAfterViewInit(){
     var self = this;
-    if(this.paginationClassList.length > 0){
+    if (this.paginationClassList.length > 0){
       this.paginationClassList.forEach(function(paginationClass){
-        self.paginationDom[0].classList.add(paginationClass)
-      })
+        self.paginationDom[0].classList.add(paginationClass);
+      });
     }
   }
 
@@ -100,7 +100,7 @@ export default class pagination {
         this.pagechange.emit(index);
       }
     }
-    this.cdr.detectChanges()
+    this.cdr.detectChanges();
   }
 
   //show 5 previous page when click on previous arrow
@@ -132,12 +132,12 @@ export default class pagination {
   choosePage(e){
     var self = this;
     e.preventDefault();
-    if(this.changingPage == true){
+    if (this.changingPage == true){
       this.changingPage = !this.changingPage;
     }
     var pageChoose = e.target.value;
     if (pageChoose != null) {
-      if(pageChoose === 0 || pageChoose > this.pages) {
+      if (pageChoose === 0 || pageChoose > this.pages) {
         pageChoose = 1;
       }
       pageChoose = Math.floor(pageChoose);

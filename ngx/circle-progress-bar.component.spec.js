@@ -1,6 +1,4 @@
 import { getTestBed, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import atlantisUI from './ngx-atlantis-ui-module.js';
 import { Component } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
@@ -14,16 +12,16 @@ class circleProgessBarTestComponent {
   constructor() {
     this.test = 50;
   }
-	static get annotations() {
-		return [
-			new Component({
+  static get annotations() {
+    return [
+      new Component({
         template: `
         <circle-progress-bar [value]="test">
         </circle-progress-bar>
         <input id="percent" type="number" [(ngModel)]="test">`
-	  	})
-		];
-	}
+      })
+    ];
+  }
 }
 
 describe('Circle progress bar', function() {
@@ -49,7 +47,7 @@ describe('Circle progress bar', function() {
     testComponent = fixture.componentInstance;
     var percent = document.querySelector('.circle-progress-bar');
 
-    assert.strictEqual(percent.dataset.percent, "50")
+    assert.strictEqual(percent.dataset.percent, "50");
   }));
 
   it('should render selected value', fakeAsync(function() {
@@ -64,7 +62,7 @@ describe('Circle progress bar', function() {
 
     var percent = document.querySelector('.circle-progress-bar');
 
-    assert.strictEqual(percent.dataset.percent, "75")
+    assert.strictEqual(percent.dataset.percent, "75");
 
   }));
 

@@ -1,6 +1,4 @@
 import { getTestBed, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import atlantisUI from './ngx-atlantis-ui-module.js';
 import { Component } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
@@ -13,20 +11,15 @@ var assert = require('assert');
 
 class carouselTestComponent {
   constructor() {
-    this.optionsCarousel = {
-      indicator: true,
-      activeDefault: 1
-    };
-
     this.show1 = true;
     this.show2 = true;
     this.show3 = true;
   }
-	static get annotations() {
-		return [
-			new Component({
+  static get annotations() {
+    return [
+      new Component({
         template: `
-        <carousel [options]="optionsCarousel">
+        <carousel indicator="true" activeDefault="1">
         <carousel-item *ngIf="show1">
           <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">
           <div class="carousel-caption">slide1</div>
@@ -40,9 +33,9 @@ class carouselTestComponent {
           <div class="carousel-caption"></div>
         </carousel-item>
         </carousel>`
-	  	})
-		];
-	}
+      })
+    ];
+  }
 }
 
 describe('carousel', function() {
@@ -108,7 +101,7 @@ describe('carousel', function() {
     assert.strictEqual(indicators[2].classList[0], void 0);
   }));
 
-  it('should render selected item right arrow', fakeAsync(function(){
+  it('should render selected item right arrow', fakeAsync(function() {
     var fixture = TestBed.createComponent(carouselTestComponent);
     fixture.detectChanges();
     tick();
@@ -133,7 +126,7 @@ describe('carousel', function() {
     assert.strictEqual(indicators[2].classList[0], 'active');
   }));
 
-  it('should render selected item left arrow', fakeAsync(function(){
+  it('should render selected item left arrow', fakeAsync(function() {
     var fixture = TestBed.createComponent(carouselTestComponent);
     fixture.detectChanges();
     tick();
@@ -158,7 +151,7 @@ describe('carousel', function() {
     assert.strictEqual(indicators[2].classList[0], void 0);
   }));
 
-  it('should render correct item, toggle first item', fakeAsync(function(){
+  it('should render correct item, toggle first item', fakeAsync(function() {
     var fixture = TestBed.createComponent(carouselTestComponent);
     fixture.detectChanges();
     tick();
@@ -186,7 +179,7 @@ describe('carousel', function() {
 
   }));
 
-  it('should render correct item, toggle active item', fakeAsync(function(){
+  it('should render correct item, toggle active item', fakeAsync(function() {
     var fixture = TestBed.createComponent(carouselTestComponent);
     fixture.detectChanges();
     tick();
@@ -214,7 +207,7 @@ describe('carousel', function() {
     assert.strictEqual(labels[1].textContent, '');
   }));
 
-  it('should render correct item, toggle all then active one', fakeAsync(function(){
+  it('should render correct item, toggle all then active one', fakeAsync(function() {
     var fixture = TestBed.createComponent(carouselTestComponent);
     fixture.detectChanges();
     tick();

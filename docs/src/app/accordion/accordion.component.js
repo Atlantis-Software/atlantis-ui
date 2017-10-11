@@ -6,12 +6,12 @@ export default  class AccordionComponent {
       new Component({
         template: require('./accordion.html')
       })
-    ]
+    ];
   }
   constructor(){
 
     this.accordionHtml = `
-    <accordion [options]="optionsAccordion">
+    <accordion openDefault="2" style="default">
       <accordion-panel [title]="'test1'">
         qsdfghjklm
       </accordion-panel>
@@ -22,7 +22,7 @@ export default  class AccordionComponent {
     </accordion>`;
 
     this.accordionNgFor= `
-    <accordion [options]="{style: 'danger'}">
+    <accordion [style]="danger">
       <accordion-panel *ngFor="let panel of panels" [title]="panel.title">
         {{panel.content}}
       </accordion-panel>
@@ -42,30 +42,24 @@ export default  class AccordionComponent {
         title: "test3",
         content: "wxcvbn"
       }
-    ]`
+    ]`;
 
-    this.optionsAccordion= {
-      openDefault: 2,
-      style: "success"
-    }
-
-    this.Display = "Example";
     this.changehours();
 
     this.panels = [
       {
         title: "test1",
-        content: "azertyuiop"
+        content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
       },
       {
         title: "test2",
-        content: "qsdfghjklm"
+        content: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
       },
       {
         title: "test3",
-        content: "wxcvbn"
+        content: "when an unknown printer took a galley of type and scrambled it to make a type specimen book."
       }
-    ]
+    ];
   }
 
   changehours(){
