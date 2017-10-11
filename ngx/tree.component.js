@@ -13,7 +13,6 @@ export default class treeComponent {
         selector: 'tree',
         template: `
         <div [sortable-container]="notSortable" [sortableData]="nodes" [dropzones]="dropZones">
-        <span>{{dropZones}}</span>
           <tree-node *ngFor="let node of nodes; let i = index"
             [expandable]="node.expandable"
             [(expanded)]="node.expanded"

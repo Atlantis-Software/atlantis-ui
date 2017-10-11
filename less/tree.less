@@ -33,8 +33,20 @@ tree {
     }
 
     .tree-node-checkbox {
-      right: 25px;
+      display: inline-block;
+      right: 10px;
+      top: 3px;
       position:absolute;
+      .checkbox {
+        margin-top: 0;
+        margin-bottom: 0;
+        label {
+          cursor: default;
+          &::before {
+            cursor : pointer;
+          }
+        }
+      }
     }
 
     span[sortable-handle] {
