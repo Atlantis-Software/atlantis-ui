@@ -25,6 +25,7 @@ export class sortableContainer extends dragAndDropAbstractComponent {
     this.lastIndex = 0;
   }
 
+	//define the dropzones
   set dropzones(value) {
     if (value !== undefined) {
       this.dropZones = value;
@@ -35,6 +36,7 @@ export class sortableContainer extends dragAndDropAbstractComponent {
     this.dragEnabled = !!value;
   }
 
+	//define data into the container
   set sortableData(sortableData) {
     this._sortableData = sortableData;
     this.dropEnabled = !!this._sortableData;
@@ -44,6 +46,7 @@ export class sortableContainer extends dragAndDropAbstractComponent {
     return this._sortableData;
   }
 
+	//we change the element style when it's empty for know if we can drop a items into this
   _onDragEnterCallback() {
     if (this._sortableDataService.isDragged && this._sortableData.length === 0) {
       this.oldBorder = this._element.style.border;
@@ -55,6 +58,7 @@ export class sortableContainer extends dragAndDropAbstractComponent {
     this._element.style.border = this.oldBorder;
   }
 
+	//Add to the sortableData the items when we drop into a empty list
   _onDropCallback(e) {
     if (this._sortableDataService.isDragged && this._sortableData.length === 0) {
       let item = this._sortableDataService.sortableContainer._sortableData[this._sortableDataService.index];
@@ -72,6 +76,7 @@ export class sortableContainer extends dragAndDropAbstractComponent {
     }
   }
 
+	//Reset with correct index all the sortableItems
   resetIndex() {
     this.sortableItems.forEach((sortableItem, index)=>{
       sortableItem.index = index;
@@ -109,6 +114,7 @@ export class sortableComponents extends dragAndDropAbstractComponent {
     this._sortableContainer.lastIndex += 1;
   }
 
+	//Define the dropzones
   set dropzones(value) {
     if (value !== undefined) {
       this.dropZones = value;
@@ -123,6 +129,7 @@ export class sortableComponents extends dragAndDropAbstractComponent {
     this.dropEnabled = !!value;
   }
 
+	//send data to service for future use and send a callback to the application
   _onDragStartCallback() {
     this._sortableDataService.isDragged = true;
     this._sortableDataService.sortableContainer = this._sortableContainer;
@@ -135,6 +142,7 @@ export class sortableComponents extends dragAndDropAbstractComponent {
     this.onDragStartCallback.emit(this._dragDropService.dragData);
   }
 
+	//Add classes to the items where the items we sort is enter and remove on other
   _onDragEnterCallback() {
     if (this.index !== this._sortableDataService.newIndex) {
       var listDraggable = document.querySelectorAll('.sortableOver');
@@ -161,6 +169,7 @@ export class sortableComponents extends dragAndDropAbstractComponent {
     this.onDragOverCallback.emit(this._dragDropService.dragData);
   }
 
+	//That reset the style on the element that be sorted and reset data in service
   _onDragEndCallback() {
     this._sortableDataService.isDragged = false;
     this._sortableDataService.sortableContainer = null;
@@ -179,6 +188,7 @@ export class sortableComponents extends dragAndDropAbstractComponent {
     this.onDragEndCallback.emit(this._dragDropService.dragData);
   }
 
+	//change index of the sorted item with the index of items where we drop
   _onDropCallback() {
     if (this._sortableDataService.isDragged) {
       this.onDropSuccessCallback.emit(this._dragDropService.dragData);

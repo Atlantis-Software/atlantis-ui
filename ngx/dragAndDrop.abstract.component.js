@@ -1,13 +1,16 @@
 export class dragAndDropAbstractComponent {
   constructor(ElementRef, ChangeDetectorRef, dragAndDropService, isContainer) {
     this._element = ElementRef.nativeElement;
+		//Define the style per default for cursor
     this._element.style.cursor = "move";
+		//Allow to send data between 2 sortable's items
     this._dragAndDropService = dragAndDropService;
+		//Array of dropZones
     this.dropZones = [];
     this._cdr = ChangeDetectorRef;
     this.dropEnabled = false;
     this._isContainer = isContainer;
-
+		//Define all function we launch on HTML Event
     this._element.ondragenter = (event) => {
       if (this.notSortable) {
         return;
@@ -82,7 +85,7 @@ export class dragAndDropAbstractComponent {
       }
 
       this._onDragStart(event);
-      //
+      //if the dataTransfer is not null we apply a effect and change cursor
       if (event.dataTransfer != null) {
         event.dataTransfer.setData('text', '');
 
@@ -109,6 +112,7 @@ export class dragAndDropAbstractComponent {
     };
   }
 
+	//if handle is present define the dragHandle and reapply style for cursor
   setDragHandle(elem) {
     if (this._dragHandle) {
       return;
@@ -130,6 +134,7 @@ export class dragAndDropAbstractComponent {
     return this._dragEnabled;
   }
 
+	//function call when HTML events is fired
   _onDragEnter(event) {
     // console.log("abstract OnDragEnter");
     if (event.stopPropagation  && this.nested) {
@@ -182,12 +187,14 @@ export class dragAndDropAbstractComponent {
     this._cdr.detectChanges();
   }
 
+	//Verify if the drop is allowed on different element
   _isDropAllowed() {
     if (this._dragAndDropService.isDragged || this.dropEnabled) {
+			//If we send a function to allowDrop we call this
       if (this.allowDrop) {
         return this.allowDrop(this._dragAndDropService.dragData);
       }
-
+			//else we look for dropZones if we have not dropzone drop is allowed else we compare dropZone
       if (this.dropZones.length === 0 && this._dragAndDropService.allowedDropZones.length === 0) {
         return true;
       }

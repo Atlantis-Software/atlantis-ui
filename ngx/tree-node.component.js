@@ -84,6 +84,7 @@ export default class treeNodeComponent {
     this.parent = treeNodeComponent;
   }
 
+	//close the tree-node we drag if the nestedSortable is activate and if this tree-node has child
   onDragCallback(node, value) {
     if (!this.children) {
       return;
@@ -100,6 +101,7 @@ export default class treeNodeComponent {
     }
   }
 
+	//Return the checkbox element
   _getCheckbox() {
     return this.elementRef.nativeElement.querySelector('input[type="checkbox"]') || {};
   }
@@ -114,6 +116,7 @@ export default class treeNodeComponent {
       return;
     }
 
+		//Define the dropZones if it's not a nestedSortable
     if (!this.nestedSortable) {
       this.sortableZones = "zone" + Math.floor(Math.random() * 100000) + 1;
     }
@@ -137,6 +140,7 @@ export default class treeNodeComponent {
     this.indeterminate = false;
     checkbox.indeterminate = false;
 
+		//if this tree-node have children we change their value selected with this value selected
     if (this.children) {
       this.children.forEach((child) => {
         if (!child.disabled && !child.selectable) {
@@ -151,6 +155,7 @@ export default class treeNodeComponent {
     this.elementRef.nativeElement.querySelector('.tree-node-line').style.paddingLeft = 30 * this.depth + "px";
   }
 
+	//callback for click on expand icon
   ExpandClick() {
     if (this.disabled) {
       return;
@@ -166,6 +171,7 @@ export default class treeNodeComponent {
 
   }
 
+	//Callback for click on checkbox
   onClick() {
     if (this.disabled) {
       return;
@@ -183,6 +189,7 @@ export default class treeNodeComponent {
     this.select.emit();
   }
 
+	//function call when a children selected value has changed
   onSelect() {
     if (this.disabled) {
       return;
@@ -209,6 +216,7 @@ export default class treeNodeComponent {
       nbSelected = 0;
     }
 
+		//that define if this tree-node is checked, not checked or indeterminate
     if (isIndeterminate) {
       this.selected = false;
       checkbox.indeterminate = true;

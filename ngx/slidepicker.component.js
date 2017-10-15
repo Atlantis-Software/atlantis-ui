@@ -34,6 +34,7 @@ export class slidepickerComponent {
     this.oneActive = true;
   }
 
+	//active correct value
   writeValue(val) {
     if (this.labels) {
       if (val === undefined) {
@@ -62,6 +63,7 @@ export class slidepickerComponent {
 
 
   ngAfterViewInit() {
+		//Subscribe to the changes of labels queries for know if the queries labels are empty or not and active one if we suppress the actual active
     this.labels.changes.subscribe(labels => {
       if (labels.length > 0) {
         var oneActive = false;
@@ -93,6 +95,7 @@ export class slidepickerComponent {
     }
   }
 
+	//change the labels active
   changeActive(labelActive) {
     var self = this;
     if (this.labels.length > 0) {
@@ -115,7 +118,7 @@ export class slidepickerComponent {
         this.onModelChange(this.val);
       }
 
-
+			//Calculate the position of the label and send to this.positionReal
       this.labels.forEach(function(label) {
 
         if (label.isActive) {
@@ -136,6 +139,7 @@ export class slidepickerComponent {
 
   }
 
+	//callback for HTML Event on track
   TrackDown(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -144,6 +148,7 @@ export class slidepickerComponent {
     this.mouseMove(e);
   }
 
+	//callback for HTML Event on Handle
   HandleDown(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -151,11 +156,13 @@ export class slidepickerComponent {
     this.handleClick = true;
   }
 
+	//Callback for HTML event when we move mouse
   mouseMove(e) {
     e.preventDefault();
     e.stopPropagation();
 
     if (this.handleClick) {
+			//We collect position of mouse and send the data to positionPerc
       var track = this.slidepicker.getElementsByClassName("slidepicker-track")[0];
       var originalE = e.originalEvent;
       var trackHeight = track.offsetHeight;
@@ -181,6 +188,7 @@ export class slidepickerComponent {
     }
   }
 
+	//callback for mouse up event and that changes active label
   mouseUp(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -197,6 +205,7 @@ export class slidepickerComponent {
     this.changeActive(labels[numberLabel]);
   }
 
+	//Calculate the real position of the handler
   positionReal(position) {
     var handle = this.slidepicker.getElementsByClassName("slidepicker-handle")[0];
     if (this.vertical) {
@@ -208,6 +217,7 @@ export class slidepickerComponent {
     }
   }
 
+	//calculate the position in percent to the top of the trackbar
   positionPerc() {
     var increment;
     var handle = this.slidepicker.getElementsByClassName("slidepicker-handle")[0];
@@ -294,6 +304,9 @@ export class slidepickeroptionComponent {
     }
   }
 
+
+	//Callback for click on label event
+	//this call parent function
   clickLabel(e) {
     e.preventDefault();
 
