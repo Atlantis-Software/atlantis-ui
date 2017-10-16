@@ -22,6 +22,10 @@ export class tooltipComponent {
         styles: [
           `:host {
             display: block;
+            z-index: -1;
+          }
+          :host.in {
+            z-index: 1070;
           }`
         ]
       })
@@ -84,7 +88,7 @@ export class tooltipDirective {
     var tooltipWidth = this.tooltip.clientWidth;
     var placement = this.tooltipDirection == 'bottom' ? { top: this.position.top + this.position.height, left: this.position.left + this.position.width / 2 - tooltipWidth / 2 } :
       this.tooltipDirection == 'top' ? { top: this.position.top - tooltipHeight, left: this.position.left + this.position.width / 2 - tooltipWidth / 2 } :
-      this.tooltipDirection == 'left' ? { top: this.position.top + this.position.height / 2 - tooltipHeight / 2, left: this.position.left - tooltipWidth } : { top: this.position.top + this.position.height / 2 - tooltipHeight / 2, left: this.position.left + tooltipWidth };
+      this.tooltipDirection == 'left' ? { top: this.position.top + this.position.height / 2 - tooltipHeight / 2, left: this.position.left - tooltipWidth } : { top: this.position.top + this.position.height / 2 - tooltipHeight / 2, left: this.position.left + this.position.width };
     this.tooltip.style.top = placement.top + "px";
     this.tooltip.style.left = placement.left + "px";
     this.tooltipRef.instance.classIn = true;

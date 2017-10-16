@@ -23,6 +23,10 @@ export class popoverComponent {
         styles: [
           `:host {
             display: block;
+            z-index: -1;
+          }
+          :host.in {
+            z-index: 1060;
           }`
         ]
       })
@@ -95,7 +99,7 @@ export class popoverDirective {
     var popoverWidth = this.popover.clientWidth;
     var placement = this.popoverDirection == 'bottom' ? { top: this.position.top + this.position.height, left: this.position.left + this.position.width / 2 - popoverWidth / 2 } :
       this.popoverDirection == 'top' ? { top: this.position.top - popoverHeight, left: this.position.left + this.position.width / 2 - popoverWidth / 2 } :
-      this.popoverDirection == 'left' ? { top: this.position.top + this.position.height / 2 - popoverHeight / 2, left: this.position.left - popoverWidth } : { top: this.position.top + this.position.height / 2 - popoverHeight / 2, left: this.position.left + popoverWidth };
+      this.popoverDirection == 'left' ? { top: this.position.top + this.position.height / 2 - popoverHeight / 2, left: this.position.left - popoverWidth } : { top: this.position.top + this.position.height / 2 - popoverHeight / 2, left: this.position.left + this.position.width };
     this.popover.style.top = placement.top + "px";
     this.popover.style.left = placement.left + "px";
     this.popoverRef.instance.classIn = true;

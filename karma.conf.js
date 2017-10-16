@@ -24,7 +24,7 @@ module.exports = function (config) {
       noInfo: true,
     },
 
-    browsers : ['Chrome', 'Firefox'],
+    browsers : ['Chrome'],
 
     singleRun: true,
 

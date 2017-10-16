@@ -94176,7 +94176,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 '[class]': '"popover fade "+popoverDirection',
                 '[class.in]': "classIn"
               },
-              styles: [':host {\n            display: block;\n          }']
+              styles: [':host {\n            display: block;\n            z-index: -1;\n          }\n          :host.in {\n            z-index: 1060;\n          }']
             })];
           }
         }]);
@@ -94240,7 +94240,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             this.popover = this.popoverRef.location.nativeElement;
             var popoverHeight = this.popover.clientHeight;
             var popoverWidth = this.popover.clientWidth;
-            var placement = this.popoverDirection == 'bottom' ? { top: this.position.top + this.position.height, left: this.position.left + this.position.width / 2 - popoverWidth / 2 } : this.popoverDirection == 'top' ? { top: this.position.top - popoverHeight, left: this.position.left + this.position.width / 2 - popoverWidth / 2 } : this.popoverDirection == 'left' ? { top: this.position.top + this.position.height / 2 - popoverHeight / 2, left: this.position.left - popoverWidth } : { top: this.position.top + this.position.height / 2 - popoverHeight / 2, left: this.position.left + popoverWidth };
+            var placement = this.popoverDirection == 'bottom' ? { top: this.position.top + this.position.height, left: this.position.left + this.position.width / 2 - popoverWidth / 2 } : this.popoverDirection == 'top' ? { top: this.position.top - popoverHeight, left: this.position.left + this.position.width / 2 - popoverWidth / 2 } : this.popoverDirection == 'left' ? { top: this.position.top + this.position.height / 2 - popoverHeight / 2, left: this.position.left - popoverWidth } : { top: this.position.top + this.position.height / 2 - popoverHeight / 2, left: this.position.left + this.position.width };
             this.popover.style.top = placement.top + "px";
             this.popover.style.left = placement.left + "px";
             this.popoverRef.instance.classIn = true;
@@ -94333,7 +94333,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 '[class]': '"tooltip fade "+tooltipDirection',
                 '[class.in]': "classIn"
               },
-              styles: [':host {\n            display: block;\n          }']
+              styles: [':host {\n            display: block;\n            z-index: -1;\n          }\n          :host.in {\n            z-index: 1070;\n          }']
             })];
           }
         }]);
@@ -94386,7 +94386,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             this.tooltip = this.tooltipRef.location.nativeElement;
             var tooltipHeight = this.tooltip.clientHeight;
             var tooltipWidth = this.tooltip.clientWidth;
-            var placement = this.tooltipDirection == 'bottom' ? { top: this.position.top + this.position.height, left: this.position.left + this.position.width / 2 - tooltipWidth / 2 } : this.tooltipDirection == 'top' ? { top: this.position.top - tooltipHeight, left: this.position.left + this.position.width / 2 - tooltipWidth / 2 } : this.tooltipDirection == 'left' ? { top: this.position.top + this.position.height / 2 - tooltipHeight / 2, left: this.position.left - tooltipWidth } : { top: this.position.top + this.position.height / 2 - tooltipHeight / 2, left: this.position.left + tooltipWidth };
+            var placement = this.tooltipDirection == 'bottom' ? { top: this.position.top + this.position.height, left: this.position.left + this.position.width / 2 - tooltipWidth / 2 } : this.tooltipDirection == 'top' ? { top: this.position.top - tooltipHeight, left: this.position.left + this.position.width / 2 - tooltipWidth / 2 } : this.tooltipDirection == 'left' ? { top: this.position.top + this.position.height / 2 - tooltipHeight / 2, left: this.position.left - tooltipWidth } : { top: this.position.top + this.position.height / 2 - tooltipHeight / 2, left: this.position.left + this.position.width };
             this.tooltip.style.top = placement.top + "px";
             this.tooltip.style.left = placement.left + "px";
             this.tooltipRef.instance.classIn = true;
