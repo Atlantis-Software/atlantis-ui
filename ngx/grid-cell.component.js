@@ -12,7 +12,7 @@ export default class gridCellComponent {
         template: `{{content}}`,
         inputs: ['content', 'type', 'pipes'],
         styles: [
-          ":host { user-select: none; -moz-user-select: none; }"
+          ":host { user-select: none; -moz-user-select: none; overflow-wrap: break-word;}"
         ]
       })
     ];

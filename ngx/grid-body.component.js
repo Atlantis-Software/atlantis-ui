@@ -10,10 +10,10 @@ export default class gridBodyComponent {
         selector: 'grid-body',
         template: `
 				<div *ngFor="let row of rows; let i = index" (click)="!changingCellContent && selectRow(row, $event, i)" [class.active]='!changingCellContent && selected.includes(row)' class="gridRow">
-          <div *ngFor="let column of columns; let y = index" class="gridCell" [ngClass]="column.class" [attr.align]="column.alignment" (dblclick)="!changingCellContent && modifyContent($event, i, y)">
+          <div *ngFor="let column of columns; let y = index" class="gridCell" [ngClass]="column.class" [attr.align]="column.alignment" [style.verticalAlign]="column.vertical_alignment" (dblclick)="!changingCellContent && modifyContent($event, i, y)">
           <input class="form-control" [ngModel]="row[column.label]" *ngIf="changingCellContent === i + '' + y" (blur)="modifyContent($event, i, y, true)" (keyup.enter)="modifyContent($event, i, y, true)" focus/>
-						<grid-cell [content]="row[column.label]" [type]="column.type" [pipes]="pipes" *ngIf="changingCellContent !== i + '' + y">
-						</grid-cell>
+					<grid-cell [content]="row[column.label]" [type]="column.type" [pipes]="pipes" *ngIf="changingCellContent !== i + '' + y">
+					</grid-cell>
           </div>
         </div>`,
         styles: [`

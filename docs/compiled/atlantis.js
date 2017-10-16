@@ -87702,6 +87702,7 @@ var AppModule = exports.AppModule = function AppModule() {};
 var types = [{
   type: "date",
   alignment: "right",
+  vertical_alignment: "middle",
   pipes: [_common.DatePipe],
   optionsPipe: ['shortDate'],
   transformation: function transformation(val) {
@@ -92541,7 +92542,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             return [new _core.Component({
               selector: 'grid',
               template: '\n\t\t\t\t<grid-header class="gridHeader" [columns]="columns" [pipes]="pipes" (sort)="sort.emit($event)">\n        </grid-header>\n        <grid-body class="gridBody" [types]="types" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected" (selectedRows)="onSelect($event)">\n        </grid-body>\n        <grid-footer class="gridFooter" *ngIf="config.footer !==\'none\'" [columns]="columns" [rows]="rows">\n        </grid-footer>',
-              styles: [':host { display : table;}'],
+              styles: [':host { display : table; table-layout: fixed;}'],
               inputs: ['columns', 'rows', 'config', 'selected'],
               outputs: ['selectedRows', 'sort']
             })];
@@ -92601,6 +92602,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 column.class = column.class || self.types[indexType].class;
                 column.alignment = column.alignment || self.types[indexType].alignment;
                 column.width = column.width || "auto";
+                column.vertical_alignment = column.vertical_alignment || self.types[indexType].vertical_alignment;
               }
             });
 
@@ -92746,7 +92748,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           get: function get() {
             return [new _core.Component({
               selector: 'grid-body',
-              template: '\n\t\t\t\t<div *ngFor="let row of rows; let i = index" (click)="!changingCellContent && selectRow(row, $event, i)" [class.active]=\'!changingCellContent && selected.includes(row)\' class="gridRow">\n          <div *ngFor="let column of columns; let y = index" class="gridCell" [ngClass]="column.class" [attr.align]="column.alignment" (dblclick)="!changingCellContent && modifyContent($event, i, y)">\n          <input class="form-control" [ngModel]="row[column.label]" *ngIf="changingCellContent === i + \'\' + y" (blur)="modifyContent($event, i, y, true)" (keyup.enter)="modifyContent($event, i, y, true)" focus/>\n\t\t\t\t\t\t<grid-cell [content]="row[column.label]" [type]="column.type" [pipes]="pipes" *ngIf="changingCellContent !== i + \'\' + y">\n\t\t\t\t\t\t</grid-cell>\n          </div>\n        </div>',
+              template: '\n\t\t\t\t<div *ngFor="let row of rows; let i = index" (click)="!changingCellContent && selectRow(row, $event, i)" [class.active]=\'!changingCellContent && selected.includes(row)\' class="gridRow">\n          <div *ngFor="let column of columns; let y = index" class="gridCell" [ngClass]="column.class" [attr.align]="column.alignment" [style.verticalAlignment]="column.vertical_alignment" (dblclick)="!changingCellContent && modifyContent($event, i, y)">\n          <input class="form-control" [ngModel]="row[column.label]" *ngIf="changingCellContent === i + \'\' + y" (blur)="modifyContent($event, i, y, true)" (keyup.enter)="modifyContent($event, i, y, true)" focus/>\n\t\t\t\t\t\t<grid-cell [content]="row[column.label]" [type]="column.type" [pipes]="pipes" *ngIf="changingCellContent !== i + \'\' + y">\n\t\t\t\t\t\t</grid-cell>\n          </div>\n        </div>',
               styles: ['\n          :host { display : table-row-group; }\n          .gridRow { display : table-row; }\n          .gridCell { display : table-cell; }\n\t\t\t\t\t.active { background-color: lightblue; }\n          '],
               inputs: ['columns', 'rows', 'pipes', 'selected', 'types'],
               outputs: ['selectedRows']
@@ -92928,7 +92930,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               selector: 'grid-cell',
               template: '{{content}}',
               inputs: ['content', 'type', 'pipes'],
-              styles: [":host { user-select: none; -moz-user-select: none; }"]
+              styles: [":host { user-select: none; -moz-user-select: none; overflow-wrap: break-word;}"]
             })];
           }
         }]);

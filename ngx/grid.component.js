@@ -20,7 +20,7 @@ export default class gridComponent {
         </grid-body>
         <grid-footer class="gridFooter" *ngIf="config.footer !=='none'" [columns]="columns" [rows]="rows">
         </grid-footer>`,
-        styles: [':host { display : table;}'],
+        styles: [':host { display : table; table-layout: fixed;}'],
         inputs: ['columns', 'rows', 'config', 'selected'],
         outputs: ['selectedRows', 'sort']
       })
@@ -76,6 +76,7 @@ export default class gridComponent {
         column.class = column.class || self.types[indexType].class;
         column.alignment = column.alignment || self.types[indexType].alignment;
         column.width = column.width || "auto";
+        column.vertical_alignment = column.vertical_alignment || self.types[indexType].vertical_alignment;
       }
     });
 

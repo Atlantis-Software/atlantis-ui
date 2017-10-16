@@ -58,6 +58,7 @@ var types = [
   {
     type: "date",
     alignment: "right",
+    vertical_alignment: "middle",
     pipes: [DatePipe],
     optionsPipe: ['shortDate'],
     transformation: function(val) {
