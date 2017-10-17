@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  ContentChild,
-  TemplateRef,
-  ChangeDetectorRef
-} from '@angular/core';
+import { Component, EventEmitter, ContentChild, TemplateRef, ChangeDetectorRef, ElementRef} from '@angular/core';
 
 export default class treeComponent {
   static get annotations() {
@@ -12,9 +6,8 @@ export default class treeComponent {
       new Component({
         selector: 'tree',
         template: `
-        <div [sortable-container]="notSortable" [sortableData]="nodes" [dropzones]="[dropZones]">
+        <div [sortable-container]="nodes" [dropzones]="[dropZones]" [draggable]="isSortable">
           <tree-node *ngFor="let node of nodes; let i = index"
-            [expandable]="node.expandable"
             [(expanded)]="node.expanded"
             [(selected)]="node.selected"
             [label]="node.label"
@@ -27,37 +20,40 @@ export default class treeComponent {
             [disabled]="node.disabled"
             [sortableZones]="dropZonesNested"
             [nestedSortable]='nestedSortable'
-            [notSortable]="notSortable"
+            [isSortable]="isSortable"
             (expand)="expand.emit($event)"
             (collapse)="collapse.emit($event)"
             (select)="onSelect($event)"
-            [sortable]="notSortable"
+            [sortable]="isSortable"
             [sortableIndex]="i"
-            (onDragStartCallback)="onDragCallback(i, true)"
-            (onDragEndCallback)="onDragCallback(i, false)"
+            (onDragStartCallback)="onDragCallback($event, i, true)"
+            (onDragEndCallback)="onDragCallback($event, i, false)"
+            (onDragEnterCallback)="onDragOver($event, true)"
+            (onDragLeaveCallback)="onDragOver($event, false)"
             [nested]="nestedSortable">
           </tree-node>
         <ng-content *ngIf="!nodes"></ng-content>
         </div>`,
-        inputs: ['nodes', 'template', 'depth', 'nestedSortable', 'notSortable'],
-        outputs: ['expand', 'collapse', 'select', 'nodesChanges'],
+        inputs: ['nodes', 'template', 'depth', 'nestedSortable', 'isSortable'],
+        outputs: ['expand', 'collapse', 'nodesChanges'],
         queries: {
           template: new ContentChild(TemplateRef),
         }
       })
     ];
   }
-  constructor(changeDetectorRef) {
+  constructor(changeDetectorRef, ElementRef) {
     this.expand = new EventEmitter();
     this.collapse = new EventEmitter();
-    this.select = new EventEmitter();
     this.nodesChanges = new EventEmitter();
     this.depth = 1;
     this.cdr = changeDetectorRef;
     this.dropZones = "zone"+Math.floor(Math.random()*100000) +1;
+    this.isSortable = false;
+    this.ElementRef = ElementRef;
   }
 
-  onDragCallback(node, value){
+  onDragCallback(element, node, value){
     if (!this.nodes) {
       return;
     }
@@ -71,9 +67,31 @@ export default class treeComponent {
         }
       }
     }
+    if (value) {
+      element.classList.add("tree-node-sorted");
+    } else {
+      var treeNodeSorted = document.querySelectorAll(".tree-node-sorted");
+      if (treeNodeSorted.length > 0) {
+        treeNodeSorted.forEach((element)=> {
+          element.classList.remove("tree-node-sorted");
+        });
+      }
+    }
+  }
+
+  onDragOver(element, over) {
+    // console.log(node);
+    if (over) {
+      element.classList.add("tree-node-sorted");
+    } else {
+      element.classList.remove("tree-node-sorted");
+    }
   }
 
   ngAfterViewInit() {
+    if (!this.nodes) {
+      return;
+    }
     if (this.nestedSortable) {
       this.dropZonesNested = this.dropZones;
     } else {
@@ -99,4 +117,4 @@ export default class treeComponent {
 
 }
 
-treeComponent.parameters = [ChangeDetectorRef];
+treeComponent.parameters = [ChangeDetectorRef, ElementRef];
