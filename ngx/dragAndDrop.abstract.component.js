@@ -12,16 +12,10 @@ export class dragAndDropAbstractComponent {
     this._isContainer = isContainer;
 		//Define all function we launch on HTML Event
     this._element.ondragenter = (event) => {
-      if (this.notSortable) {
-        return;
-      }
       this._onDragEnter(event);
     };
 
     this._element.ondragover = (event) => {
-      if (this.notSortable) {
-        return;
-      }
       this._onDragOver(event);
 
       if (event.dataTransfer != null) {
@@ -32,28 +26,19 @@ export class dragAndDropAbstractComponent {
     };
 
     this._element.ondragleave = (event) => {
-      if (this.notSortable) {
-        return;
-      }
       this._onDragLeave(event);
     };
 
     this._element.ondrop = (event) => {
-      if (this.notSortable) {
-        return;
-      }
       this._onDrop(event);
     };
 
     this._element.onmousedown = (event) => {
-      if (this.notSortable) {
-        return;
-      }
       this._target = event.target;
     };
 
     this._element.onmouseover = () => {
-      if (this.notSortable || this._isContainer) {
+      if (this._isContainer || !this._dragEnabled) {
         this._element.style.cursor = "auto";
         return;
       }
@@ -64,7 +49,7 @@ export class dragAndDropAbstractComponent {
     };
 
     this._element.onmouseout = () => {
-      if (this.notSortable) {
+      if (!this._dragEnabled) {
         return;
       }
       if (this._dragHandle) {
@@ -74,9 +59,6 @@ export class dragAndDropAbstractComponent {
     };
 
     this._element.ondragstart = (event) => {
-      if (this.notSortable) {
-        return;
-      }
       if (this._dragHandle) {
         if (!this._dragHandle.contains(this._target)) {
           event.preventDefault();
@@ -102,9 +84,6 @@ export class dragAndDropAbstractComponent {
     };
 
     this._element.ondragend = (event) => {
-      if (this.notSortable) {
-        return;
-      }
       this._onDragEnd(event);
 
       let cursorelem = (this._dragHandle) ? this._dragHandle : this._element;
@@ -123,9 +102,6 @@ export class dragAndDropAbstractComponent {
   }
 
   set dragEnabled(enabled) {
-    if (this.notSortable || this.notSortable === undefined) {
-      return;
-    }
     this._dragEnabled = !!enabled;
     this._element.draggable = this._dragEnabled;
   }
