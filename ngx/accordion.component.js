@@ -1,4 +1,4 @@
-import { Component, ElementRef, ChangeDetectorRef} from '@angular/core';
+import { Component, ElementRef, ChangeDetectorRef } from '@angular/core';
 
 
 export class accordionComponent {
@@ -10,25 +10,25 @@ export class accordionComponent {
         template: `
           <ng-content></ng-content>`,
         inputs: ["panelStyle", "openDefault"],
-        host : {
-          'class' : 'panel-group'
+        host: {
+          'class': 'panel-group'
         }
       })
     ];
   }
   constructor(elementRef, ChangeDetectorRef) {
     this.elementRef = elementRef;
-		//Array will contains all panels link to the acccordion
+    //Array will contains all panels link to the acccordion
     this.panels = [];
     this.cdr = ChangeDetectorRef;
   }
 
-	//Add a panel to the panel's array
+  //Add a panel to the panel's array
   addPanel(panel) {
     this.panels.push(panel);
   }
 
-	//Remove a panel to the panel's array
+  //Remove a panel to the panel's array
   removePanel(panel) {
     var index = this.panels.indexOf(panel);
     if (index !== -1) {
@@ -36,9 +36,9 @@ export class accordionComponent {
     }
   }
 
-	//Close all panel exept the panel we want to open
+  //Close all panel exept the panel we want to open
   closeOthers(panelOpen) {
-    this.panels.forEach(function(panel){
+    this.panels.forEach(function(panel) {
       if (panel !== panelOpen) {
         panel.isOpen = false;
       }
@@ -51,7 +51,7 @@ export class accordionComponent {
     if (panelsHTML.length < 0) {
       return;
     }
-		//apply for all panel the same style
+    //apply for all panel the same style
     for (var i = 0; i < panelsHTML.length; i++) {
       if (this.panelStyle) {
         panelsHTML[i].classList.add("panel-" + this.panelStyle);
@@ -60,7 +60,7 @@ export class accordionComponent {
       }
     }
 
-		//Open the panel we want per default
+    //Open the panel we want per default
     if (this.openDefault >= 0) {
       if (this.openDefault === panelsHTML.length) {
         this.openDefault = panelsHTML.length - 1;
@@ -106,18 +106,18 @@ export class accordionPanelComponent {
 
   constructor(elementRef, accordion, ChangeDetectorRef) {
     this.accordion = accordion;
-		//add this panel to the panel's array of parent accordion
+    //add this panel to the panel's array of parent accordion
     this.accordion.addPanel(this);
     this._isOpen = false;
     this.cdr = ChangeDetectorRef;
   }
 
-	//when the panel is destroy remove the panel in the parent
+  //when the panel is destroy remove the panel in the parent
   ngOnDestroy() {
     this.accordion.removePanel(this);
   }
 
-	// toggle the panel we click and call the parent fonction to close other
+  // toggle the panel we click and call the parent fonction to close other
   toggleOpen(e) {
     e.preventDefault();
     this.isOpen = !this.isOpen;

@@ -48,7 +48,7 @@ import affixDirective from './affix.directive.js';
 
 import { sortableContainer, sortableComponents, sortableHandler } from './sortable.component.js';
 
-import { dragAndDropService, dragAndDropSortableService, dragDropServiceFactory, dragDropSortableServiceFactory} from './dragAndDrop.service.js';
+import { dragAndDropService, dragAndDropSortableService, dragDropServiceFactory, dragDropSortableServiceFactory } from './dragAndDrop.service.js';
 
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -68,7 +68,7 @@ export class ngxAtlUiModule {
     return {
       ngModule: ngxAtlUiModule,
       providers: [
-        { provide: gridConfig, useValue: config},
+        { provide: gridConfig, useValue: config },
         { provide: dragAndDropService, useFactory: dragDropServiceFactory },
         { provide: dragAndDropSortableService, useFactory: dragDropSortableServiceFactory }
       ]
@@ -81,7 +81,7 @@ ngxAtlUiModule.annotations = [
   new NgModule({
     imports: [CommonModule, FormsModule],
     declarations: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent, selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective, modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent, carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent, dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, affixDirective, gridComponent, gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent, popoverComponent, popoverDirective, tooltipComponent, tooltipDirective, backdropComponent, sortableContainer, sortableComponents, treeComponent, treeNodeComponent, sortableHandler],
-    exports : [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent, selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective, modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent, carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent, dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, affixDirective, gridComponent, gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent, popoverComponent, popoverDirective, tooltipComponent, tooltipDirective, backdropComponent, sortableContainer, sortableComponents, sortableHandler, treeComponent, treeNodeComponent],
+    exports: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent, selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective, modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent, carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent, dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, affixDirective, gridComponent, gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent, popoverComponent, popoverDirective, tooltipComponent, tooltipDirective, backdropComponent, sortableContainer, sortableComponents, sortableHandler, treeComponent, treeNodeComponent],
     entryComponents: [tooltipComponent, popoverComponent, backdropComponent]
   })
 ];

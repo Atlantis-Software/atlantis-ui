@@ -47,7 +47,7 @@ export class carouselComponent {
 
   ngAfterViewInit() {
     var items = this.items.toArray();
-		//Subscribe to the changes of items queries for know if the queries items are empty or not and active one if we suppress the actual active
+    //Subscribe to the changes of items queries for know if the queries items are empty or not and active one if we suppress the actual active
     this.items.changes.subscribe((items) => {
       if (items.length > 0) {
         var oneActive = false;
@@ -64,7 +64,7 @@ export class carouselComponent {
       }
     });
 
-		//Show the correct slide per default
+    //Show the correct slide per default
     if (this.activeDefault > 0) {
       if (this.activeDefault > this.items.length - 1) {
         this.activeDefault = 0;
@@ -78,7 +78,7 @@ export class carouselComponent {
       }, 0);
     }
 
-		//Define the function for interval between slide
+    //Define the function for interval between slide
     if (this.interval) {
       if (this.interval < 0) {
         this.interval = 2000;
@@ -95,12 +95,12 @@ export class carouselComponent {
     }
   }
 
-	//Suppress interval if we destroy the carousel component
+  //Suppress interval if we destroy the carousel component
   ngOnDestroy() {
     clearInterval(this.slide);
   }
 
-	//Define the direction of the slide
+  //Define the direction of the slide
   getDirection(newActive, oldActive) {
     if (newActive > oldActive) {
       return "left";
@@ -109,7 +109,7 @@ export class carouselComponent {
     }
   }
 
-	//function when we change slide
+  //function when we change slide
   changeItem(itemActive, direction) {
     if (!this.items.length > 0) {
       return;
@@ -122,7 +122,7 @@ export class carouselComponent {
     var items = this.items.toArray();
     var indexNewActive = items.indexOf(itemActive);
     direction = direction || this.getDirection(indexNewActive, this.activeItem);
-		//Verify if the actual slide is delete or not and change itemActive
+    //Verify if the actual slide is delete or not and change itemActive
     if (itemActive.delete) {
       this.items.forEach((item) => {
         if (!item.delete) {
@@ -130,7 +130,7 @@ export class carouselComponent {
         }
       });
     }
-		//Function launch if we define a interval
+    //Function launch if we define a interval
     if (this.slide && this.activeItem !== undefined) {
       itemActive.state = direction;
       items[this.activeItem].state = direction;
@@ -143,7 +143,7 @@ export class carouselComponent {
       itemActive.state = "active";
       items[this.activeItem].state = "";
       this.activeItem = indexNewActive;
-		//function call when we click on indicator or arrow
+      //function call when we click on indicator or arrow
     } else {
       this.activeItem = indexNewActive;
       itemActive.isActive = true;
@@ -156,7 +156,7 @@ export class carouselComponent {
     this.cdr.detectChanges();
   }
 
-	//Change slide for next slide
+  //Change slide for next slide
   nextItem() {
     var items = this.items.toArray();
     var index;
@@ -171,7 +171,7 @@ export class carouselComponent {
     this.changeItem(items[index], "left", "next");
   }
 
-	//Change slide for previous slide
+  //Change slide for previous slide
   previousItem() {
     var items = this.items.toArray();
     var index;

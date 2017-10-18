@@ -1,4 +1,4 @@
-import { Directive, ElementRef} from '@angular/core';
+import { Directive, ElementRef } from '@angular/core';
 
 
 export default class affixDirective {
@@ -11,11 +11,11 @@ export default class affixDirective {
     ];
   }
 
-  constructor(elementRef){
+  constructor(elementRef) {
     this.elementRef = elementRef;
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.offsetTop = this.elementRef.nativeElement.offsetTop;
     this.elementRef.nativeElement.setAttribute("data-spy", "affix");
     this.elementRef.nativeElement.setAttribute("data-offset-top", this.offsetTop);

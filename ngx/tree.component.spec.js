@@ -1,10 +1,10 @@
-import {getTestBed, TestBed, async, fakeAsync, tick, inject} from '@angular/core/testing';
+import { getTestBed, TestBed, async, fakeAsync, tick, inject } from '@angular/core/testing';
 
 import { dragAndDropSortableService, dragAndDropService } from './dragAndDrop.service.js';
 
 import { Component } from '@angular/core';
 
-function triggerEvent(elem, eventType){
+function triggerEvent(elem, eventType) {
   var event = new DragEvent(eventType);
   elem.dispatchEvent(event);
 }
@@ -159,7 +159,7 @@ class treeTestComponent {
 
 describe('tree', function() {
 
-  describe('default value and selection', function(){
+  describe('default value and selection', function() {
     beforeEach(async(function() {
       TestBed.configureTestingModule({
         imports: [CommonModule, FormsModule, ngxAtlUiModule.forRoot({})],
@@ -313,7 +313,7 @@ describe('tree', function() {
       treeNodeLines = document.querySelectorAll('.tree-node-line');
       treeNodeLines.forEach((treeNodeLine) => {
         if (treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 24') &&
-        (['Node 2', 'Node 24', 'Node 244', 'Node 2442'].indexOf(treeNodeLine.querySelector('.tree-node-label').innerText) === -1)) {
+          (['Node 2', 'Node 24', 'Node 244', 'Node 2442'].indexOf(treeNodeLine.querySelector('.tree-node-label').innerText) === -1)) {
           assert(treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node should be checked');
           return;
         }
@@ -353,8 +353,8 @@ describe('tree', function() {
       var treeNodeLines = document.querySelectorAll('.tree-node-line');
       treeNodeLines.forEach((treeNodeLine) => {
         if (treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 24') &&
-        !treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 244') &&
-        treeNodeLine.querySelector('.tree-node-label').innerText !== 'Node 24') {
+          !treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 244') &&
+          treeNodeLine.querySelector('.tree-node-label').innerText !== 'Node 24') {
           assert(treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node should be checked');
           return;
         }
@@ -503,7 +503,7 @@ describe('tree', function() {
     }));
   });
 
-  describe('sortable same level', function(){
+  describe('sortable same level', function() {
     var fixture, ds;
     beforeEach(async(function() {
       TestBed.configureTestingModule({
@@ -515,11 +515,11 @@ describe('tree', function() {
     }));
 
     beforeEach(inject([dragAndDropSortableService, dragAndDropService],
-    (dragAndDropSortableService)=> {
-      ds = dragAndDropSortableService;
-      fixture = TestBed.createComponent(treeTestComponent);
-      fixture.detectChanges();
-    }));
+      (dragAndDropSortableService) => {
+        ds = dragAndDropSortableService;
+        fixture = TestBed.createComponent(treeTestComponent);
+        fixture.detectChanges();
+      }));
 
     afterEach(function() {
       getTestBed().resetTestingModule();
@@ -542,8 +542,8 @@ describe('tree', function() {
 
       fixture.detectChanges();
 
-      assert.strictEqual(ds.sortableContainer.sortableData, testComponent.nodes,'should be defined');
-      assert.strictEqual(ds.index, 1,'should be defined');
+      assert.strictEqual(ds.sortableContainer.sortableData, testComponent.nodes, 'should be defined');
+      assert.strictEqual(ds.index, 1, 'should be defined');
 
       triggerEvent(node2.parentNode, 'dragenter');
       triggerEvent(node2.parentNode, 'drop');
@@ -598,7 +598,7 @@ describe('tree', function() {
     });
   });
 
-  describe('sortable in different level', function(){
+  describe('sortable in different level', function() {
     var fixture, ds;
     beforeEach(async(function() {
       TestBed.configureTestingModule({
@@ -610,11 +610,11 @@ describe('tree', function() {
     }));
 
     beforeEach(inject([dragAndDropSortableService, dragAndDropService],
-    (dragAndDropSortableService)=> {
-      ds = dragAndDropSortableService;
-      fixture = TestBed.createComponent(treeTestComponent);
-      fixture.detectChanges();
-    }));
+      (dragAndDropSortableService) => {
+        ds = dragAndDropSortableService;
+        fixture = TestBed.createComponent(treeTestComponent);
+        fixture.detectChanges();
+      }));
 
     afterEach(function() {
       getTestBed().resetTestingModule();
@@ -638,8 +638,8 @@ describe('tree', function() {
 
       fixture.detectChanges();
 
-      assert.strictEqual(ds.sortableContainer.sortableData, testComponent.nodes,'should be defined');
-      assert.strictEqual(ds.index, 0,'should be defined');
+      assert.strictEqual(ds.sortableContainer.sortableData, testComponent.nodes, 'should be defined');
+      assert.strictEqual(ds.index, 0, 'should be defined');
 
       triggerEvent(node2.parentNode, 'dragenter');
       triggerEvent(node2.parentNode, 'drop');
@@ -667,8 +667,8 @@ describe('tree', function() {
       triggerEvent(node.parentNode, 'dragstart');
 
       fixture.detectChanges();
-      assert.strictEqual(ds.sortableContainer.sortableData, testComponent.nodes[1].children,'should be defined');
-      assert.strictEqual(ds.index, 1,'should be defined');
+      assert.strictEqual(ds.sortableContainer.sortableData, testComponent.nodes[1].children, 'should be defined');
+      assert.strictEqual(ds.index, 1, 'should be defined');
 
       triggerEvent(node2.parentNode, 'dragenter');
       triggerEvent(node2.parentNode, 'drop');
@@ -693,14 +693,14 @@ describe('tree', function() {
 
       var mouseDown = new Event('mousedown', { 'bubbles': true });
 
-      assert.strictEqual(testComponent.nodes[1].expanded, true,'should be expanded');
+      assert.strictEqual(testComponent.nodes[1].expanded, true, 'should be expanded');
 
       handle.dispatchEvent(mouseDown);
       triggerEvent(node.parentNode, 'dragstart');
 
       fixture.detectChanges();
 
-      assert.strictEqual(testComponent.nodes[1].expanded, false,'should not be expanded');
+      assert.strictEqual(testComponent.nodes[1].expanded, false, 'should not be expanded');
     });
   });
 });

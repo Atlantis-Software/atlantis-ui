@@ -1,4 +1,4 @@
-import { Component, EventEmitter, ContentChild, TemplateRef, ChangeDetectorRef, ElementRef} from '@angular/core';
+import { Component, EventEmitter, ContentChild, TemplateRef, ChangeDetectorRef, ElementRef } from '@angular/core';
 
 export default class treeComponent {
   static get annotations() {
@@ -48,12 +48,12 @@ export default class treeComponent {
     this.nodesChanges = new EventEmitter();
     this.depth = 1;
     this.cdr = changeDetectorRef;
-    this.dropZones = "zone"+Math.floor(Math.random()*100000) +1;
+    this.dropZones = "zone" + Math.floor(Math.random() * 100000) + 1;
     this.isSortable = false;
     this.ElementRef = ElementRef;
   }
 
-  onDragCallback(element, node, value){
+  onDragCallback(element, node, value) {
     if (!this.nodes) {
       return;
     }
@@ -72,7 +72,7 @@ export default class treeComponent {
     } else {
       var treeNodeSorted = document.querySelectorAll(".tree-node-sorted");
       if (treeNodeSorted.length > 0) {
-        treeNodeSorted.forEach((element)=> {
+        treeNodeSorted.forEach((element) => {
           element.classList.remove("tree-node-sorted");
         });
       }
