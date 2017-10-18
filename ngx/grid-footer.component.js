@@ -11,10 +11,6 @@ export default class gridFooterComponent {
 				<div *ngFor= "let column of columns" class="gridHead" [ngClass]="column.class">
           {{columns.label}}
         </div>`,
-        styles: [`
-          :host { display : table-header-group; }
-          .gridHead { display : table-cell}
-          `],
         inputs: ['columns', 'rows']
       })
     ];

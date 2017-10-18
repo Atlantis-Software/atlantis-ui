@@ -10,10 +10,7 @@ export default class gridCellComponent {
       new Component({
         selector: 'grid-cell',
         template: `{{content}}`,
-        inputs: ['content', 'type', 'pipes'],
-        styles: [
-          ":host { user-select: none; -moz-user-select: none; overflow-wrap: break-word;}"
-        ]
+        inputs: ['content', 'type', 'pipes']
       })
     ];
   }

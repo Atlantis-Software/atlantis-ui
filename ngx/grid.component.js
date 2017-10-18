@@ -20,7 +20,6 @@ export default class gridComponent {
         </grid-body>
         <grid-footer class="gridFooter" *ngIf="config.footer !=='none'" [columns]="columns" [rows]="rows">
         </grid-footer>`,
-        styles: [':host { display : table; table-layout: fixed;}'],
         inputs: ['columns', 'rows', 'config', 'selected'],
         outputs: ['selectedRows', 'sort']
       })

@@ -10,17 +10,11 @@ export default class gridHeaderComponent {
         selector: 'grid-header',
         template: `
 				<div class="gridRow">
-					<div *ngFor= "let column of columns; let i = index;" class="gridHead" [ngClass]="column.class" [class.sortable]="!column.notSortable" [style.width]="column.width" (click)="onSort(column, i)">
+					<div *ngFor= "let column of columns; let i = index;" class="gridHead" [ngClass]="column.class" [class.sortable]="column.isSortable" [style.width]="column.width" (click)="onSort(column, i)">
 						<grid-cell-header [content]="column.label" [pipes]="pipes" [sortingClass]="column.sortingClass">
 						</grid-cell-header>
 	        </div>
 				</div>`,
-        styles: [`
-          :host { display : table-header-group; }
-          .gridHead { display : table-cell; }
-					.gridRow { display : table-row; }
-          .sortable { cursor : pointer }
-          `],
         inputs: ['columns', 'pipes'],
         outputs: ['sort']
       })
@@ -30,10 +24,11 @@ export default class gridHeaderComponent {
   constructor() {
     this.sort = new EventEmitter();
     this.sortColumns = [];
+    this.isSortable = false;
   }
 
   onSort(column, id) {
-    if (column.notSortable) {
+    if (!column.isSortable) {
       return;
     }
     // var sort = {label: column.label};
