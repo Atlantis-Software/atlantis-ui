@@ -22,7 +22,7 @@ var types = [
       if (moment(val).isValid()) {
         return moment(val).toString();
       } else {
-        return "invalid value";
+        return "ERR: invalid value";
       }
     }
   },
@@ -32,7 +32,7 @@ var types = [
       if (!isNaN(val)) {
         return val;
       } else {
-        return "invalid value";
+        return "ERR: invalid value";
       }
     }
   },
@@ -66,24 +66,31 @@ class gridTestComponent {
     this.columns = [
       {
         label: "test",
-        alignment: "center",
-        notSortable: true
+        alignment: "center"
       },
       {
         label: "testNumber",
         width: "150px",
-        type: "number"
+        type: "number",
+        isEditable: true,
+        isSortable: true
       },
       {
-        label: "testText"
+        label: "testText",
+        isEditable: true,
+        isSortable: true
       },
       {
         label: "testDate",
-        type: 'date'
+        type: 'date',
+        isEditable: true,
+        isSortable: true
       },
       {
         label: "testBoolean",
-        type: 'boolean'
+        type: 'boolean',
+        isEditable: true,
+        isSortable: true
       }
     ];
 
@@ -267,7 +274,7 @@ describe('grid', function() {
     var testComponent = fixture.componentInstance;
     var rows = document.querySelector('grid-body').querySelectorAll('.gridRow');
 
-    var click = new Event("click", {'bubbles': true});
+    var click = new Event("click", { 'bubbles': true });
     click.ctrlKey = true;
 
     rows[0].dispatchEvent(click);
@@ -295,7 +302,7 @@ describe('grid', function() {
     var testComponent = fixture.componentInstance;
     var rows = document.querySelector('grid-body').querySelectorAll('.gridRow');
 
-    var click = new Event("click", {'bubbles': true});
+    var click = new Event("click", { 'bubbles': true });
     click.ctrlKey = true;
 
     rows[0].dispatchEvent(click);
@@ -336,7 +343,7 @@ describe('grid', function() {
     assert.strictEqual(selection.length, 1);
     assert.strictEqual(selection[0], testComponent.rows[0]);
 
-    var click = new Event("click", {'bubbles': true});
+    var click = new Event("click", { 'bubbles': true });
     click.shiftKey = true;
 
     rows[2].dispatchEvent(click);
@@ -594,7 +601,7 @@ describe('grid', function() {
     var rows = document.querySelector('grid-body').querySelectorAll('.gridRow');
     var cells = rows[0].querySelectorAll('.gridCell');
 
-    var doubleClick = new Event("dblclick", {'bubbles': true});
+    var doubleClick = new Event("dblclick", { 'bubbles': true });
     doubleClick.shiftKey = true;
 
     cells[1].dispatchEvent(doubleClick);
@@ -606,6 +613,18 @@ describe('grid', function() {
     input.value = "test";
     input.dispatchEvent(new Event('blur'));
     fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+    assert.equal(input.value, "test");
+
+    var cancel = document.querySelector('.grid-label-error');
+    cancel.click();
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    assert.equal(input.value, oldValue);
+    input.dispatchEvent(new Event('blur'));
     tick();
     fixture.detectChanges();
     assert.equal(cells[1].querySelector('grid-cell').innerText, oldValue);
@@ -634,7 +653,7 @@ describe('grid', function() {
     var rows = document.querySelector('grid-body').querySelectorAll('.gridRow');
     var cells = rows[0].querySelectorAll('.gridCell');
 
-    var doubleClick = new Event("dblclick", {'bubbles': true});
+    var doubleClick = new Event("dblclick", { 'bubbles': true });
     doubleClick.shiftKey = true;
 
     cells[2].dispatchEvent(doubleClick);
@@ -673,7 +692,7 @@ describe('grid', function() {
     var rows = document.querySelector('grid-body').querySelectorAll('.gridRow');
     var cells = rows[0].querySelectorAll('.gridCell');
 
-    var doubleClick = new Event("dblclick", {'bubbles': true});
+    var doubleClick = new Event("dblclick", { 'bubbles': true });
     doubleClick.shiftKey = true;
 
     cells[3].dispatchEvent(doubleClick);
@@ -687,10 +706,22 @@ describe('grid', function() {
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
+    assert.strictEqual(input.value, "123456789");
+
+    var cancel = document.querySelector('.grid-label-error');
+    cancel.click();
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+    assert.equal(input.value, oldValue);
+
+    input.dispatchEvent(new Event('blur'));
+    tick();
+    fixture.detectChanges();
     var correctDate = cells[3].querySelector('grid-cell').innerText;
     correctDate = correctDate.split("/");
     correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-    assert.strictEqual(new Date(correctDate).toDateString(), new Date(oldValue).toDateString());
+    assert.equal(new Date(correctDate).toDateString(), new Date(oldValue).toDateString());
 
     cells[3].dispatchEvent(doubleClick);
     tick();
@@ -719,7 +750,7 @@ describe('grid', function() {
     var rows = document.querySelector('grid-body').querySelectorAll('.gridRow');
     var cells = rows[0].querySelectorAll('.gridCell');
 
-    var doubleClick = new Event("dblclick", {'bubbles': true});
+    var doubleClick = new Event("dblclick", { 'bubbles': true });
     doubleClick.shiftKey = true;
 
     cells[4].dispatchEvent(doubleClick);
