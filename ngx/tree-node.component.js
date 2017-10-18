@@ -139,6 +139,11 @@ export default class treeNodeComponent {
       return;
     }
 
+    //Define the dropZones if it's not a nestedSortable
+    if (!this.nestedSortable && this.isSortable) {
+      this.sortableZones = "zone" + Math.floor(Math.random() * 100000) + 1;
+    }
+
     if (this.selected === void 0) {
       return;
     }
@@ -167,10 +172,6 @@ export default class treeNodeComponent {
 
   ngAfterViewInit() {
     this.elementRef.nativeElement.querySelector('.tree-node-line').style.paddingLeft = 30 * this.depth + "px";
-    //Define the dropZones if it's not a nestedSortable
-    if (!this.nestedSortable && this.isSortable) {
-      this.sortableZones = "zone" + Math.floor(Math.random() * 100000) + 1;
-    }
   }
 
 	//callback for click on expand icon

@@ -115,6 +115,14 @@ export default class treeComponent {
     this.nodesChanges.emit(this.nodes);
   }
 
+  ngOnChanges() {
+    if (this.nestedSortable) {
+      this.dropZonesNested = this.dropZones;
+    } else {
+      this.dropZonesNested = undefined;
+    }
+  }
+
 }
 
 treeComponent.parameters = [ChangeDetectorRef, ElementRef];
