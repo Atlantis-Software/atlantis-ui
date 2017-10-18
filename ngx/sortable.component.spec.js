@@ -1,6 +1,6 @@
 import { getTestBed, TestBed, inject } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { sortableContainer, sortableComponents } from './sortable.component.js';
+import { sortableContainer, sortableComponents, sortableHandler } from './sortable.component.js';
 
 import { dragAndDropSortableService, dragAndDropService } from './dragAndDrop.service.js';
 
@@ -31,11 +31,10 @@ class sortableSimpleTestComponent {
       new Component({
         template: `
         <div>
-          <ul class="list-group" sortable-container [sortableData]="listOne">
-            <li *ngFor="let item of listOne; let i = index" class="list-group-item" sortable [sortableIndex]="i">{{item}}</li>
+          <ul class="list-group" [sortable-container]="listOne">
+            <li *ngFor="let item of listOne; let i = index" class="list-group-item" sortable>{{item}}</li>
           </ul>
-        </div>
-        `
+        </div>`
       })
     ];
   }
@@ -50,8 +49,8 @@ class sortableHandleTestComponent {
       new Component({
         template: `
         <div>
-          <ul class="list-group" sortable-container [sortableData]="sortableList">
-            <li *ngFor="let item of sortableList; let i = index" sortable [sortableIndex]="i">
+          <ul class="list-group" [sortable-container]="sortableList">
+            <li *ngFor="let item of sortableList; let i = index" sortable>
               <span class="handle" sortable-handle>=</span>
               <span class="non-handle">{{item}}</span>
             </li>
@@ -75,18 +74,18 @@ class sortableMultipleTestComponent {
         template: `
         <div>
           <div id='single'>
-            <ul class="list-group" sortable-container [sortableData]="singleList">
-              <li *ngFor="let item of singleList; let i = index" sortable [sortableIndex]="i">{{item}}</li>
+            <ul class="list-group" [sortable-container]="singleList">
+              <li *ngFor="let item of singleList; let i = index" sortable>{{item}}</li>
             </ul>
           </div>
-          <div id='multiOne' sortable-container [dropzones]="'multiList'" [sortableData]="multiOneList">
+          <div id='multiOne' [sortable-container]="multiOneList" [dropzones]="[multiList]">
             <ul class="list-group" >
-              <li *ngFor="let item of multiOneList; let i = index" sortable [sortableIndex]="i">{{item}}</li>
+              <li *ngFor="let item of multiOneList; let i = index" sortable>{{item}}</li>
             </ul>
           </div>
-          <div id='multiTwo' sortable-container [dropzones]="'multiList'" [sortableData]="multiTwoList">
+          <div id='multiTwo' [sortable-container]="multiTwoList" [dropzones]="[multiList]">
             <ul class="list-group" >
-              <li *ngFor="let item of multiTwoList; let i = index" sortable [sortableIndex]="i">{{item}}</li>
+              <li *ngFor="let item of multiTwoList; let i = index" sortable>{{item}}</li>
             </ul>
           </div>
         </div>
@@ -325,7 +324,7 @@ describe('Sortable Drag and Drop', function() {
     var fixture, container, ds;
     beforeEach(() =>{
       TestBed.configureTestingModule({
-        declarations: [sortableHandleTestComponent, sortableContainer, sortableComponents],
+        declarations: [sortableHandleTestComponent, sortableContainer, sortableComponents, sortableHandler],
         providers: [dragAndDropSortableService, dragAndDropService]
       });
       TestBed.compileComponents();
@@ -355,11 +354,20 @@ describe('Sortable Drag and Drop', function() {
       assert(!ds.sortableContainer, 'should not be defined');
       assert(!ds.index, 'should not be defined');
 
-      triggerEvent(ulElement.children[0].querySelector('.handle'), 'mousedown');
+      var mouseDown = new Event('mousedown', { 'bubbles': true });
+
+      ulElement.children[0].querySelector('.handle').dispatchEvent(mouseDown);
+      // triggerEvent(ulElement.children[0].querySelector('.handle'), 'mousedown');
       triggerEvent(ulElement.children[0], 'dragstart');
-      fixture.detectChanges();
       assert.strictEqual(ds.sortableContainer.sortableData, value,'should be defined');
       assert.strictEqual(ds.index, 0,'should be defined');
+      swapItem(ulElement.children, 0, 1);
+      fixture.detectChanges();
+
+      assert.strictEqual(value[0], 'singleTwo');
+      assert.strictEqual(ulElement.children[0].querySelector('.non-handle').textContent, 'singleTwo');
+      assert.strictEqual(value[1], 'singleOne');
+      assert.strictEqual(ulElement.children[1].querySelector('.non-handle').textContent, 'singleOne');
     });
 
     it('should not be sortable by non-handle', () => {

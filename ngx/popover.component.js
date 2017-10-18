@@ -41,6 +41,7 @@ popoverComponent.parameters = [ElementRef];
 export class popoverDirective {
   constructor(ComponentFactoryResolver, ElementRef, Injector, ApplicationRef) {
     this.ElementRef = ElementRef;
+		//Create a factory for create the popover
     this.popoverComponentFactory = ComponentFactoryResolver.resolveComponentFactory(popoverComponent);
     this.injector = Injector;
     this.applicationRef = ApplicationRef;
@@ -60,6 +61,7 @@ export class popoverDirective {
   }
 
   ngAfterContentInit() {
+		//send to popover component all inputs parameters
     this.popoverRef = this.popoverComponentFactory.create(this.injector);
     this.applicationRef.attachView(this.popoverRef.hostView);
     document.querySelector('body').appendChild(this.popoverRef.location.nativeElement);
@@ -69,6 +71,7 @@ export class popoverDirective {
     this.popoverRef.changeDetectorRef.detectChanges();
   }
 
+	//if we changes inputs we change to component too
   ngOnChanges() {
     if (this.popoverRef) {
       this.popoverRef.instance.popoverDirection = this.popoverDirection;
@@ -77,6 +80,7 @@ export class popoverDirective {
     }
   }
 
+	//destroy the popover
   ngOnDestroy() {
     if (this.popoverRef) {
       this.popoverRef.destroy();
@@ -84,6 +88,7 @@ export class popoverDirective {
     }
   }
 
+	//open or close the popover
   toggle() {
     if (this.popoverRef.instance.classIn) {
       this.close();
@@ -92,6 +97,7 @@ export class popoverDirective {
     }
   }
 
+	//open the popover and compute the positioning of the element.
   open() {
     this.position = this.getPosition(this.ElementRef.nativeElement);
     this.popover = this.popoverRef.location.nativeElement;
@@ -109,6 +115,7 @@ export class popoverDirective {
     this.popoverRef.instance.classIn = false;
   }
 
+	//that send the absolute position of the element with this directive
   getPosition(element) {
     var left = 0;
     var top = 0;

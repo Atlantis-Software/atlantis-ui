@@ -36,6 +36,7 @@ export default class pagination {
 
   //Initialize numberPageShow, after and previous for calculate how many page we want after and previous actual page
   constructor(elementRef, ChangeDetectorRef){
+		//define all default parameters
     this.elementRef = elementRef;
     this.paginationClassList = this.elementRef.nativeElement.classList;
     this.paginationDom = this.elementRef.nativeElement.getElementsByClassName("pagination");
@@ -49,6 +50,7 @@ export default class pagination {
   }
 
   ngAfterViewInit(){
+		//add correct class
     var self = this;
     if (this.paginationClassList.length > 0){
       this.paginationClassList.forEach(function(paginationClass){

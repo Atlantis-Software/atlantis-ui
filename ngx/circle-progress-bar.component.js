@@ -26,6 +26,7 @@ export default class circleProgessBarComponent {
     this.content = this.elementRef.nativeElement.getElementsByClassName("circle-progress-bar")[0];
     this.tag = this.elementRef.nativeElement.tagName;
     this.style = this.elementRef.nativeElement.classList;
+		//Define the correct attribute for svg with tagName
     switch (this.tag) {
       case "CIRCLE-PROGRESS-BAR-SM":
         this.circle.setAttribute("r", 60);
@@ -78,6 +79,7 @@ export default class circleProgessBarComponent {
     }
   }
 
+	//Update the progression on the bar
   updateBar() {
     var r = this.circle.getAttribute("r");
     var c = Math.PI * (r * 2);

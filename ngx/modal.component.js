@@ -38,6 +38,7 @@ export default class modalComponent {
     return this.model;
   }
 
+	//set the variable show with input parameter and open or close modal.
   set show(val) {
     if (val !== this.model) {
       this.model = val;
@@ -49,6 +50,8 @@ export default class modalComponent {
     }
   }
 
+	//Open modal and add correct class on body for avoid the scroll on body
+	//if we want a backdrop that create a backdrop into the body
   open() {
     if (this.backdrop === true) {
       // create backdrop dynamically
@@ -70,6 +73,7 @@ export default class modalComponent {
 
   }
 
+	//close the modal. Delete the backdrop and remove class on body
   close(event) {
     // if click inside modal
     if (event && event.target !== this.modal) {
@@ -87,6 +91,7 @@ export default class modalComponent {
     // setTimeout(() => this.visible = false, 300);
   }
 
+	//Add classes to modal according to inputs parameters
   ngOnInit() {
 
     this.modal = this.elementRef.nativeElement.getElementsByClassName("modal")[0];

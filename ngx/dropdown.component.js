@@ -35,6 +35,7 @@ export default class dropdownComponent {
     this.title = "Dropdown button";
   }
 
+	//Change options of dropdown with the inputs parameters
   ngAfterViewInit() {
     this.dropdown = this.elementRef.nativeElement;
     var dropdownMenu = this.elementRef.nativeElement.getElementsByClassName("dropdown-menu")[0];

@@ -9,23 +9,67 @@ export default  class TreeComponent {
     ];
   }
   constructor(){
-    this.nodes = [
+    this.nodesBasic = [
+      {
+        label: 'Node without children'
+      },
+      {
+        label: 'Node with children',
+        children: [
+          {
+            label: 'Sub-node 1'
+          },
+          {
+            label: 'Sub-node 2'
+          }
+        ]
+      }
+    ];
+
+    this.nodesWithParameters = [
+      {
+        label: 'Node with children and not open per default',
+        children: [
+          {
+            label: 'Sub-node hidden on init',
+            selectable: false,
+          }
+        ]
+      },
+      {
+        label: 'Node with children open per default',
+        expanded: true,
+        children: [
+          {
+            label: 'Sub-node show on init and with children but not expandable',
+            disabled: true,
+            children: [
+              {
+                label: 'Sub-sub-node'
+              }
+            ]
+          },
+          {
+            label: 'Sub-node without children but disabled',
+            disabled: true
+          }
+        ]
+      }
+    ];
+
+    this.nodesSortable = [
       { label: 'Node 1',
-        selectable: false
       },
       {
         label: 'Node 2',
-        expandable: true,
         expanded: true,
         children: [
           { label: 'Node 21' },
           { label: 'Node 22',
-            disabled: true,
           },
           {
             label: 'Node 23',
-            expanded: false,
-            expandable: true,
+            expanded: true,
             children: [
               { label: 'Node 231' },
               { label: 'Node 232' },
@@ -33,50 +77,24 @@ export default  class TreeComponent {
               { label: 'Node 234' }
             ]
           },
-          {
-            label: 'Node 24',
-            expandable: true,
-            expanded: true,
-            children: [
-              { label: 'Node 241' },
-              { label: 'Node 242' },
-              { label: 'Node 243' },
-              { label: 'Node 244' }
-            ]
-          }
         ]
       },
-      { label: 'Node 3' },
       {
-        label: 'Node 4',
-        children: [
-          { label: 'Node 41' },
-          { label: 'Node 42' },
-          { label: 'Node 43' },
-          { label: 'Node 44' }
-        ],
-        expandable: true
+        label: 'Node 3'
       }
     ];
-    this.treeHtml = `
-    <tree class="col-md-4" [nodes]="nodes" (select)='onSelect($event)'></tree>`;
 
-    this.treeNodes = `
-    this.nodes = [
+    this.nodesSortableNested = [
       { label: 'Node 1',
-        selectable: false
       },
       {
         label: 'Node 2',
-        expandable: true,
         expanded: true,
         children: [
           { label: 'Node 21' },
           { label: 'Node 22' },
           {
             label: 'Node 23',
-            expanded: false,
-            expandable: true,
             children: [
               { label: 'Node 231' },
               { label: 'Node 232' },
@@ -86,7 +104,6 @@ export default  class TreeComponent {
           },
           {
             label: 'Node 24',
-            expandable: true,
             expanded: true,
             children: [
               { label: 'Node 241' },
@@ -106,13 +123,75 @@ export default  class TreeComponent {
           { label: 'Node 43' },
           { label: 'Node 44' }
         ],
-        expandable: true
+      }
+    ];
+    this.treeHtml = `
+    <tree class="col-md-4" [nodes]="nodesBasic"></tree>`;
+
+    this.treeHtml2 = `
+    <tree [nodes]="nodesSortable" [isSortable]="true"></tree>`;
+
+    this.treeHtml3 = `
+    <tree [nodes]="nodesSortable" [isSortable]="true" [nestedSortable]="true"></tree>`;
+
+    this.treeNodes = `
+    this.nodesBasic = [
+      {
+        label: 'Node without children'
+      },
+      {
+        label: 'Node with children',
+        children: [
+          {
+            label: 'Sub-node 1'
+          },
+          {
+            label: 'Sub-node 2'
+          }
+        ]
+      }
+    ]`;
+
+    this.treeNodesWithParameters = `
+    this.nodesWithParameters = [
+      {
+        label: 'Node with children and not open per default',
+        children: [
+          {
+            label: 'Sub-node hidden on init',
+            selectable: false,
+          }
+        ]
+      },
+      {
+        label: 'Node with children open per default',
+        expanded: true,
+        children: [
+          {
+            label: 'Sub-node show on init and with children',
+            children: [
+              {
+                label: 'Sub-sub-node'
+              }
+            ]
+          },
+          {
+            label: 'Sub-node without children',
+            disabled: true
+          }
+        ]
       }
     ];`;
-  }
 
-  test() {
-    console.log(this.nodes);
+    this.nodeAttribute = `
+    oneNode = {
+      label: "Node 1",
+      selectable: false,
+      expanded: true,
+      children: [...],
+      disabled: false
+    }`;
+
   }
 
 }

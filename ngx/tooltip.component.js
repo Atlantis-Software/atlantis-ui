@@ -42,6 +42,8 @@ export class tooltipDirective {
     this.ElementRef = ElementRef;
     this.injector = Injector;
     this.applicationRef = ApplicationRef;
+		//Create a factory for create the tooltip
+
     this.tooltipComponentFactory = ComponentFactoryResolver.resolveComponentFactory(tooltipComponent);
   }
 
@@ -59,6 +61,7 @@ export class tooltipDirective {
   }
 
   ngAfterContentInit() {
+		//send to tooltip component all inputs parameters
     this.tooltipRef = this.tooltipComponentFactory.create(this.injector);
     this.applicationRef.attachView(this.tooltipRef.hostView);
     document.querySelector('body').appendChild(this.tooltipRef.location.nativeElement);
@@ -67,6 +70,7 @@ export class tooltipDirective {
     this.tooltipRef.changeDetectorRef.detectChanges();
   }
 
+	//if we changes inputs we change to component too
   ngOnChanges() {
     if (this.tooltipRef) {
       this.tooltipRef.instance.tooltipDirection = this.tooltipDirection;
@@ -74,6 +78,7 @@ export class tooltipDirective {
     }
   }
 
+	//destroy the popover
   ngOnDestroy() {
     if (this.tooltipRef) {
       this.tooltipRef.destroy();
@@ -81,6 +86,7 @@ export class tooltipDirective {
     }
   }
 
+	//open the popover and compute the positioning of the element.
   open() {
     this.position = this.getPosition(this.ElementRef.nativeElement);
     this.tooltip = this.tooltipRef.location.nativeElement;
@@ -98,6 +104,7 @@ export class tooltipDirective {
     this.tooltipRef.instance.classIn = false;
   }
 
+	//that send the absolute position of the element with this directive
   getPosition(element) {
     var left = 0;
     var top = 0;

@@ -1,24 +1,21 @@
 export class dragAndDropAbstractComponent {
   constructor(ElementRef, ChangeDetectorRef, dragAndDropService, isContainer) {
     this._element = ElementRef.nativeElement;
+		//Define the style per default for cursor
     this._element.style.cursor = "move";
+		//Allow to send data between 2 sortable's items
     this._dragAndDropService = dragAndDropService;
+		//Array of dropZones
     this.dropZones = [];
     this._cdr = ChangeDetectorRef;
     this.dropEnabled = false;
     this._isContainer = isContainer;
-
+		//Define all function we launch on HTML Event
     this._element.ondragenter = (event) => {
-      if (this.notSortable) {
-        return;
-      }
       this._onDragEnter(event);
     };
 
     this._element.ondragover = (event) => {
-      if (this.notSortable) {
-        return;
-      }
       this._onDragOver(event);
 
       if (event.dataTransfer != null) {
@@ -29,28 +26,19 @@ export class dragAndDropAbstractComponent {
     };
 
     this._element.ondragleave = (event) => {
-      if (this.notSortable) {
-        return;
-      }
       this._onDragLeave(event);
     };
 
     this._element.ondrop = (event) => {
-      if (this.notSortable) {
-        return;
-      }
       this._onDrop(event);
     };
 
     this._element.onmousedown = (event) => {
-      if (this.notSortable) {
-        return;
-      }
       this._target = event.target;
     };
 
     this._element.onmouseover = () => {
-      if (this.notSortable || this._isContainer) {
+      if (this._isContainer || !this._dragEnabled) {
         this._element.style.cursor = "auto";
         return;
       }
@@ -61,7 +49,7 @@ export class dragAndDropAbstractComponent {
     };
 
     this._element.onmouseout = () => {
-      if (this.notSortable) {
+      if (!this._dragEnabled) {
         return;
       }
       if (this._dragHandle) {
@@ -71,9 +59,6 @@ export class dragAndDropAbstractComponent {
     };
 
     this._element.ondragstart = (event) => {
-      if (this.notSortable) {
-        return;
-      }
       if (this._dragHandle) {
         if (!this._dragHandle.contains(this._target)) {
           event.preventDefault();
@@ -82,7 +67,7 @@ export class dragAndDropAbstractComponent {
       }
 
       this._onDragStart(event);
-      //
+      //if the dataTransfer is not null we apply a effect and change cursor
       if (event.dataTransfer != null) {
         event.dataTransfer.setData('text', '');
 
@@ -99,9 +84,6 @@ export class dragAndDropAbstractComponent {
     };
 
     this._element.ondragend = (event) => {
-      if (this.notSortable) {
-        return;
-      }
       this._onDragEnd(event);
 
       let cursorelem = (this._dragHandle) ? this._dragHandle : this._element;
@@ -109,6 +91,7 @@ export class dragAndDropAbstractComponent {
     };
   }
 
+	//if handle is present define the dragHandle and reapply style for cursor
   setDragHandle(elem) {
     if (this._dragHandle) {
       return;
@@ -119,9 +102,6 @@ export class dragAndDropAbstractComponent {
   }
 
   set dragEnabled(enabled) {
-    if (this.notSortable || this.notSortable === undefined) {
-      return;
-    }
     this._dragEnabled = !!enabled;
     this._element.draggable = this._dragEnabled;
   }
@@ -130,6 +110,7 @@ export class dragAndDropAbstractComponent {
     return this._dragEnabled;
   }
 
+	//function call when HTML events is fired
   _onDragEnter(event) {
     // console.log("abstract OnDragEnter");
     if (event.stopPropagation  && this.nested) {
@@ -182,12 +163,14 @@ export class dragAndDropAbstractComponent {
     this._cdr.detectChanges();
   }
 
+	//Verify if the drop is allowed on different element
   _isDropAllowed() {
     if (this._dragAndDropService.isDragged || this.dropEnabled) {
+			//If we send a function to allowDrop we call this
       if (this.allowDrop) {
         return this.allowDrop(this._dragAndDropService.dragData);
       }
-
+			//else we look for dropZones if we have not dropzone drop is allowed else we compare dropZone
       if (this.dropZones.length === 0 && this._dragAndDropService.allowedDropZones.length === 0) {
         return true;
       }

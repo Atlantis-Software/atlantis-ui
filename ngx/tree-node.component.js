@@ -14,7 +14,7 @@ export default class treeNodeComponent {
       new Component({
         selector: 'tree-node',
         template: `
-        <div class="tree-node-line" style="padding-left:">
+        <div class="tree-node-line">
 	        <span *ngIf="children?.length" class="tree-expander icon" [ngClass]="{
             'icon-folder-open': expanded,
             'icon-folder': !expanded,
@@ -30,14 +30,13 @@ export default class treeNodeComponent {
               </label>
             </div>
           </div>
-          <span *ngIf="!notSortable" sortable-handle>=</span>
-          </div>
+          <span *ngIf="isSortable" sortable-handle></span>
+        </div>
         <ng-content *ngIf="expanded"></ng-content>
-        <div *ngIf="children?.length" [hidden]="!expandable || !expanded" [sortable-container]="notSortable" [sortableData]="children" [dropzones]="[sortableZones]">
+        <div *ngIf="children?.length" [hidden]="!expanded" [sortable-container]="children" [draggable]="isSortable" [dropzones]="[sortableZones]">
           <tree-node *ngFor="let child of children; let i = index"
             [(expanded)]="child.expanded"
             [(selected)]="child.selected"
-            [expandable]="child.expandable"
             [label]="child.label"
             [model]="child.model"
             [id]="child.id"
@@ -48,21 +47,22 @@ export default class treeNodeComponent {
             [disabled]="child.disabled"
             [sortableZones]="sortableZones"
             [nestedSortable]="nestedSortable"
-            [notSortable]="notSortable"
+            [isSortable]="isSortable"
             (expand)="expand.emit($event)"
             (collapse)="collapse.emit($event)"
             (select)="onSelect($event)"
-            [sortable]="notSortable"
+            [sortable]="isSortable"
             [sortableIndex]="i"
             [dropzones]="[sortableZones]"
             [nested]="nestedSortable"
-            (onDragStartCallback)="onDragCallback(i, true)"
-            (onDragEndCallback)="onDragCallback(i, false)">
+            (onDragStartCallback)="onDragCallback($event, i, true)"
+            (onDragEndCallback)="onDragCallback($event, i, false)"
+            (onDragEnterCallback)="onDragOver($event, true)"
+            (onDragLeaveCallback)="onDragOver($event, false)">
           </tree-node>
         </div>`,
-        inputs: ['node', 'label', 'model', 'children', 'expandable', 'expanded', 'selectable', 'disabled',
-          'template', 'depth', 'selected', 'sortableZones', 'nestedSortable', 'notSortable'
-        ],
+        inputs: ['node', 'label', 'model', 'children', 'expanded', 'selectable', 'disabled',
+          'template', 'depth', 'selected', 'sortableZones', 'nestedSortable', 'isSortable'],
         outputs: ['expand', 'collapse', 'select', 'selectedChange', 'expandedChange'],
         host: {
           '[class.selectable]': 'selectable'
@@ -82,9 +82,11 @@ export default class treeNodeComponent {
     this.expandedChange = new EventEmitter();
     this.indeterminate = false;
     this.parent = treeNodeComponent;
+    this.expanded = false;
   }
 
-  onDragCallback(node, value) {
+	//close the tree-node we drag if the nestedSortable is activate and if this tree-node has child
+  onDragCallback(element, node, value) {
     if (!this.children) {
       return;
     }
@@ -98,8 +100,27 @@ export default class treeNodeComponent {
         }
       }
     }
+    if (value) {
+      element.classList.add("tree-node-sorted");
+    } else {
+      var treeNodeSorted = document.querySelectorAll(".tree-node-sorted");
+      if (treeNodeSorted.length > 0) {
+        treeNodeSorted.forEach((element)=> {
+          element.classList.remove("tree-node-sorted");
+        });
+      }
+    }
   }
 
+  onDragOver(element, over) {
+    if (over) {
+      element.classList.add("tree-node-sorted");
+    } else {
+      element.classList.remove("tree-node-sorted");
+    }
+  }
+
+	//Return the checkbox element
   _getCheckbox() {
     return this.elementRef.nativeElement.querySelector('input[type="checkbox"]') || {};
   }
@@ -114,12 +135,13 @@ export default class treeNodeComponent {
       return;
     }
 
-    if (!this.nestedSortable) {
-      this.sortableZones = "zone" + Math.floor(Math.random() * 100000) + 1;
-    }
-
     if (!this.selectable) {
       return;
+    }
+
+    //Define the dropZones if it's not a nestedSortable
+    if (!this.nestedSortable && this.isSortable) {
+      this.sortableZones = "zone" + Math.floor(Math.random() * 100000) + 1;
     }
 
     if (this.selected === void 0) {
@@ -137,6 +159,7 @@ export default class treeNodeComponent {
     this.indeterminate = false;
     checkbox.indeterminate = false;
 
+		//if this tree-node have children we change their value selected with this value selected
     if (this.children) {
       this.children.forEach((child) => {
         if (!child.disabled && !child.selectable) {
@@ -151,6 +174,7 @@ export default class treeNodeComponent {
     this.elementRef.nativeElement.querySelector('.tree-node-line').style.paddingLeft = 30 * this.depth + "px";
   }
 
+	//callback for click on expand icon
   ExpandClick() {
     if (this.disabled) {
       return;
@@ -166,6 +190,7 @@ export default class treeNodeComponent {
 
   }
 
+	//Callback for click on checkbox
   onClick() {
     if (this.disabled) {
       return;
@@ -183,6 +208,7 @@ export default class treeNodeComponent {
     this.select.emit();
   }
 
+	//function call when a children selected value has changed
   onSelect() {
     if (this.disabled) {
       return;
@@ -209,6 +235,7 @@ export default class treeNodeComponent {
       nbSelected = 0;
     }
 
+		//that define if this tree-node is checked, not checked or indeterminate
     if (isIndeterminate) {
       this.selected = false;
       checkbox.indeterminate = true;
