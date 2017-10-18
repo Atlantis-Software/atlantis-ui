@@ -40135,6 +40135,8 @@ var TreeComponent = function () {
     this.treeNodes = '\n    this.nodesBasic = [\n      {\n        label: \'Node without children\'\n      },\n      {\n        label: \'Node with children\',\n        children: [\n          {\n            label: \'Sub-node 1\'\n          },\n          {\n            label: \'Sub-node 2\'\n          }\n        ]\n      }\n    ]';
 
     this.treeNodesWithParameters = '\n    this.nodesWithParameters = [\n      {\n        label: \'Node with children and not open per default\',\n        children: [\n          {\n            label: \'Sub-node hidden on init\',\n            selectable: false,\n          }\n        ]\n      },\n      {\n        label: \'Node with children open per default\',\n        expanded: true,\n        children: [\n          {\n            label: \'Sub-node show on init and with children\',\n            children: [\n              {\n                label: \'Sub-sub-node\'\n              }\n            ]\n          },\n          {\n            label: \'Sub-node without children\',\n            disabled: true\n          }\n        ]\n      }\n    ];';
+
+    this.nodeAttribute = '\n    oneNode = {\n      label: "Node 1",\n      selectable: false,\n      expanded: true,\n      children: [...],\n      disabled: false\n    }';
   }
 
   return TreeComponent;
@@ -89472,7 +89474,7 @@ module.exports = "<div class=\"container\"> <h3> Example </h3> <div class=\"row 
 /* 128 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\"> <h2> Tree </h2> <h3> Basic Example with 2 levels and default parameters: </h3> <div class=\"row container-fluid form-group\"> <div class=\"col-md-4\"> <tree [nodes]=\"nodesBasic\"></tree> </div> </div> <br> <pre>\n    {{treeHtml}}\n  </pre> <pre>\n    {{treeNodes}}\n  </pre> <h3> Example with specific parameters on nodes: </h3> <div class=\"row container-fluid\"> <div class=\"col-md-4\"> <tree [nodes]=\"nodesWithParameters\"></tree> </div> </div> <br> <pre>\n    {{treeNodesWithParameters}}\n  </pre> <h3> Sortable tree </h3> <h4> Example with sortable node into same level </h4> <p> With <code>isSortable</code> attribute we can sort into the tree in the same level </p> <div class=\"row container-fluid\"> <div class=\"col-md-4\"> <tree [nodes]=\"nodesSortable\" [isSortable]=\"true\"></tree> </div> </div> <br> <pre>\n    {{treeHtml2}}\n  </pre> <h4> Example with nested sortable </h4> <p> Just need to add <code>nestedSortable</code> attribute for create a tree with nested sortable </p> <div class=\"row container-fluid\"> <div class=\"col-md-4\"> <tree [nodes]=\"nodesSortableNested\" [isSortable]=\"true\" [nestedSortable]=\"true\"></tree> </div> </div> <br> <pre>\n    {{treeHtml3}}\n  </pre> <h3> Nodes attribut description : </h3> <table class=\"table table-striped table-bordered\"> <thead> <tr> <th> attribut </th> <th> Type </th> <th> Description </th> <th class=\"col-md-2\"> Default </th> </tr> </thead> <tbody> <tr> <td> label </td> <td> string </td> <td> It's represent the content of a node for shown in tree </td> <td> Nothing </td> </tr> <tr> <td> selectable </td> <td> boolean </td> <td> Optional; Allow to deactivate the possibility to select a node </td> <td> true </td> </tr> <tr> <td> expanded </td> <td> boolean </td> <td> Optional; Define if the node is expanded or not; </td> <td> false </td> </tr> <tr> <td> children </td> <td> Array of nodes </td> <td> Require if we want a sub-tree, all object in children have same syntax that standard node </td> <td> Nothing </td> </tr> <tr> <td> disabled </td> <td> boolean </td> <td> Define if a node is disabled or not, that causes to desactive selection and possibility to expand the node </td> <td> false; </td> </tr> </tbody> </table> </div> ";
+module.exports = "<div class=\"container\"> <h2> Tree </h2> <h3> Basic Example with 2 levels and default parameters: </h3> <div class=\"row container-fluid form-group\"> <div class=\"col-md-4\"> <tree [nodes]=\"nodesBasic\"></tree> </div> </div> <br> <pre>\n    {{treeHtml}}\n  </pre> <pre>\n    {{treeNodes}}\n  </pre> <h3> Example with specific parameters on nodes: </h3> <div class=\"row container-fluid\"> <div class=\"col-md-4\"> <tree [nodes]=\"nodesWithParameters\"></tree> </div> </div> <br> <pre>\n    {{treeNodesWithParameters}}\n  </pre> <h3> Sortable tree </h3> <h4> Example with sortable node into same level </h4> <p> With <code>isSortable</code> attribute we can sort into the tree in the same level </p> <div class=\"row container-fluid\"> <div class=\"col-md-4\"> <tree [nodes]=\"nodesSortable\" [isSortable]=\"true\"></tree> </div> </div> <br> <pre>\n    {{treeHtml2}}\n  </pre> <h4> Example with nested sortable </h4> <p> Just need to add <code>nestedSortable</code> attribute for create a tree with nested sortable </p> <div class=\"row container-fluid\"> <div class=\"col-md-4\"> <tree [nodes]=\"nodesSortableNested\" [isSortable]=\"true\" [nestedSortable]=\"true\"></tree> </div> </div> <br> <pre>\n    {{treeHtml3}}\n  </pre> <h3> Nodes in js script: </h3> <h4> Different attribute </h4> <table class=\"table table-striped table-bordered\"> <thead> <tr> <th> attribute </th> <th> Type </th> <th> Description </th> <th class=\"col-md-2\"> Default </th> </tr> </thead> <tbody> <tr> <td> label </td> <td> string </td> <td> It's represent the content of a node for shown in tree </td> <td> Nothing </td> </tr> <tr> <td> selectable </td> <td> boolean </td> <td> Optional; Allow to deactivate the possibility to select a node </td> <td> true </td> </tr> <tr> <td> expanded </td> <td> boolean </td> <td> Optional; Define if the node is expanded or not; </td> <td> false </td> </tr> <tr> <td> children </td> <td> Array of nodes </td> <td> Require if we want a sub-tree, all object in children have same syntax that standard node </td> <td> Nothing </td> </tr> <tr> <td> disabled </td> <td> boolean </td> <td> Define if a node is disabled or not, that causes to desactive selection and possibility to expand the node </td> <td> false </td> </tr> </tbody> </table> <h4> Example of all attribute </h4> <pre>\n    {{nodeAttribute}}\n  </pre> </div> ";
 
 /***/ }),
 /* 129 */
@@ -93084,6 +93086,15 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           value: function onSelect() {
             this.nodesChanges.emit(this.nodes);
           }
+        }, {
+          key: 'ngOnChanges',
+          value: function ngOnChanges() {
+            if (this.nestedSortable) {
+              this.dropZonesNested = this.dropZones;
+            } else {
+              this.dropZonesNested = undefined;
+            }
+          }
         }]);
 
         return treeComponent;
@@ -93219,6 +93230,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               return;
             }
 
+            //Define the dropZones if it's not a nestedSortable
+            if (!this.nestedSortable && this.isSortable) {
+              this.sortableZones = "zone" + Math.floor(Math.random() * 100000) + 1;
+            }
+
             if (this.selected === void 0) {
               return;
             }
@@ -93246,10 +93262,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           key: 'ngAfterViewInit',
           value: function ngAfterViewInit() {
             this.elementRef.nativeElement.querySelector('.tree-node-line').style.paddingLeft = 30 * this.depth + "px";
-            //Define the dropZones if it's not a nestedSortable
-            if (!this.nestedSortable && this.isSortable) {
-              this.sortableZones = "zone" + Math.floor(Math.random() * 100000) + 1;
-            }
           }
 
           //callback for click on expand icon
@@ -94783,12 +94795,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }, {
           key: '_onDragEnterCallback',
           value: function _onDragEnterCallback() {
-            if (this.index !== this._sortableDataService.newIndex) {
-              var listDraggable = document.querySelectorAll('.sortableOver');
-              listDraggable.forEach(function (itemDraggable) {
-                itemDraggable.classList.remove('sortableOver');
-              });
-            }
+            var listDraggable = document.querySelectorAll('.sortableOver');
+            listDraggable.forEach(function (itemDraggable) {
+              itemDraggable.classList.remove('sortableOver');
+            });
             this._sortableDataService.newIndex = this.index;
             this._element.classList.add('sortableOver');
             this.onDragEnterCallback.emit(this._element);

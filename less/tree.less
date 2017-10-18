@@ -50,14 +50,16 @@ tree {
       }
     }
 
-    span[sortable-handle]:before {
-      right: 4px;
-      top: 4px;
-      position: absolute;
-      font-family: "FontAwesome";
-      content: "\f0b2";
-      font-size: @font-size-checkbox - 2;
-      line-height: 16px;
+    span[sortable-handle] {
+      &:before {
+        right: 4px;
+        top: 4px;
+        position: absolute;
+        font-family: "FontAwesome";
+        content: "\f0b2";
+        font-size: @font-size-checkbox - 2;
+        line-height: 16px;
+      }
     }
 
     &.tree-node-sorted {
