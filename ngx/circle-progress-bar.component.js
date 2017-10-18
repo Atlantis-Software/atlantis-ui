@@ -6,12 +6,12 @@ export default class circleProgessBarComponent {
       new Component({
         selector: 'circle-progress-bar, circle-progress-bar-sm, circle-progress-bar-lg',
         template: `
-				<div id="cont" [attr.data-percent]="value" class="circle-progress-bar circle-progress-bar-default">
-		      <svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg">
-		        <circle class="background-bar" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
-		        <circle class="bar" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
-		      </svg>
-		    </div>`,
+        <div id="cont" [attr.data-percent]="value" class="circle-progress-bar circle-progress-bar-default">
+          <svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <circle class="background-bar" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+            <circle class="bar" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+          </svg>
+        </div>`,
         inputs: ['value']
       })
     ];

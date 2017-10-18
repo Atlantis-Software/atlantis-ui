@@ -8,14 +8,13 @@ export default class modalComponent {
       new Component({
         selector: 'modal',
         template: `
-					<div (click)="close($event)" class="modal" [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}" [ngClass]="{'in': visibleAnimate}">
+          <div (click)="close($event)" class="modal" [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}" [ngClass]="{'in': visibleAnimate}">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <ng-content></ng-content>
               </div>
-						</div>
-				  </div>
-          `,
+            </div>
+          </div>`,
         inputs: ['backdrop', "show", "fade", "orientation"],
         outputs: ['showChange']
       })

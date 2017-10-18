@@ -10,8 +10,8 @@ export default class gridCellHeaderComponent {
       new Component({
         selector: 'grid-cell-header',
         template: `
-				<span>{{content}}</span>
-				<span [class]="sortingClass"></span>`,
+        <span>{{content}}</span>
+        <span [class]="sortingClass"></span>`,
         inputs: ['content', 'pipes', 'sortingClass']
       })
     ];

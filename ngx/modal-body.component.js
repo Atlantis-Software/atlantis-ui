@@ -6,9 +6,9 @@ export default class modalBodyComponent {
       new Component({
         selector: 'modal-body',
         template: `
-				<div class="modal-body">
-        	<ng-content></ng-content>
-				</div>`
+        <div class="modal-body">
+          <ng-content></ng-content>
+        </div>`
       })
     ];
   }

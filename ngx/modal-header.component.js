@@ -7,14 +7,14 @@ export default class modalHeaderComponent {
       new Component({
         selector: 'modal-header',
         template: `
-				<div class="modal-header">
+        <div class="modal-header">
           <div class="row">
             <div class="col-md-12">
-  	          <button *ngIf="close" type="button" class="close" (click)="onClose()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <button *ngIf="close" type="button" class="close" (click)="onClose()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
           </div>
-	        <ng-content></ng-content>
-				</div>`,
+          <ng-content></ng-content>
+        </div>`,
         inputs: ['close']
       })
     ];

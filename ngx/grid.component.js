@@ -14,7 +14,7 @@ export default class gridComponent {
       new Component({
         selector: 'grid',
         template: `
-				<grid-header class="gridHeader" [columns]="columns" [pipes]="pipes" (sort)="sort.emit($event)">
+        <grid-header class="gridHeader" [columns]="columns" [pipes]="pipes" (sort)="sort.emit($event)">
         </grid-header>
         <grid-body class="gridBody" [types]="types" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected" (selectedRows)="onSelect($event)">
         </grid-body>

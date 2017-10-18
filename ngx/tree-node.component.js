@@ -15,7 +15,7 @@ export default class treeNodeComponent {
         selector: 'tree-node',
         template: `
         <div class="tree-node-line">
-	        <span *ngIf="children?.length" class="tree-expander icon" [ngClass]="{
+        <span *ngIf="children?.length" class="tree-expander icon" [ngClass]="{
             'icon-folder-open': expanded,
             'icon-folder': !expanded,
             'icon-disabled': disabled

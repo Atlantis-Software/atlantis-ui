@@ -8,7 +8,7 @@ export default class gridFooterComponent {
       new Component({
         selector: 'grid-footer',
         template: `
-				<div *ngFor= "let column of columns" class="gridHead" [ngClass]="column.class">
+        <div *ngFor= "let column of columns" class="gridHead" [ngClass]="column.class">
           {{columns.label}}
         </div>`,
         inputs: ['columns', 'rows']
