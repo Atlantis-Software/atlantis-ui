@@ -119,6 +119,9 @@
         <th>
           Description
         </th>
+        <th>
+          Default
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -135,6 +138,9 @@
         <td>
           It's the name of the column
         </td>
+        <td>
+          Nothing
+        </td>
       </tr>
       <tr>
         <td>
@@ -148,6 +154,9 @@
         </td>
         <td>
           Optional; Change the alignment of the column and all the cell of this column
+        </td>
+        <td>
+          Nothing
         </td>
       </tr>
       <tr>
@@ -163,6 +172,9 @@
         <td>
           Optional; Define the width of the column
         </td>
+        <td>
+          auto
+        </td>
       </tr>
       <tr>
         <td>
@@ -175,12 +187,15 @@
           Any you defined in ngx-atlantis-ui module
         </td>
         <td>
-          Per default: string; Define default value of the column with the param we send to ngx-atlantis-ui module.
+          Define default value of the column with the param we send to ngx-atlantis-ui module.
+        </td>
+        <td>
+          string
         </td>
       </tr>
       <tr>
         <td>
-          notSortable
+          isSortable
         </td>
         <td>
           boolean
@@ -189,12 +204,15 @@
           true, false
         </td>
         <td>
-          Optional per default : false; Define if we can sort the column
+          Optional; Define if we can sort the column
+        </td>
+        <td>
+          false
         </td>
       </tr>
       <tr>
         <td>
-          notEditable
+          isEditable
         </td>
         <td>
           boolean
@@ -203,7 +221,10 @@
           true, false
         </td>
         <td>
-          Optional per default : false; Define if we edit the content of the column
+          Optional; Define if we can edit the content of the column
+        </td>
+        <td>
+          false
         </td>
       </tr>
     </tbody>
@@ -214,12 +235,10 @@
   <pre>
     {{gridRows}}
   </pre>
-  <blockquote>
-    <p>
-      Any rows have same syntax, we create attribute with column name.
-    </p>
-    <p>
-      It's better to create a copy of the original rows to avoid to modify the rows.
-    </p>
-  </blockquote>
+  <p>
+    Any rows have same syntax, we create attribute with column name.
+  </p>
+  <p>
+    It's better to create a copy of the original rows to avoid to modify the rows.
+  </p>
 </div>

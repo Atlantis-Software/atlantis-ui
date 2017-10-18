@@ -81,50 +81,60 @@ export default  class GridAngularComponent {
     this.columns= [
       {
         label:"test",
-        alignment: "center",
-        notSortable: true,
-        notEditable: true
+        alignment: "center"
       },
       {
         label:"testNumber",
         width: "150px",
-        type: "number"
+        type: "number",
+        isSortable: true,
+        isEditable: true
       },
       {
-        label:"testText"
+        label:"testText",
+        isSortable: true,
+        isEditable: true
       },
       {
         label:"testDate",
-        type: 'date'
+        type: 'date',
+        isSortable: true,
+        isEditable: true
       },
       {
         label:"testBoolean",
-        type: 'boolean'
+        type: 'boolean',
+        isEditable: true
       }
     ];`;
 
     this.columns= [
       {
         label:"test",
-        alignment: "center",
-        notSortable: true,
-        notEditable: true
+        alignment: "center"
       },
       {
         label:"testNumber",
         width: "150px",
-        type: "number"
+        type: "number",
+        isSortable: true,
+        isEditable: true
       },
       {
-        label:"testText"
+        label:"testText",
+        isSortable: true,
+        isEditable: true
       },
       {
         label:"testDate",
-        type: 'date'
+        type: 'date',
+        isSortable: true,
+        isEditable: true
       },
       {
         label:"testBoolean",
-        type: 'boolean'
+        type: 'boolean',
+        isEditable: true
       }
     ];
 
@@ -195,17 +205,15 @@ export default  class GridAngularComponent {
 
   selectionTest(row) {
     this.selection = row;
-    console.log("selection ", row)
   }
 
   onSort(sorting) {
     if (!sorting.length) {
       return this.rows = [...this.originalRows];
     }
-    console.log('Sort Event', sorting);
     this.loading = true;
     var columnToSort = sorting[sorting.length - 1];
-    var sortingFunc = function(a, b) {};
+    var sortingFunc = function() {};
     switch (columnToSort.type) {
       case 'text':
         sortingFunc = function(a, b) {
