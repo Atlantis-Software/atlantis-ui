@@ -10,18 +10,13 @@ export default class gridBodyComponent {
         selector: 'grid-body',
         template: `
 				<div *ngFor="let row of rows; let i = index" (click)="!changingCellContent && selectRow(row, $event, i)" [class.active]='!changingCellContent && selected.includes(row)' class="gridRow">
-          <div *ngFor="let column of columns; let y = index" class="gridCell" [ngClass]="column.class" [attr.align]="column.alignment" [style.verticalAlign]="column.vertical_alignment" (dblclick)="!changingCellContent && modifyContent($event, i, y)">
-          <input class="form-control" [ngModel]="row[column.label]" *ngIf="changingCellContent === i + '' + y" (blur)="modifyContent($event, i, y, true)" (keyup.enter)="modifyContent($event, i, y, true)" focus/>
-					<grid-cell [content]="row[column.label]" [type]="column.type" [pipes]="pipes" *ngIf="changingCellContent !== i + '' + y">
-					</grid-cell>
+          <div *ngFor="let column of columns; let y = index" class="gridCell" [class.changeContent]="changingCellContent === i + '' + y" [class.errorContent]="errorCellContent === i + '' + y" [ngClass]="column.class" [attr.align]="column.alignment" [style.verticalAlign]="column.vertical_alignment" (dblclick)="!changingCellContent && modifyContent($event, i, y)">
+            <input class="grid-input-change form-control" [ngModel]="row[column.label]" *ngIf="changingCellContent === i + '' + y" (blur)="modifyContent($event, i, y, true)" (keyup.enter)="modifyContent($event, i, y, true)" focus/>
+            <label class="grid-label-error" *ngIf="errorCellContent === i + '' + y" (click)="resetContent($event, i, y)"></label>
+            <grid-cell [content]="row[column.label]" [type]="column.type" [pipes]="pipes" *ngIf="changingCellContent !== i + '' + y">
+  					</grid-cell>
           </div>
         </div>`,
-        styles: [`
-          :host { display : table-row-group; }
-          .gridRow { display : table-row; }
-          .gridCell { display : table-cell; }
-					.active { background-color: lightblue; }
-          `],
         inputs: [
           'columns',
           'rows',
@@ -37,8 +32,10 @@ export default class gridBodyComponent {
   constructor() {
     this.selectedRows = new EventEmitter();
     this.previousSelectedIndex;
+    this.isEditable = false;
   }
 
+  //Function launch when we select different row
   selectRow(row, e) {
     if (this.changingCellContent) {
       return;
@@ -82,8 +79,9 @@ export default class gridBodyComponent {
     this.selectedRows.emit(selected);
   }
 
+  //action when we double click on a cell, then we can modify content
   modifyContent(e, i, y, validateChange) {
-    if (this.columns[y].notEditable || (!validateChange && this.changingCellContent)) {
+    if (!this.columns[y].isEditable || (!validateChange && this.changingCellContent)) {
       return;
     }
     var coordinate = i + '' + y;
@@ -92,18 +90,31 @@ export default class gridBodyComponent {
       if (this.columns[y].type) {
         this.types.forEach((type) => {
           if (type.type === this.columns[y].type && type.transformation) {
+            //we launch the transformation for the type of the column.
             value = type.transformation(value);
           }
         });
       }
-      if (value !== "invalid value") {
+      if (value !== "ERR: invalid value") {
         this.rows[i][this.columns[y].label] = value;
+        this.changingCellContent = false;
+        this.errorCellContent = false;
+      } else {
+        this.errorCellContent = this.changingCellContent;
       }
-      this.changingCellContent = false;
     } else {
+      this.oldContent = this.rows[i][this.columns[y].label];
       this.changingCellContent = coordinate;
     }
 
+  }
+
+  resetContent(e, i, y) {
+    var input = e.target.parentNode.querySelector('input');
+    input.value = this.oldContent;
+    input.focus();
+    this.rows[i][this.columns[y].label] = this.oldContent;
+    this.errorCellContent = false;
   }
 
 }
