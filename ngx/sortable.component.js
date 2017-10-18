@@ -148,12 +148,10 @@ export class sortableComponents extends dragAndDropAbstractComponent {
 
 	//Add classes to the items where the items we sort is enter and remove on other
   _onDragEnterCallback() {
-    if (this.index !== this._sortableDataService.newIndex) {
-      var listDraggable = document.querySelectorAll('.sortableOver');
-      listDraggable.forEach((itemDraggable)=>{
-        itemDraggable.classList.remove('sortableOver');
-      });
-    }
+    var listDraggable = document.querySelectorAll('.sortableOver');
+    listDraggable.forEach((itemDraggable)=>{
+      itemDraggable.classList.remove('sortableOver');
+    });
     this._sortableDataService.newIndex = this.index;
     this._element.classList.add('sortableOver');
     this.onDragEnterCallback.emit(this._element);
