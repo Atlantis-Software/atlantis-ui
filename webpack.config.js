@@ -1,5 +1,3 @@
-var webpack = require('webpack');
-var less = require('less');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
