@@ -99,21 +99,21 @@ class gridTestComponent {
         test: "1",
         testNumber: 2,
         testText: "1",
-        testDate: new Date(),
+        testDate: new Date('12/12/2012'),
         testBoolean: 0
       },
       {
         test: "2",
         testNumber: 6,
         testText: "5",
-        testDate: new Date(0),
+        testDate: new Date('01/01/1970'),
         testBoolean: 1
       },
       {
         test: "3",
         testNumber: 5,
         testText: '4',
-        testDate: new Date(),
+        testDate: new Date('12/12/2012'),
         testBoolean: 1
       },
       {
@@ -127,7 +127,7 @@ class gridTestComponent {
         test: "5",
         testNumber: 27,
         testText: "4",
-        testDate: new Date(),
+        testDate: new Date('04/06/1999'),
         testBoolean: 0
       },
       {
@@ -148,7 +148,7 @@ class gridTestComponent {
         test: "8",
         testNumber: 152,
         testText: '32',
-        testDate: new Date(),
+        testDate: new Date('08/08/2003'),
         testBoolean: 1
       }
     ];
@@ -232,10 +232,7 @@ describe('grid', function() {
       var cells = row.querySelectorAll('.gridCell');
       cells.forEach((cell, indexCell) => {
         if (gridComponent.columns[indexCell].type === 'date') {
-          var correctDate = cell.querySelector('grid-cell').innerText;
-          correctDate = correctDate.split("/");
-          correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString());
+          assert.strictEqual(moment(cell.querySelector('grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
           return;
         }
         assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
@@ -385,10 +382,7 @@ describe('grid', function() {
       var cells = row.querySelectorAll('.gridCell');
       cells.forEach((cell, indexCell) => {
         if (gridComponent.columns[indexCell].type === 'date') {
-          var correctDate = cell.querySelector('grid-cell').innerText;
-          correctDate = correctDate.split("/");
-          correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString());
+          assert.strictEqual(moment(cell.querySelector('grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
           return;
         }
         assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
@@ -405,10 +399,7 @@ describe('grid', function() {
       var cells = row.querySelectorAll('.gridCell');
       cells.forEach((cell, indexCell) => {
         if (gridComponent.columns[indexCell].type === 'date') {
-          var correctDate = cell.querySelector('grid-cell').innerText;
-          correctDate = correctDate.split("/");
-          correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString());
+          assert.strictEqual(moment(cell.querySelector('grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
           return;
         }
         assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
@@ -443,10 +434,7 @@ describe('grid', function() {
       var cells = row.querySelectorAll('.gridCell');
       cells.forEach((cell, indexCell) => {
         if (gridComponent.columns[indexCell].type === 'date') {
-          var correctDate = cell.querySelector('grid-cell').innerText;
-          correctDate = correctDate.split("/");
-          correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString());
+          assert.strictEqual(moment(cell.querySelector('grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
           return;
         }
         assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
@@ -463,10 +451,7 @@ describe('grid', function() {
       var cells = row.querySelectorAll('.gridCell');
       cells.forEach((cell, indexCell) => {
         if (gridComponent.columns[indexCell].type === 'date') {
-          var correctDate = cell.querySelector('grid-cell').innerText;
-          correctDate = correctDate.split("/");
-          correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString());
+          assert.strictEqual(moment(cell.querySelector('grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
           return;
         }
         assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
@@ -501,10 +486,7 @@ describe('grid', function() {
       var cells = row.querySelectorAll('.gridCell');
       cells.forEach((cell, indexCell) => {
         if (gridComponent.columns[indexCell].type === 'date') {
-          var correctDate = cell.querySelector('grid-cell').innerText;
-          correctDate = correctDate.split("/");
-          correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString());
+          assert.strictEqual(moment(cell.querySelector('grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
           return;
         }
         assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
@@ -521,10 +503,7 @@ describe('grid', function() {
       var cells = row.querySelectorAll('.gridCell');
       cells.forEach((cell, indexCell) => {
         if (gridComponent.columns[indexCell].type === 'date') {
-          var correctDate = cell.querySelector('grid-cell').innerText;
-          correctDate = correctDate.split("/");
-          correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString());
+          assert.strictEqual(moment(cell.querySelector('grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
           return;
         }
         assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
@@ -559,10 +538,7 @@ describe('grid', function() {
       var cells = row.querySelectorAll('.gridCell');
       cells.forEach((cell, indexCell) => {
         if (gridComponent.columns[indexCell].type === 'date') {
-          var correctDate = cell.querySelector('grid-cell').innerText;
-          correctDate = correctDate.split("/");
-          correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString());
+          assert.strictEqual(moment(cell.querySelector('grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
           return;
         }
         assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
@@ -579,10 +555,7 @@ describe('grid', function() {
       var cells = row.querySelectorAll('.gridCell');
       cells.forEach((cell, indexCell) => {
         if (gridComponent.columns[indexCell].type === 'date') {
-          var correctDate = cell.querySelector('grid-cell').innerText;
-          correctDate = correctDate.split("/");
-          correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-          assert.strictEqual(new Date(correctDate).toDateString(), new Date(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toDateString());
+          assert.strictEqual(moment(cell.querySelector('grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
           return;
         }
         assert.equal(cell.querySelector('grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
