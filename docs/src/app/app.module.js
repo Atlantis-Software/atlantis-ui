@@ -4,7 +4,7 @@ import AppComponent from './app.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 // import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { LocationStrategy, HashLocationStrategy, DatePipe, UpperCasePipe } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/common';
 
 import HomeComponent from './home/home.component.js';
 
@@ -129,6 +129,6 @@ AppModule.annotations = [
       ngxAtlUiModule.forRoot(types)
     ],
     bootstrap: [ AppComponent ],
-    providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, DatePipe, UpperCasePipe]
+    providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, DatePipe]
   })
 ];

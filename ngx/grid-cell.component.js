@@ -35,14 +35,14 @@ export default class gridCellComponent {
           pipeType.pipeInjected = self.injector.get(pipeType.pipe, null);
           if (pipeType.pipeInjected !== null) {
             var args = [self.content].concat(pipeType.option);
-            self.content = pipeType.pipeInjected.transform.apply(self, args);
+            self.content = pipeType.pipeInjected.transform.apply(pipeType.pipeInjected, args);
           }
         });
       } else {
         self.pipes[index].pipeInjected = self.injector.get(self.pipe[index], null);
         if (self.pipes[index].pipeInjected !== null) {
           var args = [self.content].concat(self.pipes[index].option);
-          self.content = self.pipes[index].pipeInjected.transform.apply(self, args);
+          self.content = self.pipes[index].pipeInjected.transform.apply(self.pipes[index].pipeInjected, args);
         }
       }
     }
