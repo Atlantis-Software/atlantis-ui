@@ -196,8 +196,9 @@ class gridTestComponent {
 }
 
 describe('grid', function() {
-  var gridComponent;
+  this.timeout(4000);
 
+  var gridComponent;
   beforeEach(async(function() {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, ngxAtlUiModule.forRoot(types)],
