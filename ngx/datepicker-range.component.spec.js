@@ -1,7 +1,7 @@
 import { getTestBed, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { Component } from '@angular/core';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { ngxAtlUiModule } from './ngx-atlantis-ui-module.js';
 
@@ -33,7 +33,7 @@ describe('datepicker-range', function() {
 
   beforeEach(async(function() {
     TestBed.configureTestingModule({
-      imports: [ngxAtlUiModule.forRoot({}), FormsModule, ReactiveFormsModule],
+      imports: [ngxAtlUiModule.forRoot(), FormsModule],
       declarations: [datepickerRangeTestComponent]
     });
     TestBed.compileComponents();
