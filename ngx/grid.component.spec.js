@@ -17,9 +17,9 @@ var types = [
     type: "date",
     alignment: "right",
     pipes: [DatePipe],
-    optionsPipe: ['shortDate'],
+    optionsPipe: ['yyyy-MM-dd'],
     transformation: function(val) {
-      if (moment(val).isValid()) {
+      if (moment(val, moment.ISO_8601).isValid()) {
         return moment(val).toString();
       } else {
         return "ERR: invalid value";
@@ -99,56 +99,56 @@ class gridTestComponent {
         test: "1",
         testNumber: 2,
         testText: "1",
-        testDate: new Date('12/12/2012'),
+        testDate: moment('2012-10-10').format("YYYY-MM-DD"),
         testBoolean: 0
       },
       {
         test: "2",
         testNumber: 6,
         testText: "5",
-        testDate: new Date('01/01/1970'),
+        testDate: moment('1970-01-01').format("YYYY-MM-DD"),
         testBoolean: 1
       },
       {
         test: "3",
         testNumber: 5,
         testText: '4',
-        testDate: new Date('12/12/2012'),
+        testDate: moment('2012-10-10').format("YYYY-MM-DD"),
         testBoolean: 1
       },
       {
         test: "4",
         testNumber: 42,
         testText: "8",
-        testDate: new Date('05/09/2005'),
+        testDate: moment('2005-09-05').format("YYYY-MM-DD"),
         testBoolean: 1
       },
       {
         test: "5",
         testNumber: 27,
         testText: "4",
-        testDate: new Date('04/06/1999'),
+        testDate: moment('1999-04-06').format("YYYY-MM-DD"),
         testBoolean: 0
       },
       {
         test: "6",
         testNumber: 3,
         testText: "7",
-        testDate: new Date('07/03/2015'),
+        testDate: moment('2003-03-07').format("YYYY-MM-DD"),
         testBoolean: 0
       },
       {
         test: "7",
         testNumber: 27,
         testText: "9",
-        testDate: new Date('05/09/2005'),
+        testDate: moment('2005-09-05').format("YYYY-MM-DD"),
         testBoolean: 0
       },
       {
         test: "8",
         testNumber: 152,
         testText: '32',
-        testDate: new Date('08/08/2003'),
+        testDate: moment('2003-08-10').format("YYYY-MM-DD"),
         testBoolean: 1
       }
     ];
@@ -691,10 +691,7 @@ describe('grid', function() {
     input.dispatchEvent(new Event('blur'));
     tick();
     fixture.detectChanges();
-    var correctDate = cells[3].querySelector('grid-cell').innerText;
-    correctDate = correctDate.split("/");
-    correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-    assert.equal(new Date(correctDate).toDateString(), new Date(oldValue).toDateString());
+    assert.equal(moment(cells[3].querySelector('grid-cell').innerText).toString(), moment(oldValue).toString());
 
     cells[3].dispatchEvent(doubleClick);
     tick();
@@ -705,10 +702,7 @@ describe('grid', function() {
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    correctDate = cells[3].querySelector('grid-cell').innerText;
-    correctDate = correctDate.split("/");
-    correctDate = correctDate[1] + "/" + correctDate[0] + "/" + correctDate[2];
-    assert.strictEqual(new Date(correctDate).toDateString(), new Date("2003-03-03").toDateString());
+    assert.strictEqual(moment(cells[3].querySelector('grid-cell').innerText).toString(), moment("2003-03-03").toString());
 
   }));
 

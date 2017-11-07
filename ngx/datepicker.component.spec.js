@@ -9,7 +9,7 @@ var assert = require('assert');
 
 class datepickerTestComponent {
   constructor() {
-    this.testDate = new Date('02/03/2004');
+    this.testDate = moment('2004-02-03').format("YYYY-MM-DD");
     this.noDate;
   }
   static get annotations() {
@@ -46,8 +46,8 @@ describe('datepicker', function() {
     var datepicker = document.querySelector('#data');
     var datepicker2 = document.querySelector('#data2');
 
-    assert.strictEqual(new Date(datepicker.textContent).toDateString(), new Date('02/03/2004').toDateString());
-    assert.strictEqual(new Date(datepicker2.textContent).toDateString(), new Date().toDateString());
+    assert.strictEqual(moment(datepicker.textContent).toString(), moment('2004-02-03').toString());
+    assert.strictEqual(moment(datepicker2.textContent).toString(), moment().startOf('day').toString());
   }));
 
   it('should render correct value into input datepicker modal', fakeAsync(function() {
@@ -62,7 +62,7 @@ describe('datepicker', function() {
 
     input = document.querySelectorAll("input")[1];
 
-    assert.strictEqual(new Date(input.value).toDateString(), new Date('02/03/2004').toDateString());
+    assert.strictEqual(moment(input.value).toString(), moment('2004-02-03').toString());
 
     var closeButton = document.querySelector(".close");
     closeButton.click();
@@ -127,7 +127,7 @@ describe('datepicker', function() {
     var datepicker = document.querySelector('#data');
     modal = document.querySelector('.modal');
 
-    assert.strictEqual(new Date(datepicker.textContent).toDateString(), new Date("02/01/2004").toDateString());
+    assert.strictEqual(moment(datepicker.textContent).toString(), moment("2004-02-01").toString());
     assert.strictEqual(modal.classList[3], void 0);
 
   }));
@@ -155,7 +155,7 @@ describe('datepicker', function() {
     var datepicker = document.querySelector('#data');
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(new Date(datepicker.textContent).toDateString(), new Date("01/01/2004").toDateString());
+    assert.strictEqual(moment(datepicker.textContent).toString(), moment("2004-01-01").toString());
     assert.strictEqual(modal.classList[3], void 0);
   }));
 
@@ -182,7 +182,7 @@ describe('datepicker', function() {
     var datepicker = document.querySelector('#data');
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(new Date(datepicker.textContent).toDateString(), new Date("03/01/2004").toDateString());
+    assert.strictEqual(moment(datepicker.textContent).toString(), moment("2004-03-01").toString());
     assert.strictEqual(modal.classList[3], void 0);
   }));
 
