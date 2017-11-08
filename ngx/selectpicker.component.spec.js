@@ -152,7 +152,7 @@ describe('selectpicker', function() {
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
+    testComponent = fixture.componentInstance;
     var options = document.querySelectorAll('a');
 
     options[0].click();
@@ -173,7 +173,7 @@ describe('selectpicker', function() {
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
+    testComponent = fixture.componentInstance;
     var options = document.querySelectorAll('a');
 
     options[3].click();
@@ -194,7 +194,7 @@ describe('selectpicker', function() {
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
+    testComponent = fixture.componentInstance;
     var options = document.querySelectorAll('a');
 
     options[4].click();
@@ -215,7 +215,7 @@ describe('selectpicker', function() {
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
+    testComponent = fixture.componentInstance;
     var options = document.querySelectorAll('a');
 
     options[5].click();
@@ -236,7 +236,7 @@ describe('selectpicker', function() {
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
+    testComponent = fixture.componentInstance;
     var options = document.querySelectorAll('a');
 
     options[6].click();
@@ -257,7 +257,7 @@ describe('selectpicker', function() {
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
+    testComponent = fixture.componentInstance;
     var select = document.querySelectorAll('selectpicker');
     var options = select[1].querySelectorAll('a');
 
@@ -284,7 +284,7 @@ describe('selectpicker', function() {
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
+    testComponent = fixture.componentInstance;
     var select = document.querySelectorAll('selectpicker');
     var options = select[1].querySelectorAll('a');
 
@@ -314,13 +314,7 @@ describe('selectpicker', function() {
     tick();
     fixture.detectChanges();
 
-    var testComponent = fixture.componentInstance;
-
-    var button = document.querySelectorAll('.select-toggle');
-
-    button[2].click();
-    tick();
-    fixture.detectChanges();
+    testComponent = fixture.componentInstance;
 
     var selectpicker = document.querySelectorAll("selectpicker");
     var options = selectpicker[2].querySelectorAll("a");
