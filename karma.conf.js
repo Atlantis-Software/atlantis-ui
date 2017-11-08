@@ -33,7 +33,8 @@ module.exports = function (config) {
 
     reporters: ['mocha'],
     port: 9876,
-    colors: true
+    colors: true,
+    concurrency: 1
   };
 
   config.set(_config);
