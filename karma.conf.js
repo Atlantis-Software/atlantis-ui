@@ -6,8 +6,7 @@ module.exports = function (config) {
     frameworks: ['mocha'],
     logLevel: config.LOG_INFO,
     files: [
-      './karma-test-shim.js',
-      {pattern: './dist/css/*.css', included: false}
+      './karma-test-shim.js'
     ],
 
     preprocessors: {
@@ -24,7 +23,7 @@ module.exports = function (config) {
       noInfo: true,
     },
 
-    browsers : ['Chrome', 'Firefox'],
+    browsers : ['Firefox', 'Chrome'],
 
     singleRun: true,
 
