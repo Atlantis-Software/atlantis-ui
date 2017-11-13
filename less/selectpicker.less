@@ -2,6 +2,7 @@
   .dropdown;
   width: 100%;
   > button.btn {
+    // allow to have a small select like a small button
     // min-height: (@line-height-computed + 14);
     width: 100%;
     background: linear-gradient(lighten(@select-default-bg, 25%), @select-default-bg);
@@ -25,10 +26,10 @@
     z-index: @zindex-dropdown;
     display: none; // none by default, but block on "open" of the menu
     float: left;
-    min-width: 160px;
+    min-width: @select-option-min-width;
     height: auto;
     overflow-x: hidden;
-    max-height: 200px;
+    max-height: @select-option-max-height;
     list-style: none;
     font-size: @font-size-base;
     text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
