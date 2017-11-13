@@ -108,64 +108,63 @@
   position: relative;
 
   &.circle-progress-bar-sm {
-    height: 140px;
-    width: 140px;
+    height: @circle-progress-bar-size-sm;
+    width: @circle-progress-bar-size-sm;
     #svg {
-      width: 140px;
-      height: 140px;
+      width: @circle-progress-bar-size-sm;
+      height: @circle-progress-bar-size-sm;
       circle {
-        r: 60;
-        cx: 70;
-        cy: 70;
+        r: @circle-progress-bar-circle-size-sm;
+        cx: @circle-progress-bar-circle-center-sm;
+        cy: @circle-progress-bar-circle-center-sm;
       }
     }
     &:after {
-      height: 100px;
-      width: 100px;
-      margin-top: -50px;
-      margin-left: -50px;
-      line-height: 106px;
+      height: @circle-progress-bar-after-size-sm;
+      width: @circle-progress-bar-after-size-sm;
+      margin-top: -(@circle-progress-bar-after-size-sm / 2);
+      margin-left: -(@circle-progress-bar-after-size-sm / 2);
+      line-height: @circle-progress-bar-after-size-sm + 6;
     }
-
   }
   &.circle-progress-bar-md {
-    height: 148px;
-    width: 148px;
+    height: @circle-progress-bar-size;
+    width: @circle-progress-bar-size;
     #svg {
-      width: 148px;
-      height: 148px;
+      width: @circle-progress-bar-size;
+      height: @circle-progress-bar-size;
       circle {
-        r: 64;
-        cx: 74;
-        cy: 74;
+        r: @circle-progress-bar-circle-size;
+        cx: @circle-progress-bar-circle-center;
+        cy: @circle-progress-bar-circle-center;
       }
     }
     &:after {
-      height: 108px;
-      width: 108px;
-      margin-top: -54px;
-      margin-left: -54px;
-      line-height: 114px;
+      height: @circle-progress-bar-after-size;
+      width: @circle-progress-bar-after-size;
+      margin-top: -(@circle-progress-bar-after-size / 2);
+      margin-left: -(@circle-progress-bar-after-size / 2);
+      line-height: @circle-progress-bar-after-size + 6;
     }
   }
   &.circle-progress-bar-lg {
-    height: 172px;
-    width: 172px;
+    height: @circle-progress-bar-size-lg;
+    width: @circle-progress-bar-size-lg;
     #svg {
-      width: 172px;
-      height: 172px;
+      width: @circle-progress-bar-size-lg;
+      height: @circle-progress-bar-size-lg;
       circle {
-        r: 76;
-        cx: 86;
-        cy: 86;
+        r: @circle-progress-bar-circle-size-lg;
+        cx: @circle-progress-bar-circle-center-lg;
+        cy: @circle-progress-bar-circle-center-lg;
       }
     }
     &:after {
-      height: 132px;
-      width: 132px;
-      margin-top: -66px;
-      margin-left: -66px;
-      line-height: 138px;
+      height: @circle-progress-bar-after-size-lg;
+      width: @circle-progress-bar-after-size-lg;
+      margin-top: -(@circle-progress-bar-after-size-lg / 2);
+      margin-left: -(@circle-progress-bar-after-size-lg / 2);
+      line-height: @circle-progress-bar-after-size-lg + 6;
     }
   }
   #svg {

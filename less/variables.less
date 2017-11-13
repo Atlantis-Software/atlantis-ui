@@ -348,6 +348,9 @@
 @select-option-active-bg:        @primary;
 @select-option-active-color:     @primary-text-color;
 
+@select-option-min-width: 160px;
+@select-option-max-height: 200px;
+
 //-- Z-index master list
 //
 // Warning: Avoid customizing these values. They're used for a bird's eye view
@@ -747,6 +750,29 @@
 @progress-bar-danger-bg:      @brand-danger;
 //** Info progress bar color
 @progress-bar-info-bg:        @brand-info;
+
+
+//== Circle progress bars
+//
+//##
+
+//** Default circle-progressbar size
+@circle-progress-bar-size: 148px; //148
+@circle-progress-bar-circle-center: @circle-progress-bar-size / 2; //74
+@circle-progress-bar-circle-size: @circle-progress-bar-circle-center - 10; //64
+@circle-progress-bar-after-size: @circle-progress-bar-size - 40; //108
+
+//** Small circle-progress-bar size
+@circle-progress-bar-size-sm: @circle-progress-bar-size - 8; //140
+@circle-progress-bar-circle-center-sm: @circle-progress-bar-size-sm / 2; //70
+@circle-progress-bar-circle-size-sm: @circle-progress-bar-circle-center-sm - 10; //60
+@circle-progress-bar-after-size-sm: @circle-progress-bar-size-sm - 40; // 100
+
+//** Large circle-progress-bar size
+@circle-progress-bar-size-lg: @circle-progress-bar-size + 24; //172
+@circle-progress-bar-circle-center-lg: @circle-progress-bar-size-lg / 2; //86
+@circle-progress-bar-circle-size-lg: @circle-progress-bar-circle-center-lg - 10; //76
+@circle-progress-bar-after-size-lg: @circle-progress-bar-size-lg - 40; // 132
 
 
 //== List group
