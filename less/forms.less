@@ -153,7 +153,7 @@ output {
 }
 
 
-//TODO type date not supported by firefox actually, add to v57 
+//TODO type date not supported by firefox actually, add to v57
 input[type="date"] {
   &::-webkit-clear-button {
     display: none;
@@ -236,7 +236,7 @@ input[type="search"] {
   position: absolute;
   top: 2px;
   left: 0;
-  line-height: 16px;
+  line-height: @line-height-checkbox;
   font-size: @font-size-checkbox + 1;
   color: @input-border-color;
 }
@@ -246,8 +246,6 @@ input[type="search"] {
   font-family: "FontAwesome";
   content: "\f14a";
   color: @input-border-focus;
-  border-width: 0;
-  line-height: 16px;
   font-size: @font-size-checkbox;
 }
 
@@ -256,8 +254,6 @@ input[type="search"] {
   font-family: "FontAwesome";
   content: "\f146";
   color: @input-border-focus;
-  border-width: 0;
-  line-height: 16px;
   font-size: @font-size-checkbox;
 }
 
@@ -267,8 +263,6 @@ input[type="search"] {
   font-family: "FontAwesome";
   content: "\f0c8";
   color: @input-bg-disabled;
-  border-width: 0;
-  line-height: 16px;
   font-size: @font-size-checkbox;
 }
 
