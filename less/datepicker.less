@@ -54,96 +54,96 @@ datepicker, datepicker-range {
   }
 
   .datepicker {
-      color: inherit;
-      padding: 4px;
-      margin-top: 1px;
-      .calendar {
-        display: none;
-        margin: 4px;
-        border-bottom: 2px solid @datepicker-bg;
-        th, td {
-          white-space: nowrap;
-          text-align: center;
-          min-width: 32px;
-        }
-      }
-      .calendar-table {
-        border: 1px solid @datepicker-border-color;
-        padding: 5px;
-        border-radius: 0px;
-        background-color: @datepicker-bg;
-        margin-bottom: 25px;
-      }
-      table {
-        width: 100%;
-        margin: 0;
-      }
-      th {
-        text-align: center;
-        width: 20px;
-        height: 20px;
-        border: 1px solid transparent;
+    color: inherit;
+    padding: 4px;
+    margin-top: 1px;
+    .calendar {
+      display: none;
+      margin: 4px;
+      border-bottom: 2px solid @datepicker-bg;
+      th, td {
         white-space: nowrap;
-        cursor: pointer;
-      }
-      td {
         text-align: center;
-        width: 20px;
-        height: 20px;
-        border-radius: 4px;
-        border: 1px solid transparent;
-        white-space: nowrap;
-        cursor: pointer;
+        min-width: 32px;
       }
-      td.available { 
-        &:hover {
-          background-color: @datepicker-hover-bg;
-          border-color: transparent;
-          color: @primary-text-color;
-        }
-      }
-      td.today {
-        border: 2px solid @datepicker-today-border-color;
-        font-weight: bold; 
-        &:hover{
-          background-color: @datepicker-hover-bg;
-          border-color: transparent;
-          color: @primary-text-color;
-        }
-      }
-      td.dayweek{
-        font-weight: bold
-      }
-      td.in-range {
-        background-color: @datepicker-in-range-bg;
+    }
+    .calendar-table {
+      border: 1px solid @datepicker-border-color;
+      padding: 5px;
+      border-radius: 0px;
+      background-color: @datepicker-bg;
+      margin-bottom: 25px;
+    }
+    table {
+      width: 100%;
+      margin: 0;
+    }
+    th {
+      text-align: center;
+      width: 20px;
+      height: 20px;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    td {
+      text-align: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    td.available {
+      &:hover {
+        background-color: @datepicker-hover-bg;
         border-color: transparent;
-        color: @datepicker-in-range-color;
-        border-radius: 0;
+        color: @primary-text-color;
       }
-      td.start-date, td.end-date, td.start-date.end-date {
-        border-radius: 0px 0 0 0px;
+    }
+    td.today {
+      border: 2px solid @datepicker-today-border-color;
+      font-weight: bold;
+      &:hover{
+        background-color: @datepicker-hover-bg;
+        border-color: transparent;
+        color: @primary-text-color;
       }
-      td.active {
+    }
+    td.dayweek{
+      font-weight: bold
+    }
+    td.in-range {
+      background-color: @datepicker-in-range-bg;
+      border-color: transparent;
+      color: @datepicker-in-range-color;
+      border-radius: 0;
+    }
+    td.start-date, td.end-date, td.start-date.end-date {
+      border-radius: 0px 0 0 0px;
+    }
+    td.active {
+      background-color: @datepicker-active-bg;
+      border-color: transparent;
+      color: @datepicker-active-color;
+      &:hover{
         background-color: @datepicker-active-bg;
         border-color: transparent;
         color: @datepicker-active-color;
-        &:hover{
-          background-color: @datepicker-active-bg;
-          border-color: transparent;
-          color: @datepicker-active-color;
-        }
       }
+    }
 
-      td.off {
-        background-color: @datepicker-off-bg;
-        color :@datepicker-off-color;
-        border: none;
-        font-weight: normal;
-      }
+    td.off {
+      background-color: @datepicker-off-bg;
+      color: @datepicker-off-color;
+      border: none;
+      font-weight: normal;
+    }
   }
 
   .datepicker.show-calendar .calendar {
-      display: block;
+    display: block;
   }
 
   datepicker.datepicker-sm {
