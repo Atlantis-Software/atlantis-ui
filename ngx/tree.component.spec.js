@@ -4,6 +4,12 @@ import { dragAndDropSortableService, dragAndDropService } from './dragAndDrop.se
 
 import { Component } from '@angular/core';
 
+
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { ngxAtlUiModule } from './ngx-atlantis-ui-module.js';
+
 function triggerEvent(elem, eventType) {
   var event = new DragEvent(eventType);
   elem.dispatchEvent(event);
@@ -33,11 +39,6 @@ function checkNodes(treeNodeLines, nodes, depth, parent) {
     }
   });
 }
-
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-import { ngxAtlUiModule } from './ngx-atlantis-ui-module.js';
 
 var assert = require('assert');
 

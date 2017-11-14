@@ -21,7 +21,7 @@ export default class selectpickeroptionComponent {
   ngAfterViewInit() {
     this.text = this.elementRef.nativeElement.innerHTML.trim();
     // if value is not defined it take value of the text
-    if (typeof this.value === 'undefined') {
+    if (typeof this.value === void 0) {
       this.value = this.elementRef.nativeElement.innerHTML.trim();
     }
   }
