@@ -15,11 +15,11 @@ class accordionTestComponent {
     return [
       new Component({
         template: `
-        <accordion openDefault="1" style="success">
+        <accordion style="success">
           <accordion-panel [title]="'test1'">
             Panel1
           </accordion-panel>
-          <accordion-panel [title]="'test2'">
+          <accordion-panel [title]="'test2'" [open]="true">
             Panel2
           </accordion-panel>
           <accordion-panel [title]="'test3'">
@@ -60,7 +60,7 @@ describe('accordion', function() {
 
     assert.strictEqual(panels.length, 3);
     assert.strictEqual(panels[0].classList[2], void 0);
-    assert.strictEqual(panels[1].classList[2], 'panel-open');
+    assert.strictEqual(panels[1].classList[1], 'panel-open');
     assert.strictEqual(panels[2].classList[2], void 0);
   }));
 
