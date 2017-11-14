@@ -103,9 +103,20 @@ export class popoverDirective {
     this.popover = this.popoverRef.location.nativeElement;
     var popoverHeight = this.popover.clientHeight;
     var popoverWidth = this.popover.clientWidth;
-    var placement = this.popoverDirection == 'bottom' ? { top: this.position.top + this.position.height, left: this.position.left + this.position.width / 2 - popoverWidth / 2 } :
-      this.popoverDirection == 'top' ? { top: this.position.top - popoverHeight, left: this.position.left + this.position.width / 2 - popoverWidth / 2 } :
-      this.popoverDirection == 'left' ? { top: this.position.top + this.position.height / 2 - popoverHeight / 2, left: this.position.left - popoverWidth } : { top: this.position.top + this.position.height / 2 - popoverHeight / 2, left: this.position.left + this.position.width };
+    var placement = {};
+    switch (this.popoverDirection){
+      case "bottom":
+        placement = { top: this.position.top + this.position.height, left: this.position.left + this.position.width / 2 - popoverWidth / 2 };
+        break;
+      case 'top':
+        placement = { top: this.position.top - popoverHeight, left: this.position.left + this.position.width / 2 - popoverWidth / 2 };
+        break;
+      case 'left':
+        placement = { top: this.position.top + this.position.height / 2 - popoverHeight / 2, left: this.position.left - popoverWidth };
+        break;
+      default:
+        placement = { top: this.position.top + this.position.height / 2 - popoverHeight / 2, left: this.position.left + this.position.width };
+    }
     this.popover.style.top = placement.top + "px";
     this.popover.style.left = placement.left + "px";
     this.popoverRef.instance.classIn = true;
