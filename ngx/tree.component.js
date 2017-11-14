@@ -5,35 +5,7 @@ export default class treeComponent {
     return [
       new Component({
         selector: 'tree',
-        template: `
-        <div [sortable-container]="nodes" [dropzones]="[dropZones]" [draggable]="isSortable">
-          <tree-node *ngFor="let node of nodes; let i = index"
-            [(expanded)]="node.expanded"
-            [(selected)]="node.selected"
-            [label]="node.label"
-            [model]="node.model"
-            [id]="node.id"
-            [children]="node.children"
-            [selectable]="node.selectable"
-            [template]="template"
-            [depth]="depth"
-            [disabled]="node.disabled"
-            [sortableZones]="dropZonesNested"
-            [nestedSortable]='nestedSortable'
-            [isSortable]="isSortable"
-            (expand)="expand.emit($event)"
-            (collapse)="collapse.emit($event)"
-            (select)="onSelect($event)"
-            [sortable]="isSortable"
-            [sortableIndex]="i"
-            (onDragStartCallback)="onDragCallback($event, i, true)"
-            (onDragEndCallback)="onDragCallback($event, i, false)"
-            (onDragEnterCallback)="onDragOver($event, true)"
-            (onDragLeaveCallback)="onDragOver($event, false)"
-            [nested]="nestedSortable">
-          </tree-node>
-        <ng-content *ngIf="!nodes"></ng-content>
-        </div>`,
+        template: require('./tree.html'),
         inputs: ['nodes', 'template', 'depth', 'nestedSortable', 'isSortable'],
         outputs: ['expand', 'collapse', 'nodesChanges'],
         queries: {
