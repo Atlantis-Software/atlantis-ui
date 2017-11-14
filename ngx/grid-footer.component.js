@@ -11,7 +11,7 @@ export default class gridFooterComponent {
         <div *ngFor= "let column of columns" class="gridHead" [ngClass]="column.class">
           {{columns.label}}
         </div>`,
-        inputs: ['columns', 'rows']
+        inputs: ['columns']
       })
     ];
   }

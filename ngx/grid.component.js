@@ -28,6 +28,7 @@ export default class gridComponent {
 
   constructor(elementRef, gridConfig, injector) {
     var self = this;
+    this.config = {};
     this.injector = injector;
     this.pipes = [];
     this.types = gridConfig;
@@ -79,7 +80,6 @@ export default class gridComponent {
       }
     });
 
-    this.config = {};
     this.config.footer = "none" || this.config.footer;
   }
 
