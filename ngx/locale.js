@@ -13,6 +13,12 @@ switch (language) {
   case 'fr':
     locale = 'fr-FR';
     break;
+  case 'de':
+    locale = 'de-DE';
+    break;
+  case 'es':
+    locale = 'es-ES';
+    break;
   default:
     language = 'en';
     locale = 'en-US';

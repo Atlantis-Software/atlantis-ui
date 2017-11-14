@@ -1,4 +1,4 @@
-var i18n = [];
+var i18n = {};
 i18n['de'] = {
   define: "Vordefinierte",
   today: "Heute",
