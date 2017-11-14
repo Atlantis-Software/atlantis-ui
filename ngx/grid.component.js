@@ -18,7 +18,7 @@ export default class gridComponent {
         </grid-header>
         <grid-body class="gridBody" [types]="types" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected" (selectedRows)="onSelect($event)">
         </grid-body>
-        <grid-footer class="gridFooter" *ngIf="config.footer !=='none'" [columns]="columns" [rows]="rows">
+        <grid-footer class="gridFooter" *ngIf="config.footer !=='none'" [columns]="columns">
         </grid-footer>`,
         inputs: ['columns', 'rows', 'config', 'selected'],
         outputs: ['selectedRows', 'sort']
