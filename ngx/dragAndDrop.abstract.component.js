@@ -112,7 +112,6 @@ export class dragAndDropAbstractComponent {
 
   //function call when HTML events is fired
   _onDragEnter(event) {
-    // console.log("abstract OnDragEnter");
     if (event.stopPropagation && this.nested) {
       event.stopPropagation();
     }
@@ -122,7 +121,6 @@ export class dragAndDropAbstractComponent {
   }
 
   _onDragOver(event) {
-    // console.log("abstract OnDragOver");
     if (event.stopPropagation) {
       event.stopPropagation();
     }
@@ -135,14 +133,12 @@ export class dragAndDropAbstractComponent {
   }
 
   _onDragLeave(event) {
-    // console.log("abstract OnDragLeave");
     if (this._isDropAllowed(event)) {
       this._onDragLeaveCallback(event);
     }
   }
 
   _onDrop(event) {
-    // console.log("abstract OnDragDrop");
     if (event.preventDefault) {
       event.preventDefault();
     }
@@ -185,7 +181,6 @@ export class dragAndDropAbstractComponent {
   }
 
   _onDragStart(event) {
-    // console.log("abstract OnDragStart");
     if (event.stopPropagation) {
       event.stopPropagation();
     }
@@ -196,7 +191,6 @@ export class dragAndDropAbstractComponent {
   }
 
   _onDragEnd(event) {
-    // console.log("abstract OnDragEnd");
     if (event.stopPropagation) {
       event.stopPropagation();
     }
