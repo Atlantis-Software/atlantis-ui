@@ -43,10 +43,11 @@ export class accordionComponent {
         panel.isOpen = false;
       }
     });
+    this.cdr.detectChanges();
+
   }
 
   ngAfterViewInit() {
-    var self = this;
     var panelsHTML = this.elementRef.nativeElement.getElementsByClassName("panel");
     if (panelsHTML.length < 0) {
       return;
@@ -61,18 +62,14 @@ export class accordionComponent {
     }
 
     //Open the panel we want per default
-    if (this.openDefault >= 0) {
-      if (this.openDefault === panelsHTML.length) {
-        this.openDefault = panelsHTML.length - 1;
-      } else if (this.openDefault > panelsHTML.length) {
-        this.openDefault = 0;
-      }
-      setTimeout(function() {
-        self.panels[self.openDefault].isOpen = true;
-      }, 0);
-    }
-
-    this.cdr.detectChanges();
+    setTimeout(()=>{
+      this.panels.forEach((panel)=> {
+        if (panel.isOpen) {
+          this.closeOthers(panel);
+        }
+      });
+      this.cdr.detectChanges();
+    },0);
 
   }
 
@@ -99,7 +96,7 @@ export class accordionPanelComponent {
             </div>
           </div>
         </div>`,
-        inputs: ["title"]
+        inputs: ["title", "isOpen: open"]
       })
     ];
   }

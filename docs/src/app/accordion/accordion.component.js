@@ -11,8 +11,8 @@ export default  class AccordionComponent {
   constructor(){
 
     this.accordionHtml = `
-    <accordion openDefault="2" style="default">
-      <accordion-panel [title]="'test1'">
+    <accordion style="default">
+      <accordion-panel [title]="'test1'" [open]="true">
         qsdfghjklm
       </accordion-panel>
       <accordion-panel [title]="'test2'">
