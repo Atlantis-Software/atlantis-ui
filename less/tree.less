@@ -8,16 +8,18 @@ tree {
   display: block;
   tree-node {
     position : relative;
-    line-height: 25px;
-    min-height: 25px;
+    line-height: @tree-node-line-height;
     display: block;
     border-top: 1px solid @tree-default-color;
 
     .tree-expander {
       position: absolute;
-      margin-left : -20px;
-      top : 3px;
+      margin-left : @tree-node-margin-left;
+      top : @tree-icon-top;
       z-index: 1;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-user-select: none;
       user-select: none;
 
       &:not(.icon-disabled) {
@@ -30,15 +32,16 @@ tree {
     }
 
     .tree-node-line {
-      padding-right: 40px;
+      padding-right: @tree-node-line-padding;
     }
 
     .tree-node-checkbox {
       display: inline-block;
-      right: 12px;
-      top: 3px;
+      right: @tree-node-checkbox-right;
+      top: @tree-icon-top;
       position: absolute;
       .checkbox {
+        //margin it's require to place correctly checkbox
         margin-top: 0;
         margin-bottom: 0;
         label {
@@ -52,13 +55,13 @@ tree {
 
     span[sortable-handle] {
       &:before {
-        right: 4px;
-        top: 4px;
+        right: @tree-node-handle-placement;
+        top: @tree-node-handle-placement;
         position: absolute;
         font-family: "FontAwesome";
         content: "\f0b2";
         font-size: @font-size-checkbox - 2;
-        line-height: 16px;
+        line-height: @line-height-checkbox;
       }
     }
 

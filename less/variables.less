@@ -75,14 +75,19 @@
 @font-size-h5:            @font-size-base;
 @font-size-h6:            ceil((@font-size-base * 0.85)); // ~12px
 
-@font-size-checkbox:      @font-size-base + 2;
+@font-size-checkbox:      @font-size-base + 2; // 16px
+
+@font-size-date-month-year: ceil((@font-size-base * 1.5)); // 21px
+@font-size-date-number: 90px;
 
 //** Unit-less `line-height` for use in components like buttons.
 @line-height-base:        1.428571429; // 20/14
 //** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
 @line-height-computed:    floor((@font-size-base * @line-height-base)); // ~20px
-//line height for checkbox icon
+//** line height for checkbox icon
 @line-height-checkbox: 16px;
+
+
 
 //** By default, this inherits from the `<body>`.
 @headings-font-family:    inherit;
@@ -101,9 +106,9 @@
 @icon-font-name:          "fontawesome-webfont";
 //** Element ID within SVG icon file.
 @icon-font-svg-id:        "fontawesomeregular";
-@icon-color:               @primary;
-@icon-hover-color:         @secondary;
-@icon-disabled-color:      @disabled;
+@icon-color:              @primary;
+@icon-hover-color:        @secondary;
+@icon-disabled-color:     @disabled;
 
 
 //== Components
@@ -298,9 +303,14 @@
 @datepicker-today-bg:            #357ebd;
 @datepicker-today-color:         #fff;
 @datepicker-today-border-color:  @secondary;
-// arrow prev and next
+//** arrow prev and next
 @datepicker-arrow-color:        @primary;
 @datepicker-arrow-hover-color:  @secondary;
+//** Datepicker padding
+@datepicker-padding: 4px;
+//** td border
+@datepicker-td-border-radius: 4px;
+@datepicker-td-border-color: transparent;
 
 //== Dropdowns
 //
@@ -993,7 +1003,13 @@
 
 //Tree
 @tree-default-color:           lighten(@header, 70%);
-
+@tree-icon-top: 3px;
+//** line height tree-node
+@tree-node-line-height: 25px;
+@tree-node-margin-left: -20px;
+@tree-node-checkbox-right: 12px;
+@tree-node-line-padding: 40px;
+@tree-node-handle-placement: 4px;
 
 //GridAngular
 @grid-row-active-bg:           @primary;
