@@ -171,15 +171,15 @@ export default class datepickerComponent {
 
   // refresh text date
   refreshText() {
-    if (moment(this.startDate).isValid()) {
+    if (moment(this.val).isValid()) {
       var localeData = moment.localeData();
       var dateFormat = localeData.longDateFormat('LLLL');
       this.array = dateFormat.split("D");
-      this.day = moment(this.startDate).format("Do");
+      this.day = moment(this.val).format("Do");
       // text before day
-      this.before = moment(this.startDate).format(this.array[0]);
+      this.before = moment(this.val).format(this.array[0]);
       // text after day without hours
-      this.after = moment(this.startDate).format(this.array[1]).replace(moment(this.startDate).format('LT'), '').replace(/^,/, "");
+      this.after = moment(this.val).format(this.array[1]).replace(moment(this.val).format('LT'), '').replace(/^,/, "");
     } else { // if date is not valid , text empty
       this.day = "";
       this.before = "";
