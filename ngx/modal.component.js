@@ -16,13 +16,14 @@ export default class modalComponent {
             </div>
           </div>`,
         inputs: ['backdrop', "show", "fade", "orientation"],
-        outputs: ['showChange']
+        outputs: ['showChange', "onClose"]
       })
     ];
   }
 
   constructor(elementRef, Injector, ComponentFactoryResolver, ApplicationRef) {
     this.showChange = new EventEmitter();
+    this.onClose = new EventEmitter();
     this.elementRef = elementRef;
     // need to create backdrop later
     this.injector = Injector;
@@ -88,6 +89,7 @@ export default class modalComponent {
     }
     this.visible = false;
     // setTimeout(() => this.visible = false, 300);
+    this.onClose.emit();
   }
 
   //Add classes to modal according to inputs parameters
