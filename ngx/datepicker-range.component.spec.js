@@ -255,8 +255,8 @@ describe('datepicker-range', function() {
     tick();
     fixture.detectChanges();
 
-    var prevArrow = document.querySelector('.next.arrow');
-    prevArrow.click();
+    var nextArrow = document.querySelector('.next.arrow');
+    nextArrow.click();
     tick();
     fixture.detectChanges();
 

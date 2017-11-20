@@ -269,7 +269,6 @@ export default class datepickerComponent {
           break;
       }
       this._val = this.startDate.format(this.locale.format);
-      // this.onModelChange(this.val);
       this.calendar = [];
       this.calendar[0] = {};
       this.calendar[0] = this.startDate.clone().date(2);
