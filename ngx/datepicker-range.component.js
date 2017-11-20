@@ -103,17 +103,17 @@ export default class datepickerComponent {
           this.classes[calendarNumber][row][col].push('off');
         }
         //highlight the currently selected start date
-        if (calendar[row][col].format('YYYY-MM-DD') == moment(this.start).format('YYYY-MM-DD') && this.calendar[calendarNumber].month() == moment(this.start).month()) {
+        if (calendar[row][col].format(this.locale.format) == moment(this._start, [this.locale.format, "YYYY-MM-DD"]).format(this.locale.format) && this.calendar[calendarNumber].month() == moment(this._start, [this.locale.format, "YYYY-MM-DD"]).month()) {
           this.classes[calendarNumber][row][col].push('active', 'start-date');
         }
 
         //highlight the currently selected end date
-        if (calendar[row][col].format('YYYY-MM-DD') == moment(this.end).format('YYYY-MM-DD') && this.calendar[calendarNumber].month() == moment(this.end).month()) {
+        if (calendar[row][col].format(this.locale.format) == moment(this._end, [this.locale.format, "YYYY-MM-DD"]).format(this.locale.format) && this.calendar[calendarNumber].month() == moment(this._end, [this.locale.format, "YYYY-MM-DD"]).month()) {
           this.classes[calendarNumber][row][col].push('active', 'end-date');
         }
 
-        if (calendar[row][col].isAfter(moment(this.start)) &&
-          calendar[row][col].isBefore(moment(this.end)) && this.classes[calendarNumber][row][col].indexOf("off") == -1) {
+        if (calendar[row][col].isAfter(moment(this._start, [this.locale.format, "YYYY-MM-DD"])) &&
+          calendar[row][col].isBefore(moment(this._end, [this.locale.format, "YYYY-MM-DD"])) && this.classes[calendarNumber][row][col].indexOf("off") == -1) {
           this.classes[calendarNumber][row][col].push('in-range');
         }
 
@@ -155,26 +155,26 @@ export default class datepickerComponent {
     };
     if (this.start) {
       // if we have a default value
-      this.startDate = moment(this.start);
-      this.start = this.startDate.format('YYYY-MM-DD');
+      this.startDate = moment(this.start, [this.locale.format, "YYYY-MM-DD"]);
+      this.start = this._start = this.startDate.format(this.locale.format);
     } else {
       this.startDate = moment();
       // without default value, it's today
       setTimeout(() => { // if not setTimeout error
-        this.start = this.startDate.format('YYYY-MM-DD');
+        this.start = this._start = this.startDate.format(this.locale.format);
         this.startChange.emit(this.start);
       });
     }
 
     if (this.end) {
       // if we have a default value
-      this.endDate = moment(this.end);
-      this.end = this.endDate.format('YYYY-MM-DD');
+      this.endDate = moment(this.end, [this.locale.format, "YYYY-MM-DD"]);
+      this.end = this._end = this.endDate.format(this.locale.format);
     } else {
       this.endDate = moment();
       // without default value, it's today
       setTimeout(() => { // it not setTimeout error
-        this.end = this.endDate.format('YYYY-MM-DD');
+        this.end = this._end =this.endDate.format(this.locale.format);
         this.endChange.emit(this.end);
       });
 
@@ -196,15 +196,15 @@ export default class datepickerComponent {
 
   // refresh text date
   refreshTextDateStart() {
-    if (moment(this.start).isValid()) {
+    if (moment(this._start, [this.locale.format, "YYYY-MM-DD"]).isValid()) {
       var localeData = moment.localeData();
       var dateFormat = localeData.longDateFormat('LLLL');
       this.array = dateFormat.split("D");
-      this.dayDateStart = moment(this.start).format("Do");
+      this.dayDateStart = moment(this._start, [this.locale.format, "YYYY-MM-DD"]).format("Do");
       // text before day
-      this.beforeDayDateStart = moment(this.start).format(this.array[0]);
+      this.beforeDayDateStart = moment(this._start, [this.locale.format, "YYYY-MM-DD"]).format(this.array[0]);
       // text after day without hours
-      this.afterDayDateStart = moment(this.start).format(this.array[1]).replace(moment(this.start).format('LT'), '').replace(/^,/, "");
+      this.afterDayDateStart = moment(this._start, [this.locale.format, "YYYY-MM-DD"]).format(this.array[1]).replace(moment(this._start, [this.locale.format, "YYYY-MM-DD"]).format('LT'), '').replace(/^,/, "");
     } else { // if date is not valid , text empty
       this.dayDateStart = "";
       this.beforeDayDateStart = "";
@@ -217,15 +217,15 @@ export default class datepickerComponent {
 
   }
   refreshTextDateEnd() {
-    if (moment(this.end).isValid()) {
+    if (moment(this._end, [this.locale.format, "YYYY-MM-DD"]).isValid()) {
       var localeData = moment.localeData();
       var dateFormat = localeData.longDateFormat('LLLL');
       this.array = dateFormat.split("D");
-      this.dayDateEnd = moment(this.end).format("Do");
+      this.dayDateEnd = moment(this._end, [this.locale.format, "YYYY-MM-DD"]).format("Do");
       // text before day
-      this.beforeDayDateEnd = moment(this.end).format(this.array[0]);
+      this.beforeDayDateEnd = moment(this._end, [this.locale.format, "YYYY-MM-DD"]).format(this.array[0]);
       // text after day without hours
-      this.afterDayDateEnd = moment(this.end).format(this.array[1]).replace(moment(this.end).format('LT'), '').replace(/^,/, "");
+      this.afterDayDateEnd = moment(this._end, [this.locale.format, "YYYY-MM-DD"]).format(this.array[1]).replace(moment(this._end, [this.locale.format, "YYYY-MM-DD"]).format('LT'), '').replace(/^,/, "");
     } else { // if date is not valid , text empty
       this.dayDateEnd = "";
       this.beforeDayDateEnd = "";
@@ -239,7 +239,8 @@ export default class datepickerComponent {
   }
 
   // open modal
-  open(input) {
+  open(e,input) {
+    e.preventDefault();
     this.visible = true;
     if (input === "start") {
       this.focus = START;
@@ -251,6 +252,17 @@ export default class datepickerComponent {
   // close modal
   close() {
     this.visible = false;
+    this.setStart(this._start);
+    this.setEnd(this._end);
+    if (moment(this._start,[this.locale.format, "YYYY-MM-DD"]).isSameOrBefore(moment(this._end,[this.locale.format, "YYYY-MM-DD"]))) {
+      this.start = this._start;
+      this.end = this._end;
+    } else {
+      this._start = this.start;
+      this._end = this.end;
+    }
+    this.startChange.emit(moment(this.start,this.locale.format).format(this.locale.format));
+    this.endChange.emit(moment(this.end,this.locale.format).format(this.locale.format));
   }
 
   selectInputDateStart() {
@@ -299,8 +311,8 @@ export default class datepickerComponent {
         default:
           break;
       }
-      this.start = this.startDate.format('YYYY-MM-DD');
-      this.end = this.endDate.format('YYYY-MM-DD');
+      this._start = this.startDate.format(this.locale.format);
+      this._end = this.endDate.format(this.locale.format);
       this.calendar = [];
       this.calendar[0] = {};
       this.calendar[0] = this.startDate.clone().date(2);
@@ -312,8 +324,8 @@ export default class datepickerComponent {
       this.refreshCalendar();
       this.refreshTextDateStart();
       this.refreshTextDateEnd();
-      this.startChange.emit(this.start);
-      this.endChange.emit(this.end);
+      // this.startChange.emit(this.start);
+      // this.endChange.emit(this.end);
       this.close();
     }
   }
@@ -342,26 +354,31 @@ export default class datepickerComponent {
     this.refreshCalendar();
   }
 
-  closeAfterCheck() {
+  // close modal when we press enter on input, if the start or end input are valid
+  closeAfterCheck(event, isStart) {
+    if (isStart) {
+      this.setStart(event.target.value);
+    } else {
+      this.setEnd(event.target.value);
+    }
     if (!this.hasErrorEnd) {
       this.close();
     }
   }
 
   setStart(event) {
-    if (moment(event).isValid()) {
-      if (moment(event).isBefore(moment(this.end))) {
+    if (moment(event, [this.locale.format, "YYYY-MM-DD"]).isValid()) {
+      if (moment(event, [this.locale.format, "YYYY-MM-DD"]).isBefore(moment(this._end, [this.locale.format, "YYYY-MM-DD"]))) {
         this.hasErrorEnd = false;
         this.modalHeaderOptions.close = true;
       } else {
         this.hasErrorEnd = true;
         this.modalHeaderOptions.close = false;
       }
-
-      this.start = event;
-      this.startDate = moment(event);
+      this._start = moment(event, [this.locale.format, "YYYY-MM-DD"]).format("DD/MM/YYYY");
+      this.startDate = moment(event, [this.locale.format, "YYYY-MM-DD"]);
       // emit change value on startChange
-      this.startChange.emit(this.start);
+      // this.startChange.emit(moment(this.start,this.locale.format).format(this.locale.format));
       this.calendar = [];
       this.calendar[0] = {};
       this.calendar[0] = this.startDate.clone().date(2);
@@ -372,19 +389,23 @@ export default class datepickerComponent {
       }
       this.refreshCalendar();
       this.refreshTextDateStart();
+
+    } else {
+      this.hasErrorEnd = true;
+      this.modalHeaderOptions.close = false;
     }
   }
 
   // event end change emit by the datepicker atlantis ui
   setEnd(event) {
-    if (moment(event).isValid()) {
-      if (moment(event).isAfter(moment(this.start))) {
+    if (moment(event, [this.locale.format, "YYYY-MM-DD"]).isValid()) {
+      if (moment(event, [this.locale.format, "YYYY-MM-DD"]).isAfter(moment(this._start, [this.locale.format, "YYYY-MM-DD"]))) {
         this.hasErrorEnd = false;
         this.modalHeaderOptions.close = true;
-        this.end = event;
-        this.endDate = event;
+        this._end = moment(event, [this.locale.format, "YYYY-MM-DD"]).format("DD/MM/YYYY");
+        this.endDate = moment(event, [this.locale.format, "YYYY-MM-DD"]);
         // emit change value on endChange
-        this.endChange.emit(this.end);
+        // this.endChange.emit(this.end);
         this.refreshCalendar();
         this.refreshTextDateEnd();
       } else {
@@ -395,10 +416,18 @@ export default class datepickerComponent {
 
   }
 
+  focusStart(event, input) {
+    this.focus = START;
+    input.focus();
+    this.setEnd(event.target.value);
+  }
+
   focusEnd(event, input) {
     this.focus = END;
     input.focus();
+    this.setStart(event.target.value);
   }
+
 
   // on select value date
   selectDate(date, style) {
@@ -411,7 +440,7 @@ export default class datepickerComponent {
     if (this.focus === START) {
       this.selectDateStart(date, style);
     } else {
-      if (date.isBefore(moment(this.start))) {
+      if (date.isBefore(moment(this._start, this.locale.format))) {
         this.selectDateStart(date, style);
         return;
       } else {
@@ -429,11 +458,11 @@ export default class datepickerComponent {
     });
     style.push('start-date');
     style.push('active');
-    this.start = date.format('YYYY-MM-DD');
-    this.startDate = date.format('YYYY-MM-DD');
+    this._start = date.format(this.locale.format);
+    this.startDate = date.format(this.locale.format);
     this.refreshTextDateStart();
     this.focus = END;
-    this.startChange.emit(this.start);
+    // this.startChange.emit(this.start);
     this.refreshCalendar();
   }
 
@@ -443,10 +472,10 @@ export default class datepickerComponent {
     }
     style.push('end-date');
     style.push('active');
-    this.end = date.format('YYYY-MM-DD');
+    this._end = date.format(this.locale.format);
     this.refreshTextDateEnd();
     this.hasErrorEnd = false;
-    this.endChange.emit(this.end);
+    // this.endChange.emit(this.end);
     this.close();
   }
 }

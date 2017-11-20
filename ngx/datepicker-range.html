@@ -1,13 +1,11 @@
-<div class="input-group" id="rangeDatePicker" class="input-group">
-  <input class="form-control start" [ngModel]="start" (change)="setStart($event)" type="date" (click)="open('start')" />
+<div class="input-group" class="input-group">
+  <input class="form-control start datepicker-input" [ngModel]="start" (change)="setStart($event)" type="text" (click)="open($event,'start')" readonly/>
   <span class="input-group-addon"></span>
-  <input class="form-control end" [ngModel]="end" (change)="setEnd($event)" type="date" (click)="open('end')"/>
+  <input class="form-control end datepicker-input" [ngModel]="end" (change)="setEnd($event)" type="text" (click)="open($event,'end')" readonly/>
 </div>
 
-<modal [fade]="true" orientation="right" [(show)]="visible">
-  <modal-header>
-    <div *ngIf="!modalHeaderOptions.close" class="row withoutClose">
-    </div>
+<modal [fade]="true" orientation="right" [(show)]="visible" (onClose)="close()">
+  <modal-header [close]="modalHeaderOptions.close">
     <div class="row">
       <div class="col-md-5 text-center date-letter">
         <span>{{ beforeDayDateStart }}</span>
@@ -25,20 +23,20 @@
     </div>
     <div class="calendar-bg row" data-date-type="single">
       <div class="col-md-1 text-center">
-        <div class="prev arrow" (click)="clickPrev($event)" >
+        <div class="prev arrow" (click)="clickPrev($event)">
           <i class="icon icon-previous icon-2x"></i>
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group" [ngClass]="{'has-error': hasErrorStart }">
-          <input type="date" class="form-control input-md" [ngModel]="start" (ngModelChange)="setStart($event)" (focus)="selectInputDateStart()"
-          [ngClass]="{'active': (focus === 'start') }" (keyup.tab)="focusEnd($event, inputend)" (keyup.enter)="closeAfterCheck()" >
+          <input #inputstart type="text" class="form-control input-md" [ngModel]="_start" (focus)="selectInputDateStart()"
+          [ngClass]="{'active': (focus === 'start') }" (keydown.tab)="focusEnd($event, inputend); false" (keyup.enter)="closeAfterCheck($event, true)" (blur)="focusEnd($event, inputend)">
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group" [ngClass]="{'has-error': hasErrorEnd }">
-          <input #inputend type="date" class="form-control input-md" [ngModel]="end" (ngModelChange)="setEnd($event)" (keyup.enter)="closeAfterCheck()"
-          (focus)="selectInputDateEnd()" [ngClass]="{'active': (focus === 'end')}">
+          <input #inputend type="text" class="form-control input-md" [ngModel]="_end" (keyup.enter)="closeAfterCheck($event, false)"
+          (focus)="selectInputDateEnd()" [ngClass]="{'active': (focus === 'end')}" (blur)="focusStart($event, inputstart)">
         </div>
       </div>
       <div class="col-md-4">

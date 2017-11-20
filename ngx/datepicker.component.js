@@ -102,7 +102,7 @@ export default class datepickerComponent {
           this.classes[calendarNumber][row][col].push('off');
         }
         //highlight the currently selected start date
-        if (calendar[row][col].format('YYYY-MM-DD') == moment(this.val).format('YYYY-MM-DD') && this.calendar[calendarNumber].month() == moment(this.val).month()) {
+        if (calendar[row][col].format(this.locale.format) == moment(this._val, [this.locale.format, "YYYY-MM-DD"]).format(this.locale.format) && this.calendar[calendarNumber].month() == moment(this._val, [this.locale.format, "YYYY-MM-DD"]).month()) {
           this.classes[calendarNumber][row][col].push('active', 'start-date');
         }
 
@@ -116,35 +116,47 @@ export default class datepickerComponent {
   }
 
   get value() {
-    return this.val;
+    return this._val;
   }
 
   set value(val) {
-    if (val !== this.val) {
-      this.val = val;
+    if (val !== this._val) {
+      this._val = val;
       this.onModelChange(val);
     }
   }
 
+  ngOnInit() {
+    moment.locale(this.language);
+    this.locale = {
+      format: moment.localeData().longDateFormat('L'),
+      daysOfWeek: moment.weekdaysMin(),
+      monthNames: moment.monthsShort(),
+      weekdayNames: moment.weekdaysMin(),
+      firstDay: moment.localeData().firstDayOfWeek(),
+      separator: '-'
+    };
+  }
+
   // on load page
   writeValue(val) {
-    if (val !== this.val) {
+    if (val !== this._val) {
       if (!this.numberOfMonths) {
         this.numberOfMonths = 3;
       }
-      this.val = val;
+      this._val = val;
       this.classes = [];
 
       //Defines the language used by moment using users language
       moment.locale(this.language);
-      if (this.val) {
+      if (this._val) {
         // if we have a default value
-        this.startDate = moment(this.val);
-        this.val = this.startDate.format('YYYY-MM-DD');
+        this.startDate = moment(this._val, [this.locale.format, "YYYY-MM-DD"]);
+        this.val = this._val = this.startDate.format(this.locale.format);
       } else {
         // without default value, it's today
         this.startDate = moment();
-        this.val = this.startDate.format('YYYY-MM-DD');
+        this.val = this._val = this.startDate.format(this.locale.format);
       }
       //Locales used by moment
       this.locale = {
@@ -165,21 +177,21 @@ export default class datepickerComponent {
       }
       this.refreshCalendar();
       this.refreshText();
-      this.onModelChange(this.val);
+      this.onModelChange(this._val);
     }
   }
 
   // refresh text date
   refreshText() {
-    if (moment(this.val).isValid()) {
+    if (moment(this._val, [this.locale.format, "YYYY-MM-DD"]).isValid()) {
       var localeData = moment.localeData();
       var dateFormat = localeData.longDateFormat('LLLL');
       this.array = dateFormat.split("D");
-      this.day = moment(this.val).format("Do");
+      this.day = moment(this._val, [this.locale.format, "YYYY-MM-DD"]).format("Do");
       // text before day
-      this.before = moment(this.val).format(this.array[0]);
+      this.before = moment(this._val, [this.locale.format, "YYYY-MM-DD"]).format(this.array[0]);
       // text after day without hours
-      this.after = moment(this.val).format(this.array[1]).replace(moment(this.val).format('LT'), '').replace(/^,/, "");
+      this.after = moment(this._val, [this.locale.format, "YYYY-MM-DD"]).format(this.array[1]).replace(moment(this._val, [this.locale.format, "YYYY-MM-DD"]).format('LT'), '').replace(/^,/, "");
     } else { // if date is not valid , text empty
       this.day = "";
       this.before = "";
@@ -213,13 +225,21 @@ export default class datepickerComponent {
   }
 
   // open modal
-  open() {
+  open(e) {
+    e.preventDefault();
     this.visible = true;
+  }
+
+  closeAfterCheck(event) {
+    this.valueChange(event.target.value);
+    this.close();
   }
 
   // close modal
   close() {
     this.visible = false;
+    this.val = moment(this._val, this.locale.format).format(this.locale.format);
+    this.onModelChange(this.val);
   }
 
   // on change value selectpicker predefined date
@@ -248,8 +268,8 @@ export default class datepickerComponent {
         default:
           break;
       }
-      this.val = this.startDate.format('YYYY-MM-DD');
-      this.onModelChange(this.val);
+      this._val = this.startDate.format(this.locale.format);
+      // this.onModelChange(this.val);
       this.calendar = [];
       this.calendar[0] = {};
       this.calendar[0] = this.startDate.clone().date(2);
@@ -288,12 +308,13 @@ export default class datepickerComponent {
     this.refreshCalendar();
   }
 
+
   // event on change input value
   valueChange(event) {
-    if (moment(event).isValid()) {
-      this.val = event;
-      this.onModelChange(this.val);
-      this.startDate = moment(event);
+    if (moment(event, [this.locale.format, "YYYY-MM-DD"]).isValid()) {
+      this._val = event;
+      // this.onModelChange(this.val);
+      this.startDate = moment(event, [this.locale.format, "YYYY-MM-DD"]);
       this.calendar = [];
       this.calendar[0] = {};
       this.calendar[0] = this.startDate.clone().date(2);
@@ -323,8 +344,8 @@ export default class datepickerComponent {
     // select selected value by add active class
     style.push('active');
     // modify this.val by the selected value
-    this.val = date.format('YYYY-MM-DD');
-    this.onModelChange(this.val);
+    this._val = date.format(this.locale.format);
+    // this.onModelChange(this.val);
     this.refreshText();
     this.close();
   }

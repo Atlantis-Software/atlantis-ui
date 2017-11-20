@@ -41,6 +41,10 @@ describe('datepicker-range', function() {
   }));
 
   afterEach(function() {
+    var backdrop = document.querySelector('backdrop');
+    if (backdrop) {
+      backdrop.parentNode.removeChild(backdrop);
+    }
     getTestBed().resetTestingModule();
   });
 
@@ -57,8 +61,8 @@ describe('datepicker-range', function() {
 
     assert.strictEqual(moment(datepickerStart.textContent).toString(), moment('2004-02-03').toString());
     assert.strictEqual(moment(datepickerEnd.textContent).toString(), moment('2004-02-10').toString());
-    assert.strictEqual(moment(datepicker2Start.textContent).toString(), moment().startOf('day').toString());
-    assert.strictEqual(moment(datepicker2End.textContent).toString(), moment().startOf('day').toString());
+    assert.strictEqual(moment(datepicker2Start.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment().startOf('day').toString());
+    assert.strictEqual(moment(datepicker2End.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment().startOf('day').toString());
   }));
 
   it('should render correct value into input datepicker modal', fakeAsync(function() {
@@ -74,8 +78,8 @@ describe('datepicker-range', function() {
     var inputStart = document.querySelectorAll("input")[2];
     var inputEnd = document.querySelectorAll("input")[3];
 
-    assert.strictEqual(moment(inputStart.value).toString(), moment('2004-02-03').toString());
-    assert.strictEqual(moment(inputEnd.value).toString(), moment('2004-02-10').toString());
+    assert.strictEqual(moment(inputStart.value, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment('2004-02-03').toString());
+    assert.strictEqual(moment(inputEnd.value, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment('2004-02-10').toString());
 
     var closeButton = document.querySelector(".close");
     closeButton.click();
@@ -147,8 +151,8 @@ describe('datepicker-range', function() {
 
     modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(datepickerStart.textContent).toString(), moment("2004-02-01").toString());
-    assert.strictEqual(moment(datepickerEnd.textContent).toString(), moment("2004-02-02").toString());
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-02-01").toString());
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-02-02").toString());
 
     assert.strictEqual(modal.classList[3], void 0);
 
@@ -174,7 +178,17 @@ describe('datepicker-range', function() {
 
     var datepickerStart = document.querySelector('#dataStart');
 
-    assert.strictEqual(moment(datepickerStart.textContent).toString(), moment("2004-02-04").toString());
+    var closeButton = document.querySelector("button.close");
+    closeButton.click();
+    tick();
+    fixture.detectChanges();
+
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-02-04").toString());
+
+    input = document.querySelectorAll('input')[0];
+    input.click();
+    tick();
+    fixture.detectChanges();
 
     var firstAvailable = document.querySelectorAll('.available')[0];
     firstAvailable.click();
@@ -186,15 +200,15 @@ describe('datepicker-range', function() {
 
     modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(datepickerStart.textContent).toString(), moment("2004-02-01").toString());
-    assert.strictEqual(moment(datepickerEnd.textContent).toString(), moment("2004-02-10").toString());
-
-    assert.strictEqual(modal.classList[3], "in");
-
-    var closeButton = document.querySelector(".close");
+    closeButton = document.querySelector(".close");
     closeButton.click();
     tick();
     fixture.detectChanges();
+
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-02-01").toString());
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-02-10").toString());
+
+
   }));
 
   it('should render previous month when click prev arrow', fakeAsync(function() {
@@ -225,8 +239,8 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(datepickerStart.textContent).toString(), moment("2004-01-01").toString());
-    assert.strictEqual(moment(datepickerEnd.textContent).toString(), moment("2004-01-01").toString());
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-01-01").toString());
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-01-01").toString());
 
     assert.strictEqual(modal.classList[3], void 0);
   }));
@@ -264,8 +278,8 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(datepickerStart.textContent).toString(), moment("2004-03-01").toString());
-    assert.strictEqual(moment(datepickerEnd.textContent).toString(), moment("2004-03-01").toString());
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-03-01").toString());
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-03-01").toString());
 
     assert.strictEqual(modal.classList[3], void 0);
   }));
@@ -295,8 +309,8 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"), moment().format('YYYY-MM-DD'));
-    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format("YYYY-MM-DD"), moment().format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));
 
     assert.strictEqual(modal.classList[3], void 0);
   }));
@@ -326,8 +340,8 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"), moment().subtract(1, 'weeks').startOf('isoweek').format('YYYY-MM-DD'));
-    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'), moment().subtract(1, 'weeks').endOf('isoweek').format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format("YYYY-MM-DD"), moment().subtract(1, 'weeks').startOf('isoweek').format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment().subtract(1, 'weeks').endOf('isoweek').format('YYYY-MM-DD'));
 
     assert.strictEqual(modal.classList[3], void 0);
   }));
@@ -357,8 +371,8 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"),  moment().subtract(1, 'months').startOf('months').format('YYYY-MM-DD'));
-    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'),  moment().subtract(1, 'months').endOf('months').format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format("YYYY-MM-DD"),  moment().subtract(1, 'months').startOf('months').format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'),  moment().subtract(1, 'months').endOf('months').format('YYYY-MM-DD'));
 
     assert.strictEqual(modal.classList[3], void 0);
   }));
@@ -388,8 +402,8 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"), moment().subtract(1, 'weeks').format('YYYY-MM-DD'));
-    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format("YYYY-MM-DD"), moment().subtract(1, 'weeks').format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));
 
     assert.strictEqual(modal.classList[3], void 0);
   }));
@@ -419,8 +433,8 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"), moment().subtract(1, 'months').format('YYYY-MM-DD'));
-    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format("YYYY-MM-DD"), moment().subtract(1, 'months').format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));
 
     assert.strictEqual(modal.classList[3], void 0);
   }));
@@ -450,8 +464,8 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(datepickerStart.textContent).format("YYYY-MM-DD"), moment().subtract(1, 'years').startOf('year').format('YYYY-MM-DD'));
-    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'), moment().subtract(1, 'years').endOf('year').format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format("YYYY-MM-DD"), moment().subtract(1, 'years').startOf('year').format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment().subtract(1, 'years').endOf('year').format('YYYY-MM-DD'));
 
     assert.strictEqual(modal.classList[3], void 0);
   }));
@@ -476,8 +490,8 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(moment(datepickerStart.textContent)).format('YYYY-MM-DD'), moment("2004-02-03").format('YYYY-MM-DD'));
-    assert.strictEqual(moment(moment(datepickerEnd.textContent)).format('YYYY-MM-DD'), moment("2004-02-10").format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2004-02-03").format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2004-02-10").format('YYYY-MM-DD'));
 
     assert.strictEqual(modal.classList[3], "in");
 
@@ -507,8 +521,8 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(moment(datepickerStart.textContent)).format('YYYY-MM-DD'), moment("2004-02-03").format('YYYY-MM-DD'));
-    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'), moment("2004-02-07").format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2004-02-03").format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2004-02-07").format('YYYY-MM-DD'));
 
     assert.strictEqual(modal.classList[3], void 0);
 
@@ -541,8 +555,8 @@ describe('datepicker-range', function() {
 
     var modal = document.querySelector('.modal');
 
-    assert.strictEqual(moment(moment(datepickerStart.textContent)).format('YYYY-MM-DD'), moment("2004-02-03").format('YYYY-MM-DD'));
-    assert.strictEqual(moment(datepickerEnd.textContent).format('YYYY-MM-DD'), moment("2004-02-07").format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2004-02-03").format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2004-02-07").format('YYYY-MM-DD'));
     assert.strictEqual(modal.classList[3], void 0);
 
   }));
