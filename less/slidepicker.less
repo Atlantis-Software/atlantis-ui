@@ -5,7 +5,7 @@ slidepicker {
   .slidepicker-track {
     background: @slidepicker-track-bg;
     border: 1px solid @slidepicker-track-border-color;
-    border-radius: 4px;
+    border-radius: @slidepicker-border-radius;
     float: left;
     height: 8px;
     position: absolute;
@@ -36,7 +36,7 @@ slidepicker {
       margin-right: 28px;
       &.active {
         a{
-          color: @slidepicker-a-active;
+          color: @slidepicker-label-active;
           font-weight: bold;
         }
       }
@@ -44,7 +44,7 @@ slidepicker {
         display : block;
         clear : both;
         font-weight: normal;
-        color : @slidepicker-a;
+        color : @slidepicker-label;
         white-space: nowrap;
         cursor: pointer;
         text-decoration: none;
@@ -58,7 +58,7 @@ slidepicker {
 
     .slidepicker-track {
       height: 100%;
-      width: 8px;
+      width: @slidepicker-track-width;
     }
     .slidepicker-handle {
       //Position of handler, center with tracker
@@ -76,23 +76,18 @@ slidepicker {
         float: none;
         margin-left : 0px;
         margin-right: 0px;
-        padding-top: 27px;
-        padding-bottom: 27px;
-      }
-      &.sm slidepicker-option{
-        padding-top: 25px;
-        padding-bottom: 25px;
-      }
-      &.lg slidepicker-option{
-        padding-top : 33px;
-        padding-bottom : 33px;
+        padding-top: @slidepicker-option-padding;
+        padding-bottom: @slidepicker-option-padding;
       }
     }
 
     &.slidepicker-sm {
+      .slidepicker-track {
+        width: @slidepicker-track-width - 2;
+      }
       slidepicker-option {
-        padding-top: 25px;
-        padding-bottom: 25px;
+        padding-top: @slidepicker-option-paddin-sm;
+        padding-bottom: @slidepicker-option-paddin-sm;
         a {
           font-size: @font-size-small;
         }
@@ -100,9 +95,15 @@ slidepicker {
     }
 
     &.slidepicker-lg {
+      .slidepicker-track {
+        width: @slidepicker-track-width + 2;
+        .slidepicker-handle {
+          left: -2px;
+        }
+      }
       slidepicker-option {
-        padding-top : 33px;
-        padding-bottom : 33px;
+        padding-top : @slidepicker-option-paddin-lg;
+        padding-bottom : @slidepicker-option-paddin-lg;
         a {
           font-size: @font-size-large;
         }
