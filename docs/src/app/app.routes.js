@@ -38,6 +38,8 @@ import FormsComponent from './forms/forms.component.js';
 
 import dragAndDropComponent from './dragAndDrop/dragAndDrop.component.js';
 
+import DraggableComponent from './draggable/draggable.component.js';
+
 export default [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -76,6 +78,7 @@ export default [
   { path: 'buttongroups', component: ButtongroupsComponent },
   { path: 'forms', component: FormsComponent },
   { path: 'dragAndDrop', component: dragAndDropComponent },
-  { path: 'tree', component: TreeComponent }
+  { path: 'tree', component: TreeComponent },
+  { path: 'draggable', component: DraggableComponent}
 
 ];

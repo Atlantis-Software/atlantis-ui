@@ -47,6 +47,8 @@ import FormsComponent from './forms/forms.component.js';
 
 import dragAndDropComponent from './dragAndDrop/dragAndDrop.component.js';
 
+import DraggableComponent from './draggable/draggable.component.js';
+
 import { ngxAtlUiModule } from 'atlantis-ui-ngx';
 
 
@@ -120,7 +122,8 @@ AppModule.annotations = [
       ProgressBarComponent,
       GridAngularComponent,
       dragAndDropComponent,
-      TreeComponent
+      TreeComponent,
+      DraggableComponent
     ],
     imports: [
       BrowserModule,
