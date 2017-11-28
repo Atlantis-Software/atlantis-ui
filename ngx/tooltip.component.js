@@ -92,8 +92,8 @@ export class tooltipDirective {
     this.tooltip = this.tooltipRef.location.nativeElement;
     var tooltipHeight = this.tooltip.clientHeight;
     var tooltipWidth = this.tooltip.clientWidth;
-    var placement;
-    switch (this.popoverDirection){
+    var placement = {};
+    switch (this.tooltipDirection){
       case "bottom":
         placement = { top: this.position.top + this.position.height, left: this.position.left + this.position.width / 2 - tooltipWidth / 2 };
         break;
