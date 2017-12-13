@@ -60,20 +60,18 @@ export class sortableContainer extends dragAndDropAbstractComponent {
 
   //Add to the sortableData the items when we drop into a empty list
   _onDropCallback() {
-    if (this._sortableDataService.isDragged && this._sortableData.length === 0) {
-      let item = this._sortableDataService.sortableContainer._sortableData[this._sortableDataService.index];
-      if (this._sortableData.indexOf(item) === -1) {
-        this._sortableDataService.sortableContainer._sortableData.splice(this._sortableDataService.index, 1);
-        if (this._sortableDataService.sortableContainer._sortableData.length === 0) {
-          this._sortableDataService.sortableContainer.dropEnabled = true;
-        }
-        this._sortableData.unshift(item);
-        this._sortableDataService.sortableContainer = this;
-        this._sortableDataService.index = 0;
+    let item = this._sortableDataService.sortableContainer._sortableData[this._sortableDataService.index];
+    if (this._sortableData.indexOf(item) === -1) {
+      this._sortableDataService.sortableContainer._sortableData.splice(this._sortableDataService.index, 1);
+      if (this._sortableDataService.sortableContainer._sortableData.length === 0) {
+        this._sortableDataService.sortableContainer.dropEnabled = true;
       }
-      this._element.style.border = this.oldBorder;
-      this.detectChanges();
+      this._sortableData.unshift(item);
+      this._sortableDataService.sortableContainer = this;
+      this._sortableDataService.index = 0;
     }
+    this._element.style.border = this.oldBorder;
+    this.detectChanges();
   }
 
   //Reset with correct index all the sortableItems

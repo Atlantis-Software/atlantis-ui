@@ -11,6 +11,7 @@ export default class selectpickerComponent {
     this.cdr = changeDetectorRef;
     this.isOpen = false;
     this.differ = differs.find([]).create(null);
+    this.SelectedValuesText = "&nbsp;";
   }
   static get annotations() {
     return [
@@ -82,8 +83,12 @@ export default class selectpickerComponent {
       });
       // space html if empty array to avoid a small select
       if (!this.SelectedValuesText || this.SelectedValuesText == "") {
-        this.options.first.selected = true;
-        this.SelectedValuesText = this.options.first.text;
+        if (this.options.first) {
+          this.options.first.selected = true;
+          this.SelectedValuesText = this.options.first.text;
+        } else {
+          this.SelectedValuesText = "&nbsp;";
+        }
       }
     }
   }

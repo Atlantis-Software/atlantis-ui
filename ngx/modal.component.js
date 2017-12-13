@@ -8,14 +8,14 @@ export default class modalComponent {
       new Component({
         selector: 'modal',
         template: `
-          <div (click)="close($event)" class="modal" [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}" [ngClass]="{'in': visibleAnimate}">
+          <div (click)="closeOnBackdrop($event)" class="modal" [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}">
             <div class="modal-dialog" role="document">
-              <div class="modal-content">
+              <div class="modal-content" [ngStyle]="{'min-height': this.size ? this.size : ''}">
                 <ng-content></ng-content>
               </div>
             </div>
           </div>`,
-        inputs: ['backdrop', "show", "fade", "orientation"],
+        inputs: ['backdrop', "show", "orientation", "isClosable", "size"],
         outputs: ['showChange', "onClose"]
       })
     ];
@@ -30,8 +30,8 @@ export default class modalComponent {
     this.applicationRef = ApplicationRef;
     this.backdropFactory = ComponentFactoryResolver.resolveComponentFactory(backdropComponent);
     this.backdrop = true;
-    this.fade = true;
     this.show = false;
+    this.isClosable = false;
   }
 
   get show() {
@@ -73,12 +73,22 @@ export default class modalComponent {
 
   }
 
+  ngOnDestroy() {
+    if (this.backdropRef) {
+      this.backdropRef.destroy();
+    }
+  }
+
   //close the modal. Delete the backdrop and remove class on body
-  close(event) {
+  closeOnBackdrop(event) {
     // if click inside modal
-    if (event && event.target !== this.modal) {
+    if ((event && event.target !== this.modal) || !this.isClosable) {
       return;
     }
+    this.close();
+  }
+
+  close() {
     this.model = false;
     this.showChange.emit(this.model);
     document.body.classList.remove("modal-open");
@@ -96,10 +106,6 @@ export default class modalComponent {
   ngOnInit() {
 
     this.modal = this.elementRef.nativeElement.getElementsByClassName("modal")[0];
-
-    if (this.fade) {
-      this.modal.classList.add("fade");
-    }
 
     if (this.orientation) {
       this.modal.classList.add("modal-" + this.orientation);

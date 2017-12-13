@@ -238,7 +238,11 @@ export default class datepickerComponent {
   // close modal
   close() {
     this.visible = false;
-    this.val = moment(this._val, this.locale.format).format(this.locale.format);
+    if (this._val) {
+      this.val = moment(this._val, this.locale.format).format(this.locale.format);
+    } else {
+      this.val = "";
+    }
     this.onModelChange(this.val);
   }
 
@@ -322,9 +326,12 @@ export default class datepickerComponent {
         this.calendar[i] = {};
         this.calendar[i] = this.startDate.clone().date(2).add(i, 'month');
       }
-      this.refreshCalendar();
-      this.refreshText();
+    } else if (!event) {
+      this._val = "";
+      this.startDate = moment();
     }
+    this.refreshCalendar();
+    this.refreshText();
   }
 
   // on select value date
@@ -347,6 +354,13 @@ export default class datepickerComponent {
     // this.onModelChange(this.val);
     this.refreshText();
     this.close();
+  }
+
+  resetDate() {
+    this.val = this._val = "";
+    this.refreshCalendar();
+    this.refreshText();
+    this.onModelChange(this._val);
   }
 }
 

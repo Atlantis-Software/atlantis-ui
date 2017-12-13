@@ -1,12 +1,18 @@
-<div class="input-group" class="input-group">
-  <input class="form-control start datepicker-input" [ngModel]="start" (change)="setStart($event)" type="text" (click)="open($event,'start')" readonly/>
+<div class="input-group">
+  <div class="datepicker-date-input">
+    <input class="form-control start datepicker-input" [ngModel]="start" (change)="setStart($event)" type="text" (click)="open($event,'start')" readonly/>
+    <label class="datepicker-label-remove" *ngIf="start" (click)="resetStart()"></label>
+  </div>
   <span class="input-group-addon"></span>
-  <input class="form-control end datepicker-input" [ngModel]="end" (change)="setEnd($event)" type="text" (click)="open($event,'end')" readonly/>
+  <div class="datepicker-date-input">
+    <input class="form-control end datepicker-input" [ngModel]="end" (change)="setEnd($event)" type="text" (click)="open($event,'end')" readonly/>
+    <label class="datepicker-label-remove" *ngIf="end" (click)="resetEnd()"></label>
+  </div>
 </div>
 
-<modal [fade]="true" orientation="right" [(show)]="visible" (onClose)="close()">
+<modal orientation="right" [(show)]="visible" (onClose)="close()" [isClosable]="true">
   <modal-header [close]="modalHeaderOptions.close">
-    <div class="row">
+    <div class="row datepicker-text">
       <div class="col-md-5 text-center date-letter">
         <span>{{ beforeDayDateStart }}</span>
         <span>{{ dayDateStart }}</span>

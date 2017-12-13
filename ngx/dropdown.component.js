@@ -7,11 +7,13 @@ export default class dropdownComponent {
       new Component({
         selector: 'dropdown',
         template: `
-          <button *ngIf="!parentIsLi" class="btn btn-default" type="button" (click)="openDropdown()">
+          <button *ngIf="!parentIsLi" class="btn btn-default" type="button">
+            <i *ngIf="icon" class="icon" [ngClass]="'icon-'+icon"></i>
             {{title}}
             <span class="caret"></span>
           </button>
-          <a *ngIf="parentIsLi" href="#" (click)="toggle($event)">
+          <a *ngIf="parentIsLi" href="#">
+            <i *ngIf="icon" class="icon" [ngClass]="'icon-'+icon"></i>
             {{title}}
             <span class="caret"></span>
           </a>
@@ -19,9 +21,9 @@ export default class dropdownComponent {
             <ng-content>
             </ng-content>
           </div>`,
-        inputs: ["title", "orientation", "alignement"],
+        inputs: ["title", "orientation", "alignement", 'icon'],
         host: {
-          "(focusout)": "closeDropdown()"
+          "(document:click)": "toggle($event)"
         }
       })
     ];
@@ -32,7 +34,7 @@ export default class dropdownComponent {
     this.parentIsLi = false;
     this.disabled = false;
     this.cdr = ChangeDetectorRef;
-    this.title = "Dropdown button";
+    this.title = "";
   }
 
   //Change options of dropdown with the inputs parameters
@@ -61,25 +63,20 @@ export default class dropdownComponent {
     this.cdr.detectChanges();
   }
 
-  openDropdown() {
-    if (!this.disabled) {
-      this.open = true;
-      this.dropdown.classList.add("open");
-    }
-  }
-
   toggle(e) {
     e.preventDefault();
-    if (!this.disabled) {
+    if (this.disabled) {
+      return;
+    }
+    var dropdown = this.elementRef.nativeElement.querySelector("button, a");
+    if (e.target == dropdown || dropdown.contains(e.target)) {
       this.open = !this.open;
       this.dropdown.classList.toggle("open");
+    } else {
+      this.open = false;
+      this.dropdown.classList.remove("open");
     }
 
-  }
-
-  closeDropdown() {
-    this.open = false;
-    this.dropdown.classList.remove("open");
   }
 
 }

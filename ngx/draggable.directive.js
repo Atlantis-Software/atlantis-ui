@@ -7,12 +7,12 @@ class Position {
   }
 }
 
-export default class draggableDirective {
+export class draggableDirective {
   static get annotations() {
     return [
       new Directive({
-        selector: '.draggable',
-        inputs: ['draggable', 'handle'],
+        selector: '[draggable]',
+        inputs: ['draggable'],
         outputs: ['started', 'stopped'],
         host: {
           '(mousedown)': 'onMouseDown($event)',
@@ -42,24 +42,34 @@ export default class draggableDirective {
   set draggable(setting) {
     if (setting !== void 0 && setting !== null && setting !== '') {
       this.isDraggable = !!setting;
+      this.oldPos = new Position(0, 0);
 
-      this.element = this.handle ? this.handle : this.elementRef.nativeElement;
-
+      this.element = this.elementRef.nativeElement;
+      let element = this.handle ? this.handle : this.element;
       if (this.isDraggable) {
-        this.renderer.addClass(this.element, 'draggable');
+        this.renderer.addClass(element, 'draggable');
       } else {
-        this.renderer.removeClass(this.element, 'draggable', false);
+        this.renderer.removeClass(element, 'draggable');
+      }
+      if (this.element.querySelector(".modal-dialog")) {
+        this.isModal = true;
+        this.element = this.elementRef.nativeElement.querySelector(".modal-dialog");
+      } else if ( this.element.classList.contains('modal-dialog')) {
+        this.isModal = true;
       }
     }
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     if (this.isDraggable) {
-      this.element = this.handle ? this.handle : this.elementRef.nativeElement;
-      this.renderer.addClass(this.element, 'draggable');
-      if (this.elementRef.nativeElement.querySelector(".modal")) {
+      this.element = this.elementRef.nativeElement;
+      let element = this.handle ? this.handle : this.element;
+      this.renderer.addClass(element, 'draggable');
+      if (this.element.querySelector(".modal-dialog")) {
         this.isModal = true;
-        this.element = this.elementRef.nativeElement.querySelector('.modal');
+        this.element = this.elementRef.nativeElement.querySelector(".modal-dialog");
+      } else if ( this.element.classList.contains('modal-dialog')) {
+        this.isModal = true;
       }
     }
   }
@@ -78,12 +88,11 @@ export default class draggableDirective {
   }
 
   dragStart() {
-    if (this.isModal) {
-      console.log("IsModal");
-    } else {
-      this.oldZIndex = window.getComputedStyle(this.element, null).getPropertyValue("z-index");
+    if (!this.isModal) {
+      this.oldZIndex = window.getComputedStyle(this.element).getPropertyValue("z-index");
     }
-    this.oldPositionStyle = window.getComputedStyle(this.element, null).getPropertyValue("position");
+    this.element.style.cursor = "move";
+    this.oldPositionStyle = window.getComputedStyle(this.element).getPropertyValue("position");
 
     let position = 'relative';
 
@@ -93,9 +102,7 @@ export default class draggableDirective {
 
     this.renderer.setStyle(this.element, 'position', position);
 
-    if (this.isModal) {
-      console.log("IsModal");
-    } else {
+    if (!this.isModal) {
       this.renderer.setStyle(this.element, 'z-index', '99999');
     }
 
@@ -108,9 +115,10 @@ export default class draggableDirective {
   dragEnd() {
     if (this.oldZIndex) {
       this.renderer.setStyle(this.element, 'z-index', this.oldZIndex);
-    } else {
+    } else if (!this.isModal){
       this.element.style.removeProperty('z-index');
     }
+    this.element.style.cursor = "auto";
 
     if (this.isMoving) {
       this.stopped.emit(this.element);
@@ -122,7 +130,7 @@ export default class draggableDirective {
   }
 
   onMouseDown(event) {
-    if (event.button == 2 || (this.handle !== undefined && event.target !== this.handle)) {
+    if (event.button == 2 || (this.handle !== undefined && !this.handle.contains(event.target) )) {
       return;
     }
     this.origPos = this.getPosition(event.clientX, event.clientY);
@@ -138,6 +146,27 @@ export default class draggableDirective {
       this.moveTo(event.clientX, event.clientY);
     }
   }
+
+  setDraggableHandle(handle) {
+    this.handle = handle;
+  }
 }
 
 draggableDirective.parameters = [ElementRef, Renderer2];
+
+export class draggableHandleDirective {
+  static get annotations() {
+    return [
+      new Directive({
+        selector: '[draggable-handle]'
+      })
+    ];
+  }
+
+  constructor(ElementRef, draggableDirective) {
+    this._element = ElementRef.nativeElement;
+    draggableDirective.setDraggableHandle(this._element);
+  }
+}
+
+draggableHandleDirective.parameters = [ElementRef, draggableDirective];

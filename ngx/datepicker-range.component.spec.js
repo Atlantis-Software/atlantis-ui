@@ -61,8 +61,8 @@ describe('datepicker-range', function() {
 
     assert.strictEqual(moment(datepickerStart.textContent).toString(), moment('2004-02-03').toString());
     assert.strictEqual(moment(datepickerEnd.textContent).toString(), moment('2004-02-10').toString());
-    assert.strictEqual(moment(datepicker2Start.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment().startOf('day').toString());
-    assert.strictEqual(moment(datepicker2End.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment().startOf('day').toString());
+    assert.strictEqual(datepicker2Start.textContent, "");
+    assert.strictEqual(datepicker2End.textContent, "");
   }));
 
   it('should render correct value into input datepicker modal', fakeAsync(function() {

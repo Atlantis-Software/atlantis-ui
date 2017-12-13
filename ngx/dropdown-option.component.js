@@ -9,19 +9,11 @@ export default class dropdownOptionComponent {
     return [
       new Component({
         selector: 'dropdown-option',
-        template: `<ng-content></ng-content>`,
-        host: {
-          "(click)": "close()"
-        }
+        template: `<ng-content></ng-content>`
       })
     ];
   }
 
-  ngAfterViewInit() {}
-
-  close() {
-    this.dropdown.closeDropdown();
-  }
 }
 
 dropdownOptionComponent.parameters = [dropdownComponent];

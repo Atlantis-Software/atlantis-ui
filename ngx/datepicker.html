@@ -1,7 +1,10 @@
-<input  type="text" class="form-control datepicker-input" [ngModel]="val" (click)="open($event)" (change)="valueChange($event)" readonly/>
-<modal [fade]="true" orientation="right" [(show)]="visible">
+<div class="datepicker-date-input">
+  <input  type="text" class="form-control datepicker-input" [ngModel]="val" (click)="open($event)" (change)="valueChange($event)" readonly/>
+  <label class="datepicker-label-remove" *ngIf="val" (click)="resetDate()"></label>
+</div>
+<modal orientation="right" [(show)]="visible" [isClosable]="true">
   <modal-header>
-    <div class="row">
+    <div class="row datepicker-text">
       <div class="col-md-12 text-center date-letter">
         <span>{{ before }}</span>
         <span>{{ day }}</span>
@@ -16,7 +19,7 @@
           </div>
         </div>
         <div class="col-md-5">
-            <input type="text" class="form-control" [ngModel]="_val" [ngClass]="{'active': true}" (keyup.enter)="closeAfterCheck($event)">
+            <input type="text" class="form-control" [ngModel]="_val" [ngClass]="{'active': true}" (keyup.enter)="closeAfterCheck($event)" (blur)="closeAfterCheck($event)">
         </div>
         <div class="col-md-5">
           <selectpicker name="selectPredefinedDate" [ngModel]="predefinedDate" (ngModelChange)="onChange($event)">
