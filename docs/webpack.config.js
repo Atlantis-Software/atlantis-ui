@@ -21,10 +21,8 @@ module.exports = {
     modules: ['node_modules'],
     extensions: ['.html', '.less', '.js', '.ts'],
     alias: {
-      "jquery": "jquery/dist/jquery.js",
       "moment": "moment/min/moment-with-locales.js",
       "atlantis-ui-css": path.join(__dirname, "dist", "css", "atlantis-ui.css"),
-      "atlantis-ui-js": path.join(__dirname, "dist", "js", "atlantis-ui.js"),
       "atlantis-ui-ngx": path.join(__dirname, "dist", "js", "ngxAtlantis-ui.js")
     }
   },

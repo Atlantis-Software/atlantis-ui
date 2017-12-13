@@ -32,7 +32,7 @@ export default  class ModalAngularComponent {
     <button type="button" class="btn btn-primary btn-sm"  (click)="showStandard2 = true">
       Default modal
     </button>
-    <modal [(show)]="showStandard2" [fade]="false" [backdrop]="false">
+    <modal [(show)]="showStandard2" [backdrop]="false">
       <modal-header>
         <h3 class="modal-title">Modal Header</h3>
       </modal-header>

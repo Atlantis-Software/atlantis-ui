@@ -16,6 +16,8 @@ import IconComponent from './icon/icon.component.js';
 
 import ModalAngularComponent from './modalAngular/modal.component.js';
 
+import DialogComponent from './dialog/dialog.component.js';
+
 import TableComponent from './table/table.component.js';
 
 import CarouselAngularComponent from './carouselAngular/carousel.component.js';
@@ -60,6 +62,7 @@ export default [
   { path: 'icon', component: IconComponent },
 
   { path: 'modalAngular', component: ModalAngularComponent },
+  { path: 'dialog', component: DialogComponent },
 
   { path: 'table', component: TableComponent },
 

@@ -62,7 +62,8 @@ export default  class DropdownAngularComponent {
       </dropdown-option>
     </dropdown>`;
 
-    this.Display = "Example";
+    this.dropdownIcon = `
+    <dropdown title="Menu A" icon="add">`;
   }
 }
 

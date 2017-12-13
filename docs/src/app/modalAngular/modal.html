@@ -7,14 +7,14 @@
       Default modal
     </h3>
     <p>
-      Per default a modal will have a backdrop and fade. For open a modal we need a boolean variable to send to <code>show</code> parameters
+      Per default a modal will have a backdrop. For open a modal we need a boolean variable to send to <code>show</code> parameters
     </p>
 
     <div>
       <button type="button" class="btn btn-primary btn-sm"  (click)="openStandard()">
         Default modal
       </button>
-      <modal draggable [(show)]="showStandard">
+      <modal [(show)]="showStandard">
         <modal-header>
           <h3 class="modal-title">Modal Header</h3>
         </modal-header>
@@ -40,7 +40,7 @@
       <button type="button" class="btn btn-primary btn-sm"  (click)="showStandard2 = true">
         Modal with option defined
       </button>
-      <modal [(show)]="showStandard2" [fade]="false" [backdrop]="false">
+      <modal [(show)]="showStandard2" [backdrop]="false">
         <modal-header [close]="false">
           <h3 class="modal-title">Modal Header</h3>
         </modal-header>
@@ -114,23 +114,6 @@
         </td>
         <td>
           left
-        </td>
-      </tr>
-      <tr>
-        <td>
-          fade
-        </td>
-        <td>
-          boolean
-        </td>
-        <td>
-          Define if we use animation or not
-        </td>
-        <td>
-          true, false
-        </td>
-        <td>
-          true
         </td>
       </tr>
       <tr>
@@ -253,7 +236,7 @@
       <button type="button" class="btn btn-primary btn-sm" (click)="openBottom()">
         orientation = bottom
       </button>
-      <modal orientation="bottom" [(show)]="showBottom">
+      <modal orientation="bottom" [(show)]="showBottom" [size]="'600px'">
         <modal-header>
           <h3 class="modal-title">Modal Header</h3>
         </modal-header>

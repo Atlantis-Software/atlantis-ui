@@ -25,6 +25,8 @@ import IconComponent from './icon/icon.component.js';
 
 import ModalAngularComponent from './modalAngular/modal.component.js';
 
+import DialogComponent from './dialog/dialog.component.js';
+
 import TableComponent from './table/table.component.js';
 
 import CarouselAngularComponent from './carouselAngular/carousel.component.js';
@@ -123,7 +125,8 @@ AppModule.annotations = [
       GridAngularComponent,
       dragAndDropComponent,
       TreeComponent,
-      DraggableComponent
+      DraggableComponent,
+      DialogComponent
     ],
     imports: [
       BrowserModule,

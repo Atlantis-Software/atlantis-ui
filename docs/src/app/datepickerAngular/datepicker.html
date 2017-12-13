@@ -1,5 +1,5 @@
 <div class="container">
-  
+
   <h3>
     Simple datepicker :
   </h3>
@@ -19,8 +19,8 @@
   <div class="row">
     <div class="col-md-4">
       <label>Code : </label>
-    </div> 
-  </div>   
+    </div>
+  </div>
   <pre>
     {{DatepickerSimpleHtml}}
   </pre>
@@ -28,8 +28,8 @@
   <div class="row">
     <div class="col-md-4">
       <label>Variables : </label>
-    </div> 
-  </div>   
+    </div>
+  </div>
   <pre>
     this.valueDatePicker = "2017-05-01";
   </pre>
@@ -38,7 +38,7 @@
     <p>valueDatePicker is the binded value, if you no put value by default it will be today.</br>
        numberOfMonths is the number of month in the calendar, if you no put value by default it will 3.</p>
   </blockquote>
-   
+
 
 
 
@@ -60,30 +60,33 @@
         <input name="Binding1" class="form-control" type="text" [(ngModel)]="end1"></input>
       </div>
     </div>
-  </div>  
+  </div>
+  <div class="form-group">
+    <label for="rangeDatePicker">Example</label>
+    <datepicker-range [(start)]="start2" [(end)]="end2"></datepicker-range>
+  </div>
   <div class="row">
     <div class="col-md-4">
       <label>Code : </label>
-    </div> 
-  </div>   
+    </div>
+  </div>
   <pre>
     {{DatepickerRangeHtml}}
   </pre>
-  
+
   <div class="row">
     <div class="col-md-4">
       <label>Variables : </label>
-    </div> 
-  </div>   
+    </div>
+  </div>
   <pre>
     this.start1 = "2017-05-01";
     this.end1 = "2017-05-22";
   </pre>
 
   <blockquote>
-    <p>start1 et end1 are the binded value, if you no put value by default it will be today 
+    <p>start1 et end1 are the binded value, if you no put value by default it will be today
       for the 2 dates.</br>
       numberOfMonths is the number of month in the calendar, if you no put value by default it will 3.</p>
   </blockquote>
-</div> 
-
+</div>

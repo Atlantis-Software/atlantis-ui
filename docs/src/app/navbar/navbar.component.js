@@ -10,6 +10,8 @@ export default  class navbarComponent {
   }
   constructor(){
 
+    this.showStandard = false;
+
     this.navbarHtml = `
     <div class="navbar navbar-default">
 
