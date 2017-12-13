@@ -86,6 +86,9 @@ export default class selectpickerComponent {
         if (this.options.first) {
           this.options.first.selected = true;
           this.SelectedValuesText = this.options.first.text;
+          if (this.SelectedValuesText == "") {
+            this.SelectedValuesText = "&nbsp;";
+          }
         } else {
           this.SelectedValuesText = "&nbsp;";
         }
@@ -135,6 +138,9 @@ export default class selectpickerComponent {
   ngAfterViewInit() {
     // Run change detection explicitly after the option.text change by selectpickeroptionComponent
     // because ngAfterViewInit change binding but does not trigger a new round of change detection => error
+    this.options.changes.subscribe(()=> {
+      this.updateOptions();
+    });
     this.cdr.detectChanges();
   }
 
@@ -285,6 +291,7 @@ export default class selectpickerComponent {
     event.preventDefault();
     event.stopPropagation();
   }
+
 }
 
 selectpickerComponent.parameters = [ChangeDetectorRef, IterableDiffers, ElementRef];
