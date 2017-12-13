@@ -1,12 +1,32 @@
 datepicker, datepicker-range {
+  .datepicker-date-input {
+    position: relative;
+  }
   .datepicker-input {
     background-color: @input-bg !important;
     color: @input-color !important;
     border-color: @input-border-color !important;
     cursor: pointer;
   }
+  .datepicker-label-remove {
+    position: absolute;
+    top: 4px;
+    right: 12px;
+    z-index: 2;
+  }
+
+  .datepicker-label-remove:before {
+    color: @input-reset;
+    font-family: "FontAwesome";
+    content: "\f00d";
+    font-size: @font-size-base + 2;
+  }
   .modal-header {
     background-color: @primary;
+    min-height: 224px;
+    .datepicker-text {
+      min-height: 120px;
+    }
     .withoutClose {
       height: 14px;
     }
@@ -15,9 +35,11 @@ datepicker, datepicker-range {
       text-transform: uppercase;
       font-size: @font-size-h3;
       font-weight: bold;
-      line-height: 0px;
       display: inline-block;
       width: 100%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
     .date-letter span:nth-child(2) {
       color: @primary-text-color;
