@@ -1,0 +1,172 @@
+<div class="container">
+  <h2>
+    Tree
+  </h2>
+  <h3>
+    Basic Example with 2 levels and default parameters:
+  </h3>
+  <div class="row container-fluid form-group">
+    <div class="col-md-4">
+      <tree [nodes]="nodesBasic"></tree>
+    </div>
+  </div>
+  <br>
+  <pre>
+    {{treeHtml}}
+  </pre>
+  <pre>
+    {{treeNodes}}
+  </pre>
+
+  <h3>
+    Example with specific parameters on nodes:
+  </h3>
+  <div class="row container-fluid">
+    <div class="col-md-4">
+      <tree [nodes]="nodesWithParameters"></tree>
+    </div>
+  </div>
+  <br>
+  <pre>
+    {{treeNodesWithParameters}}
+  </pre>
+  <h3>
+    Warning: Experimental
+  </h3>
+  <h3>
+    Sortable tree
+  </h3>
+  <h4>
+    Example with sortable node into same level
+  </h4>
+  <p>
+    With <code>isSortable</code> attribute we can sort into the tree in the same level
+  </p>
+  <div class="row container-fluid">
+    <div class="col-md-4">
+      <tree [nodes]="nodesSortable" [isSortable]="true"></tree>
+    </div>
+  </div>
+  <br>
+  <pre>
+    {{treeHtml2}}
+  </pre>
+
+  <h4>
+    Example with nested sortable
+  </h4>
+  <p>
+    Just need to add <code>nestedSortable</code> attribute for create a tree with nested sortable
+  </p>
+  <div class="row container-fluid">
+    <div class="col-md-4">
+      <tree [nodes]="nodesSortableNested" [isSortable]="true" [nestedSortable]="true"></tree>
+    </div>
+  </div>
+  <br>
+  <pre>
+    {{treeHtml3}}
+  </pre>
+  <h3>
+    Nodes in js script:
+  </h3>
+  <h4>
+    Different attribute
+  </h4>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>
+          attribute
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Description
+        </th>
+        <th class="col-md-2">
+          Default
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          label
+        </td>
+        <td>
+          string
+        </td>
+        <td>
+          It's represent the content of a node for shown in tree
+        </td>
+        <td>
+          Nothing
+        </td>
+      </tr>
+      <tr>
+        <td>
+          selectable
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          Optional; Allow to deactivate the possibility to select a node
+        </td>
+        <td>
+          true
+        </td>
+      </tr>
+      <tr>
+        <td>
+          expanded
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          Optional; Define if the node is expanded or not;
+        </td>
+        <td>
+          false
+        </td>
+      </tr>
+      <tr>
+        <td>
+          children
+        </td>
+        <td>
+          Array of nodes
+        </td>
+        <td>
+          Require if we want a sub-tree, all object in children have same syntax that standard node
+        </td>
+        <td>
+          Nothing
+        </td>
+      </tr>
+      <tr>
+        <td>
+          disabled
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          Define if a node is disabled or not, that causes to desactive selection and possibility to expand the node
+        </td>
+        <td>
+          false
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h4>
+    Example of all attribute
+  </h4>
+  <pre>
+    {{nodeAttribute}}
+  </pre>
+</div>

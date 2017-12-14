@@ -1,11 +1,11 @@
-.slidepicker, slidepicker {
-
-
+slidepicker {
+  position: relative;
+  display: block;
   //slidepicker vertical
   .slidepicker-track {
-    background: #fbfbfb;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    background: @slidepicker-track-bg;
+    border: 1px solid @slidepicker-track-border-color;
+    border-radius: @slidepicker-border-radius;
     float: left;
     height: 8px;
     position: absolute;
@@ -13,15 +13,14 @@
   }
 
   .slidepicker-handle {
-      display: block;
-      position: absolute;
-      top: -5px;
-      left : 33px;
-      background: blue;
-      cursor: pointer;
-      height: 25px;
-      margin: -4px 0 0 -6px;
-      width: 10px;
+    display: block;
+    position: absolute;
+    top: -5px;
+    background: @slidepicker-handle-bg;
+    cursor: pointer;
+    height: 25px;
+    margin: -4px 0 0 -6px;
+    width: 10px;
   }
 
   .slidepicker-label {
@@ -29,7 +28,7 @@
     padding : 0px;
     margin-top : 20px; //Position label in bottom tracker
 
-    li{
+    slidepicker-option{
 
       float : left;
       display: block;
@@ -37,7 +36,7 @@
       margin-right: 28px;
       &.active {
         a{
-          color: blue;
+          color: @slidepicker-label-active;
           font-weight: bold;
         }
       }
@@ -45,7 +44,7 @@
         display : block;
         clear : both;
         font-weight: normal;
-        color : #000;
+        color : @slidepicker-label;
         white-space: nowrap;
         cursor: pointer;
         text-decoration: none;
@@ -58,15 +57,14 @@
     width: 14px;
 
     .slidepicker-track {
-        height: 100%;
-        width: 8px;
+      height: 100%;
+      width: @slidepicker-track-width;
     }
     .slidepicker-handle {
-        //Position of handler, center with tracker
-        left: -4px;
-        top: 33px;
-        height: 10px;
-        width: 25px;
+      //Position of handler, center with tracker
+      left: -4px;
+      height: 10px;
+      width: 25px;
     }
     .slidepicker-label {
       margin : 0px;
@@ -74,21 +72,44 @@
 
       //adapt li with different input sizing
       //use padding for no collapsing margins
-      li {
+      slidepicker-option {
         float: none;
         margin-left : 0px;
         margin-right: 0px;
-        padding-top: 27px;
-        padding-bottom: 27px;
-      }
-      &.sm li{
-        padding-top: 25px;
-        padding-bottom: 25px;
-      }
-      &.lg li{
-        padding-top : 33px;
-        padding-bottom : 33px;
+        padding-top: @slidepicker-option-padding;
+        padding-bottom: @slidepicker-option-padding;
       }
     }
+
+    &.slidepicker-sm {
+      .slidepicker-track {
+        width: @slidepicker-track-width - 2;
+      }
+      slidepicker-option {
+        padding-top: @slidepicker-option-paddin-sm;
+        padding-bottom: @slidepicker-option-paddin-sm;
+        a {
+          font-size: @font-size-small;
+        }
+      }
+    }
+
+    &.slidepicker-lg {
+      .slidepicker-track {
+        width: @slidepicker-track-width + 2;
+        .slidepicker-handle {
+          left: -2px;
+        }
+      }
+      slidepicker-option {
+        padding-top : @slidepicker-option-paddin-lg;
+        padding-bottom : @slidepicker-option-paddin-lg;
+        a {
+          font-size: @font-size-large;
+        }
+      }
+    }
+
   }
+
 }

@@ -16,7 +16,7 @@ export default class focusDirective {
   }
 
   ngAfterViewInit(){
-    this.elementRef.nativeElement.focus()
+    this.elementRef.nativeElement.focus();
   }
 }
 

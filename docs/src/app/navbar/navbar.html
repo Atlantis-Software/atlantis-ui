@@ -1,123 +1,555 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a (click)="Display = 'Example'">
-            Example
-          </a>
-        </li>
-        <li>
-          <a (click)="Display = 'Api'">
-            How to use and api
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div [ngSwitch]= "Display">
-
-  <div class="container" *ngSwitchCase="'Example'">
-
-    <div class="row">
-      <label for="navbar1">Example</label>
-      <div class="navbar navbar-default">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand">Test</a>
-          </div>
-
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  Menu A
-                  <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a>Sub-menu A</a></li>
-                  <li><a>Sub-menu B</a></li>
-                  <li><a>Sub-menu C</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a>Sub-menu separated A</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a>Sub-menu separated B</a></li>
-                </ul>
-              </li>
-              <li><a>Menu B</a></li>
-              <li class="dropdown disabled">
-                <a class="dropdown-toggle disabled" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  Menu C
-                  <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="">Sub-menu A</a></li>
-                </ul>
-              </li>
-              <li><a>Menu D</a></li>
-              <li class="disabled"><a>Menu E</a></li>
-            </ul>
-          </div>
-          <!-- /.navbar-collapse -->
+<div class="container">
+  <h2>
+    Navbar
+  </h2>
+  <div class="row container-fluid">
+    <h3>
+      Default example :
+    </h3>
+    <p>
+      it's an example with all possibilities, see further for more precision.
+    </p>
+    <div class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand">Test</a>
         </div>
-        <!-- /.container-fluid -->
+
+        <div class="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <dropdown title="Menu A" icon="share">
+                <dropdown-option><a href="#/navbar">Sub-menu A</a></dropdown-option>
+                <dropdown-option><a href="#/navbar">Sub-menu B</a></dropdown-option>
+                <dropdown-divider></dropdown-divider>
+                <dropdown-option><a href="#/navbar">Sub-menu separated A</a></dropdown-option>
+                <dropdown-header>Menu</dropdown-header>
+                <dropdown-option><a href="#/navbar">Sub-menu separated B</a></dropdown-option>
+              </dropdown>
+            </li>
+            <li><a href="#/navbar">Menu B</a></li>
+            <li class="disabled">
+              <dropdown title="Menu A">
+                <dropdown-option><a href="#/navbar">Sub-menu A</a></dropdown-option>
+              </dropdown>
+            </li>
+            <li><a href="#/navbar">Menu D</a></li>
+            <li class="disabled"><a href="#/navbar">Menu E</a></li>
+          </ul>
+          <form class="navbar-form navbar-left">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Action">
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <button type="button" class="btn btn-default navbar-btn">Action A</button>
+            <p class="navbar-text">Test text</p>
+          </ul>
+        </div>
       </div>
     </div>
+  </div>
+  <pre>
+    {{navbarHtml}}
+  </pre>
 
+  <h3>
+    Basic navbar
+  </h3>
+  <p>
+    Example with a basic menu with the brand and 5 menu
+  </p>
+  <div class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand">Test</a>
+      </div>
+
+      <div class="navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="#/navbar">Menu A</a></li>
+          <li><a href="#/navbar">Menu B</a></li>
+          <li class="disabled"><a href="#/navbar">Menu C</a></li>
+          <li><a href="#/navbar">Menu D</a></li>
+          <li class="active"><a href="#/navbar">Menu E</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <br>
+  <pre>
+    {{navbarBasic}}
+  </pre>
+
+  <h3>
+    Forms into navbar
+  </h3>
+  <p>
+    Just place a form content with .navbar-form.
+  </p>
+  <div class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="#/navbar" class="navbar-brand">Company</a>
+      </div>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Action">
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+      </form>
+    </div>
+  </div>
+  <br>
+  <pre>
+    {{navbarForms}}
+  </pre>
+
+  <h3>
+    Button in navbar
+  </h3>
+  <p>
+    We can add a button directly to the navbar. We just need to add the <code>.navbar-btn</code> class to button not in a form.
+  </p>
+  <div class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="#/navbar" class="navbar-brand">Company</a>
+      </div>
+      <button type="button" class="btn btn-default navbar-btn">Register</button>
+    </div>
+  </div>
+  <br>
+  <pre>
+    {{navbarButton}}
+  </pre>
+
+  <h3>
+    Text in navbar
+  </h3>
+  <p>
+    Use a <code>p</code> tag with <code>.navbar-text</code> class
+  </p>
+  <div class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="#/navbar" class="navbar-brand">Company</a>
+      </div>
+      <p class="navbar-text">Test text</p>
+    </div>
+  </div>
+  <br>
+  <pre>
+    {{navbarText}}
+  </pre>
+
+  <h3>
+    Dropdown in navbar
+  </h3>
+  <p>
+    We can use a dropdown directly in a navbar we just need to add the component dropdown into an li.
+  </p>
+  <div class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand">Test</a>
+      </div>
+
+      <div class="navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li>
+            <dropdown title="Menu A">
+              <dropdown-option><a href="#/navbar">Sub-menu A</a></dropdown-option>
+              <dropdown-option><a href="#/navbar">Sub-menu B</a></dropdown-option>
+              <dropdown-divider></dropdown-divider>
+              <dropdown-option><a href="#/navbar">Sub-menu separated A</a></dropdown-option>
+              <dropdown-header>Menu</dropdown-header>
+              <dropdown-option><a href="#/navbar">Sub-menu separated B</a></dropdown-option>
+            </dropdown>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <br>
+  <pre>
+    {{navbarDropdown}}
+  </pre>
+
+  <h3>
+    Alignment
+  </h3>
+  <p>
+    We can align a form, button, link or text with <code>.navbar-left</code> or <code>.navbar-right</code> classes.
+    That allow to align correctly the content.
+  </p>
+  <div class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="#/navbar" class="navbar-brand">Company</a>
+      </div>
+      <div class="navbar-collapse">
+        <p class="navbar-text navbar-right">Text to right</p>
+      </div>
+    </div>
   </div>
 
-  <div class="container" *ngSwitchCase="'Api'">
-    <h3>
-      For an navbar use :
-    </h3>
-    <pre>
-      {{navbarHtml}}
-    </pre>
-    <h4>
-      Specification :
-    </h4>
-    <p>
-      We can use a dropdown menu directly in the navbar, like any dropdown
-    </p>
-    <p>
-      Don't forget to use .navbar class
-    </p>
-    <h4>
-      Class css :
-    </h4>
-    <ul>
-      <li>
-        .navbar-default : Use the classic color for navbar
-      </li>
-      <li>
-        .navbar-header : Define the navbar header, use for an 'hamburger' menu on small screen and for display a link to the index.
-      </li>
-      <li>
-        .collapse, .navbar-collapse : Use for hide the menu on small screen, to use withe .navbar-header
-      </li>
-      <li>
-        .disabled : disable a link.
-      </li>
-    </ul>
+  <h3>
+    Inverted navbar
+  </h3>
+  <p>
+    We can inverse the classic color of a navbar by adding <code>.navbar-inverse</code>
+  </p>
+  <div class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand">Test</a>
+      </div>
+      <div class="navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="#/navbar">Menu A</a></li>
+          <li><a href="#/navbar">Menu B</a></li>
+          <li class="disabled"><a href="#/navbar">Menu C</a></li>
+          <li><a href="#/navbar">Menu D</a></li>
+          <li class="active"><a href="#/navbar">Menu E</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
+  <br>
+  <pre>
+    {{navbarInverse}}
+  </pre>
+  <h3>
+    All CSS class we can use into navbar
+  </h3>
+  <h4>
+    Class for first div or nav tag :
+  </h4>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th class="col-md-2">
+          Class
+        </th>
+        <th class="col-md-1">
+          tag
+        </th>
+        <th class="col-md-5">
+          Description
+        </th>
+        <th class="col-md-4">
+          Info
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          .navbar
+        </td>
+        <td>
+          first div, nav
+        </td>
+        <td>
+          Define the navbar
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          .navbar-default
+        </td>
+        <td>
+          first div, nav
+        </td>
+        <td>
+          Define the classic color for navbar
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          .navbar-inverse
+        </td>
+        <td>
+          first div, nav
+        </td>
+        <td>
+          Define inverse color for navbar
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          .navbar-fixed-top
+        </td>
+        <td>
+          first div, nav
+        </td>
+        <td>
+          Fixed the navbar to top
+        </td>
+        <td>
+          Include a div with .container into navbar.<br>
+          Warning : Add padding to body, to avoid that navbar overlay other content. (by default, navbar as 50px height)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          .navbar-fixed-bottom
+        </td>
+        <td>
+          first div, nav
+        </td>
+        <td>
+          Fixed the navbar to bottom
+        </td>
+        <td>
+          Include a div with .container into navbar.<br>
+          Warning : Add padding to body, to avoid that navbar overlay other content. (by default, navbar as 50px height)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          .navbar-static-top
+        </td>
+        <td>
+          first div, nav
+        </td>
+        <td>
+          Fixed the navbar to top
+        </td>
+        <td>
+          Include a div with .container into navbar.<br>
+          Warning : Don't need to add padding to body
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h4>
+    Class specific to header :
+  </h4>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th class="col-md-2">
+          Class
+        </th>
+        <th class="col-md-1">
+          tag
+        </th>
+        <th class="col-md-5">
+          Description
+        </th>
+        <th class="col-md-4">
+          Info
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          .navbar-header
+        </td>
+        <td>
+          div after nav
+        </td>
+        <td>
+          Define the navbar-header
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          .navbar-toggle
+        </td>
+        <td>
+          button
+        </td>
+        <td>
+          Use for small screen, to display navbar like a menu
+        </td>
+        <td>
+          Warning : Don't forget to add data-toggle="collapse" and correct data-target
+        </td>
+      </tr>
+      <tr>
+        <td>
+          .icon-bar
+        </td>
+        <td>
+          span
+        </td>
+        <td>
+          Show a bar
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          .navbar-brand
+        </td>
+        <td>
+          a
+        </td>
+        <td>
+          Display the content with more visibility. Usefull for a home link
+        </td>
+        <td>
+          We can use a image with a tag img into a with .navbar-brand class
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h4>
+    Class specific to main body
+  </h4>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th class="col-md-2">
+          Class
+        </th>
+        <th class="col-md-1">
+          tag
+        </th>
+        <th class="col-md-5">
+          Description
+        </th>
+        <th class="col-md-4">
+          Info
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          .navbar-collapse
+        </td>
+        <td>
+          div
+        </td>
+        <td>
+          Define the navbar to be collapse if we are in small screen
+        </td>
+        <td>
+          Warning : Don't forget to add .collapse class to the div
+        </td>
+      </tr>
+      <tr>
+        <td>
+          .navbar-nav
+        </td>
+        <td>
+          ul
+        </td>
+        <td>
+          Define the link into navbar
+        </td>
+        <td>
 
+        </td>
+      </tr>
+      <tr>
+        <td>
+          .active
+        </td>
+        <td>
+          li
+        </td>
+        <td>
+          Show the link active, also to show the current status
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          .disabled
+        </td>
+        <td>
+          li, dropdown
+        </td>
+        <td>
+          Desactive a link
+        </td>
+        <td>
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          .dropdown
+        </td>
+        <td>
+          li
+        </td>
+        <td>
+          Allow to use dropdown into navbar, see dropdown docs
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          .navbar-form
+        </td>
+        <td>
+          form
+        </td>
+        <td>
+          Allow to use form into navbar.
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          .navbar-left
+        </td>
+        <td>
+          ul, form, p, button
+        </td>
+        <td>
+          Align the content to left.
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          .navbar-right
+        </td>
+        <td>
+          ul, form, p, button
+        </td>
+        <td>
+          Align the content to right
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          .navbar-btn
+        </td>
+        <td>
+          button
+        </td>
+        <td>
+          Vertically center button into navbar
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          .navbar-text
+        </td>
+        <td>
+          p
+        </td>
+        <td>
+          Allow to use text into navbar
+        </td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 </div>

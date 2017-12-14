@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="row container-fluid">
+    <h3>
+      Example :
+    </h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resultat of result">
+          <td>
+            {{resultat}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group input-group">
+        <input name="Binding1" class="form-control" type="text" [(ngModel)]="page" disabled></input>
+        <span class="input-group-addon"></span>
+        <input name="Binding1" class="form-control" type="text" [(ngModel)]="pages"></input>
+      </div>
+    </div>
+  </div>
+  <pre>
+    {{PaginationHtml}}
+  </pre>
+
+  <h3>
+  Different size :
+  </h3>
+  <div class="row">
+
+    <div class="col-md-6">
+      <pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)' class="pagination-sm"></pagination>
+    </div>
+    <div class="col-md-6">
+      <pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)' class="pagination-lg"></pagination>
+    </div>
+
+  </div>
+  <pre>
+    {{paginationSize}}
+  </pre>
+  <h3>
+    Precision :
+  </h3>
+  <p>
+    We can define different size for the widget. For that just add a class to pagination tag like pagination-sm or pagination-lg
+  </p>
+  <h3>
+    Settings :
+  </h3>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>
+          Setting
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          page
+        </td>
+        <td>
+          number
+        </td>
+        <td>
+          Current page
+        </td>
+      </tr>
+      <tr>
+        <td>
+          pages
+        </td>
+        <td>
+          number
+        </td>
+        <td>
+          Total pages
+        </td>
+      </tr>
+      <tr>
+        <td>
+          pagechange
+        </td>
+        <td>
+          string
+        </td>
+        <td>
+          An expression
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

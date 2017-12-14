@@ -16,7 +16,8 @@
     position: relative;
     display: block;
 
-    > a {
+    > a,
+    > dropdown > a {
       position: relative;
       display: block;
       padding: @nav-link-padding;
@@ -28,7 +29,8 @@
     }
 
     // Disabled state sets text to gray and nukes hover/tab effects
-    &.disabled > a {
+    &.disabled > a,
+    &.disabled > dropdown > a {
       color: @nav-disabled-link-color;
 
       &:hover,
@@ -42,7 +44,8 @@
   }
 
   // Open dropdowns
-  .open > a {
+  .open > a,
+  .open > dropdown > a {
     &,
     &:hover,
     &:focus {

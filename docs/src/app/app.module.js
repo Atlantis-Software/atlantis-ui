@@ -3,62 +3,138 @@ import { RouterModule } from '@angular/router';
 import AppComponent from './app.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-
+// import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/common';
 
 import HomeComponent from './home/home.component.js';
-import DatepickerComponent from './datepicker/datepicker.component.js';
-import PaginationComponent from './pagination/pagination.component.js';
-import SelectpickerComponent from './selectpicker/selectpicker.component.js';
-import SlidepickerComponent from './slidepicker/slidepicker.component.js';
+
+import DatepickerAngularComponent from './datepickerAngular/datepicker.component';
+
+import PaginationAngularComponent from './paginationAngular/pagination.component.js';
+
+import SelectpickerAngularComponent from './selectpickerAngular/selectpicker.component.js';
+
+import SlidepickerAngularComponent from './slidepickerAngular/slidepicker.component.js';
+
 import navbarComponent from './navbar/navbar.component.js';
-import DropdownComponent from './dropdown/dropdown.component.js';
-import InputComponent from './input/input.component.js';
+
+import DropdownAngularComponent from './dropdownAngular/dropdown.component.js';
+
 import ButtonComponent from './button/button.component.js';
 import IconComponent from './icon/icon.component.js';
-import ModalComponent from './modal/modal.component.js';
-import TableComponent from './table/table.component.js';
-import CarouselComponent from './carousel/carousel.component.js';
-import PopoverComponent from './popover/popover.component.js';
-import CollapseComponent from './collapse/collapse.component.js';
-import InputgroupComponent from './inputgroup/inputgroup.component.js';
 
+import ModalAngularComponent from './modalAngular/modal.component.js';
+
+import DialogComponent from './dialog/dialog.component.js';
+
+import TableComponent from './table/table.component.js';
+
+import CarouselAngularComponent from './carouselAngular/carousel.component.js';
+
+import PopoverComponent from './popover/popover.component.js';
+import TooltipComponent from './tooltip/tooltip.component.js';
+
+import TreeComponent from './tree/tree.component.js';
+
+import AccordionComponent from './accordion/accordion.component.js';
+
+import ProgressBarComponent from './progress-bar/progress-bar.component.js';
+
+import InputgroupComponent from './inputgroup/inputgroup.component.js';
+import GridComponent from './grid/grid.component.js';
+import GridAngularComponent from './gridAngular/grid.component.js';
+
+import ButtongroupsComponent from './buttongroups/buttongroups.component.js';
+import FormsComponent from './forms/forms.component.js';
+
+import dragAndDropComponent from './dragAndDrop/dragAndDrop.component.js';
+
+import DraggableComponent from './draggable/draggable.component.js';
 
 import { ngxAtlUiModule } from 'atlantis-ui-ngx';
-console.log(ngxAtlUiModule)
+
 
 export var AppModule = function() {};
 
 import route from './app.routes';
+
+var types = [
+  {
+    type: "date",
+    alignment: "right",
+    vertical_alignment: "middle",
+    pipes: [DatePipe],
+    optionsPipe: ['shortDate'],
+    transformation: function(val) {
+      if (moment(val).isValid()) {
+        return moment(val).toString();
+      } else {
+        return "ERR: invalid value";
+      }
+    }
+  },
+  {
+    type: 'number',
+    transformation: function(val) {
+      if (!isNaN(val)) {
+        return val;
+      } else {
+        return "ERR: invalid value";
+      }
+    }
+  },
+  {
+    type: 'boolean',
+    transformation: function(val) {
+      if (typeof val === void 0 || val === null) {
+        return val;
+      }
+      if (!val || val == '0' || val == 'false') {
+        return 0;
+      }
+      return 1;
+    }
+  },
+];
+
 
 AppModule.annotations = [
   new NgModule({
     declarations: [
       AppComponent,
       HomeComponent,
-      DatepickerComponent,
-      PaginationComponent,
-      SelectpickerComponent,
-      SlidepickerComponent,
+      DatepickerAngularComponent,
+      PaginationAngularComponent,
+      SelectpickerAngularComponent,
+      SlidepickerAngularComponent,
       navbarComponent,
-      DropdownComponent,
-      InputComponent,
+      DropdownAngularComponent,
       ButtonComponent,
       IconComponent,
-      ModalComponent,
+      ModalAngularComponent,
       TableComponent,
-      CarouselComponent,
+      CarouselAngularComponent,
       PopoverComponent,
-      CollapseComponent,
-      InputgroupComponent
+      TooltipComponent,
+      AccordionComponent,
+      InputgroupComponent,
+      GridComponent,
+      ButtongroupsComponent,
+      FormsComponent,
+      ProgressBarComponent,
+      GridAngularComponent,
+      dragAndDropComponent,
+      TreeComponent,
+      DraggableComponent,
+      DialogComponent
     ],
     imports: [
       BrowserModule,
       FormsModule,
       RouterModule.forRoot(route),
-      ngxAtlUiModule
+      ngxAtlUiModule.forRoot(types)
     ],
     bootstrap: [ AppComponent ],
-    providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}]
+    providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, DatePipe]
   })
 ];

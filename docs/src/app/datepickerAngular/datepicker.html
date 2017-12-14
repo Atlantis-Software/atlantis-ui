@@ -1,0 +1,92 @@
+<div class="container">
+
+  <h3>
+    Simple datepicker :
+  </h3>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="rangeDatePicker">Example</label>
+        <datepicker [(ngModel)]="valueDatePicker" [numberOfMonths]="5"></datepicker>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="Binding1">Binding</label>
+      <input name="Binding1" class="form-control" type="text" [(ngModel)]="valueDatePicker"></input>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <label>Code : </label>
+    </div>
+  </div>
+  <pre>
+    {{DatepickerSimpleHtml}}
+  </pre>
+
+  <div class="row">
+    <div class="col-md-4">
+      <label>Variables : </label>
+    </div>
+  </div>
+  <pre>
+    this.valueDatePicker = "2017-05-01";
+  </pre>
+
+  <blockquote>
+    <p>valueDatePicker is the binded value, if you no put value by default it will be today.</br>
+       numberOfMonths is the number of month in the calendar, if you no put value by default it will 3.</p>
+  </blockquote>
+
+
+
+
+  <h3>
+    Datepicker range:
+  </h3>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="rangeDatePicker">Example</label>
+        <datepicker-range [(start)]="start1" [(end)]="end1"></datepicker-range>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="Binding1">Binding</label>
+      <div class="form-group input-group">
+        <input name="Binding1" class="form-control" type="text" [(ngModel)]="start1"></input>
+        <span class="input-group-addon"></span>
+        <input name="Binding1" class="form-control" type="text" [(ngModel)]="end1"></input>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="rangeDatePicker">Example</label>
+    <datepicker-range [(start)]="start2" [(end)]="end2"></datepicker-range>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Code : </label>
+    </div>
+  </div>
+  <pre>
+    {{DatepickerRangeHtml}}
+  </pre>
+
+  <div class="row">
+    <div class="col-md-4">
+      <label>Variables : </label>
+    </div>
+  </div>
+  <pre>
+    this.start1 = "2017-05-01";
+    this.end1 = "2017-05-22";
+  </pre>
+
+  <blockquote>
+    <p>start1 et end1 are the binded value, if you no put value by default it will be today
+      for the 2 dates.</br>
+      numberOfMonths is the number of month in the calendar, if you no put value by default it will 3.</p>
+  </blockquote>
+</div>

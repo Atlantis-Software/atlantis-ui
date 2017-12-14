@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 
-table {
+table, grid {
   background-color: @table-bg;
 }
 caption {
@@ -12,7 +12,7 @@ caption {
   color: @text-muted;
   text-align: left;
 }
-th {
+th, .gridHead {
   text-align: left;
 }
 
@@ -26,10 +26,16 @@ th {
   // Cells
   > thead,
   > tbody,
-  > tfoot {
-    > tr {
+  > tfoot,
+  > .gridHeader,
+  > .gridBody,
+  > .gridFooter {
+    > tr,
+    > .gridRow {
       > th,
-      > td {
+      > td,
+      > .gridCell,
+      > .gridHead {
         padding: @table-cell-padding;
         line-height: @line-height-base;
         vertical-align: top;
@@ -38,7 +44,8 @@ th {
     }
   }
   // Bottom align for column headings
-  > thead > tr > th {
+  > thead > tr > th,
+  > .gridHeader > .gridRow > .gridHead {
     vertical-align: bottom;
     border-bottom: 2px solid @table-border-color;
     background: linear-gradient(lighten(@table-header-bg, 25%), @table-header-bg);
@@ -47,16 +54,21 @@ th {
   // Remove top border from thead by default
   > caption + thead,
   > colgroup + thead,
-  > thead:first-child {
-    > tr:first-child {
+  > thead:first-child,
+  > .gridHeader:first-child {
+    > tr:first-child,
+    > .gridRow:first-child {
       > th,
-      > td {
+      > td,
+      > .gridCell,
+      > .gridHead {
         border-top: 0;
       }
     }
   }
   // Account for multiple tbody instances
-  > tbody + tbody {
+  > tbody + tbody,
+  > .gridBody + .gridBody {
     border-top: 2px solid @table-border-color;
   }
 
@@ -72,10 +84,16 @@ th {
 .table-condensed {
   > thead,
   > tbody,
-  > tfoot {
-    > tr {
+  > tfoot,
+  > .gridHeader,
+  > .gridBody,
+  > .gridFooter {
+    > tr,
+    > .gridRow {
       > th,
-      > td {
+      > td,
+      > .gridCell,
+      > .gridHead {
         padding: @table-condensed-cell-padding;
       }
     }
@@ -91,17 +109,26 @@ th {
   border: 1px solid @table-border-color;
   > thead,
   > tbody,
-  > tfoot {
-    > tr {
+  > tfoot,
+  > .gridHeader,
+  > .gridBody,
+  > .gridFooter {
+    > tr,
+    > .gridRow {
       > th,
-      > td {
+      > td,
+      > .gridCell,
+      > .gridHead {
         border: 1px solid @table-border-color;
       }
     }
   }
-  > thead > tr {
+  > thead > tr,
+  > gridBody > .gridRow {
     > th,
-    > td {
+    > td,
+    > .gridCell,
+    > .gridHead {
       border-bottom-width: 2px;
     }
   }
@@ -113,7 +140,8 @@ th {
 // Default zebra-stripe styles (alternating gray and transparent backgrounds)
 
 .table-striped {
-  > tbody > tr:nth-of-type(odd) {
+  > tbody > tr:nth-of-type(odd),
+  > .gridBody > .gridRow:nth-of-type(odd) {
     background-color: @table-bg-accent;
   }
 }
@@ -124,7 +152,8 @@ th {
 // Placed here since it has to come after the potential zebra striping
 
 .table-hover {
-  > tbody > tr:hover {
+  > tbody > tr:hover,
+  > .gridBody > .gridRow:hover{
     background: @table-bg-hover;
     color: @table-color-hover;
     a {
@@ -139,14 +168,16 @@ th {
 //
 // Reset default table behavior
 
-table col[class*="col-"] {
+table col[class*="col-"], grid col[class*="col-"] {
   position: static; // Prevent border hiding in Firefox and IE9-11 (see https://github.com/twbs/bootstrap/issues/11623)
   float: none;
   display: table-column;
 }
-table {
+table, grid {
   td,
-  th {
+  th,
+  .gridCell,
+  .gridHead {
     &[class*="col-"] {
       position: static; // Prevent border hiding in Firefox and IE9-11 (see https://github.com/twbs/bootstrap/issues/11623)
       float: none;
@@ -193,10 +224,16 @@ table {
       // Ensure the content doesn't wrap
       > thead,
       > tbody,
-      > tfoot {
-        > tr {
+      > tfoot,
+      > .gridHeader,
+      > .gridBody,
+      > .gridFooter {
+        > tr,
+        > .gridRow {
           > th,
-          > td {
+          > td,
+          > .gridCell,
+          > .gridHead {
             white-space: nowrap;
           }
         }
@@ -210,14 +247,22 @@ table {
       // Nuke the appropriate borders so that the parent can handle them
       > thead,
       > tbody,
-      > tfoot {
-        > tr {
+      > tfoot,
+      > .gridHeader,
+      > .gridBody,
+      > .gridFooter {
+        > tr,
+        > .gridRow {
           > th:first-child,
-          > td:first-child {
+          > td:first-child,
+          > .gridCell:first-child,
+          > .gridHead:first-child {
             border-left: 0;
           }
           > th:last-child,
-          > td:last-child {
+          > td:last-child,
+          > .gridCell:first-child,
+          > .gridHead:first-line {
             border-right: 0;
           }
         }
@@ -227,10 +272,15 @@ table {
       // chances are there will be only one `tr` in a `thead` and that would
       // remove the border altogether.
       > tbody,
-      > tfoot {
-        > tr:last-child {
+      > tfoot,
+      > .gridBody,
+      > .gridFooter {
+        > tr:last-child,
+        > .gridRow:last-child{
           > th,
-          > td {
+          > td,
+          > .gridCell,
+          > .gridHead {
             border-bottom: 0;
           }
         }

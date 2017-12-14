@@ -1,0 +1,43 @@
+<div class="container">
+  <h2>
+    dialog
+  </h2>
+  <div class="row">
+    <h3>
+      Default dialog
+    </h3>
+    <p>
+      For open a dialog we need a boolean variable to send to <code>show</code> parameters
+    </p>
+
+    <div>
+      <button type="button" class="btn btn-primary btn-sm"  (click)="showStandard = true">
+        Default dialog
+      </button>
+      <dlg [(show)]="showStandard" [options]="options">
+        <p>Some text in the dialog.</p>
+      </dlg>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary btn-sm"  (click)="showStandard2 = true">
+        Default dialog
+      </button>
+      <dlg [(show)]="showStandard2">
+        <p>Some text in the dialog.</p>
+      </dlg>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary btn-sm"  (click)="showStandard3 = true">
+        Default dialog
+      </button>
+      <dlg [(show)]="showStandard3">
+        <p>Some text in the dialog.</p>
+      </dlg>
+    </div>
+    <br>
+    <pre>
+      {{ dialogHtml }}
+    </pre>
+  </div>
+
+</div>

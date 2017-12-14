@@ -1,224 +1,244 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+<div class="container">
+  <div class="row container-fluid">
+    <h3>Icons available : </h3>
+    <div class="row">
+      <div class="col-md-3">
+        <i class="icon icon-add"></i> add
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-delete"></i> delete
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-close"></i> close
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-edit"></i> edit
+      </div>
     </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a (click)="Display = 'Example'">
-            Example
-          </a>
-        </li>
-        <li>
-          <a (click)="Display = 'Api'">
-            How to use
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div [ngSwitch]= "Display">
-
-  <div class="container" *ngSwitchCase="'Example'">
 
     <div class="row">
-
-      <div class="row">
-        <div class="col-md-3">
-          <i class="icon icon-add"></i> add
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-delete"></i> delete
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-close"></i> close
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-edit"></i> edit
-        </div>
+      <div class="col-md-3">
+        <i class="icon icon-search"></i> search
       </div>
-
-      <div class="row">
-        <div class="col-md-3">
-          <i class="icon icon-search"></i> search
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-about"></i> about
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-import"></i> import
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-export"></i> export
-        </div>
+      <div class="col-md-3">
+        <i class="icon icon-about"></i> about
       </div>
-
-      <div class="row">
-        <div class="col-md-3">
-          <i class="icon icon-save"></i> save
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-print"></i> print
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-parameter"></i> parameter
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-info"></i> info
-        </div>
+      <div class="col-md-3">
+        <i class="icon icon-import"></i> import
       </div>
-
-      <div class="row">
-        <div class="col-md-3">
-          <i class="icon icon-question"></i> question
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-link"></i> link
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-next"></i> next
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-previous"></i> previous
-        </div>
+      <div class="col-md-3">
+        <i class="icon icon-export"></i> export
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col-md-3">
-          <i class="icon icon-exchange"></i> exchange
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-warning"></i> warning
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-copy"></i> copy
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-star"></i> star
-        </div>
+    <div class="row">
+      <div class="col-md-3">
+        <i class="icon icon-save"></i> save
       </div>
-
-      <div class="row">
-        <div class="col-md-3">
-          <i class="icon icon-archive"></i> archive
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-date"></i> date
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-share"></i> share
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-back"></i> back
-        </div>
+      <div class="col-md-3">
+        <i class="icon icon-print"></i> print
       </div>
-
-      <div class="row">
-        <div class="col-md-3">
-          <i class="icon icon-comment"></i> comment
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-users"></i> users
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-user"></i> user
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-folder"></i> folder
-        </div>
+      <div class="col-md-3">
+        <i class="icon icon-parameter"></i> parameter
       </div>
-
-      <div class="row">
-        <div class="col-md-3">
-          <i class="icon icon-folder-open"></i> folder-open
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-stats"></i> stats
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-sort-asc"></i> sort-asc
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-sort-desc"></i> sort-desc
-        </div>
+      <div class="col-md-3">
+        <i class="icon icon-info"></i> info
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col-md-3">
-          <i class="icon icon-ticket"></i> ticket
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-lock"></i> lock
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-unlock"></i> unlock
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-show"></i> show
-        </div>
+    <div class="row">
+      <div class="col-md-3">
+        <i class="icon icon-question"></i> question
       </div>
-
-      <div class="row">
-        <div class="col-md-3">
-          <i class="icon icon-hide"></i> hide
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-fax"></i> fax
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-home"></i> home
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-sign-in"></i> sign-in
-        </div>
+      <div class="col-md-3">
+        <i class="icon icon-link"></i> link
       </div>
-
-      <div class="row">
-        <div class="col-md-3">
-          <i class="icon icon-sign-out"></i> sign-out
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-purchase"></i> purchase
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-file-pdf"></i> file-pdf
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-file-zip"></i> file-zip
-        </div>
+      <div class="col-md-3">
+        <i class="icon icon-next"></i> next
       </div>
-
-      <div class="row">
-        <div class="col-md-3">
-          <i class="icon icon-file-text"></i> file-text
-        </div>
-        <div class="col-md-3">
-          <i class="icon icon-list"></i> list
-        </div>
+      <div class="col-md-3">
+        <i class="icon icon-previous"></i> previous
       </div>
+    </div>
 
+    <div class="row">
+      <div class="col-md-3">
+        <i class="icon icon-exchange"></i> exchange
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-warning"></i> warning
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-copy"></i> copy
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-star"></i> star
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <i class="icon icon-archive"></i> archive
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-date"></i> date
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-share"></i> share
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-back"></i> back
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <i class="icon icon-comment"></i> comment
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-users"></i> users
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-user"></i> user
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-folder"></i> folder
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <i class="icon icon-folder-open"></i> folder-open
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-stats"></i> stats
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-sort-asc"></i> sort-asc
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-sort-desc"></i> sort-desc
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <i class="icon icon-ticket"></i> ticket
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-lock"></i> lock
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-unlock"></i> unlock
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-show"></i> show
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <i class="icon icon-hide"></i> hide
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-fax"></i> fax
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-home"></i> home
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-sign-in"></i> sign-in
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <i class="icon icon-sign-out"></i> sign-out
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-purchase"></i> purchase
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-file-pdf"></i> file-pdf
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-file-zip"></i> file-zip
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <i class="icon icon-file-text"></i> file-text
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-notification"></i> notification
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-up"></i> up
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-down"></i> down
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <i class="icon icon-parameter"></i> parameter
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-check"></i> check
+      </div>
+      <div class="col-md-3">
+        <i class="icon icon-list"></i> list
+      </div>
     </div>
 
   </div>
-
-  <div class="container" *ngSwitchCase="'Api'">
-    <h3>
-      For and icon use :
-    </h3>
-    <pre>
-      {{iconHtml}}
-    </pre>
+  <pre>
+    {{iconHtml}}
+  </pre>
+  <blockquote>
     <p>Remplace name by the icon you want</p>
+  </blockquote>
 
+  <h3>
+    Different size
+  </h3>
+
+  <div class="row">
+    <div class="col-md-2">
+      <i class="icon icon-add icon-1x"></i> add
+    </div>
+    <div class="col-md-2">
+      <i class="icon icon-add icon-2x"></i> add
+    </div>
+    <div class="col-md-2">
+      <i class="icon icon-add icon-3x"></i> add
+    </div>
+    <div class="col-md-2">
+      <i class="icon icon-add icon-4x"></i> add
+    </div>
+    <div class="col-md-2">
+      <i class="icon icon-add icon-5x"></i> add
+    </div>
   </div>
+
+  <pre>
+    {{iconSize}}
+  </pre>
+
+  <h3>
+    Disabled icon
+  </h3>
+
+  <div class="row">
+    <div class="col-md-2">
+      <i class="icon icon-add icon-disabled"> </i> add
+    </div>
+  </div>
+
+  <pre>
+    {{iconDisabled}}
+  </pre>
 
 </div>

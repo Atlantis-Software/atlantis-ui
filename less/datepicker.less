@@ -1,115 +1,174 @@
-.datepicker-modal {
-  .modal-header {
-    padding:15px;
-    position: fixed;
-    top: 0;
-    left: 0px;
-    right: 15px;
-    background-color: @datepicker-bg;
-    z-index: @zindex-modal;
-    border-width: 0;
+datepicker, datepicker-range {
+  .datepicker-date-input {
+    position: relative;
   }
-  .modal-content {
-    background-color: @datepicker-bg;
+  .datepicker-input {
+    background-color: @input-bg !important;
+    color: @input-color !important;
+    border-color: @input-border-color !important;
+    cursor: pointer;
   }
-  .modal-body {
-    margin-top: 75px;
+  .datepicker-label-remove {
+    position: absolute;
+    top: 4px;
+    right: 12px;
+    z-index: 2;
   }
-}
 
-.datepicker {
+  .datepicker-label-remove:before {
+    color: @input-reset;
+    font-family: "FontAwesome";
+    content: "\f00d";
+    font-size: @font-size-base + 2;
+  }
+  .modal-header {
+    background-color: @primary;
+    min-height: 224px;
+    .datepicker-text {
+      min-height: 120px;
+    }
+    .withoutClose {
+      height: 14px;
+    }
+    .date-letter span:first-child {
+      color: @primary-text-color;
+      text-transform: uppercase;
+      font-size: @font-size-h3;
+      font-weight: bold;
+      display: inline-block;
+      width: 100%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .date-letter span:nth-child(2) {
+      color: @primary-text-color;
+      font-size: @font-size-date-number;
+      line-height: @font-size-date-number - 10;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .date-letter span:nth-child(3) {
+      color: @primary-text-color;
+      text-transform: capitalize;
+      font-size: @font-size-date-month-year;
+      line-height: 0px;
+      display: inline-block;
+      width: 100%;
+    }
+    .calendar-bg {
+      background-color: @datepicker-bg;
+      padding-top: 10px; // avoid to stick date-letter and calendar-bg
+      .arrow .icon-next, .arrow .icon-previous{
+        color: @icon-color;
+        cursor: auto;
+      }
+      .arrow .icon-next, .arrow .icon-previous {
+        &:hover{
+          color: @icon-hover-color;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .modal-body {
+    background-color: @background;
+  }
+
+  .datepicker {
     color: inherit;
-    background-color: @datepicker-bg;
-    padding: 4px;
-    margin-top: 1px;
-    .calendar{
+    padding: @datepicker-padding;
+    .calendar {
       display: none;
-      margin: 4px;
-      th, td{
+      padding: @datepicker-padding;
+      border-bottom: 2px solid @datepicker-bg;
+      th, td {
         white-space: nowrap;
         text-align: center;
         min-width: 32px;
       }
     }
-    .calendar-table{
-      border: 1px solid #fff;
-      padding: 5px;
-      border-radius: 0px;
-      background-color: #fff;
-      margin-bottom: 25px;
+    .calendar-table {
+      border: 1px solid @datepicker-border-color;
+      padding: @datepicker-padding;
     }
-    table{
+    table {
       width: 100%;
-      margin: 0;
     }
-    td, th{
+    th {
       text-align: center;
-      width: 20px;
-      height: 20px;
-      border-radius: 4px;
-      border: 1px solid transparent;
       white-space: nowrap;
       cursor: pointer;
     }
-    td.available:hover, th.available:hover{
-      background-color: @datepicker-hover-bg;
-      border-color: transparent;
-      color: inherit;
+    td {
+      text-align: center;
+      border-radius: @datepicker-td-border-radius;
+      border: 1px solid @datepicker-td-border-color;
+      white-space: nowrap;
+      cursor: pointer;
     }
-    td.today.available:hover, th.today.available:hover{
-      background-color: @datepicker-hover-bg;
-      border-color: transparent;
-      color: inherit;
+    td.available {
+      &:hover {
+        background-color: @datepicker-hover-bg;
+        border-color: @datepicker-td-border-color;
+        color: @primary-text-color;
+      }
     }
-    td.in-range{
+    td.today {
+      border: 2px solid @datepicker-today-border-color;
+      font-weight: bold;
+      &:hover{
+        background-color: @datepicker-hover-bg;
+        border-color: @datepicker-td-border-color;
+        color: @primary-text-color;
+      }
+    }
+    td.dayweek{
+      font-weight: bold
+    }
+    td.in-range {
       background-color: @datepicker-in-range-bg;
-      border-color: transparent;
+      border-color: @datepicker-td-border-color;
       color: @datepicker-in-range-color;
       border-radius: 0;
     }
-    td.start-date, td.end-date, td.start-date.end-date{
-      border-radius: 0px 0 0 0px;
+    td.start-date, td.end-date, td.start-date.end-date {
+      border-radius: 0;
     }
-    td.active, td.active:hover{
+    td.active {
       background-color: @datepicker-active-bg;
-      border-color: transparent;
+      border-color: @datepicker-td-border-color;
       color: @datepicker-active-color;
-    }
-    td.off.in-range, td.off.start-date, td.off.end-date{
-        background-color: @datepicker-off-bg;
-        border-color: transparent;
-        color: @datepicker-off-color;
+      &:hover{
+        background-color: @datepicker-active-bg;
+        border-color: @datepicker-td-border-color;
+        color: @datepicker-active-color;
       }
-    td.today{
-      border: 2px solid orange;
-      font-weight: bold;
     }
-    td.today.off{
-      background-color: #fff;
-      color : #000;
+
+    td.off {
+      background-color: @datepicker-off-bg;
+      color: @datepicker-off-color;
       border: none;
       font-weight: normal;
     }
-    td.today.off.in-range{
-      color: @datepicker-off-color;
-    }
-    th.month{
-      width: auto;
-    }
-}
+  }
 
-.datepicker.show-calendar .calendar {
+  .datepicker.show-calendar .calendar {
     display: block;
-}
+  }
 
-input[type="date"] {
-  &::-webkit-clear-button {
-    display:none;
+  datepicker.datepicker-sm {
+    input {
+      &:extend(.input-sm);
+    }
   }
-  &::-webkit-inner-spin-button{
-    display: none;
-  }
-  &::-webkit-calendar-picker-indicator{
-    display:none;
+
+  datepicker.datepicker-lg {
+    input {
+      &:extend(.input-lg);
+    }
   }
 }
