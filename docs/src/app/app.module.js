@@ -51,7 +51,7 @@ import dragAndDropComponent from './dragAndDrop/dragAndDrop.component.js';
 
 import DraggableComponent from './draggable/draggable.component.js';
 
-import { ngxAtlUiModule } from 'atlantis-ui-ngx';
+import { AtlantisUiModule } from 'atlantis-ui';
 
 
 export var AppModule = function() {};
@@ -132,7 +132,7 @@ AppModule.annotations = [
       BrowserModule,
       FormsModule,
       RouterModule.forRoot(route),
-      ngxAtlUiModule.forRoot(types)
+      AtlantisUiModule.forRoot(types)
     ],
     bootstrap: [ AppComponent ],
     providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, DatePipe]

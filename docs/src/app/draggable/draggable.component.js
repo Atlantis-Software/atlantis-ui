@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 export default  class DraggableComponent {
   static get annotations() {
@@ -8,9 +9,10 @@ export default  class DraggableComponent {
       })
     ];
   }
-  constructor(){
+  constructor(document) {
+    this.document = document;
   }
 }
 
 
-DraggableComponent.parameters = [];
+DraggableComponent.parameters = [DOCUMENT];

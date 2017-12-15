@@ -1,0 +1,12 @@
+<div class="select"  [ngClass]="{'open': isOpen, 'multiple': multiple }" [attr.aria-multiple]="multiple">
+  <input type="hidden" class="select-value" (change)="valueChange($event)" />
+  <button class="btn btn-default select-toggle" type="button" (click)="Open()" data-toggle="select" [attr.aria-expanded]="isOpen">
+    <span class="select-text" [innerHTML]="SelectedValuesText"></span>
+    <span class="caret"></span>
+  </button>
+  <ul  class="select-options">
+      <li *ngFor="let option of options" (click)="selectOption(option, $event)" [attr.aria-selected]="option.selected">
+        <a [ngStyle]="{'cursor': cursor}" (mouseover)="onHover($event)" class="noselect">{{ option.text }}</a>
+      </li>
+  </ul>
+</div>
