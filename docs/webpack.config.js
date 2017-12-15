@@ -23,7 +23,7 @@ module.exports = {
     alias: {
       "moment": "moment/min/moment-with-locales.js",
       "atlantis-ui-css": path.join(__dirname, "dist", "css", "atlantis-ui.css"),
-      "atlantis-ui-ngx": path.join(__dirname, "dist", "js", "ngxAtlantis-ui.js")
+      "atlantis-ui": path.join(__dirname, "dist", "js", "atlantis-ui.js")
     }
   },
   module: {

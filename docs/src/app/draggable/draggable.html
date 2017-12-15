@@ -1,13 +1,15 @@
 <div class="container">
-  <h3>Exemple : </h3>
+  <h3>Example : </h3>
   <div class="form-group">
     <div class="row container-fluid">
-      <div class="well" draggable>
-        <p>
-          You can drag me !
-        </p>
+      <div #container style="width:900px;height:600px;border: 1px solid black;">
+        <div style="width:200px;height:100px;" class="well" draggable [containment]="container">
+          <p>
+            You can drag me !
+          </p>
+        </div>
       </div>
-      <div resizable class="well" draggable>
+      <div resizable class="well" draggable [containment]="document.body">
         <h2 draggable-handle>
           test
         </h2>
