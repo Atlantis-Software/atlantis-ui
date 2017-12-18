@@ -105,7 +105,6 @@ export class draggableDirective {
     if (this.oldZIndex) {
       this.renderer.setStyle(this.element, 'z-index', this.oldZIndex);
     }
-
     this.element.style.cursor = "auto";
 
     if (this.isMoving) {
@@ -129,7 +128,9 @@ export class draggableDirective {
   }
 
   onMouseUp() {
-    this.dragEnd();
+    if (this.isMoving) {
+      this.dragEnd();
+    }
   }
 
   onMouseMove(event) {

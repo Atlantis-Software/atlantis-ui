@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { ngxAtlUiModule } from './ngx-atlantis-ui-module.js';
+import { AtlantisUiModule } from './atlantis-ui.module.js';
 
 
 
@@ -70,7 +70,7 @@ describe('modal', function() {
 
   beforeEach(async(function() {
     TestBed.configureTestingModule({
-      imports: [ngxAtlUiModule.forRoot({}), FormsModule, ReactiveFormsModule],
+      imports: [AtlantisUiModule.forRoot({}), FormsModule, ReactiveFormsModule],
       declarations: [modalTestComponent]
     });
     TestBed.compileComponents();
@@ -92,11 +92,11 @@ describe('modal', function() {
     testComponent = fixture.componentInstance;
     var modal = document.querySelectorAll('.modal');
 
-    assert.strictEqual(modal[0].classList[2], "modal-left");
+    assert.strictEqual(modal[0].classList[1], "modal-left");
     assert.strictEqual(modal[1].classList[1], "modal-right");
     assert.strictEqual(modal[2].classList[1], "modal-top");
-    assert.strictEqual(modal[3].classList[2], "modal-bottom");
-    assert.strictEqual(modal[4].classList[2], void 0);
+    assert.strictEqual(modal[3].classList[1], "modal-bottom");
+    assert.strictEqual(modal[4].classList[1], void 0);
 
 
   }));
@@ -112,9 +112,6 @@ describe('modal', function() {
     tick();
     fixture.detectChanges();
 
-    var modal = document.querySelector('.modal-left');
-
-    assert.strictEqual(modal.classList[3], "in");
     assert.strictEqual(testComponent.showLeft, true);
 
     var closeButton = document.querySelector("#closeLeft");
@@ -122,9 +119,6 @@ describe('modal', function() {
     tick();
     fixture.detectChanges();
 
-    modal = document.querySelector('.modal-left');
-
-    assert.strictEqual(modal.classList[3], void 0);
     assert.strictEqual(testComponent.showLeft, false);
   }));
 
@@ -140,9 +134,6 @@ describe('modal', function() {
     tick();
     fixture.detectChanges();
 
-    var modal = document.querySelector('.modal-right');
-
-    assert.strictEqual(modal.classList[2], "in");
     assert.strictEqual(testComponent.showRight, true);
 
     var closeButton = document.querySelector("#closeRight");
@@ -150,9 +141,6 @@ describe('modal', function() {
     tick();
     fixture.detectChanges();
 
-    modal = document.querySelector('.modal-right');
-
-    assert.strictEqual(modal.classList[2], void 0);
     assert.strictEqual(testComponent.showRight, false);
 
   }));
@@ -169,9 +157,6 @@ describe('modal', function() {
     tick();
     fixture.detectChanges();
 
-    var modal = document.querySelector('.modal-top');
-
-    assert.strictEqual(modal.classList[2], "in");
     assert.strictEqual(testComponent.showTop, true);
 
     var closeButton = document.querySelector("#closeTop");
@@ -179,9 +164,6 @@ describe('modal', function() {
     tick();
     fixture.detectChanges();
 
-    modal = document.querySelector('.modal-top');
-
-    assert.strictEqual(modal.classList[2], void 0);
     assert.strictEqual(testComponent.showTop, false);
   }));
 
@@ -197,9 +179,6 @@ describe('modal', function() {
     tick();
     fixture.detectChanges();
 
-    var modal = document.querySelector('.modal-bottom');
-
-    assert.strictEqual(modal.classList[3], "in");
     assert.strictEqual(testComponent.showBottom, true);
 
     var closeButton = document.querySelector("#closeBottom");
@@ -207,9 +186,6 @@ describe('modal', function() {
     tick();
     fixture.detectChanges();
 
-    modal = document.querySelector('.modal-bottom');
-
-    assert.strictEqual(modal.classList[3], void 0);
     assert.strictEqual(testComponent.showBottom, false);
 
   }));
@@ -226,10 +202,6 @@ describe('modal', function() {
     tick();
     fixture.detectChanges();
 
-    var modal = document.querySelector('#testStandard');
-    modal = modal.querySelector('.modal');
-
-    assert.strictEqual(modal.classList[2], "in");
     assert.strictEqual(testComponent.showStandard, true);
 
     var closeButton = document.querySelector("#closeStandard");
@@ -237,10 +209,6 @@ describe('modal', function() {
     tick();
     fixture.detectChanges();
 
-    modal = document.querySelector('#testStandard');
-    modal = modal.querySelector('.modal');
-
-    assert.strictEqual(modal.classList[2], void 0);
     assert.strictEqual(testComponent.showStandard, false);
 
   }));
@@ -256,9 +224,6 @@ describe('modal', function() {
     tick();
     fixture.detectChanges();
 
-    var modal = document.querySelector('.modal-left');
-
-    assert.strictEqual(modal.classList[3], "in");
     assert.strictEqual(testComponent.showLeft, true);
 
     var closeButton = document.querySelector(".close");
@@ -266,9 +231,6 @@ describe('modal', function() {
     tick();
     fixture.detectChanges();
 
-    modal = document.querySelector('.modal-left');
-
-    assert.strictEqual(modal.classList[3], void 0);
     assert.strictEqual(testComponent.showLeft, false);
   }));
 
@@ -286,7 +248,6 @@ describe('modal', function() {
 
     var modal = document.querySelector('.modal-right');
 
-    assert.strictEqual(modal.classList[2], "in");
     assert.strictEqual(testComponent.showRight, true);
 
     var closeButton = modal.querySelector(".close");
@@ -294,9 +255,6 @@ describe('modal', function() {
     tick();
     fixture.detectChanges();
 
-    modal = document.querySelector('.modal-right');
-
-    assert.strictEqual(modal.classList[2], void 0);
     assert.strictEqual(testComponent.showRight, false);
 
   }));
@@ -315,7 +273,6 @@ describe('modal', function() {
 
     var modal = document.querySelector('.modal-top');
 
-    assert.strictEqual(modal.classList[2], "in");
     assert.strictEqual(testComponent.showTop, true);
 
     var closeButton = modal.querySelector(".close");
@@ -323,9 +280,6 @@ describe('modal', function() {
     tick();
     fixture.detectChanges();
 
-    modal = document.querySelector('.modal-top');
-
-    assert.strictEqual(modal.classList[2], void 0);
     assert.strictEqual(testComponent.showTop, false);
   }));
 
@@ -343,7 +297,6 @@ describe('modal', function() {
 
     var modal = document.querySelector('.modal-bottom');
 
-    assert.strictEqual(modal.classList[3], "in");
     assert.strictEqual(testComponent.showBottom, true);
 
     var closeButton = modal.querySelector(".close");
@@ -351,9 +304,6 @@ describe('modal', function() {
     tick();
     fixture.detectChanges();
 
-    modal = document.querySelector('.modal-bottom');
-
-    assert.strictEqual(modal.classList[3], void 0);
     assert.strictEqual(testComponent.showBottom, false);
 
   }));
@@ -373,7 +323,6 @@ describe('modal', function() {
     var modal = document.querySelector('#testStandard');
     modal = modal.querySelector('.modal');
 
-    assert.strictEqual(modal.classList[2], "in");
     assert.strictEqual(testComponent.showStandard, true);
 
     var closeButton = modal.querySelector(".close");
@@ -381,10 +330,6 @@ describe('modal', function() {
     tick();
     fixture.detectChanges();
 
-    modal = document.querySelector('#testStandard');
-    modal = modal.querySelector('.modal');
-
-    assert.strictEqual(modal.classList[2], void 0);
     assert.strictEqual(testComponent.showStandard, false);
 
   }));
@@ -403,16 +348,12 @@ describe('modal', function() {
 
     var modal = document.querySelector('.modal-left');
 
-    assert.strictEqual(modal.classList[3], "in");
     assert.strictEqual(testComponent.showLeft, true);
 
     modal.click();
     tick();
     fixture.detectChanges();
 
-    modal = document.querySelector('.modal-left');
-
-    assert.strictEqual(modal.classList[3], "in");
     assert.strictEqual(testComponent.showLeft, true);
 
   }));
@@ -431,16 +372,12 @@ describe('modal', function() {
 
     var modal = document.querySelector('.modal-right');
 
-    assert.strictEqual(modal.classList[2], "in");
     assert.strictEqual(testComponent.showRight, true);
 
     modal.click();
     tick();
     fixture.detectChanges();
 
-    modal = document.querySelector('.modal-right');
-
-    assert.strictEqual(modal.classList[2], "in");
     assert.strictEqual(testComponent.showRight, true);
 
   }));
@@ -459,16 +396,12 @@ describe('modal', function() {
 
     var modal = document.querySelector('.modal-top');
 
-    assert.strictEqual(modal.classList[2], "in");
     assert.strictEqual(testComponent.showTop, true);
 
     modal.click();
     tick();
     fixture.detectChanges();
 
-    modal = document.querySelector('.modal-top');
-
-    assert.strictEqual(modal.classList[2], "in");
     assert.strictEqual(testComponent.showTop, true);
 
   }));
@@ -487,16 +420,12 @@ describe('modal', function() {
 
     var modal = document.querySelector('.modal-bottom');
 
-    assert.strictEqual(modal.classList[3], "in");
     assert.strictEqual(testComponent.showBottom, true);
 
     modal.click();
     tick();
     fixture.detectChanges();
 
-    modal = document.querySelector('.modal-bottom');
-
-    assert.strictEqual(modal.classList[3], "in");
     assert.strictEqual(testComponent.showBottom, true);
 
   }));
@@ -516,17 +445,12 @@ describe('modal', function() {
     var modal = document.querySelector('#testStandard');
     modal = modal.querySelector('.modal');
 
-    assert.strictEqual(modal.classList[2], "in");
     assert.strictEqual(testComponent.showStandard, true);
 
     modal.click();
     tick();
     fixture.detectChanges();
 
-    modal = document.querySelector('#testStandard');
-    modal = modal.querySelector('.modal');
-
-    assert.strictEqual(modal.classList[2], "in");
     assert.strictEqual(testComponent.showStandard, true);
 
   }));

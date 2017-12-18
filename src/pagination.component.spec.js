@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { ngxAtlUiModule } from './ngx-atlantis-ui-module.js';
+import { AtlantisUiModule } from './atlantis-ui.module.js';
 
 var assert = require('assert');
 
@@ -31,7 +31,7 @@ describe('pagination', function() {
 
   beforeEach(async(function() {
     TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, ngxAtlUiModule.forRoot({})],
+      imports: [CommonModule, FormsModule, AtlantisUiModule.forRoot({})],
       declarations: [paginationTestComponent]
     });
     TestBed.compileComponents();

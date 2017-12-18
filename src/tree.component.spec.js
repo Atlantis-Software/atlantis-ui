@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { ngxAtlUiModule } from './ngx-atlantis-ui-module.js';
+import { AtlantisUiModule } from './atlantis-ui.module.js';
 
 function triggerEvent(elem, eventType) {
   var event = new DragEvent(eventType);
@@ -163,7 +163,7 @@ describe('tree', function() {
   describe('default value and selection', function() {
     beforeEach(async(function() {
       TestBed.configureTestingModule({
-        imports: [CommonModule, FormsModule, ngxAtlUiModule.forRoot({})],
+        imports: [CommonModule, FormsModule, AtlantisUiModule.forRoot({})],
         declarations: [treeTestComponent]
       });
       TestBed.compileComponents();
@@ -508,7 +508,7 @@ describe('tree', function() {
     var fixture, ds;
     beforeEach(async(function() {
       TestBed.configureTestingModule({
-        imports: [CommonModule, FormsModule, ngxAtlUiModule.forRoot({})],
+        imports: [CommonModule, FormsModule, AtlantisUiModule.forRoot({})],
         declarations: [treeTestComponent],
         providers: [dragAndDropSortableService, dragAndDropService]
       });
@@ -603,7 +603,7 @@ describe('tree', function() {
     var fixture, ds;
     beforeEach(async(function() {
       TestBed.configureTestingModule({
-        imports: [CommonModule, FormsModule, ngxAtlUiModule.forRoot({})],
+        imports: [CommonModule, FormsModule, AtlantisUiModule.forRoot({})],
         declarations: [treeTestComponent],
         providers: [dragAndDropSortableService, dragAndDropService]
       });

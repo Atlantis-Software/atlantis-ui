@@ -64,7 +64,6 @@ export default class dropdownComponent {
   }
 
   toggle(e) {
-    e.preventDefault();
     if (this.disabled) {
       return;
     }
@@ -72,6 +71,7 @@ export default class dropdownComponent {
     if (e.target == dropdown || dropdown.contains(e.target)) {
       this.open = !this.open;
       this.dropdown.classList.toggle("open");
+      e.preventDefault();
     } else {
       this.open = false;
       this.dropdown.classList.remove("open");
