@@ -10,10 +10,10 @@
   height: 0;
   margin-left: 2px;
   vertical-align: middle;
-  border-top:   @caret-width-base dashed;
-  border-top:   @caret-width-base solid ~"\9"; // IE8
+  border-top: @caret-width-base dashed;
+  border-top: @caret-width-base solid ~"\9"; // IE8
   border-right: @caret-width-base solid transparent;
-  border-left:  @caret-width-base solid transparent;
+  border-left: @caret-width-base solid transparent;
 }
 
 // The dropdown wrapper (div)
@@ -27,10 +27,17 @@
   outline: 0;
 }
 
+dropdown-option, dropdown-header, dropdown-divider {
+  display: list-item;
+}
+
+dropdown-option {
+  cursor : pointer;
+}
+
 // The dropdown menu (ul)
 .dropdown-menu {
   position: absolute;
-  top: 100%;
   left: 0;
   z-index: @zindex-dropdown;
   display: none; // none by default, but block on "open" of the menu
@@ -65,7 +72,7 @@
   }
 
   // Links within the dropdown menu
-  > li {
+  > dropdown-option, dropdown-divider, dropdown-header{
     > div {
       margin: 10px 20px;
     }
@@ -82,7 +89,7 @@
 }
 
 // Hover/Focus state
-.dropdown-menu > li > a {
+.dropdown-menu > dropdown-option > a{
   &:hover,
   &:focus {
     text-decoration: none;
@@ -128,9 +135,10 @@
 // Open state for the dropdown
 .open {
   // Show the menu
-  > .dropdown-menu {
+  > .dropdown-menu, > dropdown > div > .dropdown-menu {
     display: block;
   }
+
 
   // Remove the outline when :focus is triggered
   > a {
@@ -205,6 +213,10 @@
   }
 }
 
+
+dropdown {
+  display: block;
+}
 
 // Component alignment
 //

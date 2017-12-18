@@ -6,7 +6,7 @@ export default  class TableComponent {
       new Component({
         template: require('./table.html')
       })
-    ]
+    ];
   }
   constructor(){
     this.tableHtml = `
@@ -39,7 +39,7 @@ export default  class TableComponent {
                 <td>wxcvb</td>
             </tr>
         </tbody>
-    </table>`
+    </table>`;
     this.Display = "Example";
   }
 }

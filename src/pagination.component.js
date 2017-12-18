@@ -1,0 +1,129 @@
+import { Component, EventEmitter, ElementRef, ChangeDetectorRef } from '@angular/core';
+
+export default class pagination {
+  static get annotations() {
+    return [
+      new Component({
+        selector: 'pagination',
+        inputs: ['page', 'pages'],
+        outputs: ['pagechange'],
+        template: require('./pagination.html')
+      })
+    ];
+  }
+
+  //Initialize numberPageShow, after and previous for calculate how many page we want after and previous actual page
+  constructor(elementRef, ChangeDetectorRef) {
+    //define all default parameters
+    this.elementRef = elementRef;
+    this.paginationClassList = this.elementRef.nativeElement.classList;
+    this.paginationDom = this.elementRef.nativeElement.getElementsByClassName("pagination");
+    this.numberPageShow = 5;
+    this.numberPageShowAfter = Math.floor(this.numberPageShow / 2);
+    this.numberPageShowPrevious = Math.ceil(this.numberPageShow / 2);
+    this.changingPage = false;
+    this.pagechange = new EventEmitter();
+    this.size = "";
+    this.cdr = ChangeDetectorRef;
+  }
+
+  ngAfterViewInit() {
+    //add correct class
+    var self = this;
+    if (this.paginationClassList.length > 0) {
+      this.paginationClassList.forEach(function(paginationClass) {
+        self.paginationDom[0].classList.add(paginationClass);
+      });
+    }
+  }
+
+  //initialize local variable with @Input
+  ngOnChanges() {
+    this.pageChoose = this.page;
+    this.pageCount = this.createArray(this.pages);
+    //verify if number of page total is inferior to numberpageShow and if true show all pages
+    if (this.pages <= this.numberPageShow) {
+      this.pageShow = this.pageCount;
+    } else {
+      //verify is current page is before numberPageShow previous and show x first page
+      if (this.page <= this.numberPageShowPrevious) {
+        this.pageShow = this.pageCount.slice(0, this.numberPageShow);
+        //verify is current page is after numberPageShow after and show x last page
+      } else if (this.page >= this.pages - this.numberPageShowAfter) {
+        this.pageShow = this.pageCount.slice(this.pages - this.numberPageShow, this.pages);
+        //other it's show x-numberPageShow/2 to x+numberPageshow/2 page
+      } else {
+        this.pageShow = this.pageCount.slice(this.page - this.numberPageShowPrevious, this.page + this.numberPageShowAfter);
+      }
+    }
+  }
+
+  //create an array with 1,2,3 ... n
+  createArray(number) {
+    var pages = new Array(number);
+    for (var i = 0; i < number; i++) {
+      pages[i] = i + 1;
+    }
+    return pages;
+  }
+
+  //Send event to function pass in output with page we want
+  changePage(e, index) {
+    e.preventDefault();
+    if (!this.changingPage) {
+      if (index > this.pages) {
+        index = this.pages;
+      } else if (index < 1) {
+        index = 1;
+      }
+      if (index != this.page) {
+        this.pagechange.emit(index);
+      }
+    }
+    this.cdr.detectChanges();
+  }
+
+  //show 5 previous page when click on previous arrow
+  previousPage(e) {
+    e.preventDefault();
+    if (!this.changingPage) {
+      if (this.page > 1) {
+        this.changePage(e, this.page - this.numberPageShow);
+      }
+    }
+  }
+
+  //show 5 next page when click on next arrow
+  nextPage(e) {
+    e.preventDefault();
+    if (!this.changingPage) {
+      if (this.page < this.pages) {
+        this.changePage(e, this.page + this.numberPageShow);
+      }
+    }
+  }
+
+  inputPage(e) {
+    e.preventDefault();
+    this.changingPage = !this.changingPage;
+  }
+
+  //change button ... to input for choose page we want
+  choosePage(e) {
+    var self = this;
+    e.preventDefault();
+    if (this.changingPage == true) {
+      this.changingPage = !this.changingPage;
+    }
+    var pageChoose = e.target.value;
+    if (pageChoose != null) {
+      if (pageChoose === 0 || pageChoose > this.pages) {
+        pageChoose = 1;
+      }
+      pageChoose = Math.floor(pageChoose);
+      self.changePage(e, +pageChoose);
+    }
+  }
+}
+
+pagination.parameters = [ElementRef, ChangeDetectorRef];

@@ -1,354 +1,318 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a (click)="Display = 'Example'">
-            Example
-          </a>
-        </li>
-        <li>
-          <a (click)="Display = 'Api'">
-            How to use and api
-          </a>
-        </li>
-      </ul>
-    </div>
+<div class="container">
+<h3>
+  Example :
+</h3>
+  <div class="row container-fluid">
+    <h3>
+      Basic table :
+    </h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Number</th>
+          <th>Language</th>
+          <th>Fruit</th>
+          <th>Other</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Javascript</td>
+          <td>Ananas</td>
+          <td>azert</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Python</td>
+          <td>Banana</td>
+          <td>qsdfg</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>C++</td>
+          <td>Orange</td>
+          <td>wxcvb</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</nav>
 
-<div [ngSwitch]="Display">
+  <div class="row container-fluid">
+    <h3>
+      Table with zebra stripping :
+    </h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Number</th>
+          <th>Language</th>
+          <th>Fruit</th>
+          <th>Other</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Javascript</td>
+          <td>Ananas</td>
+          <td>azert</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Python</td>
+          <td>Banana</td>
+          <td>qsdfg</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>C++</td>
+          <td>Orange</td>
+          <td>wxcvb</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-  <div class="container" *ngSwitchCase="'Example'">
+  <div class="row container-fluid">
+    <h3>
+      Table with borders :
+    </h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Number</th>
+          <th>Language</th>
+          <th>Fruit</th>
+          <th>Other</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Javascript</td>
+          <td>Ananas</td>
+          <td>azert</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Python</td>
+          <td>Banana</td>
+          <td>qsdfg</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>C++</td>
+          <td>Orange</td>
+          <td>wxcvb</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row container-fluid">
+    <h3>
+      Table with hover state :
+    </h3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Number</th>
+          <th>Language</th>
+          <th>Fruit</th>
+          <th>Other</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Javascript</td>
+          <td>Ananas</td>
+          <td>azert</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Python</td>
+          <td>Banana</td>
+          <td>qsdfg</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>C++</td>
+          <td>Orange</td>
+          <td>wxcvb</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row container-fluid">
+    <h3>
+      Table compact :
+    </h3>
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Number</th>
+          <th>Language</th>
+          <th>Fruit</th>
+          <th>Other</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Javascript</td>
+          <td>Ananas</td>
+          <td>azert</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Python</td>
+          <td>Banana</td>
+          <td>qsdfg</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>C++</td>
+          <td>Orange</td>
+          <td>wxcvb</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row container-fluid">
+    <h3>
+      Table with zebra striping, borders and hover state :
+    </h3>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Number</th>
+          <th>Language</th>
+          <th>Fruit</th>
+          <th>Other</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Javascript</td>
+          <td>Ananas</td>
+          <td>azert</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Python</td>
+          <td>Banana</td>
+          <td>qsdfg</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>C++</td>
+          <td>Orange</td>
+          <td>wxcvb</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <h3>
-    Example :
+    For an table use :
   </h3>
-    <div class="row">
-      <h4>
-        Basic table :
-      </h4>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Number</th>
-            <th>Language</th>
-            <th>Fruit</th>
-            <th>Other</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Javascript</td>
-            <td>Ananas</td>
-            <td>azert</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Python</td>
-            <td>Banana</td>
-            <td>qsdfg</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>C++</td>
-            <td>Orange</td>
-            <td>wxcvb</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="row">
-      <h4>
-        Table with zebra stripping :
-      </h4>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Number</th>
-            <th>Language</th>
-            <th>Fruit</th>
-            <th>Other</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Javascript</td>
-            <td>Ananas</td>
-            <td>azert</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Python</td>
-            <td>Banana</td>
-            <td>qsdfg</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>C++</td>
-            <td>Orange</td>
-            <td>wxcvb</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="row">
-      <h4>
-        Table with borders :
-      </h4>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Number</th>
-            <th>Language</th>
-            <th>Fruit</th>
-            <th>Other</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Javascript</td>
-            <td>Ananas</td>
-            <td>azert</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Python</td>
-            <td>Banana</td>
-            <td>qsdfg</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>C++</td>
-            <td>Orange</td>
-            <td>wxcvb</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="row">
-      <h4>
-        Table with hover state :
-      </h4>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Number</th>
-            <th>Language</th>
-            <th>Fruit</th>
-            <th>Other</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Javascript</td>
-            <td>Ananas</td>
-            <td>azert</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Python</td>
-            <td>Banana</td>
-            <td>qsdfg</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>C++</td>
-            <td>Orange</td>
-            <td>wxcvb</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="row">
-      <h4>
-        Table compact :
-      </h4>
-      <table class="table table-condensed">
-        <thead>
-          <tr>
-            <th>Number</th>
-            <th>Language</th>
-            <th>Fruit</th>
-            <th>Other</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Javascript</td>
-            <td>Ananas</td>
-            <td>azert</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Python</td>
-            <td>Banana</td>
-            <td>qsdfg</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>C++</td>
-            <td>Orange</td>
-            <td>wxcvb</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="row">
-      <h4>
-        Table with zebra striping, borders and hover state :
-      </h4>
-      <table class="table table-striped table-bordered table-hover">
-        <thead>
-          <tr>
-            <th>Number</th>
-            <th>Language</th>
-            <th>Fruit</th>
-            <th>Other</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Javascript</td>
-            <td>Ananas</td>
-            <td>azert</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Python</td>
-            <td>Banana</td>
-            <td>qsdfg</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>C++</td>
-            <td>Orange</td>
-            <td>wxcvb</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
+  <pre>
+    {{tableHtml}}
+  </pre>
+  <h3>
+    Class css :
+  </h3>
+  <div class="row container-fluid">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>
+            Class
+          </th>
+          <th>
+            Tag
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            .table
+          </td>
+          <td>
+            table
+          </td>
+          <td>
+            Define the classic style
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .table-striped
+          </td>
+          <td>
+            table
+          </td>
+          <td>
+            Add a zebra striping to odd row
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .table-bordered
+          </td>
+          <td>
+            table
+          </td>
+          <td>
+            Add borders to all sides of each cells
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .table-hover
+          </td>
+          <td>
+            table
+          </td>
+          <td>
+            Add a hover state on rows
+          </td>
+        </tr>
+        <tr>
+          <td>
+            .table-condensed
+          </td>
+          <td>
+            table
+          </td>
+          <td>
+            Make tables more compact
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-
-  <div class="container" *ngSwitchCase="'Api'">
-    <h3>
-      For an table use :
-    </h3>
-    <pre>
-      {{tableHtml}}
-    </pre>
-    <h3>
-      Class css :
-    </h3>
-    <div class="row">
-      <table class="table table-striped table-bordered table-hover">
-        <thead>
-          <tr>
-            <th>
-              Class
-            </th>
-            <th>
-              Tag
-            </th>
-            <th>
-              Description
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              .table
-            </td>
-            <td>
-              table
-            </td>
-            <td>
-              Define the classic style
-            </td>
-          </tr>
-          <tr>
-            <td>
-              .table-striped
-            </td>
-            <td>
-              table
-            </td>
-            <td>
-              Add a zebra striping to odd row
-            </td>
-          </tr>
-          <tr>
-            <td>
-              .table-bordered
-            </td>
-            <td>
-              table
-            </td>
-            <td>
-              Add borders to all sides of each cells
-            </td>
-          </tr>
-          <tr>
-            <td>
-              .table-hover
-            </td>
-            <td>
-              table
-            </td>
-            <td>
-              Add a hover state on rows
-            </td>
-          </tr>
-          <tr>
-            <td>
-              .table-condensed
-            </td>
-            <td>
-              table
-            </td>
-            <td>
-              Make tables more compact
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <ul>
-      <li>
-        .table : define to use 100% width and define the border and all padding
-      </li>
-      <li>
-        .table-stripped : use for zebra-stripping, alternate between gray and transparent background
-      </li>
-      <li>
-        .table-bordered : Add borders between all the columns and around the table
-      </li>
-      <li>
-        .table-hover : Add hover effect when mouse are on line
-      </li>
-    </ul>
-
-  </div>
-
+  <ul>
+    <li>
+      .table : define to use 100% width and define the border and all padding
+    </li>
+    <li>
+      .table-stripped : use for zebra-stripping, alternate between gray and transparent background
+    </li>
+    <li>
+      .table-bordered : Add borders between all the columns and around the table
+    </li>
+    <li>
+      .table-hover : Add hover effect when mouse are on line
+    </li>
+  </ul>
 </div>

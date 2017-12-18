@@ -85,3 +85,96 @@
 .progress-bar-danger {
   .progress-bar-variant(@progress-bar-danger-bg);
 }
+
+// Circle Progress Bars
+//
+//
+.circle-progress-bar {
+  height: @circle-progress-bar-size;
+  width: @circle-progress-bar-size;
+  &:after {
+    position : absolute;
+    display: block;
+    box-shadow: inset 0 0 1em black;
+    content: attr(data-percent)"%";
+    font-size: 2em;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    border-radius: 100%;
+    height: @circle-progress-bar-after-size;
+    width: @circle-progress-bar-after-size;
+    margin-top: -(@circle-progress-bar-after-size / 2);
+    margin-left: -(@circle-progress-bar-after-size / 2);
+    line-height: @circle-progress-bar-after-size + 6;
+  }
+
+  display: block;
+  border-radius: 100%;
+  position: relative;
+
+  svg {
+    width: @circle-progress-bar-size;
+    height: @circle-progress-bar-size;
+  }
+  &.circle-progress-bar-sm {
+    height: @circle-progress-bar-size-sm;
+    width: @circle-progress-bar-size-sm;
+    svg {
+      width: @circle-progress-bar-size-sm;
+      height: @circle-progress-bar-size-sm;
+    }
+    &:after {
+      height: @circle-progress-bar-after-size-sm;
+      width: @circle-progress-bar-after-size-sm;
+      margin-top: -(@circle-progress-bar-after-size-sm / 2);
+      margin-left: -(@circle-progress-bar-after-size-sm / 2);
+      line-height: @circle-progress-bar-after-size-sm + 6;
+    }
+  }
+  &.circle-progress-bar-lg {
+    height: @circle-progress-bar-size-lg;
+    width: @circle-progress-bar-size-lg;
+    svg {
+      width: @circle-progress-bar-size-lg;
+      height: @circle-progress-bar-size-lg;
+    }
+    &:after {
+      height: @circle-progress-bar-after-size-lg;
+      width: @circle-progress-bar-after-size-lg;
+      margin-top: -(@circle-progress-bar-after-size-lg / 2);
+      margin-left: -(@circle-progress-bar-after-size-lg / 2);
+      line-height: @circle-progress-bar-after-size-lg + 6;
+    }
+  }
+  svg {
+    circle {
+      stroke-dashoffset: 0;
+      transition: stroke-dashoffset 1s linear;
+      stroke: #666;
+      stroke-width: 1em;
+      display: block;
+    }
+  }
+
+}
+
+.circle-progress-bar-default {
+  .circle-progress-bar-variant(@progress-bar-bg);
+}
+
+.circle-progress-bar-success {
+  .circle-progress-bar-variant(@progress-bar-success-bg);
+}
+
+.circle-progress-bar-info {
+  .circle-progress-bar-variant(@progress-bar-info-bg);
+}
+
+.circle-progress-bar-warning {
+  .circle-progress-bar-variant(@progress-bar-warning-bg);
+}
+
+.circle-progress-bar-danger {
+  .circle-progress-bar-variant(@progress-bar-danger-bg);
+}
