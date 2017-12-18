@@ -1,33 +1,25 @@
 import {Component} from '@angular/core';
 
-export default  class DropdownComponent {
+export default  class DatepickerAngularComponent {
   static get annotations() {
     return [
       new Component({
         template: require('./datepicker.html')
       })
-    ]
+    ];
   }
   constructor(){
     this.DatepickerRangeHtml = `
-    <div class="form-group">
-      <label for="rangeDatePicker">datepicker range</label>
-      <div id="rangeDatePicker" class="input-group">
-        <input class="form-control start" type="date">
-        <span class="input-group-addon"></span>
-        <input class="form-control end" type="date">
-      </div>
-    </div>`
+    <datepicker-range [(start)]="start1" [(end)]="end1" [numberOfMonths]="4"></datepicker-range>`;
 
     this.DatepickerSimpleHtml = `
-    <div class="form-group">
-        <label for="singleDatePicker">datepicker</label>
-        <input id="singleDatePicker" type="date" class="form-control">
-    </div>`
-    
-    this.Display = "Example";
+    <datepicker [(ngModel)]="valueDatePicker" [numberOfMonths]="5"></datepicker>`;
+
+    this.valueDatePicker = new Date("2004-02-03");
+    this.start1 = "2017-05-01";
+    this.end1 = "2017-05-22";
   }
 }
 
 
-DropdownComponent.parameters = [];
+DatepickerAngularComponent.parameters = [];

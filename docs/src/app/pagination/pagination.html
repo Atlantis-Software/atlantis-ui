@@ -1,273 +1,112 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a (click)="Display = 'Example'">
-            Example
-          </a>
-        </li>
-        <li>
-          <a (click)="Display = 'Api'">
-            Api
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div [ngSwitch]= "Display">
-
-  <div class="container" *ngSwitchCase="'Example'">
+<div class="container">
+  <div class="row container-fluid">
     <h3>
       Example :
     </h3>
-    <h4>
-      Medium size :
-    </h4>
-    <div class="row">
-      <ul class="pagination">
-        <li>
-          <a href="#">
-            <i class="icon icon-previous"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#">1</a>
-        </li>
-        <li class="disabled">
-          <a href="#">
-            2
-          </a>
-        </li>
-        <li class="active">
-          <a href="#">
-            3
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            4
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            5
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            ...
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            399
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="icon icon-next"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <h4>
-      Small size :
-    </h4>
-    <div class="row">
-      <ul class="pagination pagination-sm">
-        <li>
-          <a href="#">
-            <i class="icon icon-previous"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#">1</a>
-        </li>
-        <li class="disabled">
-          <a href="#">
-            2
-          </a>
-        </li>
-        <li class="active">
-          <a href="#">
-            3
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            4
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            5
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            ...
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            399
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="icon icon-next"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <h4>
-      Large size :
-    </h4>
-    <div class="row">
-      <ul class="pagination pagination-lg">
-        <li>
-          <a href="#">
-            <i class="icon icon-previous"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#">1</a>
-        </li>
-        <li class="disabled">
-          <a href="#">
-            2
-          </a>
-        </li>
-        <li class="active">
-          <a href="#">
-            3
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            4
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            5
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            ...
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            399
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="icon icon-next"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="container" *ngSwitchCase="'Api'">
-    <h3>
-      For a pagination use :
-    </h3>
-    <pre>
-      {{PaginationHtml}}
-    </pre>
-    <h3>
-      Class css :
-    </h3>
-    <table class="table table-striped tabled-bordered table-hover">
+    <table class="table table-bordered">
       <thead>
         <tr>
-          <th>
-            Class
-          </th>
-          <th>
-            Tag
-          </th>
-          <th>
-            Description
-          </th>
+          <th>Result</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let resultat of result">
           <td>
-            .pagination
-          </td>
-          <td>
-            ul
-          </td>
-          <td>
-            Define the pagination, apply style per default
-          </td>
-        </tr>
-        <tr>
-          <td>
-            .pagination-lg
-          </td>
-          <td>
-            ul
-          </td>
-          <td>
-            Define a large pagination
-          </td>
-        </tr>
-        <tr>
-          <td>
-            .pagination-sm
-          </td>
-          <td>
-            ul
-          </td>
-          <td>
-            Define a small pagination
-          </td>
-        </tr>
-        <tr>
-          <td>
-            .disabled
-          </td>
-          <td>
-            li
-          </td>
-          <td>
-            Disabled a li to desactive click
-          </td>
-        </tr>
-        <tr>
-          <td>
-            .active
-          </td>
-          <td>
-            li
-          </td>
-          <td>
-            Active a li to show him in another style
+            {{resultat}}
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group input-group">
+        <input name="Binding1" class="form-control" type="text" [(ngModel)]="page" disabled></input>
+        <span class="input-group-addon"></span>
+        <input name="Binding1" class="form-control" type="text" [(ngModel)]="pages"></input>
+      </div>
+    </div>
+  </div>
+  <pre>
+    {{PaginationHtml}}
+  </pre>
+
+  <h3>
+  Different size :
+  </h3>
+  <div class="row">
+
+    <div class="col-md-6">
+      <pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)' class="pagination-sm"></pagination>
+    </div>
+    <div class="col-md-6">
+      <pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)' class="pagination-lg"></pagination>
+    </div>
 
   </div>
-
+  <pre>
+    {{paginationSize}}
+  </pre>
+  <h3>
+    Precision :
+  </h3>
+  <p>
+    We can define different size for the widget. For that just add a class to pagination tag like pagination-sm or pagination-lg
+  </p>
+  <h3>
+    Settings :
+  </h3>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>
+          Setting
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          page
+        </td>
+        <td>
+          number
+        </td>
+        <td>
+          Current page
+        </td>
+      </tr>
+      <tr>
+        <td>
+          pages
+        </td>
+        <td>
+          number
+        </td>
+        <td>
+          Total pages
+        </td>
+      </tr>
+      <tr>
+        <td>
+          pagechange
+        </td>
+        <td>
+          string
+        </td>
+        <td>
+          An expression
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

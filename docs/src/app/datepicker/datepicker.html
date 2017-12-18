@@ -1,97 +1,92 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
+<div class="container">
 
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a (click)="Display = 'Example'">
-            Example
-          </a>
-        </li>
-        <li>
-          <a (click)="Display = 'Api'">
-            Api
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div [ngSwitch]= "Display">
-
-  <div class="container" *ngSwitchCase="'Example'">
-    <h3>
-      Example :
-    </h3>
-    <div class="row">
+  <h3>
+    Simple datepicker :
+  </h3>
+  <div class="row">
+    <div class="col-md-6">
       <div class="form-group">
-        <label for="rangeDatePicker">datepicker range</label>
-        <div id="rangeDatePicker" class="input-group">
-          <input class="form-control start" type="date">
-          <span class="input-group-addon"></span>
-          <input class="form-control end" type="date">
-        </div>
+        <label for="rangeDatePicker">Example</label>
+        <datepicker [(ngModel)]="valueDatePicker" [numberOfMonths]="5"></datepicker>
       </div>
     </div>
-    <div class="row">
-      <div class="form-group">
-          <label for="singleDatePicker">datepicker</label>
-          <input id="singleDatePicker" type="date" class="form-control">
-      </div>
-    </div>
-
-    <h3>
-      Different size :
-    </h3>
-    <div class="row">
-      <div class="form-group">
-          <label for="singleDatePicker">datepicker</label>
-          <input id="singleDatePicker" type="date" class="form-control input-sm">
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group">
-          <label for="singleDatePicker">datepicker</label>
-          <input id="singleDatePicker" type="date" class="form-control input-lg">
-      </div>
+    <div class="col-md-6">
+      <label for="Binding1">Binding</label>
+      <input name="Binding1" class="form-control" type="text" [(ngModel)]="valueDatePicker"></input>
     </div>
   </div>
 
-  <div class="container" *ngSwitchCase="'Api'">
-    <h3>
-      For an datepicker range use :
-    </h3>
-    <pre>
-      {{DatepickerRangeHtml}}
-    </pre>
-    <h4>
-      Info :
-    </h4>
-    <p>
-      Warning : Don't forget to add .start and .end to input, to create a correct binding
-    </p>
-    <h3>
-      For an datepicker simple use :
-    </h3>
-    <pre>
-      {{DatepickerSimpleHtml}}
-    </pre>
-    <h4>
-      Info :
-    </h4>
-    <p>
-      To use different size, just add input-sm or input-lg to tag input
-    </p>
-
+  <div class="row">
+    <div class="col-md-4">
+      <label>Code : </label>
+    </div>
   </div>
+  <pre>
+    {{DatepickerSimpleHtml}}
+  </pre>
 
+  <div class="row">
+    <div class="col-md-4">
+      <label>Variables : </label>
+    </div>
+  </div>
+  <pre>
+    this.valueDatePicker = "2017-05-01";
+  </pre>
+
+  <blockquote>
+    <p>valueDatePicker is the binded value, if you no put value by default it will be today.</br>
+       numberOfMonths is the number of month in the calendar, if you no put value by default it will 3.</p>
+  </blockquote>
+
+
+
+
+  <h3>
+    Datepicker range:
+  </h3>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="rangeDatePicker">Example</label>
+        <datepicker-range [(start)]="start1" [(end)]="end1"></datepicker-range>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="Binding1">Binding</label>
+      <div class="form-group input-group">
+        <input name="Binding1" class="form-control" type="text" [(ngModel)]="start1"></input>
+        <span class="input-group-addon"></span>
+        <input name="Binding1" class="form-control" type="text" [(ngModel)]="end1"></input>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="rangeDatePicker">Example</label>
+    <datepicker-range [(start)]="start2" [(end)]="end2"></datepicker-range>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Code : </label>
+    </div>
+  </div>
+  <pre>
+    {{DatepickerRangeHtml}}
+  </pre>
+
+  <div class="row">
+    <div class="col-md-4">
+      <label>Variables : </label>
+    </div>
+  </div>
+  <pre>
+    this.start1 = "2017-05-01";
+    this.end1 = "2017-05-22";
+  </pre>
+
+  <blockquote>
+    <p>start1 et end1 are the binded value, if you no put value by default it will be today
+      for the 2 dates.</br>
+      numberOfMonths is the number of month in the calendar, if you no put value by default it will 3.</p>
+  </blockquote>
 </div>

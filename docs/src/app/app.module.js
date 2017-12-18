@@ -8,28 +8,28 @@ import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/commo
 
 import HomeComponent from './home/home.component.js';
 
-import DatepickerAngularComponent from './datepickerAngular/datepicker.component';
+import DatepickerComponent from './datepicker/datepicker.component';
 
-import PaginationAngularComponent from './paginationAngular/pagination.component.js';
+import PaginationComponent from './pagination/pagination.component.js';
 
-import SelectpickerAngularComponent from './selectpickerAngular/selectpicker.component.js';
+import SelectpickerComponent from './selectpicker/selectpicker.component.js';
 
-import SlidepickerAngularComponent from './slidepickerAngular/slidepicker.component.js';
+import SlidepickerComponent from './slidepicker/slidepicker.component.js';
 
 import navbarComponent from './navbar/navbar.component.js';
 
-import DropdownAngularComponent from './dropdownAngular/dropdown.component.js';
+import DropdownComponent from './dropdown/dropdown.component.js';
 
 import ButtonComponent from './button/button.component.js';
 import IconComponent from './icon/icon.component.js';
 
-import ModalAngularComponent from './modalAngular/modal.component.js';
+import ModalComponent from './modal/modal.component.js';
 
 import DialogComponent from './dialog/dialog.component.js';
 
 import TableComponent from './table/table.component.js';
 
-import CarouselAngularComponent from './carouselAngular/carousel.component.js';
+import CarouselComponent from './carousel/carousel.component.js';
 
 import PopoverComponent from './popover/popover.component.js';
 import TooltipComponent from './tooltip/tooltip.component.js';
@@ -103,17 +103,17 @@ AppModule.annotations = [
     declarations: [
       AppComponent,
       HomeComponent,
-      DatepickerAngularComponent,
-      PaginationAngularComponent,
-      SelectpickerAngularComponent,
-      SlidepickerAngularComponent,
+      DatepickerComponent,
+      PaginationComponent,
+      SelectpickerComponent,
+      SlidepickerComponent,
       navbarComponent,
-      DropdownAngularComponent,
+      DropdownComponent,
       ButtonComponent,
       IconComponent,
-      ModalAngularComponent,
+      ModalComponent,
       TableComponent,
-      CarouselAngularComponent,
+      CarouselComponent,
       PopoverComponent,
       TooltipComponent,
       AccordionComponent,

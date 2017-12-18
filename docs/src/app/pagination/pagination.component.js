@@ -1,65 +1,33 @@
 import {Component} from '@angular/core';
 
-export default  class PaginationComponent {
+export default  class PaginationAngularComponent {
   static get annotations() {
     return [
       new Component({
         template: require('./pagination.html')
       })
-    ]
+    ];
   }
   constructor(){
+    this.PaginationHtml = `
+    <pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>`;
+    this.paginationSize = `
+    <pagination class="pagination-sm" [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>
+    <pagination class="pagination-lg" [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>`;
 
-    this.PaginationHtml= `
-    <ul class="pagination">
-      <li>
-        <a href="#">
-          <i class="icon icon-previous"></i>
-        </a>
-      </li>
-      <li>
-        <a href="#">1</a>
-      </li>
-      <li class="disabled">
-        <a href="#">
-          2
-        </a>
-      </li>
-      <li class="active">
-        <a href="#">
-          3
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          4
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          5
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          ...
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          399
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="icon icon-next"></i>
-        </a>
-      </li>
-    </ul>`
+    this.page = 4;
+    this.pages = 10;
+    this.result=[];
+    this.testPagination(this.page);
+  }
 
-    this.Display = "Example";
+  testPagination(page){
+    this.page = page;
+    for (var i=0; i<5; i++) {
+      this.result[i] = i+page*5-4;
+    }
   }
 }
 
 
-PaginationComponent.parameters = [];
+PaginationAngularComponent.parameters = [];

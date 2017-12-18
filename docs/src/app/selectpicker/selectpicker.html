@@ -1,295 +1,145 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a (click)="Display = 'Example'">
-            Example
-          </a>
-        </li>
-        <li>
-          <a (click)="Display = 'Api'">
-            Api
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div [ngSwitch]= "Display">
-
-  <div class="container" *ngSwitchCase="'Example'">
+<div class="container">
+  <h2>
+    Selectpicker
+  </h2>
+  <div class="row">
     <h3>
-      Example :
+      Single selectpicker
+    </h3>
+
+     <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="Selectpicker1">Example</label>
+          <selectpicker name="Selectpicker1" [(ngModel)]="Selectpicker1">
+            <selectpicker-option [value]="A">AAAA</selectpicker-option>
+            <selectpicker-option value="B">BBBB</selectpicker-option>
+            <selectpicker-option value="C">CCCC</selectpicker-option>
+          </selectpicker>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group" style="height:140px">
+          <label for="Binding1">Binding</label>
+          <ul>
+            <li >{{ Selectpicker1 }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <label>Code : </label>
+      </div>
+    </div>
+    <pre>
+      {{selectpickerSimpleHtml}}
+    </pre>
+  </div>
+
+  <div class="row">
+    <h3>
+      Multiple selectpicker
     </h3>
     <div class="row">
-      <div class="form-group">
-        <label for="select-html">html select simple</label>
-        <div id="select-html" class="select">
-          <button class="btn btn-default select-toggle" type="button" id="select-html" data-toggle="select">
-              <span class="select-text">&nbsp;</span>
-              <span class="caret"></span>
-            </button>
-          <ul class="select-options">
-            <li>
-              <a href="#">
-                  Messages
-                </a>
-            </li>
-            <li>
-              <a href="#">
-                  Another action
-                </a>
-            </li>
-            <li>
-              <a href="#">
-                  Something else here
-                </a>
-            </li>
-            <li>
-              <a href="#">
-                  Something else here
-                </a>
-            </li>
-            <li role="separator" class="divider"></li>
-            <li>
-              <a href="#">
-                  Separated link
-                </a>
-            </li>
-          </ul>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="Selectpicker2">Example simple selectPicker</label>
+          <selectpicker name="Selectpicker2" [(ngModel)]="Selectpicker2" [multiple]=true>
+            <selectpicker-option [value]="A">AAAA</selectpicker-option>
+            <selectpicker-option value="B">BBBB</selectpicker-option>
+            <selectpicker-option value="C">CCCC</selectpicker-option>
+          </selectpicker>
         </div>
       </div>
-
-      <div class="form-group">
-        <label for="select-html-multi">html select multiple</label>
-        <div class="select" id="select-html-multi" aria-multiple="true">
-          <button class="btn btn-default select-toggle" type="button" data-toggle="select">
-              <span class="select-text">&nbsp;</span>
-              <span class="caret"></span>
-            </button>
-          <ul id="opts" class="select-options">
-            <li>
-              <a id="opts1" href="#">
-                  Messages
-                </a>
-            </li>
-            <li>
-              <a href="#">
-                  Another action
-                </a>
-            </li>
-            <li>
-              <a href="#">
-                  Something else here
-                </a>
-            </li>
-            <li>
-              <a href="#">
-                  Something else here
-                </a>
-            </li>
-            <li role="separator" class="divider"></li>
-            <li>
-              <a href="#">
-                  Separated link
-                </a>
-            </li>
+      <div class="col-md-4">
+        <div class="form-group"  style="height:100px">
+          <label for="Binding1">Binding</label>
+          <ul>
+            <li *ngFor="let value of Selectpicker2">{{ value }}</li>
           </ul>
         </div>
       </div>
     </div>
 
-  </div>
-
-  <div class="container" *ngSwitchCase="'Api'">
-    <h3>
-      For a selectpicker use :
-    </h3>
-    <h4>
-      Method 1 :
-    </h4>
+    <div class="row">
+      <div class="col-md-4">
+        <label>Code : </label>
+      </div>
+    </div>
     <pre>
-      {{selectpicker1Html}}
+      {{selectpickerMultipleHtml}}
     </pre>
-    <h4>
-      Method 2 :
-    </h4>
-    <pre>
-      {{selectpicker2Html}}
-    </pre>
-    <h4>
-      Info
-    </h4>
-    <p>
-      The first method is for an static selectpicker
-    </p>
-    <p>
-      The second method is for an dynamic selectpicker. But need to be activate with javascript like :
-    </p>
-    <p>
-      $('select').selectpicker();
-    </p>
-    <h3>
-      Class css :
-    </h3>
-    <h4>
-      Method 1 :
-    </h4>
-    <table class="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>
-          <th class="col-md-2">
-            Class
-          </th>
-          <th class="col-md-1">
-            Tag
-          </th>
-          <th>
-            Description
-          </th>
-          <th>
-            Info
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            .select
-          </td>
-          <td>
-            div
-          </td>
-          <td>
-            Define the selectpicker
-          </td>
-          <td>
-
-          </td>
-        </tr>
-        <tr>
-          <td>
-            .select-toggle
-          </td>
-          <td>
-            button
-          </td>
-          <td>
-            Like dropdown, allow to open selectpicker
-          </td>
-          <td>
-            Warning : don't forget to add data-toggle="select"
-          </td>
-        </tr>
-        <tr>
-          <td>
-            .select-text
-          </td>
-          <td>
-            span
-          </td>
-          <td>
-            Display the choice
-          </td>
-          <td>
-
-          </td>
-        </tr>
-        <tr>
-          <td>
-            .select-options
-          </td>
-          <td>
-            ul
-          </td>
-          <td>
-            Define the different options
-          </td>
-          <td>
-
-          </td>
-        </tr>
-        <tr>
-          <td>
-            .divider
-          </td>
-          <td>
-            li
-          </td>
-          <td>
-            Create a divider between option
-          </td>
-          <td>
-
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <h4>
-      Method 2 :
-    </h4>
-    <table class="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>
-          <th class="col-md-2">
-            Class
-          </th>
-          <th class="col-md-1">
-            Tag
-          </th>
-          <th>
-            Description
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            .selectpicker
-          </td>
-          <td>
-            select
-          </td>
-          <td>
-            Define the selectpicker
-          </td>
-        </tr>
-        <tr>
-          <td>
-            .selectpicker-sm
-          </td>
-          <td>
-            select
-          </td>
-          <td>
-            Define a small selectpicker
-          </td>
-        </tr>
-        <tr>
-          <td>
-            .selectpicker-lg
-          </td>
-          <td>
-            select
-          </td>
-          <td>
-            Define a large selectpicker
-          </td>
-        </tr>
-      </tbody>
-    </table>
 
   </div>
 
+  <h3>
+    Different type of data
+  </h3>
+  <p>
+    We can send different type of data to selectpicker
+  </p>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="Selectpicker3">Example simple selectPicker</label>
+        <selectpicker name="Selectpicker3" [(ngModel)]="Selectpicker3" multiple>
+          <selectpicker-option [value]="A">AAAA</selectpicker-option>
+          <selectpicker-option value="B">BBBB</selectpicker-option>
+          <selectpicker-option value="C">CCCC</selectpicker-option>
+          <selectpicker-option [value]="booleanFalse">boolean test</selectpicker-option>
+          <selectpicker-option [value]="one">11111</selectpicker-option>
+          <selectpicker-option [value]="arrayOneTwoThree">one, two, three</selectpicker-option>
+          <selectpicker-option [value]="objetWithArray">objet javascript</selectpicker-option>
+          <selectpicker-option> {{ NoneValue }} </selectpicker-option>
+        </selectpicker>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group"  style="height:100px">
+        <label for="Binding1">Binding</label>
+        <ul>
+          <li *ngFor="let value of Selectpicker3">{{ value }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <label>Code : </label>
+    </div>
+  </div>
+  <pre>
+    {{selectpickerType}}
+  </pre>
+
+  <h3>
+    Exemple with ngFor
+  </h3>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="Selectpicker4">Example dynamic select</label>
+        <selectpicker name="Selectpicker4" [(ngModel)]="Selectpicker4">
+          <selectpicker-option *ngFor="let option of optionsSelect" [value]="option.value">{{ option.text}}</selectpicker-option>
+        </selectpicker>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group" style="height:140px">
+        <label for="Binding1">Binding</label>
+        <ul>
+          <!-- <li *ngFor="let value of Selectpicker4">{{ value }}</li> -->
+          <li> {{ Selectpicker4}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <pre>
+      {{exempleDynamicSelect}}
+    </pre>
+  </div>
 </div>

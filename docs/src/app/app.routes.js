@@ -1,26 +1,26 @@
 import HomeComponent from './home/home.component';
-import DatepickerAngularComponent from './datepickerAngular/datepicker.component';
+import DatepickerComponent from './datepicker/datepicker.component';
 
-import PaginationAngularComponent from './paginationAngular/pagination.component';
+import PaginationComponent from './pagination/pagination.component';
 
-import SelectpickerAngularComponent from './selectpickerAngular/selectpicker.component';
+import SelectpickerComponent from './selectpicker/selectpicker.component';
 
-import SlidepickerAngularComponent from './slidepickerAngular/slidepicker.component';
+import SlidepickerComponent from './slidepicker/slidepicker.component';
 
 import navbarComponent from './navbar/navbar.component';
 
-import DropdownAngularComponent from './dropdownAngular/dropdown.component.js';
+import DropdownComponent from './dropdown/dropdown.component.js';
 
 import ButtonComponent from './button/button.component.js';
 import IconComponent from './icon/icon.component.js';
 
-import ModalAngularComponent from './modalAngular/modal.component.js';
+import ModalComponent from './modal/modal.component.js';
 
 import DialogComponent from './dialog/dialog.component.js';
 
 import TableComponent from './table/table.component.js';
 
-import CarouselAngularComponent from './carouselAngular/carousel.component.js';
+import CarouselComponent from './carousel/carousel.component.js';
 
 import PopoverComponent from './popover/popover.component.js';
 import TooltipComponent from './tooltip/tooltip.component.js';
@@ -46,27 +46,27 @@ export default [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
 
-  { path: 'datepickerAngular', component: DatepickerAngularComponent },
+  { path: 'datepicker', component: DatepickerComponent },
 
-  { path: 'paginationAngular', component: PaginationAngularComponent },
+  { path: 'pagination', component: PaginationComponent },
 
-  { path: 'selectpickerAngular', component: SelectpickerAngularComponent },
+  { path: 'selectpicker', component: SelectpickerComponent },
 
-  { path: 'slidepickerAngular', component: SlidepickerAngularComponent },
+  { path: 'slidepicker', component: SlidepickerComponent },
 
   { path: 'navbar', component: navbarComponent },
 
-  { path: 'dropdownAngular', component: DropdownAngularComponent },
+  { path: 'dropdown', component: DropdownComponent },
 
   { path: 'button', component: ButtonComponent },
   { path: 'icon', component: IconComponent },
 
-  { path: 'modalAngular', component: ModalAngularComponent },
+  { path: 'modal', component: ModalComponent },
   { path: 'dialog', component: DialogComponent },
 
   { path: 'table', component: TableComponent },
 
-  { path: 'carouselAngular', component: CarouselAngularComponent },
+  { path: 'carousel', component: CarouselComponent },
 
   { path: 'popover', component: PopoverComponent },
   { path: 'tooltip', component: TooltipComponent },
