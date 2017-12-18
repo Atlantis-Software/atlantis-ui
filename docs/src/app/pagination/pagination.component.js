@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-export default  class PaginationAngularComponent {
+export default  class PaginationComponent {
   static get annotations() {
     return [
       new Component({
@@ -30,4 +30,4 @@ export default  class PaginationAngularComponent {
 }
 
 
-PaginationAngularComponent.parameters = [];
+PaginationComponent.parameters = [];

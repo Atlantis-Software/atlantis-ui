@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-export default  class ModalAngularComponent {
+export default  class ModalComponent {
   static get annotations() {
     return [
       new Component({
@@ -97,4 +97,4 @@ export default  class ModalAngularComponent {
 }
 
 
-ModalAngularComponent.parameters = [];
+ModalComponent.parameters = [];

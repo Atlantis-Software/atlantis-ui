@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-export default  class DropdownAngularComponent {
+export default  class DropdownComponent {
   static get annotations() {
     return [
       new Component({
@@ -68,4 +68,4 @@ export default  class DropdownAngularComponent {
 }
 
 
-DropdownAngularComponent.parameters = [];
+DropdownComponent.parameters = [];

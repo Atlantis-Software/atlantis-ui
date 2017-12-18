@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-export default  class SelectpickerAngularComponent {
+export default  class SelectpickerComponent {
   static get annotations() {
     return [
       new Component({
@@ -200,4 +200,4 @@ export default  class SelectpickerAngularComponent {
 }
 
 
-SelectpickerAngularComponent.parameters = [];
+SelectpickerComponent.parameters = [];

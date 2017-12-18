@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-export default  class SlidepickerAngularComponent {
+export default  class SlidepickerComponent {
   static get annotations() {
     return [
       new Component({
@@ -145,4 +145,4 @@ export default  class SlidepickerAngularComponent {
 }
 
 
-SlidepickerAngularComponent.parameters = [];
+SlidepickerComponent.parameters = [];

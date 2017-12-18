@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-export default  class CarouselAngularComponent {
+export default  class CarouselComponent {
   static get annotations() {
     return [
       new Component({
@@ -88,4 +88,4 @@ export default  class CarouselAngularComponent {
 }
 
 
-CarouselAngularComponent.parameters = [];
+CarouselComponent.parameters = [];

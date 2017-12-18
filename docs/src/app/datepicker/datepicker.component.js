@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-export default  class DatepickerAngularComponent {
+export default  class DatepickerComponent {
   static get annotations() {
     return [
       new Component({
@@ -22,4 +22,4 @@ export default  class DatepickerAngularComponent {
 }
 
 
-DatepickerAngularComponent.parameters = [];
+DatepickerComponent.parameters = [];
