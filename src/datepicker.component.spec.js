@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 
-import { ngxAtlUiModule } from './ngx-atlantis-ui-module.js';
+import { AtlantisUiModule } from './atlantis-ui.module.js';
 
 var assert = require('assert');
 
@@ -29,7 +29,7 @@ describe('datepicker', function() {
 
   beforeEach(async(function() {
     TestBed.configureTestingModule({
-      imports: [ngxAtlUiModule.forRoot(), FormsModule],
+      imports: [AtlantisUiModule.forRoot(), FormsModule],
       declarations: [datepickerTestComponent]
     });
     TestBed.compileComponents();
@@ -117,19 +117,14 @@ describe('datepicker', function() {
     tick();
     fixture.detectChanges();
 
-    var modal = document.querySelector('.modal');
-    assert.strictEqual(modal.classList[3], "in");
-
     var firstAvailable = document.querySelector('.available');
     firstAvailable.click();
     tick();
     fixture.detectChanges();
 
     var datepicker = document.querySelector('#data');
-    modal = document.querySelector('.modal');
 
     assert.strictEqual(moment(datepicker.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-02-01").toString());
-    assert.strictEqual(modal.classList[3], void 0);
 
   }));
 
@@ -365,10 +360,8 @@ describe('datepicker', function() {
     fixture.detectChanges();
 
     var datepicker = document.querySelector('#data');
-    var modal = document.querySelector('.modal');
 
     assert.strictEqual(moment(datepicker.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2004-02-03").format('YYYY-MM-DD'));
-    assert.strictEqual(modal.classList[3], "in");
 
     var closeButton = document.querySelector(".close");
     closeButton.click();

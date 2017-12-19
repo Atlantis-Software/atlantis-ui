@@ -1,0 +1,260 @@
+<div class="container">
+  <h2>
+    Modal
+  </h2>
+  <div class="row">
+    <h3>
+      Default modal
+    </h3>
+    <p>
+      Per default a modal will have a backdrop. For open a modal we need a boolean variable to send to <code>show</code> parameters
+    </p>
+
+    <div>
+      <button type="button" class="btn btn-primary btn-sm"  (click)="openStandard()">
+        Default modal
+      </button>
+      <modal [(show)]="showStandard">
+        <modal-header>
+          <h3 class="modal-title">Modal Header</h3>
+        </modal-header>
+        <modal-body>
+          <p>Some text in the modal.</p>
+        </modal-body>
+        <modal-footer>
+          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeStandard()">Close</button>
+        </modal-footer>
+      </modal>
+    </div>
+    <br>
+    <pre>
+      {{ modalHtml }}
+    </pre>
+  </div>
+
+  <div class="row">
+    <h3>
+      Modal with specific option
+    </h3>
+    <div>
+      <button type="button" class="btn btn-primary btn-sm"  (click)="showStandard2 = true">
+        Modal with option defined
+      </button>
+      <modal [(show)]="showStandard2" [backdrop]="false">
+        <modal-header [close]="false">
+          <h3 class="modal-title">Modal Header</h3>
+        </modal-header>
+        <modal-body>
+          <p>Some text in the modal.</p>
+        </modal-body>
+        <modal-footer>
+          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="showStandard2 = false">Close</button>
+        </modal-footer>
+      </modal>
+    </div>
+    <br>
+    <pre>
+      {{modalHtml2}}
+    </pre>
+  </div>
+
+  <h3>
+    Modal parameters
+  </h3>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>
+          Parameters
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Value
+        </th>
+        <th>
+          Default value
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          show
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          Define if the modal is open or not
+        </td>
+        <td>
+          true, false
+        </td>
+        <td>
+          false
+        </td>
+      </tr>
+      <tr>
+        <td>
+          orientation
+        </td>
+        <td>
+          String
+        </td>
+        <td>
+          Position of the modal
+        </td>
+        <td>
+          left, bottom, right, top
+        </td>
+        <td>
+          left
+        </td>
+      </tr>
+      <tr>
+        <td>
+          backdrop
+        </td>
+        <td>
+          string
+        </td>
+        <td>
+          Define if the backdrop is present
+        </td>
+        <td>
+          true, false
+        </td>
+        <td>
+          true.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>
+    Modal-header parameters
+  </h3>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>
+          Parameters
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Value
+        </th>
+        <th>
+          Default value
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          close
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          Define if the button close is present
+        </td>
+        <td>
+          true, false
+        </td>
+        <td>
+          true
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <h3>
+      Different orientation
+    </h3>
+    <div class="col-md-3">
+      <button type="button" class="btn btn-primary btn-sm"  (click)="openLeft()">
+        orientation="left"
+      </button>
+      <modal orientation="left" [(show)]="showLeft">
+        <modal-header>
+          <h3 class="modal-title">Modal Header</h3>
+        </modal-header>
+        <modal-body>
+          <p>Some text in the modal.</p>
+        </modal-body>
+        <modal-footer>
+          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeLeft()">Close</button>
+        </modal-footer>
+      </modal>
+    </div>
+      <div class="col-md-3">
+      <button type="button" class="btn btn-primary btn-sm" (click)="openRight()">
+        orientation="right"
+      </button>
+      <modal orientation="right" [(show)]="showRight">
+        <modal-header>
+          <h3 class="modal-title">Modal Header</h3>
+        </modal-header>
+        <modal-body>
+          <p>Some text in the modal.</p>
+        </modal-body>
+        <modal-footer>
+          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeRight()">Close</button>
+        </modal-footer>
+      </modal>
+    </div>
+    <div class="col-md-3">
+      <button type="button" class="btn btn-primary btn-sm"  (click)="openTop()">
+        orientation="top"
+      </button>
+      <modal orientation="top" [(show)]="showTop">
+        <modal-header>
+          <h3 class="modal-title">Modal Header</h3>
+        </modal-header>
+        <modal-body>
+          <p>Some text in the modal.</p>
+        </modal-body>
+        <modal-footer>
+          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeTop()">Close</button>
+        </modal-footer>
+      </modal>
+    </div>
+
+    <div class="col-md-3">
+      <button type="button" class="btn btn-primary btn-sm" (click)="openBottom()">
+        orientation = bottom
+      </button>
+      <modal orientation="bottom" [(show)]="showBottom" [size]="'600px'">
+        <modal-header>
+          <h3 class="modal-title">Modal Header</h3>
+        </modal-header>
+        <modal-body>
+          <p>Some text in the modal.</p>
+        </modal-body>
+        <modal-footer>
+          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeBottom()">Close</button>
+        </modal-footer>
+      </modal>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <pre>
+      {{modalOrientationHtml}}
+    </pre>
+  </div>
+
+
+</div>

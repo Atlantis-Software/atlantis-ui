@@ -7,7 +7,7 @@ export default class dialogComponent {
       new Component({
         selector: 'dlg',
         template: `
-          <div draggable class="modal-dialog" [ngStyle]="{'display': visible ? 'block' : 'none'}">
+          <div draggable (stopped)="focus()" class="modal-dialog" [ngStyle]="{'display': visible ? 'block' : 'none'}">
             <div class="modal-content" (mousedown)="focus()" [resizable]="options.resizable" [options]="options">
               <div draggable-handle class="modal-header">
                 <button type="button" class="close" (click)="close()">
@@ -26,10 +26,7 @@ export default class dialogComponent {
             </div>
           </div>`,
         inputs: ["show", "fade", "options"],
-        outputs: ['showChange', "onClose"],
-        hosts: {
-          "(window:resize)":"redraw()"
-        }
+        outputs: ['showChange', "onClose"]
       })
     ];
   }
@@ -83,12 +80,11 @@ export default class dialogComponent {
     this.visibleAnimate = true;
     this.options.visible = true;
     // setTimeout(() => this.visibleAnimate = true, 100);
-
+    this.dlgService.addDialog(this);
     this.redraw();
   }
 
   ngAfterViewInit() {
-    this.dlgService.addDialog(this);
     this.redraw();
   }
 
@@ -108,6 +104,7 @@ export default class dialogComponent {
     if (this.element) {
       this.element.style.transform = '';
     }
+    this.dlgService.removeDialog();
   }
 
   //Add classes to modal according to inputs parameters

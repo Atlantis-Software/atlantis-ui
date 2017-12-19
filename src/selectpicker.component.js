@@ -285,12 +285,6 @@ export default class selectpickerComponent {
     }
 
   }
-  // on hover item list the cursor is a pointer and indicates a link
-  onHover($event) {
-    this.cursor = $event.type == 'mouseover' ? 'pointer' : 'auto';
-    event.preventDefault();
-    event.stopPropagation();
-  }
 
 }
 

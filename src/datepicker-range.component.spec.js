@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 
-import { ngxAtlUiModule } from './ngx-atlantis-ui-module.js';
+import { AtlantisUiModule } from './atlantis-ui.module.js';
 
 var assert = require('assert');
 
@@ -34,7 +34,7 @@ describe('datepicker-range', function() {
 
   beforeEach(async(function() {
     TestBed.configureTestingModule({
-      imports: [ngxAtlUiModule.forRoot(), FormsModule],
+      imports: [AtlantisUiModule.forRoot(), FormsModule],
       declarations: [datepickerRangeTestComponent]
     });
     TestBed.compileComponents();
@@ -133,9 +133,6 @@ describe('datepicker-range', function() {
     tick();
     fixture.detectChanges();
 
-    var modal = document.querySelector('.modal');
-    assert.strictEqual(modal.classList[3], "in");
-
     var firstAvailable = document.querySelector('.available');
     firstAvailable.click();
     tick();
@@ -149,12 +146,9 @@ describe('datepicker-range', function() {
     var datepickerStart = document.querySelector('#dataStart');
     var datepickerEnd = document.querySelector('#dataEnd');
 
-    modal = document.querySelector('.modal');
-
     assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-02-01").toString());
     assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-02-02").toString());
 
-    assert.strictEqual(modal.classList[3], void 0);
 
   }));
 
@@ -167,9 +161,6 @@ describe('datepicker-range', function() {
     input.click();
     tick();
     fixture.detectChanges();
-
-    var modal = document.querySelector('.modal');
-    assert.strictEqual(modal.classList[3], "in");
 
     var available = document.querySelectorAll('.available')[3];
     available.click();
@@ -197,8 +188,6 @@ describe('datepicker-range', function() {
 
     datepickerStart = document.querySelector('#dataStart');
     var datepickerEnd = document.querySelector('#dataEnd');
-
-    modal = document.querySelector('.modal');
 
     closeButton = document.querySelector(".close");
     closeButton.click();
@@ -488,12 +477,8 @@ describe('datepicker-range', function() {
     var datepickerStart = document.querySelector('#dataStart');
     var datepickerEnd = document.querySelector('#dataEnd');
 
-    var modal = document.querySelector('.modal');
-
     assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2004-02-03").format('YYYY-MM-DD'));
     assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2004-02-10").format('YYYY-MM-DD'));
-
-    assert.strictEqual(modal.classList[3], "in");
 
     var closeButton = document.querySelector(".close");
     closeButton.click();
