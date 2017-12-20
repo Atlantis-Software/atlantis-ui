@@ -247,12 +247,12 @@ export default class datepickerComponent {
       return;
     } else if (this._start && !this._end) {
       this.setStart(this._start);
-      this.startChange.emit(moment(this._start,this.locale.format).format(this.locale.format));
+      this.startChange.emit(moment(this._start,this.locale.format).format("YYYY-MM-DD"));
       this.endChange.emit();
     } else if (!this._start && this._end) {
       this.setEnd(this._end);
       this.startChange.emit();
-      this.endChange.emit(moment(this._end,this.locale.format).format(this.locale.format));
+      this.endChange.emit(moment(this._end,this.locale.format).format("YYYY-MM-DD"));
     } else {
       this.setStart(this._start);
       this.setEnd(this._end);
@@ -263,8 +263,8 @@ export default class datepickerComponent {
         this._start = this.start;
         this._end = this.end;
       }
-      this.startChange.emit(moment(this.start,this.locale.format).format(this.locale.format));
-      this.endChange.emit(moment(this.end,this.locale.format).format(this.locale.format));
+      this.startChange.emit(moment(this.start,this.locale.format).format("YYYY-MM-DD"));
+      this.endChange.emit(moment(this.end,this.locale.format).format("YYYY-MM-DD"));
     }
   }
 
@@ -497,6 +497,40 @@ export default class datepickerComponent {
     this.end = this._end = "";
     this.endDate = moment();
     this.endChange.emit("");
+    this.refreshCalendar();
+    this.refreshTextDateStart();
+    this.refreshTextDateEnd();
+  }
+
+  ngOnChanges() {
+    if (!this.locale) {
+      return;
+    }
+    if (this.start) {
+      // if we have a default value
+      this.startDate = moment(this.start, [this.locale.format, "YYYY-MM-DD"]);
+      this.start = this._start = this.startDate.format(this.locale.format);
+    } else {
+      this.startDate = moment();
+    }
+
+    if (this.end) {
+      // if we have a default value
+      this.endDate = moment(this.end, [this.locale.format, "YYYY-MM-DD"]);
+      this.end = this._end = this.endDate.format(this.locale.format);
+    } else {
+      this.endDate = moment();
+    }
+
+
+    this.calendar = [];
+    this.calendar[0] = {};
+    this.calendar[0] = this.startDate.clone().date(2);
+    // create calendars depending on the number of the var numberOfMonths
+    for (var i = 1; i < this.numberOfMonths; i++) {
+      this.calendar[i] = {};
+      this.calendar[i] = this.startDate.clone().date(2).add(i, 'month');
+    }
     this.refreshCalendar();
     this.refreshTextDateStart();
     this.refreshTextDateEnd();
