@@ -247,12 +247,12 @@ export default class datepickerComponent {
       return;
     } else if (this._start && !this._end) {
       this.setStart(this._start);
-      this.startChange.emit(moment(this._start,this.locale.format).format(this.locale.format));
+      this.startChange.emit(moment(this._start,this.locale.format).format("YYYY-MM-DD"));
       this.endChange.emit();
     } else if (!this._start && this._end) {
       this.setEnd(this._end);
       this.startChange.emit();
-      this.endChange.emit(moment(this._end,this.locale.format).format(this.locale.format));
+      this.endChange.emit(moment(this._end,this.locale.format).format("YYYY-MM-DD"));
     } else {
       this.setStart(this._start);
       this.setEnd(this._end);
@@ -263,8 +263,8 @@ export default class datepickerComponent {
         this._start = this.start;
         this._end = this.end;
       }
-      this.startChange.emit(moment(this.start,this.locale.format).format(this.locale.format));
-      this.endChange.emit(moment(this.end,this.locale.format).format(this.locale.format));
+      this.startChange.emit(moment(this.start,this.locale.format).format("YYYY-MM-DD"));
+      this.endChange.emit(moment(this.end,this.locale.format).format("YYYY-MM-DD"));
     }
   }
 

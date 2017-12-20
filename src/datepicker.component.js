@@ -240,10 +240,11 @@ export default class datepickerComponent {
     this.visible = false;
     if (this._val) {
       this.val = moment(this._val, this.locale.format).format(this.locale.format);
+      this.onModelChange(moment(this._val, this.locale.format).format("YYYY-MM-DD"));
     } else {
       this.val = "";
+      this.onModelChange(this.val);
     }
-    this.onModelChange(this.val);
   }
 
   // on change value selectpicker predefined date
