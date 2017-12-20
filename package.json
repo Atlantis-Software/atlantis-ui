@@ -1,7 +1,7 @@
 {
   "name": "atlantis-ui",
   "description": "framework for developing responsive, mobile first projects on the web.",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.2",
   "keywords": [
     "css",
     "less",
