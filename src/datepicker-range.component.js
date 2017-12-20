@@ -501,6 +501,40 @@ export default class datepickerComponent {
     this.refreshTextDateStart();
     this.refreshTextDateEnd();
   }
+
+  ngOnChanges() {
+    if (!this.locale) {
+      return;
+    }
+    if (this.start) {
+      // if we have a default value
+      this.startDate = moment(this.start, [this.locale.format, "YYYY-MM-DD"]);
+      this.start = this._start = this.startDate.format(this.locale.format);
+    } else {
+      this.startDate = moment();
+    }
+
+    if (this.end) {
+      // if we have a default value
+      this.endDate = moment(this.end, [this.locale.format, "YYYY-MM-DD"]);
+      this.end = this._end = this.endDate.format(this.locale.format);
+    } else {
+      this.endDate = moment();
+    }
+
+
+    this.calendar = [];
+    this.calendar[0] = {};
+    this.calendar[0] = this.startDate.clone().date(2);
+    // create calendars depending on the number of the var numberOfMonths
+    for (var i = 1; i < this.numberOfMonths; i++) {
+      this.calendar[i] = {};
+      this.calendar[i] = this.startDate.clone().date(2).add(i, 'month');
+    }
+    this.refreshCalendar();
+    this.refreshTextDateStart();
+    this.refreshTextDateEnd();
+  }
 }
 
 datepickerComponent.parameters = [ElementRef, KeyValueDiffers, ChangeDetectorRef];
