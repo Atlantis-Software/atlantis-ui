@@ -5,28 +5,30 @@ export default class dialogComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'dlg',
+        selector: 'atlui-dlg',
         template: `
-          <div draggable (stopped)="focus()" class="modal-dialog" [ngStyle]="{'display': visible ? 'block' : 'none'}">
-            <div class="modal-content" (mousedown)="focus()" [resizable]="options.resizable" [options]="options">
-              <div draggable-handle class="modal-header">
+          <div atlui-dragItem [(dragX)]="posX" [(dragY)]="posY" (dragStopped)="focus()" [dragContainment]="container" class="modal-dialog" [ngStyle]="{'display': visible ? 'block' : 'none'}">
+            <div class="modal-content" (mousedown)="focus()" [atlui-resizable]="isResizable" [minWidth]="minWidth" [maxWidth]="maxWidth" [minHeight]="minHeight" [maxHeight]="maxHeight">
+              <div atlui-dragItem-handle class="modal-header">
                 <button type="button" class="close" (click)="close()">
                   <span>&times;</span>
                 </button>
-                <div *ngFor="let control of options.controls">
-                    <button type="button" class="close" (click)='control.action();'>
-                        <span style='margin-right: 10px;'>{{control.label}}</span>
+                <div *ngFor="let control of controls">
+                    <button type="button" (click)='control.action();'>
+                        <span *ngIf="control.label" style='margin-right: 10px;'>{{control.label}}</span>
+                        <i *ngIf="control.icon" class="icon" [ngClass]="'icon-'+control.icon"></i>
                     </button>
                 </div>
-                <h4 class="modal-title">{{options.title}}</h4>
+                <h4 class="modal-title">{{title}}</h4>
               </div>
               <div class="modal-body">
                 <ng-content></ng-content>
               </div>
             </div>
           </div>`,
-        inputs: ["show", "fade", "options"],
-        outputs: ['showChange', "onClose"]
+        inputs: ["show", "isResizable", "height", "width", "minHeight", "maxHeight", "minWidth",
+          "maxWidth", "container", "controls", "title", "closeCallback"],
+        outputs: ['showChange', "onClose", "heightChange", "widthChange"]
       })
     ];
   }
@@ -34,19 +36,23 @@ export default class dialogComponent {
   constructor(elementRef, dialogService) {
     this.showChange = new EventEmitter();
     this.onClose = new EventEmitter();
+    this.heightChange = new EventEmitter();
+    this.widthChange = new EventEmitter();
     this.elementRef = elementRef;
-    this.options = {
-      visible: false,
-      height: 500,
-      minHeight: 500,
-      maxHeight: 500,
-      width: 300,
-      minWidth: 300,
-      maxWidth: 300
-    };
-    this.fade = true;
-    this.isClosable = false;
+    this.visible = false;
+    this.isResizable = false;
+    this.height = 500;
+    this.minHeight = 100;
+    this.maxHeight = Infinity;
+    this.width = 300;
+    this.minWidth = 100;
+    this.maxWidth = Infinity;
+    this.container = '';
+    this.title = '';
+    this.controls = [];
     this.dlgService = dialogService;
+    this.posX = 0;
+    this.posY = 0;
   }
 
   get show() {
@@ -72,14 +78,11 @@ export default class dialogComponent {
   //Open modal and add correct class on body for avoid the scroll on body
   //if we want a backdrop that create a backdrop into the body
   open() {
-
+    this.posX = 0;
+    this.posY = 0;
     this.model = true;
     this.showChange.emit(this.model);
-
     this.visible = true;
-    this.visibleAnimate = true;
-    this.options.visible = true;
-    // setTimeout(() => this.visibleAnimate = true, 100);
     this.dlgService.addDialog(this);
     this.redraw();
   }
@@ -90,26 +93,23 @@ export default class dialogComponent {
 
   close() {
     this.model = false;
-    if (this.options.onClose) {
-      this.options.onClose();
+    if (this.closeCallback) {
+      this.closeCallback();
+      this.onClose.emit();
       return;
     }
     this.showChange.emit(this.model);
-    document.body.classList.remove("modal-open");
-    this.visibleAnimate = false;
     this.visible = false;
-    this.options.visible = false;
-    // setTimeout(() => this.visible = false, 300);
     this.onClose.emit();
     if (this.element) {
       this.element.style.transform = '';
     }
-    this.dlgService.removeDialog();
+    this.dlgService.removeDialog(this);
   }
 
   //Add classes to modal according to inputs parameters
   ngOnDestroy() {
-    this.dlgService.removeDialog();
+    this.dlgService.removeDialog(this);
   }
 
   redraw() {
@@ -118,8 +118,23 @@ export default class dialogComponent {
     this.header = this.elementRef.nativeElement.querySelector('.modal-header');
     this.body = this.elementRef.nativeElement.querySelector('.modal-body');
 
-    var height = Math.min(this.options.height, window.innerHeight);
-    var width = Math.min(this.options.width, window.innerWidth);
+    // this.maxHeight = window.innerHeight;
+    // this.maxWidth = window.innerWidth;
+
+    if (this.width < this.minWidth) {
+      this.width = this.minWidth;
+    } else if (this.width > this.maxWidth) {
+      this.width = this.maxWidth;
+    }
+
+    if (this.height < this.minHeight) {
+      this.height = this.minHeight;
+    } else if (this.height > this.maxHeight) {
+      this.height = this.maxHeight;
+    }
+
+    var height = Math.min(this.height, window.innerHeight);
+    var width = Math.min(this.width, window.innerWidth);
 
     this.content.style.width = width + "px";
     this.content.style.height = height + "px";
@@ -130,17 +145,22 @@ export default class dialogComponent {
     this.element.style.top = top + "px";
     this.element.style.left = left + "px";
 
-    this.options.minHeight = this.options.minHeight || this.options.height;
-    this.options.maxHeight = this.options.maxHeight || this.options.height;
-    this.options.minWidth = this.options.minWidth || this.options.width;
-    this.options.maxWidth = this.options.maxWidth || this.options.width;
+    this.content.style.width = this.width + "px";
+    this.content.style.height = this.height + "px";
+    this.content.style.minHeight = this.minHeight + "px";
+    this.content.style.minWidth = this.minWidth + "px";
 
-    this.content.style.width = this.options.width + "px";
-    this.content.style.height = this.options.height + "px";
-    this.content.style.minHeight = this.options.minHeight + "px";
-    this.content.style.minWidth = this.options.minWidth + "px";
-    this.content.style.maxHeight = this.options.maxHeight + "px";
-    this.content.style.maxWidth = this.options.maxWidth + "px";
+    if (this.maxHeight === Infinity) {
+      this.content.style.maxHeight = "unset";
+    } else {
+      this.content.style.maxHeight = this.maxHeight + "px";
+    }
+    if (this.maxWidth === Infinity) {
+      this.content.style.maxWidth = "unset";
+    } else {
+      this.content.style.maxWidth = this.maxWidth + "px";
+    }
+
 
     var headerStyle = window.getComputedStyle(this.header, null);
     var contentStyle = window.getComputedStyle(this.content, null);
@@ -150,11 +170,14 @@ export default class dialogComponent {
     var contentInnerHeight = contentHeight - contentBorderTop - contentBorderBottom;
 
     this.body.style.height = (contentInnerHeight - parseInt(headerStyle.getPropertyValue("height"))) + "px";
-    this.options.bodyHeight = this.body.style.height;
+    this.bodyHeight = this.body.style.height;
 
-    if (this.options.visible) {
+    if (this.visible) {
       this.focus();
     }
+
+    this.widthChange.emit(this.width);
+    this.heightChange.emit(this.height);
   }
 }
 
