@@ -30,7 +30,7 @@ export default class datepickerComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'datepicker-range',
+        selector: 'atlui-datepicker-range',
         template: require('./datepicker-range.html'),
         inputs: ['numberOfMonths', 'start', 'end'],
         outputs: ['startChange', 'endChange'],

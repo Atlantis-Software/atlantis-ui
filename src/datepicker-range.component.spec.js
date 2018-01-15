@@ -17,10 +17,10 @@ class datepickerRangeTestComponent {
   static get annotations() {
     return [
       new Component({
-        template: `<datepicker-range id="datepicker" [(start)]="startDate" [(end)]="endDate"></datepicker-range>
+        template: `<atlui-datepicker-range id="datepicker" [(start)]="startDate" [(end)]="endDate"></atlui-datepicker-range>
         <div id="dataStart">{{startDate}}</div>
         <div id="dataEnd">{{endDate}}</div>
-        <datepicker-range [(start)]="noDateStart" [(end)]="noDateEnd" [numberOfMonths]="5"></datepicker-range>
+        <atlui-datepicker-range [(start)]="noDateStart" [(end)]="noDateEnd" [numberOfMonths]="5"></atlui-datepicker-range>
         <div id="data2Start">{{noDateStart}}</div>
         <div id="data2End">{{noDateEnd}}</div>`
       })
@@ -93,12 +93,12 @@ describe('datepicker-range', function() {
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    var input = document.querySelectorAll('datepicker-range')[0].querySelectorAll('input')[0];
+    var input = document.querySelectorAll('atlui-datepicker-range')[0].querySelectorAll('input')[0];
     input.click();
     tick();
     fixture.detectChanges();
 
-    var months = document.querySelectorAll('datepicker-range')[0].querySelectorAll(".calendar.calendar");
+    var months = document.querySelectorAll('atlui-datepicker-range')[0].querySelectorAll(".calendar.calendar");
 
     assert.strictEqual(months.length, 3);
 
@@ -107,12 +107,12 @@ describe('datepicker-range', function() {
     tick();
     fixture.detectChanges();
 
-    input = document.querySelectorAll('datepicker-range')[1].querySelectorAll('input')[0];
+    input = document.querySelectorAll('atlui-datepicker-range')[1].querySelectorAll('input')[0];
     input.click();
     tick();
     fixture.detectChanges();
 
-    months = document.querySelectorAll('datepicker-range')[1].querySelectorAll(".calendar.calendar");
+    months = document.querySelectorAll('atlui-datepicker-range')[1].querySelectorAll(".calendar.calendar");
 
     assert.strictEqual(months.length, 5);
 

@@ -15,9 +15,9 @@ class datepickerTestComponent {
   static get annotations() {
     return [
       new Component({
-        template: `<datepicker id="datepicker" [(ngModel)]="testDate"></datepicker>
+        template: `<atlui-datepicker id="datepicker" [(ngModel)]="testDate"></atlui-datepicker>
         <div id="data">{{testDate}}</div>
-        <datepicker [(ngModel)]="noDate" [numberOfMonths]="5"></datepicker>
+        <atlui-datepicker [(ngModel)]="noDate" [numberOfMonths]="5"></atlui-datepicker>
         <div id="data2">{{noDate}}</div>`
       })
     ];
@@ -82,7 +82,7 @@ describe('datepicker', function() {
     tick();
     fixture.detectChanges();
 
-    var months = document.querySelectorAll("datepicker")[0].querySelectorAll(".calendar.calendar");
+    var months = document.querySelectorAll("atlui-datepicker")[0].querySelectorAll(".calendar.calendar");
 
     assert.strictEqual(months.length, 3);
 
@@ -96,7 +96,7 @@ describe('datepicker', function() {
     tick();
     fixture.detectChanges();
 
-    months = document.querySelectorAll("datepicker")[1].querySelectorAll(".calendar.calendar");
+    months = document.querySelectorAll("atlui-datepicker")[1].querySelectorAll(".calendar.calendar");
 
     assert.strictEqual(months.length, 5);
 

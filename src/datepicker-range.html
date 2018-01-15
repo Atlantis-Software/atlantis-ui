@@ -10,8 +10,8 @@
   </div>
 </div>
 
-<modal orientation="right" [(show)]="visible" (onClose)="close()" [isClosable]="true">
-  <modal-header [close]="modalHeaderOptions.close">
+<atlui-modal orientation="right" [(show)]="visible" (onClose)="close()" [isClosable]="true">
+  <atlui-modal-header [close]="modalHeaderOptions.close">
     <div class="row datepicker-text">
       <div class="col-md-5 text-center date-letter">
         <span>{{ beforeDayDateStart }}</span>
@@ -46,14 +46,14 @@
         </div>
       </div>
       <div class="col-md-4">
-        <selectpicker name="selectPredefinedDate" [ngModel]="predefinedDate" (ngModelChange)="onChange($event)">
-          <selectpicker-option value="toDay">{{ i18n[language]["today"] }}</selectpicker-option>
-          <selectpicker-option value="lastWeek">{{ i18n[language]["lastWeek"] }}</selectpicker-option>
-          <selectpicker-option value="lastMonth">{{ i18n[language]["lastMonth"] }}</selectpicker-option>
-          <selectpicker-option value="last7day">{{ i18n[language]["last7day"] }}</selectpicker-option>
-          <selectpicker-option value="last30day">{{ i18n[language]["last30day"] }}</selectpicker-option>
-          <selectpicker-option value="lastYear">{{ i18n[language]["lastYear"] }}</selectpicker-option>
-        </selectpicker>
+        <atlui-selectpicker name="selectPredefinedDate" [ngModel]="predefinedDate" (ngModelChange)="onChange($event)">
+          <atlui-selectpicker-option value="toDay">{{ i18n[language]["today"] }}</atlui-selectpicker-option>
+          <atlui-selectpicker-option value="lastWeek">{{ i18n[language]["lastWeek"] }}</atlui-selectpicker-option>
+          <atlui-selectpicker-option value="lastMonth">{{ i18n[language]["lastMonth"] }}</atlui-selectpicker-option>
+          <atlui-selectpicker-option value="last7day">{{ i18n[language]["last7day"] }}</atlui-selectpicker-option>
+          <atlui-selectpicker-option value="last30day">{{ i18n[language]["last30day"] }}</atlui-selectpicker-option>
+          <atlui-selectpicker-option value="lastYear">{{ i18n[language]["lastYear"] }}</atlui-selectpicker-option>
+        </atlui-selectpicker>
       </div>
       <div class="col-md-1 text-center" >
         <div class="next arrow" (click)="clickNext($event)">
@@ -61,8 +61,8 @@
         </div>
       </div>
     </div>
-  </modal-header>
-  <modal-body>
+  </atlui-modal-header>
+  <atlui-modal-body>
     <div class="datepicker show-calendar">
       <div *ngFor="let item of arrayMonths;let i = index;" class="calendar calendar {{ i }}">
         <div class="calendar-table">
@@ -88,7 +88,7 @@
         </div>
       </div>
     </div>
-  </modal-body>
-  <modal-footer>
-  </modal-footer>
-</modal>
+  </atlui-modal-body>
+  <atlui-modal-footer>
+  </atlui-modal-footer>
+</atlui-modal>

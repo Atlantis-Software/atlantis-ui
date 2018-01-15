@@ -25,7 +25,7 @@ export default class datepickerComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'datepicker',
+        selector: 'atlui-datepicker',
         template: require('./datepicker.html'),
         inputs: ['numberOfMonths'],
         // necessary to use ngModel
