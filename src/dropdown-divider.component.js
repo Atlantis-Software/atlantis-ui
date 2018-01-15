@@ -7,7 +7,7 @@ export default class dropdownDividerComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'dropdown-divider',
+        selector: 'atlui-dropdown-divider',
         template: "",
         host: {
           "class": "divider"

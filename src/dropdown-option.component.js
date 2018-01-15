@@ -8,7 +8,7 @@ export default class dropdownOptionComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'dropdown-option',
+        selector: 'atlui-dropdown-option',
         template: `<ng-content></ng-content>`
       })
     ];

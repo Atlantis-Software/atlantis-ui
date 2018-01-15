@@ -5,7 +5,7 @@ export default class dropdownComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'dropdown',
+        selector: 'atlui-dropdown',
         template: `
           <button *ngIf="!parentIsLi" class="btn btn-default" type="button">
             <i *ngIf="icon" class="icon" [ngClass]="'icon-'+icon"></i>
