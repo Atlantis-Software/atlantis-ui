@@ -7,14 +7,14 @@ export default class gridBodyComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'grid-body',
+        selector: 'atlui-grid-body',
         template: `
         <div *ngFor="let row of rows; let i = index" (click)="!changingCellContent && selectRow(row, $event, i)" [class.active]='!changingCellContent && selected.includes(row)' class="gridRow">
           <div *ngFor="let column of columns; let y = index" class="gridCell" [class.changeContent]="changingCellContent === i + '' + y" [class.errorContent]="errorCellContent === i + '' + y" [ngClass]="column.class" [attr.align]="column.alignment" [style.verticalAlign]="column.vertical_alignment" (dblclick)="!changingCellContent && modifyContent($event, i, y)">
             <input class="grid-input-change form-control" [ngModel]="row[column.label]" *ngIf="changingCellContent === i + '' + y" (blur)="modifyContent($event, i, y, true)" (keyup.enter)="modifyContent($event, i, y, true)" focus/>
             <label class="grid-label-error" *ngIf="errorCellContent === i + '' + y" (click)="resetContent($event, i, y)"></label>
-            <grid-cell [content]="row[column.label]" [type]="column.type" [pipes]="pipes" *ngIf="changingCellContent !== i + '' + y">
-            </grid-cell>
+            <atlui-grid-cell [content]="row[column.label]" [type]="column.type" [pipes]="pipes" *ngIf="changingCellContent !== i + '' + y">
+            </atlui-grid-cell>
           </div>
         </div>`,
         inputs: [

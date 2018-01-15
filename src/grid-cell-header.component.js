@@ -8,7 +8,7 @@ export default class gridCellHeaderComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'grid-cell-header',
+        selector: 'atlui-grid-cell-header',
         template: `
         <span>{{content}}</span>
         <span [class]="sortingClass"></span>`,
