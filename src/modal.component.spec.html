@@ -4,17 +4,17 @@
     fade=true</br>
     backdrop=true
   </button>
-  <modal orientation="left" [backdrop]="true" [(show)]="showLeft">
-    <modal-header>
+  <atlui-modal orientation="left" [backdrop]="true" [(show)]="showLeft">
+    <atlui-modal-header>
       <h3 class="modal-title">Modal Header</h3>
-    </modal-header>
-    <modal-body>
+    </atlui-modal-header>
+    <atlui-modal-body>
       <p>Some text in the modal.</p>
-    </modal-body>
-    <modal-footer>
+    </atlui-modal-body>
+    <atlui-modal-footer>
       <button id="closeLeft" type="button" class="btn btn-default" data-dismiss="modal" (click)="closeLeft()">Close</button>
-    </modal-footer>
-  </modal>
+    </atlui-modal-footer>
+  </atlui-modal>
 </div>
   <div class="col-md-3" >
   <button id="openRight" type="button" class="btn btn-default btn-sm" (click)="openRight()">
@@ -22,17 +22,17 @@
     fade=false</br>
     backdrop=false
   </button>
-  <modal orientation="right" [backdrop]="false" [(show)]="showRight">
-    <modal-header>
+  <atlui-modal orientation="right" [backdrop]="false" [(show)]="showRight">
+    <atlui-modal-header>
       <h3 class="modal-title">Modal Header</h3>
-    </modal-header>
-    <modal-body>
+    </atlui-modal-header>
+    <atlui-modal-body>
       <p>Some text in the modal.</p>
-    </modal-body>
-    <modal-footer>
+    </atlui-modal-body>
+    <atlui-modal-footer>
       <button id="closeRight" type="button" class="btn btn-default" data-dismiss="modal" (click)="closeRight()">Close</button>
-    </modal-footer>
-  </modal>
+    </atlui-modal-footer>
+  </atlui-modal>
 </div>
 <div class="col-md-3" >
   <button id="openTop" type="button" class="btn btn-default btn-sm"  (click)="openTop()">
@@ -40,17 +40,17 @@
     fade=false</br>
     backdrop=true
   </button>
-  <modal orientation="top" [(show)]="showTop">
-    <modal-header>
+  <atlui-modal orientation="top" [(show)]="showTop">
+    <atlui-modal-header>
       <h3 class="modal-title">Modal Header</h3>
-    </modal-header>
-    <modal-body>
+    </atlui-modal-header>
+    <atlui-modal-body>
       <p>Some text in the modal.</p>
-    </modal-body>
-    <modal-footer>
+    </atlui-modal-body>
+    <atlui-modal-footer>
       <button id="closeTop" type="button" class="btn btn-default" data-dismiss="modal" (click)="closeTop()">Close</button>
-    </modal-footer>
-  </modal>
+    </atlui-modal-footer>
+  </atlui-modal>
 </div>
 <div class="col-md-3" >
   <button id="openBottom" type="button" class="btn btn-default btn-sm" (click)="openBottom()">
@@ -58,31 +58,31 @@
     fade=true</br>
     backdrop=true
   </button>
-  <modal orientation="bottom" [backdrop]="true" [(show)]="showBottom">
-    <modal-header>
+  <atlui-modal orientation="bottom" [backdrop]="true" [(show)]="showBottom">
+    <atlui-modal-header>
       <h3 class="modal-title">Modal Header</h3>
-    </modal-header>
-    <modal-body>
+    </atlui-modal-header>
+    <atlui-modal-body>
       <p>Some text in the modal.</p>
-    </modal-body>
-    <modal-footer>
+    </atlui-modal-body>
+    <atlui-modal-footer>
       <button id="closeBottom" type="button" class="btn btn-default" data-dismiss="modal" (click)="closeBottom()">Close</button>
-    </modal-footer>
-  </modal>
+    </atlui-modal-footer>
+  </atlui-modal>
 </div>
 <div class="col-md-2" >
   <button id="openStandard" type="button" class="btn btn-default btn-sm"  (click)="openStandard()">
     No Options defined
   </button>
-  <modal id="testStandard" [(show)]="showStandard">
-    <modal-header>
+  <atlui-modal id="testStandard" [(show)]="showStandard">
+    <atlui-modal-header>
       <h3 class="modal-title">Modal Header</h3>
-    </modal-header>
-    <modal-body>
+    </atlui-modal-header>
+    <atlui-modal-body>
       <p>Some text in the modal.</p>
-    </modal-body>
-    <modal-footer>
+    </atlui-modal-body>
+    <atlui-modal-footer>
       <button id="closeStandard" type="button" class="btn btn-default" data-dismiss="modal" (click)="closeStandard()">Close</button>
-    </modal-footer>
-  </modal>
+    </atlui-modal-footer>
+  </atlui-modal>
 </div>

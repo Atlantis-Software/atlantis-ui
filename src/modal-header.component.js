@@ -5,7 +5,7 @@ export default class modalHeaderComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'modal-header',
+        selector: 'atlui-modal-header',
         template: `
         <div class="modal-header">
           <button *ngIf="close" type="button" class="close" (click)="onClose()"><span>&times;</span></button>

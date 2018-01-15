@@ -4,7 +4,7 @@ export default class modalBodyComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'modal-body',
+        selector: 'atlui-modal-body',
         template: `
         <div class="modal-body">
           <ng-content></ng-content>

@@ -6,7 +6,7 @@ export default class modalComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'modal',
+        selector: 'atlui-modal',
         template: `
           <div (click)="closeOnBackdrop($event)" class="modal" [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}">
             <div class="modal-dialog" role="document">
