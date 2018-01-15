@@ -19,20 +19,20 @@ class carouselTestComponent {
     return [
       new Component({
         template: `
-        <carousel indicator="true" activeDefault="1">
-        <carousel-item *ngIf="show1">
+        <atlui-carousel indicator="true" activeDefault="1">
+        <atlui-carousel-item *ngIf="show1">
           <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">
           <div class="carousel-caption">slide1</div>
-        </carousel-item>
-        <carousel-item *ngIf="show2">
+        </atlui-carousel-item>
+        <atlui-carousel-item *ngIf="show2">
           <img class="img-responsive center-block" src="../../img/carousel02.jpg" alt="">
           <div class="carousel-caption">slide2</div>
-        </carousel-item>
-        <carousel-item *ngIf="show3">
+        </atlui-carousel-item>
+        <atlui-carousel-item *ngIf="show3">
           <img class="img-responsive center-block" src="../../img/carousel03.jpg" alt="">
           <div class="carousel-caption"></div>
-        </carousel-item>
-        </carousel>`
+        </atlui-carousel-item>
+        </atlui-carousel>`
       })
     ];
   }
@@ -60,7 +60,7 @@ describe('carousel', function() {
     fixture.detectChanges();
     testComponent = fixture.componentInstance;
     var labels = document.querySelectorAll('.carousel-caption');
-    var items = document.querySelectorAll('carousel-item');
+    var items = document.querySelectorAll('atlui-carousel-item');
     var indicators = document.querySelectorAll('li');
 
     assert.strictEqual(labels.length, 3);
@@ -89,7 +89,7 @@ describe('carousel', function() {
     indicators[0].click();
     tick();
     fixture.detectChanges();
-    var items = document.querySelectorAll('carousel-item');
+    var items = document.querySelectorAll('atlui-carousel-item');
     assert.strictEqual(items.length, 3);
     assert.strictEqual(items[0].classList[1], 'active');
     assert.strictEqual(items[1].classList[1], void 0);
@@ -113,7 +113,7 @@ describe('carousel', function() {
     fixture.detectChanges();
 
     var indicators = document.querySelectorAll('li');
-    var items = document.querySelectorAll('carousel-item');
+    var items = document.querySelectorAll('atlui-carousel-item');
 
     assert.strictEqual(items.length, 3);
     assert.strictEqual(items[0].classList[1], void 0);
@@ -138,7 +138,7 @@ describe('carousel', function() {
     fixture.detectChanges();
 
     var indicators = document.querySelectorAll('li');
-    var items = document.querySelectorAll('carousel-item');
+    var items = document.querySelectorAll('atlui-carousel-item');
 
     assert.strictEqual(items.length, 3);
     assert.strictEqual(items[0].classList[1], 'active');
@@ -163,7 +163,7 @@ describe('carousel', function() {
 
     var labels = document.querySelectorAll('.carousel-caption');
     var indicators = document.querySelectorAll('li');
-    var items = document.querySelectorAll('carousel-item');
+    var items = document.querySelectorAll('atlui-carousel-item');
 
     assert.strictEqual(items.length, 2);
     assert.strictEqual(items[0].classList[1], 'active');
@@ -192,7 +192,7 @@ describe('carousel', function() {
 
     var labels = document.querySelectorAll('.carousel-caption');
     var indicators = document.querySelectorAll('li');
-    var items = document.querySelectorAll('carousel-item');
+    var items = document.querySelectorAll('atlui-carousel-item');
 
     assert.strictEqual(items.length, 2);
     assert.strictEqual(items[0].classList[1], 'active');
@@ -227,7 +227,7 @@ describe('carousel', function() {
 
     var labels = document.querySelectorAll('.carousel-caption');
     var indicators = document.querySelectorAll('li');
-    var items = document.querySelectorAll('carousel-item');
+    var items = document.querySelectorAll('atlui-carousel-item');
 
     assert.strictEqual(items.length, 1);
     assert.strictEqual(items[0].classList[1], 'active');

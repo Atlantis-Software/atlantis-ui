@@ -7,7 +7,7 @@ export class carouselComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'carousel',
+        selector: 'atlui-carousel',
         template: `
         <ol [hidden]="items.length <= 0 || !indicator" class="carousel-indicators">
           <li *ngFor="let item of items;" (click)="changeItem(item)" [class.active]="item.isActive"></li>
@@ -195,7 +195,7 @@ export class carouselItemComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'carousel-item',
+        selector: 'atlui-carousel-item',
         template: `
           <ng-content >
           </ng-content>`,
