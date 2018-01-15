@@ -27,11 +27,11 @@
   outline: 0;
 }
 
-dropdown-option, dropdown-header, dropdown-divider {
+atlui-dropdown-option, atlui-dropdown-header, atlui-dropdown-divider {
   display: list-item;
 }
 
-dropdown-option {
+atlui-dropdown-option {
   cursor : pointer;
 }
 
@@ -72,7 +72,7 @@ dropdown-option {
   }
 
   // Links within the dropdown menu
-  > dropdown-option, dropdown-divider, dropdown-header{
+  > atlui-dropdown-option, atlui-dropdown-divider, atlui-dropdown-header{
     > div {
       margin: 10px 20px;
     }
@@ -89,7 +89,7 @@ dropdown-option {
 }
 
 // Hover/Focus state
-.dropdown-menu > dropdown-option > a{
+.dropdown-menu > atlui-dropdown-option > a{
   &:hover,
   &:focus {
     text-decoration: none;
@@ -214,8 +214,8 @@ dropdown-option {
 }
 
 
-dropdown {
-  display: block;
+atlui-dropdown {
+  display: inline-block;
 }
 
 // Component alignment

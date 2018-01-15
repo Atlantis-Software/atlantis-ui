@@ -233,7 +233,7 @@
   margin: (@navbar-padding-vertical / 2) -@navbar-padding-horizontal;
 
   > li > a,
-  > li > dropdown > a {
+  > li > atlui-dropdown > a {
     padding-top: 10px;
     padding-bottom: 10px;
     line-height: @line-height-computed;
@@ -326,12 +326,12 @@
 // Dropdown menus
 
 // Menu position and menu carets
-.navbar-nav > li > dropdown > .dropdown-menu {
+.navbar-nav > li > atlui-dropdown > .dropdown-menu {
   margin-top: 0;
   .border-top-radius(0);
 }
 // Menu position and menu caret support for dropups via extra dropup class
-.navbar-fixed-bottom .navbar-nav > li > dropdown > .dropdown-menu {
+.navbar-fixed-bottom .navbar-nav > li > atlui-dropdown > .dropdown-menu {
   margin-bottom: 0;
   .border-top-radius(@navbar-border-radius);
   .border-bottom-radius(0);
@@ -413,7 +413,7 @@
 
   .navbar-nav {
     > li > a,
-    > li > dropdown > a {
+    > li > atlui-dropdown > a {
       color: @navbar-default-link-color;
       padding: 15px 15px;
       z-index: 0;
@@ -442,7 +442,7 @@
       }
     }
     > .active > a,
-    > .active > dropdown > a {
+    > .active > atlui-dropdown > a {
       &,
       &:hover,
       &:focus {
@@ -453,7 +453,7 @@
       }
     }
     > .disabled > a,
-    > .disabled > dropdown > a {
+    > .disabled > atlui-dropdown > a {
       &,
       &:hover,
       &:focus {
@@ -484,7 +484,7 @@
   // Dropdown menu items
   .navbar-nav {
     // Remove background color from open dropdown
-    > .open > dropdown > a {
+    > .open > atlui-dropdown > a {
       &,
       &:hover,
       &:focus {
@@ -586,7 +586,7 @@
 
   .navbar-nav {
     > li > a,
-    > li > dropdown > a {
+    > li > atlui-dropdown > a {
       color: @navbar-inverse-link-color;
 
       &:hover,
@@ -598,7 +598,7 @@
       }
     }
     > .active > a,
-    > .active > dropdown > a {
+    > .active > atlui-dropdown > a {
       &,
       &:hover,
       &:focus {
@@ -609,7 +609,7 @@
       }
     }
     > .disabled > a,
-    > .disabled > dropdown > a {
+    > .disabled > atlui-dropdown > a {
       &,
       &:hover,
       &:focus {
@@ -641,7 +641,7 @@
   // Dropdowns
   .navbar-nav {
     > .open > a,
-    > .open > dropdown > a {
+    > .open > atlui-dropdown > a {
       &,
       &:hover,
       &:focus {
@@ -662,7 +662,7 @@
           background-color: @navbar-inverse-border;
         }
         > li > a,
-        > li > dropdown > a {
+        > li > atlui-dropdown > a {
           color: @navbar-inverse-link-color;
           &:hover,
           &:focus {
@@ -673,7 +673,7 @@
           }
         }
         > .active > a,
-        > .active > dropdown > a {
+        > .active > atlui-dropdown > a {
           &,
           &:hover,
           &:focus {
@@ -684,7 +684,7 @@
           }
         }
         > .disabled > a,
-        > .disabled > dropdown > a {
+        > .disabled > atlui-dropdown > a {
           &,
           &:hover,
           &:focus {
