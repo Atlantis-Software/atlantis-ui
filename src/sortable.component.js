@@ -7,8 +7,8 @@ export class sortableContainer extends dragAndDropAbstractComponent {
   static get annotations() {
     return [
       new Directive({
-        selector: '[sortable-container]',
-        inputs: ['sortableData: sortable-container', 'draggable', 'dropzones'],
+        selector: '[atlui-sortable-container]',
+        inputs: ['sortableData: atlui-sortable-container', 'draggable', 'dropzones'],
         queries: {
           sortableItems: new ContentChildren(sortableComponents)
         }
@@ -23,6 +23,7 @@ export class sortableContainer extends dragAndDropAbstractComponent {
     this._sortableDataService = sortableDataService;
     this._sortableData = [];
     this.lastIndex = 0;
+    this.dropEnabled = true;
   }
 
   //define the dropzones
@@ -46,16 +47,21 @@ export class sortableContainer extends dragAndDropAbstractComponent {
     return this._sortableData;
   }
 
-  //we change the element style when it's empty for know if we can drop a items into this
+  //we change the element style when we can drop a items into container
   _onDragEnterCallback() {
-    if (this._sortableDataService.isDragged && this._sortableData.length === 0) {
-      this.oldBorder = this._element.style.border;
-      this._element.style.border = "1px dashed #1C6EA4";
+    if (this._sortableDataService.isDragged) {
+      this._element.classList.add('sortableOver');
     }
   }
 
   _onDragLeave() {
-    this._element.style.border = this.oldBorder;
+    this._element.classList.remove('sortableOver');
+  }
+
+  ngAfterViewInit() {
+    this.sortableItems.changes.subscribe(()=> {
+      this.resetIndex();
+    });
   }
 
   //Add to the sortableData the items when we drop into a empty list
@@ -70,6 +76,7 @@ export class sortableContainer extends dragAndDropAbstractComponent {
       this._sortableDataService.sortableContainer = this;
       this._sortableDataService.index = 0;
     }
+    this._element.classList.remove('sortableOver');
     this._element.style.border = this.oldBorder;
     this.detectChanges();
   }
@@ -88,8 +95,8 @@ export class sortableComponents extends dragAndDropAbstractComponent {
   static get annotations() {
     return [
       new Directive({
-        selector: '[sortable]',
-        inputs: ['index: sortableIndex', 'droppable', 'dragData', 'dropzones', 'nested', 'draggable: sortable'],
+        selector: '[atlui-sortable]',
+        inputs: ['index: sortableIndex', 'droppable', 'dragData', 'dropzones', 'nested', 'draggable: atlui-sortable'],
         outputs: ['onDragSuccessCallback', 'onDragStartCallback', 'onDragOverCallback', 'onDragEndCallback', 'onDropSuccessCallback', 'onDragEnterCallback', 'onDragLeaveCallback']
       })
     ];
@@ -186,7 +193,6 @@ export class sortableComponents extends dragAndDropAbstractComponent {
       itemDraggable.classList.remove('sortableOver');
     });
     this._element.style.opacity = '1';
-    this._sortableContainer.resetIndex();
     this.onDragEndCallback.emit(this._element);
   }
 
@@ -194,7 +200,6 @@ export class sortableComponents extends dragAndDropAbstractComponent {
   _onDropCallback() {
     if (this._sortableDataService.isDragged) {
       this.onDropSuccessCallback.emit(this._dragDropService.dragData);
-
       let item = this._sortableDataService.sortableContainer.sortableData[this._sortableDataService.index];
 
       this._sortableDataService.sortableContainer.sortableData.splice(this._sortableDataService.index, 1);
@@ -203,9 +208,6 @@ export class sortableComponents extends dragAndDropAbstractComponent {
       }
       // Add item to new list
       this._sortableContainer.sortableData.splice(this._sortableDataService.newIndex, 0, item);
-      if (this._sortableContainer.dropEnabled) {
-        this._sortableContainer.dropEnabled = false;
-      }
       this._sortableDataService.sortableContainer = this._sortableContainer;
       this._sortableDataService.index = this._sortableDataService.newIndex;
       if (this._dragDropService.onDragSuccessCallback) {
@@ -222,7 +224,7 @@ export class sortableHandler extends dragAndDropAbstractHandleComponent {
   static get annotations() {
     return [
       new Directive({
-        selector: '[sortable-handle]'
+        selector: '[atlui-sortable-handle]'
       })
     ];
   }

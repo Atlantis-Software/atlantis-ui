@@ -31,8 +31,8 @@ class sortableSimpleTestComponent {
       new Component({
         template: `
         <div>
-          <ul class="list-group" [sortable-container]="listOne">
-            <li *ngFor="let item of listOne; let i = index" class="list-group-item" sortable>{{item}}</li>
+          <ul class="list-group" [atlui-sortable-container]="listOne">
+            <li *ngFor="let item of listOne; let i = index" class="list-group-item" atlui-sortable>{{item}}</li>
           </ul>
         </div>`
       })
@@ -49,9 +49,9 @@ class sortableHandleTestComponent {
       new Component({
         template: `
         <div>
-          <ul class="list-group" [sortable-container]="sortableList">
-            <li *ngFor="let item of sortableList; let i = index" sortable>
-              <span class="handle" sortable-handle>=</span>
+          <ul class="list-group" [atlui-sortable-container]="sortableList">
+            <li *ngFor="let item of sortableList; let i = index" atlui-sortable>
+              <span class="handle" atlui-sortable-handle>=</span>
               <span class="non-handle">{{item}}</span>
             </li>
           </ul>
@@ -74,18 +74,18 @@ class sortableMultipleTestComponent {
         template: `
         <div>
           <div id='single'>
-            <ul class="list-group" [sortable-container]="singleList">
-              <li *ngFor="let item of singleList; let i = index" sortable>{{item}}</li>
+            <ul class="list-group" [atlui-sortable-container]="singleList">
+              <li *ngFor="let item of singleList; let i = index" atlui-sortable>{{item}}</li>
             </ul>
           </div>
-          <div id='multiOne' [sortable-container]="multiOneList" [dropzones]="[multiList]">
+          <div id='multiOne' [atlui-sortable-container]="multiOneList" [dropzones]="[multiList]">
             <ul class="list-group" >
-              <li *ngFor="let item of multiOneList; let i = index" sortable>{{item}}</li>
+              <li *ngFor="let item of multiOneList; let i = index" atlui-sortable>{{item}}</li>
             </ul>
           </div>
-          <div id='multiTwo' [sortable-container]="multiTwoList" [dropzones]="[multiList]">
+          <div id='multiTwo' [atlui-sortable-container]="multiTwoList" [dropzones]="[multiList]">
             <ul class="list-group" >
-              <li *ngFor="let item of multiTwoList; let i = index" sortable>{{item}}</li>
+              <li *ngFor="let item of multiTwoList; let i = index" atlui-sortable>{{item}}</li>
             </ul>
           </div>
         </div>
