@@ -15,19 +15,19 @@ class tooltipTestComponent {
     return [
       new Component({
         template: `
-        <button type="button" class="btn btn-default" tooltip tooltipDirection="left" [tooltipContent]="'test1'">
+        <button type="button" class="btn btn-default" atlui-tooltip tooltipDirection="left" [tooltipContent]="'test1'">
           tooltip on left
         </button>
 
-        <button type="button" class="btn btn-default" tooltip tooltipDirection="top" tooltipContent="test2">
+        <button type="button" class="btn btn-default" atlui-tooltip tooltipDirection="top" tooltipContent="test2">
           tooltip on top
         </button>
 
-        <button type="button" class="btn btn-default" tooltip tooltipDirection="bottom" tooltipContent="test3">
+        <button type="button" class="btn btn-default" atlui-tooltip tooltipDirection="bottom" tooltipContent="test3">
           tooltip on bottom
         </button>
 
-        <button type="button" class="btn btn-default" tooltip tooltipDirection="right" tooltipContent="test4">
+        <button type="button" class="btn btn-default" atlui-tooltip tooltipDirection="right" tooltipContent="test4">
           tooltip on right
         </button>`
       })
@@ -56,7 +56,7 @@ describe('tooltip', function() {
     tick();
     fixture.detectChanges();
 
-    var tooltip = document.querySelectorAll('tooltipcomponent');
+    var tooltip = document.querySelectorAll('atlui-tooltipcomponent');
     var content = document.querySelectorAll('.tooltip-inner');
 
     assert.strictEqual(tooltip.length, 4);
@@ -80,7 +80,7 @@ describe('tooltip', function() {
     fixture.detectChanges();
 
     var button = fixture.debugElement.queryAll(By.css('button'));
-    var tooltip = document.querySelectorAll('tooltipcomponent');
+    var tooltip = document.querySelectorAll('atlui-tooltipcomponent');
     button[0].triggerEventHandler("mouseenter", {});
     button[1].triggerEventHandler("mouseenter", {});
     button[2].triggerEventHandler("mouseenter", {});

@@ -10,7 +10,7 @@ export class tooltipComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'tooltipComponent',
+        selector: 'atlui-tooltipComponent',
         template: `
           <div class="tooltip-arrow"></div>
           <div class="tooltip-inner">{{tooltipContent}}</div>`,
@@ -50,7 +50,7 @@ export class tooltipDirective {
   static get annotations() {
     return [
       new Directive({
-        selector: '[tooltip]',
+        selector: '[atlui-tooltip]',
         inputs: ["tooltipDirection", "tooltipContent"],
         host: {
           "(mouseenter)": "open()",
