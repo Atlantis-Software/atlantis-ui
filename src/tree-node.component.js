@@ -12,7 +12,7 @@ export default class treeNodeComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'tree-node',
+        selector: 'atlui-tree-node',
         template: require('./tree-node.html'),
         inputs: ['node', 'label', 'model', 'children', 'expanded', 'selectable', 'disabled',
           'template', 'depth', 'selected', 'sortableZones', 'nestedSortable', 'isSortable'
@@ -37,6 +37,15 @@ export default class treeNodeComponent {
     this.indeterminate = false;
     this.parent = treeNodeComponent;
     this.expanded = false;
+  }
+
+  updateTree() {
+    var treeNodeSorted = document.querySelectorAll(".tree-node-sorted");
+    if (treeNodeSorted.length > 0) {
+      treeNodeSorted.forEach((element) => {
+        element.classList.remove("tree-node-sorted");
+      });
+    }
   }
 
   //close the tree-node we drag if the nestedSortable is activate and if this tree-node has child
@@ -126,6 +135,9 @@ export default class treeNodeComponent {
 
   ngAfterViewInit() {
     this.elementRef.nativeElement.querySelector('.tree-node-line').style.paddingLeft = 30 * this.depth + "px";
+    this.nodeChildren.changes.subscribe(()=> {
+      this.onSelect();
+    });
   }
 
   //callback for click on expand icon
