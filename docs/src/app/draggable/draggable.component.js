@@ -12,11 +12,6 @@ export default  class DraggableComponent {
   constructor(document) {
     this.document = document;
 
-    this.draggableBasic = `
-    <div dragItem>
-      Some text
-    </div>`;
-
     this.nodesBasic = [
       {
         label: 'Node without children'
@@ -33,30 +28,6 @@ export default  class DraggableComponent {
         ]
       }
     ];
-
-    this.draggableContainer = `
-    <div #container>
-      <div style="width:200px;height:100px;" class="well" dragItem [dragContainment]="container">
-        <p>
-          You can drag me into this box
-        </p>
-      </div>
-    </div>
-    <div class="well" dragItem [dragContainment]="document.body">
-      <p>
-        You can drag me all in body
-      </p>
-    </div>`;
-
-    this.draggableHandle = `
-    <div class="well" dragItem [dragContainment]="document.body">
-      <h4 dragItem-handle>
-        Draggable handle
-      </h4>
-      <p>
-        You can drag me all in body
-      </p>
-    </div>`;
   }
 }
 

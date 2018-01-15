@@ -17,9 +17,17 @@
     </atlui-accordion>
   </div>
 
-  <pre>
-    {{accordionHtml}}
-  </pre>
+  <textarea class="atlui-code">
+<atlui-accordion>
+  <atlui-accordion-panel [title]="'test1'" [open]="true">
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+  </atlui-accordion-panel>
+  <atlui-accordion-panel [title]="'test2'" [open]="true">
+    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+    <button type="button" class="btn btn-block">Basic</button>
+  </atlui-accordion-panel>
+</atlui-accordion>
+  </textarea>
   <h3>
     Accordion :
   </h3>
@@ -181,9 +189,13 @@
     </atlui-accordion>
   </div>
 
-  <pre>
-    {{accordionNgFor}}
-  </pre>
+  <textarea class="atlui-code">
+<atlui-accordion [style]="danger">
+  <atlui-accordion-panel *ngFor="let panel of panels" [title]="panel.title">
+    panel.content
+  </atlui-accordion-panel>
+</atlui-accordion>
+  </textarea>
   <pre>
     {{accordionNgForPanel}}
   </pre>

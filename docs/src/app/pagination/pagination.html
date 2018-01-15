@@ -33,9 +33,9 @@
       </div>
     </div>
   </div>
-  <pre>
-    {{PaginationHtml}}
-  </pre>
+  <textarea class="atlui-code">
+<atlui-pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></atlui-pagination>
+  </textarea>
 
   <h3>
   Different size :
@@ -50,9 +50,10 @@
     </div>
 
   </div>
-  <pre>
-    {{paginationSize}}
-  </pre>
+  <textarea class="atlui-code">
+<atlui-pagination class="pagination-sm" [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></atlui-pagination>
+<atlui-pagination class="pagination-lg" [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></atlui-pagination>
+  </textarea>
   <h3>
     Precision :
   </h3>

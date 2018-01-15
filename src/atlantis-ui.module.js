@@ -57,6 +57,8 @@ import { draggableDirective, draggableHandleDirective} from './draggable.directi
 
 import { resizableDirective } from './resizable.directive.js';
 
+import { codeDirective } from './code.directive.js';
+
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export class AtlantisUiModule {
@@ -97,7 +99,7 @@ AtlantisUiModule.annotations = [
       gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent,
       popoverComponent, popoverDirective, tooltipComponent, tooltipDirective, backdropComponent, sortableContainer,
       sortableComponents, treeComponent, treeNodeComponent, sortableHandler, draggableDirective, draggableHandleDirective,
-      dialogComponent, resizableDirective],
+      dialogComponent, resizableDirective, codeDirective],
     exports: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent,
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
@@ -106,7 +108,7 @@ AtlantisUiModule.annotations = [
       gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent,
       popoverComponent, popoverDirective, tooltipComponent, tooltipDirective, backdropComponent, sortableContainer,
       sortableComponents, sortableHandler, treeComponent, treeNodeComponent, draggableDirective, draggableHandleDirective,
-      dialogComponent, resizableDirective],
+      dialogComponent, resizableDirective, codeDirective],
     entryComponents: [tooltipComponent, popoverComponent, backdropComponent]
   })
 ];

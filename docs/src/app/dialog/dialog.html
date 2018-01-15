@@ -27,9 +27,11 @@
       </atlui-dlg>
     </div>
     <br>
-    <pre>
-      {{dialogHTML}}
-    </pre>
+    <textarea class="atlui-code">
+<atlui-dlg [(show)]="boolean">
+  <p>Some text in the dialog.</p>
+</atlui-dlg>
+    </textarea>
 
     <p>
       Per default the dialog's size will be 300px*500px (width, height)
@@ -48,9 +50,11 @@
       </atlui-dlg>
     </div>
     <br>
-    <pre>
-      {{dialogSize}}
-    </pre>
+    <textarea class="atlui-code">
+<atlui-dlg [(show)]="boolean" [width]="1000" [height]="600">
+  <p>Some text in the dialog.</p>
+</atlui-dlg>
+    </textarea>
 
     <h3>
       Dialog with title
@@ -65,9 +69,11 @@
       </atlui-dlg>
     </div>
     <br>
-    <pre>
-      {{dialogTitle}}
-    </pre>
+    <textarea class="atlui-code">
+<atlui-dlg [(show)]="boolean" [title]="'Some Title'">
+  <p>Some text in the dialog.</p>
+</atlui-dlg>
+    </textarea>
 
     <h3>
       Dialog resizable
@@ -82,9 +88,11 @@
       </atlui-dlg>
     </div>
     <br>
-    <pre>
-      {{ dialogResizable }}
-    </pre>
+    <textarea class="atlui-code">
+<atlui-dlg [(show)]="boolean" [isResizable]="true" [width]="1000" [height]="600" [minWidth]="300" [minHeight]="300" [maxWidth]="1000" [maxHeight]="600">
+  <p>Some text in the dialog.</p>
+</atlui-dlg>
+    </textarea>
     <p>
       If we don't define the min/max width and height the default value will be infinity for maximum and 100px for the minimum.
     </p>
@@ -115,9 +123,11 @@
     <p>
       Like other draggable htmlElement, we can define a container to not exit from it
     </p>
-    <pre>
-      {{dialogContainer}}
-    </pre>
+    <textarea class="atlui-code">
+<atlui-dlg [(show)]="boolean" [container]="document.body">
+  <p>Text</p>
+</atlui-dlg>
+    </textarea>
     <p>
       You can use an template reference
     </p>

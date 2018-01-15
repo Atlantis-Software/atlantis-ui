@@ -12,9 +12,11 @@
       </p>
     </div>
   </div>
-  <pre>
-    {{draggableBasic}}
-  </pre>
+  <textarea class="atlui-code">
+<div atlui-dragItem>
+  Some text
+</div>
+  </textarea>
   <h3>
     Different element we can drag
   </h3>
@@ -44,9 +46,20 @@
       </p>
     </div>
   </div>
-  <pre>
-    {{draggableContainer}}
-  </pre>
+  <textarea class="atlui-code">
+<div #container>
+  <div style="width:200px;height:100px;" class="well" atlui-dragItem [dragContainment]="container">
+    <p>
+      You can drag me into this box
+    </p>
+  </div>
+</div>
+<div class="well" atlui-dragItem [dragContainment]="document.body">
+  <p>
+    You can drag me all in body
+  </p>
+</div>
+  </textarea>
 
   <h3>
     Define an handle for drag an element
@@ -62,7 +75,14 @@
     </div>
   </div>
 
-  <pre>
-    {{draggableHandle}}
-  </pre>
+  <textarea class="atlui-code">
+<div class="well" atlui-dragItem [dragContainment]="document.body">
+  <h4 atlui-dragItem-handle>
+    Draggable handle
+  </h4>
+  <p>
+    You can drag me all in body
+  </p>
+</div>
+  </textarea>
 </div>

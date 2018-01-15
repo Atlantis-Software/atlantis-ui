@@ -15,9 +15,16 @@
       </atlui-dropdown>
     </div>
   </div>
-  <pre>
-    {{dropdownHtml}}
-  </pre>
+  <textarea class="atlui-code">
+<atlui-dropdown title="Menu A">
+  <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
+  <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
+  <atlui-dropdown-divider></atlui-dropdown-divider>
+  <atlui-dropdown-option><a>Sub-menu separated A</a></atlui-dropdown-option>
+  <atlui-dropdown-header>Menu</atlui-dropdown-header>
+  <atlui-dropdown-option><a>Sub-menu separated B</a></atlui-dropdown-option>
+</atlui-dropdown>
+  </textarea>
 
   <h3>
     Dropup
@@ -38,9 +45,10 @@
     Just add to options the attribute orientation with value 'up'
   </blockquote>
 
-  <pre>
-    {{dropup}}
-  </pre>
+  <textarea class="atlui-code">
+<atlui-dropdown orientation="up" title="Menu A">
+</atlui-dropdown>
+  </textarea>
 
   <h3>
     Alignement
@@ -67,9 +75,12 @@
     </div>
   </div>
 
-  <pre>
-    {{dropdownAlignement}}
-  </pre>
+  <textarea class="atlui-code">
+<atlui-dropdown alignement="left" title="Menu A">
+</atlui-dropdown>
+<atlui-dropdown alignement="right" title="Menu A">
+</atlui-dropdown>
+  </textarea>
 
   <h3>
     Dropdown with icon
@@ -95,9 +106,9 @@
     </div>
   </div>
 
-  <pre>
-    {{dropdownIcon}}
-  </pre>
+  <textarea class="atlui-code">
+<atlui-dropdown title="Menu A" icon="add">
+  </textarea>
 
   <h3>
     Dropdown options with ngFor
@@ -111,12 +122,26 @@
     </div>
   </div>
 
-  <pre>
-    {{dropdownNgFor}}
-  </pre>
-  <pre>
-    {{dropdownNgForJS}}
-  </pre>
+  <textarea class="atlui-code">
+<atlui-dropdown class="form-group" [options]="{alignement:'left'}" title="Menu A">
+  <atlui-dropdown-option *ngFor="let dropdownoption of dropdownoptions" [options]="dropdownoption.options">
+    dropdownoption.label
+  </atlui-dropdown-option>
+</atlui-dropdown>
+  </textarea>
+  <textarea>
+this.dropdownoptions = [
+  {
+    label: "Sub-menu A"
+  },{
+    label: "Sub-menu B"
+  },{
+    label: "Sub-menu separated A"
+  },{
+    label: "Sub-menu separated B"
+  }
+];
+  </textarea>
 
   <h3>
     Dropdown :

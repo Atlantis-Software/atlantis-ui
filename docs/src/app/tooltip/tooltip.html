@@ -24,9 +24,23 @@
       Tooltip on right
     </button>
   </div>
-  <pre>
-    {{tooltipHtml}}
-  </pre>
+  <textarea class="atlui-code">
+<button type="button" class="btn btn-default" atlui-tooltip tooltipDirection="left" [tooltipContent]="time">
+  tooltip on left
+</button>
+
+<button type="button" class="btn btn-default" atlui-tooltip tooltipDirection="top" tooltipContent="testetstestsetest">
+  tooltip on top
+</button>
+
+<button type="button" class="btn btn-default" atlui-tooltip tooltipDirection="bottom" tooltipContent="testetstestsetest">
+  tooltip on bottom
+</button>
+
+<button type="button" class="btn btn-default" atlui-tooltip tooltipDirection="right" tooltipContent="testetstestsetest">
+  tooltip on right
+</button>
+  </textarea>
   <blockquote>
     <p>
       We can apply tooltip on any type of tag (a, h, div, p, input)

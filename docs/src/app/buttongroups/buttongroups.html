@@ -12,9 +12,13 @@
       <button type="button" class="btn btn-default">3</button>
     </div>
   </div>
-  <pre>
-    {{buttongroupsHtml}}
-  </pre>
+  <textarea class="atlui-code">
+<div class="btn-group" role="group" >
+  <button type="button" class="btn btn-default">1</button>
+  <button type="button" class="btn btn-default">2</button>
+  <button type="button" class="btn btn-default">3</button>
+</div>
+  </textarea>
   <h3>
     Toolbar with button groups
   </h3>
@@ -38,9 +42,16 @@
     </p>
   </blockquote>
 
-  <pre>
-    {{buttonToolbar}}
-  </pre>
+  <textarea class="atlui-code">
+<div class="btn-toolbar">
+  <div class="btn-group">
+    ...
+  </div>
+  <div class="btn-group">
+    ...
+  </div>
+</div>
+  </textarea>
 
   <h3>
     button groups with dropdown :
@@ -67,9 +78,16 @@
     </p>
   </blockquote>
 
-  <pre>
-    {{buttongroupsDropdown}}
-  </pre>
+  <textarea class="atlui-code">
+    <div class="btn-group">
+      <button type="button" class="btn btn-default">Save</button>
+      <button type="button" class="btn btn-default">Load</button>
+
+      <atlui-dropdown title="File">
+          ...
+      </atlui-dropdown>
+    </div>
+  </textarea>
 
   <h3>
     Different size :
@@ -103,9 +121,20 @@
     </p>
   </blockquote>
 
-  <pre>
-    {{buttongroupsSize}}
-  </pre>
+  <textarea class="atlui-code">
+<div class="btn-group btn-group-lg" role="group">
+  ...
+</div>
+<div class="btn-group" role="group">
+  ...
+</div>
+<div class="btn-group btn-group-sm" role="group">
+  ...
+</div>
+<div class="btn-group btn-group-xs" role="group">
+  ...
+</div>
+  </textarea>
 
   <h3>
     Vertical button groups :
@@ -118,9 +147,11 @@
     </div>
   </div>
 
-  <pre>
-    {{buttonVertical}}
-  </pre>
+  <textarea class="atlui-code">
+<div class="btn-group-vertical">
+  ...
+</div>
+  </textarea>
 
   <h3>
     Button groups with 100% width :
@@ -133,7 +164,9 @@
     </div>
   </div>
 
-  <pre>
-    {{buttonJustified}}
-  </pre>
+  <textarea class="atlui-code">
+<div class="btn-group btn-group-justified">
+  ..
+</div>
+  </textarea>
 </div>

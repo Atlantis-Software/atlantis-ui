@@ -20,36 +20,6 @@ export default  class dragAndDropComponent {
     this.listDropzone1 = ['Apple', 'Orange'];
     this.listDropzone2 = [];
 
-    this.listJs = `
-    this.listSingle = ['A', 'B', 'C', 'D', 'E'];`;
-
-    this.listSingleHtml = `
-    <div class="panel-body" sortable-container [sortableData]="listSingle">
-      <ul class="list-group">
-        <li *ngFor="let item of listSingle; let i = index" class="list-group-item" sortable [sortableIndex]="i">
-          {{item}}
-        </li>
-      </ul>
-    </div>`;
-
-    this.listHandleHtml = `
-    <div class="panel-body" sortable-container [sortableData]="listHandle">
-      <ul class="list-group">
-        <li *ngFor="let item of listHandle; let i = index" class="list-group-item" sortable [sortableIndex]="i">
-          {{item}}
-          <span sortable-handle>=</span>
-        </li>
-      </ul>
-    </div>`;
-
-    this.listDropzoneHtml = `
-    <div class="panel-body" sortable-container [sortableData]="listDropzone" [dropzones]="['dropzone2','dropzone1']">
-      <ul class="list-group"  >
-        <li *ngFor="let item of listDropzone; let i = index" class="list-group-item" sortable [sortableIndex]="i">
-          {{item}}
-        </li>
-      </ul>
-    </div>`;
   }
 }
 

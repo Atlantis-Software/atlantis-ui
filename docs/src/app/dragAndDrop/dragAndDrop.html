@@ -35,15 +35,21 @@
   <h4>
     Html tag :
   </h4>
-  <pre>
-    {{listSingleHtml}}
-  </pre>
+  <textarea class="atlui-code">
+<div class="panel-body" atlui-sortable-container [sortableData]="listSingle">
+  <ul class="list-group">
+    <li *ngFor="let item of listSingle; let i = index" class="list-group-item" atlui-sortable [sortableIndex]="i">
+      item
+    </li>
+  </ul>
+</div>
+  </textarea>
   <h4>
     Example of list
   </h4>
-  <pre>
-    {{listJs}}
-  </pre>
+  <textarea class="atlui-code">
+this.listSingle = ['A', 'B', 'C', 'D', 'E'];
+  </textarea>
 
   <h4>
     Sortable single list with handle
@@ -77,9 +83,16 @@
   <h4>
     Html tag :
   </h4>
-  <pre>
-    {{listHandleHtml}}
-  </pre>
+  <textarea class="atlui-code">
+<div class="panel-body" atlui-sortable-container [sortableData]="listHandle">
+  <ul class="list-group">
+    <li *ngFor="let item of listHandle; let i = index" class="list-group-item" atlui-sortable [sortableIndex]="i">
+      {{item}}
+      <span atlui-sortable-handle>=</span>
+    </li>
+  </ul>
+</div>
+  </textarea>
 
   <h4>
     Sortable multiple list
@@ -241,9 +254,15 @@
   <h4>
     Html tag :
   </h4>
-  <pre>
-    {{listDropzoneHtml}}
-  </pre>
+  <textarea class="atlui-code">
+<div class="panel-body" atlui-sortable-container [sortableData]="listDropzone" [dropzones]="['dropzone2','dropzone1']">
+  <ul class="list-group"  >
+    <li *ngFor="let item of listDropzone; let i = index" class="list-group-item" atlui-sortable [sortableIndex]="i">
+      {{item}}
+    </li>
+  </ul>
+</div>
+  </textarea>
   <blockquote>
     If you want move only between 2 list or with a specific list you just need to add the attribut dropzones on all sortable-container you want. <br>
     You can allow several dropzone into an array

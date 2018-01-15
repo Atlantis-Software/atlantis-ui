@@ -9,12 +9,6 @@ export default  class PaginationComponent {
     ];
   }
   constructor(){
-    this.PaginationHtml = `
-    <atlui-pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></atlui-pagination>`;
-    this.paginationSize = `
-    <atlui-pagination class="pagination-sm" [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></atlui-pagination>
-    <atlui-pagination class="pagination-lg" [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></atlui-pagination>`;
-
     this.page = 4;
     this.pages = 10;
     this.result=[];
