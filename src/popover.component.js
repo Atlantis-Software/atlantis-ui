@@ -10,7 +10,7 @@ export class popoverComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'popoverComponent',
+        selector: 'atlui-popoverComponent',
         template: `
         <div class="arrow"></div>
         <h3 class="popover-title">{{popoverTitle}}</h3>
@@ -51,7 +51,7 @@ export class popoverDirective {
   static get annotations() {
     return [
       new Directive({
-        selector: '[popover]',
+        selector: '[atlui-popover]',
         inputs: ["popoverDirection", "popoverContent", "popoverTitle"],
         host: {
           "(click)": "toggle()",

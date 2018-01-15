@@ -14,19 +14,19 @@ class popoverTestComponent {
     return [
       new Component({
         template: `
-        <button type="button" class="btn btn-default" popover popoverDirection="left" popoverTitle="test1" popoverContent="test1">
+        <button type="button" class="btn btn-default" atlui-popover popoverDirection="left" popoverTitle="test1" popoverContent="test1">
           Popover on left
         </button>
 
-        <button type="button" class="btn btn-default" popover popoverDirection="top" popoverTitle="test2" popoverContent="test2">
+        <button type="button" class="btn btn-default" atlui-popover popoverDirection="top" popoverTitle="test2" popoverContent="test2">
           Popover on top
         </button>
 
-        <button type="button" class="btn btn-default" popover popoverDirection="bottom" popoverTitle="test3" popoverContent="test3">
+        <button type="button" class="btn btn-default" atlui-popover popoverDirection="bottom" popoverTitle="test3" popoverContent="test3">
           Popover on bottom
         </button>
 
-        <button type="button" class="btn btn-default" popover popoverDirection="right" popoverTitle="test4" popoverContent="test4">
+        <button type="button" class="btn btn-default" atlui-popover popoverDirection="right" popoverTitle="test4" popoverContent="test4">
           Popover on right
         </button>`
       })
@@ -55,7 +55,7 @@ describe('popover', function() {
     tick();
     fixture.detectChanges();
 
-    var popover = document.querySelectorAll('popovercomponent');
+    var popover = document.querySelectorAll('atlui-popovercomponent');
     var title = document.querySelectorAll('h3');
     var content = document.querySelectorAll('.popover-content');
 
@@ -93,7 +93,7 @@ describe('popover', function() {
     tick();
     fixture.detectChanges();
 
-    var popover = document.querySelectorAll('popovercomponent');
+    var popover = document.querySelectorAll('atlui-popovercomponent');
 
     assert.strictEqual(popover.length, 4);
     assert.strictEqual(popover[0].classList[3], 'in');
@@ -109,7 +109,7 @@ describe('popover', function() {
     tick();
     fixture.detectChanges();
 
-    popover = document.querySelectorAll('popovercomponent');
+    popover = document.querySelectorAll('atlui-popovercomponent');
 
     assert.strictEqual(popover.length, 4);
     assert.strictEqual(popover[0].classList[3], void 0);
