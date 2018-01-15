@@ -126,13 +126,13 @@ export default  class TreeComponent {
       }
     ];
     this.treeHtml = `
-    <tree class="col-md-4" [nodes]="nodesBasic"></tree>`;
+    <atlui-tree class="col-md-4" [nodes]="nodesBasic"></atlui-tree>`;
 
     this.treeHtml2 = `
-    <tree [nodes]="nodesSortable" [isSortable]="true"></tree>`;
+    <atlui-tree [nodes]="nodesSortable" [isSortable]="true"></atlui-tree>`;
 
     this.treeHtml3 = `
-    <tree [nodes]="nodesSortable" [isSortable]="true" [nestedSortable]="true"></tree>`;
+    <atlui-tree [nodes]="nodesSortable" [isSortable]="true" [nestedSortable]="true"></atlui-tree>`;
 
     this.treeNodes = `
     this.nodesBasic = [

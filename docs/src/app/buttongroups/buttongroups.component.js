@@ -30,9 +30,9 @@ export default  class ButtongroupsComponent {
       <button type="button" class="btn btn-default">Save</button>
       <button type="button" class="btn btn-default">Load</button>
 
-      <dropdown title="File">
+      <atlui-dropdown title="File">
           ...
-      </dropdown>
+      </atlui-dropdown>
     </div>`;
     this.buttongroupsSize = `
     <div class="btn-group btn-group-lg" role="group">

@@ -10,10 +10,10 @@ export default  class PaginationComponent {
   }
   constructor(){
     this.PaginationHtml = `
-    <pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>`;
+    <atlui-pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></atlui-pagination>`;
     this.paginationSize = `
-    <pagination class="pagination-sm" [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>
-    <pagination class="pagination-lg" [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>`;
+    <atlui-pagination class="pagination-sm" [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></atlui-pagination>
+    <atlui-pagination class="pagination-lg" [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></atlui-pagination>`;
 
     this.page = 4;
     this.pages = 10;

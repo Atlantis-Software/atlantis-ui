@@ -11,34 +11,34 @@ export default  class CarouselComponent {
   constructor(){
 
     this.carouselHtml = `
-    <carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
-      <carousel-item>
+    <atlui-carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
+      <atlui-carousel-item>
         <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">
         <div class="carousel-caption">
           Slide 1
         </div>
-      </carousel-item>
-      <carousel-item>
+      </atlui-carousel-item>
+      <atlui-carousel-item>
         test2
-      </carousel-item>
-    </carousel>`;
+      </atlui-carousel-item>
+    </atlui-carousel>`;
     this.carrouselSlideNgIf= `
-    <carousel-item *ngIf="show1">
+    <atlui-carousel-item *ngIf="show1">
       <img class="img-responsive center-block" src="../../img/carousel02.jpg" alt="">
       <div class="carousel-caption">
         Slide 1
       </div>
-    </carousel-item>`;
+    </atlui-carousel-item>`;
 
     this.carouselNgFor= `
-    <carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
-      <carousel-item *ngFor="let carouselItem of carouselItems">
+    <atlui-carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
+      <atlui-carousel-item *ngFor="let carouselItem of carouselItems">
         <img class="img-responsive center-block" src="../../img/carousel03.jpg" alt="">
         <div class="carousel-caption">
           {{carouselItem.label}}
         </div>
-      </carousel-item>
-    </carousel>`;
+      </atlui-carousel-item>
+    </atlui-carousel>`;
 
     this.carouselNgForItems = `
     this.carouselItems = [

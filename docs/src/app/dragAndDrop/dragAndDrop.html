@@ -1,6 +1,6 @@
 <div class="container">
   <h2>
-    Warning: This widget is in development
+    Drag and Drop (Sortable)
   </h2>
   <h3>
     Example
@@ -14,9 +14,9 @@
         <div class="panel-heading">
           Single list
         </div>
-        <div class="panel-body" [sortable-container]="listSingle" [dropzones]="['single1']">
+        <div class="panel-body" [atlui-sortable-container]="listSingle" [dropzones]="['single1']">
           <ul class="list-group">
-            <li *ngFor="let item of listSingle; let i = index" class="list-group-item" sortable>
+            <li *ngFor="let item of listSingle; let i = index" class="list-group-item" atlui-sortable>
               {{item}}
             </li>
           </ul>
@@ -54,11 +54,11 @@
         <div class="panel-heading">
           Single list with handle
         </div>
-        <div class="panel-body" [sortable-container]="listHandle" [dropzones]="['handle']">
+        <div class="panel-body" [atlui-sortable-container]="listHandle" [dropzones]="['handle']">
           <ul class="list-group">
-            <li *ngFor="let item of listHandle; let i = index" class="list-group-item" sortable>
+            <li *ngFor="let item of listHandle; let i = index" class="list-group-item" atlui-sortable>
               {{item}}
-              <span sortable-handle>=</span>
+              <span atlui-sortable-handle>=</span>
             </li>
           </ul>
         </div>
@@ -90,9 +90,9 @@
         <div class="panel-heading">
           Multiple list 1
         </div>
-        <div class="panel-body" [sortable-container]="listMultiple1" [dropzones]="['multiple']">
+        <div class="panel-body" [atlui-sortable-container]="listMultiple1" [dropzones]="['multiple']">
           <ul class="list-group"  >
-            <li *ngFor="let item of listMultiple1; let i = index" class="list-group-item" sortable>
+            <li *ngFor="let item of listMultiple1; let i = index" class="list-group-item" atlui-sortable>
               {{item}}
             </li>
           </ul>
@@ -112,9 +112,9 @@
         <div class="panel-heading">
           Multiple list 2
         </div>
-        <div class="panel-body" [sortable-container]="listMultiple2" [dropzones]="['multiple']">
+        <div class="panel-body" [atlui-sortable-container]="listMultiple2" [dropzones]="['multiple']">
           <ul class="list-group"  >
-            <li *ngFor="let item of listMultiple2; let i = index" class="list-group-item" sortable>
+            <li *ngFor="let item of listMultiple2; let i = index" class="list-group-item" atlui-sortable>
               {{item}}
             </li>
           </ul>
@@ -144,9 +144,9 @@
         <div class="panel-heading">
           List not empty
         </div>
-        <div class="panel-body" [sortable-container]="listSingle2" [dropzones]="['empty']">
+        <div class="panel-body" [atlui-sortable-container]="listSingle2" [dropzones]="['empty']">
           <ul class="list-group"  >
-            <li *ngFor="let item of listSingle2; let i = index" class="list-group-item" sortable>
+            <li *ngFor="let item of listSingle2; let i = index" class="list-group-item" atlui-sortable>
               {{item}}
             </li>
           </ul>
@@ -166,9 +166,9 @@
         <div class="panel-heading">
           List empty
         </div>
-        <div class="panel-body" [sortable-container]="listEmpty" [dropzones]="['empty']">
+        <div class="panel-body" [atlui-sortable-container]="listEmpty" [dropzones]="['empty']">
           <ul class="list-group"  >
-            <li *ngFor="let item of listEmpty; let i = index" class="list-group-item" sortable>
+            <li *ngFor="let item of listEmpty; let i = index" class="list-group-item" atlui-sortable>
               {{item}}
             </li>
           </ul>
@@ -199,9 +199,9 @@
         <div class="panel-heading">
           List (allow dropzone1 and dropzone2)
         </div>
-        <div class="panel-body" [sortable-container]="listDropzone" [dropzones]="['dropzone2','dropzone1']">
+        <div class="panel-body" [atlui-sortable-container]="listDropzone" [dropzones]="['dropzone2','dropzone1']">
           <ul class="list-group"  >
-            <li *ngFor="let item of listDropzone; let i = index" class="list-group-item" sortable>
+            <li *ngFor="let item of listDropzone; let i = index" class="list-group-item" atlui-sortable>
               {{item}}
             </li>
           </ul>
@@ -213,9 +213,9 @@
         <div class="panel-heading">
           Dropzone1 (allow dropzone 1)
         </div>
-        <div class="panel-body" [sortable-container]="listDropzone1" [dropzones]="['dropzone1']">
+        <div class="panel-body" [atlui-sortable-container]="listDropzone1" [dropzones]="['dropzone1']">
           <ul class="list-group"  >
-            <li *ngFor="let item of listDropzone1; let i = index" class="list-group-item" sortable>
+            <li *ngFor="let item of listDropzone1; let i = index" class="list-group-item" atlui-sortable>
               {{item}}
             </li>
           </ul>
@@ -227,9 +227,9 @@
         <div class="panel-heading">
           Dropzone2 (allow dropzone 2)
         </div>
-        <div class="panel-body" [sortable-container]="listDropzone2" [dropzones]="['dropzone2']">
+        <div class="panel-body" [atlui-sortable-container]="listDropzone2" [dropzones]="['dropzone2']">
           <ul class="list-group"  >
-            <li *ngFor="let item of listDropzone2; let i = index" class="list-group-item" sortable>
+            <li *ngFor="let item of listDropzone2; let i = index" class="list-group-item" atlui-sortable>
               {{item}}
             </li>
           </ul>
@@ -246,11 +246,11 @@
   </pre>
   <blockquote>
     If you want move only between 2 list or with a specific list you just need to add the attribut dropzones on all sortable-container you want. <br>
-    You can allow several dropzone with a dot into the string
+    You can allow several dropzone into an array
   </blockquote>
 
   <h3>
-    Sortable-container :
+    atlui-sortable-container :
   </h3>
   <h4>
     Settings
@@ -305,7 +305,7 @@
   </table>
 
   <h3>
-    sortable :
+    atlui-sortable :
   </h3>
   <h3>
     settings

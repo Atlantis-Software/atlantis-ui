@@ -125,14 +125,14 @@ export default  class navbarComponent {
     this.navbarDropdown = `
     <ul class="nav navbar-nav">
       <li>
-        <dropdown title="Menu A">
-          <dropdown-option><a href="#/navbar">Sub-menu A</a></dropdown-option>
-          <dropdown-option><a href="#/navbar">Sub-menu B</a></dropdown-option>
-          <dropdown-divider></dropdown-divider>
-          <dropdown-option><a href="#/navbar">Sub-menu separated A</a></dropdown-option>
-          <dropdown-header>Menu</dropdown-header>
-          <dropdown-option><a href="#/navbar">Sub-menu separated B</a></dropdown-option>
-        </dropdown>
+        <atlui-dropdown title="Menu A">
+          <atlui-dropdown-option><a href="#/navbar">Sub-menu A</a></atlui-dropdown-option>
+          <atlui-dropdown-option><a href="#/navbar">Sub-menu B</a></atlui-dropdown-option>
+          <atlui-dropdown-divider></atlui-dropdown-divider>
+          <atlui-dropdown-option><a href="#/navbar">Sub-menu separated A</a></atlui-dropdown-option>
+          <atlui-dropdown-header>Menu</atlui-dropdown-header>
+          <atlui-dropdown-option><a href="#/navbar">Sub-menu separated B</a></atlui-dropdown-option>
+        </atlui-dropdown>
       </li>
     </ul>`;
 

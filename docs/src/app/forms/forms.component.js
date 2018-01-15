@@ -34,12 +34,12 @@ export default  class FormsComponent {
       </div>
       <div class="form-group">
         <label for="ExampleSelectpicker1">Filter</label>
-        <selectpicker name="ExampleSelectpicker1" [(ngModel)]="Selectpicker1" multiple="true">
-          <selectpicker-option [value]="name">name</selectpicker-option>
-          <selectpicker-option [value]="surname">surname</selectpicker-option>
-          <selectpicker-option [value]="place">place</selectpicker-option>
-          <selectpicker-option [value]="age">age</selectpicker-option>
-        </selectpicker>
+        <atlui-selectpicker name="ExampleSelectpicker1" [(ngModel)]="Selectpicker1" multiple="true">
+          <atlui-selectpicker-option [value]="name">name</atlui-selectpicker-option>
+          <atlui-selectpicker-option [value]="surname">surname</atlui-selectpicker-option>
+          <atlui-selectpicker-option [value]="place">place</atlui-selectpicker-option>
+          <atlui-selectpicker-option [value]="age">age</atlui-selectpicker-option>
+        </atlui-selectpicker>
       </div>
       <button type="submit" class="btn btn-default">Search</button>
     </form>`;

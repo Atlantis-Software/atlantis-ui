@@ -1,25 +1,28 @@
 <div class="container">
+  <h2>
+    Carousel
+  </h2>
   <h3>
     Example :
   </h3>
   <div class="row container-fluid form-group">
-    <carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
-      <carousel-item>
+    <atlui-carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
+      <atlui-carousel-item>
         <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">
         <div class="carousel-caption">
           Slide 1
         </div>
-      </carousel-item>
-      <carousel-item >
+      </atlui-carousel-item>
+      <atlui-carousel-item >
         <img class="img-responsive center-block" src="../../img/carousel02.jpg" alt="">
-      </carousel-item>
-      <carousel-item>
+      </atlui-carousel-item>
+      <atlui-carousel-item>
         <img class="img-responsive center-block" src="../../img/carousel03.jpg" alt="">
         <div class="carousel-caption">
           slide 3
         </div>
-      </carousel-item>
-    </carousel>
+      </atlui-carousel-item>
+    </atlui-carousel>
   </div>
 
   <pre>
@@ -111,23 +114,23 @@
   </h3>
 
   <div class="row container-fluid form-group">
-    <carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
-      <carousel-item *ngIf="show1">
+    <atlui-carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
+      <atlui-carousel-item *ngIf="show1">
         <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">
         <div class="carousel-caption">
           Slide 1
         </div>
-      </carousel-item>
-      <carousel-item *ngIf="show2">
+      </atlui-carousel-item>
+      <atlui-carousel-item *ngIf="show2">
         <img class="img-responsive center-block" src="../../img/carousel02.jpg" alt="">
-      </carousel-item>
-      <carousel-item *ngIf="show3">
+      </atlui-carousel-item>
+      <atlui-carousel-item *ngIf="show3">
         <img class="img-responsive center-block" src="../../img/carousel03.jpg" alt="">
         <div class="carousel-caption">
           slide 3
         </div>
-      </carousel-item>
-    </carousel>
+      </atlui-carousel-item>
+    </atlui-carousel>
   </div>
 
   <div class="row container-fluid">
@@ -156,14 +159,14 @@
   </h3>
 
   <div class="row container-fluid form-group">
-    <carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
-      <carousel-item *ngFor="let carouselItem of carouselItems">
+    <atlui-carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
+      <atlui-carousel-item *ngFor="let carouselItem of carouselItems">
         <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">
         <div class="carousel-caption">
           {{carouselItem.label}}
         </div>
-      </carousel-item>
-    </carousel>
+      </atlui-carousel-item>
+    </atlui-carousel>
   </div>
 
   <pre>

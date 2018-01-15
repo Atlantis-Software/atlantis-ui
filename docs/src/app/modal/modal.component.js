@@ -16,39 +16,39 @@ export default  class ModalComponent {
     <button type="button" class="btn btn-primary btn-sm"  (click)="openStandard() || showStandard = true">
       Default modal
     </button>
-    <modal [(show)]="showStandard">
-      <modal-header>
+    <atlui-modal [(show)]="showStandard">
+      <atlui-modal-header>
         <h3 class="modal-title">Modal Header</h3>
-      </modal-header>
-      <modal-body>
+      </atlui-modal-header>
+      <atlui-modal-body>
         <p>Some text in the modal.</p>
-      </modal-body>
-      <modal-footer>
+      </atlui-modal-body>
+      <atlui-modal-footer>
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeStandard() || showStandard = false">Close</button>
-      </modal-footer>
-    </modal>`;
+      </atlui-modal-footer>
+    </atlui-modal>`;
 
     this.modalHtml2 = `
     <button type="button" class="btn btn-primary btn-sm"  (click)="showStandard2 = true">
       Default modal
     </button>
-    <modal [(show)]="showStandard2" [backdrop]="false">
-      <modal-header>
+    <atlui-modal [(show)]="showStandard2" [backdrop]="false">
+      <atlui-modal-header>
         <h3 class="modal-title">Modal Header</h3>
-      </modal-header>
-      <modal-body>
+      </atlui-modal-header>
+      <atlui-modal-body>
         <p>Some text in the modal.</p>
-      </modal-body>
-      <modal-footer>
+      </atlui-modal-body>
+      <atlui-modal-footer>
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="showStandard2 = false">Close</button>
-      </modal-footer>
-    </modal>`;
+      </atlui-modal-footer>
+    </atlui-modal>`;
 
     this.modalOrientationHtml = `
-    <modal [(show)]="showStandard2" [orientation]="left">
-    <modal [(show)]="showStandard2" [orientation]="right">
-    <modal [(show)]="showStandard2" [orientation]="top">
-    <modal [(show)]="showStandard2" [orientation]="bottom">`;
+    <atlui-modal [(show)]="showStandard2" [orientation]="left">
+    <atlui-modal [(show)]="showStandard2" [orientation]="right">
+    <atlui-modal [(show)]="showStandard2" [orientation]="top">
+    <atlui-modal [(show)]="showStandard2" [orientation]="bottom">`;
 
     this.showLeft = false;
     this.showRight = false;

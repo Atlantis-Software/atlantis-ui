@@ -43,7 +43,7 @@ export default  class dragAndDropComponent {
     </div>`;
 
     this.listDropzoneHtml = `
-    <div class="panel-body" sortable-container [sortableData]="listDropzone" [dropzones]="'dropzone2.dropzone1'">
+    <div class="panel-body" sortable-container [sortableData]="listDropzone" [dropzones]="['dropzone2','dropzone1']">
       <ul class="list-group"  >
         <li *ngFor="let item of listDropzone; let i = index" class="list-group-item" sortable [sortableIndex]="i">
           {{item}}

@@ -1,15 +1,18 @@
 <div class="container">
+  <h2>
+    Dropdown
+  </h2>
   <h3>Exemple : </h3>
   <div class="form-group">
     <div class="row container-fluid">
-      <dropdown title="Menu A">
-        <dropdown-option><a>Sub-menu A</a></dropdown-option>
-        <dropdown-option><a>Sub-menu B</a></dropdown-option>
-        <dropdown-divider></dropdown-divider>
-        <dropdown-option><a>Sub-menu separated A</a></dropdown-option>
-        <dropdown-header>Menu</dropdown-header>
-        <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
-      </dropdown>
+      <atlui-dropdown title="Menu A">
+        <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
+        <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
+        <atlui-dropdown-divider></atlui-dropdown-divider>
+        <atlui-dropdown-option><a>Sub-menu separated A</a></atlui-dropdown-option>
+        <atlui-dropdown-header>Menu</atlui-dropdown-header>
+        <atlui-dropdown-option><a>Sub-menu separated B</a></atlui-dropdown-option>
+      </atlui-dropdown>
     </div>
   </div>
   <pre>
@@ -21,14 +24,14 @@
   </h3>
   <div class="form-group">
     <div class="row container-fluid">
-      <dropdown orientation="up" title="Menu A">
-        <dropdown-option><a>Sub-menu A</a></dropdown-option>
-        <dropdown-option><a>Sub-menu B</a></dropdown-option>
-        <dropdown-divider></dropdown-divider>
-        <dropdown-option><a>Sub-menu separated A</a></dropdown-option>
-        <dropdown-header>Menu</dropdown-header>
-        <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
-      </dropdown>
+      <atlui-dropdown orientation="up" title="Menu A">
+        <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
+        <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
+        <atlui-dropdown-divider></atlui-dropdown-divider>
+        <atlui-dropdown-option><a>Sub-menu separated A</a></atlui-dropdown-option>
+        <atlui-dropdown-header>Menu</atlui-dropdown-header>
+        <atlui-dropdown-option><a>Sub-menu separated B</a></atlui-dropdown-option>
+      </atlui-dropdown>
     </div>
   </div>
   <blockquote>
@@ -45,22 +48,22 @@
 
   <div class="form-group">
     <div class="row container-fluid">
-      <dropdown class="form-group" alignement="left" title="Menu A">
-        <dropdown-option><a>Sub-menu A</a></dropdown-option>
-        <dropdown-option><a>Sub-menu B</a></dropdown-option>
-        <dropdown-divider></dropdown-divider>
-        <dropdown-option><a>Sub-menu separated A</a></dropdown-option>
-        <dropdown-header>Menu</dropdown-header>
-        <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
-      </dropdown>
-      <dropdown alignement="right" title="Menu A">
-        <dropdown-option><a>Sub-menu A</a></dropdown-option>
-        <dropdown-option><a>Sub-menu B</a></dropdown-option>
-        <dropdown-divider></dropdown-option>
-        <dropdown-option><a>Sub-menu separated A</a></dropdown-option>
-        <dropdown-header>Menu</dropdown-header>
-        <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
-      </dropdown>
+      <atlui-dropdown class="form-group" alignement="left" title="Menu A">
+        <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
+        <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
+        <atlui-dropdown-divider></atlui-dropdown-divider>
+        <atlui-dropdown-option><a>Sub-menu separated A</a></atlui-dropdown-option>
+        <atlui-dropdown-header>Menu</atlui-dropdown-header>
+        <atlui-dropdown-option><a>Sub-menu separated B</a></atlui-dropdown-option>
+      </atlui-dropdown>
+      <atlui-dropdown alignement="right" title="Menu A">
+        <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
+        <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
+        <atlui-dropdown-divider></atlui-dropdown-option>
+        <atlui-dropdown-option><a>Sub-menu separated A</a></atlui-dropdown-option>
+        <atlui-dropdown-header>Menu</atlui-dropdown-header>
+        <atlui-dropdown-option><a>Sub-menu separated B</a></atlui-dropdown-option>
+      </atlui-dropdown>
     </div>
   </div>
 
@@ -74,21 +77,21 @@
 
   <div class="form-group">
     <div class="row container-fluid">
-      <dropdown title="Menu A" icon="add">
-        <dropdown-option><a>Sub-menu A</a></dropdown-option>
-        <dropdown-option><a>Sub-menu B</a></dropdown-option>
-        <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
-      </dropdown>
+      <atlui-dropdown title="Menu A" icon="add">
+        <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
+        <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
+        <atlui-dropdown-option><a>Sub-menu separated B</a></atlui-dropdown-option>
+      </atlui-dropdown>
     </div>
   </div>
 
   <div class="form-group">
     <div class="row container-fluid">
-      <dropdown icon="search">
-        <dropdown-option><a>Sub-menu A</a></dropdown-option>
-        <dropdown-option><a>Sub-menu B</a></dropdown-option>
-        <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
-      </dropdown>
+      <atlui-dropdown icon="search">
+        <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
+        <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
+        <atlui-dropdown-option><a>Sub-menu separated B</a></atlui-dropdown-option>
+      </atlui-dropdown>
     </div>
   </div>
 
@@ -102,9 +105,9 @@
 
   <div class="form-group">
     <div class="row container-fluid">
-      <dropdown class="form-group" alignement="left" title="Menu A">
-        <dropdown-option *ngFor="let dropdownoption of dropdownoptions"><a>{{dropdownoption.label}}</a></dropdown-option>
-      </dropdown>
+      <atlui-dropdown class="form-group" alignement="left" title="Menu A">
+        <atlui-dropdown-option *ngFor="let dropdownoption of dropdownoptions"><a>{{dropdownoption.label}}</a></atlui-dropdown-option>
+      </atlui-dropdown>
     </div>
   </div>
 

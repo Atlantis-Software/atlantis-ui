@@ -7,7 +7,7 @@
   </h3>
   <div class="row container-fluid form-group">
     <div class="col-md-4">
-      <tree [nodes]="nodesBasic"></tree>
+      <atlui-tree [nodes]="nodesBasic"></atlui-tree>
     </div>
   </div>
   <br>
@@ -23,16 +23,13 @@
   </h3>
   <div class="row container-fluid">
     <div class="col-md-4">
-      <tree [nodes]="nodesWithParameters"></tree>
+      <atlui-tree [nodes]="nodesWithParameters"></atlui-tree>
     </div>
   </div>
   <br>
   <pre>
     {{treeNodesWithParameters}}
   </pre>
-  <h3>
-    Warning: Experimental
-  </h3>
   <h3>
     Sortable tree
   </h3>
@@ -44,7 +41,7 @@
   </p>
   <div class="row container-fluid">
     <div class="col-md-4">
-      <tree [nodes]="nodesSortable" [isSortable]="true"></tree>
+      <atlui-tree [nodes]="nodesSortable" [isSortable]="true"></atlui-tree>
     </div>
   </div>
   <br>
@@ -60,7 +57,7 @@
   </p>
   <div class="row container-fluid">
     <div class="col-md-4">
-      <tree [nodes]="nodesSortableNested" [isSortable]="true" [nestedSortable]="true"></tree>
+      <atlui-tree [nodes]="nodesSortableNested" [isSortable]="true" [nestedSortable]="true"></atlui-tree>
     </div>
   </div>
   <br>

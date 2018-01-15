@@ -11,24 +11,24 @@ export default  class DropdownComponent {
   constructor(){
 
     this.dropdownHtml = `
-    <dropdown title="Menu A">
-      <dropdown-option><a>Sub-menu A</a></dropdown-option>
-      <dropdown-option><a>Sub-menu B</a></dropdown-option>
-      <dropdown-divider></dropdown-divider>
-      <dropdown-option><a>Sub-menu separated A</a></dropdown-option>
-      <dropdown-header>Menu</dropdown-header>
-      <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
-    </dropdown>`;
+    <atlui-dropdown title="Menu A">
+      <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
+      <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
+      <atlui-dropdown-divider></atlui-dropdown-divider>
+      <atlui-dropdown-option><a>Sub-menu separated A</a></atlui-dropdown-option>
+      <atlui-dropdown-header>Menu</atlui-dropdown-header>
+      <atlui-dropdown-option><a>Sub-menu separated B</a></atlui-dropdown-option>
+    </atlui-dropdown>`;
 
     this.dropup = `
-    <dropdown orientation="up" title="Menu A">
-    </dropdown>`;
+    <atlui-dropdown orientation="up" title="Menu A">
+    </atlui-dropdown>`;
 
     this.dropdownAlignement = `
-    <dropdown alignement="left" title="Menu A">
-    </dropdown>
-    <dropdown alignement="right" title="Menu A">
-    </dropdown>`;
+    <atlui-dropdown alignement="left" title="Menu A">
+    </atlui-dropdown>
+    <atlui-dropdown alignement="right" title="Menu A">
+    </atlui-dropdown>`;
 
     this.dropdownoptions = [
       {
@@ -56,14 +56,14 @@ export default  class DropdownComponent {
     ];`;
 
     this.dropdownNgFor = `
-    <dropdown class="form-group" [options]="{alignement:'left'}" title="Menu A">
-      <dropdown-option *ngFor="let dropdownoption of dropdownoptions" [options]="dropdownoption.options">
+    <atlui-dropdown class="form-group" [options]="{alignement:'left'}" title="Menu A">
+      <atlui-dropdown-option *ngFor="let dropdownoption of dropdownoptions" [options]="dropdownoption.options">
         {{dropdownoption.label}}
-      </dropdown-option>
-    </dropdown>`;
+      </atlui-dropdown-option>
+    </atlui-dropdown>`;
 
     this.dropdownIcon = `
-    <dropdown title="Menu A" icon="add">`;
+    <atlui-dropdown title="Menu A" icon="add">`;
   }
 }
 

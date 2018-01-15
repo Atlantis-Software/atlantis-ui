@@ -12,19 +12,19 @@ export default  class TooltipComponent {
     this.left = 'left';
 
     this.tooltipHtml = `
-    <button type="button" class="btn btn-default" tooltip tooltipDirection="left" [tooltipContent]="time">
+    <button type="button" class="btn btn-default" atlui-tooltip tooltipDirection="left" [tooltipContent]="time">
       tooltip on left
     </button>
 
-    <button type="button" class="btn btn-default" tooltip tooltipDirection="top" tooltipContent="testetstestsetest">
+    <button type="button" class="btn btn-default" atlui-tooltip tooltipDirection="top" tooltipContent="testetstestsetest">
       tooltip on top
     </button>
 
-    <button type="button" class="btn btn-default" tooltip tooltipDirection="bottom" tooltipContent="testetstestsetest">
+    <button type="button" class="btn btn-default" atlui-tooltip tooltipDirection="bottom" tooltipContent="testetstestsetest">
       tooltip on bottom
     </button>
 
-    <button type="button" class="btn btn-default" tooltip tooltipDirection="right" tooltipContent="testetstestsetest">
+    <button type="button" class="btn btn-default" atlui-tooltip tooltipDirection="right" tooltipContent="testetstestsetest">
       tooltip on right
     </button>`;
 

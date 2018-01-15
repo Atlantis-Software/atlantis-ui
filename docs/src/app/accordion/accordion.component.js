@@ -11,22 +11,22 @@ export default  class AccordionComponent {
   constructor(){
 
     this.accordionHtml = `
-    <accordion style="default">
-      <accordion-panel [title]="'test1'" [open]="true">
+    <atlui-accordion style="default">
+      <atlui-accordion-panel [title]="'test1'" [open]="true">
         qsdfghjklm
-      </accordion-panel>
-      <accordion-panel [title]="'test2'">
+      </atlui-accordion-panel>
+      <atlui-accordion-panel [title]="'test2'">
         azertyuiop
         <button type="button" class="btn btn-block">Basic</button>
-      </accordion-panel>
-    </accordion>`;
+      </atlui-accordion-panel>
+    </atlui-accordion>`;
 
     this.accordionNgFor= `
-    <accordion [style]="danger">
-      <accordion-panel *ngFor="let panel of panels" [title]="panel.title">
+    <atlui-accordion [style]="danger">
+      <atlui-accordion-panel *ngFor="let panel of panels" [title]="panel.title">
         {{panel.content}}
-      </accordion-panel>
-    </accordion>`;
+      </atlui-accordion-panel>
+    </atlui-accordion>`;
 
     this.accordionNgForPanel = `
     this.panels = [

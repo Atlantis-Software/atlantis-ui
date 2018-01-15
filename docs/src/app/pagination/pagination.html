@@ -1,5 +1,8 @@
 <div class="container">
   <div class="row container-fluid">
+    <h2>
+      Pagination
+    </h2>
     <h3>
       Example :
     </h3>
@@ -20,7 +23,7 @@
   </div>
   <div class="row">
     <div class="col-md-4">
-      <pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>
+      <atlui-pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></atlui-pagination>
     </div>
     <div class="col-md-4">
       <div class="form-group input-group">
@@ -40,10 +43,10 @@
   <div class="row">
 
     <div class="col-md-6">
-      <pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)' class="pagination-sm"></pagination>
+      <atlui-pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)' class="pagination-sm"></atlui-pagination>
     </div>
     <div class="col-md-6">
-      <pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)' class="pagination-lg"></pagination>
+      <atlui-pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)' class="pagination-lg"></atlui-pagination>
     </div>
 
   </div>

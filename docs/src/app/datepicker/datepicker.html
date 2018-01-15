@@ -1,4 +1,7 @@
 <div class="container">
+  <h2>
+    Datepicker
+  </h2>
 
   <h3>
     Simple datepicker :
@@ -7,7 +10,7 @@
     <div class="col-md-6">
       <div class="form-group">
         <label for="rangeDatePicker">Example</label>
-        <datepicker [(ngModel)]="valueDatePicker" [numberOfMonths]="5"></datepicker>
+        <atlui-datepicker [(ngModel)]="valueDatePicker" [numberOfMonths]="5"></atlui-datepicker>
       </div>
     </div>
     <div class="col-md-6">
@@ -35,7 +38,7 @@
   </pre>
 
   <blockquote>
-    <p>valueDatePicker is the binded value, if you no put value by default it will be today.</br>
+    <p>valueDatePicker is the binded value, if you no put value by default it will be empty.</br>
        numberOfMonths is the number of month in the calendar, if you no put value by default it will 3.</p>
   </blockquote>
 
@@ -49,7 +52,7 @@
     <div class="col-md-6">
       <div class="form-group">
         <label for="rangeDatePicker">Example</label>
-        <datepicker-range [(start)]="start1" [(end)]="end1"></datepicker-range>
+        <atlui-datepicker-range [(start)]="start1" [(end)]="end1"></atlui-datepicker-range>
       </div>
     </div>
     <div class="col-md-6">
@@ -60,10 +63,6 @@
         <input name="Binding1" class="form-control" type="text" [(ngModel)]="end1"></input>
       </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="rangeDatePicker">Example</label>
-    <datepicker-range [(start)]="start2" [(end)]="end2"></datepicker-range>
   </div>
   <div class="row">
     <div class="col-md-4">
@@ -85,8 +84,14 @@
   </pre>
 
   <blockquote>
-    <p>start1 et end1 are the binded value, if you no put value by default it will be today
-      for the 2 dates.</br>
+    <p>start1 et end1 are the binded value, if you no put value by default it will be empty for the 2 dates.</br>
       numberOfMonths is the number of month in the calendar, if you no put value by default it will 3.</p>
   </blockquote>
+  <h4>
+    Example without value
+  </h4>
+  <div class="form-group">
+    <label for="rangeDatePicker">Example</label>
+    <atlui-datepicker-range [(start)]="start2" [(end)]="end2"></atlui-datepicker-range>
+  </div>
 </div>

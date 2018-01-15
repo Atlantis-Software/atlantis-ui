@@ -1,9 +1,12 @@
 <div class="container">
+  <h2>
+    Grid widget
+  </h2>
   <h3>
     Example :
   </h3>
   <div class="row">
-    <grid class="table table-bordered" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)"></grid>
+    <atlui-grid class="table table-bordered" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)"></atlui-grid>
   </div>
   <h4>
     Html :
