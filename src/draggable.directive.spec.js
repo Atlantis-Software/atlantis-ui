@@ -19,14 +19,14 @@ class draggableTestComponent {
       new Component({
         template: `
         <div #container style="width:900px;height:600px;border: 1px solid black;">
-          <div style="width:200px;height:100px;" class="well example1" draggable [containment]="container">
+          <div style="width:200px;height:100px;" class="well example1" atlui-dragItem [dragContainment]="container">
             <p>
               You can drag me !
             </p>
           </div>
         </div>
-        <div resizable class="well example2" draggable [containment]="document.body">
-          <h2 draggable-handle class="handle">
+        <div resizable class="well example2" atlui-dragItem [dragContainment]="document.body">
+          <h2 atlui-dragItem-handle class="handle">
             test
           </h2>
           <p>
@@ -45,7 +45,7 @@ describe('Draggable', function() {
   beforeEach(async(function() {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule],
-      declarations: [draggableTestComponent, draggableDirective]
+      declarations: [draggableTestComponent, draggableDirective, draggableHandleDirective]
     });
     TestBed.compileComponents();
   }));

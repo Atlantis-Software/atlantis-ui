@@ -4,9 +4,9 @@ export class draggableDirective {
   static get annotations() {
     return [
       new Directive({
-        selector: '[draggable]',
-        inputs: ['draggable', 'containment'],
-        outputs: ['started', 'stopped'],
+        selector: '[atlui-dragItem]',
+        inputs: ['atlui-dragItem', 'containment: dragContainment', 'oldPosX: dragX', 'oldPosY: dragY'],
+        outputs: ['started: dragStarted', 'stopped: dragStopped', 'dragXChange', 'dargYChange'],
         host: {
           '(mousedown)': 'onMouseDown($event)',
           '(document:mouseup)': 'onMouseUp()',
@@ -23,34 +23,30 @@ export class draggableDirective {
     this.isDraggable = true;
     this.isMoving = false;
     this.origPos = null;
-    this.oldPos = {x: 0, y: 0};
+    this.oldPosX = 0;
+    this.oldPosY = 0;
     this.tempPos = {x: 0, y: 0};
     this.oldIndex = '';
     this.oldPositionStyle = '';
     this.started = new EventEmitter();
     this.stopped = new EventEmitter();
+    this.dragXChange = new EventEmitter();
+    this.dragYChange = new EventEmitter();
   }
 
-  set draggable(setting) {
+  set ngDraggable(setting) {
     if (setting !== void 0 && setting !== null && setting !== '') {
       this.isDraggable = !!setting;
-      this.oldPos = {x: 0, y: 0};
+      this.oldPosX = 0;
+      this.oldPosY = 0;
 
       this.element = this.elementRef.nativeElement;
-      let element = this.handle ? this.handle : this.element;
-      if (this.isDraggable) {
-        this.renderer.addClass(element, 'draggable');
-      } else {
-        this.renderer.removeClass(element, 'draggable');
-      }
     }
   }
 
   ngAfterViewInit() {
     if (this.isDraggable) {
       this.element = this.elementRef.nativeElement;
-      let element = this.handle ? this.handle : this.element;
-      this.renderer.addClass(element, 'draggable');
     }
   }
 
@@ -75,7 +71,7 @@ export class draggableDirective {
 
       this.tempPos.x = x - this.origPos.x;
       this.tempPos.y = y - this.origPos.y;
-      let value = `translate(${this.tempPos.x + this.oldPos.x}px, ${this.tempPos.y + this.oldPos.y}px)`;
+      let value = `translate(${this.tempPos.x + this.oldPosX}px, ${this.tempPos.y + this.oldPosY}px)`;
       this.renderer.setStyle(this.element, 'transform', value);
     }
   }
@@ -110,9 +106,12 @@ export class draggableDirective {
     if (this.isMoving) {
       this.stopped.emit(this.element);
       this.isMoving = false;
-      this.oldPos.x += this.tempPos.x;
-      this.oldPos.y += this.tempPos.y;
+      this.oldPosX += this.tempPos.x;
+      this.oldPosY += this.tempPos.y;
       this.tempPos.x = this.tempPos.y = 0;
+      this.renderer.removeClass(this.element, 'dragging');
+      this.dragXChange.emit(this.oldPosX);
+      this.dragYChange.emit(this.oldPosY);
     }
   }
 
@@ -135,6 +134,8 @@ export class draggableDirective {
 
   onMouseMove(event) {
     if (this.isMoving && this.isDraggable) {
+      this.renderer.addClass(this.element, 'dragging');
+      event.preventDefault();
       this.moveTo(event.clientX - this.diffClickPos.x, event.clientY - this.diffClickPos.y);
     }
   }
@@ -150,7 +151,7 @@ export class draggableHandleDirective {
   static get annotations() {
     return [
       new Directive({
-        selector: '[draggable-handle]'
+        selector: '[atlui-dragItem-handle]'
       })
     ];
   }
