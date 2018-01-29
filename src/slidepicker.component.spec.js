@@ -53,9 +53,9 @@ class slidepickerTestComponent {
     return [
       new Component({
         template: `
-        <slidepicker [(ngModel)]="slide" class="slidepicker slidepicker-vertical">
-          <slidepicker-option *ngFor="let option of options" [value]="option">{{option.label}}</slidepicker-option>
-        </slidepicker>
+        <atlui-slidepicker [(ngModel)]="slide" class="slidepicker slidepicker-vertical">
+          <atlui-slidepicker-option *ngFor="let option of options" [value]="option">{{option.label}}</atlui-slidepicker-option>
+        </atlui-slidepicker>
         <span id="selected">{{slide.label}}</span>
         `
       })

@@ -16,8 +16,8 @@ class circleProgessBarTestComponent {
     return [
       new Component({
         template: `
-        <circle-progress-bar [value]="test">
-        </circle-progress-bar>
+        <atlui-circle-progress-bar [value]="test">
+        </atlui-circle-progress-bar>
         <input id="percent" type="number" [(ngModel)]="test">`
       })
     ];

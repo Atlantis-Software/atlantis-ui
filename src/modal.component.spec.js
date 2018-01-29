@@ -78,7 +78,7 @@ describe('modal', function() {
 
   afterEach(function() {
     getTestBed().resetTestingModule();
-    var backdrop = document.querySelector('backdrop');
+    var backdrop = document.querySelector('atlui-backdrop');
     if (backdrop) {
       backdrop.parentNode.removeChild(backdrop);
     }

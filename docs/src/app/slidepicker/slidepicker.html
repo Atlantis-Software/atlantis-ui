@@ -1,16 +1,19 @@
 <div class="container">
+  <h2>
+    Slidepicker
+  </h2>
   <h3>
     Example :
   </h3>
   <div class="row">
     <div class="col-md-4">
       <label for="slidepicker1">Slidepicker</label>
-      <slidepicker [(ngModel)]="slidepicker1" class="slidepicker-vertical" name="slidepicker1">
-        <slidepicker-option value="test1">test1</slidepicker-option>
-        <slidepicker-option value="test2">test2</slidepicker-option>
-        <slidepicker-option value="test3">test3</slidepicker-option>
-        <slidepicker-option value="test4">test4</slidepicker-option>
-      </slidepicker>
+      <atlui-slidepicker [(ngModel)]="slidepicker1" class="slidepicker-vertical" name="slidepicker1">
+        <atlui-slidepicker-option value="test1">test1</atlui-slidepicker-option>
+        <atlui-slidepicker-option value="test2">test2</atlui-slidepicker-option>
+        <atlui-slidepicker-option value="test3">test3</atlui-slidepicker-option>
+        <atlui-slidepicker-option value="test4">test4</atlui-slidepicker-option>
+      </atlui-slidepicker>
     </div>
     <div class="col-md-4">
       <div class="form-group">
@@ -23,11 +26,11 @@
   <div class="row">
     <div class="col-md-4">
       <label for="slidepicker2">Slidepicker with default value</label>
-      <slidepicker [(ngModel)]= "slidepicker2" class="slidepicker-vertical" name="slidepicker2">
-        <slidepicker-option value="test1">test1</slidepicker-option>
-        <slidepicker-option value="test2">test2</slidepicker-option>
-        <slidepicker-option value="test3">test3</slidepicker-option>
-      </slidepicker>
+      <atlui-slidepicker [(ngModel)]= "slidepicker2" class="slidepicker-vertical" name="slidepicker2">
+        <atlui-slidepicker-option value="test1">test1</atlui-slidepicker-option>
+        <atlui-slidepicker-option value="test2">test2</atlui-slidepicker-option>
+        <atlui-slidepicker-option value="test3">test3</atlui-slidepicker-option>
+      </atlui-slidepicker>
     </div>
     <div class="col-md-4">
       <div class="form-group">
@@ -39,9 +42,14 @@
 
 
 
-  <pre>
-    {{slidepickerHtml}}
-  </pre>
+  <textarea class="atlui-code">
+<atlui-slidepicker [(ngModel)]="slidepicker2" class="slidepicker-vertical">
+  <atlui-slidepicker-option value="test1">test1</atlui-slidepicker-option>
+  <atlui-slidepicker-option value="test2">test2</atlui-slidepicker-option>
+  <atlui-slidepicker-option value="test3">test3</atlui-slidepicker-option>
+  <atlui-slidepicker-option value="test4">test4</atlui-slidepicker-option>
+</atlui-slidepicker>
+  </textarea>
   <h3>
     Parameters
   </h3>
@@ -91,15 +99,15 @@
 
   <div class="row">
     <div class="col-md-4">
-      <slidepicker class="slidepicker-vertical form-group" name="slidepicker1" [(ngModel)]="slidepicker5">
-        <slidepicker-option [value]="A">AAAA</slidepicker-option>
-        <slidepicker-option value="B">BBBB</slidepicker-option>
-        <slidepicker-option value="C">CCCC</slidepicker-option>
-        <slidepicker-option [value]="booleanFalse">boolean test</slidepicker-option>
-        <slidepicker-option [value]="one">11111</slidepicker-option>
-        <slidepicker-option [value]="arrayOneTwoThree">one, two, three</slidepicker-option>
-        <slidepicker-option [value]="objetWithArray">objet javascript</slidepicker-option>
-      </slidepicker>
+      <atlui-slidepicker class="slidepicker-vertical form-group" name="slidepicker1" [(ngModel)]="slidepicker5">
+        <atlui-slidepicker-option [value]="A">AAAA</atlui-slidepicker-option>
+        <atlui-slidepicker-option value="B">BBBB</atlui-slidepicker-option>
+        <atlui-slidepicker-option value="C">CCCC</atlui-slidepicker-option>
+        <atlui-slidepicker-option [value]="booleanFalse">boolean test</atlui-slidepicker-option>
+        <atlui-slidepicker-option [value]="one">11111</atlui-slidepicker-option>
+        <atlui-slidepicker-option [value]="arrayOneTwoThree">one, two, three</atlui-slidepicker-option>
+        <atlui-slidepicker-option [value]="objetWithArray">objet javascript</atlui-slidepicker-option>
+      </atlui-slidepicker>
     </div>
     <div class="col-md-4">
       <div class="form-group" style="height:140px">
@@ -116,9 +124,17 @@
     </blockquote>
   </div>
 
-  <pre>
-    {{slidepickerValue}}
-  </pre>
+  <textarea class="atlui-code">
+<atlui-slidepicker class="slidepicker-vertical" [(ngModel)]="slidepicker5">
+  <atlui-slidepicker-option [value]="A">AAAA</atlui-slidepicker-option>
+  <atlui-slidepicker-option value="B">BBBB</atlui-slidepicker-option>
+  <atlui-slidepicker-option value="C">CCCC</atlui-slidepicker-option>
+  <atlui-slidepicker-option [value]="booleanFalse">boolean test</atlui-slidepicker-option>
+  <atlui-slidepicker-option [value]="one">11111</atlui-slidepicker-option>
+  <atlui-slidepicker-option [value]="arrayOneTwoThree">one, two, three</atlui-slidepicker-option>
+  <atlui-slidepicker-option [value]="objetWithArray">objet javascript</atlui-slidepicker-option>
+</atlui-slidepicker>
+  </textarea>
 
   <h3>
     Select Value and add/suppress value with parent component
@@ -127,11 +143,11 @@
   <div class="row">
     <div class="col-md-4">
       <label for="slidepicker3">Slidepicker</label>
-      <slidepicker [(ngModel)]= "slidepicker3" class="slidepicker-vertical" name="slidepicker3">
-        <slidepicker-option *ngIf="show1" value="test1">test1</slidepicker-option>
-        <slidepicker-option *ngIf="show2" value="test2">test2</slidepicker-option>
-        <slidepicker-option *ngIf="show3" value="test3">test3</slidepicker-option>
-      </slidepicker>
+      <atlui-slidepicker [(ngModel)]= "slidepicker3" class="slidepicker-vertical" name="slidepicker3">
+        <atlui-slidepicker-option *ngIf="show1" value="test1">test1</atlui-slidepicker-option>
+        <atlui-slidepicker-option *ngIf="show2" value="test2">test2</atlui-slidepicker-option>
+        <atlui-slidepicker-option *ngIf="show3" value="test3">test3</atlui-slidepicker-option>
+      </atlui-slidepicker>
     </div>
     <div class="col-md-4">
       <div class="form-group">
@@ -160,9 +176,9 @@
       If we add or suppress a value with *ngIf in tag slidepicker-option, the component will change active or replace correctly the handle
     </p>
   </blockquote>
-  <pre>
-    {{slidepickerOptionNgIf}}
-  </pre>
+  <textarea class="atlui-code">
+<atlui-slidepicker-option *ngIf="showtest1" value="test1">test1</atlui-slidepicker-option>
+  </textarea>
 
   <h3>
     Different size :
@@ -171,30 +187,30 @@
   <div class="row">
     <div class="col-md-4">
       <label for="slidepicker1">Slidepicker small</label>
-      <slidepicker [(ngModel)]="slidepicker1" class="slidepicker-vertical slidepicker-sm" name="slidepicker1">
-        <slidepicker-option value="test1">test1</slidepicker-option>
-        <slidepicker-option value="test2">test2</slidepicker-option>
-        <slidepicker-option value="test3">test3</slidepicker-option>
-        <slidepicker-option value="test4">test4</slidepicker-option>
-      </slidepicker>
+      <atlui-slidepicker [(ngModel)]="slidepicker1" class="slidepicker-vertical slidepicker-sm" name="slidepicker1">
+        <atlui-slidepicker-option value="test1">test1</atlui-slidepicker-option>
+        <atlui-slidepicker-option value="test2">test2</atlui-slidepicker-option>
+        <atlui-slidepicker-option value="test3">test3</atlui-slidepicker-option>
+        <atlui-slidepicker-option value="test4">test4</atlui-slidepicker-option>
+      </atlui-slidepicker>
     </div>
     <div class="col-md-4">
       <label for="slidepicker1">Slidepicker medium</label>
-      <slidepicker [(ngModel)]="slidepicker1" class="slidepicker-vertical" name="slidepicker1">
-        <slidepicker-option value="test1">test1</slidepicker-option>
-        <slidepicker-option value="test2">test2</slidepicker-option>
-        <slidepicker-option value="test3">test3</slidepicker-option>
-        <slidepicker-option value="test4">test4</slidepicker-option>
-      </slidepicker>
+      <atlui-slidepicker [(ngModel)]="slidepicker1" class="slidepicker-vertical" name="slidepicker1">
+        <atlui-slidepicker-option value="test1">test1</atlui-slidepicker-option>
+        <atlui-slidepicker-option value="test2">test2</atlui-slidepicker-option>
+        <atlui-slidepicker-option value="test3">test3</atlui-slidepicker-option>
+        <atlui-slidepicker-option value="test4">test4</atlui-slidepicker-option>
+      </atlui-slidepicker>
     </div>
     <div class="col-md-4">
       <label for="slidepicker1">Slidepicker large</label>
-      <slidepicker [(ngModel)]="slidepicker1" class="slidepicker-vertical slidepicker-lg" name="slidepicker1">
-        <slidepicker-option value="test1">test1</slidepicker-option>
-        <slidepicker-option value="test2">test2</slidepicker-option>
-        <slidepicker-option value="test3">test3</slidepicker-option>
-        <slidepicker-option value="test4">test4</slidepicker-option>
-      </slidepicker>
+      <atlui-slidepicker [(ngModel)]="slidepicker1" class="slidepicker-vertical slidepicker-lg" name="slidepicker1">
+        <atlui-slidepicker-option value="test1">test1</atlui-slidepicker-option>
+        <atlui-slidepicker-option value="test2">test2</atlui-slidepicker-option>
+        <atlui-slidepicker-option value="test3">test3</atlui-slidepicker-option>
+        <atlui-slidepicker-option value="test4">test4</atlui-slidepicker-option>
+      </atlui-slidepicker>
     </div>
   </div>
 
@@ -204,9 +220,14 @@
     </p>
   </blockquote>
 
-  <pre>
-    {{slidepickerSizeHtml}}
-  </pre>
+  <textarea class="atlui-code">
+<atlui-slidepicker [(ngModel)]="slidepicker2" class="slidepicker-vertical slidepicker-sm">
+</atlui-slidepicker>
+<atlui-slidepicker [(ngModel)]="slidepicker2" class="slidepicker-vertical">
+</atlui-slidepicker>
+<atlui-slidepicker [(ngModel)]="slidepicker2" class="slidepicker-vertical slidepicker-lg">
+</atlui-slidepicker>
+  </textarea>
 
   <h3>
     Exemple with ngFor
@@ -214,9 +235,9 @@
   <div class="row">
     <div class="col-md-4">
       <label for="slidepicker4">Slidepicker ngFor</label>
-      <slidepicker [(ngModel)]="slidepicker4" class="slidepicker-vertical" name="slidepicker4">
-        <slidepicker-option *ngFor="let option of options" [value]="option.value">{{option.label}}</slidepicker-option>
-      </slidepicker>
+      <atlui-slidepicker [(ngModel)]="slidepicker4" class="slidepicker-vertical" name="slidepicker4">
+        <atlui-slidepicker-option *ngFor="let option of options" [value]="option.value">{{option.label}}</atlui-slidepicker-option>
+      </atlui-slidepicker>
     </div>
 
     <div class="col-md-4">
@@ -227,13 +248,46 @@
     </div>
   </div>
   <div class="row">
-    <pre>
-      {{slidepickerNgFor}}
-    </pre>
+    <textarea class="atlui-code">
+<atlui-slidepicker [(ngModel)]="slidepicker4" class="slidepicker-vertical" name="slidepicker4">
+  <atlui-slidepicker-option *ngFor="let option of options" [value]="option.value">
+    option.label
+  </atlui-slidepicker-option>
+</atlui-slidepicker>
+    </textarea>
 
-    <pre>
-      {{slidepickerNgForOptions}}
-    </pre>
+    <textarea class="atlui-code">
+this.options = [
+  {
+    value: this.A,
+    label: "AAAA"
+  },
+  {
+    value: "B",
+    label: "BBBB"
+  },
+  {
+    value: "C",
+    label: "CCCC"
+  },
+  {
+    value: this.booleanFalse,
+    label: "boolean test"
+  },
+  {
+    value: this.one,
+    label: "11111"
+  },
+  {
+    value: this.arrayOneTwoThree,
+    label: "one, two, three"
+  },
+  {
+    value: this.objetWithArray,
+    label: "object javascript"
+  }
+]
+    </textarea>
   </div>
 
 </div>

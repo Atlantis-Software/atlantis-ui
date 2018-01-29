@@ -55,17 +55,17 @@ class selectpickerTestComponent {
   static get annotations() {
     return [
       new Component({
-        template: `<selectpicker [(ngModel)]="select1">
-          <selectpicker-option *ngFor="let option of options" [value]="option">{{option.label}}</selectpicker-option>
-        </selectpicker>
+        template: `<atlui-selectpicker [(ngModel)]="select1">
+          <atlui-selectpicker-option *ngFor="let option of options" [value]="option">{{option.label}}</atlui-selectpicker-option>
+        </atlui-selectpicker>
         <span id="selected">{{select1.label}}</span>
-        <selectpicker [(ngModel)]="select2" multiple="true">
-          <selectpicker-option *ngFor="let option of options" [value]="option">{{option.label}}</selectpicker-option>
-        </selectpicker>
+        <atlui-selectpicker [(ngModel)]="select2" multiple="true">
+          <atlui-selectpicker-option *ngFor="let option of options" [value]="option">{{option.label}}</atlui-selectpicker-option>
+        </atlui-selectpicker>
         <span id="selected2">{{select2.label}}</span>
-        <selectpicker [(ngModel)]="select3" multiple="true">
-          <selectpicker-option class="multipleEmpty" *ngFor="let option of options" [value]="option">{{option.label}}</selectpicker-option>
-        </selectpicker>
+        <atlui-selectpicker [(ngModel)]="select3" multiple="true">
+          <atlui-selectpicker-option class="multipleEmpty" *ngFor="let option of options" [value]="option">{{option.label}}</atlui-selectpicker-option>
+        </atlui-selectpicker>
         `
       })
     ];
@@ -97,7 +97,7 @@ describe('selectpicker', function() {
     testComponent = fixture.componentInstance;
 
     var text = document.querySelector('.select-text');
-    var select = document.querySelector('selectpicker');
+    var select = document.querySelector('atlui-selectpicker');
     var options = select.querySelectorAll('a');
 
     assert.strictEqual(options.length, 7);
@@ -258,7 +258,7 @@ describe('selectpicker', function() {
     fixture.detectChanges();
 
     testComponent = fixture.componentInstance;
-    var select = document.querySelectorAll('selectpicker');
+    var select = document.querySelectorAll('atlui-selectpicker');
     var options = select[1].querySelectorAll('a');
 
     var click = new Event("click", { 'bubbles': true });
@@ -285,7 +285,7 @@ describe('selectpicker', function() {
     fixture.detectChanges();
 
     testComponent = fixture.componentInstance;
-    var select = document.querySelectorAll('selectpicker');
+    var select = document.querySelectorAll('atlui-selectpicker');
     var options = select[1].querySelectorAll('a');
 
     var click = new Event("click", { 'bubbles': true });
@@ -316,7 +316,7 @@ describe('selectpicker', function() {
 
     testComponent = fixture.componentInstance;
 
-    var selectpicker = document.querySelectorAll("selectpicker");
+    var selectpicker = document.querySelectorAll("atlui-selectpicker");
     var options = selectpicker[2].querySelectorAll("a");
 
     options[0].click();

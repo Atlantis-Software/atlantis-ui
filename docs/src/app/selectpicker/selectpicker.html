@@ -11,11 +11,11 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="Selectpicker1">Example</label>
-          <selectpicker name="Selectpicker1" [(ngModel)]="Selectpicker1">
-            <selectpicker-option [value]="A">AAAA</selectpicker-option>
-            <selectpicker-option value="B">BBBB</selectpicker-option>
-            <selectpicker-option value="C">CCCC</selectpicker-option>
-          </selectpicker>
+          <atlui-selectpicker name="Selectpicker1" [(ngModel)]="Selectpicker1">
+            <atlui-selectpicker-option [value]="A">AAAA</atlui-selectpicker-option>
+            <atlui-selectpicker-option value="B">BBBB</atlui-selectpicker-option>
+            <atlui-selectpicker-option value="C">CCCC</atlui-selectpicker-option>
+          </atlui-selectpicker>
         </div>
       </div>
       <div class="col-md-4">
@@ -33,9 +33,13 @@
         <label>Code : </label>
       </div>
     </div>
-    <pre>
-      {{selectpickerSimpleHtml}}
-    </pre>
+    <textarea class="atlui-code">
+<atlui-selectpicker name="Selectpicker1" [(ngModel)]="Selectpicker">
+  <atlui-selectpicker-option [value]="A">AAAA</atlui-selectpicker-option>
+  <atlui-selectpicker-option value="B">BBBB</atlui-selectpicker-option>
+  <atlui-selectpicker-option value="C">CCCC</atlui-selectpicker-option>
+</atlui-selectpicker>
+    </textarea>
   </div>
 
   <div class="row">
@@ -46,11 +50,11 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="Selectpicker2">Example simple selectPicker</label>
-          <selectpicker name="Selectpicker2" [(ngModel)]="Selectpicker2" [multiple]=true>
-            <selectpicker-option [value]="A">AAAA</selectpicker-option>
-            <selectpicker-option value="B">BBBB</selectpicker-option>
-            <selectpicker-option value="C">CCCC</selectpicker-option>
-          </selectpicker>
+          <atlui-selectpicker name="Selectpicker2" [(ngModel)]="Selectpicker2" [multiple]=true>
+            <atlui-selectpicker-option [value]="A">AAAA</atlui-selectpicker-option>
+            <atlui-selectpicker-option value="B">BBBB</atlui-selectpicker-option>
+            <atlui-selectpicker-option value="C">CCCC</atlui-selectpicker-option>
+          </atlui-selectpicker>
         </div>
       </div>
       <div class="col-md-4">
@@ -68,9 +72,13 @@
         <label>Code : </label>
       </div>
     </div>
-    <pre>
-      {{selectpickerMultipleHtml}}
-    </pre>
+    <textarea class="atlui-code">
+<atlui-selectpicker name="Selectpicker2" [(ngModel)]="Selectpicker" multiple="true">
+  <atlui-selectpicker-option [value]="A">AAAA</atlui-selectpicker-option>
+  <atlui-selectpicker-option value="B">BBBB</atlui-selectpicker-option>
+  <atlui-selectpicker-option value="C">CCCC</atlui-selectpicker-option>
+</atlui-selectpicker>
+    </textarea>
 
   </div>
 
@@ -84,16 +92,16 @@
     <div class="col-md-4">
       <div class="form-group">
         <label for="Selectpicker3">Example simple selectPicker</label>
-        <selectpicker name="Selectpicker3" [(ngModel)]="Selectpicker3" multiple>
-          <selectpicker-option [value]="A">AAAA</selectpicker-option>
-          <selectpicker-option value="B">BBBB</selectpicker-option>
-          <selectpicker-option value="C">CCCC</selectpicker-option>
-          <selectpicker-option [value]="booleanFalse">boolean test</selectpicker-option>
-          <selectpicker-option [value]="one">11111</selectpicker-option>
-          <selectpicker-option [value]="arrayOneTwoThree">one, two, three</selectpicker-option>
-          <selectpicker-option [value]="objetWithArray">objet javascript</selectpicker-option>
-          <selectpicker-option> {{ NoneValue }} </selectpicker-option>
-        </selectpicker>
+        <atlui-selectpicker name="Selectpicker3" [(ngModel)]="Selectpicker3" multiple>
+          <atlui-selectpicker-option [value]="A">AAAA</atlui-selectpicker-option>
+          <atlui-selectpicker-option value="B">BBBB</atlui-selectpicker-option>
+          <atlui-selectpicker-option value="C">CCCC</atlui-selectpicker-option>
+          <atlui-selectpicker-option [value]="booleanFalse">boolean test</atlui-selectpicker-option>
+          <atlui-selectpicker-option [value]="one">11111</atlui-selectpicker-option>
+          <atlui-selectpicker-option [value]="arrayOneTwoThree">one, two, three</atlui-selectpicker-option>
+          <atlui-selectpicker-option [value]="objetWithArray">objet javascript</atlui-selectpicker-option>
+          <atlui-selectpicker-option> {{ NoneValue }} </atlui-selectpicker-option>
+        </atlui-selectpicker>
       </div>
     </div>
     <div class="col-md-4">
@@ -111,9 +119,18 @@
       <label>Code : </label>
     </div>
   </div>
-  <pre>
-    {{selectpickerType}}
-  </pre>
+  <textarea class="atlui-code">
+<atlui-selectpicker name="Selectpicker3" [(ngModel)]="Selectpicker">
+  <atlui-selectpicker-option [value]="A">AAAA</atlui-selectpicker-option>
+  <atlui-selectpicker-option value="B">BBBB</atlui-selectpicker-option>
+  <atlui-selectpicker-option value="C">CCCC</atlui-selectpicker-option>
+  <atlui-selectpicker-option [value]="booleanFalse">boolean test</atlui-selectpicker-option>
+  <atlui-selectpicker-option [value]="one">11111</atlui-selectpicker-option>
+  <atlui-selectpicker-option [value]="arrayOneTwoThree">one, two, three</atlui-selectpicker-option>
+  <atlui-selectpicker-option [value]="objetWithArray">objet javascript</atlui-selectpicker-option>
+  <atlui-selectpicker-option>  AucuneValeur  </atlui-selectpicker-option>
+</atlui-selectpicker>
+  </textarea>
 
   <h3>
     Exemple with ngFor
@@ -122,24 +139,35 @@
     <div class="col-md-4">
       <div class="form-group">
         <label for="Selectpicker4">Example dynamic select</label>
-        <selectpicker name="Selectpicker4" [(ngModel)]="Selectpicker4">
-          <selectpicker-option *ngFor="let option of optionsSelect" [value]="option.value">{{ option.text}}</selectpicker-option>
-        </selectpicker>
+        <atlui-selectpicker name="Selectpicker4" [(ngModel)]="Selectpicker4">
+          <atlui-selectpicker-option *ngFor="let option of optionsSelect" [value]="option.value">{{ option.text}}</atlui-selectpicker-option>
+        </atlui-selectpicker>
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group" style="height:140px">
         <label for="Binding1">Binding</label>
         <ul>
-          <!-- <li *ngFor="let value of Selectpicker4">{{ value }}</li> -->
           <li> {{ Selectpicker4}}</li>
         </ul>
       </div>
     </div>
   </div>
   <div class="row">
-    <pre>
-      {{exempleDynamicSelect}}
-    </pre>
+    <textarea class="atlui-code">
+<atlui-selectpicker name="Selectpicker4" [(ngModel)]="Selectpicker1" multiple="true">
+  <atlui-selectpicker-option *ngFor="let option of optionsSelect" [value]="option.value">option.text</atlui-selectpicker-option>
+</atlui-selectpicker>
+with : <br>
+optionArrayOneTwoThree = {value: arrayOneTwoThree, text: "arrayOneTwoThree"};
+<br>
+optionOne = {value: one, text: "one"};
+<br>
+optionObjetWithArray = {value: objetWithArray, text: "objetWithArray"};
+<br>
+optionsSelect = [ optionArrayOneTwoThree , optionOne , optionObjetWithArray ];
+<br>
+Selectpicker1 = [optionArrayOneTwoThree.value];
+    </textarea>
   </div>
 </div>

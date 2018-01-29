@@ -7,12 +7,12 @@ export default class gridHeaderComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'grid-header',
+        selector: 'atlui-grid-header',
         template: `
         <div class="gridRow">
           <div *ngFor= "let column of columns; let i = index;" class="gridHead" [ngClass]="column.class" [class.sortable]="column.isSortable" [style.width]="column.width" (click)="onSort(column, i)">
-            <grid-cell-header [content]="column.label" [pipes]="pipes" [sortingClass]="column.sortingClass">
-            </grid-cell-header>
+            <atlui-grid-cell-header [content]="column.label" [pipes]="pipes" [sortingClass]="column.sortingClass">
+            </atlui-grid-cell-header>
           </div>
         </div>`,
         inputs: ['columns', 'pipes'],

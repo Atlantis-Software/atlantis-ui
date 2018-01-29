@@ -4,7 +4,7 @@ export default class circleProgessBarComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'circle-progress-bar, circle-progress-bar-sm, circle-progress-bar-lg',
+        selector: 'atlui-circle-progress-bar, atlui-circle-progress-bar-sm, atlui-circle-progress-bar-lg',
         template: `
         <div [attr.data-percent]="value" class="circle-progress-bar circle-progress-bar-default">
           <svg version="1.1" xmlns="http://www.w3.org/2000/svg">

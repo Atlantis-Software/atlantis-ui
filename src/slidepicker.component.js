@@ -6,7 +6,7 @@ export class slidepickerComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'slidepicker',
+        selector: 'atlui-slidepicker',
         template: `
         <div [hidden]="labels.length === 0" class="slidepicker-track" (mousedown)="TrackDown($event)" (mouseup)="mouseUp($event)" (mousemove)="mouseMove($event)">
           <span class="slidepicker-handle" (mousedown)="HandleDown($event)" (mouseup)="mouseUp($event)" (mousemove)="mouseMove($event)"></span>
@@ -269,7 +269,7 @@ export class slidepickeroptionComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'slidepicker-option',
+        selector: 'atlui-slidepicker-option',
         template: `
           <a (click)="clickLabel($event)"><ng-content></ng-content></a>`,
         inputs: ['value'],

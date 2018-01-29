@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 export default  class DialogComponent {
   static get annotations() {
@@ -8,20 +9,12 @@ export default  class DialogComponent {
       })
     ];
   }
-  constructor(){
+  constructor(document){
     this.showStandard = false;
     this.showStandard2 = false;
     this.showStandard3 = false;
-    this.options = {
-      resizable: true,
-      width: 1000,
-      height: 600,
-      minHeight: 300,
-      minWidth: 300,
-      maxWidth : 1000,
-      maxHeight: 600,
-      title: "dialog Header"
-    };
+    this.showStandard4 = false;
+    this.document = document;
   }
 
   closeStandard() {
@@ -30,4 +23,4 @@ export default  class DialogComponent {
 }
 
 
-DialogComponent.parameters = [];
+DialogComponent.parameters = [DOCUMENT];

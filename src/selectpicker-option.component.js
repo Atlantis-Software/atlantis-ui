@@ -9,7 +9,7 @@ export default class selectpickeroptionComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'selectpicker-option',
+        selector: 'atlui-selectpicker-option',
         template: "<ng-content></ng-content>",
         inputs: ['value']
       })

@@ -152,7 +152,7 @@ class treeTestComponent {
     return [
       new Component({
         template: `
-        <tree [nodes]="nodes" [isSortable]="sortable" [nestedSortable]="nested"></tree>`
+        <atlui-tree [nodes]="nodes" [isSortable]="sortable" [nestedSortable]="nested"></atlui-tree>`
       })
     ];
   }
@@ -532,7 +532,7 @@ describe('tree', function() {
       fixture.detectChanges();
       var node = getNode('Node 2');
       assert(node, 'Node not found');
-      var handle = node.querySelector('span[sortable-handle]');
+      var handle = node.querySelector('span[atlui-sortable-handle]');
       var node2 = getNode('Node 3');
       assert(node2, 'Node not found');
 
@@ -563,7 +563,7 @@ describe('tree', function() {
       fixture.detectChanges();
       var node21 = getNode('Node 21');
       assert(node21, 'Node not found');
-      var handle = node21.querySelector('span[sortable-handle]');
+      var handle = node21.querySelector('span[atlui-sortable-handle]');
       var node23 = getNode('Node 23');
       assert(node23, 'Node not found');
 
@@ -628,7 +628,7 @@ describe('tree', function() {
       fixture.detectChanges();
       var node = getNode('Node 1');
       assert(node, 'Node not found');
-      var handle = node.querySelector('span[sortable-handle]');
+      var handle = node.querySelector('span[atlui-sortable-handle]');
       var node2 = getNode('Node 22');
       assert(node2, 'Node not found');
 
@@ -658,7 +658,7 @@ describe('tree', function() {
       fixture.detectChanges();
       var node = getNode('Node 22');
       assert(node, 'Node not found');
-      var handle = node.querySelector('span[sortable-handle]');
+      var handle = node.querySelector('span[atlui-sortable-handle]');
       var node2 = getNode('Node 1');
       assert(node2, 'Node not found');
 
@@ -688,7 +688,7 @@ describe('tree', function() {
       fixture.detectChanges();
       var node = getNode('Node 2');
       assert(node, 'Node not found');
-      var handle = node.querySelector('span[sortable-handle]');
+      var handle = node.querySelector('span[atlui-sortable-handle]');
       var node2 = getNode('Node 3');
       assert(node2, 'Node not found');
 

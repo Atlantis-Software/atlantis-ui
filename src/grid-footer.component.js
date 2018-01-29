@@ -6,7 +6,7 @@ export default class gridFooterComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'grid-footer',
+        selector: 'atlui-grid-footer',
         template: `
         <div *ngFor= "let column of columns" class="gridHead" [ngClass]="column.class">
           {{columns.label}}

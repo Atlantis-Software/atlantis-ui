@@ -9,12 +9,6 @@ export default  class PaginationComponent {
     ];
   }
   constructor(){
-    this.PaginationHtml = `
-    <pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>`;
-    this.paginationSize = `
-    <pagination class="pagination-sm" [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>
-    <pagination class="pagination-lg" [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>`;
-
     this.page = 4;
     this.pages = 10;
     this.result=[];

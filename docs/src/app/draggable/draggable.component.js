@@ -11,6 +11,23 @@ export default  class DraggableComponent {
   }
   constructor(document) {
     this.document = document;
+
+    this.nodesBasic = [
+      {
+        label: 'Node without children'
+      },
+      {
+        label: 'Node with children',
+        children: [
+          {
+            label: 'Sub-node 1'
+          },
+          {
+            label: 'Sub-node 2'
+          }
+        ]
+      }
+    ];
   }
 }
 

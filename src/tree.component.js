@@ -4,7 +4,7 @@ export default class treeComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'tree',
+        selector: 'atlui-tree',
         template: require('./tree.html'),
         inputs: ['nodes', 'template', 'depth', 'nestedSortable', 'isSortable'],
         outputs: ['expand', 'collapse', 'nodesChanges'],
@@ -85,6 +85,16 @@ export default class treeComponent {
 
   onSelect() {
     this.nodesChanges.emit(this.nodes);
+  }
+
+  updateTree() {
+    var treeNodeSorted = document.querySelectorAll(".tree-node-sorted");
+    if (treeNodeSorted.length > 0) {
+      treeNodeSorted.forEach((element) => {
+        element.classList.remove("tree-node-sorted");
+      });
+    }
+    this.onSelect();
   }
 
   ngOnChanges() {

@@ -1,4 +1,7 @@
 <div class="container">
+  <h2>
+    Input group
+  </h2>
   <div class="row">
     <h3>
       Inputgroup basic :
@@ -17,9 +20,14 @@
       </div>
     </div>
 
-    <pre>
-      {{inputgroupBasicHtml}}
-    </pre>
+    <textarea class="atlui-code">
+<div class="form-group">
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-inputgroup1">@</span>
+    <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-inputgroup1">
+  </div>
+</div>
+    </textarea>
 
     <h3>
       Inputgroup with checkboxs and radio :
@@ -42,9 +50,16 @@
       </div>
     </div>
 
-    <pre>
-      {{inputgroupCheckHtml}}
-    </pre>
+    <textarea class="atlui-code">
+<div class="form-group">
+  <div class="input-group">
+    <span class="input-group-addon">
+      <input type="checkbox" aria-label="...">
+    </span>
+    <input type="text" class="form-control" aria-label="...">
+  </div>
+</div>
+    </textarea>
 
     <h3>
       Inputgroup with buttons :
@@ -68,9 +83,16 @@
         <input type="text" class="form-control" aria-label="...">
       </div>
     </div>
-    <pre>
-      {{inputgroupButtonHtml}}
-    </pre>
+    <textarea class="atlui-code">
+<div class="form-group">
+  <div class="input-group">
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="button">Action</button>
+    </span>
+    <input type="text" class="form-control" aria-label="...">
+  </div>
+</div>
+    </textarea>
 
     <h3>
       Inputgroup with dropdown
@@ -78,31 +100,45 @@
     <div class="form-group">
       <div class="input-group">
         <div class="input-group-btn">
-          <dropdown orientation="up" title="Menu A">
-            <dropdown-option><a>Sub-menu A</a></dropdown-option>
-            <dropdown-option><a>Sub-menu B</a></dropdown-option>
-            <dropdown-divider></dropdown-divider>
-            <dropdown-option><a>Sub-menu separated A</a></dropdown-option>
-            <dropdown-header>Menu</dropdown-header>
-            <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
-          </dropdown>
+          <atlui-dropdown orientation="up" title="Menu A">
+            <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
+            <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
+            <atlui-dropdown-divider></atlui-dropdown-divider>
+            <atlui-dropdown-option><a>Sub-menu separated A</a></atlui-dropdown-option>
+            <atlui-dropdown-header>Menu</atlui-dropdown-header>
+            <atlui-dropdown-option><a>Sub-menu separated B</a></atlui-dropdown-option>
+          </atlui-dropdown>
         </div>
         <input type="text" class="form-control" aria-label="...">
         <div class="input-group-btn">
-          <dropdown orientation="up" icon="add">
-            <dropdown-option><a>Sub-menu A</a></dropdown-option>
-            <dropdown-option><a>Sub-menu B</a></dropdown-option>
-            <dropdown-divider></dropdown-divider>
-            <dropdown-option><a>Sub-menu separated A</a></dropdown-option>
-            <dropdown-header>Menu</dropdown-header>
-            <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
-          </dropdown>
+          <atlui-dropdown orientation="up" icon="add">
+            <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
+            <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
+            <atlui-dropdown-divider></atlui-dropdown-divider>
+            <atlui-dropdown-option><a>Sub-menu separated A</a></atlui-dropdown-option>
+            <atlui-dropdown-header>Menu</atlui-dropdown-header>
+            <atlui-dropdown-option><a>Sub-menu separated B</a></atlui-dropdown-option>
+          </atlui-dropdown>
         </div>
       </div>
     </div>
-  <pre>
-    {{inputgroupDropdownHtml}}
-  </pre>
+  <textarea class="atlui-code">
+<div class="form-group">
+  <div class="input-group">
+    <div class="input-group-btn">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a>Action</a></li>
+        <li><a>Another action</a></li>
+        <li><a>Something else here</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a>Separated link</a></li>
+      </ul>
+    </div>
+    <input type="text" class="form-control" aria-label="...">
+  </div>
+</div>
+  </textarea>
   </div>
 
 </div>

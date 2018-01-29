@@ -15,17 +15,17 @@ class accordionTestComponent {
     return [
       new Component({
         template: `
-        <accordion style="success">
-          <accordion-panel [title]="'test1'">
+        <atlui-accordion style="success">
+          <atlui-accordion-panel [title]="'test1'">
             Panel1
-          </accordion-panel>
-          <accordion-panel [title]="'test2'" [open]="true">
+          </atlui-accordion-panel>
+          <atlui-accordion-panel [title]="'test2'" [open]="true">
             Panel2
-          </accordion-panel>
-          <accordion-panel [title]="'test3'">
+          </atlui-accordion-panel>
+          <atlui-accordion-panel [title]="'test3'">
             Panel3
-          </accordion-panel>
-        </accordion>`
+          </atlui-accordion-panel>
+        </atlui-accordion>`
       })
     ];
   }

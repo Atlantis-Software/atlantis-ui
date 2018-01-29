@@ -1,39 +1,63 @@
 <div class="container">
+
+  <h2>
+    Tooltip
+  </h2>
+
   <h3>
     Example
   </h3>
   <div class="row container-fluid">
-    <button class="btn btn-default" tooltip [tooltipDirection]="left" [tooltipContent]="time">
+    <button class="btn btn-default" atlui-tooltip [tooltipDirection]="left" [tooltipContent]="time">
       Tooltip on left
     </button>
 
-    <button type="button" class="btn btn-default" tooltip tooltipDirection="top" tooltipContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
+    <button type="button" class="btn btn-default" atlui-tooltip tooltipDirection="top" tooltipContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
       Tooltip on top
     </button>
 
-    <button type="button" class="btn btn-default" tooltip tooltipDirection="bottom" tooltipContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
+    <button type="button" class="btn btn-default" atlui-tooltip tooltipDirection="bottom" tooltipContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
       Tooltip on bottom
     </button>
 
-    <button type="button" class="btn btn-default" tooltip tooltipDirection="right" tooltipContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
+    <button type="button" class="btn btn-default" atlui-tooltip tooltipDirection="right" tooltipContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
       Tooltip on right
     </button>
   </div>
-  <pre>
-    {{tooltipHtml}}
-  </pre>
+  <textarea class="atlui-code">
+<button type="button" class="btn btn-default" atlui-tooltip tooltipDirection="left" [tooltipContent]="time">
+  tooltip on left
+</button>
+
+<button type="button" class="btn btn-default" atlui-tooltip tooltipDirection="top" tooltipContent="testetstestsetest">
+  tooltip on top
+</button>
+
+<button type="button" class="btn btn-default" atlui-tooltip tooltipDirection="bottom" tooltipContent="testetstestsetest">
+  tooltip on bottom
+</button>
+
+<button type="button" class="btn btn-default" atlui-tooltip tooltipDirection="right" tooltipContent="testetstestsetest">
+  tooltip on right
+</button>
+  </textarea>
   <blockquote>
     <p>
       We can apply tooltip on any type of tag (a, h, div, p, input)
     </p>
   </blockquote>
+  <h3>
+    Example on different element
+  </h3>
   <div class="row container-fluid">
-    <input type="text" name="" value="" tooltip tooltipDirection="left" tooltipContent="enter what you want">
+    <input type="text" name="" value="" atlui-tooltip tooltipDirection="left" tooltipContent="enter what you want">
   </div>
+  <br>
   <div class="row container-fluid">
-    <img class="img-responsive" src="../../img/carousel03.jpg" alt="" width="200" tooltip tooltipDirection="top" tooltipContent="a beautiful image">
+    <img class="img-responsive" src="../../img/carousel03.jpg" alt="" width="200" atlui-tooltip tooltipDirection="top" tooltipContent="a beautiful image">
   </div>
+  <br>
   <div class="row container-fluid">
-    <input checked="" type="checkbox" value="" tooltip tooltipDirection="right" tooltipContent="Lorem Ipsum">
+    <input checked="" type="checkbox" value="" atlui-tooltip tooltipDirection="left" tooltipContent="Lorem Ipsum">
   </div>
 </div>

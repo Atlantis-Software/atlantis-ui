@@ -1,30 +1,43 @@
 <div class="container">
+  <h2>
+    Carousel
+  </h2>
   <h3>
     Example :
   </h3>
   <div class="row container-fluid form-group">
-    <carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
-      <carousel-item>
+    <atlui-carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
+      <atlui-carousel-item>
         <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">
         <div class="carousel-caption">
           Slide 1
         </div>
-      </carousel-item>
-      <carousel-item >
+      </atlui-carousel-item>
+      <atlui-carousel-item >
         <img class="img-responsive center-block" src="../../img/carousel02.jpg" alt="">
-      </carousel-item>
-      <carousel-item>
+      </atlui-carousel-item>
+      <atlui-carousel-item>
         <img class="img-responsive center-block" src="../../img/carousel03.jpg" alt="">
         <div class="carousel-caption">
           slide 3
         </div>
-      </carousel-item>
-    </carousel>
+      </atlui-carousel-item>
+    </atlui-carousel>
   </div>
 
-  <pre>
-    {{carouselHtml}}
-  </pre>
+  <textarea class="atlui-code">
+<atlui-carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
+  <atlui-carousel-item>
+    <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">
+    <div class="carousel-caption">
+      Slide 1
+    </div>
+  </atlui-carousel-item>
+  <atlui-carousel-item>
+    test2
+  </atlui-carousel-item>
+</atlui-carousel>
+  </textarea>
   <h3>
     Carousel :
   </h3>
@@ -111,23 +124,23 @@
   </h3>
 
   <div class="row container-fluid form-group">
-    <carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
-      <carousel-item *ngIf="show1">
+    <atlui-carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
+      <atlui-carousel-item *ngIf="show1">
         <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">
         <div class="carousel-caption">
           Slide 1
         </div>
-      </carousel-item>
-      <carousel-item *ngIf="show2">
+      </atlui-carousel-item>
+      <atlui-carousel-item *ngIf="show2">
         <img class="img-responsive center-block" src="../../img/carousel02.jpg" alt="">
-      </carousel-item>
-      <carousel-item *ngIf="show3">
+      </atlui-carousel-item>
+      <atlui-carousel-item *ngIf="show3">
         <img class="img-responsive center-block" src="../../img/carousel03.jpg" alt="">
         <div class="carousel-caption">
           slide 3
         </div>
-      </carousel-item>
-    </carousel>
+      </atlui-carousel-item>
+    </atlui-carousel>
   </div>
 
   <div class="row container-fluid">
@@ -147,30 +160,52 @@
     </p>
   </blockquote>
 
-  <pre>
-    {{carrouselSlideNgIf}}
-  </pre>
+  <textarea class="atlui-code">
+<atlui-carousel-item *ngIf="show1">
+  <img class="img-responsive center-block" src="../../img/carousel02.jpg" alt="">
+  <div class="carousel-caption">
+    Slide 1
+  </div>
+</atlui-carousel-item>
+  </textarea>
 
   <h3>
     Exemple with ngFor
   </h3>
 
   <div class="row container-fluid form-group">
-    <carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
-      <carousel-item *ngFor="let carouselItem of carouselItems">
+    <atlui-carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
+      <atlui-carousel-item *ngFor="let carouselItem of carouselItems">
         <img class="img-responsive center-block" src="../../img/carousel01.jpg" alt="">
         <div class="carousel-caption">
           {{carouselItem.label}}
         </div>
-      </carousel-item>
-    </carousel>
+      </atlui-carousel-item>
+    </atlui-carousel>
   </div>
 
-  <pre>
-    {{carouselNgFor}}
-  </pre>
-  <pre>
-    {{carouselNgForItems}}
-  </pre>
+  <textarea class="atlui-code">
+<atlui-carousel indicator="true" interval="4000" activeDefault="2" pause="hover">
+  <atlui-carousel-item *ngFor="let carouselItem of carouselItems">
+    <img class="img-responsive center-block" src="../../img/carousel03.jpg" alt="">
+    <div class="carousel-caption">
+      carouselItem.label
+    </div>
+  </atlui-carousel-item>
+</atlui-carousel>
+  </textarea>
+  <textarea class="atlui-code">
+this.carouselItems = [
+  {
+    label: "slide1",
+  },
+  {
+    label: "slide2",
+  },
+  {
+    label: ""
+  }
+]
+  </textarea>
 
 </div>

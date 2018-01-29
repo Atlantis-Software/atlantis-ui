@@ -48,7 +48,6 @@ import { popoverComponent, popoverDirective } from './popover.component.js';
 import { tooltipComponent, tooltipDirective } from './tooltip.component.js';
 
 import focusDirective from './focus.directive.js';
-import affixDirective from './affix.directive.js';
 
 import { sortableContainer, sortableComponents, sortableHandler } from './sortable.component.js';
 
@@ -57,6 +56,8 @@ import { dragAndDropService, dragAndDropSortableService, dragDropServiceFactory,
 import { draggableDirective, draggableHandleDirective} from './draggable.directive.js';
 
 import { resizableDirective } from './resizable.directive.js';
+
+import { codeDirective } from './code.directive.js';
 
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -94,20 +95,20 @@ AtlantisUiModule.annotations = [
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
       carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent,
-      dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, affixDirective, gridComponent,
+      dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, gridComponent,
       gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent,
       popoverComponent, popoverDirective, tooltipComponent, tooltipDirective, backdropComponent, sortableContainer,
       sortableComponents, treeComponent, treeNodeComponent, sortableHandler, draggableDirective, draggableHandleDirective,
-      dialogComponent, resizableDirective],
+      dialogComponent, resizableDirective, codeDirective],
     exports: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent,
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
       carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent,
-      dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, affixDirective, gridComponent,
+      dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, gridComponent,
       gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent,
       popoverComponent, popoverDirective, tooltipComponent, tooltipDirective, backdropComponent, sortableContainer,
       sortableComponents, sortableHandler, treeComponent, treeNodeComponent, draggableDirective, draggableHandleDirective,
-      dialogComponent, resizableDirective],
+      dialogComponent, resizableDirective, codeDirective],
     entryComponents: [tooltipComponent, popoverComponent, backdropComponent]
   })
 ];

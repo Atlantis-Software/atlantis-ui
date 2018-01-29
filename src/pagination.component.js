@@ -4,7 +4,7 @@ export default class pagination {
   static get annotations() {
     return [
       new Component({
-        selector: 'pagination',
+        selector: 'atlui-pagination',
         inputs: ['page', 'pages'],
         outputs: ['pagechange'],
         template: require('./pagination.html')

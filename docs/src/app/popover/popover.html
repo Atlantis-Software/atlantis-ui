@@ -1,40 +1,64 @@
 <div class="container">
+  <h2>
+    Popover
+  </h2>
+
   <h3>
     Example
   </h3>
   <div class="row container-fluid">
-    <button class="btn btn-default" popover popoverDirection="left" popoverTitle="Popover left" [popoverContent]="time">
+    <button class="btn btn-default" atlui-popover popoverDirection="left" popoverTitle="Popover left" [popoverContent]="time">
       Popover on left
     </button>
 
-    <button type="button" class="btn btn-default" popover popoverDirection="top" popoverTitle="Popover top" popoverContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
+    <button type="button" class="btn btn-default" atlui-popover popoverDirection="top" popoverTitle="Popover top" popoverContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
       Popover on top
     </button>
 
-    <button type="button" class="btn btn-default" popover popoverDirection="bottom" popoverTitle="Popover bottom" popoverContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
+    <button type="button" class="btn btn-default" atlui-popover popoverDirection="bottom" popoverTitle="Popover bottom" popoverContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
       Popover on bottom
     </button>
 
-    <button type="button" class="btn btn-default" popover popoverDirection="right" popoverTitle="Popover right" popoverContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
+    <button type="button" class="btn btn-default" atlui-popover popoverDirection="right" popoverTitle="Popover right" popoverContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
       Popover on right
     </button>
   </div>
-  <pre>
-    {{PopoverHtml}}
-  </pre>
+  <textarea class="atlui-code">
+<button type="button" class="btn btn-default" atlui-popover popoverDirection="left" popoverTitle="test" [popoverContent]="time">
+  Popover on left
+</button>
+
+<button type="button" class="btn btn-default" atlui-popover popoverDirection="top" popoverTitle="test" popoverContent="testetstestsetest">
+  Popover on top
+</button>
+
+<button type="button" class="btn btn-default" atlui-popover popoverDirection="bottom" popoverTitle="test" popoverContent="testetstestsetest">
+  Popover on bottom
+</button>
+
+<button type="button" class="btn btn-default" atlui-popover popoverDirection="right" popoverTitle="test" popoverContent="testetstestsetest">
+  Popover on right
+</button>
+  </textarea>
   <blockquote>
     <p>
       We can apply popover on any type of tag (a, h, div, p, input)
     </p>
   </blockquote>
+
+  <h3>
+    Example on different element
+  </h3>
   <div class="row container-fluid">
-    <input type="text" name="" value="" popover popoverDirection="left" popoverTitle="input popover" popoverContent="enter what you want">
+    <input type="text" name="" value="" atlui-popover popoverDirection="left" popoverTitle="input popover" popoverContent="enter what you want">
   </div>
+  <br>
   <div class="row container-fluid">
-    <img class="img-responsive" src="../../img/carousel03.jpg" alt="" width="200" popover popoverDirection="top" popoverTitle="image popover" popoverContent="a beautiful image">
+    <img class="img-responsive" src="../../img/carousel03.jpg" alt="" width="200" atlui-popover popoverDirection="top" popoverTitle="image popover" popoverContent="a beautiful image">
   </div>
+  <br>
   <div class="row container-fluid">
-    <div class="checkbox" popover popoverDirection="right" popoverTitle="checkbox popover" popoverContent="Lorem Ipsum">
+    <div class="checkbox" atlui-popover popoverDirection="left" popoverTitle="checkbox popover" popoverContent="Lorem Ipsum">
       <input checked="" type="checkbox" value="" id="checkbox1">
       <label for="checkbox1"></label>
     </div>

@@ -12,14 +12,14 @@ export default class gridComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'grid',
+        selector: 'atlui-grid',
         template: `
-        <grid-header class="gridHeader" [columns]="columns" [pipes]="pipes" (sort)="sort.emit($event)">
-        </grid-header>
-        <grid-body class="gridBody" [types]="types" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected" (selectedRows)="onSelect($event)">
-        </grid-body>
-        <grid-footer class="gridFooter" *ngIf="config.footer !=='none'" [columns]="columns">
-        </grid-footer>`,
+        <atlui-grid-header class="gridHeader" [columns]="columns" [pipes]="pipes" (sort)="sort.emit($event)">
+        </atlui-grid-header>
+        <atlui-grid-body class="gridBody" [types]="types" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected" (selectedRows)="onSelect($event)">
+        </atlui-grid-body>
+        <atlui-grid-footer class="gridFooter" *ngIf="config.footer !=='none'" [columns]="columns">
+        </atlui-grid-footer>`,
         inputs: ['columns', 'rows', 'config', 'selected'],
         outputs: ['selectedRows', 'sort']
       })

@@ -16,7 +16,7 @@ export default class selectpickerComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'selectpicker',
+        selector: 'atlui-selectpicker',
         template: require('./selectpicker.html'),
         inputs: ['multiple'],
         queries: {

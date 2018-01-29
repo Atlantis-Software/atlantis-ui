@@ -7,7 +7,7 @@ export default class dropdownHeaderComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'dropdown-header',
+        selector: 'atlui-dropdown-header',
         template: `<ng-content></ng-content>`,
         host: {
           "class": "dropdown-header"

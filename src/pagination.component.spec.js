@@ -17,7 +17,7 @@ class paginationTestComponent {
     return [
       new Component({
         template: `
-        <pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>`
+        <atlui-pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></atlui-pagination>`
       })
     ];
   }

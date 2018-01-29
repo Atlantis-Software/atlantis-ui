@@ -8,7 +8,7 @@ export default class gridCellComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'grid-cell',
+        selector: 'atlui-grid-cell',
         template: `{{content}}`,
         inputs: ['content', 'type', 'pipes']
       })

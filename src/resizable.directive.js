@@ -4,8 +4,8 @@ export class resizableDirective {
   static get annotations() {
     return [
       new Directive({
-        selector: '[resizable]',
-        inputs: ['resizable', 'options']
+        selector: '[atlui-resizable]',
+        inputs: ['resizable: atlui-resizable', 'minWidth', 'maxWidth', 'minHeight', 'maxHeight']
       })
     ];
   }
@@ -13,13 +13,11 @@ export class resizableDirective {
   constructor(ElementRef, Renderer2){
     this.renderer = Renderer2;
     this.elementRef = ElementRef;
-    this.isResizable = true;
-    this.options = {
-      maxWidth: "600px",
-      maxHeight: "300px",
-      minWidth: "300px",
-      minHeight: "100px"
-    };
+    this.isResizable = false;
+    this.maxWidth = "600px";
+    this.maxHeigh = "300px";
+    this.minWidth = "300px";
+    this.minHeight = "100px";
   }
 
   set resizable(setting) {
@@ -42,10 +40,10 @@ export class resizableDirective {
       this.element = this.elementRef.nativeElement;
       this.renderer.setStyle(this.element, "resize",'both');
       this.renderer.setStyle(this.element, "overflow",'auto');
-      this.renderer.setStyle(this.element, "max-width", this.options.maxWidth);
-      this.renderer.setStyle(this.element, "max-height", this.options.maxHeight);
-      this.renderer.setStyle(this.element, "min-width", this.options.minWidth);
-      this.renderer.setStyle(this.element, "min-height", this.options.minHeight);
+      this.renderer.setStyle(this.element, "max-width", this.maxWidth);
+      this.renderer.setStyle(this.element, "max-height", this.maxHeight);
+      this.renderer.setStyle(this.element, "min-width", this.minWidth);
+      this.renderer.setStyle(this.element, "min-height", this.minHeight);
     }
   }
 
@@ -54,10 +52,10 @@ export class resizableDirective {
       this.element = this.elementRef.nativeElement;
       this.renderer.setStyle(this.element, "resize",'both');
       this.renderer.setStyle(this.element, "overflow",'auto');
-      this.renderer.setStyle(this.element, "max-width", this.options.maxWidth);
-      this.renderer.setStyle(this.element, "max-height", this.options.maxHeight);
-      this.renderer.setStyle(this.element, "min-width", this.options.minWidth);
-      this.renderer.setStyle(this.element, "min-height", this.options.minHeight);
+      this.renderer.setStyle(this.element, "max-width", this.maxWidth);
+      this.renderer.setStyle(this.element, "max-height", this.maxHeight);
+      this.renderer.setStyle(this.element, "min-width", this.minWidth);
+      this.renderer.setStyle(this.element, "min-height", this.minHeight);
     }
   }
 }

@@ -6,7 +6,7 @@ export class accordionComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'accordion',
+        selector: 'atlui-accordion',
         template: `
           <ng-content></ng-content>`,
         inputs: ["panelStyle", "openDefault"],
@@ -82,7 +82,7 @@ export class accordionPanelComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'accordion-panel',
+        selector: 'atlui-accordion-panel',
         template: `
         <div class="panel" [ngClass]="{'panel-open': isOpen}">
           <div class="panel-heading" (click)="toggleOpen($event)">

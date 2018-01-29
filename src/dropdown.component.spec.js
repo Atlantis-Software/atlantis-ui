@@ -19,18 +19,18 @@ class dropdownTestComponent {
     return [
       new Component({
         template: `
-        <dropdown title="Menu A">
-          <dropdown-option><a>Sub-menu A</a></dropdown-option>
-          <dropdown-option><a>Sub-menu B</a></dropdown-option>
-          <dropdown-option><a>Sub-menu C</a></dropdown-option>
-          <dropdown-divider></dropdown-divider>
-          <dropdown-header>menu</dropdown-header>
-          <dropdown-option><a>Sub-menu separated B</a></dropdown-option>
-        </dropdown>
-        <dropdown orientation="up" title="Menu A">
-        </dropdown>
-        <dropdown alignement="right" title="Menu A">
-        </dropdown>`
+        <atlui-dropdown title="Menu A">
+          <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
+          <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
+          <atlui-dropdown-option><a>Sub-menu C</a></atlui-dropdown-option>
+          <atlui-dropdown-divider></atlui-dropdown-divider>
+          <atlui-dropdown-header>menu</atlui-dropdown-header>
+          <atlui-dropdown-option><a>Sub-menu separated B</a></atlui-dropdown-option>
+        </atlui-dropdown>
+        <atlui-dropdown orientation="up" title="Menu A">
+        </atlui-dropdown>
+        <atlui-dropdown alignement="right" title="Menu A">
+        </atlui-dropdown>`
       })
     ];
   }
@@ -56,11 +56,11 @@ describe('dropdown', function() {
     tick();
     fixture.detectChanges();
 
-    var dropdown = document.querySelectorAll('dropdown');
+    var dropdown = document.querySelectorAll('atlui-dropdown');
     var dropdownMenu = document.querySelectorAll('.dropdown-menu');
-    var options = dropdown[0].querySelectorAll('dropdown-option');
-    var divider = dropdown[0].querySelector('dropdown-divider');
-    var header = dropdown[0].querySelector('dropdown-header');
+    var options = dropdown[0].querySelectorAll('atlui-dropdown-option');
+    var divider = dropdown[0].querySelector('atlui-dropdown-divider');
+    var header = dropdown[0].querySelector('atlui-dropdown-header');
 
     assert.strictEqual(dropdown.length, 3);
     assert.strictEqual(dropdown[0].classList[0], 'dropdown');
@@ -98,16 +98,16 @@ describe('dropdown', function() {
     tick();
     fixture.detectChanges();
 
-    var dropdown = document.querySelector("dropdown");
+    var dropdown = document.querySelector("atlui-dropdown");
 
     assert.strictEqual(dropdown.classList[1], "open");
 
-    var option = document.querySelector('dropdown-option');
+    var option = document.querySelector('atlui-dropdown-option');
     option.click();
     tick();
     fixture.detectChanges();
 
-    dropdown = document.querySelector("dropdown");
+    dropdown = document.querySelector("atlui-dropdown");
 
     assert.strictEqual(dropdown.classList[1], void 0);
 
