@@ -48,7 +48,7 @@ describe('datepicker', function() {
     var datepicker2 = document.querySelector('#data2');
 
     assert.strictEqual(moment(datepicker.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment('2004-02-03').toString());
-    assert.strictEqual(moment(datepicker2.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment().startOf('day').toString());
+    assert.strictEqual(datepicker2.textContent, "");
   }));
 
   it('should render correct value into input datepicker modal', fakeAsync(function() {

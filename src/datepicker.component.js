@@ -122,6 +122,7 @@ export default class datepickerComponent {
   set value(val) {
     if (val !== this._val) {
       this._val = val;
+      val = moment(val, [this.locale.format, "YYYY-MM-DD"]).format('YYYY-MM-DD');
       this.onModelChange(val);
     }
   }
@@ -156,7 +157,7 @@ export default class datepickerComponent {
       } else {
         // without default value, it's today
         this.startDate = moment();
-        this.val = this._val = this.startDate.format(this.locale.format);
+        this.val = "";
       }
       //Locales used by moment
       this.locale = {
@@ -177,7 +178,11 @@ export default class datepickerComponent {
       }
       this.refreshCalendar();
       this.refreshText();
-      this.onModelChange(this._val);
+      if (val) {
+        this.onModelChange(moment(val, [this.locale.format, "YYYY-MM-DD"]).format('YYYY-MM-DD'));
+      } else {
+        this.onModelChange("");
+      }
     }
   }
 
