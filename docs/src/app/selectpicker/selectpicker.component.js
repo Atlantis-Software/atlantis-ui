@@ -16,12 +16,13 @@ export default  class SelectpickerComponent {
     this.optionOne = {value: this.one, text: "one"};
     this.optionObjetWithArray = {value: this.objetWithArray, text: "objetWithArray"};
     this.optionsSelect = [ this.optionArrayOneTwoThree , this.optionOne , this.optionObjetWithArray ];
-    this.Selectpicker3 = [this.one, this.objetWithArray, "D"];
     this.booleanFalse = false;
     this.A = "A";
-    this.selectpicker1 = this.A;
-    this.selectpicker2 = this.A;
+    this.selectpicker1 = "B";
+    this.selectpicker2 = ["B","C"];
+    this.Selectpicker3 = [this.one, this.objetWithArray, "D"];
     this.Selectpicker4 = this.optionOne;
+    this.Selectpicker5 = [];
   }
 
   ngOnInit() {

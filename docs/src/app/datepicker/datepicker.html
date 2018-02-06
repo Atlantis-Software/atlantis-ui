@@ -25,7 +25,7 @@
     </div>
   </div>
   <textarea class="atlui-code">
-<atlui-datepicker-range [(start)]="start1" [(end)]="end1" [numberOfMonths]="4"></atlui-datepicker-range>
+<atlui-datepicker [(ngModel)]="Valuedatepicker" [numberOfMonths]="5"></atlui-datepicker>
   </textarea>
 
   <div class="row">
@@ -42,7 +42,21 @@
        numberOfMonths is the number of month in the calendar, if you no put value by default it will 3.</p>
   </blockquote>
 
-
+  <h4>
+    Example without value
+  </h4>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="rangeDatePicker">Example</label>
+        <atlui-datepicker [(ngModel)]="valueDatePicker2"></atlui-datepicker>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="Binding1">Binding</label>
+      <input name="Binding1" class="form-control" type="text" [(ngModel)]="valueDatePicker2"></input>
+    </div>
+  </div>
 
 
   <h3>
@@ -90,8 +104,20 @@
   <h4>
     Example without value
   </h4>
-  <div class="form-group">
-    <label for="rangeDatePicker">Example</label>
-    <atlui-datepicker-range [(start)]="start2" [(end)]="end2"></atlui-datepicker-range>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="rangeDatePicker">Example</label>
+        <atlui-datepicker-range [(start)]="start2" [(end)]="end2"></atlui-datepicker-range>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="Binding1">Binding</label>
+      <div class="form-group input-group">
+        <input name="Binding1" class="form-control" type="text" [(ngModel)]="start2"></input>
+        <span class="input-group-addon"></span>
+        <input name="Binding1" class="form-control" type="text" [(ngModel)]="end2"></input>
+      </div>
+    </div>
   </div>
 </div>
