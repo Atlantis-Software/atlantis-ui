@@ -25,6 +25,7 @@ export default class datepickerComponent {
     this.arrayRows = this.createRange(6);
     this.arrayCols = this.createRange(7);
     this.cdr = changeDetectorRef;
+    this.predefinedDate = null;
   }
 
   static get annotations() {
