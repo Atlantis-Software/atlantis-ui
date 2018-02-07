@@ -10,6 +10,8 @@ import HomeComponent from './home/home.component.js';
 
 import DatepickerComponent from './datepicker/datepicker.component';
 
+import CalendarComponent from './calendar/calendar.component';
+
 import PaginationComponent from './pagination/pagination.component.js';
 
 import SelectpickerComponent from './selectpicker/selectpicker.component.js';
@@ -126,7 +128,8 @@ AppModule.annotations = [
       dragAndDropComponent,
       TreeComponent,
       DraggableComponent,
-      DialogComponent
+      DialogComponent,
+      CalendarComponent
     ],
     imports: [
       BrowserModule,

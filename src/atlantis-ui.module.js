@@ -59,6 +59,19 @@ import { resizableDirective } from './resizable.directive.js';
 
 import { codeDirective } from './code.directive.js';
 
+import { agendaComponent } from './agenda.component.js';
+import { agendaMonthComponent } from './agenda-month.component.js';
+import { agendaDayNameComponent } from './agenda-day-name.component.js';
+import { agendaCalendarComponent } from './agenda-calendar.component.js';
+import { agendaWeekComponent } from './agenda-week.component.js';
+import { agendaDayComponent } from './agenda-day.component.js';
+import { agendaDayCornerComponent } from './agenda-day-corner.component.js';
+import { agendaMoreEventsComponent } from './agenda-more-events.component.js';
+import { agendaDayEventsComponent } from './agenda-day-events.component.js';
+import { agendaEventComponent } from './agenda-event.component.js';
+
+import { localeMomentService, localeMomentServiceFactory } from './localeMoment.service.js';
+
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export class AtlantisUiModule {
@@ -69,7 +82,8 @@ export class AtlantisUiModule {
         { provide: gridConfig, useValue: config },
         { provide: dragAndDropService, useFactory: dragDropServiceFactory },
         { provide: dragAndDropSortableService, useFactory: dragDropSortableServiceFactory },
-        { provide: dialogService, useFactory: dialogServiceFactory}
+        { provide: dialogService, useFactory: dialogServiceFactory},
+        { provide: localeMomentService, useFactory: localeMomentServiceFactory}
       ]
     };
   }
@@ -81,7 +95,8 @@ export class AtlantisUiModule {
         { provide: gridConfig, useValue: config },
         { provide: dragAndDropService, useFactory: dragDropServiceFactory },
         { provide: dragAndDropSortableService, useFactory: dragDropSortableServiceFactory },
-        { provide: dialogService, useFactory: dialogServiceFactory}
+        { provide: dialogService, useFactory: dialogServiceFactory},
+        { provide: localeMomentService, useFactory: localeMomentServiceFactory}
       ]
     };
   }
@@ -99,7 +114,9 @@ AtlantisUiModule.annotations = [
       gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent,
       popoverComponent, popoverDirective, tooltipComponent, tooltipDirective, backdropComponent, sortableContainer,
       sortableComponents, treeComponent, treeNodeComponent, sortableHandler, draggableDirective, draggableHandleDirective,
-      dialogComponent, resizableDirective, codeDirective],
+      dialogComponent, resizableDirective, codeDirective,
+      agendaComponent, agendaMonthComponent, agendaDayNameComponent, agendaCalendarComponent, agendaWeekComponent,
+      agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent],
     exports: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent,
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
@@ -108,7 +125,9 @@ AtlantisUiModule.annotations = [
       gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent,
       popoverComponent, popoverDirective, tooltipComponent, tooltipDirective, backdropComponent, sortableContainer,
       sortableComponents, sortableHandler, treeComponent, treeNodeComponent, draggableDirective, draggableHandleDirective,
-      dialogComponent, resizableDirective, codeDirective],
+      dialogComponent, resizableDirective, codeDirective,
+      agendaComponent, agendaMonthComponent, agendaDayNameComponent, agendaCalendarComponent, agendaWeekComponent,
+      agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent],
     entryComponents: [tooltipComponent, popoverComponent, backdropComponent]
   })
 ];

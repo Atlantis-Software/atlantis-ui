@@ -1,6 +1,8 @@
 import HomeComponent from './home/home.component';
 import DatepickerComponent from './datepicker/datepicker.component';
 
+import CalendarComponent from './calendar/calendar.component';
+
 import PaginationComponent from './pagination/pagination.component';
 
 import SelectpickerComponent from './selectpicker/selectpicker.component';
@@ -82,6 +84,7 @@ export default [
   { path: 'forms', component: FormsComponent },
   { path: 'dragAndDrop', component: dragAndDropComponent },
   { path: 'tree', component: TreeComponent },
-  { path: 'draggable', component: DraggableComponent}
+  { path: 'draggable', component: DraggableComponent},
+  { path: 'calendar', component: CalendarComponent}
 
 ];
