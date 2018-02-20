@@ -9,7 +9,7 @@ export class agendaDayComponent {
         template: `
         <atlui-agenda-day-corner [day]="day">
         </atlui-agenda-day-corner>
-        <div (click)="clickMoreEvents()" class="line-more-events" *ngIf="day.lastNeedMoreEvents()">
+        <div (click)="clickMoreEvents($event)" class="line-more-events" *ngIf="day.lastNeedMoreEvents()">
           <atlui-agenda-more-events>
           </atlui-agenda-more-events>
         </div>`,
@@ -24,7 +24,8 @@ export class agendaDayComponent {
     this.moreEventsCallback = new EventEmitter();
   }
 
-  clickMoreEvents() {
+  clickMoreEvents(event) {
+    event.stopPropagation();
     this.moreEventsCallback.emit(this.day);
   }
 

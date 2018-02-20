@@ -1,5 +1,4 @@
-<!-- <atlui-calendar [events]="events" (clickDateCallback)="test($event)">
 
-</atlui-calendar> -->
-
-<atlui-agenda style="height: 606px;" [events]="events"></atlui-agenda>
+<div style="height: 606px;">
+  <atlui-agenda (clickDayCallback)="test($event)" [events]="events" [date]="date"></atlui-agenda>
+</div>

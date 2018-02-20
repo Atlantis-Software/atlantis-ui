@@ -38,10 +38,10 @@ export class agendaCalendarComponent {
         selector: 'atlui-agenda-calendar',
         template: `
         <atlui-agenda-week *ngFor="let week of calendar; let weekIndex = index" [week]="week" [classes]="classes[weekIndex]" [row]="weekIndex" [weekHeight]="eventsMax"
-          (clickDayCallback)="clickDayCallback.emit()"
-          (moreEventsCallback)="moreEventsCallback.emit()">
+          (clickDayCallback)="clickDay($event)"
+          (moreEventsCallback)="clickMoreEvents($event)">
         </atlui-agenda-week>`,
-        inputs: ["events"],
+        inputs: ["events", "agendaHeight", "month"],
         outputs: ["clickDayCallback", "moreEventsCallback"]
       })
     ];
@@ -49,10 +49,19 @@ export class agendaCalendarComponent {
   constructor(localeMomentService, cdr) {
     this.locale = localeMomentService;
     this.calendar = [];
-    this.renderCalendar(moment("2018-01-01"));
+    this.renderCalendar(moment());
     this.cdr = cdr;
     this.clickDayCallback = new EventEmitter();
     this.moreEventsCallback = new EventEmitter();
+    this.eventsMax = void 0;
+  }
+
+  clickDay($event) {
+    this.clickDayCallback.emit($event);
+  }
+
+  clickMoreEvents($event) {
+    this.moreEventsCallback.emit($event);
   }
 
   ngOnChanges() {
@@ -65,6 +74,11 @@ export class agendaCalendarComponent {
         return 0;
       }
     });
+    this.renderCalendar(this.month);
+    if (this.eventsMax === void 0) {
+      return;
+    }
+    this.eventsPerDay();
     this.reloadEvents();
   }
 
@@ -165,6 +179,23 @@ export class agendaCalendarComponent {
       });
     });
     this.placeEvents();
+    this.hideEvents();
+  }
+
+  hideEvents() {
+    this.calendar.forEach((row)=> {
+      row.forEach((col)=> {
+        if (col.events.length <= this.eventsMax) {
+          return;
+        } else {
+          for (var i = this.eventsMax-1; i < col.events.length; i++) {
+            if (col.events[i]) {
+              col.events[i].moreEvents = true;
+            }
+          }
+        }
+      });
+    });
   }
 
   placeEvents() {
@@ -197,27 +228,19 @@ export class agendaCalendarComponent {
         if (duration < 1) {
           duration = 1;
         }
-        var moreEvents = false;
-        if (currentDateEvent.events.length >= this.eventsMax && index == -1) {
-          moreEvents = true;
-        }
-        var eventDay = new agendaEvents(event, duration, moreEvents);
+        var eventDay = new agendaEvents(event, duration, false);
         if (index == -1) {
-          if (moreEvents) {
-            currentDateEvent.events[currentDateEvent.events.length-1].moreEvents = true;
-          }
           currentDateEvent.events.push(eventDay);
           index = currentDateEvent.events.length - 1;
         } else {
-          if (moreEvents) {
-            currentDateEvent.events[index-1].moreEvents = true;
-          }
           currentDateEvent.events[index] = eventDay;
         }
         // col * row
         if (totalDuration > (7*6-1)) {
           totalDuration = 7*6-1;
         }
+
+
         for (var i = nbrDayFromFirstToEventBegin; i <= totalDuration; i++) {
           matrixPos = this.positionInCalendar(i);
           currentDateEvent = this.calendar[matrixPos.row][matrixPos.col];
@@ -236,21 +259,11 @@ export class agendaCalendarComponent {
               duration = 1;
             }
             index = currentDateEvent.findEmptyEvent();
-            moreEvents = false;
-            if (currentDateEvent.events.length >= this.eventsMax) {
-              moreEvents = true;
-            }
-            eventDay = new agendaEvents(event, duration, moreEvents);
+            eventDay = new agendaEvents(event, duration, false);
             if (index == -1) {
-              if (moreEvents) {
-                currentDateEvent.events[currentDateEvent.events.length-1].moreEvents = true;
-              }
               currentDateEvent.events.push(eventDay);
               index = currentDateEvent.events.length - 1;
             } else {
-              if (moreEvents) {
-                currentDateEvent.events[index-1].moreEvents = true;
-              }
               currentDateEvent.events[index] = eventDay;
             }
           } else if (!event.beginDate.startOf('day').isSame(currentDateEvent.date.startOf('day'))) {

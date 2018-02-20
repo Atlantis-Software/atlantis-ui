@@ -8,7 +8,7 @@ export class agendaWeekComponent {
         selector: 'atlui-agenda-week',
         template: `
         <div class="week">
-          <atlui-agenda-day (click)="showDay(day)" *ngFor="let day of week; let dayIndex = index" [day]="day"  [ngClass]="classes[dayIndex]" (moreEventsCallback)="moreEventsCallback.emit()">
+          <atlui-agenda-day (click)="showDay(day)" *ngFor="let day of week; let dayIndex = index" [day]="day"  [ngClass]="classes[dayIndex]" (moreEventsCallback)="moreEventsCallback.emit($event)">
           </atlui-agenda-day>
         </div>
         <div class="weekEvents">

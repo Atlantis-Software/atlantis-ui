@@ -2,7 +2,6 @@ import { language } from './locale.js';
 
 export class localeMomentService {
   constructor() {
-    console.log("test")
     moment.locale(language);
     this.format = moment.localeData().longDateFormat('L');
     this.daysOfWeek = moment.weekdaysMin();

@@ -16,8 +16,8 @@ export class agendaMonthComponent {
   }
   constructor(localeMoment) {
     this.locale = localeMoment;
-    this.month = 0;
-    this.year = 0;
+    this.month = moment().month();
+    this.year = moment().year();
     this.monthChange = new EventEmitter();
     this.yearChange = new EventEmitter();
   }

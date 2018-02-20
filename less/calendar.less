@@ -1,5 +1,11 @@
 atlui-agenda {
   display: block;
+  height: 100%;
+  margin-bottom: 41px;
+  .atlui-agenda {
+    height: 100%;
+  }
+
   atlui-agenda-month {
     display: block;
   }
@@ -103,11 +109,16 @@ atlui-agenda {
                 position: absolute;
                 font-size: 20px;
                 padding-right: 5px;
+                padding-left: 2px;
                 .eventName {
                   font-size: 12px;
                   overflow: hidden;
                   white-space: nowrap;
                   text-overflow: ellipsis;
+                  span {
+                    padding-left: 2px;
+                    cursor: default;
+                  }
                 }
               }
             }

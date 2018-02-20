@@ -94,8 +94,15 @@ export default  class CalendarComponent {
         endDate: moment("2018-02-22"),
         name: "After actual month",
         color: "#f6bf26"
+      },
+      {
+        beginDate: moment("2018-01-29"),
+        endDate: moment("2018-01-29"),
+        name: "After actual month",
+        color: "#f6bf26"
       }
     ];
+    this.date = moment('2018-01-01');
   }
 
   test(date) {
