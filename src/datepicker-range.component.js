@@ -18,10 +18,6 @@ export default class datepickerComponent {
       fade: true,
       orientation: "right"
     };
-
-    this.modalHeaderOptions = {
-      close: true
-    };
     this.arrayRows = this.createRange(6);
     this.arrayCols = this.createRange(7);
     this.cdr = changeDetectorRef;

@@ -16,9 +16,6 @@ export default class datepickerComponent {
       fade: true,
       orientation: "right"
     };
-    this.modalHeaderOptions = {
-      close: true
-    };
     this.cdr = changeDetectorRef;
     this.predefinedDate = null;
   }

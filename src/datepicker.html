@@ -3,7 +3,7 @@
   <label class="datepicker-label-remove" *ngIf="val" (click)="resetDate()"></label>
 </div>
 <atlui-modal orientation="right" [(show)]="visible" [isClosable]="true">
-  <atlui-modal-header>
+  <atlui-modal-header [close]="false">
     <div class="row datepicker-text">
       <div class="col-md-12 text-center date-letter">
         <span>{{ before }}</span>
