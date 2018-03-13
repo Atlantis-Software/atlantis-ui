@@ -72,6 +72,8 @@ import { agendaEventComponent } from './agenda-event.component.js';
 
 import { localeMomentService, localeMomentServiceFactory } from './localeMoment.service.js';
 
+import { inputFileDirective } from './input-file.directive.js';
+
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export class AtlantisUiModule {
@@ -116,7 +118,8 @@ AtlantisUiModule.annotations = [
       sortableComponents, treeComponent, treeNodeComponent, sortableHandler, draggableDirective, draggableHandleDirective,
       dialogComponent, resizableDirective, codeDirective,
       agendaComponent, agendaMonthComponent, agendaDayNameComponent, agendaCalendarComponent, agendaWeekComponent,
-      agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent],
+      agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent,
+      inputFileDirective],
     exports: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent,
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
@@ -127,7 +130,8 @@ AtlantisUiModule.annotations = [
       sortableComponents, sortableHandler, treeComponent, treeNodeComponent, draggableDirective, draggableHandleDirective,
       dialogComponent, resizableDirective, codeDirective,
       agendaComponent, agendaMonthComponent, agendaDayNameComponent, agendaCalendarComponent, agendaWeekComponent,
-      agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent],
+      agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent,
+      inputFileDirective],
     entryComponents: [tooltipComponent, popoverComponent, backdropComponent]
   })
 ];
