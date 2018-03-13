@@ -6,7 +6,8 @@ i18n['de'] = {
   lastMonth: "Im letzten Monat",
   last7day: "Letzte 7 Tage",
   last30day: "Letzte 30 Tage",
-  lastYear: "letztes Jahr"
+  lastYear: "letztes Jahr",
+  browse: "Reise"
 };
 
 i18n['en'] = {
@@ -16,7 +17,8 @@ i18n['en'] = {
   lastMonth: "Last month",
   last7day: "The last 7 days",
   last30day: "The last 30 days",
-  lastYear: "Last year"
+  lastYear: "Last year",
+  browse: "Browse"
 };
 
 i18n['es'] = {
@@ -26,7 +28,8 @@ i18n['es'] = {
   lastMonth: "Mes pasado",
   last7day: "Los últimos 7 días",
   last30day: "Los últimos 30 días",
-  lastYear: "el año pasado"
+  lastYear: "El año pasado",
+  browse: "Recorrer"
 };
 
 i18n['fr'] = {
@@ -36,7 +39,8 @@ i18n['fr'] = {
   lastMonth: "Mois dernier",
   last7day: "Les 7 derniers jours",
   last30day: "Les 30 derniers jours",
-  lastYear: "L'année dernière"
+  lastYear: "L'année dernière",
+  browse: "Parcourir"
 };
 
 export {i18n};
