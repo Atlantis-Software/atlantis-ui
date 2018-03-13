@@ -122,6 +122,14 @@ export default class dialogComponent {
     // this.maxHeight = window.innerHeight;
     // this.maxWidth = window.innerWidth;
 
+    if (this.maxHeight > this.container.offsetHeight || this.maxHeight === void 0) {
+      this.maxHeight = this.container.offsetHeight;
+    }
+
+    if (this.maxWidth > this.container.offsetWidth || this.maxWidth === void 0) {
+      this.maxWidth = this.container.offsetWidth;
+    }
+    
     if (this.width < this.minWidth) {
       this.width = this.minWidth;
     } else if (this.width > this.maxWidth) {
