@@ -28,7 +28,6 @@
       "no-fallthrough": 1,
       "no-constant-condition": 1,
       "no-mixed-spaces-and-tabs": 1,
-      "no-case-declarations": 1,
-      "no-restricted-globals": 0
+      "no-case-declarations": 1
   }
 }
