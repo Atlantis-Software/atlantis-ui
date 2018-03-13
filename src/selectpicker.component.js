@@ -56,7 +56,7 @@ export default class selectpickerComponent {
     // select mutiple
     if (this.multiple) {
       this.SelectedValuesText = [];
-      if (this.val === void 0 || this.val.length === 0) {
+      if (this.val === void 0 || this.val === null || (this.val && this.val.length === 0)) {
         this.SelectedValuesText = "&nbsp;";
         return;
       }
