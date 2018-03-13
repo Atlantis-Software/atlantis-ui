@@ -129,7 +129,7 @@ export default class dialogComponent {
     if (this.maxWidth > this.container.offsetWidth || this.maxWidth === void 0) {
       this.maxWidth = this.container.offsetWidth;
     }
-    
+
     if (this.width < this.minWidth) {
       this.width = this.minWidth;
     } else if (this.width > this.maxWidth) {
