@@ -19,7 +19,7 @@
 @primary-light:         lighten(@primary, 13.5%);
 @primary-lighter:       lighten(@primary, 20%);
 @primary-text-color:    #fff;
-@secondary:             #C42B01; // #f40;
+@secondary:             #f40; // #f40;
 @secondary-text-color:  #fff;
 @header:                #222;
 @header-text-color:     #fff;
@@ -75,10 +75,19 @@
 @font-size-h5:            @font-size-base;
 @font-size-h6:            ceil((@font-size-base * 0.85)); // ~12px
 
+@font-size-checkbox:      @font-size-base + 2; // 16px
+
+@font-size-date-month-year: ceil((@font-size-base * 1.5)); // 21px
+@font-size-date-number: 90px;
+
 //** Unit-less `line-height` for use in components like buttons.
 @line-height-base:        1.428571429; // 20/14
 //** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
 @line-height-computed:    floor((@font-size-base * @line-height-base)); // ~20px
+//** line height for checkbox icon
+@line-height-checkbox: 16px;
+
+
 
 //** By default, this inherits from the `<body>`.
 @headings-font-family:    inherit;
@@ -97,6 +106,9 @@
 @icon-font-name:          "fontawesome-webfont";
 //** Element ID within SVG icon file.
 @icon-font-svg-id:        "fontawesomeregular";
+@icon-color:              @primary;
+@icon-hover-color:        @secondary;
+@icon-disabled-color:     @disabled;
 
 
 //== Components
@@ -230,7 +242,10 @@
 @input-border-radius-small:      @border-radius-small;
 
 //** Border color for inputs on focus
+@input-border-default:           @gray-base;
 @input-border-focus:             @primary;
+
+@input-border-error:             @error;
 
 //** Placeholder text color
 @input-color-placeholder:        @disabled;
@@ -241,6 +256,9 @@
 @input-height-large:             (ceil(@font-size-large * @line-height-large) + (@padding-large-vertical * 2) + 2);
 //** Small `.form-control` height
 @input-height-small:             (floor(@font-size-small * @line-height-small) + (@padding-small-vertical * 2) + 2);
+
+//** Input clear icon color
+@input-reset: @secondary;
 
 //** `.form-group` margin
 @form-group-margin-bottom:       15px;
@@ -270,22 +288,32 @@
 //## Datepicker container and contents.
 
 //** background-color
-@datepicker-bg:                  @primary;
+@datepicker-bg:                  @background;
+@datepicker-border-color:        @background;
 //** hover
-@datepicker-hover-bg:            @primary;
+@datepicker-hover-bg:            @secondary;
 @datepicker-hover-color:         @primary-text-color;
 //** selected between active day
-@datepicker-in-range-bg:         #ebf4f8;
+@datepicker-in-range-bg:         lighten(@primary, 50%);
 @datepicker-in-range-color:      #000;
 //** selected day
 @datepicker-active-bg:           @primary;
 @datepicker-active-color:        @primary-text-color;
 //** the begin and end day of every month in other month
-@datepicker-off-bg:              @disabled;
+@datepicker-off-bg:              @background;
 @datepicker-off-color:           @disabled-text-color;
 //** today date
 @datepicker-today-bg:            #357ebd;
 @datepicker-today-color:         #fff;
+@datepicker-today-border-color:  @secondary;
+//** arrow prev and next
+@datepicker-arrow-color:        @primary;
+@datepicker-arrow-hover-color:  @secondary;
+//** Datepicker padding
+@datepicker-padding: 4px;
+//** td border
+@datepicker-td-border-radius: 4px;
+@datepicker-td-border-color: transparent;
 
 //== Dropdowns
 //
@@ -333,6 +361,9 @@
 @select-option-active-bg:        @primary;
 @select-option-active-color:     @primary-text-color;
 
+@select-option-min-width: 160px;
+@select-option-max-height: 200px;
+
 //-- Z-index master list
 //
 // Warning: Avoid customizing these values. They're used for a bird's eye view
@@ -340,11 +371,11 @@
 //
 // Note: These variables are not generated into the Customizer.
 
-@zindex-navbar:            1000;
-@zindex-dropdown:          1000;
+@zindex-navbar:            950;
+@zindex-dropdown:          950;
 @zindex-popover:           1060;
 @zindex-tooltip:           1070;
-@zindex-navbar-fixed:      1030;
+@zindex-navbar-fixed:      980;
 @zindex-modal-background:  1040;
 @zindex-modal:             1050;
 
@@ -734,6 +765,29 @@
 @progress-bar-info-bg:        @brand-info;
 
 
+//== Circle progress bars
+//
+//##
+
+//** Default circle-progressbar size
+@circle-progress-bar-size: 148px; //148
+@circle-progress-bar-circle-center: @circle-progress-bar-size / 2; //74
+@circle-progress-bar-circle-size: @circle-progress-bar-circle-center - 10; //64
+@circle-progress-bar-after-size: @circle-progress-bar-size - 40; //108
+
+//** Small circle-progress-bar size
+@circle-progress-bar-size-sm: @circle-progress-bar-size - 8; //140
+@circle-progress-bar-circle-center-sm: @circle-progress-bar-size-sm / 2; //70
+@circle-progress-bar-circle-size-sm: @circle-progress-bar-circle-center-sm - 10; //60
+@circle-progress-bar-after-size-sm: @circle-progress-bar-size-sm - 40; // 100
+
+//** Large circle-progress-bar size
+@circle-progress-bar-size-lg: @circle-progress-bar-size + 24; //172
+@circle-progress-bar-circle-center-lg: @circle-progress-bar-size-lg / 2; //86
+@circle-progress-bar-circle-size-lg: @circle-progress-bar-circle-center-lg - 10; //76
+@circle-progress-bar-after-size-lg: @circle-progress-bar-size-lg - 40; // 132
+
+
 //== List group
 //
 //##
@@ -940,3 +994,35 @@
 @dl-horizontal-breakpoint:    @grid-float-breakpoint;
 //** Horizontal line color.
 @hr-border:                   @gray-lighter;
+
+
+//Slidepicker
+@slidepicker-track-bg:           #fbfbfb;
+@slidepicker-track-border-color: #ddd;
+@slidepicker-handle-bg:          @primary;
+@slidepicker-label-active:           @primary;
+@slidepicker-label:                  @text-color;
+
+@slidepicker-track-width: 8px;
+
+@slidepicker-border-radius: 4px;
+@slidepicker-option-padding: 27px;
+@slidepicker-option-paddin-sm: @slidepicker-option-padding - 2;
+@slidepicker-option-paddin-lg: @slidepicker-option-padding + 6;
+
+//Tree
+@tree-default-color:           lighten(@header, 70%);
+@tree-icon-top: 3px;
+//** line height tree-node
+@tree-node-line-height: 25px;
+@tree-node-margin-left: -20px;
+@tree-node-checkbox-right: 12px;
+@tree-node-line-padding: 40px;
+@tree-node-handle-placement: 4px;
+
+//GridAngular
+@grid-row-active-bg:           @primary;
+@grid-text-active-color:       @primary-text-color;
+@grid-row-change-bg:           @primary;
+@grid-row-error-bg :           @error;
+@grid-input-error  :           @error;

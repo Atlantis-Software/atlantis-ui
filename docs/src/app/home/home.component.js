@@ -13,16 +13,6 @@ export default class HomeComponent {
     ];
   }
   constructor(){
-
-    this.importHtml=`
-    import {ngxAtlUiModule} from 'path/atlantis-ui-ngx' or 'aliasWithWebpack'
-
-    @NgModule({
-      ...
-      import: [ngxAtlUiModule],
-      ...
-    })`
-
   }
 
 }

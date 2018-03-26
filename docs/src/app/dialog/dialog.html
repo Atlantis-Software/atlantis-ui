@@ -1,0 +1,320 @@
+<div class="container">
+  <h2>
+    Dialog
+  </h2>
+  <div class="row">
+
+    <p>
+      A dialog is a "window" we can drag, resize and focus on. We can have many dialog open at the same time.
+    </p>
+    <p>
+      In Contrary to the modal, we are not blocked on the dialog. So we can do anything else.
+    </p>
+
+    <h3>
+      Basic dialog without parameters and no title
+    </h3>
+    <p>
+      For open a dialog we need a boolean variable to send to <code>show</code> parameters
+    </p>
+
+    <div>
+      <button type="button" class="btn btn-primary btn-sm"  (click)="showStandard2 = true">
+        Basic dialog without parameters
+      </button>
+      <atlui-dlg [(show)]="showStandard2">
+        <p>Some text in the dialog.</p>
+      </atlui-dlg>
+    </div>
+    <br>
+    <textarea class="atlui-code">
+<atlui-dlg [(show)]="boolean">
+  <p>Some text in the dialog.</p>
+</atlui-dlg>
+    </textarea>
+
+    <p>
+      Per default the dialog's size will be 300px*500px (width, height)
+    </p>
+
+    <h3>
+      Dialog with size defined
+    </h3>
+
+    <div>
+      <button type="button" class="btn btn-primary btn-sm"  (click)="showStandard3 = true">
+        Dialog with defined size
+      </button>
+      <atlui-dlg [(show)]="showStandard3" [width]="1000" [height]="600">
+        <p>Some text in the dialog.</p>
+      </atlui-dlg>
+    </div>
+    <br>
+    <textarea class="atlui-code">
+<atlui-dlg [(show)]="boolean" [width]="1000" [height]="600">
+  <p>Some text in the dialog.</p>
+</atlui-dlg>
+    </textarea>
+
+    <h3>
+      Dialog with title
+    </h3>
+
+    <div>
+      <button type="button" class="btn btn-primary btn-sm"  (click)="showStandard4 = true">
+        Dialog with title
+      </button>
+      <atlui-dlg [(show)]="showStandard4" [title]="'test'">
+        <p>Some text in the dialog.</p>
+      </atlui-dlg>
+    </div>
+    <br>
+    <textarea class="atlui-code">
+<atlui-dlg [(show)]="boolean" [title]="'Some Title'">
+  <p>Some text in the dialog.</p>
+</atlui-dlg>
+    </textarea>
+
+    <h3>
+      Dialog resizable
+    </h3>
+
+    <div>
+      <button type="button" class="btn btn-primary btn-sm"  (click)="showStandard = true">
+        Default dialog
+      </button>
+      <atlui-dlg [(show)]="showStandard" [isResizable]="true" [width]="600" [height]="450" [minWidth]="300" [minHeight]="300" [maxWidth]="1000" [maxHeight]="600" [title]="'dialog Header'">
+        <p>Some text in the dialog.</p>
+      </atlui-dlg>
+    </div>
+    <br>
+    <textarea class="atlui-code">
+<atlui-dlg [(show)]="boolean" [isResizable]="true" [width]="1000" [height]="600" [minWidth]="300" [minHeight]="300" [maxWidth]="1000" [maxHeight]="600">
+  <p>Some text in the dialog.</p>
+</atlui-dlg>
+    </textarea>
+    <p>
+      If we don't define the min/max width and height the default value will be infinity for maximum and 100px for the minimum.
+    </p>
+
+    <h3>
+      Multiple dialog with auto z-index for focus
+    </h3>
+
+    <div>
+      <button type="button" class="btn btn-primary btn-sm"  (click)="showStandard51 = showStandard52 = showStandard53 = true">
+        Default dialog
+      </button>
+      <atlui-dlg [(show)]="showStandard51" [container]="document.body" [height]="500" [title]="'Title1'">
+        <p>Dialog 1</p>
+      </atlui-dlg>
+    </div>
+    <div>
+      <atlui-dlg [(show)]="showStandard52" [container]="document.body" [height]="400" [title]="'Title2'">
+        <p>Dialog 2</p>
+      </atlui-dlg>
+    </div>
+    <div>
+      <atlui-dlg [(show)]="showStandard53" [container]="document.body" [height]="300" [title]="'Title3'">
+        <p>Dialog 3</p>
+      </atlui-dlg>
+    </div>
+    <br>
+    <p>
+      Like other draggable htmlElement, we can define a container to not exit from it
+    </p>
+    <textarea class="atlui-code">
+<atlui-dlg [(show)]="boolean" [container]="document.body">
+  <p>Text</p>
+</atlui-dlg>
+    </textarea>
+    <p>
+      You can use an template reference
+    </p>
+    <p>
+      Warning : If you want to define body for container you need to import DOCUMENT from @angular/platform-browser in your component
+    </p>
+    <br>
+
+    <h3>
+      Dialog parameters
+    </h3>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>
+            Parameters
+          </th>
+          <th>
+            Type
+          </th>
+          <th>
+            Description
+          </th>
+          <th>
+            Value
+          </th>
+          <th>
+            Default value
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            show
+          </td>
+          <td>
+            boolean
+          </td>
+          <td>
+            Define if the dialog is open or not
+          </td>
+          <td>
+            true, false
+          </td>
+          <td>
+            false
+          </td>
+        </tr>
+        <tr>
+          <td>
+            title
+          </td>
+          <td>
+            String
+          </td>
+          <td>
+            Title of the dialog, that's will appear on the top of dialog
+          </td>
+          <td>
+            -
+          </td>
+          <td>
+            none
+          </td>
+        </tr>
+        <tr>
+          <td>
+            width
+          </td>
+          <td>
+            number
+          </td>
+          <td>
+            Define the width of dialog
+          </td>
+          <td>
+            -
+          </td>
+          <td>
+            300
+          </td>
+        </tr>
+        <tr>
+          <td>
+            height
+          </td>
+          <td>
+            number
+          </td>
+          <td>
+            Define the height of dialog
+          </td>
+          <td>
+            -
+          </td>
+          <td>
+            500
+          </td>
+        </tr>
+        <tr>
+          <td>
+            isResizable
+          </td>
+          <td>
+            boolean
+          </td>
+          <td>
+            Define if the dialog is resizable or not
+          </td>
+          <td>
+            true, false
+          </td>
+          <td>
+            false
+          </td>
+        </tr>
+        <tr>
+          <td>
+            minHeight, maxHeight, minWidth, maxWidth
+          </td>
+          <td>
+            number
+          </td>
+          <td>
+            Define the min and max size of a dialog when the dialog is resize
+          </td>
+          <td>
+            -
+          </td>
+          <td>
+            100 for min and Infinity for max
+          </td>
+        </tr>
+        <tr>
+          <td>
+            container
+          </td>
+          <td>
+            htmlElement
+          </td>
+          <td>
+            Define the container of dialog, for keep dialog into container when we drag him
+          </td>
+          <td>
+            -
+          </td>
+          <td>
+            none
+          </td>
+        </tr>
+        <!-- <tr>
+          <td>
+            controls
+          </td>
+          <td>
+            Array of object
+          </td>
+          <td>
+            Define different controls we can add to dialog
+          </td>
+          <td>
+            -
+          </td>
+          <td>
+            none
+          </td>
+        </tr> -->
+        <tr>
+          <td>
+            closeCallback
+          </td>
+          <td>
+            function
+          </td>
+          <td>
+            Define the callback we use when we close the dialog
+          </td>
+          <td>
+            -
+          </td>
+          <td>
+            none
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

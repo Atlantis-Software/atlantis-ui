@@ -5,21 +5,27 @@
       <h3>
         Getting started :
       </h3>
-      <h4>
+      <h3>
         Step 1 : Install atlantis-ui
-      </h4>
+      </h3>
       <p>
         npm install atlantis-ui
       </p>
-      <h4>
+      <h3>
         Step 2 : Import the component Modules, use standard widget and CSS or less
-      </h4>
+      </h3>
       <p>
-        Import the ngModule for each component you want to use or in a shared module :
+        Import the ngModule for each component you want to use with the function forRoot() or in a shared module :
       </p>
-      <pre>
-        {{importHtml}}
-      </pre>
+      <textarea class="atlui-code">
+import {ngxAtlUiModule} from 'path/atlantis-ui-ngx' or 'aliasWithWebpack'
+
+@NgModule({
+  ...
+  import: [ngxAtlUiModule.forRoot(object)],
+  ...
+})
+      </textarea>
       <p>
         For use standard widget, add with script atlantis-ui-js
       </p>
@@ -29,6 +35,127 @@
       <p>
         For use less, add link to less and add less compiler or loader.
       </p>
+      <p>
+        In the function forRoot we just need to add a parameters objects for the grid component
+      </p>
+      <h3>
+        Example of parameters :
+      </h3>
+      <textarea class="atlui-code">
+var types = [
+  {
+    type: "date",
+    alignment: "right",
+    pipes: [DatePipe],
+    optionsPipe: ['shortDate'],
+    transformation: function(val) {
+      if (moment(val).isValid()) {
+        return moment(val).toString();
+      } else {
+        return "invalid value";
+      }
+    }
+  },
+  {
+    type: 'number',
+    transformation: function(val) {
+      if (!isNaN(val)) {
+        return val;
+      } else {
+        return "invalid value";
+      }
+    }
+  },
+  {
+    type: 'boolean',
+    transformation: function(val) {
+      if (typeof val === void 0 || val === null) {
+        return val;
+      }
+      if (!val || val == '0' || val == 'false') {
+        return 0;
+      }
+      return 1;
+    }
+  },
+];
+      </textarea>
+      <h3>
+        Parameters :
+      </h3>
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>
+              Parameter
+            </th>
+            <th>
+              Type
+            </th>
+            <th>
+              Description
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              type
+            </td>
+            <td>
+              string
+            </td>
+            <td>
+              It's the type you want to define, it allow to put default parameters to a type column
+            </td>
+          </tr>
+          <tr>
+            <td>
+              alignment
+            </td>
+            <td>
+              string
+            </td>
+            <td>
+              Optional; Change the alignment of the column and all the cell of this column; it's use like css property
+            </td>
+          </tr>
+          <tr>
+            <td>
+              pipes
+            </td>
+            <td>
+              Array of pipes
+            </td>
+            <td>
+              Optional; That need to provide first the pipes in your module.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              optionsPipe
+            </td>
+            <td>
+              Array of string
+            </td>
+            <td>
+              Should define in same order has pipes; You can have multiple options, that just need to add a array in place of string
+            </td>
+          </tr>
+          <tr>
+            <td>
+              transformation
+            </td>
+            <td>
+              function
+            </td>
+            <td>
+              That allow to pass a function that be fire when we modify content into a cell. That allow to have correct value; for incorrect value always return "invalid value"
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
     </div>
 
   </div>

@@ -1,0 +1,22 @@
+<ul class="pagination">
+  <li (click)="previousPage($event)" [class.disabled]="page === 1">
+    <a href="#">
+      <i class="icon icon-previous"></i>
+    </a>
+  </li>
+  <li [class.active]="pageSh === page" *ngFor="let pageSh of pageShow; let i = index" (click)="changePage($event, pageSh)">
+    <a href="#">{{pageSh}}</a>
+  </li>
+  <li *ngIf="page <= pages - (numberPageShowPrevious+1) && pages > numberPageShow">
+    <a *ngIf="!changingPage" href="#" (click)="inputPage($event)">...</a>
+    <input class="pagination-input form-control" *ngIf="changingPage" type="number" (blur)="choosePage($event)" (keyup.enter)="choosePage($event)" focus/>
+  </li>
+  <li *ngIf="page <= pages - numberPageShowPrevious && pages > numberPageShow" (click)="changePage($event, pages)">
+    <a href="#">{{pages}}</a>
+  </li>
+  <li (click)="nextPage($event)" [class.disabled]="page === pages">
+    <a href="#">
+      <i class="icon icon-next"></i>
+    </a>
+  </li>
+</ul>

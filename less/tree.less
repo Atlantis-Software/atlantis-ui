@@ -1,0 +1,77 @@
+//Tree component
+
+
+atlui-tree {
+  border: 1px solid @tree-default-color;
+  border-top: none;
+  position: relative;
+  display: block;
+  atlui-tree-node {
+    position : relative;
+    line-height: @tree-node-line-height;
+    display: block;
+    border-top: 1px solid @tree-default-color;
+
+    .tree-expander {
+      position: absolute;
+      margin-left : @tree-node-margin-left;
+      top : @tree-icon-top;
+      z-index: 1;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+
+      &:not(.icon-disabled) {
+        cursor : pointer;
+      }
+    }
+
+    .tree-node-label {
+      color : black;
+    }
+
+    .tree-node-line {
+      padding-right: @tree-node-line-padding;
+    }
+
+    .tree-node-checkbox {
+      display: inline-block;
+      right: @tree-node-checkbox-right;
+      top: @tree-icon-top;
+      position: absolute;
+      .checkbox {
+        //margin it's require to place correctly checkbox
+        margin-top: 0;
+        margin-bottom: 0;
+        label {
+          cursor: default;
+          &::before {
+            cursor : pointer;
+          }
+        }
+      }
+    }
+
+    span[sortable-handle] {
+      &:before {
+        right: @tree-node-handle-placement;
+        top: @tree-node-handle-placement;
+        position: absolute;
+        font-family: "FontAwesome";
+        content: "\f0b2";
+        font-size: @font-size-checkbox - 2;
+        line-height: @line-height-checkbox;
+      }
+    }
+
+    &.tree-node-sorted {
+      border: 1px dashed @secondary;
+    }
+
+    .sub-tree {
+      border: none !important;
+    }
+  }
+
+}

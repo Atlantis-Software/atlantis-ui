@@ -1,156 +1,97 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
+<div class="container">
+  <h2>
+    Datepicker
+  </h2>
 
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+  <h3>
+    Simple datepicker :
+  </h3>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="rangeDatePicker">Example</label>
+        <atlui-datepicker [(ngModel)]="valueDatePicker" [numberOfMonths]="5"></atlui-datepicker>
+      </div>
     </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a (click)="Display = 'Example'">
-            Example and binding
-          </a>
-        </li>
-        <li>
-          <a (click)="Display = 'Api'">
-            How to use and api
-          </a>
-        </li>
-      </ul>
-    </div>
-
-  </div>
-</nav>
-
-
-<div [ngSwitch]= "Display">
-
-  <div class="container" *ngSwitchCase="'Example'">
-    <div class="row">
-
-      <div class="col-md-4">
-
-        <div class="form-group">
-          <label for="rangeDatePicker">Example Datepicker range</label>
-          <datepicker-range [(start)]="start1" [(end)]="end1"></datepicker-range>
-        </div>
-
-      </div>
-
-      <div class="col-md-4">
-        <label for="Binding1">Binding</label>
-        <div class="form-group input-group">
-          <input name="Binding1" class="form-control" type="text" [(ngModel)]="start1"></input>
-          <span class="input-group-addon"></span>
-          <input name="Binding1" class="form-control" type="text" [(ngModel)]="end1"></input>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="row">
-
-      <div class="col-md-4">
-
-        <div class="form-group">
-          <label for="rangeDatePicker">Example Datepicker range with default value</label>
-          <datepicker-range [(start)]="start2" [(end)]="end2"></datepicker-range>
-        </div>
-
-      </div>
-
-      <div class="col-md-4">
-        <label for="Binding1">Binding</label>
-        <div class="form-group input-group">
-          <input name="Binding2" class="form-control" type="text" [(ngModel)]="start2"></input>
-          <span class="input-group-addon"></span>
-          <input name="Binding2" class="form-control" type="text" [(ngModel)]="end2"></input>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="row">
-
-      <div class="col-md-4">
-
-        <div class="form-group">
-          <label for="rangeDatePicker">Example Datepicker simple</label>
-          <datepicker [(ngModel)]="start3"></datepicker>
-        </div>
-
-      </div>
-
-      <div class="col-md-4">
-        <label for="Binding1">Binding</label>
-        <div class="form-group">
-          <input name="Binding3" class="form-control" type="text" [(ngModel)]="start3"></input>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="row">
-
-      <div class="col-md-4">
-
-        <div class="form-group">
-          <label for="rangeDatePicker">Example Datepicker range</label>
-          <datepicker [(ngModel)]="start4"></datepicker>
-        </div>
-
-      </div>
-
-      <div class="col-md-4">
-        <label for="Binding1">Binding</label>
-        <div class="form-group">
-          <input name="Binding4" class="form-control" type="text" [(ngModel)]="start4"></input>
-        </div>
-      </div>
-
+    <div class="col-md-6">
+      <label for="Binding1">Binding</label>
+      <input name="Binding1" class="form-control" type="text" [(ngModel)]="valueDatePicker"></input>
     </div>
   </div>
 
-  <div class="container" *ngSwitchCase="'Api'">
-    <h3>
-      For an datepicker range use :
-    </h3>
-    <pre>
-      {{DatepickerRangeHtml}}
-    </pre>
-    <h4>
-      Parameters :
-    </h4>
-    <p>
-      We use 2 parameters for range value :
-    </p>
-    <p>
-      -start : string, (YYYY-MM-DD), is start date we
-    </p>
-    <p>
-      -end : string, (YYYY-MM-DD), is end date we want
-    </p>
-    <h3>
-      For an datepicker simple use :
-    </h3>
-    <pre>
-      {{DatepickerSimpleHtml}}
-    </pre>
-    <h4>
-      Parameters :
-    </h4>
-    <p>
-      We use ngModel for an simple value :
-    </p>
-    <p>
-      -ngModel : string, (YYYY-MM-DD), is the date we
-    </p>
-
+  <div class="row">
+    <div class="col-md-4">
+      <label>Code : </label>
+    </div>
   </div>
+  <textarea class="atlui-code">
+<atlui-datepicker-range [(start)]="start1" [(end)]="end1" [numberOfMonths]="4"></atlui-datepicker-range>
+  </textarea>
 
+  <div class="row">
+    <div class="col-md-4">
+      <label>Variables : </label>
+    </div>
+  </div>
+  <pre>
+    this.valueDatePicker = "2017-05-01";
+  </pre>
+
+  <blockquote>
+    <p>valueDatePicker is the binded value, if you no put value by default it will be empty.</br>
+       numberOfMonths is the number of month in the calendar, if you no put value by default it will 3.</p>
+  </blockquote>
+
+
+
+
+  <h3>
+    Datepicker range:
+  </h3>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="rangeDatePicker">Example</label>
+        <atlui-datepicker-range [(start)]="start1" [(end)]="end1"></atlui-datepicker-range>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="Binding1">Binding</label>
+      <div class="form-group input-group">
+        <input name="Binding1" class="form-control" type="text" [(ngModel)]="start1"></input>
+        <span class="input-group-addon"></span>
+        <input name="Binding1" class="form-control" type="text" [(ngModel)]="end1"></input>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Code : </label>
+    </div>
+  </div>
+  <textarea class="atlui-code">
+<atlui-datepicker [(ngModel)]="valueDatePicker" [numberOfMonths]="5"></atlui-datepicker>
+  </textarea>
+
+  <div class="row">
+    <div class="col-md-4">
+      <label>Variables : </label>
+    </div>
+  </div>
+  <pre>
+    this.start1 = "2017-05-01";
+    this.end1 = "2017-05-22";
+  </pre>
+
+  <blockquote>
+    <p>start1 et end1 are the binded value, if you no put value by default it will be empty for the 2 dates.</br>
+      numberOfMonths is the number of month in the calendar, if you no put value by default it will 3.</p>
+  </blockquote>
+  <h4>
+    Example without value
+  </h4>
+  <div class="form-group">
+    <label for="rangeDatePicker">Example</label>
+    <atlui-datepicker-range [(start)]="start2" [(end)]="end2"></atlui-datepicker-range>
+  </div>
 </div>

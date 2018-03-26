@@ -23,13 +23,17 @@ module.exports = function (config) {
       noInfo: true,
     },
 
-    browsers : ['Chrome', 'Firefox'],
+    browsers : ['Firefox', 'Chrome'],
 
     singleRun: true,
 
+    autoWatch: true,
+    autoWatchBatchDelay: 5000,
+
     reporters: ['mocha'],
     port: 9876,
-    colors: true
+    colors: true,
+    concurrency: 1
   };
 
   config.set(_config);

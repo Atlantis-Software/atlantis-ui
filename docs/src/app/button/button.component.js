@@ -6,14 +6,9 @@ export default  class ButtonComponent {
       new Component({
         template: require('./button.html')
       })
-    ]
+    ];
   }
   constructor(){
-    this.buttonHtml = `
-    <div class="form-group">
-      <button type="button" class="btn btn-block">Basic</button>
-    </div>`
-    this.Display = "Example";
   }
 }
 

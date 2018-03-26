@@ -1,0 +1,334 @@
+<div class="container">
+  <h2>
+    Grid widget
+  </h2>
+  <h3>
+    Example :
+  </h3>
+  <div class="row">
+    <atlui-grid class="table table-bordered" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)"></atlui-grid>
+  </div>
+  <h4>
+    Html :
+  </h4>
+  <textarea>
+<atlui-grid class="table table-bordered" [columns]= "columns" [rows]= "rows"
+  (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
+</atlui-grid>
+  </textarea>
+  <blockquote>
+    <p>
+      A grid component is like a table so we can use class like table
+    </p>
+  </blockquote>
+
+  <h3>
+    grid parameters:
+  </h3>
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>
+          Parameter
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          columns
+        </td>
+        <td>
+          Array of objects
+        </td>
+        <td>
+          Different columns with all default parameters, columns name, and type of the columns
+        </td>
+      </tr>
+      <tr>
+        <td>
+          rows
+        </td>
+        <td>
+          Array of objects
+        </td>
+        <td>
+          The value of rows we send to widget
+        </td>
+      </tr>
+      <tr>
+        <td>
+          selected
+        </td>
+        <td>
+          Array of objects
+        </td>
+        <td>
+          The value we selected in rows for changes selection in widget
+        </td>
+      </tr>
+      <tr>
+        <td>
+          selectedRows
+        </td>
+        <td>
+          Function with $event
+        </td>
+        <td>
+          Allow to collect what we select into widget
+        </td>
+      </tr>
+      <tr>
+        <td>
+          sort
+        </td>
+        <td>
+          Function with $event
+        </td>
+        <td>
+          Collect all the sort we define in widget, when we click on a column, this update the $event value
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    Columns object:
+  </h3>
+  <h4>
+    Exemple :
+  </h4>
+  <textarea class="atlui-code">
+this.columns= [
+  {
+    label:"test",
+    alignment: "center"
+  },
+  {
+    label:"testNumber",
+    width: "150px",
+    type: "number",
+    isSortable: true,
+    isEditable: true
+  },
+  {
+    label:"testText",
+    isSortable: true,
+    isEditable: true
+  },
+  {
+    label:"testDate",
+    type: 'date',
+    isSortable: true,
+    isEditable: true
+  },
+  {
+    label:"testBoolean",
+    type: 'boolean',
+    isEditable: true
+  }
+];
+  </textarea>
+  <h4>
+    Parameters:
+  </h4>
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>
+          Parameter
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          value
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Default
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          label
+        </td>
+        <td>
+          string
+        </td>
+        <td>
+          any
+        </td>
+        <td>
+          It's the name of the column
+        </td>
+        <td>
+          Nothing
+        </td>
+      </tr>
+      <tr>
+        <td>
+          alignment
+        </td>
+        <td>
+          string
+        </td>
+        <td>
+          like the css property
+        </td>
+        <td>
+          Optional; Change the alignment of the column and all the cell of this column
+        </td>
+        <td>
+          Nothing
+        </td>
+      </tr>
+      <tr>
+        <td>
+          width
+        </td>
+        <td>
+          String
+        </td>
+        <td>
+          Value + "em" or "px" or "%"
+        </td>
+        <td>
+          Optional; Define the width of the column
+        </td>
+        <td>
+          auto
+        </td>
+      </tr>
+      <tr>
+        <td>
+          type
+        </td>
+        <td>
+          string
+        </td>
+        <td>
+          Any you defined in ngx-atlantis-ui module
+        </td>
+        <td>
+          Define default value of the column with the param we send to ngx-atlantis-ui module.
+        </td>
+        <td>
+          string
+        </td>
+      </tr>
+      <tr>
+        <td>
+          isSortable
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          true, false
+        </td>
+        <td>
+          Optional; Define if we can sort the column
+        </td>
+        <td>
+          false
+        </td>
+      </tr>
+      <tr>
+        <td>
+          isEditable
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          true, false
+        </td>
+        <td>
+          Optional; Define if we can edit the content of the column
+        </td>
+        <td>
+          false
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h4>
+    Rows object:
+  </h4>
+  <textarea class="atlui-code">
+this.originalRows = [
+  {
+    test: "1",
+    testNumber : 2,
+    testText : "1",
+    testDate : new Date(),
+    testBoolean: 0
+  },
+  {
+    test: "2",
+    testNumber : 6,
+    testText : "5",
+    testDate : new Date(0),
+    testBoolean: 1
+  },
+  {
+    test : "3",
+    testNumber : 5,
+    testText : '4',
+    testDate : new Date(),
+    testBoolean: 1
+  },
+  {
+    test : "4",
+    testNumber : 42,
+    testText : "8",
+    testDate : new Date('05/09/2005'),
+    testBoolean: 1
+  },
+  {
+    test : "5",
+    testNumber : 27,
+    testText : "4",
+    testDate : new Date(),
+    testBoolean: 0
+  },
+  {
+    test : "6",
+    testNumber : 3,
+    testText : "7",
+    testDate : new Date('07/03/2015'),
+    testBoolean: 0
+  },
+  {
+    test : "7",
+    testNumber : 27,
+    testText : "9",
+    testDate : new Date('05/09/2005'),
+    testBoolean: 0
+  },
+  {
+    test : "8",
+    testNumber : 152,
+    testText : '32',
+    testDate : new Date(),
+    testBoolean: 1
+  }
+]
+  </textarea>
+  <p>
+    Any rows have same syntax, we create attribute with column name.
+  </p>
+  <p>
+    It's better to create a copy of the original rows to avoid to modify the rows.
+  </p>
+</div>

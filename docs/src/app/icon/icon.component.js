@@ -6,14 +6,9 @@ export default  class IconComponent {
       new Component({
         template: require('./icon.html')
       })
-    ]
+    ];
   }
   constructor(){
-
-    this.Display = "Example";
-    this.iconHtml = `
-    <i class="icon icon-name"></i>`
-
   }
 }
 

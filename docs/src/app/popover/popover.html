@@ -1,76 +1,66 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
+<div class="container">
+  <h2>
+    Popover
+  </h2>
 
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a (click)="Display = 'Example'">
-            Example
-          </a>
-        </li>
-        <li>
-          <a (click)="Display = 'Api'">
-            Api
-          </a>
-        </li>
-      </ul>
-    </div>
+  <h3>
+    Example
+  </h3>
+  <div class="row container-fluid">
+    <button class="btn btn-default" atlui-popover popoverDirection="left" popoverTitle="Popover left" [popoverContent]="time">
+      Popover on left
+    </button>
+
+    <button type="button" class="btn btn-default" atlui-popover popoverDirection="top" popoverTitle="Popover top" popoverContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
+      Popover on top
+    </button>
+
+    <button type="button" class="btn btn-default" atlui-popover popoverDirection="bottom" popoverTitle="Popover bottom" popoverContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
+      Popover on bottom
+    </button>
+
+    <button type="button" class="btn btn-default" atlui-popover popoverDirection="right" popoverTitle="Popover right" popoverContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
+      Popover on right
+    </button>
   </div>
-</nav>
+  <textarea class="atlui-code">
+<button type="button" class="btn btn-default" atlui-popover popoverDirection="left" popoverTitle="test" [popoverContent]="time">
+  Popover on left
+</button>
 
-<div [ngSwitch]= "Display">
+<button type="button" class="btn btn-default" atlui-popover popoverDirection="top" popoverTitle="test" popoverContent="testetstestsetest">
+  Popover on top
+</button>
 
-  <div class="container" *ngSwitchCase="'Example'">
-    <h3>
-      Example (Don't run because we need to use jquery function to use)
-    </h3>
-    <div class="row">
+<button type="button" class="btn btn-default" atlui-popover popoverDirection="bottom" popoverTitle="test" popoverContent="testetstestsetest">
+  Popover on bottom
+</button>
 
-      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-        Popover on left
-      </button>
-
-      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-        Popover on top
-      </button>
-
-      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-        Popover on bottom
-      </button>
-
-      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-        Popover on right
-      </button>
-
-    </div>
-
-  </div>
-
-  <div class="container" *ngSwitchCase="'Api'">
-    <h3>
-      For an popover use :
-    </h3>
-    <pre>
-      {{PopoverHtml}}
-    </pre>
-    <h4>
-      Precision :
-    </h4>
+<button type="button" class="btn btn-default" atlui-popover popoverDirection="right" popoverTitle="test" popoverContent="testetstestsetest">
+  Popover on right
+</button>
+  </textarea>
+  <blockquote>
     <p>
-      We can place popover where we want with the data-placement (top, bottom, left, right)
+      We can apply popover on any type of tag (a, h, div, p, input)
     </p>
-    <p>
-      Data-content contain the text we want to display
-    </p>
+  </blockquote>
 
+  <h3>
+    Example on different element
+  </h3>
+  <div class="row container-fluid">
+    <input type="text" name="" value="" atlui-popover popoverDirection="left" popoverTitle="input popover" popoverContent="enter what you want">
   </div>
-
+  <br>
+  <div class="row container-fluid">
+    <img class="img-responsive" src="../../img/carousel03.jpg" alt="" width="200" atlui-popover popoverDirection="top" popoverTitle="image popover" popoverContent="a beautiful image">
+  </div>
+  <br>
+  <div class="row container-fluid">
+    <div class="checkbox" atlui-popover popoverDirection="left" popoverTitle="checkbox popover" popoverContent="Lorem Ipsum">
+      <input checked="" type="checkbox" value="" id="checkbox1">
+      <label for="checkbox1"></label>
+    </div>
+  </div>
 </div>

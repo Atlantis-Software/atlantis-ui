@@ -1,0 +1,88 @@
+<div class="col-md-3" >
+  <button id="openLeft" type="button" class="btn btn-default btn-sm"  (click)="openLeft()">
+    orientation="left"</br>
+    fade=true</br>
+    backdrop=true
+  </button>
+  <atlui-modal orientation="left" [backdrop]="true" [(show)]="showLeft">
+    <atlui-modal-header>
+      <h3 class="modal-title">Modal Header</h3>
+    </atlui-modal-header>
+    <atlui-modal-body>
+      <p>Some text in the modal.</p>
+    </atlui-modal-body>
+    <atlui-modal-footer>
+      <button id="closeLeft" type="button" class="btn btn-default" data-dismiss="modal" (click)="closeLeft()">Close</button>
+    </atlui-modal-footer>
+  </atlui-modal>
+</div>
+  <div class="col-md-3" >
+  <button id="openRight" type="button" class="btn btn-default btn-sm" (click)="openRight()">
+    orientation="right"</br>
+    fade=false</br>
+    backdrop=false
+  </button>
+  <atlui-modal orientation="right" [backdrop]="false" [(show)]="showRight">
+    <atlui-modal-header>
+      <h3 class="modal-title">Modal Header</h3>
+    </atlui-modal-header>
+    <atlui-modal-body>
+      <p>Some text in the modal.</p>
+    </atlui-modal-body>
+    <atlui-modal-footer>
+      <button id="closeRight" type="button" class="btn btn-default" data-dismiss="modal" (click)="closeRight()">Close</button>
+    </atlui-modal-footer>
+  </atlui-modal>
+</div>
+<div class="col-md-3" >
+  <button id="openTop" type="button" class="btn btn-default btn-sm"  (click)="openTop()">
+    orientation="top"</br>
+    fade=false</br>
+    backdrop=true
+  </button>
+  <atlui-modal orientation="top" [(show)]="showTop">
+    <atlui-modal-header>
+      <h3 class="modal-title">Modal Header</h3>
+    </atlui-modal-header>
+    <atlui-modal-body>
+      <p>Some text in the modal.</p>
+    </atlui-modal-body>
+    <atlui-modal-footer>
+      <button id="closeTop" type="button" class="btn btn-default" data-dismiss="modal" (click)="closeTop()">Close</button>
+    </atlui-modal-footer>
+  </atlui-modal>
+</div>
+<div class="col-md-3" >
+  <button id="openBottom" type="button" class="btn btn-default btn-sm" (click)="openBottom()">
+    orientation = bottom</br>
+    fade=true</br>
+    backdrop=true
+  </button>
+  <atlui-modal orientation="bottom" [backdrop]="true" [(show)]="showBottom">
+    <atlui-modal-header>
+      <h3 class="modal-title">Modal Header</h3>
+    </atlui-modal-header>
+    <atlui-modal-body>
+      <p>Some text in the modal.</p>
+    </atlui-modal-body>
+    <atlui-modal-footer>
+      <button id="closeBottom" type="button" class="btn btn-default" data-dismiss="modal" (click)="closeBottom()">Close</button>
+    </atlui-modal-footer>
+  </atlui-modal>
+</div>
+<div class="col-md-2" >
+  <button id="openStandard" type="button" class="btn btn-default btn-sm"  (click)="openStandard()">
+    No Options defined
+  </button>
+  <atlui-modal id="testStandard" [(show)]="showStandard">
+    <atlui-modal-header>
+      <h3 class="modal-title">Modal Header</h3>
+    </atlui-modal-header>
+    <atlui-modal-body>
+      <p>Some text in the modal.</p>
+    </atlui-modal-body>
+    <atlui-modal-footer>
+      <button id="closeStandard" type="button" class="btn btn-default" data-dismiss="modal" (click)="closeStandard()">Close</button>
+    </atlui-modal-footer>
+  </atlui-modal>
+</div>

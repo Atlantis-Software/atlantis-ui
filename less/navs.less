@@ -16,7 +16,8 @@
     position: relative;
     display: block;
 
-    > a {
+    > a,
+    > atlui-dropdown > a {
       position: relative;
       display: block;
       padding: @nav-link-padding;
@@ -28,7 +29,8 @@
     }
 
     // Disabled state sets text to gray and nukes hover/tab effects
-    &.disabled > a {
+    &.disabled > a,
+    &.disabled > atlui-dropdown > a {
       color: @nav-disabled-link-color;
 
       &:hover,
@@ -42,7 +44,8 @@
   }
 
   // Open dropdowns
-  .open > a {
+  .open > a,
+  .open > atlui-dropdown > a {
     &,
     &:hover,
     &:focus {

@@ -6,23 +6,19 @@ export default  class PaginationComponent {
       new Component({
         template: require('./pagination.html')
       })
-    ]
+    ];
   }
   constructor(){
-
-    this.PaginationHtml = `
-    <pagination [page]="page" [pages]="pages" (pagechange)='testPagination($event)'></pagination>`
-
-    this.Display = "Example"
     this.page = 4;
     this.pages = 10;
-    this.result = [1,2,3,4,5]
+    this.result=[];
+    this.testPagination(this.page);
   }
 
   testPagination(page){
-    this.page = page
+    this.page = page;
     for (var i=0; i<5; i++) {
-      this.result[i] = i+page*5-4
+      this.result[i] = i+page*5-4;
     }
   }
 }

@@ -1,0 +1,94 @@
+<div class="input-group">
+  <div class="datepicker-date-input">
+    <input class="form-control start datepicker-input" [ngModel]="start" (change)="setStart($event)" type="text" (click)="open($event,'start')" readonly/>
+    <label class="datepicker-label-remove" *ngIf="start" (click)="resetStart()"></label>
+  </div>
+  <span class="input-group-addon"></span>
+  <div class="datepicker-date-input">
+    <input class="form-control end datepicker-input" [ngModel]="end" (change)="setEnd($event)" type="text" (click)="open($event,'end')" readonly/>
+    <label class="datepicker-label-remove" *ngIf="end" (click)="resetEnd()"></label>
+  </div>
+</div>
+
+<atlui-modal orientation="right" [(show)]="visible" (onClose)="close()" [isClosable]="true">
+  <atlui-modal-header [close]="modalHeaderOptions.close">
+    <div class="row datepicker-text">
+      <div class="col-md-5 text-center date-letter">
+        <span>{{ beforeDayDateStart }}</span>
+        <span>{{ dayDateStart }}</span>
+        <span>{{ afterDayDateStart }}</span>
+      </div>
+      <div class="col-md-2 text-center">
+        <i class="icon icon-next icon-4x icon-disabled" ></i>
+      </div>
+      <div class="col-md-5 text-center date-letter">
+        <span>{{ beforeDayDateEnd }}</span>
+        <span>{{ dayDateEnd }}</span>
+        <span>{{ afterDayDateEnd }}</span>
+      </div>
+    </div>
+    <div class="calendar-bg row" data-date-type="single">
+      <div class="col-md-1 text-center">
+        <div class="prev arrow" (click)="clickPrev($event)">
+          <i class="icon icon-previous icon-2x"></i>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group" [ngClass]="{'has-error': hasErrorStart }">
+          <input #inputstart type="text" class="form-control input-md" [ngModel]="_start" (focus)="selectInputDateStart()"
+          [ngClass]="{'active': (focus === 'start') }" (keydown.tab)="focusEnd($event, inputend); false" (keyup.enter)="closeAfterCheck($event, true)" (blur)="focusEnd($event, inputend)">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group" [ngClass]="{'has-error': hasErrorEnd }">
+          <input #inputend type="text" class="form-control input-md" [ngModel]="_end" (keyup.enter)="closeAfterCheck($event, false)"
+          (focus)="selectInputDateEnd()" [ngClass]="{'active': (focus === 'end')}" (blur)="focusStart($event, inputstart)">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <atlui-selectpicker name="selectPredefinedDate" [ngModel]="predefinedDate" (ngModelChange)="onChange($event)">
+          <atlui-selectpicker-option value="toDay">{{ i18n[language]["today"] }}</atlui-selectpicker-option>
+          <atlui-selectpicker-option value="lastWeek">{{ i18n[language]["lastWeek"] }}</atlui-selectpicker-option>
+          <atlui-selectpicker-option value="lastMonth">{{ i18n[language]["lastMonth"] }}</atlui-selectpicker-option>
+          <atlui-selectpicker-option value="last7day">{{ i18n[language]["last7day"] }}</atlui-selectpicker-option>
+          <atlui-selectpicker-option value="last30day">{{ i18n[language]["last30day"] }}</atlui-selectpicker-option>
+          <atlui-selectpicker-option value="lastYear">{{ i18n[language]["lastYear"] }}</atlui-selectpicker-option>
+        </atlui-selectpicker>
+      </div>
+      <div class="col-md-1 text-center" >
+        <div class="next arrow" (click)="clickNext($event)">
+          <i class="icon icon-next icon-2x" ></i>
+        </div>
+      </div>
+    </div>
+  </atlui-modal-header>
+  <atlui-modal-body>
+    <div class="datepicker show-calendar">
+      <div *ngFor="let item of arrayMonths;let i = index;" class="calendar calendar {{ i }}">
+        <div class="calendar-table">
+          <table class="table-condensed">
+            <thead>
+              <tr>
+                <th></th>
+                <th colspan="5" class="month">{{ locale.monthNames[calendar[i].month()] + calendar[i].format(" YYYY") }}</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="dayweek" *ngFor="let item of createRange(7);let col=index">{{ locale.weekdayNames[calendar[i].calendar[0][col].day()] }}</td>
+              </tr>
+              <tr *ngFor="let itemRow of arrayRows;let row = index;">
+                <td *ngFor="let itemCol of arrayCols;let col = index;" (click)="selectDate(calendar[i].calendar[row][col], classes[i][row][col])" [ngClass]="classes[i][row][col]">
+                   {{ calendar[i].calendar[row][col].date() }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </atlui-modal-body>
+  <atlui-modal-footer>
+  </atlui-modal-footer>
+</atlui-modal>

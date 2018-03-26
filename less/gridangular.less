@@ -1,0 +1,65 @@
+atlui-grid {
+  display: table;
+  table-layout: fixed;
+  atlui-grid-body {
+    display: table-row-group;
+    .gridRow {
+      display: table-row;
+      &.active {
+        background-color: @grid-row-active-bg;
+        color: @grid-text-active-color;
+      }
+      .gridCell {
+        display: table-cell;
+        &.changeContent {
+          padding: 0 !important;
+          border-color: @grid-row-change-bg !important;
+          input {
+            border: none;
+          }
+          &.errorContent {
+            border-color: @grid-row-error-bg !important;
+            position: relative;
+            input {
+              color: @grid-input-error;
+            }
+            label {
+              position: absolute;
+              right: 16px;
+              top: 4px;
+            }
+            label:before {
+              color: @grid-input-error;
+              font-family: "FontAwesome";
+              content: "\f00d";
+              font-size: @font-size-base + 2;
+            }
+          }
+        }
+        atlui-grid-cell {
+          user-select: none;
+          -moz-user-select: none;
+          overflow-wrap: break-word;
+        }
+      }
+    }
+  }
+  atlui-grid-header {
+    display: table-header-group;
+    .gridRow {
+      display: table-row;
+      .gridHead {
+        display: table-cell;
+        &.sortable {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  atlui-grid-footer {
+    display: table-header-group;
+    .gridHead {
+      display: table-cell;
+    }
+  }
+}

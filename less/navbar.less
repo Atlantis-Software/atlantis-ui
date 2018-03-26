@@ -50,7 +50,7 @@
 .navbar-collapse {
   overflow-x: visible;
   padding-right: @navbar-padding-horizontal;
-  padding-left:  @navbar-padding-horizontal;
+  padding-left: @navbar-padding-horizontal;
   border-top: 1px solid transparent;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
   &:extend(.clearfix all);
@@ -108,11 +108,11 @@
   > .navbar-header,
   > .navbar-collapse {
     margin-right: -@navbar-padding-horizontal;
-    margin-left:  -@navbar-padding-horizontal;
+    margin-left: -@navbar-padding-horizontal;
 
     @media (min-width: @grid-float-breakpoint) {
       margin-right: 0;
-      margin-left:  0;
+      margin-left: 0;
     }
   }
 }
@@ -232,8 +232,9 @@
 .navbar-nav {
   margin: (@navbar-padding-vertical / 2) -@navbar-padding-horizontal;
 
-  > li > a {
-    padding-top:    10px;
+  > li > a,
+  > li > atlui-dropdown > a {
+    padding-top: 10px;
     padding-bottom: 10px;
     line-height: @line-height-computed;
   }
@@ -252,7 +253,8 @@
       .dropdown-header {
         padding: 5px 15px 5px 25px;
       }
-      > li > a {
+      > li > a,
+      > li > dropdown > a {
         line-height: @line-height-computed;
         &:hover,
         &:focus {
@@ -270,7 +272,7 @@
     > li {
       float: left;
       > a {
-        padding-top:    @navbar-padding-vertical;
+        padding-top: @navbar-padding-vertical;
         padding-bottom: @navbar-padding-vertical;
       }
     }
@@ -324,12 +326,12 @@
 // Dropdown menus
 
 // Menu position and menu carets
-.navbar-nav > li > .dropdown-menu {
+.navbar-nav > li > atlui-dropdown > .dropdown-menu {
   margin-top: 0;
   .border-top-radius(0);
 }
 // Menu position and menu caret support for dropups via extra dropup class
-.navbar-fixed-bottom .navbar-nav > li > .dropdown-menu {
+.navbar-fixed-bottom .navbar-nav > li > atlui-dropdown > .dropdown-menu {
   margin-bottom: 0;
   .border-top-radius(@navbar-border-radius);
   .border-bottom-radius(0);
@@ -410,7 +412,8 @@
   }
 
   .navbar-nav {
-    > li > a {
+    > li > a,
+    > li > atlui-dropdown > a {
       color: @navbar-default-link-color;
       padding: 15px 15px;
       z-index: 0;
@@ -438,7 +441,8 @@
         }
       }
     }
-    > .active > a {
+    > .active > a,
+    > .active > atlui-dropdown > a {
       &,
       &:hover,
       &:focus {
@@ -448,7 +452,8 @@
         }
       }
     }
-    > .disabled > a {
+    > .disabled > a,
+    > .disabled > atlui-dropdown > a {
       &,
       &:hover,
       &:focus {
@@ -479,7 +484,7 @@
   // Dropdown menu items
   .navbar-nav {
     // Remove background color from open dropdown
-    > .open > a {
+    > .open > atlui-dropdown > a {
       &,
       &:hover,
       &:focus {
@@ -580,7 +585,8 @@
   }
 
   .navbar-nav {
-    > li > a {
+    > li > a,
+    > li > atlui-dropdown > a {
       color: @navbar-inverse-link-color;
 
       &:hover,
@@ -591,7 +597,8 @@
         }
       }
     }
-    > .active > a {
+    > .active > a,
+    > .active > atlui-dropdown > a {
       &,
       &:hover,
       &:focus {
@@ -601,7 +608,8 @@
         }
       }
     }
-    > .disabled > a {
+    > .disabled > a,
+    > .disabled > atlui-dropdown > a {
       &,
       &:hover,
       &:focus {
@@ -632,7 +640,8 @@
 
   // Dropdowns
   .navbar-nav {
-    > .open > a {
+    > .open > a,
+    > .open > atlui-dropdown > a {
       &,
       &:hover,
       &:focus {
@@ -652,7 +661,8 @@
         .divider {
           background-color: @navbar-inverse-border;
         }
-        > li > a {
+        > li > a,
+        > li > atlui-dropdown > a {
           color: @navbar-inverse-link-color;
           &:hover,
           &:focus {
@@ -662,7 +672,8 @@
             }
           }
         }
-        > .active > a {
+        > .active > a,
+        > .active > atlui-dropdown > a {
           &,
           &:hover,
           &:focus {
@@ -672,7 +683,8 @@
             }
           }
         }
-        > .disabled > a {
+        > .disabled > a,
+        > .disabled > atlui-dropdown > a {
           &,
           &:hover,
           &:focus {

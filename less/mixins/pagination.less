@@ -1,23 +1,33 @@
 // Pagination
 
-.pagination-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius) {
+.pagination-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius; @left-input) {
   > li {
     > a,
-    > span {
+    > span,
+    > input{
       padding: @padding-vertical @padding-horizontal;
       font-size: @font-size;
       line-height: @line-height;
+    }
+
+    .pagination-input {
+      left: @left-input;
     }
     &:first-child {
       > a,
       > span {
         .border-left-radius(@border-radius);
+        padding : @padding-vertical @padding-horizontal;
+        min-height: 28px
+
       }
     }
     &:last-child {
       > a,
       > span {
         .border-right-radius(@border-radius);
+        padding : @padding-vertical @padding-horizontal;
+        min-height: 28px
       }
     }
   }

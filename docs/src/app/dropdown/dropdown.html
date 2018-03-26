@@ -1,88 +1,226 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a (click)="Display = 'Example'">
-            Example
-          </a>
-        </li>
-        <li>
-          <a (click)="Display = 'Api'">
-            How to use and api
-          </a>
-        </li>
-      </ul>
+<div class="container">
+  <h2>
+    Dropdown
+  </h2>
+  <h3>Exemple : </h3>
+  <div class="form-group">
+    <div class="row container-fluid">
+      <atlui-dropdown title="Menu A">
+        <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
+        <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
+        <atlui-dropdown-divider></atlui-dropdown-divider>
+        <atlui-dropdown-option><a>Sub-menu separated A</a></atlui-dropdown-option>
+        <atlui-dropdown-header>Menu</atlui-dropdown-header>
+        <atlui-dropdown-option><a>Sub-menu separated B</a></atlui-dropdown-option>
+      </atlui-dropdown>
     </div>
   </div>
-</nav>
+  <textarea class="atlui-code">
+<atlui-dropdown title="Menu A">
+  <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
+  <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
+  <atlui-dropdown-divider></atlui-dropdown-divider>
+  <atlui-dropdown-option><a>Sub-menu separated A</a></atlui-dropdown-option>
+  <atlui-dropdown-header>Menu</atlui-dropdown-header>
+  <atlui-dropdown-option><a>Sub-menu separated B</a></atlui-dropdown-option>
+</atlui-dropdown>
+  </textarea>
 
-<div [ngSwitch]= "Display">
-
-  <div class="container" *ngSwitchCase="'Example'">
-
-    <div class="row">
-      <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          Dropdown Menu
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li class="dropdown-header">Action group</li>
-          <li><a>Action</a></li>
-          <li class="disabled"><a>Another action</a></li>
-          <li><a>Something else here</a></li>
-          <li role="separator" class="divider"></li>
-          <li class="dropdown-header">Other Action group</li>
-          <li><a>Separated link</a></li>
-          <li role="separator" class="divider"></li>
-          <li><a>One more separated link</a></li>
-        </ul>
-      </div>
+  <h3>
+    Dropup
+  </h3>
+  <div class="form-group">
+    <div class="row container-fluid">
+      <atlui-dropdown orientation="up" title="Menu A">
+        <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
+        <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
+        <atlui-dropdown-divider></atlui-dropdown-divider>
+        <atlui-dropdown-option><a>Sub-menu separated A</a></atlui-dropdown-option>
+        <atlui-dropdown-header>Menu</atlui-dropdown-header>
+        <atlui-dropdown-option><a>Sub-menu separated B</a></atlui-dropdown-option>
+      </atlui-dropdown>
     </div>
+  </div>
+  <blockquote>
+    Just add to options the attribute orientation with value 'up'
+  </blockquote>
 
+  <textarea class="atlui-code">
+<atlui-dropdown orientation="up" title="Menu A">
+</atlui-dropdown>
+  </textarea>
+
+  <h3>
+    Alignement
+  </h3>
+
+  <div class="form-group">
+    <div class="row container-fluid">
+      <atlui-dropdown class="form-group" alignement="left" title="Menu A">
+        <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
+        <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
+        <atlui-dropdown-divider></atlui-dropdown-divider>
+        <atlui-dropdown-option><a>Sub-menu separated A</a></atlui-dropdown-option>
+        <atlui-dropdown-header>Menu</atlui-dropdown-header>
+        <atlui-dropdown-option><a>Sub-menu separated B</a></atlui-dropdown-option>
+      </atlui-dropdown>
+      <atlui-dropdown alignement="right" title="Menu A">
+        <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
+        <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
+        <atlui-dropdown-divider></atlui-dropdown-option>
+        <atlui-dropdown-option><a>Sub-menu separated A</a></atlui-dropdown-option>
+        <atlui-dropdown-header>Menu</atlui-dropdown-header>
+        <atlui-dropdown-option><a>Sub-menu separated B</a></atlui-dropdown-option>
+      </atlui-dropdown>
+    </div>
   </div>
 
-  <div class="container" *ngSwitchCase="'Api'">
-    <h3>
-      For and dropdown use :
-    </h3>
-    <pre>
-      {{dropdownHtml}}
-    </pre>
-    <h4>
-      Specification :
-    </h4>
-    <p>
-      We can use button or a to open dropdown
-    </p>
-    <p>
-      Don't forget to add data-toggle on the button or tag a
-    </p>
-    <h4>
-      Class css :
-    </h4>
-    <ul>
-      <li>
-        .dropdown-header : Use for create group into dropdown
-      </li>
-      <li>
-        .disabled : Desactivate a link
-      </li>
-      <li>
-        .divider : allow to create a separator between 2 link
-      </li>
-    </ul>
+  <textarea class="atlui-code">
+<atlui-dropdown alignement="left" title="Menu A">
+</atlui-dropdown>
+<atlui-dropdown alignement="right" title="Menu A">
+</atlui-dropdown>
+  </textarea>
 
+  <h3>
+    Dropdown with icon
+  </h3>
+
+  <div class="form-group">
+    <div class="row container-fluid">
+      <atlui-dropdown title="Menu A" icon="add">
+        <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
+        <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
+        <atlui-dropdown-option><a>Sub-menu separated B</a></atlui-dropdown-option>
+      </atlui-dropdown>
+    </div>
   </div>
 
+  <div class="form-group">
+    <div class="row container-fluid">
+      <atlui-dropdown icon="search">
+        <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
+        <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
+        <atlui-dropdown-option><a>Sub-menu separated B</a></atlui-dropdown-option>
+      </atlui-dropdown>
+    </div>
+  </div>
+
+  <textarea class="atlui-code">
+<atlui-dropdown title="Menu A" icon="add">
+  </textarea>
+
+  <h3>
+    Dropdown options with ngFor
+  </h3>
+
+  <div class="form-group">
+    <div class="row container-fluid">
+      <atlui-dropdown class="form-group" alignement="left" title="Menu A">
+        <atlui-dropdown-option *ngFor="let dropdownoption of dropdownoptions"><a>{{dropdownoption.label}}</a></atlui-dropdown-option>
+      </atlui-dropdown>
+    </div>
+  </div>
+
+  <textarea class="atlui-code">
+<atlui-dropdown class="form-group" [options]="{alignement:'left'}" title="Menu A">
+  <atlui-dropdown-option *ngFor="let dropdownoption of dropdownoptions" [options]="dropdownoption.options">
+    dropdownoption.label
+  </atlui-dropdown-option>
+</atlui-dropdown>
+  </textarea>
+  <textarea>
+this.dropdownoptions = [
+  {
+    label: "Sub-menu A"
+  },{
+    label: "Sub-menu B"
+  },{
+    label: "Sub-menu separated A"
+  },{
+    label: "Sub-menu separated B"
+  }
+];
+  </textarea>
+
+  <h3>
+    Dropdown :
+  </h3>
+  <h3>
+    Settings
+  </h3>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>
+          Attribut
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Value
+        </th>
+        <th>
+          Info
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          title
+        </td>
+        <td>
+          String
+        </td>
+        <td>
+          Define the text of the button
+        </td>
+        <td>
+
+        </td>
+        <td>
+          Per default : Dropdown button
+        </td>
+      </tr>
+      <tr>
+        <td>
+          orientation
+        </td>
+        <td>
+          String
+        </td>
+        <td>
+          Define the orientation of the dropdown, up or down
+        </td>
+        <td>
+          Up, down
+        </td>
+        <td>
+          Per default : down
+        </td>
+      </tr>
+      <tr>
+        <td>
+          alignement
+        </td>
+        <td>
+          String
+        </td>
+        <td>
+          Define the alignement of dropdown
+        </td>
+        <td>
+          right, left
+        </td>
+        <td>
+          Per default : left
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

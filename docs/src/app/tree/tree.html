@@ -1,0 +1,218 @@
+<div class="container">
+  <h2>
+    Tree
+  </h2>
+  <h3>
+    Basic Example with 2 levels and default parameters:
+  </h3>
+  <div class="row container-fluid form-group">
+    <div class="col-md-4">
+      <atlui-tree [nodes]="nodesBasic"></atlui-tree>
+    </div>
+  </div>
+  <br>
+  <textarea class="atlui-code">
+    <atlui-tree class="col-md-4" [nodes]="nodesBasic"></atlui-tree>
+  </textarea>
+  <textarea class="atlui-code">
+this.nodesBasic = [
+  {
+    label: 'Node without children'
+  },
+  {
+    label: 'Node with children',
+    children: [
+      {
+        label: 'Sub-node 1'
+      },
+      {
+        label: 'Sub-node 2'
+      }
+    ]
+  }
+]
+  </textarea>
+
+  <h3>
+    Example with specific parameters on nodes:
+  </h3>
+  <div class="row container-fluid">
+    <div class="col-md-4">
+      <atlui-tree [nodes]="nodesWithParameters"></atlui-tree>
+    </div>
+  </div>
+  <br>
+  <textarea class="atlui-code">
+this.nodesWithParameters = [
+  {
+    label: 'Node with children and not open per default',
+    children: [
+      {
+        label: 'Sub-node hidden on init',
+        selectable: false,
+      }
+    ]
+  },
+  {
+    label: 'Node with children open per default',
+    expanded: true,
+    children: [
+      {
+        label: 'Sub-node show on init and with children',
+        children: [
+          {
+            label: 'Sub-sub-node'
+          }
+        ]
+      },
+      {
+        label: 'Sub-node without children',
+        disabled: true
+      }
+    ]
+  }
+];
+  </textarea>
+  <h3>
+    Sortable tree
+  </h3>
+  <h4>
+    Example with sortable node into same level
+  </h4>
+  <p>
+    With <code>isSortable</code> attribute we can sort into the tree in the same level
+  </p>
+  <div class="row container-fluid">
+    <div class="col-md-4">
+      <atlui-tree [nodes]="nodesSortable" [isSortable]="true"></atlui-tree>
+    </div>
+  </div>
+  <br>
+  <textarea class="atlui-code">
+<atlui-tree [nodes]="nodesSortable" [isSortable]="true"></atlui-tree>
+  </textarea>
+
+  <h4>
+    Example with nested sortable
+  </h4>
+  <p>
+    Just need to add <code>nestedSortable</code> attribute for create a tree with nested sortable
+  </p>
+  <div class="row container-fluid">
+    <div class="col-md-4">
+      <atlui-tree [nodes]="nodesSortableNested" [isSortable]="true" [nestedSortable]="true"></atlui-tree>
+    </div>
+  </div>
+  <br>
+  <textarea class="atlui-code">
+<atlui-tree [nodes]="nodesSortable" [isSortable]="true" [nestedSortable]="true"></atlui-tree>
+  </textarea>
+  <h3>
+    Nodes in js script:
+  </h3>
+  <h4>
+    Different attribute
+  </h4>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>
+          attribute
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Description
+        </th>
+        <th class="col-md-2">
+          Default
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          label
+        </td>
+        <td>
+          string
+        </td>
+        <td>
+          It's represent the content of a node for shown in tree
+        </td>
+        <td>
+          Nothing
+        </td>
+      </tr>
+      <tr>
+        <td>
+          selectable
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          Optional; Allow to deactivate the possibility to select a node
+        </td>
+        <td>
+          true
+        </td>
+      </tr>
+      <tr>
+        <td>
+          expanded
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          Optional; Define if the node is expanded or not;
+        </td>
+        <td>
+          false
+        </td>
+      </tr>
+      <tr>
+        <td>
+          children
+        </td>
+        <td>
+          Array of nodes
+        </td>
+        <td>
+          Require if we want a sub-tree, all object in children have same syntax that standard node
+        </td>
+        <td>
+          Nothing
+        </td>
+      </tr>
+      <tr>
+        <td>
+          disabled
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          Define if a node is disabled or not, that causes to desactive selection and possibility to expand the node
+        </td>
+        <td>
+          false
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h4>
+    Example of all attribute
+  </h4>
+  <textarea class="atlui-code">
+oneNode = {
+  label: "Node 1",
+  selectable: false,
+  expanded: true,
+  children: [...],
+  disabled: false
+}
+  </textarea>
+</div>

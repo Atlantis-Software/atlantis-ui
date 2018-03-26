@@ -45,6 +45,7 @@
   position: relative;
   width: auto;
   margin: 10px;
+  overflow-y: auto;
 }
 
 // Actual modal
@@ -78,8 +79,6 @@
 // Top section of the modal w/ title and dismiss
 .modal-header {
   padding: @modal-title-padding;
-  border-bottom: 1px solid @modal-header-border-color;
-  &:extend(.clearfix all);
 }
 // Close icon
 .modal-header .close {
@@ -90,6 +89,8 @@
 .modal-title {
   margin: 0;
   line-height: @modal-title-line-height;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 // Modal body
@@ -168,12 +169,14 @@
   left: 0;
   top: 0;
   bottom: 0;
+  max-width: 100%;
 }
 
 .modal-right .modal-dialog {
   right: 0;
   top: 0;
   bottom: 0;
+  max-width: 100%;
 }
 
 .modal-top .modal-dialog {
@@ -181,13 +184,15 @@
   right: 0;
   top: 0;
   width: 100%;
+  max-height: 100%;
 }
 
 .modal-bottom .modal-dialog {
   left: 0;
-  right:0;
+  right: 0;
   bottom: 0;
   width: 100%;
+  max-height: 100%;
 }
 
 //animation right

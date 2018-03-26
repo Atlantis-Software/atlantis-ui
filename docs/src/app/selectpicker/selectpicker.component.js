@@ -6,19 +6,26 @@ export default  class SelectpickerComponent {
       new Component({
         template: require('./selectpicker.html')
       })
-    ]
+    ];
   }
   constructor(){
-    this.selectpickerHtml = `
-    <selectpicker [(ngModel)]="mode" multiple="false">
-      <selectpicker-option value="A">A</selectpicker-option>
-      <selectpicker-option value="B">B</selectpicker-option>
-      <selectpicker-option value="C">C</selectpicker-option>
-    </selectpicker>`
+    this.arrayOneTwoThree = ["one", "two", "three"];
+    this.one = 1;
+    this.objetWithArray  = { fsdfds: 1, array: [1,2,3], texte: "test"};
+    this.optionArrayOneTwoThree = {value: this.arrayOneTwoThree, text: "arrayOneTwoThree"};
+    this.optionOne = {value: this.one, text: "one"};
+    this.optionObjetWithArray = {value: this.objetWithArray, text: "objetWithArray"};
+    this.optionsSelect = [ this.optionArrayOneTwoThree , this.optionOne , this.optionObjetWithArray ];
+    this.Selectpicker3 = [this.one, this.objetWithArray, "D"];
+    this.booleanFalse = false;
+    this.A = "A";
+    this.selectpicker1 = this.A;
+    this.selectpicker2 = this.A;
+    this.Selectpicker4 = this.optionOne;
+  }
 
-    this.Display = "Example";
-    this.Selectpicker2 = "A"
-    this.Selectpicker4 = ["A", "B"]
+  ngOnInit() {
+    this.NoneValue = "none value";
   }
 }
 

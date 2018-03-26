@@ -6,30 +6,53 @@ export default  class ModalComponent {
       new Component({
         template: require('./modal.html')
       })
-    ]
+    ];
   }
   constructor(){
-    this.modalHtml = `
-    <div class="modal fade" id="Modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="icon icon-close"></span></button>
-                    <h4 class="modal-title">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                    <p>One fine body&hellip;</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->`
-    this.Display = "Example";
+
+    this.time = new Date();
+    this.showLeft = false;
+    this.showRight = false;
+    this.showTop = false;
+    this.showBottom = false;
+    this.showStandard = false;
+    this.showStandard2 = false;
+
+  }
+
+  openLeft() {
+    this.showLeft = true;
+  }
+  closeLeft() {
+    this.showLeft = false;
+  }
+
+  openRight() {
+    this.showRight = true;
+  }
+  closeRight() {
+    this.showRight = false;
+  }
+
+  openTop() {
+    this.showTop = true;
+  }
+  closeTop() {
+    this.showTop = false;
+  }
+
+  openBottom() {
+    this.showBottom = true;
+  }
+  closeBottom() {
+    this.showBottom = false;
+  }
+
+  openStandard() {
+    this.showStandard = true;
+  }
+  closeStandard() {
+    this.showStandard = false;
   }
 }
 

@@ -6,24 +6,14 @@ export default  class PopoverComponent {
       new Component({
         template: require('./popover.html')
       })
-    ]
+    ];
   }
   constructor(){
 
-    this.PopoverHtml = `
-    <button type="button" class="btn btn-default" data-container="body" data-toggle="popover"
-    data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-      Popover on left
-    </button>
-    ...
-    <script>
-    $(document).ready(function(){
-        $('[data-toggle="popover"]').popover();
-    });
-    </script>
-    `
-
-    this.Display = "Example";
+    this.time = new Date();
+    setInterval(()=>{
+      this.time = new Date();
+    },1000);
   }
 }
 
