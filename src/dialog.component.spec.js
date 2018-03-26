@@ -218,6 +218,8 @@ describe('dialog', function() {
     var draggableStyle1 = window.getComputedStyle(dlg);
 
     assert.strictEqual(draggableStyle1.getPropertyValue('z-index'), '99999');
+    var top = parseInt(draggableStyle1.getPropertyValue('top'));
+    var left = parseInt(draggableStyle1.getPropertyValue('left'));
 
     var mouseMove = new Event('mousemove', { 'bubbles': true });
     mouseMove.clientX = 50;
@@ -229,7 +231,10 @@ describe('dialog', function() {
     var mouseUp = new Event('mouseup', { 'bubbles': true });
     draggable.dispatchEvent(mouseUp);
     fixture.detectChanges();
-    assert.strictEqual(dlg.style.transform, 'translate(40px, 15px)');
+    var draggableTop1 = draggableStyle1.getPropertyValue("top");
+    var draggableLeft1 = draggableStyle1.getPropertyValue("left");
+    assert.strictEqual(draggableTop1, (top+15)+"px");
+    assert.strictEqual(draggableLeft1, (left+40)+"px");
     assert.strictEqual(draggableStyle1.getPropertyValue('z-index'), '980');
 
   });

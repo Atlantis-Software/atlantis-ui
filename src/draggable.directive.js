@@ -71,8 +71,10 @@ export class draggableDirective {
 
       this.tempPos.x = x - this.origPos.x;
       this.tempPos.y = y - this.origPos.y;
-      let value = `translate(${this.tempPos.x + this.oldPosX}px, ${this.tempPos.y + this.oldPosY}px)`;
-      this.renderer.setStyle(this.element, 'transform', value);
+      var left = this.tempPos.x + this.oldPosX;
+      var top = this.tempPos.y + this.oldPosY;
+      this.renderer.setStyle(this.element, 'top', top + "px");
+      this.renderer.setStyle(this.element, 'left', left + "px");
     }
   }
 
@@ -90,6 +92,10 @@ export class draggableDirective {
     this.renderer.setStyle(this.element, 'position', position);
 
     this.renderer.setStyle(this.element, 'z-index', '99999');
+
+    this.oldPosX = parseInt(window.getComputedStyle(this.element).getPropertyValue("left")) || 0;
+    this.oldPosY = parseInt(window.getComputedStyle(this.element).getPropertyValue("top")) || 0;
+
 
     if (!this.isMoving) {
       this.started.emit(this.element);

@@ -7,7 +7,7 @@ export default class dialogComponent {
       new Component({
         selector: 'atlui-dlg',
         template: `
-          <div atlui-dragItem [(dragX)]="posX" [(dragY)]="posY" (dragStopped)="focus()" [dragContainment]="container" class="modal-dialog" [ngStyle]="{'display': visible ? 'block' : 'none'}">
+          <div (window:resize)="redraw()" atlui-dragItem [(dragX)]="posX" [(dragY)]="posY" (dragStopped)="focus()" [dragContainment]="container" class="modal-dialog" [ngStyle]="{'display': visible ? 'block' : 'none'}">
             <div class="modal-content" (mousedown)="focus()" [atlui-resizable]="isResizable" [minWidth]="minWidth" [maxWidth]="maxWidth" [minHeight]="minHeight" [maxHeight]="maxHeight">
               <div atlui-dragItem-handle class="modal-header">
                 <button type="button" class="close" (click)="close()">
@@ -78,8 +78,6 @@ export default class dialogComponent {
   //Open modal and add correct class on body for avoid the scroll on body
   //if we want a backdrop that create a backdrop into the body
   open() {
-    this.posX = 0;
-    this.posY = 0;
     this.model = true;
     this.showChange.emit(this.model);
     this.visible = true;
@@ -89,6 +87,11 @@ export default class dialogComponent {
 
   ngAfterViewInit() {
     this.redraw();
+    var top = (window.innerHeight - this.height) / 2;
+    var left = (window.innerWidth - this.width) / 2;
+
+    this.element.style.top = top + "px";
+    this.element.style.left = left + "px";
   }
 
   close() {
@@ -118,9 +121,6 @@ export default class dialogComponent {
     this.header = this.elementRef.nativeElement.querySelector('.modal-header');
     this.body = this.elementRef.nativeElement.querySelector('.modal-body');
 
-    // this.maxHeight = window.innerHeight;
-    // this.maxWidth = window.innerWidth;
-
     if (this.maxHeight > this.container.offsetHeight || this.maxHeight === void 0) {
       this.maxHeight = this.container.offsetHeight;
     }
@@ -128,7 +128,7 @@ export default class dialogComponent {
     if (this.maxWidth > this.container.offsetWidth || this.maxWidth === void 0) {
       this.maxWidth = this.container.offsetWidth;
     }
-    
+
     if (this.width < this.minWidth) {
       this.width = this.minWidth;
     } else if (this.width > this.maxWidth) {
@@ -140,18 +140,6 @@ export default class dialogComponent {
     } else if (this.height > this.maxHeight) {
       this.height = this.maxHeight;
     }
-
-    var height = Math.min(this.height, window.innerHeight);
-    var width = Math.min(this.width, window.innerWidth);
-
-    this.content.style.width = width + "px";
-    this.content.style.height = height + "px";
-
-    var top = (window.innerHeight - height) / 2;
-    var left = (window.innerWidth - width) / 2;
-
-    this.element.style.top = top + "px";
-    this.element.style.left = left + "px";
 
     this.content.style.width = this.width + "px";
     this.content.style.height = this.height + "px";
@@ -168,7 +156,6 @@ export default class dialogComponent {
     } else {
       this.content.style.maxWidth = this.maxWidth + "px";
     }
-
 
     var headerStyle = window.getComputedStyle(this.header, null);
     var contentStyle = window.getComputedStyle(this.content, null);

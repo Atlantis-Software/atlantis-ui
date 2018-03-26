@@ -30,7 +30,7 @@ class datepickerRangeTestComponent {
 
 
 describe('datepicker-range', function() {
-  this.timeout(4000);
+  this.timeout(6000);
 
   beforeEach(async(function() {
     TestBed.configureTestingModule({

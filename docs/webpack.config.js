@@ -46,10 +46,10 @@ module.exports = {
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]&publicPath=compiled/&outputPath=fonts/"
+        loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]&publicPath=compiled/fonts/&outputPath=fonts/"
       }, {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: "file-loader?name=[name].[ext]&publicPath=compiled/&outputPath=fonts/"
+        loader: "file-loader?name=[name].[ext]&publicPath=compiled/fonts/&outputPath=fonts/"
       },
       {
         test: /\.less$/,
@@ -57,7 +57,7 @@ module.exports = {
         loader: 'style-loader!css-loader!less-loader'
       },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
-      { test: /\.jpg$/, loader: "file-loader?name=[name].[ext]&publicPath=compiled/&outputPath=img/" }
+      { test: /\.jpg$/, loader: "file-loader?name=[name].[ext]&publicPath=compiled/img/&outputPath=img/" }
     ]
   },
   plugins: [
