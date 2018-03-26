@@ -74,6 +74,34 @@ import { localeMomentService, localeMomentServiceFactory } from './localeMoment.
 
 import { inputFileDirective } from './input-file.directive.js';
 
+import { editorComponent } from './editor/editor.component.js';
+import { pluginsService } from './editor/plugins.class.js';
+
+import blockquote from './editor/plugins/blockquote.plugin.js';
+import bold from './editor/plugins/bold.plugin.js';
+import createLink from './editor/plugins/createLink.plugin.js';
+import format from './editor/plugins/format.plugin.js';
+import indent from './editor/plugins/indent.plugin.js';
+
+import insertImage from './editor/plugins/insertImage.plugin.js';
+import insertOrderedList from './editor/plugins/insertOrderedList.plugin.js';
+import insertUnorderedList from './editor/plugins/insertUnorderedList.plugin.js';
+
+import italic from './editor/plugins/italic.plugin.js';
+
+import justifyCenter from './editor/plugins/justifyCenter.plugin.js';
+import justifyFull from './editor/plugins/justifyFull.plugin.js';
+import justifyLeft from './editor/plugins/justifyLeft.plugin.js';
+import justifyRight from './editor/plugins/justifyRight.plugin.js';
+
+import outdent from './editor/plugins/outdent.plugin.js';
+import redo from './editor/plugins/redo.plugin.js';
+import removeFormat from './editor/plugins/removeFormat.plugin.js';
+import selectAll from './editor/plugins/selectAll.plugin.js';
+import strikethrough from './editor/plugins/strikethrough.plugin.js';
+import underline from './editor/plugins/underline.plugin.js';
+import undo from './editor/plugins/undo.plugin.js';
+import unlink from './editor/plugins/unlink.plugin.js';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export class AtlantisUiModule {
@@ -85,7 +113,8 @@ export class AtlantisUiModule {
         { provide: dragAndDropService, useFactory: dragDropServiceFactory },
         { provide: dragAndDropSortableService, useFactory: dragDropSortableServiceFactory },
         { provide: dialogService, useFactory: dialogServiceFactory},
-        { provide: localeMomentService, useFactory: localeMomentServiceFactory}
+        { provide: localeMomentService, useFactory: localeMomentServiceFactory},
+        pluginsService
       ]
     };
   }
@@ -119,7 +148,9 @@ AtlantisUiModule.annotations = [
       dialogComponent, resizableDirective, codeDirective,
       agendaComponent, agendaMonthComponent, agendaDayNameComponent, agendaCalendarComponent, agendaWeekComponent,
       agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent,
-      inputFileDirective],
+      inputFileDirective, editorComponent, blockquote, bold, createLink, format, indent, insertImage, insertOrderedList, insertUnorderedList,
+      italic, justifyLeft, justifyRight, justifyCenter, justifyFull, outdent, redo, removeFormat, selectAll,
+      strikethrough, underline, undo, unlink],
     exports: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent,
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
@@ -131,7 +162,11 @@ AtlantisUiModule.annotations = [
       dialogComponent, resizableDirective, codeDirective,
       agendaComponent, agendaMonthComponent, agendaDayNameComponent, agendaCalendarComponent, agendaWeekComponent,
       agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent,
-      inputFileDirective],
-    entryComponents: [tooltipComponent, popoverComponent, backdropComponent]
+      inputFileDirective, editorComponent, blockquote, bold, createLink, format, indent, insertImage, insertOrderedList, insertUnorderedList,
+      italic, justifyLeft, justifyRight, justifyCenter, justifyFull, outdent, redo, removeFormat, selectAll,
+      strikethrough, underline, undo, unlink],
+    entryComponents: [tooltipComponent, popoverComponent, backdropComponent, blockquote, bold, createLink, format, indent,
+      insertImage, insertOrderedList, insertUnorderedList, italic, justifyLeft, justifyRight, justifyCenter,
+      justifyFull, outdent, redo, removeFormat, selectAll, strikethrough, underline, undo, unlink]
   })
 ];

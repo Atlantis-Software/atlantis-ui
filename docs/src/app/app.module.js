@@ -53,8 +53,9 @@ import dragAndDropComponent from './dragAndDrop/dragAndDrop.component.js';
 
 import DraggableComponent from './draggable/draggable.component.js';
 
-import { AtlantisUiModule } from 'atlantis-ui';
+import EditorComponent from './editor/editor.component.js';
 
+import { AtlantisUiModule } from 'atlantis-ui';
 
 export var AppModule = function() {};
 
@@ -129,7 +130,8 @@ AppModule.annotations = [
       TreeComponent,
       DraggableComponent,
       DialogComponent,
-      CalendarComponent
+      CalendarComponent,
+      EditorComponent
     ],
     imports: [
       BrowserModule,

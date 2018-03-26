@@ -44,6 +44,8 @@ import dragAndDropComponent from './dragAndDrop/dragAndDrop.component.js';
 
 import DraggableComponent from './draggable/draggable.component.js';
 
+import EditorComponent from './editor/editor.component.js';
+
 export default [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -85,6 +87,7 @@ export default [
   { path: 'dragAndDrop', component: dragAndDropComponent },
   { path: 'tree', component: TreeComponent },
   { path: 'draggable', component: DraggableComponent},
-  { path: 'calendar', component: CalendarComponent}
+  { path: 'calendar', component: CalendarComponent},
+  { path: 'editor', component: EditorComponent}
 
 ];

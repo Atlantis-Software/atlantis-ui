@@ -71,7 +71,27 @@
   down                "\f0d7",
   parameter           "\f013",
   check               "\f00c",
-  list                "\f0cb";
+  list                "\f0cb",
+
+  bold                "\f032",
+  italic              "\f033",
+  underline           "\f0cd",
+  strikethrough       "\f0cc",
+  undo                "\f0e2",
+  repeat              "\f01e",
+  eraser              "\f12d",
+  list-ol             "\f0cb",
+  list-ul             "\f0ca",
+  outdent             "\f03b",
+  indent              "\f03c",
+  align-left          "\f036",
+  align-center        "\f037",
+  align-right         "\f038",
+  align-justify       "\f039",
+  picture             "\f03e",
+  chain-broken        "\f127",
+  font                "\f031",
+  quote-right         "\f10e";
 
 .iconify-all(@icon-list);
 
@@ -97,4 +117,28 @@
 
 .icon-disabled {
   color: @icon-disabled-color;
+}
+
+.icon-stack {
+  position: relative;
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  vertical-align: middle;
+}
+
+.icon-stack-1x, .icon-stack-2x {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.icon-stack-1x {
+  line-height: inherit;
+}
+
+.icon-stack-2x {
+  font-size: (@font-size-base * 2);
 }
