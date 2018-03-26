@@ -62,19 +62,23 @@ describe('Draggable', function() {
 
     var draggableStyle1 = window.getComputedStyle(document.querySelector(".example1"));
 
-    var draggableTransform1 = draggableStyle1.getPropertyValue("transform");
+    var draggableTop1 = draggableStyle1.getPropertyValue("top");
+    var draggableLeft1 = draggableStyle1.getPropertyValue("left");
     var draggablezIndex1 = draggableStyle1.getPropertyValue("z-index");
 
     var draggableStyle2 = window.getComputedStyle(document.querySelector(".example2"));
 
-    var draggableTransform2 = draggableStyle2.getPropertyValue("transform");
+    var draggableTop2 = draggableStyle2.getPropertyValue("top");
+    var draggableLeft2 = draggableStyle2.getPropertyValue("left");
     var draggablezIndex2 = draggableStyle2.getPropertyValue("z-index");
 
-    assert.strictEqual(draggableTransform1, "none");
+    assert.strictEqual(draggableTop1, "auto");
+    assert.strictEqual(draggableLeft1, "auto");
     assert.strictEqual(draggablezIndex1, "auto");
 
 
-    assert.strictEqual(draggableTransform2, "none");
+    assert.strictEqual(draggableTop2, "auto");
+    assert.strictEqual(draggableLeft2, "auto");
     assert.strictEqual(draggablezIndex2, "auto");
 
   }));
@@ -111,7 +115,11 @@ describe('Draggable', function() {
     draggable.dispatchEvent(mouseUp);
     tick();
     fixture.detectChanges();
-    assert.strictEqual(draggable.style.transform, 'translate(40px, 15px)');
+
+    var draggableTop1 = draggableStyle1.getPropertyValue("top");
+    var draggableLeft1 = draggableStyle1.getPropertyValue("left");
+    assert.strictEqual(draggableTop1, "15px");
+    assert.strictEqual(draggableLeft1, "40px");
     assert.strictEqual(draggableStyle1.getPropertyValue('z-index'), 'auto');
 
   }));
@@ -150,7 +158,10 @@ describe('Draggable', function() {
     draggableHandle.dispatchEvent(mouseUp);
     tick();
     fixture.detectChanges();
-    assert.strictEqual(draggable.style.transform, 'translate(0px, -555px)');
+    var draggableTop1 = draggableStyle1.getPropertyValue("top");
+    var draggableLeft1 = draggableStyle1.getPropertyValue("left");
+    assert.strictEqual(draggableTop1, "-555px");
+    assert.strictEqual(draggableLeft1, "0px");
     assert.strictEqual(draggableStyle1.getPropertyValue('z-index'), 'auto');
 
   }));
@@ -187,7 +198,10 @@ describe('Draggable', function() {
     draggable.dispatchEvent(mouseUp);
     tick();
     fixture.detectChanges();
-    assert.strictEqual(draggable.style.transform, 'translate(699px, 499px)');
+    var draggableTop1 = draggableStyle1.getPropertyValue("top");
+    var draggableLeft1 = draggableStyle1.getPropertyValue("left");
+    assert.strictEqual(draggableTop1, "499px");
+    assert.strictEqual(draggableLeft1, "699px");
     assert.strictEqual(draggableStyle1.getPropertyValue('z-index'), 'auto');
 
   }));
