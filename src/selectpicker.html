@@ -6,7 +6,7 @@
   </button>
   <ul  class="select-options">
       <li *ngFor="let option of options" (click)="selectOption(option, $event)" [attr.aria-selected]="option.selected">
-        <a [ngStyle]="{'cursor': cursor}" class="noselect">{{ option.text }}</a>
+        <a [ngStyle]="{'cursor': cursor}" class="noselect" [innerHTML]="option.text"></a>
       </li>
   </ul>
 </div>
