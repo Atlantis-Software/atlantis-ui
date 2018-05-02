@@ -11,6 +11,10 @@ export default  class FormsComponent {
   constructor(){
     this.Selectpicker1 = [];
   }
+
+  changeFile(event) {
+    this.file = event[0].name;
+  }
 }
 
 

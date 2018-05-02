@@ -1,0 +1,131 @@
+atlui-agenda {
+  display: block;
+  height: 100%;
+  margin-bottom: 41px;
+  .atlui-agenda {
+    height: 100%;
+  }
+
+  atlui-agenda-month {
+    display: block;
+  }
+
+  atlui-agenda-day-name {
+    border-bottom: 1px solid @gray;
+    display: flex;
+    .dayName {
+      flex: 1;
+    }
+  }
+
+  atlui-agenda-calendar {
+    display: flex;
+    overflow: hidden;
+    flex: 1 1 0%;
+    flex-direction: column;
+    height: 100%;
+    atlui-agenda-week {
+      display: flex;
+      position: relative;
+      overflow: hidden;
+      flex: 1 1 0%;
+      border-bottom: 1px solid @gray;
+      border-left: 1px solid @gray;
+      .week {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        atlui-agenda-day {
+          display: block;
+          flex: 1;
+          border-right: 1px solid @gray;
+          position: relative;
+          atlui-agenda-day-corner {
+            display: block;
+            height: 0;
+            width: 0;
+            border-top: 40px solid @primary;
+            border-right: 40px solid transparent;
+            .dayDateNumber {
+              position: absolute;
+              top: 3px;
+              left: 3px;
+              color: @primary-text-color;
+            }
+          }
+          &.duringEvent {
+            atlui-agenda-day-corner {
+              border-top-color: @secondary;
+            }
+          }
+          &.sunday, &.off {
+            background-color: @gray-lighter;
+            atlui-agenda-day-corner {
+              border-top-color: @gray-light;
+            }
+          }
+          .line-more-events {
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            bottom: 0;
+            height: 20px;
+            atlui-agenda-more-events {
+              position: absolute;
+              height: 0;
+              width: 0;
+              border-bottom: 1em solid black;
+              border-left: 1em solid transparent;
+              bottom: 0;
+              right: 0;
+              font-size: 20px;
+              span {
+                font-size: 14px;
+                color: @primary-text-color;
+                top: 6px;
+                left: -10px;
+                position: absolute;
+              }
+            }
+          }
+        }
+      }
+      .weekEvents {
+        margin-top: 40px;
+        flex: 1 1 0%;
+        .events {
+          display: flex;
+          position: relative;
+          overflow: hidden;
+          font-size: 20px;
+          atlui-agenda-day-events {
+            display: block;
+            flex: 1 1 auto;
+            atlui-agenda-event {
+              display: block;
+              .event {
+                position: absolute;
+                font-size: 20px;
+                padding-right: 5px;
+                padding-left: 2px;
+                .eventName {
+                  font-size: 12px;
+                  overflow: hidden;
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
+                  span {
+                    padding-left: 2px;
+                    cursor: default;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

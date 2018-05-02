@@ -54,9 +54,13 @@ export default class selectpickerComponent {
     }
     var self = this;
     // select mutiple
-    if (this.multiple && Array.isArray(this.val)) {
+    if (this.multiple) {
       this.SelectedValuesText = [];
-      // update options according to thi.val value
+      if (this.val === void 0 || this.val === null || (this.val && this.val.length === 0)) {
+        this.SelectedValuesText = "&nbsp;";
+        return;
+      }
+      // update options according to this.val value
       this.options.forEach(function(option) {
         var index = self.val.indexOf(option.value);
         if (index > -1) {
@@ -66,13 +70,23 @@ export default class selectpickerComponent {
           option.selected = false;
         }
       });
-      // space html if empty array to avoid a small select
+      // space html if no options corresponding to value
       if (this.val.length <= 0) {
         this.SelectedValuesText = "&nbsp;";
       }
     } else { // select simple
       this.SelectedValuesText = null;
       // update options according to this.val value
+      if (this.val === void 0 && this.options.first) {
+        this.options.first.selected = true;
+        this.SelectedValuesText = this.options.first.text;
+        if (this.SelectedValuesText == "") {
+          this.SelectedValuesText = "&nbsp;";
+        }
+        this.val = this.options.first.value;
+        this.onModelChange(this.val);
+        return;
+      }
       this.options.forEach(function(option) {
         if (self.val === option.value) {
           option.selected = true;
@@ -83,15 +97,7 @@ export default class selectpickerComponent {
       });
       // space html if empty array to avoid a small select
       if (!this.SelectedValuesText || this.SelectedValuesText == "") {
-        if (this.options.first) {
-          this.options.first.selected = true;
-          this.SelectedValuesText = this.options.first.text;
-          if (this.SelectedValuesText == "") {
-            this.SelectedValuesText = "&nbsp;";
-          }
-        } else {
-          this.SelectedValuesText = "&nbsp;";
-        }
+        this.SelectedValuesText = "&nbsp;";
       }
     }
   }
@@ -204,7 +210,7 @@ export default class selectpickerComponent {
           var previousIndexVal;
           // if we have a previous value
           if (typeof this.previousSelectedIndex != "undefined" && this.previousSelectedIndex != null) {
-            this.val = [];
+            this.val.length = 0;
             this.options.forEach(function(option4) {
               indexOption = options.indexOf(option4.value);
               currentIndexVal = self.val.indexOf(option.value);
@@ -251,7 +257,7 @@ export default class selectpickerComponent {
         this.previousSelectedIndex = index;
         this.previousSelectedValue = option.value;
         option.selected = true;
-        this.val = [];
+        this.val.length = 0;
         this.val.push(option.value);
         this.SelectedValuesText.push(option.text);
         this.ctrlKey = false;

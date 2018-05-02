@@ -64,7 +64,10 @@ class selectpickerTestComponent {
         </atlui-selectpicker>
         <span id="selected2">{{select2.label}}</span>
         <atlui-selectpicker [(ngModel)]="select3" multiple="true">
-          <atlui-selectpicker-option class="multipleEmpty" *ngFor="let option of options" [value]="option">{{option.label}}</atlui-selectpicker-option>
+          <atlui-selectpicker-option *ngFor="let option of options" [value]="option">{{option.label}}</atlui-selectpicker-option>
+        </atlui-selectpicker>
+        <atlui-selectpicker [(ngModel)]="select4">
+          <atlui-selectpicker-option *ngFor="let option of options" [value]="option">{{option.label}}</atlui-selectpicker-option>
         </atlui-selectpicker>
         `
       })
@@ -96,9 +99,9 @@ describe('selectpicker', function() {
 
     testComponent = fixture.componentInstance;
 
-    var text = document.querySelector('.select-text');
-    var select = document.querySelector('atlui-selectpicker');
-    var options = select.querySelectorAll('a');
+    var text = document.querySelectorAll('.select-text');
+    var select = document.querySelectorAll('atlui-selectpicker');
+    var options = select[0].querySelectorAll('a');
 
     assert.strictEqual(options.length, 7);
     assert.strictEqual(options[0].textContent, 'AAAA');
@@ -109,6 +112,11 @@ describe('selectpicker', function() {
     assert.strictEqual(options[5].textContent, 'one, two, three');
     assert.strictEqual(options[6].textContent, 'object javascript');
 
+    assert.strictEqual(text[0].textContent, "BBBB");
+    assert.strictEqual(text[1].textContent, "BBBB,CCCC");
+    //charCodeAt of &nbsp; === 160
+    assert.strictEqual(text[2].textContent.charCodeAt(0), 160);
+    assert.strictEqual(text[3].textContent, "AAAA");
     text = document.querySelector('#selected');
 
     assert.strictEqual(testComponent.select1.value, 'B');
@@ -118,6 +126,8 @@ describe('selectpicker', function() {
     assert.strictEqual(testComponent.select2[0].label, 'BBBB');
     assert.strictEqual(testComponent.select2[1].value, 'C');
     assert.strictEqual(testComponent.select2[1].label, 'CCCC');
+    assert.strictEqual(testComponent.select3, void 0);
+
   }));
 
   it('should open on click and close on reclick', fakeAsync(() => {

@@ -1,0 +1,85 @@
+atlui-editor {
+  .toolbar {
+    display: flex;
+    justify-content: center;
+    .pluginBlock {
+      margin-right: 10px;
+      a.plugin {
+        cursor: pointer;
+        //TODO Change color to variable
+        border: 1px solid #AAA;
+        background: #FFF;
+        font-family: 'Candal';
+        border-radius: 1px;
+        color: black;
+        padding: 5px;
+        width: 1.5em;
+        margin-top: 10px;
+        display: inline-block;
+        text-decoration: none;
+        //TODO Change color to variable
+        box-shadow: 0px 1px 0px #CCC;
+        &:hover {
+          //TODO Change color to variable
+          background: #f2f2f2;
+          border-color: #8c8c8c;
+        }
+      }
+      .activate {
+        //TODO Change color to variable
+        background: #f2f2f2;
+        border-color: #8c8c8c;
+      }
+
+    }
+  }
+
+  .editor {
+    //TODO Change color to variable
+    box-shadow: 0 0 2px #CCC;
+    min-height: 150px;
+    overflow: auto;
+    padding: 1em;
+    margin-top: 20px;
+    resize: vertical;
+    outline: none;
+  }
+}
+
+atlui-plugin-hiliteColor div::before {
+  //TODO Change color to variable
+  background-color: blue
+}
+
+atlui-plugin-foreColor div::before {
+  //TODO Change color to variable
+  color: blue
+}
+
+atlui-plugin-foreColor, atlui-plugin-hiliteColor {
+
+  div:hover .color-palette{
+    display: block;
+    float: left;
+    position: absolute;
+    padding: 3px;
+    width: 130px;
+    //TODO Change color to variable
+    background: #fff;
+    border: 1px solid #ddd;
+  }
+
+  .color-palette {
+    display: none;
+  }
+
+  .color {
+    width: 20px;
+    height: 20px;
+    //TODO Change color to variable
+    border: 1px solid #ccc;
+    margin: 2px;
+    border-radius: 3px;
+    float: left;
+  }
+}

@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter } from '@angular/core';
+import { Component, ElementRef, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { dialogService } from './dialog.service.js';
 
 export default class dialogComponent {
@@ -33,7 +33,7 @@ export default class dialogComponent {
     ];
   }
 
-  constructor(elementRef, dialogService) {
+  constructor(elementRef, dialogService, ChangeDetectorRef) {
     this.showChange = new EventEmitter();
     this.onClose = new EventEmitter();
     this.heightChange = new EventEmitter();
@@ -53,6 +53,7 @@ export default class dialogComponent {
     this.dlgService = dialogService;
     this.posX = 0;
     this.posY = 0;
+    this.cdr = ChangeDetectorRef;
   }
 
   get show() {
@@ -147,12 +148,12 @@ export default class dialogComponent {
     this.content.style.minWidth = this.minWidth + "px";
 
     if (this.maxHeight === Infinity) {
-      this.content.style.maxHeight = "unset";
+      this.content.style.maxHeight = this.container.offsetHeight + "px";
     } else {
       this.content.style.maxHeight = this.maxHeight + "px";
     }
     if (this.maxWidth === Infinity) {
-      this.content.style.maxWidth = "unset";
+      this.content.style.maxWidth = this.container.offsetWidth + "px";
     } else {
       this.content.style.maxWidth = this.maxWidth + "px";
     }
@@ -170,10 +171,10 @@ export default class dialogComponent {
     if (this.visible) {
       this.focus();
     }
-
+    this.cdr.detectChanges();
     this.widthChange.emit(this.width);
     this.heightChange.emit(this.height);
   }
 }
 
-dialogComponent.parameters = [ElementRef, dialogService];
+dialogComponent.parameters = [ElementRef, dialogService, ChangeDetectorRef];
