@@ -8,11 +8,9 @@ export default class removeFormat extends pluginClass {
         selector: 'atlui-plugin-removeFormat',
         template: `
         <button
-          class="btn btn-default icon-stack"
+          class="btn btn-default icon icon-trash"
           (mousedown)="execCommand($event)"
           [attr.title]="description">
-            <i class="icon icon-font icon-stack-2x"></i>
-            <i class="icon icon-close icon-stack-1x"></i>
         </button>`
       })
     ];

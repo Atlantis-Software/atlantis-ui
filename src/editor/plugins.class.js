@@ -2,6 +2,8 @@ import blockquote from './plugins/blockquote.plugin.js';
 import bold from './plugins/bold.plugin.js';
 import createLink from './plugins/createLink.plugin.js';
 import format from './plugins/format.plugin.js';
+import foreColor from './plugins/foreColor.plugin.js';
+import hiliteColor from './plugins/hiliteColor.plugin.js';
 import indent from './plugins/indent.plugin.js';
 
 import insertImage from './plugins/insertImage.plugin.js';
@@ -23,13 +25,16 @@ import strikethrough from './plugins/strikethrough.plugin.js';
 import underline from './plugins/underline.plugin.js';
 import undo from './plugins/undo.plugin.js';
 import unlink from './plugins/unlink.plugin.js';
+import fontSize from './plugins/fontSize.plugin.js';
+import fontName from './plugins/fontName.plugin.js';
 
 import { ComponentFactoryResolver, Injector } from '@angular/core';
 
 const allPlugins = {
-  bold, createLink, format, indent, insertImage, insertOrderedList, insertUnorderedList,
+  bold, createLink, format, foreColor, indent, insertImage, insertOrderedList, insertUnorderedList,
   italic, justifyCenter, justifyFull, justifyLeft, justifyRight, blockquote,
-  outdent, redo, removeFormat, selectAll, strikethrough,  underline, undo, unlink
+  outdent, redo, removeFormat, selectAll, strikethrough,  underline, undo, unlink, hiliteColor, fontSize,
+  fontName
 };
 
 

@@ -10,7 +10,6 @@ export default class pluginClass {
     ];
   }
   constructor() {
-    this.type = "button";
     this.cmd = "";
     this.icon = "";
     this.text = "";
@@ -20,9 +19,6 @@ export default class pluginClass {
   }
 
   execCommand(event) {
-    if (this.test) {
-      this.test();
-    }
     event.preventDefault();
     if (typeof this.active === "boolean") {
       this.active = !this.active;

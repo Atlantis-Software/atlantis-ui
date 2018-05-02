@@ -57,6 +57,10 @@ export default class insertImage extends pluginClass {
   }
 
   closeAndExec(event) {
+    if (!this.file) {
+      this.showModal = false;
+      return;
+    }
     if (this.range) {
       this.selection.removeAllRanges();
       this.selection.addRange(this.range);

@@ -82,4 +82,14 @@ export default class format extends pluginClass {
     this.text = option.label;
     super.execCommand(event);
   }
+
+  commandState() {
+    var value = document.queryCommandValue(this.cmd);
+    this.text = "Normal";
+    this.options.forEach((option)=> {
+      if (option.value == value) {
+        this.text = option.label;
+      }
+    });
+  }
 }
