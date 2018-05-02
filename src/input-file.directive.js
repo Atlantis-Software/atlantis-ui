@@ -2,7 +2,7 @@ import { Directive, EventEmitter, ChangeDetectorRef, ElementRef } from '@angular
 import { language } from './locale.js';
 import { i18n } from './i18n.js';
 
-export class inputFileComponent {
+export class inputFileDirective {
 
   static get annotations() {
     return [
@@ -44,4 +44,4 @@ export class inputFileComponent {
 
 }
 
-inputFileComponent.parameters = [ChangeDetectorRef, ElementRef];
+inputFileDirective.parameters = [ChangeDetectorRef, ElementRef];
