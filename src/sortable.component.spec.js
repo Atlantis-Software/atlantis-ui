@@ -105,8 +105,7 @@ describe('Sortable Drag and Drop', function() {
       TestBed.compileComponents();
     });
 
-    beforeEach(inject([dragAndDropSortableService, dragAndDropService],
-    (dragAndDropSortableService)=> {
+    beforeEach(inject([dragAndDropSortableService, dragAndDropService], (dragAndDropSortableService)=> {
       ds = dragAndDropSortableService;
       fixture = TestBed.createComponent(sortableSimpleTestComponent);
       fixture.detectChanges();
@@ -191,8 +190,7 @@ describe('Sortable Drag and Drop', function() {
       TestBed.compileComponents();
     });
 
-    beforeEach(inject([dragAndDropSortableService, dragAndDropService],
-    ()=> {
+    beforeEach(inject([dragAndDropSortableService, dragAndDropService], ()=> {
       fixture = TestBed.createComponent(sortableMultipleTestComponent);
       fixture.detectChanges();
       container = fixture.componentInstance;
@@ -330,8 +328,7 @@ describe('Sortable Drag and Drop', function() {
       TestBed.compileComponents();
     });
 
-    beforeEach(inject([dragAndDropSortableService, dragAndDropService],
-    (dragAndDropSortableService)=> {
+    beforeEach(inject([dragAndDropSortableService, dragAndDropService], (dragAndDropSortableService)=> {
       ds = dragAndDropSortableService;
       fixture = TestBed.createComponent(sortableHandleTestComponent);
       fixture.detectChanges();
