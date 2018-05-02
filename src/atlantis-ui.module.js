@@ -81,6 +81,8 @@ import blockquote from './editor/plugins/blockquote.plugin.js';
 import bold from './editor/plugins/bold.plugin.js';
 import createLink from './editor/plugins/createLink.plugin.js';
 import format from './editor/plugins/format.plugin.js';
+import foreColor from './editor/plugins/foreColor.plugin.js';
+import hiliteColor from './editor/plugins/hiliteColor.plugin.js';
 import indent from './editor/plugins/indent.plugin.js';
 
 import insertImage from './editor/plugins/insertImage.plugin.js';
@@ -102,6 +104,9 @@ import strikethrough from './editor/plugins/strikethrough.plugin.js';
 import underline from './editor/plugins/underline.plugin.js';
 import undo from './editor/plugins/undo.plugin.js';
 import unlink from './editor/plugins/unlink.plugin.js';
+import fontSize from './editor/plugins/fontSize.plugin.js';
+import fontName from './editor/plugins/fontName.plugin.js';
+
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export class AtlantisUiModule {
@@ -148,9 +153,9 @@ AtlantisUiModule.annotations = [
       dialogComponent, resizableDirective, codeDirective,
       agendaComponent, agendaMonthComponent, agendaDayNameComponent, agendaCalendarComponent, agendaWeekComponent,
       agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent,
-      inputFileDirective, editorComponent, blockquote, bold, createLink, format, indent, insertImage, insertOrderedList, insertUnorderedList,
+      inputFileDirective, editorComponent, blockquote, bold, createLink, format, foreColor, indent, insertImage, insertOrderedList, insertUnorderedList,
       italic, justifyLeft, justifyRight, justifyCenter, justifyFull, outdent, redo, removeFormat, selectAll,
-      strikethrough, underline, undo, unlink],
+      strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName],
     exports: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent,
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
@@ -162,11 +167,11 @@ AtlantisUiModule.annotations = [
       dialogComponent, resizableDirective, codeDirective,
       agendaComponent, agendaMonthComponent, agendaDayNameComponent, agendaCalendarComponent, agendaWeekComponent,
       agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent,
-      inputFileDirective, editorComponent, blockquote, bold, createLink, format, indent, insertImage, insertOrderedList, insertUnorderedList,
+      inputFileDirective, editorComponent, blockquote, bold, createLink, format, foreColor, indent, insertImage, insertOrderedList, insertUnorderedList,
       italic, justifyLeft, justifyRight, justifyCenter, justifyFull, outdent, redo, removeFormat, selectAll,
-      strikethrough, underline, undo, unlink],
-    entryComponents: [tooltipComponent, popoverComponent, backdropComponent, blockquote, bold, createLink, format, indent,
-      insertImage, insertOrderedList, insertUnorderedList, italic, justifyLeft, justifyRight, justifyCenter,
-      justifyFull, outdent, redo, removeFormat, selectAll, strikethrough, underline, undo, unlink]
+      strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName],
+    entryComponents: [tooltipComponent, popoverComponent, backdropComponent, blockquote, bold, createLink, format, foreColor,
+      indent, insertImage, insertOrderedList, insertUnorderedList, italic, justifyLeft, justifyRight, justifyCenter,
+      justifyFull, outdent, redo, removeFormat, selectAll, strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName]
   })
 ];
