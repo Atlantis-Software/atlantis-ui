@@ -60,10 +60,10 @@ module.exports = {
         }
       }, {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]&publicPath=../&outputPath=fonts/"
+        loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]&publicPath=../fonts/&outputPath=fonts/"
       }, {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: "file-loader?name=[name].[ext]&publicPath=../&outputPath=fonts/"
+        loader: "file-loader?name=[name].[ext]&publicPath=../fonts/&outputPath=fonts/"
       }
     ]
   },
