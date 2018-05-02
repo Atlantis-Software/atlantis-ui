@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 
-export default  class CalendarComponent {
+export default  class AgendaComponent {
   static get annotations() {
     return [
       new Component({
-        template: require('./calendar.html')
+        template: require('./agenda.html')
       })
     ];
   }
@@ -14,8 +14,7 @@ export default  class CalendarComponent {
       {
         beginDate: moment("2017-12-31"),
         endDate: moment("2018-01-04"),
-        name: "Begin before month and end during month 2017-12-31/2018-01-04",
-        color: "#0061ff"
+        name: "Begin before month and end during month 2017-12-31/2018-01-04"
       },
       {
         beginDate: moment("2018-01-30"),
@@ -104,11 +103,7 @@ export default  class CalendarComponent {
     ];
     this.date = moment('2018-01-01');
   }
-
-  test(date) {
-    console.log(date);
-  }
 }
 
 
-CalendarComponent.parameters = [];
+AgendaComponent.parameters = [];

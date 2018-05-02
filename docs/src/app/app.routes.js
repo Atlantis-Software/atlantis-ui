@@ -1,7 +1,7 @@
 import HomeComponent from './home/home.component';
 import DatepickerComponent from './datepicker/datepicker.component';
 
-import CalendarComponent from './calendar/calendar.component';
+import AgendaComponent from './agenda/agenda.component';
 
 import PaginationComponent from './pagination/pagination.component';
 
@@ -87,7 +87,7 @@ export default [
   { path: 'dragAndDrop', component: dragAndDropComponent },
   { path: 'tree', component: TreeComponent },
   { path: 'draggable', component: DraggableComponent},
-  { path: 'calendar', component: CalendarComponent},
+  { path: 'agenda', component: AgendaComponent},
   { path: 'editor', component: EditorComponent}
 
 ];

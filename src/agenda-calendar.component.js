@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, EventEmitter } from '@angular/core';
+import { Component, ChangeDetectorRef, EventEmitter, ElementRef } from '@angular/core';
 import { localeMomentService } from './localeMoment.service.js';
 import { agendaEvents } from './agenda-event.class.js';
 
@@ -46,7 +46,7 @@ export class agendaCalendarComponent {
       })
     ];
   }
-  constructor(localeMomentService, cdr) {
+  constructor(localeMomentService, cdr, elementRef) {
     this.locale = localeMomentService;
     this.calendar = [];
     this.renderCalendar(moment());
@@ -54,6 +54,7 @@ export class agendaCalendarComponent {
     this.clickDayCallback = new EventEmitter();
     this.moreEventsCallback = new EventEmitter();
     this.eventsMax = void 0;
+    this.elementRef = elementRef;
   }
 
   clickDay($event) {
@@ -89,8 +90,8 @@ export class agendaCalendarComponent {
   }
 
   eventsPerDay() {
-    var eventsHeightAvailable = document.querySelector(".weekEvents").clientHeight;
-    var fontSize = parseInt(window.getComputedStyle(document.querySelector(".events")).fontSize);
+    var eventsHeightAvailable = this.elementRef.nativeElement.querySelector(".weekEvents").clientHeight;
+    var fontSize = parseInt(window.getComputedStyle(this.elementRef.nativeElement.querySelector(".events")).fontSize);
     this.eventsMax = Math.trunc(eventsHeightAvailable / fontSize);
   }
 
@@ -201,6 +202,9 @@ export class agendaCalendarComponent {
   placeEvents() {
     if (this.events) {
       this.events.forEach((event)=> {
+        if (!event.color) {
+          event.color = "#0061ff";
+        }
         var firstDayOfCalendar = this.calendar[0][0].date.startOf('day');
         if (event.endDate.isBefore(firstDayOfCalendar) || event.beginDate.isAfter(this.calendar[5][6].date.startOf('day'))) {
           return;
@@ -277,4 +281,4 @@ export class agendaCalendarComponent {
 
 }
 
-agendaCalendarComponent.parameters = [localeMomentService, ChangeDetectorRef];
+agendaCalendarComponent.parameters = [localeMomentService, ChangeDetectorRef, ElementRef];

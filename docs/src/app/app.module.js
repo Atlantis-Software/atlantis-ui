@@ -10,7 +10,7 @@ import HomeComponent from './home/home.component.js';
 
 import DatepickerComponent from './datepicker/datepicker.component';
 
-import CalendarComponent from './calendar/calendar.component';
+import AgendaComponent from './agenda/agenda.component';
 
 import PaginationComponent from './pagination/pagination.component.js';
 
@@ -130,7 +130,7 @@ AppModule.annotations = [
       TreeComponent,
       DraggableComponent,
       DialogComponent,
-      CalendarComponent,
+      AgendaComponent,
       EditorComponent
     ],
     imports: [
