@@ -1,4 +1,4 @@
-
+var path = require('path');
 module.exports = {
   context: __dirname,
   devtool: 'inline-source-map',
@@ -47,6 +47,13 @@ module.exports = {
     }, {
       test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       loader: "file-loader?name=[name].[ext]&publicPath=../&outputPath=fonts/"
+    },
+    {
+      enforce: 'post',
+      test: /\.component.js$/,
+      loader: 'istanbul-instrumenter-loader',
+      include: path.resolve('src'),
+      exclude: /(node_modules|app\\spec)/,
     }]
   },
 };
