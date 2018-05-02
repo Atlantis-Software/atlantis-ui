@@ -16,32 +16,19 @@ export class editorComponent {
     this.elementRef = ElementRef;
     this.applicationRef = ApplicationRef;
     this.cdr = ChangeDetectorRef;
+    document.execCommand('styleWithCSS', false);
   }
 
   ngOnChanges() {
-    this.toolbar = [
-      ["undo", "redo"],
-      ["selectAll"],
-      ["bold", "italic", "underline", "strikethrough", "removeFormat"],
-      ["insertOrderedList", "insertUnorderedList", "outdent", "indent", "blockquote","justifyLeft", "justifyCenter", "justifyRight", "justifyFull"],
-      ['insertImage', 'createLink', "unlink"],
-      ['format']
-    ];
     this._toolbar = this.plugins.load(this.toolbar);
-    var btnGroups = this.elementRef.nativeElement.querySelectorAll(".btn-group");
-    if (btnGroups.length > 0) {
-      this._toolbar.forEach((pluginsBlock, index)=> {
-        pluginsBlock.forEach((plugin)=> {
-          this.applicationRef.attachView(plugin.hostView);
-          btnGroups[index].appendChild(plugin.location.nativeElement);
-          plugin.changeDetectorRef.detectChanges();
-        });
-      });
-    }
-    this.cdr.detectChanges();
+    this._loadToolbar();
   }
 
   ngAfterViewInit() {
+    this._loadToolbar();
+  }
+
+  _loadToolbar() {
     var btnGroups = this.elementRef.nativeElement.querySelectorAll(".btn-group");
     if (btnGroups.length > 0) {
       this._toolbar.forEach((pluginsBlock, index)=> {
@@ -59,7 +46,9 @@ export class editorComponent {
     if (!$event.key || $event.key === "ArrowLeft" || $event.key === "ArrowUp" || $event.key === "ArrowRight" || $event.key === "ArrowDown") {
       this._toolbar.forEach((pluginBlock)=> {
         pluginBlock.forEach((plugin)=> {
-          plugin.instance.commandState();
+          if (plugin.instance.commandState) {
+            plugin.instance.commandState();
+          }
         });
       });
     }
