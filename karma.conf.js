@@ -1,3 +1,4 @@
+var path = require('path');
 var webpackConfig = require('./webpack.test.config.js');
 
 module.exports = function (config) {
@@ -23,16 +24,6 @@ module.exports = function (config) {
       noInfo: true,
     },
 
-    coverageReporter: {
-      type: 'in-memory'
-    },
-
-    remapCoverageReporter: {
-      'text-summary': null,
-      json: './coverage/coverage.json',
-      html: './coverage/html'
-    },
-
     browsers : ['Firefox', 'Chrome'],
 
     singleRun: true,
@@ -40,7 +31,13 @@ module.exports = function (config) {
     autoWatch: true,
     autoWatchBatchDelay: 5000,
 
-    reporters: ['mocha', 'coverage', 'remap-coverage'],
+    remapIstanbulReporter: {
+      reports: {
+        lcovonly: 'coverage/lcov.info'
+      }
+    },
+    reporters: ['mocha', 'karma-remap-istanbul'],
+
     port: 9876,
     colors: true,
     concurrency: 1

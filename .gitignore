@@ -1,5 +1,5 @@
 .git
 node_modules
 dist
-.nyc_output/
 coverage/
+package-lock.json
