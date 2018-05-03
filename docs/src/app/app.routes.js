@@ -1,6 +1,8 @@
 import HomeComponent from './home/home.component';
 import DatepickerComponent from './datepicker/datepicker.component';
 
+import AgendaComponent from './agenda/agenda.component';
+
 import PaginationComponent from './pagination/pagination.component';
 
 import SelectpickerComponent from './selectpicker/selectpicker.component';
@@ -42,6 +44,8 @@ import dragAndDropComponent from './dragAndDrop/dragAndDrop.component.js';
 
 import DraggableComponent from './draggable/draggable.component.js';
 
+import EditorComponent from './editor/editor.component.js';
+
 export default [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -82,6 +86,8 @@ export default [
   { path: 'forms', component: FormsComponent },
   { path: 'dragAndDrop', component: dragAndDropComponent },
   { path: 'tree', component: TreeComponent },
-  { path: 'draggable', component: DraggableComponent}
+  { path: 'draggable', component: DraggableComponent},
+  { path: 'agenda', component: AgendaComponent},
+  { path: 'editor', component: EditorComponent}
 
 ];

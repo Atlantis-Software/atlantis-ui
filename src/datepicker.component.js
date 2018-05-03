@@ -16,10 +16,8 @@ export default class datepickerComponent {
       fade: true,
       orientation: "right"
     };
-    this.modalHeaderOptions = {
-      close: true
-    };
     this.cdr = changeDetectorRef;
+    this.predefinedDate = null;
   }
 
   static get annotations() {
@@ -155,7 +153,6 @@ export default class datepickerComponent {
         this.startDate = moment(this._val, [this.locale.format, "YYYY-MM-DD"]);
         this.val = this._val = this.startDate.format(this.locale.format);
       } else {
-        // without default value, it's today
         this.startDate = moment();
         this.val = "";
       }
@@ -322,7 +319,6 @@ export default class datepickerComponent {
   valueChange(event) {
     if (moment(event, [this.locale.format, "YYYY-MM-DD"]).isValid()) {
       this._val = event;
-      // this.onModelChange(this.val);
       this.startDate = moment(event, [this.locale.format, "YYYY-MM-DD"]);
       this.calendar = [];
       this.calendar[0] = {};
@@ -334,7 +330,7 @@ export default class datepickerComponent {
       }
     } else if (!event) {
       this._val = "";
-      this.startDate = moment();
+      this.startDate = "";
     }
     this.refreshCalendar();
     this.refreshText();

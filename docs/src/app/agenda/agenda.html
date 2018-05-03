@@ -1,0 +1,106 @@
+
+<div class="container">
+  <h2>
+    Agenda
+  </h2>
+  <h3>Exemple with actual month: </h3>
+  <div style="height: 300px; margin-bottom: 50px">
+    <atlui-agenda [events]="events"></atlui-agenda>
+  </div>
+  <textarea class="atlui-code">
+<atlui-agenda [events]="events"></atlui-agenda>
+  </textarea>
+  <h3>
+    Example with specific month
+  </h3>
+  <div style="height: 606px; margin-bottom: 50px">
+    <atlui-agenda [events]="events" [date]="date"></atlui-agenda>
+  </div>
+  <textarea class="atlui-code">
+<atlui-agenda [events]="events" [date]="date"></atlui-agenda>
+  </textarea>
+  <h3>
+    events objects example
+  </h3>
+  <textarea class="atlui-code">
+this.events = [
+  {
+    beginDate: moment("2017-12-31"),
+    endDate: moment("2018-01-04"),
+    name: "Begin before month and end during month 2017-12-31/2018-01-04",
+    color: "#0061ff"
+  },
+  {
+    beginDate: moment("2018-01-30"),
+    endDate: moment("2018-02-12"),
+    name: "Begin during month and end after month 2018-01-30/2018-02-12",
+    color: "#0061ff"
+  }
+];
+  </textarea>
+  <h4>
+    Description
+  </h4>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>
+          Attribut
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Info
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          beginDate/endDate
+        </td>
+        <td>
+          dateObject / momentObject
+        </td>
+        <td>
+          Define the begin and the end of the event
+        </td>
+        <td>
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          name
+        </td>
+        <td>
+          String
+        </td>
+        <td>
+          Define the name of the events
+        </td>
+        <td>
+          The name will appear at begin of event and begin of all week
+        </td>
+      </tr>
+      <tr>
+        <td>
+          color
+        </td>
+        <td>
+          String (#hexColor)
+        </td>
+        <td>
+          Define the color of the event
+        </td>
+        <td>
+          Per default: #0061ff (blue)
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

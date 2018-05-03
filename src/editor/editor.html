@@ -1,0 +1,6 @@
+<div class="btn-toolbar">
+  <div class="btn-group plugin-block" *ngFor="let pluginBlock of _toolbar">
+  </div>
+</div>
+<div class="editor" contenteditable (click)="commandState($event)" (keyup)="commandState($event)">
+</div>

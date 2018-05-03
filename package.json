@@ -16,10 +16,8 @@
   "scripts": {
     "build": "webpack --progress; cd docs; npm install",
     "prepublish": "npm run build",
-    "test:karma": "karma start --single-run",
-    "test:karma:watch": "karma start",
-    "test": "./node_modules/.bin/karma start",
-    "test:watch": "mocha-webpack --watch"
+    "test": "karma start",
+    "lint": "eslint ./src"
   },
   "style": "dist/css/atlantis-ui.css",
   "less": "less/atlantis-ui.less",
@@ -33,29 +31,35 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "~6.26.0",
-    "babel-loader": "~7.1.2",
+    "babel-core": "~6.26.3",
+    "babel-loader": "~7.1.4",
     "babel-preset-es2015": "~6.24.1",
-    "core-js": "~2.5.3",
-    "css-loader": "~0.28.8",
-    "file-loader": "~1.1.5",
-    "html-loader": "~0.5.4",
-    "karma": "~1.2.0",
-    "karma-chrome-launcher": "~2.2.0",
-    "karma-firefox-launcher": "~1.0.1",
-    "karma-mocha": "~1.3.0",
-    "karma-sourcemap-loader": "~0.3.7",
-    "karma-webpack": "~2.0.6",
-    "less-loader": "~4.0.5",
-    "mocha": "~4.0.1",
-    "mocha-webpack": "~1.0.1",
-    "style-loader": "~0.19.0",
-    "url-loader": "~0.6.2",
-    "moment": "~2.19.2",
-    "less": "~2.7.3",
+    "core-js": "~2.5.5",
+    "coveralls": "^3.0.0",
+    "css-loader": "~0.28.11",
+    "eslint": "~4.19.1",
     "extract-text-webpack-plugin": "~3.0.2",
-    "webpack": "~3.8.1",
-    "jsdom": "~11.5.1"
+    "file-loader": "~1.1.11",
+    "html-loader": "~0.5.4",
+    "istanbul": "0.4.5",
+    "istanbul-instrumenter-loader": "^3.0.1",
+    "jsdom": "~11.10.0",
+    "karma": "~2.0.2",
+    "karma-chrome-launcher": "~2.2.0",
+    "karma-firefox-launcher": "~1.1.0",
+    "karma-mocha": "~1.3.0",
+    "karma-mocha-reporter": "^2.2.3",
+    "karma-remap-istanbul": "^0.6.0",
+    "karma-sourcemap-loader": "~0.3.7",
+    "karma-webpack": "~3.0.0",
+    "less": "~2.7.3",
+    "less-loader": "~4.0.5",
+    "mocha": "~5.1.1",
+    "mocha-webpack": "~1.1.0",
+    "moment": "~2.19.2",
+    "style-loader": "~0.21.0",
+    "url-loader": "~1.0.1",
+    "webpack": "~3.8.1"
   },
   "files": [
     "dist",
@@ -70,9 +74,16 @@
     "@angular/forms": "~5.0.2",
     "@angular/platform-browser": "~5.0.2",
     "@angular/platform-browser-dynamic": "~5.0.2",
-    "karma-mocha-reporter": "~2.2.5",
+    "resize-observer-polyfill": "~1.5.0",
     "rxjs": "~5.5.2",
-    "stylelint": "~8.2.0",
-    "zone.js": "~0.8.18"
+    "stylelint": "~9.2.0",
+    "zone.js": "~0.8.26"
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.js"
+    ],
+    "instrument": false,
+    "sourceMap": false
   }
 }

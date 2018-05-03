@@ -1,3 +1,4 @@
+var path = require('path');
 
 module.exports = {
   context: __dirname,
@@ -16,6 +17,14 @@ module.exports = {
   },
   module: {
     loaders: [{
+      test: /\.js/,
+      include: path.resolve('src'),
+      exclude: /\.spec/,
+      use: {
+        loader: 'istanbul-instrumenter-loader',
+        options: { esModules: true }
+      }
+    },{
       test: /\.js$/,
       exclude: /(\/node_modules\/|\.spec\.js$)/,
       loader: 'babel-loader'
