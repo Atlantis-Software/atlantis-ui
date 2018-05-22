@@ -7,7 +7,7 @@ export default class dialogComponent {
       new Component({
         selector: 'atlui-dlg',
         template: `
-          <div (window:resize)="redraw()" atlui-dragItem [(dragX)]="posX" [(dragY)]="posY" (dragStopped)="focus()" [dragContainment]="container" class="modal-dialog" [ngStyle]="{'display': visible ? 'block' : 'none'}">
+          <div (window:resize)="setMaxSize()" atlui-dragItem [(dragX)]="posX" [(dragY)]="posY" (dragStopped)="focus()" [dragContainment]="container" class="modal-dialog" [ngStyle]="{'display': visible ? 'block' : 'none'}">
             <div class="modal-content" (mousedown)="focus()" [atlui-resizable]="isResizable" [minWidth]="minWidth" [maxWidth]="maxWidth" [minHeight]="minHeight" [maxHeight]="maxHeight">
               <div atlui-dragItem-handle class="modal-header">
                 <button type="button" class="close" (click)="close()">
@@ -33,7 +33,7 @@ export default class dialogComponent {
     ];
   }
 
-  constructor(elementRef, dialogService, ChangeDetectorRef) {
+  constructor(elementRef, dialogService, cdr) {
     this.showChange = new EventEmitter();
     this.onClose = new EventEmitter();
     this.heightChange = new EventEmitter();
@@ -53,7 +53,7 @@ export default class dialogComponent {
     this.dlgService = dialogService;
     this.posX = 0;
     this.posY = 0;
-    this.cdr = ChangeDetectorRef;
+    this.cdr = cdr;
   }
 
   get show() {
@@ -88,9 +88,10 @@ export default class dialogComponent {
 
   ngAfterViewInit() {
     this.redraw();
-    var top = (window.innerHeight - this.height) / 2;
-    var left = (window.innerWidth - this.width) / 2;
-
+    var height = Math.min(this.maxHeight, this.height);
+    var width = Math.min(this.maxWidth, this.width);
+    var top = (window.innerHeight - height) / 2;
+    var left = (window.innerWidth - width) / 2;
     this.element.style.top = top + "px";
     this.element.style.left = left + "px";
   }
@@ -116,12 +117,25 @@ export default class dialogComponent {
     this.dlgService.removeDialog(this);
   }
 
+  setMaxSize() {
+    this.maxHeight = this.container.offsetHeight;
+    console.log(this.container.offsetHeight);
+    this.maxWidth = this.container.offsetWidth;
+    if (this.maxHeight > window.innerHeight) {
+      this.maxHeight = window.innerHeight;
+    }
+    if (this.maxWidth > window.innerWidth) {
+      this.maxWidth = window.innerWidth;
+    }
+    this.redraw();
+  }
+
   redraw() {
     this.element = this.elementRef.nativeElement.querySelector('.modal-dialog');
     this.content = this.elementRef.nativeElement.querySelector('.modal-content');
     this.header = this.elementRef.nativeElement.querySelector('.modal-header');
     this.body = this.elementRef.nativeElement.querySelector('.modal-body');
-
+    console.log(this.container.offsetHeight);
     if (this.maxHeight > this.container.offsetHeight || this.maxHeight === void 0) {
       this.maxHeight = this.container.offsetHeight;
     }
@@ -130,16 +144,19 @@ export default class dialogComponent {
       this.maxWidth = this.container.offsetWidth;
     }
 
+    if (this.maxHeight > window.innerHeight) {
+      this.maxHeight = window.innerHeight;
+    }
+    if (this.maxWidth > window.innerWidth) {
+      this.maxWidth = window.innerWidth;
+    }
+
     if (this.width < this.minWidth) {
       this.width = this.minWidth;
-    } else if (this.width > this.maxWidth) {
-      this.width = this.maxWidth;
     }
 
     if (this.height < this.minHeight) {
       this.height = this.minHeight;
-    } else if (this.height > this.maxHeight) {
-      this.height = this.maxHeight;
     }
 
     this.content.style.width = this.width + "px";
@@ -148,12 +165,12 @@ export default class dialogComponent {
     this.content.style.minWidth = this.minWidth + "px";
 
     if (this.maxHeight === Infinity) {
-      this.content.style.maxHeight = this.container.offsetHeight + "px";
+      this.content.style.maxHeight = "unset";
     } else {
       this.content.style.maxHeight = this.maxHeight + "px";
     }
     if (this.maxWidth === Infinity) {
-      this.content.style.maxWidth = this.container.offsetWidth + "px";
+      this.content.style.maxWidth = "unset";
     } else {
       this.content.style.maxWidth = this.maxWidth + "px";
     }
@@ -171,9 +188,10 @@ export default class dialogComponent {
     if (this.visible) {
       this.focus();
     }
-    this.cdr.detectChanges();
+
     this.widthChange.emit(this.width);
     this.heightChange.emit(this.height);
+    this.cdr.detectChanges();
   }
 }
 
