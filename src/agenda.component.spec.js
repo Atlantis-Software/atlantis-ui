@@ -10,7 +10,11 @@ var assert = require('assert');
 
 class agendaTestComponent {
   constructor(localeMomentService) {
+<<<<<<< HEAD
     this.date = moment('2018-01-01');
+=======
+    this.date = moment('2018-01-15');
+>>>>>>> d5f94784b645c2aa5d926f3cb4bf21a720486170
     this.month = localeMomentService.monthNames[this.date.month()];
     this.events = [
       {
@@ -148,11 +152,14 @@ describe('agenda', function() {
     assert.strictEqual(agendaMonth.textContent.trim(), month.toUpperCase()+" 2018");
     assert.strictEqual(agendaWeek.length, 6);
     assert.strictEqual(agendaDay.length, 42);
+<<<<<<< HEAD
 
     agendaDay.forEach((day, index) => {
       var dayNumber = day.querySelector(".dayDateNumber");
       assert.strictEqual(dayNumber.textContent.trim()%31, ((index+1)%31));
     });
+=======
+>>>>>>> d5f94784b645c2aa5d926f3cb4bf21a720486170
   }));
 
   it('should show events correctly', fakeAsync(function() {

@@ -1,3 +1,4 @@
+var path = require('path');
 var webpackConfig = require('./webpack.test.config.js');
 
 module.exports = function (config) {
@@ -10,7 +11,7 @@ module.exports = function (config) {
     ],
 
     preprocessors: {
-      './karma-test-shim.js': ['webpack', 'sourcemap']
+      './karma-test-shim.js': ['webpack', 'sourcemap'],
     },
 
     webpack: webpackConfig,
@@ -30,7 +31,13 @@ module.exports = function (config) {
     autoWatch: true,
     autoWatchBatchDelay: 5000,
 
-    reporters: ['mocha'],
+    remapIstanbulReporter: {
+      reports: {
+        lcovonly: 'coverage/lcov.info'
+      }
+    },
+    reporters: ['mocha', 'karma-remap-istanbul'],
+
     port: 9876,
     colors: true,
     concurrency: 1

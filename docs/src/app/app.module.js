@@ -10,7 +10,11 @@ import HomeComponent from './home/home.component.js';
 
 import DatepickerComponent from './datepicker/datepicker.component';
 
+<<<<<<< HEAD
 import CalendarComponent from './calendar/calendar.component';
+=======
+import AgendaComponent from './agenda/agenda.component';
+>>>>>>> d5f94784b645c2aa5d926f3cb4bf21a720486170
 
 import PaginationComponent from './pagination/pagination.component.js';
 
@@ -53,8 +57,9 @@ import dragAndDropComponent from './dragAndDrop/dragAndDrop.component.js';
 
 import DraggableComponent from './draggable/draggable.component.js';
 
-import { AtlantisUiModule } from 'atlantis-ui';
+import EditorComponent from './editor/editor.component.js';
 
+import { AtlantisUiModule } from 'atlantis-ui';
 
 export var AppModule = function() {};
 
@@ -129,7 +134,12 @@ AppModule.annotations = [
       TreeComponent,
       DraggableComponent,
       DialogComponent,
+<<<<<<< HEAD
       CalendarComponent
+=======
+      AgendaComponent,
+      EditorComponent
+>>>>>>> d5f94784b645c2aa5d926f3cb4bf21a720486170
     ],
     imports: [
       BrowserModule,

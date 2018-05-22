@@ -1,0 +1,29 @@
+<div class="container">
+  <h2>
+    Editor
+  </h2>
+  <h3>Example with all plugins</h3>
+  <atlui-editor [toolbar]="toolbar"></atlui-editor>
+  <textarea class="atlui-code">
+<atlui-editor [toolbar]="toolbar"></atlui-editor>
+  </textarea>
+  <h3>
+    Toolbar object
+  </h3>
+  <textarea class="atlui-code">
+this.toolbar = [
+  ["undo", "redo"],
+  ["selectAll"],
+  ["bold", "italic", "underline", "strikethrough", "removeFormat"],
+  ["insertOrderedList", "insertUnorderedList", "outdent", "indent", "blockquote","justifyLeft", "justifyCenter", "justifyRight", "justifyFull"],
+  ['insertImage', 'createLink', "unlink"],
+  ['fontSize'],
+  ['format'],
+  ['fontName'],
+  ['foreColor', 'hiliteColor']
+];
+  </textarea>
+  <p>
+    Just use the name of the plugin in an array of array. The first array represent a block of plugin and the second embedded array is for plugin we want in block
+  </p>
+</div>

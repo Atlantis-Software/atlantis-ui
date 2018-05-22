@@ -14,14 +14,21 @@ export default class datepickerComponent {
     this.differ = differs.find([]).create(null);
     this.i18n = i18n;
     this.visible = false;
+<<<<<<< HEAD
     this.modalOptions = {
       fade: true,
       orientation: "right"
     };
+=======
+>>>>>>> d5f94784b645c2aa5d926f3cb4bf21a720486170
     this.arrayRows = this.createRange(6);
     this.arrayCols = this.createRange(7);
     this.cdr = changeDetectorRef;
     this.predefinedDate = null;
+<<<<<<< HEAD
+=======
+    this.modalHeaderClose = false;
+>>>>>>> d5f94784b645c2aa5d926f3cb4bf21a720486170
   }
 
   static get annotations() {
@@ -368,10 +375,10 @@ export default class datepickerComponent {
     if (moment(event, this.locale.format).isValid()) {
       if (moment(event, this.locale.format).isBefore(moment(this._end, this.locale.format))) {
         this.hasErrorEnd = false;
-        this.modalHeaderOptions.close = true;
+        this.modalHeaderClose = true;
       } else {
         this.hasErrorEnd = true;
-        this.modalHeaderOptions.close = false;
+        this.modalHeaderClose = false;
       }
       this._start = moment(event, this.locale.format).format(this.locale.format);
       this.startDate = moment(event, this.locale.format);
@@ -389,7 +396,7 @@ export default class datepickerComponent {
       this._start = "";
     } else {
       this.hasErrorEnd = true;
-      this.modalHeaderOptions.close = false;
+      this.modalHeaderClose = false;
     }
     this.refreshCalendar();
     this.refreshTextDateStart();
@@ -400,7 +407,7 @@ export default class datepickerComponent {
     if (moment(event, this.locale.format).isValid()) {
       if (moment(event, this.locale.format).isAfter(moment(this._start, this.locale.format))) {
         this.hasErrorEnd = false;
-        this.modalHeaderOptions.close = true;
+        this.modalHeaderClose = true;
         this._end = moment(event, this.locale.format).format(this.locale.format);
         this.endDate = moment(event, this.locale.format);
         this.refreshCalendar();
@@ -410,7 +417,7 @@ export default class datepickerComponent {
       this._end = "";
     } else {
       this.hasErrorEnd = true;
-      this.modalHeaderOptions.close = false;
+      this.modalHeaderClose = false;
     }
     this.refreshCalendar();
     this.refreshTextDateEnd();

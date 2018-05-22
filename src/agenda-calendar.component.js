@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { Component, ChangeDetectorRef, EventEmitter } from '@angular/core';
+=======
+import { Component, ChangeDetectorRef, EventEmitter, ElementRef } from '@angular/core';
+>>>>>>> d5f94784b645c2aa5d926f3cb4bf21a720486170
 import { localeMomentService } from './localeMoment.service.js';
 import { agendaEvents } from './agenda-event.class.js';
 
@@ -46,7 +50,11 @@ export class agendaCalendarComponent {
       })
     ];
   }
+<<<<<<< HEAD
   constructor(localeMomentService, cdr) {
+=======
+  constructor(localeMomentService, cdr, elementRef) {
+>>>>>>> d5f94784b645c2aa5d926f3cb4bf21a720486170
     this.locale = localeMomentService;
     this.calendar = [];
     this.renderCalendar(moment());
@@ -54,6 +62,10 @@ export class agendaCalendarComponent {
     this.clickDayCallback = new EventEmitter();
     this.moreEventsCallback = new EventEmitter();
     this.eventsMax = void 0;
+<<<<<<< HEAD
+=======
+    this.elementRef = elementRef;
+>>>>>>> d5f94784b645c2aa5d926f3cb4bf21a720486170
   }
 
   clickDay($event) {
@@ -89,8 +101,13 @@ export class agendaCalendarComponent {
   }
 
   eventsPerDay() {
+<<<<<<< HEAD
     var eventsHeightAvailable = document.querySelector(".weekEvents").clientHeight;
     var fontSize = parseInt(window.getComputedStyle(document.querySelector(".events")).fontSize);
+=======
+    var eventsHeightAvailable = this.elementRef.nativeElement.querySelector(".weekEvents").clientHeight;
+    var fontSize = parseInt(window.getComputedStyle(this.elementRef.nativeElement.querySelector(".events")).fontSize);
+>>>>>>> d5f94784b645c2aa5d926f3cb4bf21a720486170
     this.eventsMax = Math.trunc(eventsHeightAvailable / fontSize);
   }
 
@@ -201,6 +218,12 @@ export class agendaCalendarComponent {
   placeEvents() {
     if (this.events) {
       this.events.forEach((event)=> {
+<<<<<<< HEAD
+=======
+        if (!event.color) {
+          event.color = "#0061ff";
+        }
+>>>>>>> d5f94784b645c2aa5d926f3cb4bf21a720486170
         var firstDayOfCalendar = this.calendar[0][0].date.startOf('day');
         if (event.endDate.isBefore(firstDayOfCalendar) || event.beginDate.isAfter(this.calendar[5][6].date.startOf('day'))) {
           return;
@@ -277,4 +300,8 @@ export class agendaCalendarComponent {
 
 }
 
+<<<<<<< HEAD
 agendaCalendarComponent.parameters = [localeMomentService, ChangeDetectorRef];
+=======
+agendaCalendarComponent.parameters = [localeMomentService, ChangeDetectorRef, ElementRef];
+>>>>>>> d5f94784b645c2aa5d926f3cb4bf21a720486170
