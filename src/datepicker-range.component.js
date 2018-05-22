@@ -14,11 +14,21 @@ export default class datepickerComponent {
     this.differ = differs.find([]).create(null);
     this.i18n = i18n;
     this.visible = false;
+<<<<<<< HEAD
+    this.modalOptions = {
+      fade: true,
+      orientation: "right"
+    };
+=======
+>>>>>>> d5f94784b645c2aa5d926f3cb4bf21a720486170
     this.arrayRows = this.createRange(6);
     this.arrayCols = this.createRange(7);
     this.cdr = changeDetectorRef;
     this.predefinedDate = null;
+<<<<<<< HEAD
+=======
     this.modalHeaderClose = false;
+>>>>>>> d5f94784b645c2aa5d926f3cb4bf21a720486170
   }
 
   static get annotations() {

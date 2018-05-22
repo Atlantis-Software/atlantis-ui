@@ -74,6 +74,8 @@ import { localeMomentService, localeMomentServiceFactory } from './localeMoment.
 
 import { inputFileDirective } from './input-file.directive.js';
 
+<<<<<<< HEAD
+=======
 import { editorComponent } from './editor/editor.component.js';
 import { pluginsService } from './editor/plugins.class.js';
 
@@ -107,6 +109,7 @@ import unlink from './editor/plugins/unlink.plugin.js';
 import fontSize from './editor/plugins/fontSize.plugin.js';
 import fontName from './editor/plugins/fontName.plugin.js';
 
+>>>>>>> d5f94784b645c2aa5d926f3cb4bf21a720486170
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export class AtlantisUiModule {
@@ -118,8 +121,12 @@ export class AtlantisUiModule {
         { provide: dragAndDropService, useFactory: dragDropServiceFactory },
         { provide: dragAndDropSortableService, useFactory: dragDropSortableServiceFactory },
         { provide: dialogService, useFactory: dialogServiceFactory},
+<<<<<<< HEAD
+        { provide: localeMomentService, useFactory: localeMomentServiceFactory}
+=======
         { provide: localeMomentService, useFactory: localeMomentServiceFactory},
         pluginsService
+>>>>>>> d5f94784b645c2aa5d926f3cb4bf21a720486170
       ]
     };
   }
@@ -153,9 +160,13 @@ AtlantisUiModule.annotations = [
       dialogComponent, resizableDirective, codeDirective,
       agendaComponent, agendaMonthComponent, agendaDayNameComponent, agendaCalendarComponent, agendaWeekComponent,
       agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent,
+<<<<<<< HEAD
+      inputFileDirective],
+=======
       inputFileDirective, editorComponent, blockquote, bold, createLink, format, foreColor, indent, insertImage, insertOrderedList, insertUnorderedList,
       italic, justifyLeft, justifyRight, justifyCenter, justifyFull, outdent, redo, removeFormat, selectAll,
       strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName],
+>>>>>>> d5f94784b645c2aa5d926f3cb4bf21a720486170
     exports: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent,
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
@@ -167,11 +178,16 @@ AtlantisUiModule.annotations = [
       dialogComponent, resizableDirective, codeDirective,
       agendaComponent, agendaMonthComponent, agendaDayNameComponent, agendaCalendarComponent, agendaWeekComponent,
       agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent,
+<<<<<<< HEAD
+      inputFileDirective],
+    entryComponents: [tooltipComponent, popoverComponent, backdropComponent]
+=======
       inputFileDirective, editorComponent, blockquote, bold, createLink, format, foreColor, indent, insertImage, insertOrderedList, insertUnorderedList,
       italic, justifyLeft, justifyRight, justifyCenter, justifyFull, outdent, redo, removeFormat, selectAll,
       strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName],
     entryComponents: [tooltipComponent, popoverComponent, backdropComponent, blockquote, bold, createLink, format, foreColor,
       indent, insertImage, insertOrderedList, insertUnorderedList, italic, justifyLeft, justifyRight, justifyCenter,
       justifyFull, outdent, redo, removeFormat, selectAll, strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName]
+>>>>>>> d5f94784b645c2aa5d926f3cb4bf21a720486170
   })
 ];
