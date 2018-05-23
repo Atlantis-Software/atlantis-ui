@@ -76,16 +76,35 @@ describe('dialog', function() {
 
     assert.strictEqual(dlgContent.style.width, '300px');
     assert.strictEqual(dlgContent.style.minWidth, '100px');
-    assert.strictEqual(dlgContent.style.maxWidth, '');
+    if (parseInt(dlgContent.style.maxWidth) >= window.innerWidth) {
+      assert.strictEqual(dlgContent.style.maxWidth, window.innerWidth+"px");
+    } else {
+      assert.strictEqual(dlgContent.style.maxWidth, "");
+    }
+
     assert.strictEqual(dlgContent.style.height, '500px');
     assert.strictEqual(dlgContent.style.minHeight, '100px');
-    assert.strictEqual(dlgContent.style.maxHeight, '');
+    if (parseInt(dlgContent.style.maxHeight) >= window.innerHeight) {
+      assert.strictEqual(dlgContent.style.maxHeight, window.innerHeight+"px");
+    } else {
+      assert.strictEqual(dlgContent.style.maxHeight, "");
+    }
 
     assert.strictEqual(dlgContent2.style.width, '600px');
     assert.strictEqual(dlgContent2.style.minWidth, '300px');
-    assert.strictEqual(dlgContent2.style.maxWidth, '1000px');
+    if (parseInt(dlgContent2.style.maxWidth) >= window.innerWidth) {
+      assert.strictEqual(dlgContent2.style.maxWidth, window.innerWidth+"px");
+    } else {
+      assert.strictEqual(dlgContent2.style.maxWidth, "1000px");
+    }
+
     assert.strictEqual(dlgContent2.style.height, '450px');
     assert.strictEqual(dlgContent2.style.minHeight, '300px');
+    if (parseInt(dlgContent2.style.maxHeight) >= window.innerHeight) {
+      assert.strictEqual(dlgContent2.style.maxHeight, window.innerHeight+"px");
+    } else {
+      assert.strictEqual(dlgContent2.style.maxHeight, "600px");
+    }
     assert.strictEqual(dlgContent2.style.maxHeight, '600px');
 
   });

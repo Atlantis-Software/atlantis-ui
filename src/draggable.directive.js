@@ -73,7 +73,7 @@ export class draggableDirective {
       this.tempPos.y = y - this.origPos.y;
       var left = this.tempPos.x + this.oldPosX;
       var top = this.tempPos.y + this.oldPosY;
-      if (this.oldPositionStyle === "absolute" || this.oldPositionStyle === "fixed") {
+      if (this.oldPositionStyle === "fixed") {
         if (top < 0) {
           top = 0;
         }

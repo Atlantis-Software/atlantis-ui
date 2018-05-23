@@ -119,7 +119,6 @@ export default class dialogComponent {
 
   setMaxSize() {
     this.maxHeight = this.container.offsetHeight;
-    console.log(this.container.offsetHeight);
     this.maxWidth = this.container.offsetWidth;
     if (this.maxHeight > window.innerHeight) {
       this.maxHeight = window.innerHeight;
@@ -135,7 +134,6 @@ export default class dialogComponent {
     this.content = this.elementRef.nativeElement.querySelector('.modal-content');
     this.header = this.elementRef.nativeElement.querySelector('.modal-header');
     this.body = this.elementRef.nativeElement.querySelector('.modal-body');
-    console.log(this.container.offsetHeight);
     if (this.maxHeight > this.container.offsetHeight || this.maxHeight === void 0) {
       this.maxHeight = this.container.offsetHeight;
     }
