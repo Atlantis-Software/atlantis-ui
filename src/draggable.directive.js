@@ -34,16 +34,6 @@ export class draggableDirective {
     this.dragYChange = new EventEmitter();
   }
 
-  set ngDraggable(setting) {
-    if (setting !== void 0 && setting !== null && setting !== '') {
-      this.isDraggable = !!setting;
-      this.oldPosX = 0;
-      this.oldPosY = 0;
-
-      this.element = this.elementRef.nativeElement;
-    }
-  }
-
   ngAfterViewInit() {
     if (this.isDraggable) {
       this.element = this.elementRef.nativeElement;
