@@ -47,6 +47,15 @@ class dialogTestComponent {
             [minWidth]="300" [minHeight]="300" [maxWidth]="2000" [maxHeight]="3000" [title]="'dialog Header'">
             <p>Some text in the dialog.</p>
           </atlui-dlg>
+        </div>
+        <div id="infMinSize">
+          <button type="button" class="btn btn-primary btn-sm" (click)="showinfMinSize = true">
+            Default dialog
+          </button>
+          <atlui-dlg [container]="document.body" [(show)]="showinfMinSize" [isResizable]="true" [width]="200" [height]="200"
+            [minWidth]="300" [minHeight]="300" [title]="'dialog Header'">
+            <p>Some text in the dialog.</p>
+          </atlui-dlg>
         </div>`
       })
     ];
@@ -83,6 +92,7 @@ describe('dialog', function() {
     var dlgContent = dlg[0].querySelector('.modal-content');
     var dlgContent2 = dlg[1].querySelector('.modal-content');
     var dlgContent3 = dlg[2].querySelector('.modal-content');
+    var dlgContent4 = dlg[3].querySelector('.modal-content');
 
     assert.strictEqual(dlg[0].style.display, 'none');
     assert.strictEqual(dlg[0].style.zIndex, '');
@@ -136,6 +146,24 @@ describe('dialog', function() {
       assert.strictEqual(dlgContent3.style.maxHeight, document.body.offsetHeight+"px");
     } else {
       assert.strictEqual(dlgContent3.style.maxHeight, "600px");
+    }
+
+    assert.strictEqual(dlgContent4.style.width, '300px');
+    assert.strictEqual(dlgContent4.style.minWidth, '300px');
+    if (parseInt(dlgContent4.style.maxWidth) >= window.innerWidth) {
+      assert.strictEqual(dlgContent4.style.maxWidth, window.innerWidth+"px");
+    } else {
+      assert.strictEqual(dlgContent4.style.maxWidth, "1000px");
+    }
+
+    assert.strictEqual(dlgContent4.style.height, '300px');
+    assert.strictEqual(dlgContent4.style.minHeight, '300px');
+    if (parseInt(dlgContent4.style.maxHeight) >= window.innerHeight) {
+      assert.strictEqual(dlgContent4.style.maxHeight, window.innerHeight+"px");
+    } else if (parseInt(dlgContent4.style.maxHeight) >= document.body.offsetHeight) {
+      assert.strictEqual(dlgContent4.style.maxHeight, document.body.offsetHeight+"px");
+    } else {
+      assert.strictEqual(dlgContent4.style.maxHeight, "600px");
     }
 
   });

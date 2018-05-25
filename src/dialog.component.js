@@ -7,9 +7,9 @@ export default class dialogComponent {
       new Component({
         selector: 'atlui-dlg',
         template: `
-          <div (window:resize)="setMaxSize()" atlui-dragItem [(dragX)]="posX" [(dragY)]="posY" (dragStopped)="focus()" [dragContainment]="container" class="modal-dialog" [ngStyle]="{'display': visible ? 'block' : 'none'}">
+          <div (window:resize)="redraw()" atlui-dragItem [(dragX)]="posX" [(dragY)]="posY" (dragStopped)="focus()" [dragContainment]="container" class="modal-dialog" [ngStyle]="{'display': visible ? 'block' : 'none'}">
             <div class="modal-content" (mousedown)="focus()" [atlui-resizable]="isResizable" [minWidth]="minWidth" [maxWidth]="maxWidth" [minHeight]="minHeight" [maxHeight]="maxHeight">
-              <div atlui-dragItem-handle class="modal-header">
+              <div atlui-dragItem-handle class="modal-header" >
                 <button type="button" class="close" (click)="close()">
                   <span>&times;</span>
                 </button>
@@ -27,7 +27,7 @@ export default class dialogComponent {
             </div>
           </div>`,
         inputs: ["show", "isResizable", "height", "width", "minHeight", "maxHeight", "minWidth",
-          "maxWidth", "container", "controls", "title", "closeCallback"],
+          "maxWidth", "container", "controls", "title"],
         outputs: ['showChange', "onClose", "heightChange", "widthChange"]
       })
     ];
@@ -83,6 +83,7 @@ export default class dialogComponent {
     this.showChange.emit(this.model);
     this.visible = true;
     this.dlgService.addDialog(this);
+    this.cdr.detectChanges();
     this.redraw();
   }
 
@@ -98,35 +99,15 @@ export default class dialogComponent {
 
   close() {
     this.model = false;
-    if (this.closeCallback) {
-      this.closeCallback();
-      this.onClose.emit();
-      return;
-    }
     this.showChange.emit(this.model);
     this.visible = false;
     this.onClose.emit();
-    if (this.element) {
-      this.element.style.transform = '';
-    }
     this.dlgService.removeDialog(this);
   }
 
   //Add classes to modal according to inputs parameters
   ngOnDestroy() {
     this.dlgService.removeDialog(this);
-  }
-
-  setMaxSize() {
-    this.maxHeight = this.container.offsetHeight;
-    this.maxWidth = this.container.offsetWidth;
-    if (this.maxHeight > window.innerHeight) {
-      this.maxHeight = window.innerHeight;
-    }
-    if (this.maxWidth > window.innerWidth) {
-      this.maxWidth = window.innerWidth;
-    }
-    this.redraw();
   }
 
   redraw() {
@@ -156,22 +137,13 @@ export default class dialogComponent {
     if (this.height < this.minHeight) {
       this.height = this.minHeight;
     }
-
     this.content.style.width = this.width + "px";
     this.content.style.height = this.height + "px";
     this.content.style.minHeight = this.minHeight + "px";
     this.content.style.minWidth = this.minWidth + "px";
 
-    if (this.maxHeight === Infinity) {
-      this.content.style.maxHeight = "unset";
-    } else {
-      this.content.style.maxHeight = this.maxHeight + "px";
-    }
-    if (this.maxWidth === Infinity) {
-      this.content.style.maxWidth = "unset";
-    } else {
-      this.content.style.maxWidth = this.maxWidth + "px";
-    }
+    this.content.style.maxHeight = this.maxHeight + "px";
+    this.content.style.maxWidth = this.maxWidth + "px";
 
     var headerStyle = window.getComputedStyle(this.header, null);
     var contentStyle = window.getComputedStyle(this.content, null);
@@ -181,7 +153,6 @@ export default class dialogComponent {
     var contentInnerHeight = contentHeight - contentBorderTop - contentBorderBottom;
 
     this.body.style.height = (contentInnerHeight - parseInt(headerStyle.getPropertyValue("height"))) + "px";
-    this.bodyHeight = this.body.style.height;
 
     if (this.visible) {
       this.focus();
