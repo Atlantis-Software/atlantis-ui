@@ -576,15 +576,15 @@ describe('editor', function() {
     tick();
     fixture.detectChanges();
 
-    var comicSansMs = plugin.querySelectorAll("atlui-dropdown-option")[1];
+    var comicSansMs = plugin.querySelectorAll("atlui-dropdown-option")[0];
     comicSansMs.dispatchEvent(mousedown);
     tick();
     fixture.detectChanges();
     var text = editor.querySelector("span");
     if (firefox) {
-      assert.strictEqual(text.style.fontFamily, 'Comic\\ sans\\ ms');
+      assert.strictEqual(text.style.fontFamily, 'Arial');
     } else {
-      assert.strictEqual(text.style.fontFamily, '"Comic sans ms"');
+      assert.strictEqual(text.style.fontFamily, 'Arial');
     }
 
   }));
