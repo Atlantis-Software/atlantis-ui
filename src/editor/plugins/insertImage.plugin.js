@@ -19,11 +19,11 @@ export default class insertImage extends pluginClass {
             </h3>
           </atlui-modal-header>
           <atlui-modal-body>
-            <label for="url">Upload file</label>
-            <input id="url" type="file" (change)="changeFiles($event.target.files)">
+            <label for="url">Choose image</label>
+            <input class="form-control" id="url" type="file" (change)="changeFiles($event.target.files)">
           </atlui-modal-body>
           <atlui-modal-footer>
-            <button type="button" class="btn btn-default" (click)="closeAndExec($event)">Validate</button>
+            <button type="button" class="btn btn-default" (click)="closeAndExec($event)">Ok</button>
             <button type="button" class="btn btn-default" (click)="closeWithoutExec()">Cancel</button>
           </atlui-modal-footer>
         </atlui-modal>`
@@ -39,6 +39,8 @@ export default class insertImage extends pluginClass {
     this.showModal = false;
     this.val = "";
     this.file = '';
+    this.reader = new FileReader();
+
   }
 
   changeFiles(files) {
@@ -64,12 +66,11 @@ export default class insertImage extends pluginClass {
     if (this.range) {
       this.selection.removeAllRanges();
       this.selection.addRange(this.range);
-      var reader = new FileReader();
-      reader.onloadend = () => {
-        this.val = reader.result;
+      this.reader.onload = () => {
+        this.val = this.reader.result;
         super.execCommand(event);
       };
-      reader.readAsDataURL(this.file);
+      this.reader.readAsDataURL(this.file);
     }
     this.showModal = false;
   }
