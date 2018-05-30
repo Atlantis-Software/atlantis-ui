@@ -5,7 +5,7 @@ export default class blockquote extends pluginClass {
   static get annotations() {
     return [
       new Component({
-        selector: 'atlui-plugin-bold',
+        selector: 'atlui-plugin-blockquote',
         template: `
         <button
           class="btn btn-default icon icon-quote-right"
