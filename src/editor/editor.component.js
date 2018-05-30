@@ -1,4 +1,4 @@
-import { Component, ElementRef, ApplicationRef, ChangeDetectorRef} from '@angular/core';
+import { Component, ElementRef, ApplicationRef, ChangeDetectorRef } from '@angular/core';
 import { pluginsService } from './plugins.class.js';
 export class editorComponent {
 
@@ -52,12 +52,6 @@ export class editorComponent {
         });
       });
     }
-  }
-
-  openModal(plugin) {
-    this.modal.show = true;
-    this.modal.title = plugin.modal.title;
-    this.modal.template = plugin.modal.template;
   }
 }
 
