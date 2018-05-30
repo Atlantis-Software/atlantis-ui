@@ -32,6 +32,11 @@ class draggableTestComponent {
           <p>
             You can drag me !
           </p>
+        </div>
+        <div style="width:200px;height:100px;position:fixed;" class="well example3" atlui-dragItem [dragContainment]="document.body">
+          <p>
+            You can drag me example 3!
+          </p>
         </div>`
       })
     ];
@@ -202,6 +207,46 @@ describe('Draggable', function() {
     var draggableLeft1 = draggableStyle1.getPropertyValue("left");
     assert.strictEqual(draggableTop1, "499px");
     assert.strictEqual(draggableLeft1, "699px");
+    assert.strictEqual(draggableStyle1.getPropertyValue('z-index'), 'auto');
+
+  }));
+
+  it('should not move outer that screen with fixed element', fakeAsync(function() {
+    var fixture = TestBed.createComponent(draggableTestComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var draggable = document.querySelector(".example3");
+
+    var mousedown = new Event('mousedown', { 'bubbles': true });
+    mousedown.clientX = 10;
+    mousedown.clientY = 5;
+
+    draggable.dispatchEvent(mousedown);
+    tick();
+    fixture.detectChanges();
+
+    var draggableStyle1 = window.getComputedStyle(draggable);
+
+    assert.strictEqual(draggableStyle1.getPropertyValue('z-index'), '99999');
+
+    var mouseMove = new Event('mousemove', { 'bubbles': true });
+    mouseMove.clientX = -10000;
+    mouseMove.clientY = -10000;
+
+    draggable.dispatchEvent(mouseMove);
+    tick();
+    fixture.detectChanges();
+
+    var mouseUp = new Event('mouseup', { 'bubbles': true });
+    draggable.dispatchEvent(mouseUp);
+    tick();
+    fixture.detectChanges();
+    var draggableTop1 = draggableStyle1.getPropertyValue("top");
+    var draggableLeft1 = draggableStyle1.getPropertyValue("left");
+    assert.strictEqual(draggableTop1, "0px");
+    assert.strictEqual(draggableLeft1, "0px");
     assert.strictEqual(draggableStyle1.getPropertyValue('z-index'), 'auto');
 
   }));
