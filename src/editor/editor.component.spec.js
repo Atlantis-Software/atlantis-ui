@@ -70,7 +70,7 @@ describe('editor', function() {
     editor = document.querySelector(".editor");
     assert.strictEqual(editor.contentEditable, "true");
     assert.strictEqual(editor.innerText, "");
-    assert.strictEqual(editor.innerHTML, " ");
+    assert.strictEqual(editor.innerHTML, "  ");
   }));
 
   afterEach(function() {
@@ -102,22 +102,12 @@ describe('editor', function() {
     tick();
     fixture.detectChanges();
     assert.strictEqual(button.classList.contains('active'), true);
-    var text;
-    if (firefox) {
-      text = editor.querySelector('b');
-      assert.ok(text);
-    } else {
-      text = editor.querySelector("span");
-      assert.strictEqual(text.style.fontWeight, "bold");
-    }
+    var text = editor.querySelector("span");
+    assert.strictEqual(text.style.fontWeight, "bold");
 
     button.dispatchEvent(mousedown);
     assert.strictEqual(button.classList.contains('active'), false);
-    if (firefox) {
-      text = editor.querySelector("b");
-    } else {
-      text = editor.querySelector("span");
-    }
+    text = editor.querySelector("span");
     assert.strictEqual(text, null);
 
   }));
@@ -138,22 +128,12 @@ describe('editor', function() {
     tick();
     fixture.detectChanges();
     assert.strictEqual(button.classList.contains('active'), true);
-    var text;
-    if (firefox) {
-      text = editor.querySelector("i");
-      assert.ok(text);
-    } else {
-      text = editor.querySelector("span");
-      assert.strictEqual(text.style.fontStyle, "italic");
-    }
+    var text = editor.querySelector("span");
+    assert.strictEqual(text.style.fontStyle, "italic");
 
     button.dispatchEvent(mousedown);
     assert.strictEqual(button.classList.contains('active'), false);
-    if (firefox) {
-      text = editor.querySelector("i");
-    } else {
-      text = editor.querySelector("span");
-    }
+    text = editor.querySelector("span");
     assert.strictEqual(text, null);
 
   }));
@@ -174,22 +154,12 @@ describe('editor', function() {
     tick();
     fixture.detectChanges();
     assert.strictEqual(button.classList.contains('active'), true);
-    var text;
-    if (firefox) {
-      text = editor.querySelector("u");
-      assert.ok(text);
-    } else {
-      text = editor.querySelector("span");
-      assert.strictEqual(text.style.textDecorationLine, "underline");
-    }
+    var text = editor.querySelector("span");
+    assert.strictEqual(text.style.textDecorationLine, "underline");
 
     button.dispatchEvent(mousedown);
     assert.strictEqual(button.classList.contains('active'), false);
-    if (firefox) {
-      text = editor.querySelector("u");
-    } else {
-      text = editor.querySelector("span");
-    }
+    text = editor.querySelector("span");
     assert.strictEqual(text, null);
 
   }));
@@ -210,22 +180,12 @@ describe('editor', function() {
     tick();
     fixture.detectChanges();
     assert.strictEqual(button.classList.contains('active'), true);
-    var text;
-    if (firefox) {
-      text = editor.querySelector("strike");
-      assert.ok(text);
-    } else {
-      text = editor.querySelector("span");
-      assert.strictEqual(text.style.textDecorationLine, "line-through");
-    }
+    var text = editor.querySelector("span");
+    assert.strictEqual(text.style.textDecorationLine, "line-through");
 
     button.dispatchEvent(mousedown);
     assert.strictEqual(button.classList.contains('active'), false);
-    if (firefox) {
-      text = editor.querySelector('strike');
-    } else {
-      text = editor.querySelector("span");
-    }
+    text = editor.querySelector("span");
     assert.strictEqual(text, null);
 
   }));
@@ -343,21 +303,13 @@ describe('editor', function() {
     fixture.detectChanges();
     assert.strictEqual(button.classList.contains('active'), true);
     var justifyCenter = editor.querySelector("div");
-    if (firefox) {
-      assert.strictEqual(justifyCenter.align, 'center');
-    } else {
-      assert.strictEqual(justifyCenter.style.textAlign, 'center');
-    }
+    assert.strictEqual(justifyCenter.style.textAlign, 'center');
     button.dispatchEvent(mousedown);
     tick();
     fixture.detectChanges();
     assert.strictEqual(button.classList.contains('active'), false);
     justifyCenter = editor.querySelector("div");
-    if (firefox) {
-      assert.strictEqual(justifyCenter.align, 'left');
-    } else {
-      assert.strictEqual(justifyCenter.style.textAlign, 'left');
-    }
+    assert.strictEqual(justifyCenter.style.textAlign, 'left');
 
   }));
 
@@ -378,22 +330,14 @@ describe('editor', function() {
     fixture.detectChanges();
     assert.strictEqual(button.classList.contains('active'), true);
     var justifyRight = editor.querySelector("div");
-    if (firefox) {
-      assert.strictEqual(justifyRight.align, 'right');
-    } else {
-      assert.strictEqual(justifyRight.style.textAlign, 'right');
-    }
+    assert.strictEqual(justifyRight.style.textAlign, 'right');
 
     button.dispatchEvent(mousedown);
     tick();
     fixture.detectChanges();
     assert.strictEqual(button.classList.contains('active'), false);
     justifyRight = editor.querySelector("div");
-    if (firefox) {
-      assert.strictEqual(justifyRight.align, 'left');
-    } else {
-      assert.strictEqual(justifyRight.style.textAlign, 'left');
-    }
+    assert.strictEqual(justifyRight.style.textAlign, 'left');
 
   }));
 
@@ -414,22 +358,14 @@ describe('editor', function() {
     fixture.detectChanges();
     assert.strictEqual(button.classList.contains('active'), true);
     var justifyFull = editor.querySelector("div");
-    if (firefox) {
-      assert.strictEqual(justifyFull.align, 'justify');
-    } else {
-      assert.strictEqual(justifyFull.style.textAlign, 'justify');
-    }
+    assert.strictEqual(justifyFull.style.textAlign, 'justify');
 
     button.dispatchEvent(mousedown);
     tick();
     fixture.detectChanges();
     assert.strictEqual(button.classList.contains('active'), false);
     justifyFull = editor.querySelector("div");
-    if (firefox) {
-      assert.strictEqual(justifyFull.align, 'left');
-    } else {
-      assert.strictEqual(justifyFull.style.textAlign, 'left');
-    }
+    assert.strictEqual(justifyFull.style.textAlign, 'left');
 
   }));
 
@@ -460,11 +396,7 @@ describe('editor', function() {
 
     assert.strictEqual(button.classList.contains('active'), true);
     var justifyLeft = editor.querySelector("div");
-    if (firefox) {
-      assert.strictEqual(justifyLeft.align, 'left');
-    } else {
-      assert.strictEqual(justifyLeft.style.textAlign, 'left');
-    }
+    assert.strictEqual(justifyLeft.style.textAlign, 'left');
 
   }));
 
@@ -515,34 +447,53 @@ describe('editor', function() {
     button.dispatchEvent(mousedown);
     tick();
     fixture.detectChanges();
-    var blockquote = editor.querySelector("blockquote");
-    assert.ok(blockquote);
-    if (!firefox) {
-      assert.strictEqual(blockquote.style.margin, "0px 0px 0px 40px");
+    var indent;
+    if (firefox) {
+      indent = editor.querySelector("div");
+      assert.ok(indent);
+      assert.strictEqual(indent.style.marginLeft, "40px");
+    } else {
+      indent = editor.querySelector("blockquote");
+      assert.ok(indent);
+      assert.strictEqual(indent.style.margin, "0px 0px 0px 40px");
     }
 
     button.dispatchEvent(mousedown);
     tick();
     fixture.detectChanges();
-    blockquote = editor.querySelectorAll("blockquote");
-    assert.strictEqual(blockquote.length, 2);
+    if (firefox) {
+      indent = editor.querySelectorAll("div");
+      assert.strictEqual(indent.length, 1);
+      assert.strictEqual(indent[0].style.marginLeft, "80px");
+    } else {
+      indent = editor.querySelectorAll("blockquote");
+      assert.strictEqual(indent.length, 2);
+    }
 
     plugin = document.querySelector("atlui-plugin-outdent");
     button = plugin.querySelector("button");
     button.dispatchEvent(mousedown);
     tick();
     fixture.detectChanges();
-    blockquote = editor.querySelector("blockquote");
-    assert.ok(blockquote);
-    if (!firefox) {
-      assert.strictEqual(blockquote.style.margin, "0px 0px 0px 40px");
+    if (firefox) {
+      indent = editor.querySelector("div");
+      assert.ok(indent);
+      assert.strictEqual(indent.style.marginLeft, "40px");
+    } else {
+      indent = editor.querySelector("blockquote");
+      assert.ok(indent);
+      assert.strictEqual(indent.style.margin, "0px 0px 0px 40px");
     }
 
     button.dispatchEvent(mousedown);
     tick();
     fixture.detectChanges();
-    blockquote = editor.querySelector("blockquote");
-    assert.strictEqual(blockquote, null);
+    if (firefox) {
+      indent = editor.querySelector("div");
+    } else {
+      indent = editor.querySelector("blockquote");
+    }
+    assert.strictEqual(indent, null);
   }));
 
   it('should insert a link and remove anchor', fakeAsync(function() {
@@ -629,12 +580,10 @@ describe('editor', function() {
     comicSansMs.dispatchEvent(mousedown);
     tick();
     fixture.detectChanges();
-    var text;
+    var text = editor.querySelector("span");
     if (firefox) {
-      text = editor.querySelector("font");
-      assert.strictEqual(text.face, 'Comic sans ms');
+      assert.strictEqual(text.style.fontFamily, 'Comic\\ sans\\ ms');
     } else {
-      text = editor.querySelector("span");
       assert.strictEqual(text.style.fontFamily, '"Comic sans ms"');
     }
 
@@ -654,14 +603,8 @@ describe('editor', function() {
     color.dispatchEvent(mousedown);
     tick();
     fixture.detectChanges();
-    var text;
-    if (firefox) {
-      text = editor.querySelector("font");
-      assert.strictEqual(text.color, '#99FF66');
-    } else {
-      text = editor.querySelector("span");
-      assert.strictEqual(text.style.color, 'rgb(153, 255, 102)');
-    }
+    var text = editor.querySelector("span");
+    assert.strictEqual(text.style.color, 'rgb(153, 255, 102)');
 
   }));
 
@@ -750,12 +693,7 @@ describe('editor', function() {
     button.dispatchEvent(mousedown);
     tick();
     fixture.detectChanges();
-    var text;
-    if (firefox) {
-      text = editor.querySelector("b");
-    } else {
-      text = editor.querySelector("span");
-    }
+    var text = editor.querySelector("span");
     assert.strictEqual(text, null);
   }));
 

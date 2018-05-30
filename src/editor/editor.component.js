@@ -16,7 +16,6 @@ export class editorComponent {
     this.elementRef = ElementRef;
     this.applicationRef = ApplicationRef;
     this.cdr = ChangeDetectorRef;
-    document.execCommand('styleWithCSS', false);
   }
 
   ngOnChanges() {
@@ -26,6 +25,7 @@ export class editorComponent {
 
   ngAfterViewInit() {
     this._loadToolbar();
+    document.execCommand('styleWithCSS', false, true);
   }
 
   _loadToolbar() {
