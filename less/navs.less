@@ -11,13 +11,14 @@
   padding-left: 0; // Override default ul/ol
   list-style: none;
   &:extend(.clearfix all);
+  padding-left: 12px;
 
   > li {
     position: relative;
     display: block;
 
-    > a,
-    > atlui-dropdown > a {
+    > a {
+      height: @line-height-computed + @nav-link-padding-height*2;
       position: relative;
       display: block;
       padding: @nav-link-padding;
@@ -29,8 +30,7 @@
     }
 
     // Disabled state sets text to gray and nukes hover/tab effects
-    &.disabled > a,
-    &.disabled > atlui-dropdown > a {
+    &.disabled > a {
       color: @nav-disabled-link-color;
 
       &:hover,
@@ -44,8 +44,7 @@
   }
 
   // Open dropdowns
-  .open > a,
-  .open > atlui-dropdown > a {
+  .open > a {
     &,
     &:hover,
     &:focus {
@@ -118,15 +117,39 @@
 // Pills
 // -------------------------
 .nav-pills {
+  > li:first-child > a::before {
+    border-left: solid 1px black;
+  }
   > li {
     float: left;
 
     // Links rendered as pills
     > a {
       border-radius: @nav-pills-border-radius;
-    }
-    + li {
-      margin-left: 2px;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -15px;
+        width: calc(100% + 15px);
+        z-index: -1;
+        height: 100%;
+        border: solid 1px black;
+        border-left: none;
+        @media (min-width: @grid-float-breakpoint) {
+          transform: skewX(-25deg);
+          left: -2px;
+          width: calc(100% + 1px);
+        }
+      }
+      &:hover,
+      &:focus {
+        color: @navbar-default-link-hover-color;
+        background-color: transparent;
+        &::before {
+          background-color: @navbar-default-link-hover-bg;
+        }
+      }
     }
 
     // Active state
@@ -135,7 +158,20 @@
       &:hover,
       &:focus {
         color: @nav-pills-active-link-hover-color;
-        background-color: @nav-pills-active-link-hover-bg;
+        &::before {
+          background-color: @navbar-default-link-active-bg;
+        }
+      }
+    }
+
+    &.disabled > a {
+      &,
+      &:hover,
+      &:focus {
+        color: @navbar-default-link-disabled-color;
+        &::before {
+          background-color: @navbar-default-link-disabled-bg;
+        }
       }
     }
   }
@@ -224,11 +260,20 @@
 
 // Hide tabbable panes to start, show them when `.active`
 .tab-content {
+  overflow-y: auto;
+  min-height: @panel-body-padding + @line-height-computed;
+  position: relative;
   > .tab-pane {
-    display: none;
+    width: 100%;
+    display: block;
+    opacity: 0;
+    z-index: -1;
+    position: absolute;
+    top: 0;
   }
   > .active {
-    display: block;
+    opacity: 1;
+    z-index: 0;
   }
 }
 

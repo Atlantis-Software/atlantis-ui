@@ -1,0 +1,18 @@
+
+<!-- TODO Add padding class -->
+<ul class="nav nav-pills" id="myTab" role="tablist">
+  <li class="nav-item" [class.active]="tabpanel.id === activeId"
+  [class.disabled]="tabpanel.disabled" *ngFor="let tabpanel of tabpanels">
+    <a class="nav-link"
+    (click)="select(tabpanel.id)">
+      <span *ngIf="!tabpanel.headerTemplate">
+        {{tabpanel.headerTitle}}
+      </span>
+      <ng-template [ngTemplateOutlet]="tabpanel.headerTemplate?.templateRef"></ng-template>
+    </a>
+  </li>
+</ul>
+<div class="tab-content panel panel-default" [style.height]="panelHeight">
+  <ng-content>
+  </ng-content>
+</div>

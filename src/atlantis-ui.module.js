@@ -107,6 +107,9 @@ import unlink from './editor/plugins/unlink.plugin.js';
 import fontSize from './editor/plugins/fontSize.plugin.js';
 import fontName from './editor/plugins/fontName.plugin.js';
 
+import tabComponent from './tab.component.js';
+import { tabpanelDirective, tabPanelHeaderDirective } from './tab-panel.component.js';
+
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export class AtlantisUiModule {
@@ -155,7 +158,7 @@ AtlantisUiModule.annotations = [
       agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent,
       inputFileDirective, editorComponent, blockquote, bold, createLink, format, foreColor, indent, insertImage, insertOrderedList, insertUnorderedList,
       italic, justifyLeft, justifyRight, justifyCenter, justifyFull, outdent, redo, removeFormat, selectAll,
-      strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName],
+      strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName, tabComponent, tabpanelDirective, tabPanelHeaderDirective],
     exports: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent,
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
@@ -169,7 +172,7 @@ AtlantisUiModule.annotations = [
       agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent,
       inputFileDirective, editorComponent, blockquote, bold, createLink, format, foreColor, indent, insertImage, insertOrderedList, insertUnorderedList,
       italic, justifyLeft, justifyRight, justifyCenter, justifyFull, outdent, redo, removeFormat, selectAll,
-      strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName],
+      strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName, tabComponent, tabpanelDirective, tabPanelHeaderDirective],
     entryComponents: [tooltipComponent, popoverComponent, backdropComponent, blockquote, bold, createLink, format, foreColor,
       indent, insertImage, insertOrderedList, insertUnorderedList, italic, justifyLeft, justifyRight, justifyCenter,
       justifyFull, outdent, redo, removeFormat, selectAll, strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName]
