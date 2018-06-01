@@ -22,4 +22,14 @@ export default class justifyCenter extends pluginClass {
     this.text = "Justify center";
     this.description = "Centers the selection";
   }
+
+  execCommand(event) {
+    if (this.active) {
+      this.cmd = "justifyLeft";
+      super.execCommand(event);
+      this.cmd = "justifyCenter";
+    } else {
+      super.execCommand(event);
+    }
+  }
 }

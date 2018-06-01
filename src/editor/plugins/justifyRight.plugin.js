@@ -22,4 +22,14 @@ export default class justifyRight extends pluginClass {
     this.text = "Justify right";
     this.description = "Justifies the selection or insertion point to the right.";
   }
+
+  execCommand(event) {
+    if (this.active) {
+      this.cmd = "justifyLeft";
+      super.execCommand(event);
+      this.cmd = "justifyRight";
+    } else {
+      super.execCommand(event);
+    }
+  }
 }
