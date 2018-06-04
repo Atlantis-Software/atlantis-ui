@@ -2,11 +2,11 @@ import { Component, ContentChildren, ElementRef } from '@angular/core';
 import { tabpanelDirective } from './tab-panel.component.js';
 //TODO Add custom scrollbar component
 
-export default class tabComponent {
+export default class tabsComponent {
   static get annotations() {
     return [
       new Component({
-        selector: 'atlui-tab',
+        selector: 'atlui-tabs',
         template: require('./tab.component.html'),
         queries: {
           tabpanels: new ContentChildren(tabpanelDirective)
@@ -64,4 +64,4 @@ export default class tabComponent {
 
 }
 
-tabComponent.parameters = [ElementRef];
+tabsComponent.parameters = [ElementRef];

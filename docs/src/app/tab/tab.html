@@ -5,7 +5,7 @@
   <h3>
     Basic Example
   </h3>
-  <atlui-tab>
+  <atlui-tabs>
     <atlui-tab-panel headerTitle="simple">
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
     </atlui-tab-panel>
@@ -15,9 +15,9 @@
     <atlui-tab-panel headerTitle="Title simple">
       <p>Lorem ipsum</p>
     </atlui-tab-panel>
-  </atlui-tab>
+  </atlui-tabs>
   <textarea class="atlui-code">
-<atlui-tab>
+<atlui-tabs>
   <atlui-tab-panel headerTitle="simple">
     <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
   </atlui-tab-panel>
@@ -27,7 +27,7 @@
   <atlui-tab-panel headerTitle="Title simple">
     <p>Lorem ipsum</p>
   </atlui-tab-panel>
-</atlui-tab>
+</atlui-tabs>
   </textarea>
   <p>
     The inputs headerTitle allow to send a string for tabs title
@@ -36,7 +36,7 @@
   <h3>
     Header template
   </h3>
-  <atlui-tab>
+  <atlui-tabs>
     <atlui-tab-panel headerTitle="simple">
       <ng-template atlui-tab-panel-header>
         <i>Italic</i> title
@@ -52,16 +52,16 @@
       dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum
       iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
     </atlui-tab-panel>
-  </atlui-tab>
+  </atlui-tabs>
   <textarea class="atlui-code">
-<atlui-tab>
+<atlui-tabs>
   <atlui-tab-panel headerTitle="Title simple">
     <ng-template atlui-tab-panel-header>
       <span style="color:red;">Fancy</span> title
     </ng-template>
     <p>Lorem ipsum</p>
   </atlui-tab-panel>
-</atlui-tab>
+</atlui-tabs>
   </textarea>
   <p>
     The ng-template will overflow the headerTitle input
@@ -70,7 +70,7 @@
   <h3>
     Disabled tab
   </h3>
-  <atlui-tab>
+  <atlui-tabs>
     <atlui-tab-panel headerTitle="simple">
       <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
       master cleanse.</p>
@@ -80,19 +80,19 @@
       dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum
       iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
     </atlui-tab-panel>
-  </atlui-tab>
+  </atlui-tabs>
   <textarea class="atlui-code">
-<atlui-tab>
+<atlui-tabs>
   <atlui-tab-panel [disabled]="true" headerTitle="Disabled">
     <p>Lorem ipsum</p>
   </atlui-tab-panel>
-</atlui-tab>
+</atlui-tabs>
   </textarea>
 
   <h3>
     Define size
   </h3>
-  <atlui-tab [panelHeight]="'100px'">
+  <atlui-tabs [panelHeight]="'100px'">
     <atlui-tab-panel headerTitle="simple">
       <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
       master cleanse.</p>
@@ -100,37 +100,13 @@
     <atlui-tab-panel headerTitle="Oversize">
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
     </atlui-tab-panel>
-  </atlui-tab>
+  </atlui-tabs>
   <textarea class="atlui-code">
-<atlui-tab [panelHeight]="'200px'">
+<atlui-tabs [panelHeight]="'200px'">
   ...
-</atlui-tab>
+</atlui-tabs>
   </textarea>
   <p>
     If we don't define height, the widget will take parent height. And if no height is defined, The widget will take the size of the heighter tabs
   </p>
 </div>
-
-<!--
-<atlui-tab>
-  <atlui-tab-panel headerTitle="simple">
-    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-    master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh
-    dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum
-    iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-    master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh
-    dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum
-    iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui</p>
-  </atlui-tab-panel>
-  <atlui-tab-panel headerTitle="test">
-    <ng-template atlui-tab-panel-header>
-      <b>Fancy</b> title
-    </ng-template>
-    <p>Reprehenderit butcher retro keffiyeh
-    dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum
-    iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-  </atlui-tab-panel>
-  <atlui-tab-panel [disabled]="true" headerTitle="disabled">
-    <p>testtttt</p>
-  </atlui-tab-panel>
-</atlui-tab> -->
