@@ -17,8 +17,8 @@
     position: relative;
     display: block;
 
-    > a {
-      height: @line-height-computed + @nav-link-padding-height*2;
+    > a,
+    > atlui-dropdown > a {
       position: relative;
       display: block;
       padding: @nav-link-padding;
@@ -30,7 +30,8 @@
     }
 
     // Disabled state sets text to gray and nukes hover/tab effects
-    &.disabled > a {
+    &.disabled > a,
+    &.disabled > atlui-dropdown > a {
       color: @nav-disabled-link-color;
 
       &:hover,
@@ -44,7 +45,8 @@
   }
 
   // Open dropdowns
-  .open > a {
+  .open > a,
+  .open > atlui-dropdown > a {
     &,
     &:hover,
     &:focus {
@@ -117,39 +119,12 @@
 // Pills
 // -------------------------
 .nav-pills {
-  > li:first-child > a::before {
-    border-left: solid 1px black;
-  }
   > li {
     float: left;
 
     // Links rendered as pills
     > a {
       border-radius: @nav-pills-border-radius;
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -15px;
-        width: calc(100% + 15px);
-        z-index: -1;
-        height: 100%;
-        border: solid 1px black;
-        border-left: none;
-        @media (min-width: @grid-float-breakpoint) {
-          transform: skewX(-25deg);
-          left: -2px;
-          width: calc(100% + 1px);
-        }
-      }
-      &:hover,
-      &:focus {
-        color: @navbar-default-link-hover-color;
-        background-color: transparent;
-        &::before {
-          background-color: @navbar-default-link-hover-bg;
-        }
-      }
     }
 
     // Active state
@@ -260,20 +235,11 @@
 
 // Hide tabbable panes to start, show them when `.active`
 .tab-content {
-  overflow-y: auto;
-  min-height: @panel-body-padding + @line-height-computed;
-  position: relative;
   > .tab-pane {
-    width: 100%;
-    display: block;
-    opacity: 0;
-    z-index: -1;
-    position: absolute;
-    top: 0;
+    display: none;
   }
   > .active {
-    opacity: 1;
-    z-index: 0;
+    display: block;
   }
 }
 
