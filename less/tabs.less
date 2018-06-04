@@ -7,8 +7,11 @@
 // --------------------------------------------------
 
 atlui-tab {
-  .nav > li > a {
-    height: @line-height-computed + @nav-link-padding-vertical*2;
+  .nav {
+    padding-left: 12px;
+    > li > a {
+      height: @line-height-computed + @nav-link-padding-vertical*2;
+    }
   }
 
   .nav-pills {
@@ -42,26 +45,30 @@ atlui-tab {
           }
         }
 
-        &.active > a {
-          &,
-          &:hover,
-          &:focus {
-            &::before {
-              background-color: @navbar-default-link-active-bg;
-            }
+      }
+      &.active > a {
+        &,
+        &:hover,
+        &:focus {
+          background-color: inherit;
+          &::before {
+            background-color: @navbar-default-link-active-bg;
           }
         }
+      }
 
-        &.disabled > a {
-          &,
-          &:hover,
-          &:focus {
-            color: @navbar-default-link-disabled-color;
-            &::before {
-              background-color: @navbar-default-link-disabled-bg;
-            }
+      &.disabled > a {
+        &,
+        &:hover,
+        &:focus {
+          color: @navbar-default-link-disabled-color;
+          &::before {
+            background-color: @navbar-default-link-disabled-bg;
           }
         }
+      }
+      + li {
+        margin-left: inherit;
       }
     }
   }
