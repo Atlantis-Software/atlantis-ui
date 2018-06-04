@@ -36,8 +36,6 @@ export class tabpanelDirective {
     this._active = active;
   }
 
-  ngAfterContentChecked() {
-  }
 }
 
 tabpanelDirective.parameters = [];
