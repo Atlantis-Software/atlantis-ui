@@ -37,16 +37,16 @@
     Header template
   </h3>
   <atlui-tabs>
-    <atlui-tab-panel [title]="simple">
+    <atlui-tab-panel [title]="'simple'">
       <ng-template atlui-tab-panel-header>
         <i>Italic</i> title
       </ng-template>
       <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
       master cleanse.</p>
     </atlui-tab-panel>
-    <atlui-tab-panel [title]="Title">
+    <atlui-tab-panel [title]="'Title'">
       <ng-template atlui-tab-panel-header>
-        <span style="color:blue;">Fancy</span> title
+        <span style="color:red;">Fancy</span> title
       </ng-template>
       <p>Reprehenderit butcher retro keffiyeh
       dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum
@@ -55,7 +55,7 @@
   </atlui-tabs>
   <textarea class="atlui-code">
 <atlui-tabs>
-  <atlui-tab-panel [title]="Title simple">
+  <atlui-tab-panel [title]="'Title simple'">
     <ng-template atlui-tab-panel-header>
       <span style="color:red;">Fancy</span> title
     </ng-template>
@@ -71,11 +71,11 @@
     Disabled tab
   </h3>
   <atlui-tabs>
-    <atlui-tab-panel [title]="simple">
+    <atlui-tab-panel [title]="'simple'">
       <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
       master cleanse.</p>
     </atlui-tab-panel>
-    <atlui-tab-panel [disabled]="true" [title]="Disabled">
+    <atlui-tab-panel [disabled]="true" [title]="'Disabled'">
       <p>Reprehenderit butcher retro keffiyeh
       dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum
       iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
@@ -83,7 +83,7 @@
   </atlui-tabs>
   <textarea class="atlui-code">
 <atlui-tabs>
-  <atlui-tab-panel [disabled]="true" [title]="Disabled">
+  <atlui-tab-panel [disabled]="true" [title]="'Disabled'">
     <p>Lorem ipsum</p>
   </atlui-tab-panel>
 </atlui-tabs>
@@ -93,11 +93,11 @@
     Define size
   </h3>
   <atlui-tabs [panelHeight]="'100px'">
-    <atlui-tab-panel [title]="simple">
+    <atlui-tab-panel [title]="'simple'">
       <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
       master cleanse.</p>
     </atlui-tab-panel>
-    <atlui-tab-panel [title]="Oversize">
+    <atlui-tab-panel [title]="'Oversize'">
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
     </atlui-tab-panel>
   </atlui-tabs>
