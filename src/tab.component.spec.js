@@ -16,7 +16,7 @@ class tabTestComponent {
       new Component({
         template: `
         <atlui-tabs id="tab1">
-          <atlui-tab-panel headerTitle="simple">
+          <atlui-tab-panel title="simple">
             <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p><button class="btn btn-default">My button</button>
           </atlui-tab-panel>
           <atlui-tab-panel>
@@ -25,18 +25,18 @@ class tabTestComponent {
             </ng-template>
             <p>Lorem ipsum</p>
           </atlui-tab-panel>
-          <atlui-tab-panel headerTitle="Title simple">
+          <atlui-tab-panel title="Title simple">
             <ng-template atlui-tab-panel-header>
               <span style="color:red">Fancy</span> title
             </ng-template>
             <p>Lorem ipsum</p>
           </atlui-tab-panel>
-          <atlui-tab-panel [disabled]="true" headerTitle="Disabled">
+          <atlui-tab-panel [disabled]="true" title="Disabled">
             <p>Lorem ipsum</p>
           </atlui-tab-panel>
         </atlui-tabs>
         <atlui-tabs id="tabOversize" [panelHeight]="'100px'">
-          <atlui-tab-panel headerTitle="Disabled">
+          <atlui-tab-panel title="Disabled">
             <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
             <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
             <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
@@ -48,7 +48,7 @@ class tabTestComponent {
         </atlui-tabs>
         <div style="height:50px;">
           <atlui-tabs id="tabWithSize">
-            <atlui-tab-panel headerTitle="Disabled">
+            <atlui-tab-panel title="Disabled">
               <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
               <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
               <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>

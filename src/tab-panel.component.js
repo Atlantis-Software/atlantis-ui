@@ -7,7 +7,7 @@ export class tabpanelDirective {
     return [
       new Directive({
         selector: 'atlui-tab-panel',
-        inputs : ['headerTitle', 'disabled', 'id', 'active'],
+        inputs : ['title', 'disabled', 'id', 'active'],
         queries: {
           headerTemplate: new ContentChild(tabPanelHeaderDirective),
         },

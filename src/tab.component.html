@@ -6,7 +6,7 @@
     <a class="nav-link"
     (click)="select(tabpanel.id)">
       <span *ngIf="!tabpanel.headerTemplate">
-        {{tabpanel.headerTitle}}
+        {{tabpanel.title}}
       </span>
       <ng-template [ngTemplateOutlet]="tabpanel.headerTemplate?.templateRef"></ng-template>
     </a>
