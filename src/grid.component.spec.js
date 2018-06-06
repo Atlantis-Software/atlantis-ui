@@ -55,7 +55,7 @@ class gridTestComponent {
     return [
       new Component({
         template: `
-        <atlui-grid class="table table-bordered" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
+        <atlui-grid class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
 
         </atlui-grid>`
       })

@@ -2,7 +2,8 @@ import {
   Component,
   ElementRef,
   Injector,
-  EventEmitter
+  EventEmitter,
+  ChangeDetectorRef
 } from '@angular/core';
 import {
   gridConfig
@@ -16,22 +17,30 @@ export default class gridComponent {
         template: `
         <atlui-grid-header class="gridHeader" [columns]="columns" [pipes]="pipes" (sort)="sort.emit($event)">
         </atlui-grid-header>
-        <atlui-grid-body class="gridBody" [types]="types" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected" (selectedRows)="onSelect($event)">
+        <atlui-grid-body class="gridBody" [types]="types" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected"
+          [multiple]='multiple' (selectedRows)="onSelect($event)">
         </atlui-grid-body>
         <atlui-grid-footer class="gridFooter" *ngIf="config.footer !=='none'" [columns]="columns">
         </atlui-grid-footer>`,
-        inputs: ['columns', 'rows', 'config', 'selected'],
-        outputs: ['selectedRows', 'sort']
+        inputs: ['columns', 'rows', 'config', 'selected', 'multiple', 'headerFixed'],
+        outputs: ['selectedRows', 'sort'],
+        host: {
+          "[class.table-fixed]": "headerFixed"
+        }
       })
     ];
   }
 
-  constructor(elementRef, gridConfig, injector) {
+  constructor(elementRef, gridConfig, injector, cdr) {
     var self = this;
+    this.elementRef = elementRef;
+    this.cdr = cdr;
+    this.multiple = false;
     this.config = {};
     this.injector = injector;
     this.pipes = [];
     this.types = gridConfig;
+    this.headerFixed = false;
     this.selectedRows = new EventEmitter();
     this.sort = new EventEmitter();
     if (this.types) {
@@ -86,6 +95,31 @@ export default class gridComponent {
   onSelect(row) {
     this.selectedRows.emit(row);
   }
+
+  ngAfterViewInit() {
+    if (!this.headerFixed) {
+      return;
+    }
+    var rowStyle = window.getComputedStyle(this.elementRef.nativeElement.querySelector("atlui-grid-body .gridRow"), null);
+
+    var rowWidth = parseInt(rowStyle.getPropertyValue("width"));
+    var widthRemaining = rowWidth;
+    var columnWithoutWidth = 0;
+    this.columns.forEach((column)=> {
+      if (column.width && column.width !== "auto") {
+        widthRemaining -= parseInt(column.width);
+      } else {
+        columnWithoutWidth++;
+      }
+    });
+
+    this.columns.forEach((column)=> {
+      if (!column.width || column.width === "auto") {
+        column.width = (widthRemaining / columnWithoutWidth) + "px";
+      }
+    });
+    this.cdr.detectChanges();
+  }
 }
 
-gridComponent.parameters = [ElementRef, gridConfig, Injector];
+gridComponent.parameters = [ElementRef, gridConfig, Injector, ChangeDetectorRef];

@@ -62,4 +62,44 @@ atlui-grid {
       display: table-cell;
     }
   }
+
+  &.table-fixed {
+    .gridHeader {
+      display: inline-block;
+      width: 100%;
+      >.gridRow > .gridHead {
+        border-bottom-width: 0;
+        float: left;
+      }
+      .gridRow {
+        display: flex;
+        background: linear-gradient(lighten(@table-header-bg, 25%), @table-header-bg);
+        &::after {
+          content: "";
+          overflow-y: scroll;
+          height: 0;
+          visibility: hidden;
+        }
+        .gridHead{
+          display: inline-block;
+        }
+      }
+    }
+    .gridBody {
+      display: block;
+      width: 100%;
+      overflow-y: scroll;
+      .gridRow {
+        width: 100%;
+        td,
+        .gridCell {
+          border-bottom-width: 0;
+          display: inline-block;
+        }
+      }
+    }
+    .gridRow {
+      display: inline-block;
+    }
+  }
 }

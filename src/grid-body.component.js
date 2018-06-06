@@ -9,21 +9,37 @@ export default class gridBodyComponent {
       new Component({
         selector: 'atlui-grid-body',
         template: `
-        <div *ngFor="let row of rows; let i = index" (click)="!changingCellContent && selectRow(row, $event, i)" [class.active]='!changingCellContent && selected.includes(row)' class="gridRow">
-          <div *ngFor="let column of columns; let y = index" class="gridCell" [class.changeContent]="changingCellContent === i + '' + y" [class.errorContent]="errorCellContent === i + '' + y" [ngClass]="column.class" [attr.align]="column.alignment" [style.verticalAlign]="column.vertical_alignment" (dblclick)="!changingCellContent && modifyContent($event, i, y)">
-            <input class="grid-input-change form-control" [ngModel]="row[column.label]" *ngIf="changingCellContent === i + '' + y" (blur)="modifyContent($event, i, y, true)" (keyup.enter)="modifyContent($event, i, y, true)" focus/>
-            <label class="grid-label-error" *ngIf="errorCellContent === i + '' + y" (click)="resetContent($event, i, y)"></label>
-            <atlui-grid-cell [content]="row[column.label]" [type]="column.type" [pipes]="pipes" *ngIf="changingCellContent !== i + '' + y">
+        <div class="gridRow"
+          *ngFor="let row of rows; let i = index"
+          (click)="!changingCellContent && selectRow(row, $event, i)"
+          [class.active]='!changingCellContent && selected.includes(row)'>
+          <div class="gridCell"
+            *ngFor="let column of columns; let y = index"
+            [class.changeContent]="changingCellContent === i + '' + y"
+            [class.errorContent]="errorCellContent === i + '' + y"
+            [ngClass]="column.class"
+            [attr.align]="column.alignment"
+            [style.verticalAlign]="column.vertical_alignment"
+            [style.width]="column.width"
+            (dblclick)="!changingCellContent && modifyContent($event, i, y)">
+            <input class="grid-input-change form-control"
+              *ngIf="changingCellContent === i + '' + y"
+              [ngModel]="row[column.label]"
+              (blur)="modifyContent($event, i, y, true)"
+              (keyup.enter)="modifyContent($event, i, y, true)"
+              focus/>
+            <label class="grid-label-error"
+              *ngIf="errorCellContent === i + '' + y"
+              (click)="resetContent($event, i, y)"></label>
+            <atlui-grid-cell
+              *ngIf="changingCellContent !== i + '' + y"
+              [content]="row[column.label]"
+              [type]="column.type"
+              [pipes]="pipes">
             </atlui-grid-cell>
           </div>
         </div>`,
-        inputs: [
-          'columns',
-          'rows',
-          'pipes',
-          'selected',
-          'types'
-        ],
+        inputs: ['columns', 'rows', 'pipes', 'selected', 'types', 'multiple'],
         outputs: ['selectedRows']
       })
     ];
@@ -33,6 +49,7 @@ export default class gridBodyComponent {
     this.selectedRows = new EventEmitter();
     this.previousSelectedIndex;
     this.isEditable = false;
+    this.multiple = false;
   }
 
   //Function launch when we select different row
@@ -41,7 +58,10 @@ export default class gridBodyComponent {
       return;
     }
     var selected = Array.from(this.selected);
-    if (e.ctrlKey) {
+    if (!this.multiple) {
+      selected = [];
+      selected.push(row);
+    } else if (e.ctrlKey) {
       var index = selected.indexOf(row);
       if (index > -1) {
         selected.splice(index, 1);

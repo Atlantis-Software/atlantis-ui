@@ -121,6 +121,13 @@ th, .gridHead {
       > .gridHead {
         border: 1px solid @table-border-color;
       }
+
+    }
+    > .grid-row:last-child {
+      > .gridCell,
+      > .gridHead {
+        border-right: 0px
+      }
     }
   }
   > thead > tr,
@@ -289,76 +296,3 @@ table, grid {
     }
   }
 }
-
-.table-fixed {
-  thead {
-    display: inline-block;
-    width: 100%;
-    > tr > th {
-      border-bottom-width: 0;
-      float: left;
-    }
-    tr {
-      display: flex;
-      background: linear-gradient(lighten(@table-header-bg, 25%), @table-header-bg);
-      &::after {
-        content: "";
-        overflow-y: scroll;
-        height: 0;
-        visibility: hidden;
-      }
-      th {
-        display: inline-block;
-      }
-    }
-  }
-  tbody {
-    display: inline-block;
-    width: 100%;
-    overflow-y: scroll;
-    tr {
-      width: 100%;
-      td {
-        float: left;
-        border-bottom-width: 0;
-        display: inline-block;
-      }
-    }
-  }
-  tr {
-    display: inline-block;
-  }
-}
-
-// .table-fixed thead {
-//   width: 100%;
-// }
-//
-// .table-fixed tbody {
-//   height: 562px;
-//   overflow-y: auto;
-//   width: 100%;
-// }
-
-// .table-fixed thead tr{
-//   display: flex;
-//   &::after {
-//     content: "";
-//     overflow-y: scroll;
-//     height: 0;
-//     visibility: hidden;
-//   }
-// }
-
-// .table-fixed tr{
-//   width: 100%;
-// }
-//
-// .table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th{
-//   display: inline-block;
-// }
-
-// .table-fixed tbody td, .table-fixed thead > tr> th{
-//   float: left;
-//   border-bottom-width: 0;
-// }
