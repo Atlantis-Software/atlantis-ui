@@ -55,6 +55,7 @@ import DraggableComponent from './draggable/draggable.component.js';
 
 import EditorComponent from './editor/editor.component.js';
 
+import TabComponent from './tab/tab.component.js';
 import ColorsComponent from './colors/colors.component.js';
 
 import { AtlantisUiModule } from 'atlantis-ui';
@@ -134,6 +135,7 @@ AppModule.annotations = [
       DialogComponent,
       AgendaComponent,
       EditorComponent,
+      TabComponent,
       ColorsComponent
     ],
     imports: [
