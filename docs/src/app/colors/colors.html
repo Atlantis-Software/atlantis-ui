@@ -40,5 +40,93 @@
 <p class="bg-danger">...</p>
 <p class="bg-inverse">...</p>
   </textarea>
-
+  <h2>
+    Margin and padding helper class
+  </h2>
+  <p>
+    We can add margin and padding with specific css classes.
+  </p>
+  <p>
+    The classes are name using a specific format <code>{{ "{property}{sides}-{size}" }}</code>
+  </p>
+  <p>
+    Where <i>property</i> is one of :
+  </p>
+  <ul>
+    <li>
+      <code>m</code> - for classes that set margin
+    </li>
+    <li>
+      <code>p</code> - for classes that set padding
+    </li>
+  </ul>
+  <p>
+    Where <i>sides</i> is one of:
+  </p>
+  <ul>
+    <li>
+      <code>t</code> - for classes that set margin-top or padding-top
+    </li>
+    <li>
+      <code>b</code> - for classes that set margin-bottom or padding-bottom
+    </li>
+    <li>
+      <code>l</code> - for classes that set margin-left or padding-left
+    </li>
+    <li>
+      <code>r</code> - for classes that set margin-right or padding-right
+    </li>
+    <li>
+      <code>x</code> - for classes that set both *-left and *-right
+    </li>
+    <li>
+      <code>y</code> - for classes that set both *-top and *-bottom
+    </li>
+    <li>
+      blank - for classes that set a margin or padding on all 4 sides of the element
+    </li>
+  </ul>
+  <p>
+    where <i>size</i> is one of:
+  </p>
+  <ul>
+    <li>
+      <code>0</code> - for classes that eliminate the margin and padding
+    </li>
+    <li>
+      <code>1</code> - for classes that set the margin or padding to 10px*0.25
+    </li>
+    <li>
+      <code>2</code> - for classes that set the margin or padding to 10px*0.5
+    </li>
+    <li>
+      <code>3</code> - for classes that set the margin or padding to 10px
+    </li>
+    <li>
+      <code>4</code> - for classes that set the margin or padding to 10px*1.5
+    </li>
+    <li>
+      <code>5</code> - for classes that set the margin or padding to 10px*3
+    </li>
+  </ul>
+  <h2>
+    text helper class
+  </h2>
+  <h3>
+    Different text size
+  </h3>
+  <div class="form-group">
+    <p class="text-5x">Lorem Ipsum</p>
+    <p class="text-4x">Lorem Ipsum</p>
+    <p class="text-3x">Lorem Ipsum</p>
+    <p class="text-2x">Lorem Ipsum</p>
+    <p class="text-1x">Lorem Ipsum</p>
+  </div>
+  <textarea class="atlui-code">
+<p class="text-5x">51px</p>
+<p class="text-4x">46px</p>
+<p class="text-3x">32px</p>
+<p class="text-2x">18px</p>
+<p class="text-1x">14px</p>
+  </textarea>
 </div>
