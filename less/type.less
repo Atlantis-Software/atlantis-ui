@@ -134,23 +134,27 @@ mark,
   // Given the contrast here, this is the only class to have its color inverted
   // automatically.
   color: #fff;
-  .bg-variant(@brand-primary);
+  .bg-variant(darken(@brand-primary, 10%));
 }
 .bg-success {
-  .bg-variant(@state-success-bg);
+  color: #fff;
+  .bg-variant(@contextual-success-bg);
 }
 .bg-info {
-  .bg-variant(@state-info-bg);
+  color: #fff;
+  .bg-variant(@contextual-info-bg);
 }
 .bg-warning {
-  .bg-variant(@state-warning-bg);
+  color: #fff;
+  .bg-variant(@contextual-warning-bg);
 }
 .bg-danger {
-  .bg-variant(@state-danger-bg);
+  color: #fff;
+  .bg-variant(@contextual-danger-bg);
 }
 .bg-inverse {
   color: #fff;
-  .bg-variant(@state-inverse-bg);
+  .bg-variant(@contextual-inverse-bg);
 }
 
 

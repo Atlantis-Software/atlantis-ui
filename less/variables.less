@@ -31,9 +31,9 @@
 
 
 @brand-primary:         @primary;
-@brand-info:            @secondary;
-@brand-success:         #5cb85c;
-@brand-warning:         #f0ad4e;
+@brand-info:            #006bbe;
+@brand-success:         #27a600;
+@brand-warning:         #cc5500;
 @brand-danger:          @error;
 
 
@@ -623,9 +623,23 @@
 @state-danger-bg:                #f2dede;
 @state-danger-border:            darken(spin(@state-danger-bg, -10), 5%);
 
-@state-inverse-text:            lighten(@gray-light, 15%);
+@state-inverse-text:             lighten(@gray-light, 15%);
 @state-inverse-bg:               #222;
 @state-inverse-border:           darken(@navbar-inverse-bg, 10%);
+
+//== Background colors
+//
+//## Define  colors for background contextual class
+
+@contextual-success-bg:           @brand-success;
+
+@contextual-info-bg:              @brand-info;
+
+@contextual-warning-bg:           @brand-warning;
+
+@contextual-danger-bg:            darken(spin(@brand-danger, 5), 10%);
+
+@contextual-inverse-bg:           #222;
 
 //== Tooltips
 //
