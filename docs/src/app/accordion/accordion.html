@@ -123,13 +123,44 @@
   <p>
     By default the first accordion-panel with open attribute will be open
   </p>
+  <h3>
+    Example with custom header
+  </h3>
+  <div class="row container-fluid form-group">
+    <atlui-accordion>
+      <atlui-accordion-panel [title]="'test1'">
+        <ng-template atlui-accordion-panel-header>
+          <span style="color:red;">Fancy</span> title
+        </ng-template>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      </atlui-accordion-panel>
+      <atlui-accordion-panel [title]="'test2'">
+        <ng-template atlui-accordion-panel-header>
+          <span style="color:blue;">Fancy</span> title
+        </ng-template>
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+      </atlui-accordion-panel>
+    </atlui-accordion>
+  </div>
+
+  <textarea class="atlui-code">
+<atlui-accordion panelStyle="style">
+  <atlui-accordion-panel>
+    <ng-template atlui-accordion-panel-header>
+      <span style="color:blue;">Fancy</span> title
+    </ng-template>
+    ...
+  </atlui-accordion-panel>
+  ...
+</atlui-accordion>
+  </textarea>
 
   <h3>
     Example with different style
   </h3>
   <div class="row container-fluid form-group">
     <atlui-accordion panelStyle="primary">
-      <atlui-accordion-panel [title]="'test1'">
+      <atlui-accordion-panel [title]="'primary'">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
       </atlui-accordion-panel>
       <atlui-accordion-panel [title]="'test2'">
@@ -139,7 +170,7 @@
   </div>
   <div class="row container-fluid form-group">
     <atlui-accordion panelStyle="success">
-      <atlui-accordion-panel [title]="'test1'">
+      <atlui-accordion-panel [title]="'success'">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
       </atlui-accordion-panel>
       <atlui-accordion-panel [title]="'test2'">
@@ -149,7 +180,7 @@
   </div>
   <div class="row container-fluid form-group">
     <atlui-accordion panelStyle="info">
-      <atlui-accordion-panel [title]="'test1'">
+      <atlui-accordion-panel [title]="'info'">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
       </atlui-accordion-panel>
       <atlui-accordion-panel [title]="'test2'">
@@ -159,7 +190,7 @@
   </div>
   <div class="row container-fluid form-group">
     <atlui-accordion panelStyle="warning">
-      <atlui-accordion-panel [title]="'test1'">
+      <atlui-accordion-panel [title]="'warning'">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
       </atlui-accordion-panel>
       <atlui-accordion-panel [title]="'test2'">
@@ -169,7 +200,7 @@
   </div>
   <div class="row container-fluid form-group">
     <atlui-accordion panelStyle="danger">
-      <atlui-accordion-panel [title]="'test1'">
+      <atlui-accordion-panel [title]="'danger'">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
       </atlui-accordion-panel>
       <atlui-accordion-panel [title]="'test2'">
@@ -177,6 +208,12 @@
       </atlui-accordion-panel>
     </atlui-accordion>
   </div>
+
+  <textarea class="atlui-code">
+<atlui-accordion panelStyle="style">
+  ...
+</atlui-accordion>
+  </textarea>
 
   <h3>
     Example with ngFor
@@ -190,7 +227,7 @@
   </div>
 
   <textarea class="atlui-code">
-<atlui-accordion [style]="danger">
+<atlui-accordion>
   <atlui-accordion-panel *ngFor="let panel of panels" [title]="panel.title">
     panel.content
   </atlui-accordion-panel>

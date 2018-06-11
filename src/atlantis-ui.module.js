@@ -36,7 +36,7 @@ import treeNodeComponent from './tree-node.component.js';
 
 import { carouselComponent, carouselItemComponent } from './carousel.component.js';
 
-import { accordionComponent, accordionPanelComponent } from './accordion.component.js';
+import { accordionComponent, accordionPanelComponent, accordionPanelHeaderDirective } from './accordion.component.js';
 
 import dropdownComponent from './dropdown.component.js';
 import dropdownOptionComponent from './dropdown-option.component.js';
@@ -148,7 +148,7 @@ AtlantisUiModule.annotations = [
     declarations: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent,
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
-      carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent,
+      carouselItemComponent, accordionComponent, accordionPanelComponent, accordionPanelHeaderDirective, dropdownComponent, dropdownOptionComponent,
       dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, gridComponent,
       gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent,
       popoverComponent, popoverDirective, tooltipComponent, tooltipDirective, backdropComponent, sortableContainer,
@@ -162,7 +162,7 @@ AtlantisUiModule.annotations = [
     exports: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent,
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
-      carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent,
+      carouselItemComponent, accordionComponent, accordionPanelComponent, accordionPanelHeaderDirective, dropdownComponent, dropdownOptionComponent,
       dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, gridComponent,
       gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent,
       popoverComponent, popoverDirective, tooltipComponent, tooltipDirective, backdropComponent, sortableContainer,

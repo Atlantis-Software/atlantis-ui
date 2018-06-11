@@ -6,12 +6,12 @@
     Example :
   </h3>
   <div class="row">
-    <atlui-grid class="table table-bordered" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)"></atlui-grid>
+    <atlui-grid class="table table-bordered" [headerFixed]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)"></atlui-grid>
   </div>
   <h4>
     Html :
   </h4>
-  <textarea>
+  <textarea class="atlui-code">
 <atlui-grid class="table table-bordered" [columns]= "columns" [rows]= "rows"
   (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
 </atlui-grid>
