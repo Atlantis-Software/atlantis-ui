@@ -64,7 +64,7 @@ class tabTestComponent {
   }
 }
 
-describe('accordion', function() {
+describe('tabs', function() {
   var fixture;
   beforeEach(async(function() {
     TestBed.configureTestingModule({
