@@ -1,6 +1,5 @@
 import {
   Component,
-  ElementRef,
   Injector
 } from '@angular/core';
 
@@ -18,8 +17,9 @@ export default class gridCellHeaderComponent {
     ];
   }
 
-  constructor(elementRef, injector) {
+  constructor(injector) {
     this.injector = injector;
+    this.ctx = {};
   }
 
   ngOnInit() {
@@ -61,4 +61,4 @@ export default class gridCellHeaderComponent {
 
 }
 
-gridCellHeaderComponent.parameters = [ElementRef, Injector];
+gridCellHeaderComponent.parameters = [Injector];
