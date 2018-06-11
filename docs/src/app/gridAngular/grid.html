@@ -8,7 +8,7 @@
   <div class="row">
     <atlui-grid class="table table-bordered" [headerFixed]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
       <ng-template atlui-grid-cell-header let-columnName>
-        <span>{{columnName | uppercase}}</span>
+        <span>{{ columnName | uppercase }}</span>
       </ng-template>
     </atlui-grid>
   </div>

@@ -15,7 +15,7 @@ export default class gridHeaderComponent {
             [ngClass]="column.class"
             [class.sortable]="column.isSortable"
             [style.width]="column.width" (click)="onSort(column, i)">
-            <atlui-grid-cell-header [content]="column.label" [headerTemplate]="headerTemplate" [pipes]="pipes" [sortingClass]="column.sortingClass">
+            <atlui-grid-cell-header [content]="column.columnName || column.label" [headerTemplate]="headerTemplate" [pipes]="pipes" [sortingClass]="column.sortingClass">
             </atlui-grid-cell-header>
           </div>
         </div>`,
