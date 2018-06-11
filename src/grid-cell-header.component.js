@@ -10,9 +10,10 @@ export default class gridCellHeaderComponent {
       new Component({
         selector: 'atlui-grid-cell-header',
         template: `
-        <span>{{content}}</span>
+        <ng-container *ngTemplateOutlet="headerTemplate?.templateRef; context:ctx"></ng-container>
+        <span *ngIf="!headerTemplate?.templateRef">{{content}}</span>
         <span [class]="sortingClass"></span>`,
-        inputs: ['content', 'pipes', 'sortingClass']
+        inputs: ['content', 'pipes', 'sortingClass', 'headerTemplate']
       })
     ];
   }
@@ -45,6 +46,16 @@ export default class gridCellHeaderComponent {
           self.content = self.pipes[index].pipeInjected.transform.apply(self.pipes[index].pipeInjected, args);
         }
       }
+    }
+  }
+
+  ngAfterViewInit() {
+    this.ctx = {$implicit: this.content};
+  }
+
+  ngOnChanges() {
+    if (this.ctx) {
+      this.ctx.$implicit = this.content;
     }
   }
 

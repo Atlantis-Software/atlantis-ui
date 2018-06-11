@@ -3,19 +3,22 @@ import {
   ElementRef,
   Injector,
   EventEmitter,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  TemplateRef,
+  Directive,
+  ContentChild
 } from '@angular/core';
 import {
   gridConfig
 } from './grid.config.js';
 
-export default class gridComponent {
+export class gridComponent {
   static get annotations() {
     return [
       new Component({
         selector: 'atlui-grid',
         template: `
-        <atlui-grid-header class="gridHeader" [columns]="columns" [pipes]="pipes" (sort)="sort.emit($event)">
+        <atlui-grid-header class="gridHeader" [headerTemplate]="headerTemplate" [columns]="columns" [pipes]="pipes" (sort)="sort.emit($event)">
         </atlui-grid-header>
         <atlui-grid-body class="gridBody" [types]="types" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected"
           [multiple]='multiple' (selectedRows)="onSelect($event)">
@@ -26,6 +29,9 @@ export default class gridComponent {
         outputs: ['selectedRows', 'sort'],
         host: {
           "[class.table-fixed]": "headerFixed"
+        },
+        queries: {
+          headerTemplate: new ContentChild(gridCellHeaderTemplate),
         }
       })
     ];
@@ -33,6 +39,7 @@ export default class gridComponent {
 
   constructor(elementRef, gridConfig, injector, cdr) {
     var self = this;
+    this.headerTemplate = null;
     this.elementRef = elementRef;
     this.cdr = cdr;
     this.multiple = false;
@@ -123,3 +130,18 @@ export default class gridComponent {
 }
 
 gridComponent.parameters = [ElementRef, gridConfig, Injector, ChangeDetectorRef];
+
+export class gridCellHeaderTemplate {
+  static get annotations() {
+    return [
+      new Directive({
+        selector: 'ng-template[atlui-grid-cell-header]',
+      })
+    ];
+  }
+  constructor(TemplateRef) {
+    this.templateRef = TemplateRef;
+  }
+}
+
+gridCellHeaderTemplate.parameters = [TemplateRef];
