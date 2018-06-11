@@ -23,7 +23,7 @@ import dialogComponent from './dialog.component.js';
 
 import { dialogService, dialogServiceFactory } from './dialog.service.js';
 
-import gridComponent from './grid.component.js';
+import { gridComponent, gridCellHeaderTemplate } from './grid.component.js';
 import gridHeaderComponent from './grid-header.component.js';
 import gridBodyComponent from './grid-body.component.js';
 import gridFooterComponent from './grid-footer.component.js';
@@ -149,7 +149,7 @@ AtlantisUiModule.annotations = [
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
       carouselItemComponent, accordionComponent, accordionPanelComponent, accordionPanelHeaderDirective, dropdownComponent, dropdownOptionComponent,
-      dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, gridComponent,
+      dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, gridComponent, gridCellHeaderTemplate,
       gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent,
       popoverComponent, popoverDirective, tooltipComponent, tooltipDirective, backdropComponent, sortableContainer,
       sortableComponents, treeComponent, treeNodeComponent, sortableHandler, draggableDirective, draggableHandleDirective,
@@ -163,7 +163,7 @@ AtlantisUiModule.annotations = [
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
       carouselItemComponent, accordionComponent, accordionPanelComponent, accordionPanelHeaderDirective, dropdownComponent, dropdownOptionComponent,
-      dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, gridComponent,
+      dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, gridComponent, gridCellHeaderTemplate,
       gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent,
       popoverComponent, popoverDirective, tooltipComponent, tooltipDirective, backdropComponent, sortableContainer,
       sortableComponents, sortableHandler, treeComponent, treeNodeComponent, draggableDirective, draggableHandleDirective,

@@ -6,19 +6,30 @@
     Example :
   </h3>
   <div class="row">
-    <atlui-grid class="table table-bordered" [headerFixed]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)"></atlui-grid>
+    <atlui-grid class="table table-bordered" [headerFixed]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
+      <ng-template atlui-grid-cell-header let-columnName>
+        <span>{{ columnName | uppercase }}</span>
+      </ng-template>
+    </atlui-grid>
   </div>
   <h4>
     Html :
   </h4>
   <textarea class="atlui-code">
-<atlui-grid class="table table-bordered" [columns]= "columns" [rows]= "rows"
-  (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
+<atlui-grid class="table table-bordered" [headerFixed]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
+  <ng-template atlui-grid-cell-header let-columnName>
+    <span>{{columnName | uppercase}}</span>
+  </ng-template>
 </atlui-grid>
   </textarea>
   <blockquote>
     <p>
       A grid component is like a table so we can use class like table
+    </p>
+  </blockquote>
+  <blockquote>
+    <p>
+      The ng template atlui-grid-cell-header allow to send custom template for column header
     </p>
   </blockquote>
 
@@ -93,6 +104,17 @@
         </td>
         <td>
           Collect all the sort we define in widget, when we click on a column, this update the $event value
+        </td>
+      </tr>
+      <tr>
+        <td>
+          headerFixed
+        </td>
+        <td>
+          Boolean
+        </td>
+        <td>
+          Define if we use fixed header table or not
         </td>
       </tr>
     </tbody>
