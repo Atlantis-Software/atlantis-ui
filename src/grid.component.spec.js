@@ -55,8 +55,13 @@ class gridTestComponent {
     return [
       new Component({
         template: `
-        <atlui-grid class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
+        <atlui-grid id="grid" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
 
+        </atlui-grid>
+        <atlui-grid id="templateHeader" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
+          <ng-template atlui-grid-cell-header let-columnName>
+            <span style="color:red;">{{columnName | uppercase}}</span>
+          </ng-template>
         </atlui-grid>`
       })
     ];
@@ -220,7 +225,7 @@ describe('grid', function() {
     fixture.detectChanges();
 
     gridComponent = fixture.componentInstance;
-    var columns = document.querySelectorAll('.gridHead');
+    var columns = document.querySelectorAll('#grid .gridHead');
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
 
     assert.strictEqual(columns.length, 5);
@@ -240,6 +245,8 @@ describe('grid', function() {
       });
     });
 
+    var gridCustomeHeader = document.querySelector('#templateHeader .gridRow .gridHead span');
+    assert.strictEqual(gridCustomeHeader.style.color, "red");
   }));
 
   it('should render selected value when click on row', fakeAsync(() => {
@@ -364,7 +371,7 @@ describe('grid', function() {
     fixture.detectChanges();
 
     gridComponent = fixture.componentInstance;
-    var columns = document.querySelectorAll('.gridHead');
+    var columns = document.querySelectorAll('#grid .gridHead');
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
 
     assert.strictEqual(columns.length, 5);
@@ -416,7 +423,7 @@ describe('grid', function() {
     fixture.detectChanges();
 
     gridComponent = fixture.componentInstance;
-    var columns = document.querySelectorAll('.gridHead');
+    var columns = document.querySelectorAll('#grid .gridHead');
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
 
     assert.strictEqual(columns.length, 5);
@@ -468,7 +475,7 @@ describe('grid', function() {
     fixture.detectChanges();
 
     gridComponent = fixture.componentInstance;
-    var columns = document.querySelectorAll('.gridHead');
+    var columns = document.querySelectorAll('#grid .gridHead');
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
 
     assert.strictEqual(columns.length, 5);
@@ -520,7 +527,7 @@ describe('grid', function() {
     fixture.detectChanges();
 
     gridComponent = fixture.componentInstance;
-    var columns = document.querySelectorAll('.gridHead');
+    var columns = document.querySelectorAll('#grid .gridHead');
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
 
     assert.strictEqual(columns.length, 5);
