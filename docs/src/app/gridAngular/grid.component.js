@@ -72,7 +72,6 @@ export default  class GridAngularComponent {
 
     this.rows = [...this.originalRows];`;
 
-    this.gridColumns = `
     this.columns= [
       {
         label:"test",
@@ -80,37 +79,7 @@ export default  class GridAngularComponent {
       },
       {
         label:"testNumber",
-        width: "150px",
-        type: "number",
-        isSortable: true,
-        isEditable: true
-      },
-      {
-        label:"testText",
-        isSortable: true,
-        isEditable: true
-      },
-      {
-        label:"testDate",
-        type: 'date',
-        isSortable: true,
-        isEditable: true
-      },
-      {
-        label:"testBoolean",
-        type: 'boolean',
-        isEditable: true
-      }
-    ];`;
-
-    this.columns= [
-      {
-        label:"test",
-        alignment: "center"
-      },
-      {
-        label:"testNumber",
-        width: "150px",
+        width: '150px',
         type: "number",
         isSortable: true,
         isEditable: true
