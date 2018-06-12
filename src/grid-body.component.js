@@ -9,6 +9,7 @@ export default class gridBodyComponent {
       new Component({
         selector: 'atlui-grid-body',
         template: `
+        <div class="gridRowCalc" style="height:0;display:block;"></div>
         <div class="gridRow"
           *ngFor="let row of rows; let i = index"
           (click)="!changingCellContent && selectRow(row, $event, i)"

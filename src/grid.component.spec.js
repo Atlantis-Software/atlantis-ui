@@ -58,7 +58,7 @@ class gridTestComponent {
         <atlui-grid id="grid" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
 
         </atlui-grid>
-        <atlui-grid id="templateHeader" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
+        <atlui-grid [headerFixed]="true" id="templateHeader" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
           <ng-template atlui-grid-cell-header let-columnName>
             <span style="color:red;">{{columnName | uppercase}}</span>
           </ng-template>
