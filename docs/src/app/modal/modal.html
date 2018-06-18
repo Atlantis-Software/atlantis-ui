@@ -53,7 +53,7 @@
       <button type="button" class="btn btn-primary btn-sm"  (click)="showStandard2 = true">
         Modal with option defined
       </button>
-      <atlui-modal [(show)]="showStandard2" [backdrop]="false" [width]="'large'">
+      <atlui-modal [(show)]="showStandard2" [backdrop]="false" [width]="'50%'">
         <atlui-modal-header [close]="false">
           <h3 class="modal-title">Modal Header</h3>
         </atlui-modal-header>
@@ -70,7 +70,7 @@
 <button type="button" class="btn btn-primary btn-sm"  (click)="showStandard2 = true">
   Default modal
 </button>
-<atlui-modal [(show)]="showStandard2" [backdrop]="false" [width]="'large'">
+<atlui-modal [(show)]="showStandard2" [backdrop]="false" [width]="'50%'">
   <atlui-modal-header>
     <h3 class="modal-title">Modal Header</h3>
   </atlui-modal-header>
@@ -164,16 +164,16 @@
           width
         </td>
         <td>
-          string
+          value in px or %
         </td>
         <td>
           Define the width of modal
         </td>
         <td>
-          large (900px), small(300px)
+          Ex : 300px/50%
         </td>
         <td>
-          Nothing, 600px
+          600px
         </td>
       </tr>
     </tbody>
