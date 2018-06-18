@@ -1,4 +1,5 @@
-import { Component, ElementRef, ApplicationRef, ChangeDetectorRef } from '@angular/core';
+import { Component, ElementRef, ApplicationRef, ChangeDetectorRef, forwardRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { pluginsService } from './plugins.class.js';
 export class editorComponent {
 
@@ -7,7 +8,12 @@ export class editorComponent {
       new Component({
         selector: 'atlui-editor',
         template: require('./editor.html'),
-        inputs: ["toolbar"]
+        inputs: ["toolbar", ""],
+        providers: [{
+          provide: NG_VALUE_ACCESSOR,
+          useExisting: forwardRef(() => editorComponent),
+          multi: true
+        }],
       })
     ];
   }
@@ -16,6 +22,26 @@ export class editorComponent {
     this.elementRef = ElementRef;
     this.applicationRef = ApplicationRef;
     this.cdr = ChangeDetectorRef;
+    this.onModelTouched = function() {};
+    this.onModelChange = function() {};
+  }
+
+  get value() {
+    return this.val;
+  }
+
+  writeValue(val) {
+    if (val !== this.val) {
+      this.val = val;
+      this.onModelChange(val);
+    }
+  }
+
+  registerOnChange(fn) {
+    this.onModelChange = fn;
+  }
+  registerOnTouched(fn) {
+    this.onModelTouched = fn;
   }
 
   ngOnChanges() {
@@ -52,6 +78,8 @@ export class editorComponent {
         });
       });
     }
+    var editor = this.elementRef.nativeElement.querySelector(".editor");
+    this.onModelChange(editor.innerHTML);
   }
 }
 

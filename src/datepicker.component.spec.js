@@ -25,7 +25,6 @@ class datepickerTestComponent {
 }
 
 describe('datepicker', function() {
-  this.timeout(4000);
 
   beforeEach(async(function() {
     TestBed.configureTestingModule({

@@ -110,6 +110,8 @@ import fontName from './editor/plugins/fontName.plugin.js';
 import tabComponent from './tab.component.js';
 import { tabpanelDirective, tabPanelHeaderDirective } from './tab-panel.component.js';
 
+import safeHtmlPipe from './safeHtmlPipe.pipe.js';
+
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export class AtlantisUiModule {
@@ -158,7 +160,7 @@ AtlantisUiModule.annotations = [
       agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent,
       inputFileDirective, editorComponent, blockquote, bold, createLink, format, foreColor, indent, insertImage, insertOrderedList, insertUnorderedList,
       italic, justifyLeft, justifyRight, justifyCenter, justifyFull, outdent, redo, removeFormat, selectAll,
-      strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName, tabComponent, tabpanelDirective, tabPanelHeaderDirective],
+      strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName, tabComponent, tabpanelDirective, tabPanelHeaderDirective, safeHtmlPipe],
     exports: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent,
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
@@ -172,7 +174,7 @@ AtlantisUiModule.annotations = [
       agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent,
       inputFileDirective, editorComponent, blockquote, bold, createLink, format, foreColor, indent, insertImage, insertOrderedList, insertUnorderedList,
       italic, justifyLeft, justifyRight, justifyCenter, justifyFull, outdent, redo, removeFormat, selectAll,
-      strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName, tabComponent, tabpanelDirective, tabPanelHeaderDirective],
+      strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName, tabComponent, tabpanelDirective, tabPanelHeaderDirective, safeHtmlPipe],
     entryComponents: [tooltipComponent, popoverComponent, backdropComponent, blockquote, bold, createLink, format, foreColor,
       indent, insertImage, insertOrderedList, insertUnorderedList, italic, justifyLeft, justifyRight, justifyCenter,
       justifyFull, outdent, redo, removeFormat, selectAll, strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName]
