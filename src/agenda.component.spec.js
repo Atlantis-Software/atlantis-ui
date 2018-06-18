@@ -122,7 +122,6 @@ class agendaTestComponent {
 agendaTestComponent.parameters = [localeMomentService];
 
 describe('agenda', function() {
-  this.timeout(4000);
   var fixture, container;
 
   beforeEach(async(function() {

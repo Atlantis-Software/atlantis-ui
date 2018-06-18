@@ -10,6 +10,12 @@ module.exports = function (config) {
       './karma-test-shim.js'
     ],
 
+    client: {
+      mocha : {
+        timeout: '10000'
+      }
+    },
+
     preprocessors: {
       './karma-test-shim.js': ['webpack', 'sourcemap'],
     },
