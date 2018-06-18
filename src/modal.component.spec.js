@@ -64,7 +64,6 @@ class modalTestComponent {
 }
 
 describe('modal', function() {
-  this.timeout(4000);
 
   var testComponent;
 

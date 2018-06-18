@@ -1,4 +1,4 @@
-import { Component, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, ElementRef, ChangeDetectorRef, Directive, TemplateRef, ContentChild } from '@angular/core';
 
 
 export class accordionComponent {
@@ -86,9 +86,10 @@ export class accordionPanelComponent {
         template: `
         <div class="panel" [ngClass]="{'panel-open': isOpen}">
           <div class="panel-heading" (click)="toggleOpen($event)">
-            <h4 class="panel-title">
+            <h4 class="panel-title" *ngIf="!headerTemplate?.templateRef">
               <a role="button">{{title}}</a>
             </h4>
+            <ng-template [ngTemplateOutlet]="headerTemplate?.templateRef"></ng-template>
           </div>
           <div class="panel-collapse collapse" [class.in]="isOpen">
             <div class="panel-body">
@@ -96,7 +97,10 @@ export class accordionPanelComponent {
             </div>
           </div>
         </div>`,
-        inputs: ["title", "isOpen: open"]
+        inputs: ["title", "isOpen: open"],
+        queries: {
+          headerTemplate: new ContentChild(accordionPanelHeaderDirective),
+        }
       })
     ];
   }
@@ -107,6 +111,7 @@ export class accordionPanelComponent {
     this.accordion.addPanel(this);
     this._isOpen = false;
     this.cdr = ChangeDetectorRef;
+    this.headerTemplate = null;
   }
 
   //when the panel is destroy remove the panel in the parent
@@ -125,3 +130,18 @@ export class accordionPanelComponent {
 }
 
 accordionPanelComponent.parameters = [ElementRef, accordionComponent, ChangeDetectorRef];
+
+export class accordionPanelHeaderDirective {
+  static get annotations() {
+    return [
+      new Directive({
+        selector: 'ng-template[atlui-accordion-panel-header]',
+      })
+    ];
+  }
+  constructor(TemplateRef) {
+    this.templateRef = TemplateRef;
+  }
+}
+
+accordionPanelHeaderDirective.parameters = [TemplateRef];

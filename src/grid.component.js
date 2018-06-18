@@ -2,36 +2,53 @@ import {
   Component,
   ElementRef,
   Injector,
-  EventEmitter
+  EventEmitter,
+  ChangeDetectorRef,
+  TemplateRef,
+  Directive,
+  ContentChild
 } from '@angular/core';
 import {
   gridConfig
 } from './grid.config.js';
 
-export default class gridComponent {
+export class gridComponent {
   static get annotations() {
     return [
       new Component({
         selector: 'atlui-grid',
         template: `
-        <atlui-grid-header class="gridHeader" [columns]="columns" [pipes]="pipes" (sort)="sort.emit($event)">
+        <atlui-grid-header class="gridHeader" [headerTemplate]="headerTemplate" [columns]="columns" [pipes]="pipes" (sort)="sort.emit($event)">
         </atlui-grid-header>
-        <atlui-grid-body class="gridBody" [types]="types" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected" (selectedRows)="onSelect($event)">
+        <atlui-grid-body class="gridBody" [style.height]="height" [types]="types" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected"
+          [multiple]='multiple' (selectedRows)="onSelect($event)">
         </atlui-grid-body>
         <atlui-grid-footer class="gridFooter" *ngIf="config.footer !=='none'" [columns]="columns">
         </atlui-grid-footer>`,
-        inputs: ['columns', 'rows', 'config', 'selected'],
-        outputs: ['selectedRows', 'sort']
+        inputs: ['columns', 'rows', 'config', 'selected', 'multiple', 'headerFixed', 'height'],
+        outputs: ['selectedRows', 'sort'],
+        host: {
+          "[class.table-fixed]": "headerFixed"
+        },
+        queries: {
+          headerTemplate: new ContentChild(gridCellHeaderTemplate),
+        }
       })
     ];
   }
 
-  constructor(elementRef, gridConfig, injector) {
+  constructor(elementRef, gridConfig, injector, cdr) {
     var self = this;
+    this.headerTemplate = null;
+    this.elementRef = elementRef;
+    this.cdr = cdr;
+    this.multiple = false;
     this.config = {};
     this.injector = injector;
     this.pipes = [];
     this.types = gridConfig;
+    this.headerFixed = false;
+    this.height = undefined;
     this.selectedRows = new EventEmitter();
     this.sort = new EventEmitter();
     if (this.types) {
@@ -86,6 +103,60 @@ export default class gridComponent {
   onSelect(row) {
     this.selectedRows.emit(row);
   }
+
+  ngAfterViewInit() {
+    this.redraw();
+  }
+
+  redraw() {
+    if (!this.headerFixed) {
+      this.height = undefined;
+      return;
+    }
+    if (!this.height) {
+      this.height = "300px";
+    }
+    var rowStyle = window.getComputedStyle(this.elementRef.nativeElement.querySelector("atlui-grid-body .gridRowCalc"), null);
+
+    var rowWidth = parseInt(rowStyle.getPropertyValue("width"));
+    var widthRemaining = rowWidth;
+    var columnWithoutWidth = 0;
+    this.columns.forEach((column)=> {
+      if (column.width && column.width !== "auto") {
+        if (column.width.indexOf('px') !== -1) {
+          widthRemaining -= parseInt(column.width);
+        } else if (column.width.indexOf('%') !== -1) {
+          widthRemaining -= rowWidth*(parseInt(column.width)/100);
+        }
+      } else {
+        columnWithoutWidth++;
+      }
+    });
+    var percentRemaining = widthRemaining/rowWidth*100;
+    setTimeout(() => {
+      this.columns.forEach((column)=> {
+        if (!column.width || column.width === "auto") {
+          column.width = (percentRemaining / columnWithoutWidth) + "%";
+        }
+      });
+    }, 0);
+    this.cdr.detectChanges();
+  }
 }
 
-gridComponent.parameters = [ElementRef, gridConfig, Injector];
+gridComponent.parameters = [ElementRef, gridConfig, Injector, ChangeDetectorRef];
+
+export class gridCellHeaderTemplate {
+  static get annotations() {
+    return [
+      new Directive({
+        selector: 'ng-template[atlui-grid-cell-header]',
+      })
+    ];
+  }
+  constructor(TemplateRef) {
+    this.templateRef = TemplateRef;
+  }
+}
+
+gridCellHeaderTemplate.parameters = [TemplateRef];

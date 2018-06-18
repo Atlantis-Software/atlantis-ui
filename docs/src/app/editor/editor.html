@@ -3,9 +3,17 @@
     Editor
   </h2>
   <h3>Example with all plugins</h3>
-  <atlui-editor [toolbar]="toolbar"></atlui-editor>
+  <atlui-editor [toolbar]="toolbar" [(ngModel)]="value">
+  </atlui-editor>
+
+  <textarea class="form-control my-3" rows="3">
+    {{ this.value }}
+  </textarea>
+  <p>
+    We use [(ngModel)] for have a binding with editor.
+  </p>
   <textarea class="atlui-code">
-<atlui-editor [toolbar]="toolbar"></atlui-editor>
+<atlui-editor [toolbar]="toolbar" [(ngModel)]="value"></atlui-editor>
   </textarea>
   <h3>
     Toolbar object

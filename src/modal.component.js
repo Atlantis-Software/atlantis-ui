@@ -9,13 +9,13 @@ export default class modalComponent {
         selector: 'atlui-modal',
         template: `
           <div (click)="closeOnBackdrop($event)" class="modal" [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content" [ngStyle]="{'min-height': this.size ? this.size : ''}">
+            <div class="modal-dialog" role="document" [class.modal-lg]="width==='large'" [class.modal-sm]="width==='small'">
+              <div class="modal-content" [ngStyle]="{'min-height': this.height ? this.height : ''}">
                 <ng-content></ng-content>
               </div>
             </div>
           </div>`,
-        inputs: ['backdrop', "show", "orientation", "isClosable", "size"],
+        inputs: ['backdrop', "show", "orientation", "isClosable", "height", "width"],
         outputs: ['showChange', "onClose"]
       })
     ];
@@ -32,6 +32,7 @@ export default class modalComponent {
     this.backdrop = true;
     this.show = false;
     this.isClosable = false;
+    this.width = '';
   }
 
   get show() {

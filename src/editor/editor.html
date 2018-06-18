@@ -2,6 +2,5 @@
   <div class="btn-group plugin-block" *ngFor="let pluginBlock of _toolbar" (click)="commandState($event)">
   </div>
 </div>
-<div class="editor" contenteditable (click)="commandState($event)" (keyup)="commandState($event)">
-  <ng-content></ng-content>
+<div class="editor" contenteditable (click)="commandState($event)" (keyup)="commandState($event)" [innerHTML]="val | safeHtml">
 </div>

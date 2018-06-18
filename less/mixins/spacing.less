@@ -1,0 +1,36 @@
+@spacing-properties: margin m, padding p;
+
+#each-spacing-property(@i: 1) when (@i =< length(@spacing-properties)) {
+  @spacing-property: extract(@spacing-properties, @i);
+  @prop: extract(@spacing-property, 1);
+  @abbrev: extract(@spacing-property, 2);
+
+  #each-spacer(@ii: 1) when (@ii =< length(@spacers)) {
+    @item: extract(@spacers, @ii);
+    @size: extract(@item, 1);
+    @length: extract(@item, 2);
+
+    .@{abbrev}-@{size} { @{prop}: @length !important; }
+    .@{abbrev}t-@{size},
+    .@{abbrev}y-@{size} {
+      @{prop}-top: @length !important;
+    }
+    .@{abbrev}r-@{size},
+    .@{abbrev}x-@{size} {
+      @{prop}-right: @length !important;
+    }
+    .@{abbrev}b-@{size},
+    .@{abbrev}y-@{size} {
+      @{prop}-bottom: @length !important;
+    }
+    .@{abbrev}l-@{size},
+    .@{abbrev}x-@{size} {
+      @{prop}-left: @length !important;
+    }
+
+    #each-spacer((@ii + 1));
+  } #each-spacer();
+
+  #each-spacing-property((@i + 1));
+}
+#each-spacing-property();

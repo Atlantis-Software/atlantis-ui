@@ -23,7 +23,7 @@ import dialogComponent from './dialog.component.js';
 
 import { dialogService, dialogServiceFactory } from './dialog.service.js';
 
-import gridComponent from './grid.component.js';
+import { gridComponent, gridCellHeaderTemplate } from './grid.component.js';
 import gridHeaderComponent from './grid-header.component.js';
 import gridBodyComponent from './grid-body.component.js';
 import gridFooterComponent from './grid-footer.component.js';
@@ -36,7 +36,7 @@ import treeNodeComponent from './tree-node.component.js';
 
 import { carouselComponent, carouselItemComponent } from './carousel.component.js';
 
-import { accordionComponent, accordionPanelComponent } from './accordion.component.js';
+import { accordionComponent, accordionPanelComponent, accordionPanelHeaderDirective } from './accordion.component.js';
 
 import dropdownComponent from './dropdown.component.js';
 import dropdownOptionComponent from './dropdown-option.component.js';
@@ -107,6 +107,11 @@ import unlink from './editor/plugins/unlink.plugin.js';
 import fontSize from './editor/plugins/fontSize.plugin.js';
 import fontName from './editor/plugins/fontName.plugin.js';
 
+import tabComponent from './tab.component.js';
+import { tabpanelDirective, tabPanelHeaderDirective } from './tab-panel.component.js';
+
+import safeHtmlPipe from './safeHtmlPipe.pipe.js';
+
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export class AtlantisUiModule {
@@ -145,8 +150,8 @@ AtlantisUiModule.annotations = [
     declarations: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent,
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
-      carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent,
-      dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, gridComponent,
+      carouselItemComponent, accordionComponent, accordionPanelComponent, accordionPanelHeaderDirective, dropdownComponent, dropdownOptionComponent,
+      dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, gridComponent, gridCellHeaderTemplate,
       gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent,
       popoverComponent, popoverDirective, tooltipComponent, tooltipDirective, backdropComponent, sortableContainer,
       sortableComponents, treeComponent, treeNodeComponent, sortableHandler, draggableDirective, draggableHandleDirective,
@@ -155,12 +160,12 @@ AtlantisUiModule.annotations = [
       agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent,
       inputFileDirective, editorComponent, blockquote, bold, createLink, format, foreColor, indent, insertImage, insertOrderedList, insertUnorderedList,
       italic, justifyLeft, justifyRight, justifyCenter, justifyFull, outdent, redo, removeFormat, selectAll,
-      strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName],
+      strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName, tabComponent, tabpanelDirective, tabPanelHeaderDirective, safeHtmlPipe],
     exports: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent,
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
-      carouselItemComponent, accordionComponent, accordionPanelComponent, dropdownComponent, dropdownOptionComponent,
-      dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, gridComponent,
+      carouselItemComponent, accordionComponent, accordionPanelComponent, accordionPanelHeaderDirective, dropdownComponent, dropdownOptionComponent,
+      dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, gridComponent, gridCellHeaderTemplate,
       gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent,
       popoverComponent, popoverDirective, tooltipComponent, tooltipDirective, backdropComponent, sortableContainer,
       sortableComponents, sortableHandler, treeComponent, treeNodeComponent, draggableDirective, draggableHandleDirective,
@@ -169,7 +174,7 @@ AtlantisUiModule.annotations = [
       agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent,
       inputFileDirective, editorComponent, blockquote, bold, createLink, format, foreColor, indent, insertImage, insertOrderedList, insertUnorderedList,
       italic, justifyLeft, justifyRight, justifyCenter, justifyFull, outdent, redo, removeFormat, selectAll,
-      strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName],
+      strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName, tabComponent, tabpanelDirective, tabPanelHeaderDirective, safeHtmlPipe],
     entryComponents: [tooltipComponent, popoverComponent, backdropComponent, blockquote, bold, createLink, format, foreColor,
       indent, insertImage, insertOrderedList, insertUnorderedList, italic, justifyLeft, justifyRight, justifyCenter,
       justifyFull, outdent, redo, removeFormat, selectAll, strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName]

@@ -51,6 +51,12 @@ h4, .h4 { font-size: @font-size-h4; }
 h5, .h5 { font-size: @font-size-h5; }
 h6, .h6 { font-size: @font-size-h6; }
 
+.text-1x { font-size: @font-size-base; }
+.text-2x { font-size: @font-size-2x; }
+.text-3x { font-size: @font-size-3x; }
+.text-4x { font-size: @font-size-4x; }
+.text-5x { font-size: @font-size-5x; }
+
 
 // Body text
 // -------------------------
@@ -117,6 +123,9 @@ mark,
 .text-danger {
   .text-emphasis-variant(@state-danger-text);
 }
+.text-inverse {
+  .text-emphasis-variant(@state-inverse-text);
+}
 
 // Contextual backgrounds
 // For now we'll leave these alongside the text classes until v4 when we can
@@ -125,19 +134,27 @@ mark,
   // Given the contrast here, this is the only class to have its color inverted
   // automatically.
   color: #fff;
-  .bg-variant(@brand-primary);
+  .bg-variant(darken(@brand-primary, 10%));
 }
 .bg-success {
-  .bg-variant(@state-success-bg);
+  color: #fff;
+  .bg-variant(@contextual-success-bg);
 }
 .bg-info {
-  .bg-variant(@state-info-bg);
+  color: #fff;
+  .bg-variant(@contextual-info-bg);
 }
 .bg-warning {
-  .bg-variant(@state-warning-bg);
+  color: #fff;
+  .bg-variant(@contextual-warning-bg);
 }
 .bg-danger {
-  .bg-variant(@state-danger-bg);
+  color: #fff;
+  .bg-variant(@contextual-danger-bg);
+}
+.bg-inverse {
+  color: #fff;
+  .bg-variant(@contextual-inverse-bg);
 }
 
 

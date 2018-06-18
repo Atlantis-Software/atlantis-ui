@@ -9,7 +9,7 @@ export default class dialogComponent {
         template: `
           <div (window:resize)="redraw()" atlui-dragItem [(dragX)]="posX" [(dragY)]="posY" (dragStopped)="focus()" [dragContainment]="container" class="modal-dialog" [ngStyle]="{'display': visible ? 'block' : 'none'}">
             <div class="modal-content" (mousedown)="focus()" [atlui-resizable]="isResizable" [minWidth]="minWidth" [maxWidth]="maxWidth" [minHeight]="minHeight" [maxHeight]="maxHeight">
-              <div atlui-dragItem-handle class="modal-header">
+              <div atlui-dragItem-handle class="modal-header" >
                 <button type="button" class="close" (click)="close()">
                   <span>&times;</span>
                 </button>
@@ -27,13 +27,13 @@ export default class dialogComponent {
             </div>
           </div>`,
         inputs: ["show", "isResizable", "height", "width", "minHeight", "maxHeight", "minWidth",
-          "maxWidth", "container", "controls", "title", "closeCallback"],
+          "maxWidth", "container", "controls", "title"],
         outputs: ['showChange', "onClose", "heightChange", "widthChange"]
       })
     ];
   }
 
-  constructor(elementRef, dialogService, ChangeDetectorRef) {
+  constructor(elementRef, dialogService, cdr) {
     this.showChange = new EventEmitter();
     this.onClose = new EventEmitter();
     this.heightChange = new EventEmitter();
@@ -53,7 +53,7 @@ export default class dialogComponent {
     this.dlgService = dialogService;
     this.posX = 0;
     this.posY = 0;
-    this.cdr = ChangeDetectorRef;
+    this.cdr = cdr;
   }
 
   get show() {
@@ -83,31 +83,25 @@ export default class dialogComponent {
     this.showChange.emit(this.model);
     this.visible = true;
     this.dlgService.addDialog(this);
+    this.cdr.detectChanges();
     this.redraw();
   }
 
   ngAfterViewInit() {
     this.redraw();
-    var top = (window.innerHeight - this.height) / 2;
-    var left = (window.innerWidth - this.width) / 2;
-
+    var height = Math.min(this.maxHeight, this.height);
+    var width = Math.min(this.maxWidth, this.width);
+    var top = (window.innerHeight - height) / 2;
+    var left = (window.innerWidth - width) / 2;
     this.element.style.top = top + "px";
     this.element.style.left = left + "px";
   }
 
   close() {
     this.model = false;
-    if (this.closeCallback) {
-      this.closeCallback();
-      this.onClose.emit();
-      return;
-    }
     this.showChange.emit(this.model);
     this.visible = false;
     this.onClose.emit();
-    if (this.element) {
-      this.element.style.transform = '';
-    }
     this.dlgService.removeDialog(this);
   }
 
@@ -121,7 +115,6 @@ export default class dialogComponent {
     this.content = this.elementRef.nativeElement.querySelector('.modal-content');
     this.header = this.elementRef.nativeElement.querySelector('.modal-header');
     this.body = this.elementRef.nativeElement.querySelector('.modal-body');
-
     if (this.maxHeight > this.container.offsetHeight || this.maxHeight === void 0) {
       this.maxHeight = this.container.offsetHeight;
     }
@@ -130,33 +123,27 @@ export default class dialogComponent {
       this.maxWidth = this.container.offsetWidth;
     }
 
+    if (this.maxHeight > window.innerHeight) {
+      this.maxHeight = window.innerHeight;
+    }
+    if (this.maxWidth > window.innerWidth) {
+      this.maxWidth = window.innerWidth;
+    }
+
     if (this.width < this.minWidth) {
       this.width = this.minWidth;
-    } else if (this.width > this.maxWidth) {
-      this.width = this.maxWidth;
     }
 
     if (this.height < this.minHeight) {
       this.height = this.minHeight;
-    } else if (this.height > this.maxHeight) {
-      this.height = this.maxHeight;
     }
-
     this.content.style.width = this.width + "px";
     this.content.style.height = this.height + "px";
     this.content.style.minHeight = this.minHeight + "px";
     this.content.style.minWidth = this.minWidth + "px";
 
-    if (this.maxHeight === Infinity) {
-      this.content.style.maxHeight = this.container.offsetHeight + "px";
-    } else {
-      this.content.style.maxHeight = this.maxHeight + "px";
-    }
-    if (this.maxWidth === Infinity) {
-      this.content.style.maxWidth = this.container.offsetWidth + "px";
-    } else {
-      this.content.style.maxWidth = this.maxWidth + "px";
-    }
+    this.content.style.maxHeight = this.maxHeight + "px";
+    this.content.style.maxWidth = this.maxWidth + "px";
 
     var headerStyle = window.getComputedStyle(this.header, null);
     var contentStyle = window.getComputedStyle(this.content, null);
@@ -166,14 +153,14 @@ export default class dialogComponent {
     var contentInnerHeight = contentHeight - contentBorderTop - contentBorderBottom;
 
     this.body.style.height = (contentInnerHeight - parseInt(headerStyle.getPropertyValue("height"))) + "px";
-    this.bodyHeight = this.body.style.height;
 
     if (this.visible) {
       this.focus();
     }
-    this.cdr.detectChanges();
+
     this.widthChange.emit(this.width);
     this.heightChange.emit(this.height);
+    this.cdr.detectChanges();
   }
 }
 

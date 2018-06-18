@@ -1,6 +1,5 @@
 import {
   Component,
-  ElementRef,
   Injector
 } from '@angular/core';
 
@@ -10,15 +9,17 @@ export default class gridCellHeaderComponent {
       new Component({
         selector: 'atlui-grid-cell-header',
         template: `
-        <span>{{content}}</span>
+        <ng-container *ngTemplateOutlet="headerTemplate?.templateRef; context:ctx"></ng-container>
+        <span *ngIf="!headerTemplate?.templateRef">{{content}}</span>
         <span [class]="sortingClass"></span>`,
-        inputs: ['content', 'pipes', 'sortingClass']
+        inputs: ['content', 'pipes', 'sortingClass', 'headerTemplate']
       })
     ];
   }
 
-  constructor(elementRef, injector) {
+  constructor(injector) {
     this.injector = injector;
+    this.ctx = {};
   }
 
   ngOnInit() {
@@ -48,6 +49,16 @@ export default class gridCellHeaderComponent {
     }
   }
 
+  ngAfterViewInit() {
+    this.ctx = {$implicit: this.content};
+  }
+
+  ngOnChanges() {
+    if (this.ctx) {
+      this.ctx.$implicit = this.content;
+    }
+  }
+
 }
 
-gridCellHeaderComponent.parameters = [ElementRef, Injector];
+gridCellHeaderComponent.parameters = [Injector];

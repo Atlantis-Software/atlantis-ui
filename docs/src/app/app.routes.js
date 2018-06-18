@@ -46,6 +46,9 @@ import DraggableComponent from './draggable/draggable.component.js';
 
 import EditorComponent from './editor/editor.component.js';
 
+import TabComponent from './tab/tab.component.js';
+import ColorsComponent from './colors/colors.component.js';
+
 export default [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -88,6 +91,8 @@ export default [
   { path: 'tree', component: TreeComponent },
   { path: 'draggable', component: DraggableComponent},
   { path: 'agenda', component: AgendaComponent},
-  { path: 'editor', component: EditorComponent}
+  { path: 'editor', component: EditorComponent},
+  { path: 'tab', component: TabComponent},
+  { path: 'colors', component: ColorsComponent}
 
 ];

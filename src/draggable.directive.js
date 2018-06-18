@@ -34,16 +34,6 @@ export class draggableDirective {
     this.dragYChange = new EventEmitter();
   }
 
-  set ngDraggable(setting) {
-    if (setting !== void 0 && setting !== null && setting !== '') {
-      this.isDraggable = !!setting;
-      this.oldPosX = 0;
-      this.oldPosY = 0;
-
-      this.element = this.elementRef.nativeElement;
-    }
-  }
-
   ngAfterViewInit() {
     if (this.isDraggable) {
       this.element = this.elementRef.nativeElement;
@@ -73,6 +63,14 @@ export class draggableDirective {
       this.tempPos.y = y - this.origPos.y;
       var left = this.tempPos.x + this.oldPosX;
       var top = this.tempPos.y + this.oldPosY;
+      if (this.oldPositionStyle === "fixed") {
+        if (top < 0) {
+          top = 0;
+        }
+        if (left < 0) {
+          left = 0;
+        }
+      }
       this.renderer.setStyle(this.element, 'top', top + "px");
       this.renderer.setStyle(this.element, 'left', left + "px");
     }

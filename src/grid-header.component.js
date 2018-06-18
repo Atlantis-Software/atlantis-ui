@@ -10,12 +10,16 @@ export default class gridHeaderComponent {
         selector: 'atlui-grid-header',
         template: `
         <div class="gridRow">
-          <div *ngFor= "let column of columns; let i = index;" class="gridHead" [ngClass]="column.class" [class.sortable]="column.isSortable" [style.width]="column.width" (click)="onSort(column, i)">
-            <atlui-grid-cell-header [content]="column.label" [pipes]="pipes" [sortingClass]="column.sortingClass">
+          <div class="gridHead"
+            *ngFor= "let column of columns; let i = index;"
+            [ngClass]="column.class"
+            [class.sortable]="column.isSortable"
+            [style.width]="column.width" (click)="onSort(column, i)">
+            <atlui-grid-cell-header [content]="column.columnName || column.label" [headerTemplate]="headerTemplate" [pipes]="pipes" [sortingClass]="column.sortingClass">
             </atlui-grid-cell-header>
           </div>
         </div>`,
-        inputs: ['columns', 'pipes'],
+        inputs: ['columns', 'pipes', 'headerTemplate'],
         outputs: ['sort']
       })
     ];
