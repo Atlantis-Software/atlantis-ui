@@ -20,6 +20,7 @@ export default class EditorComponent {
       ['fontName'],
       ['foreColor', 'hiliteColor']
     ];
+    this.value = `<span style="color:red;">test</span>`;
   }
 }
 

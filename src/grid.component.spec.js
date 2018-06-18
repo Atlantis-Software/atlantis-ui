@@ -201,7 +201,6 @@ class gridTestComponent {
 }
 
 describe('grid', function() {
-  this.timeout(4000);
 
   var gridComponent;
   beforeEach(async(function() {

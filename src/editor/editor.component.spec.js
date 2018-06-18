@@ -15,8 +15,11 @@ if (navigator.userAgent.indexOf("Firefox") != -1) {
   firefox = true;
 }
 
-var initEditor = function(editor, text, begin, end) {
-  editor.innerText = text;
+var initEditor = function(editor, text, begin, end, fixture) {
+  fixture.componentInstance.val = text;
+  fixture.detectChanges();
+  tick();
+  fixture.detectChanges();
   var range = document.createRange();
   range.setStart(editor.childNodes[0], begin);
   range.setEnd(editor.childNodes[0], end);
@@ -43,7 +46,7 @@ class editorTestComponent {
     return [
       new Component({
         template: `
-          <atlui-editor [toolbar]="toolbar"></atlui-editor>`,
+          <atlui-editor [toolbar]="toolbar" [(ngModel)]="val"></atlui-editor>`,
         queries: {
           editor: new ViewChildren(editorComponent),
         }
@@ -55,7 +58,6 @@ class editorTestComponent {
 editorTestComponent.parameters = [];
 
 describe('editor', function() {
-  this.timeout(10000);
   var fixture, container, editor;
 
   beforeEach(async(function() {
@@ -70,7 +72,7 @@ describe('editor', function() {
     editor = document.querySelector(".editor");
     assert.strictEqual(editor.contentEditable, "true");
     assert.strictEqual(editor.innerText, "");
-    assert.strictEqual(editor.innerHTML, "  ");
+    assert.strictEqual(editor.innerHTML, "");
   }));
 
   afterEach(function() {
@@ -93,7 +95,7 @@ describe('editor', function() {
     tick();
     fixture.detectChanges();
     var pluginName = "bold";
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-"+pluginName);
     var button = plugin.querySelector("button");
@@ -119,7 +121,7 @@ describe('editor', function() {
 
     var pluginName = "italic";
 
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-"+pluginName);
     var button = plugin.querySelector("button");
@@ -145,7 +147,7 @@ describe('editor', function() {
 
     var pluginName = "underline";
 
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-"+pluginName);
     var button = plugin.querySelector("button");
@@ -171,7 +173,7 @@ describe('editor', function() {
 
     var pluginName = "strikethrough";
 
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-"+pluginName);
     var button = plugin.querySelector("button");
@@ -197,7 +199,7 @@ describe('editor', function() {
 
     var pluginName = "bold";
 
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var beforePlugin = editor.innerHTML;
 
@@ -236,7 +238,7 @@ describe('editor', function() {
 
     var pluginName = "insertorderedlist";
 
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-"+pluginName);
     var button = plugin.querySelector("button");
@@ -264,7 +266,7 @@ describe('editor', function() {
 
     var pluginName = "insertunorderedlist";
 
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-"+pluginName);
     var button = plugin.querySelector("button");
@@ -293,7 +295,7 @@ describe('editor', function() {
 
     var pluginName = "justify-center";
 
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-"+pluginName);
     var button = plugin.querySelector("button");
@@ -320,7 +322,7 @@ describe('editor', function() {
 
     var pluginName = "justify-right";
 
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-"+pluginName);
     var button = plugin.querySelector("button");
@@ -348,7 +350,7 @@ describe('editor', function() {
 
     var pluginName = "justify-full";
 
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-"+pluginName);
     var button = plugin.querySelector("button");
@@ -376,7 +378,7 @@ describe('editor', function() {
 
     var pluginName = "justify-left";
 
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-justify-center");
     var button = plugin.querySelector("button");
@@ -407,7 +409,7 @@ describe('editor', function() {
 
     var pluginName = "blockquote";
 
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-"+pluginName);
     var button = plugin.querySelector("button");
@@ -440,7 +442,7 @@ describe('editor', function() {
 
     var pluginName = "indent/outdent";
 
-    initEditor(editor, "Test indent/outdent plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test indent/outdent plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-indent");
     var button = plugin.querySelector("button");
@@ -503,7 +505,7 @@ describe('editor', function() {
 
     var pluginName = "createlink";
 
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-"+pluginName);
     var button = plugin.querySelector("button");
@@ -544,7 +546,7 @@ describe('editor', function() {
 
     var pluginName = "format";
 
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-"+pluginName);
     var button = plugin.querySelector("button");
@@ -568,7 +570,7 @@ describe('editor', function() {
 
     var pluginName = "fontname";
 
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-"+pluginName);
     var button = plugin.querySelector("button");
@@ -596,7 +598,7 @@ describe('editor', function() {
 
     var pluginName = "forecolor";
 
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-"+pluginName);
     var color = plugin.querySelectorAll(".color-palette .color")[3];
@@ -615,7 +617,7 @@ describe('editor', function() {
 
     var pluginName = "hilitecolor";
 
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-"+pluginName);
     var color = plugin.querySelectorAll(".color-palette .color")[3];
@@ -634,7 +636,7 @@ describe('editor', function() {
 
     var pluginName = "selectall";
 
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-"+pluginName);
     var button = plugin.querySelector("button");
@@ -656,7 +658,7 @@ describe('editor', function() {
 
     var pluginName = "fontsize";
 
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-"+pluginName);
     var button = plugin.querySelector("button");
@@ -678,7 +680,7 @@ describe('editor', function() {
     tick();
     fixture.detectChanges();
     var pluginName = "removeformat";
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-bold");
     var button = plugin.querySelector("button");
@@ -706,7 +708,7 @@ describe('editor', function() {
 
     var pluginName = "image";
 
-    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length);
+    initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-"+pluginName);
     var button = plugin.querySelector("button");

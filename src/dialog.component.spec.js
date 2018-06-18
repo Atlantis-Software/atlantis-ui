@@ -64,7 +64,6 @@ class dialogTestComponent {
 dialogTestComponent.parameters = [DOCUMENT];
 
 describe('dialog', function() {
-  this.timeout(4000);
   var fixture, ds, container;
 
   beforeEach((function() {
