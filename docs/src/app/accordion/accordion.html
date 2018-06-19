@@ -10,7 +10,7 @@
       <atlui-accordion-panel [title]="'test1'" [open]="true">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
       </atlui-accordion-panel>
-      <atlui-accordion-panel [title]="'test2'" [open]="true">
+      <atlui-accordion-panel [title]="'test2'">
         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
         <button type="button" class="btn btn-block">Basic</button>
       </atlui-accordion-panel>
@@ -19,10 +19,10 @@
 
   <textarea class="atlui-code">
 <atlui-accordion>
-  <atlui-accordion-panel [title]="'test1'" [open]="true">
+  <atlui-accordion-panel [title]="'test1'">
     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
   </atlui-accordion-panel>
-  <atlui-accordion-panel [title]="'test2'" [open]="true">
+  <atlui-accordion-panel [title]="'test2'">
     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
     <button type="button" class="btn btn-block">Basic</button>
   </atlui-accordion-panel>
@@ -144,7 +144,7 @@
   </div>
 
   <textarea class="atlui-code">
-<atlui-accordion panelStyle="style">
+<atlui-accordion>
   <atlui-accordion-panel>
     <ng-template atlui-accordion-panel-header>
       <span style="color:blue;">Fancy</span> title
@@ -210,7 +210,7 @@
   </div>
 
   <textarea class="atlui-code">
-<atlui-accordion panelStyle="style">
+<atlui-accordion panelStyle="primary/success/info/warning/danger">
   ...
 </atlui-accordion>
   </textarea>
