@@ -20,7 +20,7 @@ export class gridComponent {
         template: `
         <atlui-grid-header class="gridHeader" [headerTemplate]="headerTemplate" [columns]="columns" [pipes]="pipes" (sort)="sort.emit($event)">
         </atlui-grid-header>
-        <atlui-grid-body class="gridBody" [style.height]="height" [types]="types" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected"
+        <atlui-grid-body [headerFixed]="headerFixed" class="gridBody" [style.height]="height" [types]="types" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected"
           [multiple]='multiple' (selectedRows)="onSelect($event)">
         </atlui-grid-body>
         <atlui-grid-footer class="gridFooter" *ngIf="config.footer !=='none'" [columns]="columns">
