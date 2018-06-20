@@ -21,6 +21,7 @@ atlui-tabs {
     }
     > li {
       > a {
+        color: @primary-text-color;
         &::before {
           content: '';
           position: absolute;
@@ -31,6 +32,7 @@ atlui-tabs {
           height: 100%;
           border: solid 1px @gray-base;
           border-left: none;
+          background: linear-gradient(lighten(@navbar-default-bg, 25%), @navbar-default-bg);
           @media (min-width: @grid-float-breakpoint) {
             transform: skewX(-25deg);
             left: -2px;
@@ -42,6 +44,7 @@ atlui-tabs {
           color: @navbar-default-link-hover-color;
           background-color: transparent;
           &::before {
+            background: none;
             background-color: @navbar-default-link-hover-bg;
           }
         }
@@ -53,6 +56,7 @@ atlui-tabs {
         &:focus {
           background-color: inherit;
           &::before {
+            background: none;
             background-color: @navbar-default-link-active-bg;
           }
         }
@@ -64,6 +68,7 @@ atlui-tabs {
         &:focus {
           color: @navbar-default-link-disabled-color;
           &::before {
+            background: none;
             background-color: @navbar-default-link-disabled-bg;
           }
         }
