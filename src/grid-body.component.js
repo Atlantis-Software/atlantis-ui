@@ -1,6 +1,7 @@
 import {
   Component,
-  EventEmitter
+  EventEmitter,
+  ElementRef
 } from '@angular/core';
 
 export default class gridBodyComponent {
@@ -40,17 +41,38 @@ export default class gridBodyComponent {
             </atlui-grid-cell>
           </div>
         </div>`,
-        inputs: ['columns', 'rows', 'pipes', 'selected', 'types', 'multiple'],
+        inputs: ['columns', 'rows', 'pipes', 'selected', 'types', 'multiple', 'headerFixed'],
         outputs: ['selectedRows']
       })
     ];
   }
 
-  constructor() {
+  constructor(elementRef) {
     this.selectedRows = new EventEmitter();
     this.previousSelectedIndex;
     this.isEditable = false;
     this.multiple = false;
+    this.elementRef = elementRef;
+  }
+
+  ngAfterViewChecked() {
+    if (!this.headerFixed) {
+      return;
+    }
+    var rows = this.elementRef.nativeElement.querySelectorAll(".gridRow");
+    rows.forEach((row)=> {
+      row.style.height = "unset";
+      var cells = row.querySelectorAll(".gridCell");
+      var maxCellHeight = 0;
+      cells.forEach((cell)=> {
+        var cellStyle = window.getComputedStyle(cell, null);
+        var cellHeight = parseInt(cellStyle.getPropertyValue("height"));
+        if (cellHeight > maxCellHeight) {
+          maxCellHeight = cellHeight;
+        }
+      });
+      row.style.height = maxCellHeight+"px";
+    });
   }
 
   //Function launch when we select different row
@@ -140,4 +162,4 @@ export default class gridBodyComponent {
 
 }
 
-gridBodyComponent.parameters = [];
+gridBodyComponent.parameters = [ElementRef];
