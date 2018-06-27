@@ -85,15 +85,10 @@ atlui-tabs {
     position: relative;
     > .tab-pane {
       width: 100%;
-      display: block;
-      opacity: 0;
-      z-index: -1;
-      position: absolute;
-      top: 0;
+      display: none;
     }
     > .active {
-      opacity: 1;
-      z-index: 0;
+      display: block;
     }
   }
 }

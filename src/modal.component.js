@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, Injector, ComponentFactoryResolver, ApplicationRef } from '@angular/core';
 import backdropComponent from './backdrop.component.js';
-
+import { modalService } from './modal.service.js';
 
 export default class modalComponent {
   static get annotations() {
@@ -21,11 +21,12 @@ export default class modalComponent {
     ];
   }
 
-  constructor(elementRef, Injector, ComponentFactoryResolver, ApplicationRef) {
+  constructor(elementRef, Injector, ComponentFactoryResolver, ApplicationRef, modalService) {
     this.showChange = new EventEmitter();
     this.onClose = new EventEmitter();
     this.elementRef = elementRef;
     // need to create backdrop later
+    this.service = modalService;
     this.injector = Injector;
     this.applicationRef = ApplicationRef;
     this.backdropFactory = ComponentFactoryResolver.resolveComponentFactory(backdropComponent);
@@ -44,8 +45,10 @@ export default class modalComponent {
     if (val !== this.model) {
       this.model = val;
       if (this.model) {
+        this.service.openModal();
         this.open();
       } else {
+        this.service.closeModal();
         this.close();
       }
     }
@@ -92,7 +95,9 @@ export default class modalComponent {
   close() {
     this.model = false;
     this.showChange.emit(this.model);
-    document.body.classList.remove("modal-open");
+    if (this.service.modalOpen === 0) {
+      document.body.classList.remove("modal-open");
+    }
     this.visibleAnimate = false;
     if (this.backdrop === true && this.backdropRef) {
       // delete the backdrop
@@ -114,4 +119,4 @@ export default class modalComponent {
   }
 }
 
-modalComponent.parameters = [ElementRef, Injector, ComponentFactoryResolver, ApplicationRef];
+modalComponent.parameters = [ElementRef, Injector, ComponentFactoryResolver, ApplicationRef, modalService];

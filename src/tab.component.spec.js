@@ -35,7 +35,7 @@ class tabTestComponent {
             <p>Lorem ipsum</p>
           </atlui-tab-panel>
         </atlui-tabs>
-        <atlui-tabs id="tabOversize" [panelHeight]="'100px'">
+        <atlui-tabs id="tabOversize" [height]="'100px'">
           <atlui-tab-panel title="Disabled">
             <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
             <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
@@ -45,20 +45,7 @@ class tabTestComponent {
             <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
             <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
           </atlui-tab-panel>
-        </atlui-tabs>
-        <div style="height:50px;">
-          <atlui-tabs id="tabWithSize">
-            <atlui-tab-panel title="Disabled">
-              <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-              <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-              <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-              <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-              <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-              <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-              <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-            </atlui-tab-panel>
-          </atlui-tabs>
-        </div>`
+        </atlui-tabs>`
       })
     ];
   }
@@ -126,11 +113,5 @@ describe('tabs', function() {
     var tab2 = document.querySelector("#tabOversize");
     var tabContent = tab2.querySelector(".tab-content");
     assert.strictEqual(tabContent.style.height, "100px");
-
-    var tab3 = document.querySelector("#tabWithSize");
-    tabContent = tab3.querySelector(".tab-content");
-    var tabContentStyle = window.getComputedStyle(tabContent);
-    var tabContentHeight = tabContentStyle.getPropertyValue("height");
-    assert.strictEqual(tabContentHeight, "50px");
   }));
 });
