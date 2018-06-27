@@ -19,6 +19,8 @@ import modalBodyComponent from './modal-body.component.js';
 import modalFooterComponent from './modal-footer.component.js';
 import backdropComponent from './backdrop.component.js';
 
+import { modalService, modalServiceFactory } from './modal.service.js';
+
 import dialogComponent from './dialog.component.js';
 
 import { dialogService, dialogServiceFactory } from './dialog.service.js';
@@ -123,6 +125,7 @@ export class AtlantisUiModule {
         { provide: dragAndDropService, useFactory: dragDropServiceFactory },
         { provide: dragAndDropSortableService, useFactory: dragDropSortableServiceFactory },
         { provide: dialogService, useFactory: dialogServiceFactory},
+        { provide: modalService, useFactory: modalServiceFactory},
         { provide: localeMomentService, useFactory: localeMomentServiceFactory},
         pluginsService
       ]
@@ -137,6 +140,7 @@ export class AtlantisUiModule {
         { provide: dragAndDropService, useFactory: dragDropServiceFactory },
         { provide: dragAndDropSortableService, useFactory: dragDropSortableServiceFactory },
         { provide: dialogService, useFactory: dialogServiceFactory},
+        { provide: modalService, useFactory: modalServiceFactory},
         { provide: localeMomentService, useFactory: localeMomentServiceFactory}
       ]
     };
