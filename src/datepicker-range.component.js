@@ -422,8 +422,12 @@ export default class datepickerComponent {
 
   focusEnd(event, input) {
     this.focus = END;
-    input.focus();
-    this.setStart(event.target.value);
+    if (end) {
+      this.setStart(input.value);
+    } else {
+      input.focus();
+      this.setStart(event.target.value);
+    }
   }
 
 
