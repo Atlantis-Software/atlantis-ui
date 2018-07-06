@@ -420,7 +420,7 @@ export default class datepickerComponent {
     this.setEnd(event.target.value);
   }
 
-  focusEnd(event, input) {
+  focusEnd(event, input, end) {
     this.focus = END;
     if (end) {
       this.setStart(input.value);
