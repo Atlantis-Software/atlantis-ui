@@ -45,8 +45,10 @@ export default class modalComponent {
     if (val !== this.model) {
       this.model = val;
       if (this.model) {
+        this.service.openModal();
         this.open();
       } else {
+        this.service.closeModal();
         this.close();
       }
     }
