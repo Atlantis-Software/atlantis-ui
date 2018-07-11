@@ -1,17 +1,23 @@
 export class modalService {
   constructor() {
-    this.modalOpen = 0;
+    this.modals = [];
   }
 
-  openModal() {
-    this.modalOpen += 1;
+  openModal(modal) {
+    this.modals.push(modal);
   }
 
-  closeModal() {
-    this.modalOpen -= 1;
-    if (this.modalOpen < 0) {
-      this.modalOpen = 0;
+  closeModal(modal) {
+    var indexModal = -1;
+    this.modals.forEach((modalOpen, index) => {
+      if (modal === modalOpen) {
+        indexModal = index;
+      }
+    });
+    if (indexModal === -1) {
+      return;
     }
+    this.modals.splice(indexModal, 1);
   }
 }
 
