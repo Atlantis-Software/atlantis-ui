@@ -22,7 +22,7 @@ export default class gridBodyComponent {
             [ngClass]="column.class"
             [attr.align]="column.alignment"
             [style.verticalAlign]="column.vertical_alignment"
-            [style.width]="column.width"
+            [style.width]="columnsWidths[y] || column.width"
             (dblclick)="!changingCellContent && modifyContent($event, i, y)">
             <input class="grid-input-change form-control"
               *ngIf="changingCellContent === i + '' + y"
@@ -41,7 +41,7 @@ export default class gridBodyComponent {
             </atlui-grid-cell>
           </div>
         </div>`,
-        inputs: ['columns', 'rows', 'pipes', 'selected', 'types', 'multiple', 'headerFixed'],
+        inputs: ['columns', 'rows', 'pipes', 'selected', 'types', 'multiple', 'headerFixed', 'columnsWidths'],
         outputs: ['selectedRows']
       })
     ];
