@@ -57,6 +57,7 @@ export default class modalComponent {
   //Open modal and add correct class on body for avoid the scroll on body
   //if we want a backdrop that create a backdrop into the body
   open() {
+    this.service.openModal(this);
     if (this.backdrop === true) {
       // create backdrop dynamically
       this.backdropRef = this.backdropFactory.create(this.injector);
@@ -93,9 +94,10 @@ export default class modalComponent {
   }
 
   close() {
+    this.service.closeModal(this);
     this.model = false;
     this.showChange.emit(this.model);
-    if (this.service.modalOpen === 0) {
+    if (this.service.modals.length === 0) {
       document.body.classList.remove("modal-open");
     }
     this.visibleAnimate = false;
