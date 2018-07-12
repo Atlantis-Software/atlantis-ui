@@ -58,7 +58,7 @@ class gridTestComponent {
         <atlui-grid id="grid" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
 
         </atlui-grid>
-        <atlui-grid [headerFixed]="true" id="templateHeader" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
+        <atlui-grid [headerFixed]="headerFixed" id="templateHeader" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
           <ng-template atlui-grid-cell-header let-columnName>
             <span style="color:red;">{{columnName | uppercase}}</span>
           </ng-template>
@@ -67,6 +67,7 @@ class gridTestComponent {
     ];
   }
   constructor() {
+    this.headerFixed = false;
 
     this.columns = [
       {
@@ -218,12 +219,12 @@ describe('grid', function() {
 
   it('should render default value and available options', fakeAsync(() => {
     var fixture = TestBed.createComponent(gridTestComponent);
-
+    gridComponent = fixture.componentInstance;
+    gridComponent.headerFixed = true;
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
 
-    gridComponent = fixture.componentInstance;
     var columns = document.querySelectorAll('#grid .gridHead');
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
 
@@ -246,6 +247,8 @@ describe('grid', function() {
 
     var gridCustomeHeader = document.querySelector('#templateHeader .gridRow .gridHead span');
     assert.strictEqual(gridCustomeHeader.style.color, "red");
+    tick(1000);
+    fixture.detectChanges();
   }));
 
   it('should render selected value when click on row', fakeAsync(() => {
@@ -260,6 +263,7 @@ describe('grid', function() {
 
     rows[0].click();
     tick();
+
     fixture.detectChanges();
 
     var selection = testComponent.selection;
@@ -283,10 +287,12 @@ describe('grid', function() {
 
     rows[0].dispatchEvent(click);
     tick();
+
     fixture.detectChanges();
 
     rows[1].dispatchEvent(click);
     tick();
+
     fixture.detectChanges();
 
     var selection = testComponent.selection;

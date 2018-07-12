@@ -11,6 +11,7 @@ import {
 import {
   gridConfig
 } from './grid.config.js';
+import ResizeObserver from 'resize-observer-polyfill';
 
 export class gridComponent {
   static get annotations() {
@@ -18,14 +19,14 @@ export class gridComponent {
       new Component({
         selector: 'atlui-grid',
         template: `
-        <atlui-grid-header class="gridHeader" [headerTemplate]="headerTemplate" [columns]="columns" [pipes]="pipes" (sort)="sort.emit($event)">
+        <atlui-grid-header class="gridHeader" [headerTemplate]="headerTemplate" [columnsWidths]="columnsWidths" [columns]="columns" [pipes]="pipes" [multipleSort]="multipleSort" (sort)="sort.emit($event)">
         </atlui-grid-header>
-        <atlui-grid-body class="gridBody" [style.height]="height" [types]="types" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected"
+        <atlui-grid-body [headerFixed]="headerFixed" class="gridBody" [style.height]="height" [columnsWidths]="columnsWidths" [types]="types" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected"
           [multiple]='multiple' (selectedRows)="onSelect($event)">
         </atlui-grid-body>
         <atlui-grid-footer class="gridFooter" *ngIf="config.footer !=='none'" [columns]="columns">
         </atlui-grid-footer>`,
-        inputs: ['columns', 'rows', 'config', 'selected', 'multiple', 'headerFixed', 'height'],
+        inputs: ['columns', 'rows', 'config', 'selected', 'multiple', 'headerFixed', 'height', 'multipleSort'],
         outputs: ['selectedRows', 'sort'],
         host: {
           "[class.table-fixed]": "headerFixed"
@@ -41,6 +42,7 @@ export class gridComponent {
     var self = this;
     this.headerTemplate = null;
     this.elementRef = elementRef;
+    this.multipleSort = false;
     this.cdr = cdr;
     this.multiple = false;
     this.config = {};
@@ -49,6 +51,8 @@ export class gridComponent {
     this.types = gridConfig;
     this.headerFixed = false;
     this.height = undefined;
+    this.columnsWidths = [];
+    this.originColumnsWidths = [];
     this.selectedRows = new EventEmitter();
     this.sort = new EventEmitter();
     if (this.types) {
@@ -81,7 +85,9 @@ export class gridComponent {
 
   ngOnInit() {
     var self = this;
+    this.origColumns = [...this.columns];
     this.columns.forEach(function(column) {
+      self.originColumnsWidths.push(column.width);
       var indexType = -1;
       self.types.forEach(function(type, i) {
         if (column.type === type.type) {
@@ -104,41 +110,69 @@ export class gridComponent {
     this.selectedRows.emit(row);
   }
 
-  ngAfterViewInit() {
+  ngAfterViewChecked() {
+    if (!this.headerFixed) {
+      return;
+    }
+    if (this.gridRowCalc) {
+      return;
+    }
     this.redraw();
+    this.ro = new ResizeObserver(()=>{
+      if (!this.cdr['destroyed']) {
+        this.redraw();
+      }
+    });
+    this.gridRowCalc = this.elementRef.nativeElement.querySelector("atlui-grid-body .gridRowCalc");
+    this.ro.observe(this.gridRowCalc);
+  }
+
+  ngOnDestroy() {
+    if (this.ro) {
+      this.ro.disconnect();
+    }
   }
 
   redraw() {
-    if (!this.headerFixed) {
-      this.height = undefined;
-      return;
-    }
     if (!this.height) {
       this.height = "300px";
     }
     var rowStyle = window.getComputedStyle(this.elementRef.nativeElement.querySelector("atlui-grid-body .gridRowCalc"), null);
 
-    var rowWidth = parseInt(rowStyle.getPropertyValue("width"));
-    var widthRemaining = rowWidth;
+    var rowWidth = rowStyle.getPropertyValue("width");
+    if (rowWidth === "auto") {
+      return;
+    }
+    if (rowWidth === this.oldWidth) {
+      return;
+    }
+    this.columnsWidths = [];
+    var widthRemaining = parseInt(rowWidth);
     var columnWithoutWidth = 0;
-    this.columns.forEach((column)=> {
-      if (column.width && column.width !== "auto") {
-        if (column.width.indexOf('px') !== -1) {
-          widthRemaining -= parseInt(column.width);
-        } else if (column.width.indexOf('%') !== -1) {
-          widthRemaining -= rowWidth*(parseInt(column.width)/100);
+    this.originColumnsWidths.forEach((width)=> {
+      if (width && width !== "auto") {
+        if (width.indexOf('px') !== -1) {
+          widthRemaining -= parseInt(width);
+        } else if (width.indexOf('%') !== -1) {
+          widthRemaining -= parseInt(rowWidth)*(parseInt(width)/100);
         }
       } else {
         columnWithoutWidth++;
       }
     });
-    var percentRemaining = widthRemaining/rowWidth*100;
+    if (widthRemaining < 0) {
+      columnWithoutWidth = this.originColumnsWidths.length;
+    }
     setTimeout(() => {
-      this.columns.forEach((column)=> {
-        if (!column.width || column.width === "auto") {
-          column.width = (percentRemaining / columnWithoutWidth) + "%";
+      this.columns.forEach((column, index)=> {
+        if (!this.originColumnsWidths[index] || this.originColumnsWidths[index] === "auto") {
+          this.columnsWidths.push((parseInt(widthRemaining / columnWithoutWidth)) + "px");
+        } else {
+          this.columnsWidths.push(this.originColumnsWidths[index]);
         }
       });
+      this.oldWidth = rowWidth;
+      this.cdr.detectChanges();
     }, 0);
     this.cdr.detectChanges();
   }

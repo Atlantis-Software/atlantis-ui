@@ -11,7 +11,7 @@ export default class tabsComponent {
         queries: {
           tabpanels: new ContentChildren(tabpanelDirective)
         },
-        inputs: ['panelHeight']
+        inputs: ['height']
       })
     ];
 
@@ -19,7 +19,7 @@ export default class tabsComponent {
 
   constructor(ElementRef) {
     this.activeId = 0;
-    this.panelHeight = "100%";
+    this.height = "150px";
     this.elementRef = ElementRef;
   }
 
@@ -39,22 +39,6 @@ export default class tabsComponent {
     this.activeId = activePanel ? activePanel.id : ( this.tabpanels.length ? this.tabpanels.first.id : null);
     activePanel = this._getPanelById(this.activeId);
     activePanel.active = true;
-  }
-  //TODO Change for use css only
-  ngAfterViewInit() {
-    var maxSize = 0;
-    if (!this.elementRef.nativeElement.parentNode.style.height && this.panelHeight === '100%') {
-      let panels = this.elementRef.nativeElement.querySelectorAll("atlui-tab-panel");
-      panels.forEach(panel => {
-        var panelStyle = window.getComputedStyle(panel, null);
-        var panelHeight = parseInt(panelStyle.getPropertyValue("height"));
-        if (panelHeight > maxSize) {
-          maxSize = panelHeight;
-        }
-      });
-      let tabContent = this.elementRef.nativeElement.querySelector(".tab-content");
-      tabContent.style.minHeight = (maxSize + 2) + "px";
-    }
   }
 
   _getPanelById(id) {

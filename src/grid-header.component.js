@@ -14,12 +14,13 @@ export default class gridHeaderComponent {
             *ngFor= "let column of columns; let i = index;"
             [ngClass]="column.class"
             [class.sortable]="column.isSortable"
-            [style.width]="column.width" (click)="onSort(column, i)">
+            [style.width]="columnsWidths[i] || column.width"
+            (click)="onSort(column, i)">
             <atlui-grid-cell-header [content]="column.columnName || column.label" [headerTemplate]="headerTemplate" [pipes]="pipes" [sortingClass]="column.sortingClass">
             </atlui-grid-cell-header>
           </div>
         </div>`,
-        inputs: ['columns', 'pipes', 'headerTemplate'],
+        inputs: ['columns', 'pipes', 'headerTemplate', 'columnsWidths', 'multipleSort'],
         outputs: ['sort']
       })
     ];
@@ -27,6 +28,7 @@ export default class gridHeaderComponent {
 
   constructor() {
     this.sort = new EventEmitter();
+    this.sortColumnUnique = {};
     this.sortColumns = [];
     this.isSortable = false;
   }
@@ -35,30 +37,53 @@ export default class gridHeaderComponent {
     if (!column.isSortable) {
       return;
     }
-    // var sort = {label: column.label};
     var alreadyOrdered = false;
-    this.sortColumns.forEach((sortColumn, index) => {
-      if (sortColumn.label === column.label) {
-        if (sortColumn.order === 'asc') {
+    if (this.multipleSort) {
+      this.sortColumns.forEach((sortColumn, index) => {
+        if (sortColumn.label === column.label) {
+          if (sortColumn.order === 'asc') {
+            this.columns[id].sortingClass = 'icon icon-sort-desc';
+            sortColumn.order = 'desc';
+          } else {
+            this.columns[id].sortingClass = '';
+            this.sortColumns.splice(index, 1);
+          }
+          alreadyOrdered = true;
+        }
+      });
+      if (!alreadyOrdered) {
+        this.columns[id].sortingClass = 'icon icon-sort-asc';
+        this.sortColumns.push({
+          label: column.label,
+          order: 'asc',
+          type: column.type || 'text'
+        });
+      }
+      this.sort.emit(this.sortColumns);
+    } else {
+      if (this.sortColumnUnique.label === column.label) {
+        if (this.sortColumnUnique.order === 'asc') {
           this.columns[id].sortingClass = 'icon icon-sort-desc';
-          sortColumn.order = 'desc';
+          this.sortColumnUnique.order = 'desc';
         } else {
           this.columns[id].sortingClass = '';
-          this.sortColumns.splice(index, 1);
+          this.sortColumnUnique = {};
         }
         alreadyOrdered = true;
       }
-    });
-    if (!alreadyOrdered) {
-      this.columns[id].sortingClass = 'icon icon-sort-asc';
-      this.sortColumns.push({
-        label: column.label,
-        order: 'asc',
-        type: column.type || 'text'
-      });
+      if (!alreadyOrdered) {
+        this.columns.forEach((column) => {
+          column.sortingClass = '';
+        });
+        this.columns[id].sortingClass = 'icon icon-sort-asc';
+        this.sortColumnUnique = {
+          label: column.label,
+          order: 'asc',
+          type: column.type || 'text'
+        };
+      }
+      this.sort.emit(this.sortColumnUnique);
     }
-
-    this.sort.emit(this.sortColumns);
   }
 
 }
