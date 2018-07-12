@@ -36,13 +36,13 @@
       <div class="col-md-3">
         <div class="form-group" [ngClass]="{'has-error': hasErrorStart }">
           <input #inputstart type="text" class="form-control input-md" [ngModel]="_start" (focus)="selectInputDateStart()"
-          [ngClass]="{'active': (focus === 'start') }" (keydown.tab)="focusEnd($event, inputend); false" (keyup.enter)="closeAfterCheck($event, true)" (blur)="focusEnd($event, inputend)">
+          [ngClass]="{'active': (focus === 'start') }" (keydown.tab)="focusEnd($event, inputend); false" (keyup.enter)="closeAfterCheck($event, true)" (click)="focusStart($event, inputstart)">
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group" [ngClass]="{'has-error': hasErrorEnd }">
           <input #inputend type="text" class="form-control input-md" [ngModel]="_end" (keyup.enter)="closeAfterCheck($event, false)"
-          (focus)="selectInputDateEnd()" [ngClass]="{'active': (focus === 'end')}" (blur)="focusStart($event, inputstart)">
+          (focus)="selectInputDateEnd()" [ngClass]="{'active': (focus === 'end')}" (click)="focusEnd($event, inputend, true)">
         </div>
       </div>
       <div class="col-md-4">
