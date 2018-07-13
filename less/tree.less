@@ -28,11 +28,18 @@ atlui-tree {
     }
 
     .tree-node-label {
-      color : black;
+      color: black;
     }
 
     .tree-node-line {
       padding-right: @tree-node-line-padding;
+    }
+
+    .tree-node-selection {
+      color: @brand-primary;
+      .tree-node-label {
+        color: @brand-primary;
+      }
     }
 
     .tree-node-checkbox {
@@ -53,7 +60,7 @@ atlui-tree {
       }
     }
 
-    span[sortable-handle] {
+    span[atlui-sortable-handle] {
       &:before {
         right: @tree-node-handle-placement;
         top: @tree-node-handle-placement;
