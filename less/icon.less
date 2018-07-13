@@ -10,6 +10,28 @@
   font-style: normal;
 }
 
+@-webkit-keyframes icon-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes icon-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
 .icon {
   display: inline-block;
   font: normal normal normal (@font-size-base/@line-height-base) FontAwesome; // shortening font declaration
@@ -94,7 +116,8 @@
   chain-broken        "\f127",
   font                "\f031",
   trash               "\f1f8",
-  quote-right         "\f10e";
+  quote-right         "\f10e",
+  spinner             "\f110";
 
 .iconify-all(@icon-list);
 
@@ -144,4 +167,14 @@
 
 .icon-stack-2x {
   font-size: (@font-size-base * 2);
+}
+
+.icon-spin {
+  -webkit-animation: icon-spin 2s infinite linear;
+  animation: icon-spin 2s infinite linear;
+}
+
+.icon-pulse {
+  -webkit-animation: icon-spin 2s infinite linear steps(8);
+  animation: icon-spin 1s infinite linear steps(8);
 }
