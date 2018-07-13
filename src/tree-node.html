@@ -1,12 +1,14 @@
 <div class="tree-node-line">
-  <span *ngIf="children?.length" class="tree-expander icon" [ngClass]="{
+  <span *ngIf="children" class="tree-expander icon" [ngClass]="{
     'icon-folder-open': expanded,
     'icon-folder': !expanded,
     'icon-disabled': disabled }"
     (click)='ExpandClick()'>
   </span>
-  <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="tree-node-label"></span>
-  <div *ngIf="selectable" class="tree-node-checkbox">
+  <span *ngIf="loading" class="icon icon-spinner icon-spin">
+  </span>
+  <span *ngIf="!template" (click)="onClickNodeCallback()" [innerHTML]="label" [class.disabled]="disabled" class="tree-node-label"></span>
+  <div *ngIf="selectable && !loading" class="tree-node-checkbox">
     <div class="checkbox">
       <input type="checkbox" [ngModel]="selected" (click)="onClick()" [attr.disabled]="disabled">
       <label>
@@ -14,17 +16,19 @@
       </label>
     </div>
   </div>
-  <span *ngIf="isSortable" atlui-sortable-handle></span>
+  <span *ngIf="isSortable && !loading" atlui-sortable-handle></span>
 </div>
 <div class="sub-tree" *ngIf="children?.length" [hidden]="!expanded" [atlui-sortable-container]="children" [draggable]="false" [dropzones]="[sortableZones]">
   <atlui-tree-node *ngFor="let child of children; let i = index"
     [(expanded)]="child.expanded"
     [(selected)]="child.selected"
+    [node]="child"
     [label]="child.label"
     [model]="child.model"
     [id]="child.id"
     [children]="child.children"
     [selectable]="child.selectable"
+    [loading]=child.loading
     [template]="template"
     [depth]="depth+1"
     [disabled]="child.disabled"
@@ -34,6 +38,7 @@
     (expand)="expand.emit($event)"
     (collapse)="collapse.emit($event)"
     (select)="onSelect($event)"
+    (onClickNode)="onClickNode.emit($event)"
     [atlui-sortable]="isSortable"
     [sortableIndex]="i"
     [dropzones]="[sortableZones]"

@@ -7,7 +7,7 @@ export default class treeComponent {
         selector: 'atlui-tree',
         template: require('./tree.html'),
         inputs: ['nodes', 'template', 'depth', 'nestedSortable', 'isSortable'],
-        outputs: ['expand', 'collapse', 'nodesChanges'],
+        outputs: ['expand', 'collapse', 'nodesChanges', 'onClick'],
         queries: {
           template: new ContentChild(TemplateRef),
         }
@@ -18,11 +18,23 @@ export default class treeComponent {
     this.expand = new EventEmitter();
     this.collapse = new EventEmitter();
     this.nodesChanges = new EventEmitter();
+    this.onClick = new EventEmitter();
     this.depth = 1;
     this.cdr = changeDetectorRef;
     this.dropZones = "zone" + Math.floor(Math.random() * 100000) + 1;
     this.isSortable = false;
-    this.ElementRef = ElementRef;
+    this.elementRef = ElementRef;
+  }
+
+  onClickNode($event) {
+    var treeNodeSelection = this.elementRef.nativeElement.querySelectorAll(".tree-node-selection");
+    if (treeNodeSelection.length > 0) {
+      treeNodeSelection.forEach((element) => {
+        element.classList.remove("tree-node-selection");
+      });
+    }
+    $event.element.classList.toggle("tree-node-selection");
+    this.onClick.emit($event.node);
   }
 
   onDragCallback(element, node, value) {
@@ -42,7 +54,7 @@ export default class treeComponent {
     if (value) {
       element.classList.add("tree-node-sorted");
     } else {
-      var treeNodeSorted = document.querySelectorAll(".tree-node-sorted");
+      var treeNodeSorted = this.elementRef.nativeElement.querySelectorAll(".tree-node-sorted");
       if (treeNodeSorted.length > 0) {
         treeNodeSorted.forEach((element) => {
           element.classList.remove("tree-node-sorted");
@@ -60,7 +72,7 @@ export default class treeComponent {
     }
   }
 
-  ngAfterViewInit() {
+  ngAfterViewChecked() {
     if (!this.nodes) {
       return;
     }
@@ -69,16 +81,20 @@ export default class treeComponent {
     } else {
       this.dropZonesNested = undefined;
     }
-    var recursiveSetDropZones = function(node) {
-      node.selected = node.selected || false;
+    var recursiveSetDropZones = function(node, parentSelection) {
+      if (parentSelection) {
+        node.selected = parentSelection;
+      } else {
+        node.selected = node.selected || false;
+      }
       if (node.children) {
         node.children.forEach(function(child) {
-          recursiveSetDropZones(child);
+          recursiveSetDropZones(child, node.selected);
         });
       }
     };
     this.nodes.forEach(function(node) {
-      recursiveSetDropZones(node);
+      recursiveSetDropZones(node, false);
     });
     this.cdr.detectChanges();
   }
@@ -88,7 +104,7 @@ export default class treeComponent {
   }
 
   updateTree() {
-    var treeNodeSorted = document.querySelectorAll(".tree-node-sorted");
+    var treeNodeSorted = this.elementRef.nativeElement.querySelectorAll(".tree-node-sorted");
     if (treeNodeSorted.length > 0) {
       treeNodeSorted.forEach((element) => {
         element.classList.remove("tree-node-sorted");
