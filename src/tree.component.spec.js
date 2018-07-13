@@ -63,7 +63,6 @@ class treeTestComponent {
       },
       {
         label: 'Node 2',
-        expandable: true,
         expanded: true,
         children: [
           {
@@ -75,7 +74,6 @@ class treeTestComponent {
           {
             label: 'Node 23',
             expanded: false,
-            expandable: true,
             children: [
               {
                 label: 'Node 231'
@@ -93,7 +91,6 @@ class treeTestComponent {
           },
           {
             label: 'Node 24',
-            expandable: true,
             expanded: true,
             children: [
               {
@@ -107,7 +104,6 @@ class treeTestComponent {
               },
               {
                 label: 'Node 244',
-                expandable: true,
                 expanded: true,
                 children: [
                   {
@@ -147,15 +143,29 @@ class treeTestComponent {
         expandable: true
       }
     ];
+    this.expand = this.collapse = this.onClick = false;
   }
   static get annotations() {
     return [
       new Component({
         template: `
-        <atlui-tree [nodes]="nodes" [isSortable]="sortable" [nestedSortable]="nested"></atlui-tree>`
+        <atlui-tree [nodes]="nodes" [isSortable]="sortable" [nestedSortable]="nested" (expand)="expandCallback($event)" (collapse)="collapseCallback($event)" (onClick)="onClickCallback($event)"></atlui-tree>`
       })
     ];
   }
+
+  expandCallback() {
+    this.expand = true;
+  }
+
+  collapseCallback() {
+    this.collapse = true;
+  }
+
+  onClickCallback() {
+    this.onClick = true;
+  }
+
 }
 
 describe('tree', function() {
@@ -501,6 +511,42 @@ describe('tree', function() {
         }
         assert(!treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node shouldn\'t be checked');
       });
+    }));
+
+    it('should send callback', fakeAsync(() => {
+      var fixture = TestBed.createComponent(treeTestComponent);
+      var testComponent = fixture.componentInstance;
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+
+      assert.strictEqual(testComponent.expand, false);
+      assert.strictEqual(testComponent.collapse, false);
+      assert.strictEqual(testComponent.onClick, false);
+      var node = getNode('Node 23');
+      assert(node, 'Node not found');
+      var expander = node.querySelector('.tree-expander');
+      assert(expander, 'Expander not found');
+
+      expander.click();
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+      assert.strictEqual(testComponent.expand, true);
+
+      expander.click();
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+      assert.strictEqual(testComponent.collapse, true);
+
+      var label = node.querySelector('.tree-node-label');
+      assert(label, 'Expander not found');
+      label.click();
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+      assert.strictEqual(testComponent.onClick, true);
     }));
   });
 

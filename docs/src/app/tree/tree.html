@@ -2,9 +2,9 @@
   <h2>
     Tree
   </h2>
-  <h3>
+  <h4>
     Basic Example with 2 levels and default parameters:
-  </h3>
+  </h4>
   <div class="row container-fluid form-group">
     <div class="col-md-4">
       <atlui-tree [nodes]="nodesBasic"></atlui-tree>
@@ -33,9 +33,9 @@ this.nodesBasic = [
 ]
   </textarea>
 
-  <h3>
+  <h4>
     Example with specific parameters on nodes:
-  </h3>
+  </h4>
   <div class="row container-fluid">
     <div class="col-md-4">
       <atlui-tree [nodes]="nodesWithParameters"></atlui-tree>
@@ -73,6 +73,38 @@ this.nodesWithParameters = [
   }
 ];
   </textarea>
+
+  <h4>
+    Example with callback on expand, collapse and click on node
+  </h4>
+  <div class="row container-fluid form-group">
+    <div class="col-md-4">
+      <atlui-tree (expand)="expandCallback($event)" (collapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesBasic"></atlui-tree>
+    </div>
+  </div>
+  <br>
+  <textarea class="atlui-code">
+    <atlui-tree class="col-md-4" (expand)="expandCallback($event)" (collapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesBasic"></atlui-tree>
+  </textarea>
+  <textarea class="atlui-code">
+this.nodesBasic = [
+  {
+    label: 'Node with lazy children'
+  },
+  {
+    label: 'Node with children',
+    children: [
+      {
+        label: 'Sub-node 1'
+      },
+      {
+        label: 'Sub-node 2'
+      }
+    ]
+  }
+]
+  </textarea>
+
   <h3>
     Sortable tree
   </h3>
