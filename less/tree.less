@@ -29,10 +29,16 @@ atlui-tree {
 
     .tree-node-label {
       color: black;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
-    .tree-node-line {
-      padding-right: @tree-node-line-padding;
+    .tree-node-plugins {
+      float: right;
+      .tree-node-plugin {
+        display: inline-block;
+      }
     }
 
     .tree-node-selection {
@@ -44,9 +50,6 @@ atlui-tree {
 
     .tree-node-checkbox {
       display: inline-block;
-      right: @tree-node-checkbox-right;
-      top: @tree-icon-top;
-      position: absolute;
       .checkbox {
         //margin it's require to place correctly checkbox
         margin-top: 0;
@@ -55,16 +58,14 @@ atlui-tree {
           cursor: default;
           &::before {
             cursor : pointer;
+            top: 4px;
           }
         }
       }
     }
 
-    span[atlui-sortable-handle] {
+    .tree-node-handle[atlui-sortable-handle] {
       &:before {
-        right: @tree-node-handle-placement;
-        top: @tree-node-handle-placement;
-        position: absolute;
         font-family: "FontAwesome";
         content: "\f0b2";
         font-size: @font-size-checkbox - 2;
