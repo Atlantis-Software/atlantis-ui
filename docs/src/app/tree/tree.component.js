@@ -129,6 +129,19 @@ export default  class TreeComponent {
       }
     ];
 
+    this.plugins = [
+      {icon: 'check', click: this.check, hidden: this.hidden},
+      'checkbox'
+    ];
+
+  }
+
+  hidden(event) {
+    if (event.label === "Sub-node 1") {
+      return "hidden";
+    } else {
+      return "visible";
+    }
   }
 
   expandCallback(event) {
@@ -137,7 +150,7 @@ export default  class TreeComponent {
       setTimeout(() => {
         event.children = [{
           label: "lazy loaded children"
-        }]
+        }];
       }, 3000);
     }
   }
@@ -147,7 +160,12 @@ export default  class TreeComponent {
   }
 
   onClickCallback(event) {
+    this.selection = event;
     console.log("click event on : ", event);
+  }
+
+  check(event) {
+    console.log("check : ", event)
   }
 
 }

@@ -12,7 +12,7 @@
   </div>
   <br>
   <textarea class="atlui-code">
-    <atlui-tree class="col-md-4" [nodes]="nodesBasic"></atlui-tree>
+    <atlui-tree [nodes]="nodesBasic"></atlui-tree>
   </textarea>
   <textarea class="atlui-code">
 this.nodesBasic = [
@@ -75,16 +75,16 @@ this.nodesWithParameters = [
   </textarea>
 
   <h4>
-    Example with callback on expand, collapse and click on node
+    Example with callback on expand, collapse and selection on node
   </h4>
   <div class="row container-fluid form-group">
     <div class="col-md-4">
-      <atlui-tree (expand)="expandCallback($event)" (collapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesBasic"></atlui-tree>
+      <atlui-tree (expand)="expandCallback($event)" (collapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesBasic" [selection]="selection"></atlui-tree>
     </div>
   </div>
   <br>
   <textarea class="atlui-code">
-    <atlui-tree class="col-md-4" (expand)="expandCallback($event)" (collapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesBasic"></atlui-tree>
+    <atlui-tree (expand)="expandCallback($event)" (collapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesBasic"></atlui-tree>
   </textarea>
   <textarea class="atlui-code">
 this.nodesBasic = [
@@ -105,6 +105,98 @@ this.nodesBasic = [
 ]
   </textarea>
 
+  <h4>
+    Example with plugins
+  </h4>
+
+  <div class="row container-fluid form-group">
+    <div class="col-md-4">
+      <atlui-tree [nodes]="nodesBasic" [plugins]="plugins"></atlui-tree>
+    </div>
+  </div>
+
+  <textarea class="atlui-code">
+<atlui-tree [plugins]="plugins"></atlui-tree>
+  </textarea>
+
+  <textarea class="atlui-code">
+this.plugins = [
+  {icon: 'check', click: function(){}, hidden: function(){}},
+  'checkbox'
+];
+  </textarea>
+  <h3>
+    Plugins object
+  </h3>
+  <p>
+    We can use predefined plugins : checkbox and sortable, we just need to use string with plugin name in our array
+  </p>
+  <p>
+    For use customs plugins, we just need to create a object with the name of the icon, and the function to call on click or other event
+  </p>
+
+  <h4>
+    Event list
+  </h4>
+  <p>
+    We can send function for different event
+  </p>
+  <ul>
+    <li>
+      click
+    </li>
+    <li>
+      dragenter
+    </li>
+    <li>
+      dragover
+    </li>
+    <li>
+      dragleave
+    </li>
+    <li>
+      dragdrop
+    </li>
+    <li>
+      dragstart
+    </li>
+    <li>
+      dragend
+    </li>
+    <li>
+      mousedown
+    </li>
+    <li>
+      mouseenter
+    </li>
+    <li>
+      mouseleave
+    </li>
+    <li>
+      mousemove
+    </li>
+    <li>
+      mouseout
+    </li>
+    <li>
+      mouseover
+    </li>
+    <li>
+      mouseup
+    </li>
+    <li>
+      dblclick
+    </li>
+  </ul>
+
+  <p>
+    We can define three other function, one for display none the icon with hidden function,
+    one for disable the icon with disabled function and the last for visibility hidden the icon.
+  </p>
+  <p>
+    Warning: the two first function need to return true or false. The last function need to send visible or hidden;
+  </p>
+
   <h3>
     Sortable tree
   </h3>
@@ -116,12 +208,12 @@ this.nodesBasic = [
   </p>
   <div class="row container-fluid">
     <div class="col-md-4">
-      <atlui-tree [nodes]="nodesSortable" [isSortable]="true"></atlui-tree>
+      <atlui-tree [nodes]="nodesSortable" [plugins]="['sortable']"></atlui-tree>
     </div>
   </div>
   <br>
   <textarea class="atlui-code">
-<atlui-tree [nodes]="nodesSortable" [isSortable]="true"></atlui-tree>
+<atlui-tree [nodes]="nodesSortable" [plugins]="['sortable']"></atlui-tree>
   </textarea>
 
   <h4>
@@ -132,12 +224,12 @@ this.nodesBasic = [
   </p>
   <div class="row container-fluid">
     <div class="col-md-4">
-      <atlui-tree [nodes]="nodesSortableNested" [isSortable]="true" [nestedSortable]="true"></atlui-tree>
+      <atlui-tree [nodes]="nodesSortableNested" [plugins]="['sortable']" [nestedSortable]="true"></atlui-tree>
     </div>
   </div>
   <br>
   <textarea class="atlui-code">
-<atlui-tree [nodes]="nodesSortable" [isSortable]="true" [nestedSortable]="true"></atlui-tree>
+<atlui-tree [nodes]="nodesSortable" [plugins]="['sortable']" [nestedSortable]="true"></atlui-tree>
   </textarea>
   <h3>
     Nodes in js script:
