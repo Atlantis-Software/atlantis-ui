@@ -15,7 +15,8 @@ export default class treeNodeComponent {
         selector: 'atlui-tree-node',
         template: require('./tree-node.html'),
         inputs: ['node', 'label', 'model', 'children', 'expanded', 'selectable', 'disabled',
-          'template', 'depth', 'selected', 'sortableZones', 'nestedSortable', 'isSortable', 'loading'
+          'template', 'depth', 'selected', 'sortableZones', 'nestedSortable', 'isSortable', 'loading',
+          'nodeSelected', 'plugins'
         ],
         outputs: ['expand', 'collapse', 'select', 'selectedChange', 'expandedChange', 'onClickNode'],
         host: {
@@ -42,8 +43,7 @@ export default class treeNodeComponent {
   }
 
   onClickNodeCallback() {
-    var treeNodeLine = this.elementRef.nativeElement.querySelector(".tree-node-line");
-    this.onClickNode.emit({node: this.node, element: treeNodeLine});
+    this.onClickNode.emit(this.node);
   }
 
   updateTree() {

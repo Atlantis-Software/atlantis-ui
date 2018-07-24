@@ -6,7 +6,7 @@ export default class treeComponent {
       new Component({
         selector: 'atlui-tree',
         template: require('./tree.html'),
-        inputs: ['nodes', 'template', 'depth', 'nestedSortable', 'isSortable'],
+        inputs: ['nodes', 'template', 'nestedSortable', 'nodeSelected: selection', 'plugins'],
         outputs: ['expand', 'collapse', 'nodesChanges', 'onClick'],
         queries: {
           template: new ContentChild(TemplateRef),
@@ -24,17 +24,11 @@ export default class treeComponent {
     this.dropZones = "zone" + Math.floor(Math.random() * 100000) + 1;
     this.isSortable = false;
     this.elementRef = ElementRef;
+    this.plugins = [];
   }
 
   onClickNode($event) {
-    var treeNodeSelection = this.elementRef.nativeElement.querySelectorAll(".tree-node-selection");
-    if (treeNodeSelection.length > 0) {
-      treeNodeSelection.forEach((element) => {
-        element.classList.remove("tree-node-selection");
-      });
-    }
-    $event.element.classList.toggle("tree-node-selection");
-    this.onClick.emit($event.node);
+    this.onClick.emit($event);
   }
 
   onDragCallback(element, node, value) {
@@ -80,6 +74,9 @@ export default class treeComponent {
       this.dropZonesNested = this.dropZones;
     } else {
       this.dropZonesNested = undefined;
+    }
+    if (this.plugins.indexOf('sortable') != -1) {
+      this.isSortable = true;
     }
     var recursiveSetDropZones = function(node, parentSelection) {
       if (parentSelection) {

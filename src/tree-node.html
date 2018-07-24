@@ -1,4 +1,4 @@
-<div class="tree-node-line">
+<div class="tree-node-line" [ngClass]="{'tree-node-selection': node === nodeSelected}">
   <span *ngIf="children" class="tree-expander icon" [ngClass]="{
     'icon-folder-open': expanded,
     'icon-folder': !expanded,
@@ -7,16 +7,36 @@
   </span>
   <span *ngIf="loading" class="icon icon-spinner icon-spin">
   </span>
-  <span *ngIf="!template" (click)="onClickNodeCallback()" [innerHTML]="label" [class.disabled]="disabled" class="tree-node-label"></span>
-  <div *ngIf="selectable && !loading" class="tree-node-checkbox">
-    <div class="checkbox">
-      <input type="checkbox" [ngModel]="selected" (click)="onClick()" [attr.disabled]="disabled">
-      <label>
-        &nbsp;
-      </label>
+  <div class="tree-node-plugins" *ngIf="!loading">
+    <div class="tree-node-plugin mx-2" *ngFor="let plugin of plugins">
+      <tree-plugin
+        [plugin]="plugin"
+        [icon]="plugin.icon"
+        [node]="node"
+        [disabled]="plugin.disabled"
+        [display]="plugin.display"
+        [hidden]="plugin.hidden"
+        [click]="plugin.click"
+        [dragenter]="plugin.dragenter"
+        [dragover]="plugin.dragover"
+        [dragleave]="plugin.dragleave"
+        [dragdrop]="plugin.dragdrop"
+        [dragstart]="plugin.dragstart"
+        [dragend]="plugin.dragend"
+        [mousedown]="plugin.mousedown"
+        [mouseenter]="plugin.mouseenter"
+        [mouseleave]="plugin.mouseleave"
+        [mousemove]="plugin.mousemove"
+        [mouseout]="plugin.mouseout"
+        [mouseover]="plugin.mouseover"
+        [mouseup]="plugin.mouseup"
+        [dblclick]="plugin.dblclick"
+        [selectedChange]="onClick.bind(this)">
+      </tree-plugin>
     </div>
   </div>
-  <span *ngIf="isSortable && !loading" atlui-sortable-handle></span>
+  <div [title]="label" (click)="onClickNodeCallback()" [innerHTML]="label" [class.disabled]="disabled" class="tree-node-label">
+  </div>
 </div>
 <div class="sub-tree" *ngIf="children?.length" [hidden]="!expanded" [atlui-sortable-container]="children" [draggable]="false" [dropzones]="[sortableZones]">
   <atlui-tree-node *ngFor="let child of children; let i = index"
@@ -35,6 +55,8 @@
     [sortableZones]="sortableZones"
     [nestedSortable]="nestedSortable"
     [isSortable]="isSortable"
+    [nodeSelected]="nodeSelected"
+    [plugins]="plugins"
     (expand)="expand.emit($event)"
     (collapse)="collapse.emit($event)"
     (select)="onSelect($event)"
