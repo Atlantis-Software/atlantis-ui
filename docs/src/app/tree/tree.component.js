@@ -168,6 +168,25 @@ export default  class TreeComponent {
     console.log("check : ", event)
   }
 
+  expandCallback(event) {
+    console.log("expand event on : ", event);
+    if (event.children[0].loading) {
+      setTimeout(() => {
+        event.children = [{
+          label: "lazy loaded children"
+        }]
+      }, 3000);
+    }
+  }
+
+  collapseCallback(event) {
+    console.log("collapse event on : ", event);
+  }
+
+  onClickCallback(event) {
+    console.log("click event on : ", event);
+  }
+
 }
 
 
