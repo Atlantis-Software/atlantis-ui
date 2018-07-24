@@ -56,7 +56,7 @@ var getNode = function(label) {
 class treeTestComponent {
   constructor() {
     this.nested = false;
-    this.sortable = false;
+    this.plugins = ['checkbox'];
     this.nodes = [
       {
         label: 'Node 1'
@@ -149,7 +149,7 @@ class treeTestComponent {
     return [
       new Component({
         template: `
-        <atlui-tree [nodes]="nodes" [isSortable]="sortable" [nestedSortable]="nested" (expand)="expandCallback($event)" (collapse)="collapseCallback($event)" (onClick)="onClickCallback($event)"></atlui-tree>`
+        <atlui-tree [nodes]="nodes" [plugins]="plugins" [nestedSortable]="nested" (expand)="expandCallback($event)" (collapse)="collapseCallback($event)" (onClick)="onClickCallback($event)"></atlui-tree>`
       })
     ];
   }
@@ -572,9 +572,11 @@ describe('tree', function() {
       getTestBed().resetTestingModule();
     });
 
-    it('should sort into same list first depth', () => {
+    it('should sort into same list first depth', fakeAsync(() => {
       var testComponent = fixture.componentInstance;
-      testComponent.sortable = true;
+      testComponent.plugins = ['checkox', 'sortable'];
+      fixture.detectChanges();
+      tick();
       fixture.detectChanges();
       var node = getNode('Node 2');
       assert(node, 'Node not found');
@@ -587,6 +589,8 @@ describe('tree', function() {
       handle.dispatchEvent(mouseDown);
       triggerEvent(node.parentNode, 'dragstart');
 
+      fixture.detectChanges();
+      tick();
       fixture.detectChanges();
 
       assert.strictEqual(ds.sortableContainer.sortableData, testComponent.nodes, 'should be defined');
@@ -601,11 +605,13 @@ describe('tree', function() {
 
       checkNodes(treeNodeLines, testComponent.nodes, 1);
 
-    });
+    }));
 
-    it('should sort into same list second depth and do nothing if sort into sup level', () => {
+    it('should sort into same list second depth and do nothing if sort into sup level', fakeAsync(() => {
       var testComponent = fixture.componentInstance;
-      testComponent.sortable = true;
+      testComponent.plugins = ['checkox', 'sortable'];
+      fixture.detectChanges();
+      tick();
       fixture.detectChanges();
       var node21 = getNode('Node 21');
       assert(node21, 'Node not found');
@@ -642,7 +648,7 @@ describe('tree', function() {
       treeNodeLines = document.querySelectorAll('.tree-node-line');
       checkNodes(treeNodeLines, testComponent.nodes, 1);
 
-    });
+    }));
   });
 
   describe('sortable in different level', function() {
@@ -667,10 +673,12 @@ describe('tree', function() {
       getTestBed().resetTestingModule();
     });
 
-    it('should sort from first depth to second depth', () => {
+    it('should sort from first depth to second depth', fakeAsync(() => {
       var testComponent = fixture.componentInstance;
-      testComponent.sortable = true;
+      testComponent.plugins = ['checkox', 'sortable'];
       testComponent.nested = true;
+      fixture.detectChanges();
+      tick();
       fixture.detectChanges();
       var node = getNode('Node 1');
       assert(node, 'Node not found');
@@ -695,12 +703,14 @@ describe('tree', function() {
 
       assert.strictEqual(testComponent.nodes.length, 3);
       assert.strictEqual(testComponent.nodes[0].children.length, 5);
-    });
+    }));
 
-    it('should sort from second depth to first depth', () => {
+    it('should sort from second depth to first depth', fakeAsync(() => {
       var testComponent = fixture.componentInstance;
-      testComponent.sortable = true;
+      testComponent.plugins = ['checkox', 'sortable'];
       testComponent.nested = true;
+      fixture.detectChanges();
+      tick();
       fixture.detectChanges();
       var node = getNode('Node 22');
       assert(node, 'Node not found');
@@ -725,12 +735,14 @@ describe('tree', function() {
       assert.strictEqual(testComponent.nodes.length, 5);
       assert.strictEqual(testComponent.nodes[2].children.length, 3);
 
-    });
+    }));
 
-    it('should close the current node if we sort an opened node', () => {
+    it('should close the current node if we sort an opened node', fakeAsync(() => {
       var testComponent = fixture.componentInstance;
-      testComponent.sortable = true;
+      testComponent.plugins = ['checkox', 'sortable'];
       testComponent.nested = true;
+      fixture.detectChanges();
+      tick();
       fixture.detectChanges();
       var node = getNode('Node 2');
       assert(node, 'Node not found');
@@ -748,6 +760,6 @@ describe('tree', function() {
       fixture.detectChanges();
 
       assert.strictEqual(testComponent.nodes[1].expanded, false, 'should not be expanded');
-    });
+    }));
   });
 });
