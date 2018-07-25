@@ -7,7 +7,7 @@ export default class treeComponent {
         selector: 'atlui-tree',
         template: require('./tree.html'),
         inputs: ['nodes', 'template', 'nestedSortable', 'nodeSelected: selection', 'plugins'],
-        outputs: ['expand', 'collapse', 'nodesChanges', 'onClick'],
+        outputs: ['onExpand', 'onCollapse', 'nodesChanges', 'onClick'],
         queries: {
           template: new ContentChild(TemplateRef),
         }
@@ -15,8 +15,8 @@ export default class treeComponent {
     ];
   }
   constructor(changeDetectorRef, ElementRef) {
-    this.expand = new EventEmitter();
-    this.collapse = new EventEmitter();
+    this.onExpand = new EventEmitter();
+    this.onCollapse = new EventEmitter();
     this.nodesChanges = new EventEmitter();
     this.onClick = new EventEmitter();
     this.depth = 1;

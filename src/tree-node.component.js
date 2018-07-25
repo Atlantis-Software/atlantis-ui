@@ -18,7 +18,7 @@ export default class treeNodeComponent {
           'template', 'depth', 'selected', 'sortableZones', 'nestedSortable', 'isSortable', 'loading',
           'nodeSelected', 'plugins'
         ],
-        outputs: ['expand', 'collapse', 'select', 'selectedChange', 'expandedChange', 'onClickNode'],
+        outputs: ['onExpand', 'onCollapse', 'select', 'selectedChange', 'expandedChange', 'onClickNode'],
         host: {
           '[class.selectable]': 'selectable'
         },
@@ -30,8 +30,8 @@ export default class treeNodeComponent {
   }
   constructor(ElementRef, treeNodeComponent) {
     this.elementRef = ElementRef;
-    this.expand = new EventEmitter();
-    this.collapse = new EventEmitter();
+    this.onExpand = new EventEmitter();
+    this.onCollapse = new EventEmitter();
     this.select = new EventEmitter();
     this.selectedChange = new EventEmitter();
     this.expandedChange = new EventEmitter();
@@ -163,9 +163,9 @@ export default class treeNodeComponent {
       });
     }
     if (this.expanded) {
-      this.expand.emit(this.node);
+      this.onExpand.emit(this.node);
     } else if (!this.expanded) {
-      this.collapse.emit(this.node);
+      this.onCollapse.emit(this.node);
     }
     this.expandedChange.emit(this.expanded);
 

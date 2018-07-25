@@ -6,7 +6,7 @@ export default class treePlugin {
       new Component({
         selector: 'tree-plugin',
         template: `
-        <span *ngIf="icon" [hidden]="!isDisplay(node)" [ngStyle]="{'visibility': isHidden(node)}" class="icon" [ngClass]="'icon-' + icon"
+        <span *ngIf="icon" [hidden]="!isDisplay(node)" [style.visibility]="isHidden(node) ? 'visible' : 'hidden'" class="icon" [ngClass]="'icon-' + icon"
           [class.disabled]="isDisabled(node)"
           (click)="onClick(node)"
           (dragenter)="onDragenter(node)"
@@ -24,7 +24,7 @@ export default class treePlugin {
           (mouseup)="onMouseup(node)"
           (dblclick)="onDblclick(node)">
         </span>
-        <div [hidden]="isHidden(node)" *ngIf="plugin === 'checkbox'" class="tree-node-checkbox">
+        <div *ngIf="plugin === 'checkbox'" class="tree-node-checkbox">
           <div class="checkbox">
             <input type="checkbox" [ngModel]="node.selected" (click)="selectedChange()" [attr.disabled]="node.disabled">
             <label>
@@ -32,7 +32,7 @@ export default class treePlugin {
             </label>
           </div>
         </div>
-        <span [hidden]="isHidden(node)" [attr.disabled]="node.disabled"
+        <span [attr.disabled]="node.disabled"
           *ngIf="plugin === 'sortable'"
           class="tree-node-handle" atlui-sortable-handle></span>
         `,
@@ -62,7 +62,7 @@ export default class treePlugin {
 
   isHidden(node) {
     if (!this.hidden) {
-      return "visible";
+      return true;
     }
     return this.hidden(node);
   }
