@@ -57,6 +57,7 @@ class treeTestComponent {
   constructor() {
     this.nested = false;
     this.plugins = ['checkbox'];
+    this.testPlugins = 0;
     this.nodes = [
       {
         label: 'Node 1'
@@ -547,6 +548,137 @@ describe('tree', function() {
       tick();
       fixture.detectChanges();
       assert.strictEqual(testComponent.onClick, true);
+    }));
+
+    it('should active all event on plugins', fakeAsync(() => {
+      var fixture = TestBed.createComponent(treeTestComponent);
+      var testComponent = fixture.componentInstance;
+      var testplugins = function() {
+        testComponent.testPlugins += 1;
+      };
+      testComponent.plugins = [
+        {
+          icon: 'testAllEvent',
+          click: testplugins,
+          dblclick: testplugins,
+          mousedown: testplugins,
+          mouseenter: testplugins,
+          mouseleave: testplugins,
+          mousemove: testplugins,
+          mouseover: testplugins,
+          mouseout: testplugins,
+          mouseup: testplugins,
+          dragenter: testplugins,
+          dragleave: testplugins,
+          dragstart: testplugins,
+          dragend: testplugins,
+          dragover: testplugins,
+          drop: testplugins,
+          disabled: function(){return false;},
+          display: function(){return true;},
+          hidden: function(){return 'visible';}
+        },
+        {
+          icon: 'testNoEvent'
+        }
+      ];
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+
+      var node = getNode('Node 23');
+      assert(node, 'Node not found');
+      var plugins = node.querySelectorAll('tree-plugin .icon');
+      assert(plugins, 'Expander not found');
+
+      plugins[1].click();
+      assert.strictEqual(testComponent.testPlugins,0);
+      plugins[0].click();
+      assert.strictEqual(testComponent.testPlugins,1);
+
+      var event = new Event('mousedown', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,1);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,2);
+
+      event = new Event('mouseenter', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,2);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,3);
+
+      event = new Event('mouseleave', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,3);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,4);
+
+      event = new Event('mousemove', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,4);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,5);
+
+      event = new Event('mouseover', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,5);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,6);
+
+      event = new Event('mouseout', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,6);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,7);
+
+      event = new Event('mouseup', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,7);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,8);
+
+      event = new Event('dragenter', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,8);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,9);
+
+      event = new Event('dragleave', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,9);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,10);
+
+      event = new Event('dragstart', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,10);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,11);
+
+      event = new Event('dragend', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,11);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,12);
+
+      event = new Event('dragover', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,12);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,13);
+
+      event = new Event('drop', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,13);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,14);
+
+      event = new Event('dblclick', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,14);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,15);
     }));
   });
 
