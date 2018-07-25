@@ -130,7 +130,7 @@ export default  class TreeComponent {
     ];
 
     this.plugins = [
-      {icon: 'check', click: this.check, hidden: this.hidden},
+      {icon: 'check', dblclick: this.check, hidden: this.hidden},
       'checkbox'
     ];
 
@@ -165,26 +165,7 @@ export default  class TreeComponent {
   }
 
   check(event) {
-    console.log("check : ", event)
-  }
-
-  expandCallback(event) {
-    console.log("expand event on : ", event);
-    if (event.children[0].loading) {
-      setTimeout(() => {
-        event.children = [{
-          label: "lazy loaded children"
-        }]
-      }, 3000);
-    }
-  }
-
-  collapseCallback(event) {
-    console.log("collapse event on : ", event);
-  }
-
-  onClickCallback(event) {
-    console.log("click event on : ", event);
+    console.log("check : ", event);
   }
 
 }

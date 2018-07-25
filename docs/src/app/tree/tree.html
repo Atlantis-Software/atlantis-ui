@@ -121,81 +121,299 @@ this.nodesBasic = [
 
   <textarea class="atlui-code">
 this.plugins = [
-  {icon: 'check', click: function(){}, hidden: function(){}},
+  {
+    icon: 'check',
+    click: function(node){},
+    hidden: function(node){}
+  },
   'checkbox'
 ];
   </textarea>
   <h3>
     Plugins object
   </h3>
-  <p>
-    We can use predefined plugins : checkbox and sortable, we just need to use string with plugin name in our array
-  </p>
-  <p>
-    For use customs plugins, we just need to create a object with the name of the icon, and the function to call on click or other event
-  </p>
-
   <h4>
-    Event list
+    Different plugins type
   </h4>
-  <p>
-    We can send function for different event
-  </p>
-  <ul>
-    <li>
-      click
-    </li>
-    <li>
-      dragenter
-    </li>
-    <li>
-      dragover
-    </li>
-    <li>
-      dragleave
-    </li>
-    <li>
-      dragdrop
-    </li>
-    <li>
-      dragstart
-    </li>
-    <li>
-      dragend
-    </li>
-    <li>
-      mousedown
-    </li>
-    <li>
-      mouseenter
-    </li>
-    <li>
-      mouseleave
-    </li>
-    <li>
-      mousemove
-    </li>
-    <li>
-      mouseout
-    </li>
-    <li>
-      mouseover
-    </li>
-    <li>
-      mouseup
-    </li>
-    <li>
-      dblclick
-    </li>
-  </ul>
-
-  <p>
-    We can define three other function, one for display none the icon with hidden function,
-    one for disable the icon with disabled function and the last for visibility hidden the icon.
-  </p>
-  <p>
-    Warning: the two first function need to return true or false. The last function need to send visible or hidden;
-  </p>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          checkbox
+        </td>
+        <td>
+          Basic plugin, add checkbox to node for selection.
+          For disabled on a node we just need to put <code>selectable: false</code> to this node.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          sortable
+        </td>
+        <td>
+          Basic plugin, add the possibility to sort the node in the same level.
+          If we want sortable in different level add nestedSortable arguments to the atlui-tree
+        </td>
+      </tr>
+      <tr>
+        <td>
+          custom plugin
+        </td>
+        <td>
+          We can define custom plugin with different event callback.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h4>
+    Custom plugins
+  </h4>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>
+          Attribute
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          icon
+        </td>
+        <td>
+          String
+        </td>
+        <td>
+          Define the icon of the plugin, use icon's name in icon docs
+        </td>
+      </tr>
+      <tr>
+        <td>
+          click
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the user clicks on the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          dblclick
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the user double-clicks on the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          mousedown
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the user presses a mouse button over the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          mouseenter
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the pointer is moved onto the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          mouseleave
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the pointer is moved out of the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          mousemove
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the pointer is moving while it is over the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          mouseover
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the pointer is moved onto the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          mouseout
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when a user moves the mouse pointer out the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          mouseup
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when a user release the mouse button over the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          dragenter
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the dragged element enters the plugins
+        </td>
+      </tr>
+      <tr>
+        <td>
+          dragleave
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the dragged element leaves the plugins
+        </td>
+      </tr>
+      <tr>
+        <td>
+          dragstart
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the user starts to drag the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          dragend
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the user has finished dragging the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          dragover
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the dragged element is over the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          drop
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the dragged element is dropped on the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          disabled
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function for define if the plugin need to be disabled or not.
+          <p class="bg-warning p-3">
+            The function need to return true or false
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          display
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function for define if the plugin is display or not.
+          <p class="bg-warning p-3">
+            The function need to return true or false.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          hidden
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function for define if the plugin is hidden or not,
+          the plugin will just had visibility hidden.
+          <p class="bg-warning p-3">
+            The function need to return 'visible' or 'hidden'.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
   <h3>
     Sortable tree
@@ -203,9 +421,6 @@ this.plugins = [
   <h4>
     Example with sortable node into same level
   </h4>
-  <p>
-    With <code>isSortable</code> attribute we can sort into the tree in the same level
-  </p>
   <div class="row container-fluid">
     <div class="col-md-4">
       <atlui-tree [nodes]="nodesSortable" [plugins]="['sortable']"></atlui-tree>
