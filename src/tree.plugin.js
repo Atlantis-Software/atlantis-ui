@@ -12,7 +12,7 @@ export default class treePlugin {
           (dragenter)="onDragenter(node)"
           (dragover)="onDragover(node)"
           (dragleave)="onDragleave(node)"
-          (dragdrop)="onDragdrop(node)"
+          (drop)="onDrop(node)"
           (dragstart)="onDragstart(node)"
           (dragend)="onDragend(node)"
           (mousedown)="onMousedown(node)"
@@ -37,7 +37,7 @@ export default class treePlugin {
           class="tree-node-handle" atlui-sortable-handle></span>
         `,
         inputs: ['icon', 'plugin', 'node', 'disabled', 'display', 'hidden', 'click', 'dragenter', 'dragover', 'dragleave',
-          'dragdrop','dragstart', 'dragend', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove',
+          'drop','dragstart', 'dragend', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove',
           'mouseout', 'mouseover', 'mouseup', 'dblclick', 'selectedChange'],
         outputs: []
       })
@@ -95,11 +95,11 @@ export default class treePlugin {
     this.dragleave(node);
   }
 
-  onDragdrop(node) {
-    if (!this.dragdrop) {
+  onDrop(node) {
+    if (!this.drop) {
       return;
     }
-    this.dragdrop(node);
+    this.drop(node);
   }
 
   onDragstart(node) {
