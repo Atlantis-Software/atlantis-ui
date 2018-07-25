@@ -79,17 +79,18 @@ this.nodesWithParameters = [
   </h4>
   <div class="row container-fluid form-group">
     <div class="col-md-4">
-      <atlui-tree (expand)="expandCallback($event)" (collapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesBasic" [selection]="selection"></atlui-tree>
+      <atlui-tree (onExpand)="expandCallback($event)" (onCollapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesWithLazyLoading" [selection]="selection"></atlui-tree>
     </div>
   </div>
   <br>
   <textarea class="atlui-code">
-    <atlui-tree (expand)="expandCallback($event)" (collapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesBasic"></atlui-tree>
+    <atlui-tree (onExpand)="expandCallback($event)" (onCollapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesWithLazyLoading"></atlui-tree>
   </textarea>
   <textarea class="atlui-code">
-this.nodesBasic = [
+this.nodesWithLazyLoading = [
   {
-    label: 'Node with lazy children'
+    label: 'Node with lazy children',
+    children: []
   },
   {
     label: 'Node with children',
@@ -408,7 +409,7 @@ this.plugins = [
           Callback function for define if the plugin is hidden or not,
           the plugin will just had visibility hidden.
           <p class="bg-warning p-3">
-            The function need to return 'visible' or 'hidden'.
+            The function need to return true or false.
           </p>
         </td>
       </tr>

@@ -11,7 +11,24 @@ export default  class TreeComponent {
   constructor(){
     this.nodesBasic = [
       {
-        label: 'Node without children',
+        label: 'Node without children'
+      },
+      {
+        label: 'Node with children',
+        children: [
+          {
+            label: 'Sub-node 1'
+          },
+          {
+            label: 'Sub-node 2'
+          }
+        ]
+      }
+    ];
+
+    this.nodesWithLazyLoading = [
+      {
+        label: 'Node with lazy loaded children',
         children: []
       },
       {
@@ -138,9 +155,9 @@ export default  class TreeComponent {
 
   hidden(event) {
     if (event.label === "Sub-node 1") {
-      return "hidden";
+      return false;
     } else {
-      return "visible";
+      return true;
     }
   }
 
