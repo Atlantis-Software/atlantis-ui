@@ -18,7 +18,7 @@ export default class treeNodeComponent {
           'template', 'depth', 'selected', 'sortableZones', 'nestedSortable', 'isSortable', 'loading',
           'nodeSelected', 'plugins'
         ],
-        outputs: ['onExpand', 'onCollapse', 'select', 'selectedChange', 'expandedChange', 'onClickNode'],
+        outputs: ['onExpand', 'onCollapse', 'select', 'selectedChange', 'expandedChange', 'onClickNode', 'onChecked', 'onUnchecked'],
         host: {
           '[class.selectable]': 'selectable'
         },
@@ -36,6 +36,8 @@ export default class treeNodeComponent {
     this.selectedChange = new EventEmitter();
     this.expandedChange = new EventEmitter();
     this.onClickNode = new EventEmitter();
+    this.onChecked = new EventEmitter();
+    this.onUnchecked = new EventEmitter();
     this.indeterminate = false;
     this.parent = treeNodeComponent;
     this.expanded = false;
@@ -146,7 +148,7 @@ export default class treeNodeComponent {
       this.nodeChildren.forEach((node) => {
         node.selected = this.selected;
       });
-      this.onSelect();
+      this.onCheck();
     });
   }
 
@@ -185,12 +187,17 @@ export default class treeNodeComponent {
         }
       });
     }
+    if (this.selected) {
+      this.onChecked.emit(this.node);
+    } else {
+      this.onUnchecked.emit(this.node);
+    }
     this.selectedChange.emit(this.selected);
     this.select.emit();
   }
 
   //function call when a children selected value has changed
-  onSelect() {
+  onCheck() {
     if (this.disabled) {
       return;
     }

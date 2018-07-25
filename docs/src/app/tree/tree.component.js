@@ -181,6 +181,14 @@ export default  class TreeComponent {
     console.log("click event on : ", event);
   }
 
+  checkedCallback(event) {
+    console.log("checked event on : ", event);
+  }
+
+  uncheckedCallback(event) {
+    console.log("unchecked event on : ", event);
+  }
+
   check(event) {
     console.log("check : ", event);
   }

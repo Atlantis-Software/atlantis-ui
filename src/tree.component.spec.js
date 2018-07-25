@@ -144,13 +144,13 @@ class treeTestComponent {
         expandable: true
       }
     ];
-    this.expand = this.collapse = this.onClick = false;
+    this.expand = this.collapse = this.onClick = this.checked = this.unchecked = false;
   }
   static get annotations() {
     return [
       new Component({
         template: `
-        <atlui-tree [nodes]="nodes" [plugins]="plugins" [nestedSortable]="nested" (expand)="expandCallback($event)" (collapse)="collapseCallback($event)" (onClick)="onClickCallback($event)"></atlui-tree>`
+        <atlui-tree [nodes]="nodes" [plugins]="plugins" [nestedSortable]="nested" (onExpand)="expandCallback($event)" (onCollapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" (onChecked)="checkedCallback($event)" (onUnchecked)="uncheckedCallback($event)"></atlui-tree>`
       })
     ];
   }
@@ -161,6 +161,14 @@ class treeTestComponent {
 
   collapseCallback() {
     this.collapse = true;
+  }
+
+  checkedCallback() {
+    this.checked = true;
+  }
+
+  uncheckedCallback() {
+    this.unchecked = true;
   }
 
   onClickCallback() {
@@ -548,6 +556,19 @@ describe('tree', function() {
       tick();
       fixture.detectChanges();
       assert.strictEqual(testComponent.onClick, true);
+
+      var checkbox = node.querySelector('input[type="checkbox"]');
+      checkbox.click();
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+      assert.strictEqual(testComponent.checked, true);
+
+      checkbox.click();
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+      assert.strictEqual(testComponent.unchecked, true);
     }));
 
     it('should active all event on plugins', fakeAsync(() => {
