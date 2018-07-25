@@ -6,7 +6,7 @@ export default class treePlugin {
       new Component({
         selector: 'tree-plugin',
         template: `
-        <span *ngIf="icon" [hidden]="!isDisplay(node)" [style.visibility]="isHidden(node) ? 'visible' : 'hidden'" class="icon" [ngClass]="'icon-' + icon"
+        <span *ngIf="icon" [hidden]="!isDisplay(node)" [style.visibility]="isHidden(node) ? 'hidden' : 'visible'" class="icon" [ngClass]="'icon-' + icon"
           [class.disabled]="isDisabled(node)"
           (click)="onClick(node)"
           (dragenter)="onDragenter(node)"
@@ -62,7 +62,7 @@ export default class treePlugin {
 
   isHidden(node) {
     if (!this.hidden) {
-      return true;
+      return false;
     }
     return this.hidden(node);
   }
