@@ -34,6 +34,7 @@ import gridCellHeaderComponent from './grid-cell-header.component.js';
 import { gridConfig } from './grid.config.js';
 
 import treeComponent from './tree.component.js';
+import treePlugin from './tree.plugin.js';
 import treeNodeComponent from './tree-node.component.js';
 
 import { carouselComponent, carouselItemComponent } from './carousel.component.js';
@@ -158,7 +159,7 @@ AtlantisUiModule.annotations = [
       dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, gridComponent, gridCellHeaderTemplate,
       gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent,
       popoverComponent, popoverDirective, tooltipComponent, tooltipDirective, backdropComponent, sortableContainer,
-      sortableComponents, treeComponent, treeNodeComponent, sortableHandler, draggableDirective, draggableHandleDirective,
+      sortableComponents, treeComponent, treeNodeComponent, treePlugin, sortableHandler, draggableDirective, draggableHandleDirective,
       dialogComponent, resizableDirective, codeDirective,
       agendaComponent, agendaMonthComponent, agendaDayNameComponent, agendaCalendarComponent, agendaWeekComponent,
       agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent,
@@ -172,7 +173,7 @@ AtlantisUiModule.annotations = [
       dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, gridComponent, gridCellHeaderTemplate,
       gridHeaderComponent, gridBodyComponent, gridFooterComponent, gridCellComponent, gridCellHeaderComponent,
       popoverComponent, popoverDirective, tooltipComponent, tooltipDirective, backdropComponent, sortableContainer,
-      sortableComponents, sortableHandler, treeComponent, treeNodeComponent, draggableDirective, draggableHandleDirective,
+      sortableComponents, sortableHandler, treeComponent, treeNodeComponent, treePlugin, draggableDirective, draggableHandleDirective,
       dialogComponent, resizableDirective, codeDirective,
       agendaComponent, agendaMonthComponent, agendaDayNameComponent, agendaCalendarComponent, agendaWeekComponent,
       agendaDayComponent, agendaDayCornerComponent, agendaMoreEventsComponent, agendaDayEventsComponent, agendaEventComponent,

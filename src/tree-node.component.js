@@ -15,9 +15,10 @@ export default class treeNodeComponent {
         selector: 'atlui-tree-node',
         template: require('./tree-node.html'),
         inputs: ['node', 'label', 'model', 'children', 'expanded', 'selectable', 'disabled',
-          'template', 'depth', 'selected', 'sortableZones', 'nestedSortable', 'isSortable', 'loading'
+          'template', 'depth', 'selected', 'sortableZones', 'nestedSortable', 'isSortable', 'loading',
+          'nodeSelected', 'plugins'
         ],
-        outputs: ['expand', 'collapse', 'select', 'selectedChange', 'expandedChange', 'onClickNode'],
+        outputs: ['onExpand', 'onCollapse', 'select', 'selectedChange', 'expandedChange', 'onClickNode', 'onChecked', 'onUnchecked'],
         host: {
           '[class.selectable]': 'selectable'
         },
@@ -29,12 +30,14 @@ export default class treeNodeComponent {
   }
   constructor(ElementRef, treeNodeComponent) {
     this.elementRef = ElementRef;
-    this.expand = new EventEmitter();
-    this.collapse = new EventEmitter();
+    this.onExpand = new EventEmitter();
+    this.onCollapse = new EventEmitter();
     this.select = new EventEmitter();
     this.selectedChange = new EventEmitter();
     this.expandedChange = new EventEmitter();
     this.onClickNode = new EventEmitter();
+    this.onChecked = new EventEmitter();
+    this.onUnchecked = new EventEmitter();
     this.indeterminate = false;
     this.parent = treeNodeComponent;
     this.expanded = false;
@@ -42,8 +45,7 @@ export default class treeNodeComponent {
   }
 
   onClickNodeCallback() {
-    var treeNodeLine = this.elementRef.nativeElement.querySelector(".tree-node-line");
-    this.onClickNode.emit({node: this.node, element: treeNodeLine});
+    this.onClickNode.emit(this.node);
   }
 
   updateTree() {
@@ -146,7 +148,7 @@ export default class treeNodeComponent {
       this.nodeChildren.forEach((node) => {
         node.selected = this.selected;
       });
-      this.onSelect();
+      this.onCheck();
     });
   }
 
@@ -163,9 +165,9 @@ export default class treeNodeComponent {
       });
     }
     if (this.expanded) {
-      this.expand.emit(this.node);
+      this.onExpand.emit(this.node);
     } else if (!this.expanded) {
-      this.collapse.emit(this.node);
+      this.onCollapse.emit(this.node);
     }
     this.expandedChange.emit(this.expanded);
 
@@ -185,12 +187,17 @@ export default class treeNodeComponent {
         }
       });
     }
+    if (this.selected) {
+      this.onChecked.emit(this.node);
+    } else {
+      this.onUnchecked.emit(this.node);
+    }
     this.selectedChange.emit(this.selected);
     this.select.emit();
   }
 
   //function call when a children selected value has changed
-  onSelect() {
+  onCheck() {
     if (this.disabled) {
       return;
     }

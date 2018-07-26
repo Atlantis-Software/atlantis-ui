@@ -6,8 +6,8 @@ export default class treeComponent {
       new Component({
         selector: 'atlui-tree',
         template: require('./tree.html'),
-        inputs: ['nodes', 'template', 'depth', 'nestedSortable', 'isSortable'],
-        outputs: ['expand', 'collapse', 'nodesChanges', 'onClick'],
+        inputs: ['nodes', 'template', 'nestedSortable', 'nodeSelected: selection', 'plugins'],
+        outputs: ['onExpand', 'onCollapse', 'nodesChanges', 'onClick', 'onChecked', 'onUnchecked'],
         queries: {
           template: new ContentChild(TemplateRef),
         }
@@ -15,26 +15,22 @@ export default class treeComponent {
     ];
   }
   constructor(changeDetectorRef, ElementRef) {
-    this.expand = new EventEmitter();
-    this.collapse = new EventEmitter();
+    this.onExpand = new EventEmitter();
+    this.onCollapse = new EventEmitter();
     this.nodesChanges = new EventEmitter();
     this.onClick = new EventEmitter();
+    this.onChecked = new EventEmitter();
+    this.onUnchecked = new EventEmitter();
     this.depth = 1;
     this.cdr = changeDetectorRef;
     this.dropZones = "zone" + Math.floor(Math.random() * 100000) + 1;
     this.isSortable = false;
     this.elementRef = ElementRef;
+    this.plugins = [];
   }
 
   onClickNode($event) {
-    var treeNodeSelection = this.elementRef.nativeElement.querySelectorAll(".tree-node-selection");
-    if (treeNodeSelection.length > 0) {
-      treeNodeSelection.forEach((element) => {
-        element.classList.remove("tree-node-selection");
-      });
-    }
-    $event.element.classList.toggle("tree-node-selection");
-    this.onClick.emit($event.node);
+    this.onClick.emit($event);
   }
 
   onDragCallback(element, node, value) {
@@ -80,6 +76,9 @@ export default class treeComponent {
       this.dropZonesNested = this.dropZones;
     } else {
       this.dropZonesNested = undefined;
+    }
+    if (this.plugins.indexOf('sortable') != -1) {
+      this.isSortable = true;
     }
     var recursiveSetDropZones = function(node, parentSelection) {
       if (parentSelection) {

@@ -12,7 +12,7 @@
   </div>
   <br>
   <textarea class="atlui-code">
-    <atlui-tree class="col-md-4" [nodes]="nodesBasic"></atlui-tree>
+    <atlui-tree [nodes]="nodesBasic"></atlui-tree>
   </textarea>
   <textarea class="atlui-code">
 this.nodesBasic = [
@@ -75,21 +75,22 @@ this.nodesWithParameters = [
   </textarea>
 
   <h4>
-    Example with callback on expand, collapse and click on node
+    Example with callback on expand, collapse, selection on node and checked node
   </h4>
   <div class="row container-fluid form-group">
     <div class="col-md-4">
-      <atlui-tree (expand)="expandCallback($event)" (collapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesBasic"></atlui-tree>
+      <atlui-tree [plugins]="['checkbox']" (onChecked)="checkedCallback($event)" (onUnchecked)="uncheckedCallback($event)" (onExpand)="expandCallback($event)" (onCollapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesWithLazyLoading" [selection]="selection"></atlui-tree>
     </div>
   </div>
   <br>
   <textarea class="atlui-code">
-    <atlui-tree class="col-md-4" (expand)="expandCallback($event)" (collapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesBasic"></atlui-tree>
+    <atlui-tree [plugins]="['checkbox']" (onChecked)="checkedCallback($event)" (onUnchecked)="uncheckedCallback($event)" (onExpand)="expandCallback($event)" (onCollapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesWithLazyLoading" [selection]="selection"></atlui-tree>
   </textarea>
   <textarea class="atlui-code">
-this.nodesBasic = [
+this.nodesWithLazyLoading = [
   {
-    label: 'Node with lazy children'
+    label: 'Node with lazy children',
+    children: []
   },
   {
     label: 'Node with children',
@@ -105,23 +106,330 @@ this.nodesBasic = [
 ]
   </textarea>
 
+  <h4>
+    Example with plugins
+  </h4>
+
+  <div class="row container-fluid form-group">
+    <div class="col-md-4">
+      <atlui-tree [nodes]="nodesBasic" [plugins]="plugins"></atlui-tree>
+    </div>
+  </div>
+
+  <textarea class="atlui-code">
+<atlui-tree [plugins]="plugins"></atlui-tree>
+  </textarea>
+
+  <textarea class="atlui-code">
+this.plugins = [
+  {
+    icon: 'check',
+    click: function(node){},
+    hidden: function(node){}
+  },
+  'checkbox'
+];
+  </textarea>
+  <h3>
+    Plugins object
+  </h3>
+  <h4>
+    Different plugins type
+  </h4>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          checkbox
+        </td>
+        <td>
+          Basic plugin, add checkbox to node for selection.
+          For disabled on a node we just need to put <code>selectable: false</code> to this node.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          sortable
+        </td>
+        <td>
+          Basic plugin, add the possibility to sort the node in the same level.
+          If we want sortable in different level add nestedSortable arguments to the atlui-tree
+        </td>
+      </tr>
+      <tr>
+        <td>
+          custom plugin
+        </td>
+        <td>
+          We can define custom plugin with different event callback.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h4>
+    Custom plugins
+  </h4>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>
+          Attribute
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          icon
+        </td>
+        <td>
+          String
+        </td>
+        <td>
+          Define the icon of the plugin, use icon's name in icon docs
+        </td>
+      </tr>
+      <tr>
+        <td>
+          click
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the user clicks on the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          dblclick
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the user double-clicks on the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          mousedown
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the user presses a mouse button over the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          mouseenter
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the pointer is moved onto the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          mouseleave
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the pointer is moved out of the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          mousemove
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the pointer is moving while it is over the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          mouseover
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the pointer is moved onto the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          mouseout
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when a user moves the mouse pointer out the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          mouseup
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when a user release the mouse button over the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          dragenter
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the dragged element enters the plugins
+        </td>
+      </tr>
+      <tr>
+        <td>
+          dragleave
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the dragged element leaves the plugins
+        </td>
+      </tr>
+      <tr>
+        <td>
+          dragstart
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the user starts to drag the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          dragend
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the user has finished dragging the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          dragover
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the dragged element is over the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          drop
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function when the dragged element is dropped on the plugin
+        </td>
+      </tr>
+      <tr>
+        <td>
+          disabled
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function for define if the plugin need to be disabled or not.
+          <p class="bg-warning p-3">
+            The function need to return true or false
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          display
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function for define if the plugin is display or not.
+          <p class="bg-warning p-3">
+            The function need to return true or false.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          hidden
+        </td>
+        <td>
+          Function(node); node arguments is the node where the event occurs
+        </td>
+        <td>
+          Callback function for define if the plugin is hidden or not,
+          the plugin will just had visibility hidden.
+          <p class="bg-warning p-3">
+            The function need to return true or false.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
   <h3>
     Sortable tree
   </h3>
   <h4>
     Example with sortable node into same level
   </h4>
-  <p>
-    With <code>isSortable</code> attribute we can sort into the tree in the same level
-  </p>
   <div class="row container-fluid">
     <div class="col-md-4">
-      <atlui-tree [nodes]="nodesSortable" [isSortable]="true"></atlui-tree>
+      <atlui-tree [nodes]="nodesSortable" [plugins]="['sortable']"></atlui-tree>
     </div>
   </div>
   <br>
   <textarea class="atlui-code">
-<atlui-tree [nodes]="nodesSortable" [isSortable]="true"></atlui-tree>
+<atlui-tree [nodes]="nodesSortable" [plugins]="['sortable']"></atlui-tree>
   </textarea>
 
   <h4>
@@ -132,12 +440,12 @@ this.nodesBasic = [
   </p>
   <div class="row container-fluid">
     <div class="col-md-4">
-      <atlui-tree [nodes]="nodesSortableNested" [isSortable]="true" [nestedSortable]="true"></atlui-tree>
+      <atlui-tree [nodes]="nodesSortableNested" [plugins]="['sortable']" [nestedSortable]="true"></atlui-tree>
     </div>
   </div>
   <br>
   <textarea class="atlui-code">
-<atlui-tree [nodes]="nodesSortable" [isSortable]="true" [nestedSortable]="true"></atlui-tree>
+<atlui-tree [nodes]="nodesSortable" [plugins]="['sortable']" [nestedSortable]="true"></atlui-tree>
   </textarea>
   <h3>
     Nodes in js script:
