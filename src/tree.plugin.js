@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 export default class treePlugin {
   static get annotations() {
@@ -6,8 +6,8 @@ export default class treePlugin {
       new Component({
         selector: 'tree-plugin',
         template: `
-        <span *ngIf="icon" [hidden]="!isDisplay(node)" [style.visibility]="isHidden(node) ? 'hidden' : 'visible'" class="icon" [ngClass]="'icon-' + icon"
-          [class.disabled]="isDisabled(node)"
+        <span *ngIf="icon" [hidden]="hiden" class="icon" [ngClass]="'icon-' + icon"
+          [class.icon-disabled]="disabled"
           (click)="onClick(node)"
           (dragenter)="onDragenter(node)"
           (dragover)="onDragover(node)"
@@ -33,38 +33,59 @@ export default class treePlugin {
           </div>
         </div>
         <span [attr.disabled]="node.disabled"
-          *ngIf="plugin === 'sortable'"
+          *ngIf="plugin === 'sortable' || plugin === 'nestedSortable'"
           class="tree-node-handle" atlui-sortable-handle></span>
         `,
-        inputs: ['icon', 'plugin', 'node', 'disabled', 'display', 'hidden', 'click', 'dragenter', 'dragover', 'dragleave',
+        inputs: ['icon', 'plugin', 'node', 'onInit', 'onChange', 'onDestroy', 'click', 'dragenter', 'dragover', 'dragleave',
           'drop','dragstart', 'dragend', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove',
-          'mouseout', 'mouseover', 'mouseup', 'dblclick', 'selectedChange'],
+          'mouseout', 'mouseover', 'mouseup', 'dblclick', 'selectedChange', 'change'],
         outputs: []
       })
     ];
   }
   constructor() {
+    this.disabled = this.hiden = false;
   }
 
-  isDisabled(node) {
-    if (!this.disabled) {
-      return false;
+  ngOnInit(){
+    if (this.onChange) {
+      var self = this;
+      this.change.subscribe({
+        next() {
+          self.onChange(self.node);
+        }
+      });
     }
-    return this.disabled(node);
+    if (!this.onInit) {
+      return;
+    }
+    this.onInit(this.node);
   }
 
-  isDisplay(node) {
-    if (!this.display) {
-      return true;
+  ngOnDestroy(){
+    if (this.onChange) {
+      this.change.unsubscribe();
     }
-    return this.display(node);
+    if (!this.onDestroy) {
+      return;
+    }
+    this.onDestroy(this.node);
   }
 
-  isHidden(node) {
-    if (!this.hidden) {
-      return false;
-    }
-    return this.hidden(node);
+  disable() {
+    this.disabled = true;
+  }
+
+  activate() {
+    this.disabled = false;
+  }
+
+  show() {
+    this.hiden = false;
+  }
+
+  hide() {
+    this.hiden = true;
   }
 
   onClick(node) {
