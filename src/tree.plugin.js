@@ -6,7 +6,7 @@ export default class treePlugin {
       new Component({
         selector: 'tree-plugin',
         template: `
-        <span *ngIf="icon" [hidden]="hiden" class="icon" [ngClass]="'icon-' + icon"
+        <span *ngIf="icon" [title]="description" [hidden]="hiden" class="icon" [ngClass]="'icon-' + icon"
           [class.icon-disabled]="disabled"
           (click)="onClick(node)"
           (dragenter)="onDragenter(node)"
@@ -36,7 +36,7 @@ export default class treePlugin {
           *ngIf="plugin === 'sortable' || plugin === 'nestedSortable'"
           class="tree-node-handle" atlui-sortable-handle></span>
         `,
-        inputs: ['icon', 'plugin', 'node', 'onInit', 'onChange', 'onDestroy', 'click', 'dragenter', 'dragover', 'dragleave',
+        inputs: ['icon', 'description', 'plugin', 'node', 'onInit', 'onChange', 'onDestroy', 'click', 'dragenter', 'dragover', 'dragleave',
           'drop','dragstart', 'dragend', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove',
           'mouseout', 'mouseover', 'mouseup', 'dblclick', 'selectedChange', 'change'],
         outputs: []
