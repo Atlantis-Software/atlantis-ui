@@ -5,8 +5,11 @@ import {
   Optional,
   SkipSelf,
   Inject,
-  ViewChildren
+  ViewChildren,
+  KeyValueDiffers
 } from '@angular/core';
+
+import { Subject } from 'rxjs/Subject';
 
 export default class treeNodeComponent {
   static get annotations() {
@@ -18,7 +21,7 @@ export default class treeNodeComponent {
           'template', 'depth', 'selected', 'sortableZones', 'nestedSortable', 'isSortable', 'loading',
           'nodeSelected', 'plugins'
         ],
-        outputs: ['onExpand', 'onCollapse', 'select', 'selectedChange', 'expandedChange', 'onClickNode', 'onChecked', 'onUnchecked'],
+        outputs: ['onExpand', 'onCollapse', 'check', 'selectedChange', 'expandedChange', 'onClickNode', 'onChecked', 'onUnchecked'],
         host: {
           '[class.selectable]': 'selectable'
         },
@@ -28,11 +31,11 @@ export default class treeNodeComponent {
       })
     ];
   }
-  constructor(ElementRef, treeNodeComponent) {
+  constructor(ElementRef, treeNodeComponent, differs) {
     this.elementRef = ElementRef;
     this.onExpand = new EventEmitter();
     this.onCollapse = new EventEmitter();
-    this.select = new EventEmitter();
+    this.check = new EventEmitter();
     this.selectedChange = new EventEmitter();
     this.expandedChange = new EventEmitter();
     this.onClickNode = new EventEmitter();
@@ -42,6 +45,8 @@ export default class treeNodeComponent {
     this.parent = treeNodeComponent;
     this.expanded = false;
     this.selected = false;
+    this.differ = differs.find({}).create(null);
+    this.change = new Subject();
   }
 
   onClickNodeCallback() {
@@ -54,6 +59,13 @@ export default class treeNodeComponent {
       treeNodeSorted.forEach((element) => {
         element.classList.remove("tree-node-sorted");
       });
+    }
+  }
+
+  ngDoCheck() {
+    var changes = this.differ.diff(this.node);
+    if (changes) {
+      this.change.next();
     }
   }
 
@@ -193,7 +205,7 @@ export default class treeNodeComponent {
       this.onUnchecked.emit(this.node);
     }
     this.selectedChange.emit(this.selected);
-    this.select.emit();
+    this.check.emit();
   }
 
   //function call when a children selected value has changed
@@ -243,8 +255,8 @@ export default class treeNodeComponent {
     }
 
     this.selectedChange.emit(this.selected);
-    this.select.emit();
+    this.check.emit();
   }
 }
 
-treeNodeComponent.parameters = [ElementRef, [new Optional(), new SkipSelf(), new Inject(treeNodeComponent)]];
+treeNodeComponent.parameters = [ElementRef, [new Optional(), new SkipSelf(), new Inject(treeNodeComponent)], KeyValueDiffers];

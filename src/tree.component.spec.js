@@ -150,7 +150,7 @@ class treeTestComponent {
     return [
       new Component({
         template: `
-        <atlui-tree [nodes]="nodes" [plugins]="plugins" [nestedSortable]="nested" (onExpand)="expandCallback($event)" (onCollapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" (onChecked)="checkedCallback($event)" (onUnchecked)="uncheckedCallback($event)"></atlui-tree>`
+        <atlui-tree [nodes]="nodes" [plugins]="plugins" (onExpand)="expandCallback($event)" (onCollapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" (onChecked)="checkedCallback($event)" (onUnchecked)="uncheckedCallback($event)"></atlui-tree>`
       })
     ];
   }
@@ -595,9 +595,14 @@ describe('tree', function() {
           dragend: testplugins,
           dragover: testplugins,
           drop: testplugins,
-          disabled: function(){return false;},
-          display: function(){return true;},
-          hidden: function(){return 'visible';}
+          onInit: function() {
+            this.disable();
+            this.activate();
+            this.hide();
+            this.show();
+          },
+          onDestroy: function() {},
+          onChange: function() {}
         },
         {
           icon: 'testNoEvent'
@@ -828,8 +833,7 @@ describe('tree', function() {
 
     it('should sort from first depth to second depth', fakeAsync(() => {
       var testComponent = fixture.componentInstance;
-      testComponent.plugins = ['checkox', 'sortable'];
-      testComponent.nested = true;
+      testComponent.plugins = ['checkox', 'nestedSortable'];
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
@@ -860,8 +864,7 @@ describe('tree', function() {
 
     it('should sort from second depth to first depth', fakeAsync(() => {
       var testComponent = fixture.componentInstance;
-      testComponent.plugins = ['checkox', 'sortable'];
-      testComponent.nested = true;
+      testComponent.plugins = ['checkox', 'nestedSortable'];
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
@@ -892,8 +895,7 @@ describe('tree', function() {
 
     it('should close the current node if we sort an opened node', fakeAsync(() => {
       var testComponent = fixture.componentInstance;
-      testComponent.plugins = ['checkox', 'sortable'];
-      testComponent.nested = true;
+      testComponent.plugins = ['checkox', 'nestedSortable'];
       fixture.detectChanges();
       tick();
       fixture.detectChanges();

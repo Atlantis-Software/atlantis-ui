@@ -13,9 +13,9 @@
         [plugin]="plugin"
         [icon]="plugin.icon"
         [node]="node"
-        [disabled]="plugin.disabled"
-        [display]="plugin.display"
-        [hidden]="plugin.hidden"
+        [onInit]="plugin.onInit"
+        [onChange]="plugin.onChange"
+        [onDestroy]="plugin.onDestroy"
         [click]="plugin.click"
         [dragenter]="plugin.dragenter"
         [dragover]="plugin.dragover"
@@ -31,7 +31,8 @@
         [mouseover]="plugin.mouseover"
         [mouseup]="plugin.mouseup"
         [dblclick]="plugin.dblclick"
-        [selectedChange]="onClick.bind(this)">
+        [selectedChange]="onClick.bind(this)"
+        [change]="change">
       </tree-plugin>
     </div>
   </div>
@@ -59,7 +60,7 @@
     [plugins]="plugins"
     (onExpand)="onExpand.emit($event)"
     (onCollapse)="onCollapse.emit($event)"
-    (select)="onCheck($event)"
+    (check)="onCheck($event)"
     (onClickNode)="onClickNode.emit($event)"
     (onChecked)="onChecked.emit($event)"
     (onUnchecked)="onUnchecked.emit($event)"
