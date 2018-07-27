@@ -2,144 +2,284 @@
   <h2>
     Tree
   </h2>
-  <h4>
-    Basic Example with 2 levels and default parameters:
-  </h4>
+  <p>
+    The <code>atlui-tree</code> provides a tree that can be used to display hierarchy data.
+  </p>
+  <p>
+    We just need to send a array of node with specific attribute and custom attribute for have all data we want
+  </p>
+  <p>
+    This widget allow to use predefined plugins and custom plugins for open more possibility to developpers.
+  </p>
+  <p>
+    Per default the tree will just display data without any action possible on it
+  </p>
   <div class="row container-fluid form-group">
     <div class="col-md-4">
       <atlui-tree [nodes]="nodesBasic"></atlui-tree>
     </div>
   </div>
-  <br>
-  <textarea class="atlui-code">
-    <atlui-tree [nodes]="nodesBasic"></atlui-tree>
-  </textarea>
-  <textarea class="atlui-code">
-this.nodesBasic = [
-  {
-    label: 'Node without children'
-  },
-  {
-    label: 'Node with children',
-    children: [
-      {
-        label: 'Sub-node 1'
-      },
-      {
-        label: 'Sub-node 2'
-      }
-    ]
-  }
-]
-  </textarea>
-
-  <h4>
-    Example with specific parameters on nodes:
-  </h4>
-  <div class="row container-fluid">
-    <div class="col-md-4">
-      <atlui-tree [nodes]="nodesWithParameters"></atlui-tree>
-    </div>
-  </div>
-  <br>
-  <textarea class="atlui-code">
-this.nodesWithParameters = [
-  {
-    label: 'Node with children and not open per default',
-    children: [
-      {
-        label: 'Sub-node hidden on init',
-        selectable: false,
-      }
-    ]
-  },
-  {
-    label: 'Node with children open per default',
-    expanded: true,
-    children: [
-      {
-        label: 'Sub-node show on init and with children',
-        children: [
-          {
-            label: 'Sub-sub-node'
-          }
-        ]
-      },
-      {
-        label: 'Sub-node without children',
-        disabled: true
-      }
-    ]
-  }
-];
-  </textarea>
-
-  <h4>
-    Example with callback on expand, collapse, selection on node and checked node
-  </h4>
-  <div class="row container-fluid form-group">
-    <div class="col-md-4">
-      <atlui-tree [plugins]="['checkbox']" (onChecked)="checkedCallback($event)" (onUnchecked)="uncheckedCallback($event)" (onExpand)="expandCallback($event)" (onCollapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesWithLazyLoading" [selection]="selection"></atlui-tree>
-    </div>
-  </div>
-  <br>
-  <textarea class="atlui-code">
-    <atlui-tree [plugins]="['checkbox']" (onChecked)="checkedCallback($event)" (onUnchecked)="uncheckedCallback($event)" (onExpand)="expandCallback($event)" (onCollapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesWithLazyLoading" [selection]="selection"></atlui-tree>
-  </textarea>
-  <textarea class="atlui-code">
-this.nodesWithLazyLoading = [
-  {
-    label: 'Node with lazy children',
-    children: []
-  },
-  {
-    label: 'Node with children',
-    children: [
-      {
-        label: 'Sub-node 1'
-      },
-      {
-        label: 'Sub-node 2'
-      }
-    ]
-  }
-]
-  </textarea>
-
-  <h4>
-    Example with plugins
-  </h4>
-
-  <div class="row container-fluid form-group">
-    <div class="col-md-4">
-      <atlui-tree [nodes]="nodesBasic" [plugins]="plugins"></atlui-tree>
-    </div>
-  </div>
-
-  <textarea class="atlui-code">
-<atlui-tree [plugins]="plugins"></atlui-tree>
-  </textarea>
-
-  <textarea class="atlui-code">
-this.plugins = [
-  {
-    icon: 'check',
-    click: function(node){},
-    hidden: function(node){}
-  },
-  'checkbox'
-];
-  </textarea>
   <h3>
-    Plugins object
+    Parameters fo atlui-tree
   </h3>
   <h4>
-    Different plugins type
+    Input properties
   </h4>
   <table class="table table-striped table-bordered">
     <thead>
       <tr>
+        <th class="col-md-2">
+          Attribute
+        </th>
+        <th class="col-md-2">
+          Type
+        </th>
         <th>
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          nodes
+        </td>
+        <td>
+          Array of objects
+        </td>
+        <td>
+          Define all tree-nodes load per default.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          nodeSelected
+        </td>
+        <td>
+          node object
+        </td>
+        <td>
+          Send to widget to show which node is selected; Use with onClick output
+        </td>
+      </tr>
+      <tr>
+        <td>
+          plugins
+        </td>
+        <td>
+          Array of object/string
+        </td>
+        <td>
+          Define the plugins we will use for all nodes (like checkbox or sort)
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h4>
+    Output properties
+  </h4>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th class="col-md-2">
+          Attribute
+        </th>
+        <th class="col-md-2">
+          Type
+        </th>
+        <th>
+          arguments
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          onExpand
+        </td>
+        <td>
+          function
+        </td>
+        <td>
+          node: define node where expand occurs
+        </td>
+        <td>
+          Callback when we expand a node with children
+        </td>
+      </tr>
+      <tr>
+        <td>
+          onCollapse
+        </td>
+        <td>
+          function
+        </td>
+        <td>
+          node: define node where collapse occurs
+        </td>
+        <td>
+          Callback when we collapse a node with children
+        </td>
+      </tr>
+      <tr>
+        <td>
+          onClick
+        </td>
+        <td>
+          function
+        </td>
+        <td>
+          node: define node where click occurs
+        </td>
+        <td>
+          Callback when we click on a node label
+        </td>
+      </tr>
+      <tr>
+        <td>
+          onChecked
+        </td>
+        <td>
+          function
+        </td>
+        <td>
+          node: define node where check occurs
+        </td>
+        <td>
+          Callback when we check plugins <code>checkbox</code> on a node
+        </td>
+      </tr>
+      <tr>
+        <td>
+          onUnchecked
+        </td>
+        <td>
+          function
+        </td>
+        <td>
+          node: define node where uncheck occurs
+        </td>
+        <td>
+          Callback when we uncheck plugins <code>checkbox</code> on a node
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h4>
+    Nodes input
+  </h4>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th class="col-md-2">
+          attribute
+        </th>
+        <th class="col-md-2">
+          Type
+        </th>
+        <th>
+          Description
+        </th>
+        <th class="col-md-2">
+          Default
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          label
+        </td>
+        <td>
+          string
+        </td>
+        <td>
+          It's represent the content of a node for shown in tree
+        </td>
+        <td>
+          Nothing
+        </td>
+      </tr>
+      <tr>
+        <td>
+          selectable
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          Optional; Allow to deactivate the possibility to select a node
+        </td>
+        <td>
+          true
+        </td>
+      </tr>
+      <tr>
+        <td>
+          expanded
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          Optional; Define if the node is expanded or not;
+        </td>
+        <td>
+          false
+        </td>
+      </tr>
+      <tr>
+        <td>
+          children
+        </td>
+        <td>
+          Array of nodes
+        </td>
+        <td>
+          Require if we want a sub-tree, all object in children have same syntax that standard node
+        </td>
+        <td>
+          Nothing
+        </td>
+      </tr>
+      <tr>
+        <td>
+          disabled
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          Define if a node is disabled or not, that causes to desactive selection and possibility to expand the node
+        </td>
+        <td>
+          false
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h4>
+    Example of all attribute
+  </h4>
+  <textarea class="atlui-code">
+oneNode = {
+  label: "Node 1",
+  selectable: false,
+  expanded: true,
+  children: [...],
+  disabled: false
+}
+  </textarea>
+  <h4>
+    Plugins object
+  </h4>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th class="col-md-2">
           Name
         </th>
         <th>
@@ -163,7 +303,14 @@ this.plugins = [
         </td>
         <td>
           Basic plugin, add the possibility to sort the node in the same level.
-          If we want sortable in different level add nestedSortable arguments to the atlui-tree
+        </td>
+      </tr>
+      <tr>
+        <td>
+          nestedSortable
+        </td>
+        <td>
+          Basic plugin, add the possibility to sort the node in different level.
         </td>
       </tr>
       <tr>
@@ -182,7 +329,7 @@ this.plugins = [
   <table class="table table-striped table-bordered">
     <thead>
       <tr>
-        <th>
+        <th class="col-md-2">
           Attribute
         </th>
         <th>
@@ -370,54 +517,271 @@ this.plugins = [
           Callback function when the dragged element is dropped on the plugin
         </td>
       </tr>
+    </tbody>
+  </table>
+  <h4>
+    Plugins methods and hook
+  </h4>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th class="col-md-2">
+          Name
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody>
       <tr>
         <td>
-          disabled
+          onInit
         </td>
         <td>
-          Function(node); node arguments is the node where the event occurs
+          hook
         </td>
         <td>
-          Callback function for define if the plugin need to be disabled or not.
-          <p class="bg-warning p-3">
-            The function need to return true or false
-          </p>
+          We can send a function init to define if the plugins will be show or hide or disabled on init
         </td>
       </tr>
       <tr>
         <td>
-          display
+          onChange
         </td>
         <td>
-          Function(node); node arguments is the node where the event occurs
+          hook
         </td>
         <td>
-          Callback function for define if the plugin is display or not.
-          <p class="bg-warning p-3">
-            The function need to return true or false.
-          </p>
+          We can send a function changes wich is call when we detect changes on node.
         </td>
       </tr>
       <tr>
         <td>
-          hidden
+          onDestroy
         </td>
         <td>
-          Function(node); node arguments is the node where the event occurs
+          hook
         </td>
         <td>
-          Callback function for define if the plugin is hidden or not,
-          the plugin will just had visibility hidden.
-          <p class="bg-warning p-3">
-            The function need to return true or false.
-          </p>
+          We can send a function destroy wich is call when the component will be destroy.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          show
+        </td>
+        <td>
+          methods
+        </td>
+        <td>
+          This methods allow to show the plugins
+        </td>
+      </tr>
+      <tr>
+        <td>
+          hide
+        </td>
+        <td>
+          methods
+        </td>
+        <td>
+          This methods allow to hide the plugins
+        </td>
+      </tr>
+      <tr>
+        <td>
+          activate
+        </td>
+        <td>
+          methods
+        </td>
+        <td>
+          This methods allow to activate the plugins
+        </td>
+      </tr>
+      <tr>
+        <td>
+          disable
+        </td>
+        <td>
+          methods
+        </td>
+        <td>
+          This methods allow to disable the plugins
         </td>
       </tr>
     </tbody>
   </table>
-
+  <h4>
+    Example of plugins objects
+  </h4>
+  <textarea class="atlui-code">
+plugins = [
+  "checkbox",
+  "sortable",
+  "nestedSortable",
+  {
+    name: 'remove'
+    icon: 'remove',
+    click: function(node){
+      confirmRemove(node);
+      this.hide();
+    },
+    init: function(node){
+      if (node.selected) {
+        this.disable();
+      } else {
+        this.activate();
+      }
+    }
+  }
+]
+  </textarea>
   <h3>
-    Sortable tree
+    Example
+  </h3>
+  <h4>
+    Basic Example with 2 levels and default parameters:
+  </h4>
+  <div class="row container-fluid form-group">
+    <div class="col-md-4">
+      <atlui-tree [nodes]="nodesBasic"></atlui-tree>
+    </div>
+  </div>
+  <br>
+  <textarea class="atlui-code">
+    <atlui-tree [nodes]="nodesBasic"></atlui-tree>
+  </textarea>
+  <textarea class="atlui-code">
+this.nodesBasic = [
+  {
+    label: 'Node without children'
+  },
+  {
+    label: 'Node with children',
+    children: [
+      {
+        label: 'Sub-node 1'
+      },
+      {
+        label: 'Sub-node 2'
+      }
+    ]
+  }
+]
+  </textarea>
+
+  <h4>
+    Example with specific parameters on nodes:
+  </h4>
+  <div class="row container-fluid">
+    <div class="col-md-4">
+      <atlui-tree [nodes]="nodesWithParameters"></atlui-tree>
+    </div>
+  </div>
+  <br>
+  <textarea class="atlui-code">
+this.nodesWithParameters = [
+  {
+    label: 'Node with children and not open per default',
+    children: [
+      {
+        label: 'Sub-node hidden on init',
+        selectable: false,
+      }
+    ]
+  },
+  {
+    label: 'Node with children open per default',
+    expanded: true,
+    children: [
+      {
+        label: 'Sub-node show on init and with children',
+        children: [
+          {
+            label: 'Sub-sub-node'
+          }
+        ]
+      },
+      {
+        label: 'Sub-node without children',
+        disabled: true
+      }
+    ]
+  }
+];
+  </textarea>
+
+  <h4>
+    Example with callback on expand, collapse, selection on node and checked node
+  </h4>
+  <div class="row container-fluid form-group">
+    <div class="col-md-4">
+      <atlui-tree [plugins]="['checkbox']" (onChecked)="checkedCallback($event)" (onUnchecked)="uncheckedCallback($event)" (onExpand)="expandCallback($event)" (onCollapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesWithLazyLoading" [selection]="selection"></atlui-tree>
+    </div>
+  </div>
+  <br>
+  <textarea class="atlui-code">
+    <atlui-tree [plugins]="['checkbox']" (onChecked)="checkedCallback($event)" (onUnchecked)="uncheckedCallback($event)" (onExpand)="expandCallback($event)" (onCollapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesWithLazyLoading" [selection]="selection"></atlui-tree>
+  </textarea>
+  <textarea class="atlui-code">
+this.nodesWithLazyLoading = [
+  {
+    label: 'Node with lazy children',
+    children: []
+  },
+  {
+    label: 'Node with children',
+    children: [
+      {
+        label: 'Sub-node 1'
+      },
+      {
+        label: 'Sub-node 2'
+      }
+    ]
+  }
+]
+  </textarea>
+
+  <h4>
+    Example with plugins
+  </h4>
+
+  <div class="row container-fluid form-group">
+    <div class="col-md-4">
+      <atlui-tree [nodes]="nodesBasic" [plugins]="plugins"></atlui-tree>
+    </div>
+  </div>
+  <p>
+    Check and uncheck the checkbox for show and hide check plugin
+  </p>
+  <textarea class="atlui-code">
+<atlui-tree [plugins]="plugins"></atlui-tree>
+  </textarea>
+
+  <textarea class="atlui-code">
+this.plugins = [
+  {
+    icon: 'check',
+    dblclick: this.check,
+    changes: function(node){
+      if (node.selected) {
+        this.hide();
+      } else {
+        this.show();
+      }
+    }
+  },
+  'checkbox'
+];
+  </textarea>
+  <h3>
+    Sortable tree example
   </h3>
   <h4>
     Example with sortable node into same level
@@ -435,124 +799,13 @@ this.plugins = [
   <h4>
     Example with nested sortable
   </h4>
-  <p>
-    Just need to add <code>nestedSortable</code> attribute for create a tree with nested sortable
-  </p>
   <div class="row container-fluid">
     <div class="col-md-4">
-      <atlui-tree [nodes]="nodesSortableNested" [plugins]="['sortable']" [nestedSortable]="true"></atlui-tree>
+      <atlui-tree [nodes]="nodesSortableNested" [plugins]="['nestedSortable']"></atlui-tree>
     </div>
   </div>
   <br>
   <textarea class="atlui-code">
-<atlui-tree [nodes]="nodesSortable" [plugins]="['sortable']" [nestedSortable]="true"></atlui-tree>
-  </textarea>
-  <h3>
-    Nodes in js script:
-  </h3>
-  <h4>
-    Different attribute
-  </h4>
-  <table class="table table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>
-          attribute
-        </th>
-        <th>
-          Type
-        </th>
-        <th>
-          Description
-        </th>
-        <th class="col-md-2">
-          Default
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          label
-        </td>
-        <td>
-          string
-        </td>
-        <td>
-          It's represent the content of a node for shown in tree
-        </td>
-        <td>
-          Nothing
-        </td>
-      </tr>
-      <tr>
-        <td>
-          selectable
-        </td>
-        <td>
-          boolean
-        </td>
-        <td>
-          Optional; Allow to deactivate the possibility to select a node
-        </td>
-        <td>
-          true
-        </td>
-      </tr>
-      <tr>
-        <td>
-          expanded
-        </td>
-        <td>
-          boolean
-        </td>
-        <td>
-          Optional; Define if the node is expanded or not;
-        </td>
-        <td>
-          false
-        </td>
-      </tr>
-      <tr>
-        <td>
-          children
-        </td>
-        <td>
-          Array of nodes
-        </td>
-        <td>
-          Require if we want a sub-tree, all object in children have same syntax that standard node
-        </td>
-        <td>
-          Nothing
-        </td>
-      </tr>
-      <tr>
-        <td>
-          disabled
-        </td>
-        <td>
-          boolean
-        </td>
-        <td>
-          Define if a node is disabled or not, that causes to desactive selection and possibility to expand the node
-        </td>
-        <td>
-          false
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h4>
-    Example of all attribute
-  </h4>
-  <textarea class="atlui-code">
-oneNode = {
-  label: "Node 1",
-  selectable: false,
-  expanded: true,
-  children: [...],
-  disabled: false
-}
+<atlui-tree [nodes]="nodesSortable" [plugins]="['nestedSortable']"></atlui-tree>
   </textarea>
 </div>

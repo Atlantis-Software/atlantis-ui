@@ -147,18 +147,15 @@ export default  class TreeComponent {
     ];
 
     this.plugins = [
-      {icon: 'check', dblclick: this.check, hidden: this.hidden},
+      {icon: 'check', dblclick: this.check, onChange: function(node){
+        if (node.selected) {
+          this.hide();
+        } else {
+          this.show();
+        }
+      }},
       'checkbox'
     ];
-
-  }
-
-  hidden(event) {
-    if (event.label === "Sub-node 1") {
-      return false;
-    } else {
-      return true;
-    }
   }
 
   expandCallback(event) {
@@ -191,6 +188,7 @@ export default  class TreeComponent {
 
   check(event) {
     console.log("check : ", event);
+    this.disable();
   }
 
 }
