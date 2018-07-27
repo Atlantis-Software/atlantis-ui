@@ -48,6 +48,9 @@ export default class treePlugin {
   }
 
   ngOnInit(){
+    if (this.disabled) {
+      return;
+    }
     if (this.onChange) {
       var self = this;
       this.change.subscribe({
@@ -63,6 +66,9 @@ export default class treePlugin {
   }
 
   ngOnDestroy(){
+    if (this.disabled) {
+      return;
+    }
     if (this.onChange) {
       this.change.unsubscribe();
     }
@@ -89,6 +95,9 @@ export default class treePlugin {
   }
 
   onClick(node) {
+    if (this.disabled) {
+      return;
+    }
     if (!this.click) {
       return;
     }
@@ -96,6 +105,9 @@ export default class treePlugin {
   }
 
   onDragenter(node) {
+    if (this.disabled) {
+      return;
+    }
     if (!this.dragenter) {
       return;
     }
@@ -103,6 +115,9 @@ export default class treePlugin {
   }
 
   onDragover(node) {
+    if (this.disabled) {
+      return;
+    }
     if (!this.dragover) {
       return;
     }
@@ -110,6 +125,9 @@ export default class treePlugin {
   }
 
   onDragleave(node) {
+    if (this.disabled) {
+      return;
+    }
     if (!this.dragleave) {
       return;
     }
@@ -117,6 +135,9 @@ export default class treePlugin {
   }
 
   onDrop(node) {
+    if (this.disabled) {
+      return;
+    }
     if (!this.drop) {
       return;
     }
@@ -124,6 +145,9 @@ export default class treePlugin {
   }
 
   onDragstart(node) {
+    if (this.disabled) {
+      return;
+    }
     if (!this.dragstart) {
       return;
     }
@@ -131,6 +155,9 @@ export default class treePlugin {
   }
 
   onDragend(node) {
+    if (this.disabled) {
+      return;
+    }
     if (!this.dragend) {
       return;
     }
@@ -138,6 +165,9 @@ export default class treePlugin {
   }
 
   onMousedown(node) {
+    if (this.disabled) {
+      return;
+    }
     if (!this.mousedown) {
       return;
     }
@@ -145,6 +175,9 @@ export default class treePlugin {
   }
 
   onMouseenter(node) {
+    if (this.disabled) {
+      return;
+    }
     if (!this.mouseenter) {
       return;
     }
@@ -152,6 +185,9 @@ export default class treePlugin {
   }
 
   onMouseleave(node) {
+    if (this.disabled) {
+      return;
+    }
     if (!this.mouseleave) {
       return;
     }
@@ -159,6 +195,9 @@ export default class treePlugin {
   }
 
   onMousemove(node) {
+    if (this.disabled) {
+      return;
+    }
     if (!this.mousemove) {
       return;
     }
@@ -166,6 +205,9 @@ export default class treePlugin {
   }
 
   onMouseout(node) {
+    if (this.disabled) {
+      return;
+    }
     if (!this.mouseout) {
       return;
     }
@@ -173,6 +215,9 @@ export default class treePlugin {
   }
 
   onMouseover(node) {
+    if (this.disabled) {
+      return;
+    }
     if (!this.mouseover) {
       return;
     }
@@ -180,6 +225,9 @@ export default class treePlugin {
   }
 
   onMouseup(node) {
+    if (this.disabled) {
+      return;
+    }
     if (!this.mouseup) {
       return;
     }
@@ -187,6 +235,9 @@ export default class treePlugin {
   }
 
   onDblclick(node) {
+    if (this.disabled) {
+      return;
+    }
     if (!this.dblclick) {
       return;
     }
