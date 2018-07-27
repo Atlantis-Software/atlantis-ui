@@ -11,7 +11,8 @@ export default  class TreeComponent {
   constructor(){
     this.nodesBasic = [
       {
-        label: 'Node without children'
+        label: 'Node without children',
+        selectable: false
       },
       {
         label: 'Node with children',
