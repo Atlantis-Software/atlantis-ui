@@ -60,7 +60,6 @@ export default class treeComponent {
   }
 
   onDragOver(element, over) {
-    // console.log(node);
     if (over) {
       element.classList.add("tree-node-sorted");
     } else {

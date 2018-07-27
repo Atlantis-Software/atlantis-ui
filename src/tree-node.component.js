@@ -199,12 +199,12 @@ export default class treeNodeComponent {
         }
       });
     }
+    this.selectedChange.emit(this.selected);
     if (this.selected) {
       this.onChecked.emit(this.node);
     } else {
       this.onUnchecked.emit(this.node);
     }
-    this.selectedChange.emit(this.selected);
     this.check.emit();
   }
 

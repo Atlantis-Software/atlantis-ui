@@ -50,10 +50,6 @@ export default class treePlugin {
   }
 
   ngOnInit(){
-    console.log(this.node);
-    if (this.disabled) {
-      return;
-    }
     if (this.onChange) {
       var self = this;
       this.change.subscribe({
