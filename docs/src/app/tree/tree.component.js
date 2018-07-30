@@ -148,7 +148,7 @@ export default  class TreeComponent {
     ];
 
     this.plugins = [
-      {icon: 'check', description: 'check plugins',dblclick: this.check, onChange: function(node){
+      {icon: 'check', description: 'check plugins', onDblclick: this.check, onChange: function(node){
         if (node.selected) {
           this.hide();
         } else {

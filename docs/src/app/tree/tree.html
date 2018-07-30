@@ -354,7 +354,7 @@ oneNode = {
       </tr>
       <tr>
         <td>
-          click
+          onClick
         </td>
         <td>
           Function(node); node arguments is the node where the event occurs
@@ -365,7 +365,7 @@ oneNode = {
       </tr>
       <tr>
         <td>
-          dblclick
+          onDblclick
         </td>
         <td>
           Function(node); node arguments is the node where the event occurs
@@ -376,7 +376,7 @@ oneNode = {
       </tr>
       <tr>
         <td>
-          mousedown
+          onMousedown
         </td>
         <td>
           Function(node); node arguments is the node where the event occurs
@@ -387,7 +387,7 @@ oneNode = {
       </tr>
       <tr>
         <td>
-          mouseenter
+          onMouseenter
         </td>
         <td>
           Function(node); node arguments is the node where the event occurs
@@ -398,7 +398,7 @@ oneNode = {
       </tr>
       <tr>
         <td>
-          mouseleave
+          onMouseleave
         </td>
         <td>
           Function(node); node arguments is the node where the event occurs
@@ -409,7 +409,7 @@ oneNode = {
       </tr>
       <tr>
         <td>
-          mousemove
+          onMousemove
         </td>
         <td>
           Function(node); node arguments is the node where the event occurs
@@ -420,7 +420,7 @@ oneNode = {
       </tr>
       <tr>
         <td>
-          mouseover
+          onMouseover
         </td>
         <td>
           Function(node); node arguments is the node where the event occurs
@@ -431,7 +431,7 @@ oneNode = {
       </tr>
       <tr>
         <td>
-          mouseout
+          onMouseout
         </td>
         <td>
           Function(node); node arguments is the node where the event occurs
@@ -442,7 +442,7 @@ oneNode = {
       </tr>
       <tr>
         <td>
-          mouseup
+          onMouseup
         </td>
         <td>
           Function(node); node arguments is the node where the event occurs
@@ -453,7 +453,7 @@ oneNode = {
       </tr>
       <tr>
         <td>
-          dragenter
+          onDragenter
         </td>
         <td>
           Function(node); node arguments is the node where the event occurs
@@ -464,7 +464,7 @@ oneNode = {
       </tr>
       <tr>
         <td>
-          dragleave
+          onDragleave
         </td>
         <td>
           Function(node); node arguments is the node where the event occurs
@@ -475,7 +475,7 @@ oneNode = {
       </tr>
       <tr>
         <td>
-          dragstart
+          onDragstart
         </td>
         <td>
           Function(node); node arguments is the node where the event occurs
@@ -486,7 +486,7 @@ oneNode = {
       </tr>
       <tr>
         <td>
-          dragend
+          onDragend
         </td>
         <td>
           Function(node); node arguments is the node where the event occurs
@@ -497,7 +497,7 @@ oneNode = {
       </tr>
       <tr>
         <td>
-          dragover
+          onDragover
         </td>
         <td>
           Function(node); node arguments is the node where the event occurs
@@ -508,7 +508,7 @@ oneNode = {
       </tr>
       <tr>
         <td>
-          drop
+          onDrop
         </td>
         <td>
           Function(node); node arguments is the node where the event occurs
@@ -625,13 +625,13 @@ plugins = [
   "sortable",
   "nestedSortable",
   {
-    name: 'remove'
     icon: 'remove',
-    click: function(node){
+    description: 'Remove node',
+    onClick: function(node){
       confirmRemove(node);
       this.hide();
     },
-    init: function(node){
+    onInit: function(node){
       if (node.selected) {
         this.disable();
       } else {
@@ -769,8 +769,8 @@ this.plugins = [
   {
     icon: 'check',
     description: 'check plugin'
-    dblclick: this.check,
-    changes: function(node){
+    onDblclick: this.check,
+    onChanges: function(node){
       if (node.selected) {
         this.hide();
       } else {
