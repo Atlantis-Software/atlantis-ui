@@ -6,7 +6,7 @@ export default class treeComponent {
       new Component({
         selector: 'atlui-tree',
         template: require('./tree.html'),
-        inputs: ['nodes', 'template', 'nestedSortable', 'nodeSelected: selection', 'plugins'],
+        inputs: ['nodes', 'nodeSelected: selection', 'plugins'],
         outputs: ['onExpand', 'onCollapse', 'nodesChanges', 'onClick', 'onChecked', 'onUnchecked'],
         queries: {
           template: new ContentChild(TemplateRef),
@@ -60,7 +60,6 @@ export default class treeComponent {
   }
 
   onDragOver(element, over) {
-    // console.log(node);
     if (over) {
       element.classList.add("tree-node-sorted");
     } else {
@@ -72,13 +71,16 @@ export default class treeComponent {
     if (!this.nodes) {
       return;
     }
+    if (this.plugins.indexOf('sortable') != -1) {
+      this.isSortable = true;
+    }
+    if (this.plugins.indexOf('nestedSortable') != -1) {
+      this.isSortable = this.nestedSortable = true;
+    }
     if (this.nestedSortable) {
       this.dropZonesNested = this.dropZones;
     } else {
       this.dropZonesNested = undefined;
-    }
-    if (this.plugins.indexOf('sortable') != -1) {
-      this.isSortable = true;
     }
     var recursiveSetDropZones = function(node, parentSelection) {
       if (parentSelection) {
@@ -98,7 +100,7 @@ export default class treeComponent {
     this.cdr.detectChanges();
   }
 
-  onSelect() {
+  onCheck() {
     this.nodesChanges.emit(this.nodes);
   }
 
@@ -109,7 +111,7 @@ export default class treeComponent {
         element.classList.remove("tree-node-sorted");
       });
     }
-    this.onSelect();
+    this.onCheck();
   }
 
   ngOnChanges() {

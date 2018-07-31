@@ -11,7 +11,8 @@ export default  class TreeComponent {
   constructor(){
     this.nodesBasic = [
       {
-        label: 'Node without children'
+        label: 'Node without children',
+        selectable: false
       },
       {
         label: 'Node with children',
@@ -147,18 +148,15 @@ export default  class TreeComponent {
     ];
 
     this.plugins = [
-      {icon: 'check', dblclick: this.check, hidden: this.hidden},
+      {icon: 'check', description: 'check plugins', onDblclick: this.check, onChange: function(node){
+        if (node.selected) {
+          this.hide();
+        } else {
+          this.show();
+        }
+      }},
       'checkbox'
     ];
-
-  }
-
-  hidden(event) {
-    if (event.label === "Sub-node 1") {
-      return false;
-    } else {
-      return true;
-    }
   }
 
   expandCallback(event) {
@@ -191,6 +189,7 @@ export default  class TreeComponent {
 
   check(event) {
     console.log("check : ", event);
+    this.disable();
   }
 
 }

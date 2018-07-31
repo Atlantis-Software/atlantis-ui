@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 export default class treePlugin {
   static get annotations() {
@@ -6,170 +6,241 @@ export default class treePlugin {
       new Component({
         selector: 'tree-plugin',
         template: `
-        <span *ngIf="icon" [hidden]="!isDisplay(node)" [style.visibility]="isHidden(node) ? 'hidden' : 'visible'" class="icon" [ngClass]="'icon-' + icon"
-          [class.disabled]="isDisabled(node)"
-          (click)="onClick(node)"
-          (dragenter)="onDragenter(node)"
-          (dragover)="onDragover(node)"
-          (dragleave)="onDragleave(node)"
-          (drop)="onDrop(node)"
-          (dragstart)="onDragstart(node)"
-          (dragend)="onDragend(node)"
-          (mousedown)="onMousedown(node)"
-          (mouseenter)="onMouseenter(node)"
-          (mouseleave)="onMouseleave(node)"
-          (mousemove)="onMousemove(node)"
-          (mouseout)="onMouseout(node)"
-          (mouseover)="onMouseover(node)"
-          (mouseup)="onMouseup(node)"
-          (dblclick)="onDblclick(node)">
+        <span *ngIf="icon" [title]="description" [hidden]="hidden" class="icon" [ngClass]="'icon-' + icon"
+          [class.icon-disabled]="disabled"
+          (click)="click(node)"
+          (dragenter)="dragenter(node)"
+          (dragover)="dragover(node)"
+          (dragleave)="dragleave(node)"
+          (drop)="drop(node)"
+          (dragstart)="dragstart(node)"
+          (dragend)="dragend(node)"
+          (mousedown)="mousedown(node)"
+          (mouseenter)="mouseenter(node)"
+          (mouseleave)="mouseleave(node)"
+          (mousemove)="mousemove(node)"
+          (mouseout)="mouseout(node)"
+          (mouseover)="mouseover(node)"
+          (mouseup)="mouseup(node)"
+          (dblclick)="dblclick(node)">
         </span>
-        <div *ngIf="plugin === 'checkbox'" class="tree-node-checkbox">
-          <div class="checkbox">
-            <input type="checkbox" [ngModel]="node.selected" (click)="selectedChange()" [attr.disabled]="node.disabled">
-            <label>
-              &nbsp;
-            </label>
+        <ng-container *ngIf="node.selectable !== false">
+          <div *ngIf="plugin === 'checkbox'" class="tree-node-checkbox">
+            <div class="checkbox">
+              <input type="checkbox" [ngModel]="node.selected" (click)="selectedChange()" [attr.disabled]="node.disabled">
+              <label>
+                &nbsp;
+              </label>
+            </div>
           </div>
-        </div>
+        </ng-container>
         <span [attr.disabled]="node.disabled"
-          *ngIf="plugin === 'sortable'"
+          *ngIf="plugin === 'sortable' || plugin === 'nestedSortable'"
           class="tree-node-handle" atlui-sortable-handle></span>
         `,
-        inputs: ['icon', 'plugin', 'node', 'disabled', 'display', 'hidden', 'click', 'dragenter', 'dragover', 'dragleave',
-          'drop','dragstart', 'dragend', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove',
-          'mouseout', 'mouseover', 'mouseup', 'dblclick', 'selectedChange'],
+        inputs: ['icon', 'description', 'plugin', 'node', 'onInit', 'onChange', 'onDestroy', 'onClick', 'onDragenter', 'onDragover', 'onDragleave',
+          'onDrop','onDragstart', 'onDragend', 'onMousedown', 'onMouseenter', 'onMouseleave', 'onMousemove',
+          'onMouseout', 'onMouseover', 'onMouseup', 'onDblclick', 'selectedChange', 'change'],
         outputs: []
       })
     ];
   }
   constructor() {
+    this.disabled = this.hidden = false;
   }
 
-  isDisabled(node) {
-    if (!this.disabled) {
-      return false;
+  ngOnInit(){
+    if (this.onChange) {
+      var self = this;
+      this.change.subscribe({
+        next() {
+          self.onChange(self.node);
+        }
+      });
     }
-    return this.disabled(node);
-  }
-
-  isDisplay(node) {
-    if (!this.display) {
-      return true;
-    }
-    return this.display(node);
-  }
-
-  isHidden(node) {
-    if (!this.hidden) {
-      return false;
-    }
-    return this.hidden(node);
-  }
-
-  onClick(node) {
-    if (!this.click) {
+    if (!this.onInit) {
       return;
     }
-    this.click(node);
+    this.onInit(this.node);
   }
 
-  onDragenter(node) {
-    if (!this.dragenter) {
+  ngOnDestroy(){
+    if (this.disabled) {
       return;
     }
-    this.dragenter(node);
+    if (this.onChange) {
+      this.change.unsubscribe();
+    }
+    if (!this.onDestroy) {
+      return;
+    }
+    this.onDestroy(this.node);
   }
 
-  onDragover(node) {
-    if (!this.dragover) {
-      return;
-    }
-    this.dragover(node);
+  disable() {
+    this.disabled = true;
   }
 
-  onDragleave(node) {
-    if (!this.dragleave) {
-      return;
-    }
-    this.dragleave(node);
+  activate() {
+    this.disabled = false;
   }
 
-  onDrop(node) {
-    if (!this.drop) {
-      return;
-    }
-    this.drop(node);
+  show() {
+    this.hidden = false;
   }
 
-  onDragstart(node) {
-    if (!this.dragstart) {
-      return;
-    }
-    this.dragstart(node);
+  hide() {
+    this.hidden = true;
   }
 
-  onDragend(node) {
-    if (!this.dragend) {
+  click(node) {
+    if (this.disabled) {
       return;
     }
-    this.dragend(node);
+    if (!this.onClick) {
+      return;
+    }
+    this.onClick(node);
   }
 
-  onMousedown(node) {
-    if (!this.mousedown) {
+  dragenter(node) {
+    if (this.disabled) {
       return;
     }
-    this.mousedown(node);
+    if (!this.onDragenter) {
+      return;
+    }
+    this.onDragenter(node);
   }
 
-  onMouseenter(node) {
-    if (!this.mouseenter) {
+  dragover(node) {
+    if (this.disabled) {
       return;
     }
-    this.mouseenter(node);
+    if (!this.onDragover) {
+      return;
+    }
+    this.onDragover(node);
   }
 
-  onMouseleave(node) {
-    if (!this.mouseleave) {
+  dragleave(node) {
+    if (this.disabled) {
       return;
     }
-    this.mouseleave(node);
+    if (!this.onDragleave) {
+      return;
+    }
+    this.onDragleave(node);
   }
 
-  onMousemove(node) {
-    if (!this.mousemove) {
+  drop(node) {
+    if (this.disabled) {
       return;
     }
-    this.mousemove(node);
+    if (!this.onDrop) {
+      return;
+    }
+    this.onDrop(node);
   }
 
-  onMouseout(node) {
-    if (!this.mouseout) {
+  dragstart(node) {
+    if (this.disabled) {
       return;
     }
-    this.mouseout(node);
+    if (!this.onDragstart) {
+      return;
+    }
+    this.onDragstart(node);
   }
 
-  onMouseover(node) {
-    if (!this.mouseover) {
+  dragend(node) {
+    if (this.disabled) {
       return;
     }
-    this.mouseover(node);
+    if (!this.onDragend) {
+      return;
+    }
+    this.onDragend(node);
   }
 
-  onMouseup(node) {
-    if (!this.mouseup) {
+  mousedown(node) {
+    if (this.disabled) {
       return;
     }
-    this.mouseup(node);
+    if (!this.onMousedown) {
+      return;
+    }
+    this.onMousedown(node);
   }
 
-  onDblclick(node) {
-    if (!this.dblclick) {
+  mouseenter(node) {
+    if (this.disabled) {
       return;
     }
-    this.dblclick(node);
+    if (!this.onMouseenter) {
+      return;
+    }
+    this.onMouseenter(node);
+  }
+
+  mouseleave(node) {
+    if (this.disabled) {
+      return;
+    }
+    if (!this.onMouseleave) {
+      return;
+    }
+    this.onMouseleave(node);
+  }
+
+  mousemove(node) {
+    if (this.disabled) {
+      return;
+    }
+    if (!this.onMousemove) {
+      return;
+    }
+    this.onMousemove(node);
+  }
+
+  mouseout(node) {
+    if (this.disabled) {
+      return;
+    }
+    if (!this.onMouseout) {
+      return;
+    }
+    this.onMouseout(node);
+  }
+
+  mouseover(node) {
+    if (this.disabled) {
+      return;
+    }
+    if (!this.onMouseover) {
+      return;
+    }
+    this.onMouseover(node);
+  }
+
+  mouseup(node) {
+    if (this.disabled) {
+      return;
+    }
+    if (!this.onMouseup) {
+      return;
+    }
+    this.onMouseup(node);
+  }
+
+  dblclick(node) {
+    if (this.disabled) {
+      return;
+    }
+    if (!this.onDblclick) {
+      return;
+    }
+    this.onDblclick(node);
   }
 }
 

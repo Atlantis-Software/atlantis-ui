@@ -150,7 +150,7 @@ class treeTestComponent {
     return [
       new Component({
         template: `
-        <atlui-tree [nodes]="nodes" [plugins]="plugins" [nestedSortable]="nested" (onExpand)="expandCallback($event)" (onCollapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" (onChecked)="checkedCallback($event)" (onUnchecked)="uncheckedCallback($event)"></atlui-tree>`
+        <atlui-tree [nodes]="nodes" [plugins]="plugins" (onExpand)="expandCallback($event)" (onCollapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" (onChecked)="checkedCallback($event)" (onUnchecked)="uncheckedCallback($event)"></atlui-tree>`
       })
     ];
   }
@@ -580,6 +580,32 @@ describe('tree', function() {
       testComponent.plugins = [
         {
           icon: 'testAllEvent',
+          onClick: testplugins,
+          onDblclick: testplugins,
+          onMousedown: testplugins,
+          onMouseenter: testplugins,
+          onMouseleave: testplugins,
+          onMousemove: testplugins,
+          onMouseover: testplugins,
+          onMouseout: testplugins,
+          onMouseup: testplugins,
+          onDragenter: testplugins,
+          onDragleave: testplugins,
+          onDragstart: testplugins,
+          onDragend: testplugins,
+          onDragover: testplugins,
+          onDrop: testplugins,
+          onInit: function() {
+            this.disable();
+            this.activate();
+            this.hide();
+            this.show();
+          },
+          onDestroy: function() {},
+          onChange: function() {}
+        },
+        {
+          icon: 'testDisabledPlugins',
           click: testplugins,
           dblclick: testplugins,
           mousedown: testplugins,
@@ -595,9 +621,11 @@ describe('tree', function() {
           dragend: testplugins,
           dragover: testplugins,
           drop: testplugins,
-          disabled: function(){return false;},
-          display: function(){return true;},
-          hidden: function(){return 'visible';}
+          onInit: function() {
+            this.disable();
+          },
+          onDestroy: function() {},
+          onChange: function() {}
         },
         {
           icon: 'testNoEvent'
@@ -613,90 +641,105 @@ describe('tree', function() {
       assert(plugins, 'Expander not found');
 
       plugins[1].click();
+      plugins[2].click();
       assert.strictEqual(testComponent.testPlugins,0);
       plugins[0].click();
       assert.strictEqual(testComponent.testPlugins,1);
 
       var event = new Event('mousedown', { 'bubbles': true });
       plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,1);
       plugins[0].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,2);
 
       event = new Event('mouseenter', { 'bubbles': true });
       plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,2);
       plugins[0].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,3);
 
       event = new Event('mouseleave', { 'bubbles': true });
       plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,3);
       plugins[0].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,4);
 
       event = new Event('mousemove', { 'bubbles': true });
       plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,4);
       plugins[0].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,5);
 
       event = new Event('mouseover', { 'bubbles': true });
       plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,5);
       plugins[0].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,6);
 
       event = new Event('mouseout', { 'bubbles': true });
       plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,6);
       plugins[0].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,7);
 
       event = new Event('mouseup', { 'bubbles': true });
       plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,7);
       plugins[0].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,8);
 
       event = new Event('dragenter', { 'bubbles': true });
       plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,8);
       plugins[0].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,9);
 
       event = new Event('dragleave', { 'bubbles': true });
       plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,9);
       plugins[0].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,10);
 
       event = new Event('dragstart', { 'bubbles': true });
       plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,10);
       plugins[0].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,11);
 
       event = new Event('dragend', { 'bubbles': true });
       plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,11);
       plugins[0].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,12);
 
       event = new Event('dragover', { 'bubbles': true });
       plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,12);
       plugins[0].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,13);
 
       event = new Event('drop', { 'bubbles': true });
       plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,13);
       plugins[0].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,14);
 
       event = new Event('dblclick', { 'bubbles': true });
       plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,14);
       plugins[0].dispatchEvent(event);
       assert.strictEqual(testComponent.testPlugins,15);
@@ -828,8 +871,7 @@ describe('tree', function() {
 
     it('should sort from first depth to second depth', fakeAsync(() => {
       var testComponent = fixture.componentInstance;
-      testComponent.plugins = ['checkox', 'sortable'];
-      testComponent.nested = true;
+      testComponent.plugins = ['checkox', 'nestedSortable'];
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
@@ -860,8 +902,7 @@ describe('tree', function() {
 
     it('should sort from second depth to first depth', fakeAsync(() => {
       var testComponent = fixture.componentInstance;
-      testComponent.plugins = ['checkox', 'sortable'];
-      testComponent.nested = true;
+      testComponent.plugins = ['checkox', 'nestedSortable'];
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
@@ -892,8 +933,7 @@ describe('tree', function() {
 
     it('should close the current node if we sort an opened node', fakeAsync(() => {
       var testComponent = fixture.componentInstance;
-      testComponent.plugins = ['checkox', 'sortable'];
-      testComponent.nested = true;
+      testComponent.plugins = ['checkox', 'nestedSortable'];
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
