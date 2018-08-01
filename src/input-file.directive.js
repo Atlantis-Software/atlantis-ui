@@ -39,7 +39,11 @@ export class inputFileDirective {
   }
 
   changeTitle($event) {
-    this.label.setAttribute("title", $event.target.files[0].name);
+    if ($event && $event.target && $event.target.files[0]) {
+      this.label.setAttribute("title", $event.target.files[0].name);
+    } else {
+      this.label.setAttribute("title", "");
+    }
   }
 
 }
