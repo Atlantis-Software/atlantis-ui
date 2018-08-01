@@ -101,12 +101,15 @@ export default class treeComponent {
   }
 
   onCheck(node) {
+    this.nodesChanges.emit(this.nodes);
+    if (!node) {
+      return;
+    }
     if (node.selected) {
       this.onChecked.emit(node);
     } else {
       this.onUnchecked.emit(node);
     }
-    this.nodesChanges.emit(this.nodes);
   }
 
   updateTree() {
