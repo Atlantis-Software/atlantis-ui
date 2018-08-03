@@ -25,6 +25,7 @@ export default class gridBodyComponent {
             [style.width]="columnsWidths[y] || column.width"
             (dblclick)="!changingCellContent && modifyContent($event, i, y)">
             <input class="grid-input-change form-control"
+              type="text"
               *ngIf="changingCellContent === i + '' + y"
               [ngModel]="row[column.label]"
               (blur)="modifyContent($event, i, y, true)"
