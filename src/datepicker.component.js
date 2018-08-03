@@ -101,7 +101,8 @@ export default class datepickerComponent {
         }
         //highlight the currently selected start date
         if (calendar[row][col].format(this.locale.format) == moment(this._val, [this.locale.format, "YYYY-MM-DD"]).format(this.locale.format) && this.calendar[calendarNumber].month() == moment(this._val, [this.locale.format, "YYYY-MM-DD"]).month()) {
-          this.classes[calendarNumber][row][col].push('active', 'start-date');
+          this.classes[calendarNumber][row][col].push('active');
+          this.active = this.classes[calendarNumber][row][col];
         }
 
         // all dates are available
@@ -199,8 +200,9 @@ export default class datepickerComponent {
       this.before = "";
       this.after = "";
       // unselect previous value by remove active class
-      if (this.elementRef.nativeElement.querySelector('.active')) {
-        this.elementRef.nativeElement.querySelector('.active').classList.remove('active');
+      if (this.active) {
+        var index = this.active.indexOf('active');
+        this.active.splice(index, 1);
       }
     }
 
@@ -344,16 +346,12 @@ export default class datepickerComponent {
     if (index > -1) {
       return;
     }
-    var elementsActive = this.elementRef.nativeElement.querySelectorAll('.active');
-    // unselect previous value by remove active class
-    Array.prototype.forEach.call(elementsActive, function(node) {
-      node.classList.remove('active');
-    });
     // select selected value by add active class
     style.push('active');
     // modify this.val by the selected value
     this._val = date.format(this.locale.format);
     // this.onModelChange(this.val);
+    this.refreshCalendar();
     this.refreshText();
     this.close();
   }

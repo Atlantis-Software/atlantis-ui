@@ -99,11 +99,13 @@ export default class datepickerComponent {
         //highlight the currently selected start date
         if (calendar[row][col].format(this.locale.format) == moment(this._start, this.locale.format).format(this.locale.format) && this.calendar[calendarNumber].month() == moment(this._start, this.locale.format).month()) {
           this.classes[calendarNumber][row][col].push('active', 'start-date');
+          this.activeStart = this.classes[calendarNumber][row][col];
         }
 
         //highlight the currently selected end date
         if (calendar[row][col].format(this.locale.format) == moment(this._end, this.locale.format).format(this.locale.format) && this.calendar[calendarNumber].month() == moment(this._end, this.locale.format).month()) {
           this.classes[calendarNumber][row][col].push('active', 'end-date');
+          this.activeEnd = this.classes[calendarNumber][row][col];
         }
 
         if (calendar[row][col].isAfter(moment(this._start, this.locale.format)) &&
@@ -193,8 +195,9 @@ export default class datepickerComponent {
       this.beforeDayDateStart = "";
       this.afterDayDateStart = "";
       // unselect previous value by remove active class
-      if (this.elementRef.nativeElement.querySelector('.active')) {
-        this.elementRef.nativeElement.querySelector('.active').classList.remove('active');
+      if (this.activeStart) {
+        var index = this.activeStart.indexOf('active');
+        this.activeStart.splice(index, 1);
       }
     }
 
@@ -214,8 +217,9 @@ export default class datepickerComponent {
       this.beforeDayDateEnd = "";
       this.afterDayDateEnd = "";
       // unselect previous value by remove active class
-      if (this.elementRef.nativeElement.querySelector('.active')) {
-        this.elementRef.nativeElement.querySelector('.active').classList.remove('active');
+      if (this.activeEnd) {
+        var index = this.activeEnd.indexOf('active');
+        this.activeEnd.splice(index, 1);
       }
     }
 
@@ -457,26 +461,21 @@ export default class datepickerComponent {
   }
 
   selectDateStart(date, style) {
-    var elementsActive = this.elementRef.nativeElement.querySelectorAll('.active');
-    Array.prototype.forEach.call(elementsActive, function(node) {
-      node.classList.remove('active');
-    });
     style.push('start-date');
     style.push('active');
     this._start = date.format(this.locale.format);
     this.startDate = date.format(this.locale.format);
+    this.refreshCalendar();
     this.refreshTextDateStart();
     this.focus = END;
     this.refreshCalendar();
   }
 
   selectDateEnd(date, style) {
-    if (this.elementRef.nativeElement.querySelector('.end-date')) {
-      this.elementRef.nativeElement.querySelector('.end-date').classList.remove('active');
-    }
     style.push('end-date');
     style.push('active');
     this._end = date.format(this.locale.format);
+    this.refreshCalendar();
     this.refreshTextDateEnd();
     this.hasErrorEnd = false;
     this.close();
