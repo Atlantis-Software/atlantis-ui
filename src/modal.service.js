@@ -5,6 +5,9 @@ export class modalService {
 
   openModal(modal) {
     this.modals.push(modal);
+    this.modals.forEach((modal, i) => {
+      modal.elementRef.nativeElement.style.zIndex = 1050 + i;
+    });
   }
 
   closeModal(modal) {
