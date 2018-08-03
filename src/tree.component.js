@@ -100,8 +100,16 @@ export default class treeComponent {
     this.cdr.detectChanges();
   }
 
-  onCheck() {
+  onCheck(node) {
     this.nodesChanges.emit(this.nodes);
+    if (!node) {
+      return;
+    }
+    if (node.selected) {
+      this.onChecked.emit(node);
+    } else {
+      this.onUnchecked.emit(node);
+    }
   }
 
   updateTree() {
