@@ -56,14 +56,14 @@ var getNode = function(label) {
 class treeTestComponent {
   constructor() {
     this.nested = false;
-    this.sortable = false;
+    this.plugins = ['checkbox'];
+    this.testPlugins = 0;
     this.nodes = [
       {
         label: 'Node 1'
       },
       {
         label: 'Node 2',
-        expandable: true,
         expanded: true,
         children: [
           {
@@ -75,7 +75,6 @@ class treeTestComponent {
           {
             label: 'Node 23',
             expanded: false,
-            expandable: true,
             children: [
               {
                 label: 'Node 231'
@@ -93,7 +92,6 @@ class treeTestComponent {
           },
           {
             label: 'Node 24',
-            expandable: true,
             expanded: true,
             children: [
               {
@@ -107,7 +105,6 @@ class treeTestComponent {
               },
               {
                 label: 'Node 244',
-                expandable: true,
                 expanded: true,
                 children: [
                   {
@@ -147,15 +144,37 @@ class treeTestComponent {
         expandable: true
       }
     ];
+    this.expand = this.collapse = this.onClick = this.checked = this.unchecked = false;
   }
   static get annotations() {
     return [
       new Component({
         template: `
-        <atlui-tree [nodes]="nodes" [isSortable]="sortable" [nestedSortable]="nested"></atlui-tree>`
+        <atlui-tree [nodes]="nodes" [plugins]="plugins" (onExpand)="expandCallback($event)" (onCollapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" (onChecked)="checkedCallback($event)" (onUnchecked)="uncheckedCallback($event)"></atlui-tree>`
       })
     ];
   }
+
+  expandCallback() {
+    this.expand = true;
+  }
+
+  collapseCallback() {
+    this.collapse = true;
+  }
+
+  checkedCallback() {
+    this.checked = true;
+  }
+
+  uncheckedCallback() {
+    this.unchecked = true;
+  }
+
+  onClickCallback() {
+    this.onClick = true;
+  }
+
 }
 
 describe('tree', function() {
@@ -502,6 +521,229 @@ describe('tree', function() {
         assert(!treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node shouldn\'t be checked');
       });
     }));
+
+    it('should send callback', fakeAsync(() => {
+      var fixture = TestBed.createComponent(treeTestComponent);
+      var testComponent = fixture.componentInstance;
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+
+      assert.strictEqual(testComponent.expand, false);
+      assert.strictEqual(testComponent.collapse, false);
+      assert.strictEqual(testComponent.onClick, false);
+      var node = getNode('Node 23');
+      assert(node, 'Node not found');
+      var expander = node.querySelector('.tree-expander');
+      assert(expander, 'Expander not found');
+
+      expander.click();
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+      assert.strictEqual(testComponent.expand, true);
+
+      expander.click();
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+      assert.strictEqual(testComponent.collapse, true);
+
+      var label = node.querySelector('.tree-node-label');
+      assert(label, 'Expander not found');
+      label.click();
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+      assert.strictEqual(testComponent.onClick, true);
+
+      var checkbox = node.querySelector('input[type="checkbox"]');
+      checkbox.click();
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+      assert.strictEqual(testComponent.checked, true);
+
+      checkbox.click();
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+      assert.strictEqual(testComponent.unchecked, true);
+    }));
+
+    it('should active all event on plugins', fakeAsync(() => {
+      var fixture = TestBed.createComponent(treeTestComponent);
+      var testComponent = fixture.componentInstance;
+      var testplugins = function() {
+        testComponent.testPlugins += 1;
+      };
+      testComponent.plugins = [
+        {
+          icon: 'testAllEvent',
+          onClick: testplugins,
+          onDblclick: testplugins,
+          onMousedown: testplugins,
+          onMouseenter: testplugins,
+          onMouseleave: testplugins,
+          onMousemove: testplugins,
+          onMouseover: testplugins,
+          onMouseout: testplugins,
+          onMouseup: testplugins,
+          onDragenter: testplugins,
+          onDragleave: testplugins,
+          onDragstart: testplugins,
+          onDragend: testplugins,
+          onDragover: testplugins,
+          onDrop: testplugins,
+          onInit: function() {
+            this.disable();
+            this.activate();
+            this.hide();
+            this.show();
+          },
+          onDestroy: function() {},
+          onChange: function() {}
+        },
+        {
+          icon: 'testDisabledPlugins',
+          click: testplugins,
+          dblclick: testplugins,
+          mousedown: testplugins,
+          mouseenter: testplugins,
+          mouseleave: testplugins,
+          mousemove: testplugins,
+          mouseover: testplugins,
+          mouseout: testplugins,
+          mouseup: testplugins,
+          dragenter: testplugins,
+          dragleave: testplugins,
+          dragstart: testplugins,
+          dragend: testplugins,
+          dragover: testplugins,
+          drop: testplugins,
+          onInit: function() {
+            this.disable();
+          },
+          onDestroy: function() {},
+          onChange: function() {}
+        },
+        {
+          icon: 'testNoEvent'
+        }
+      ];
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+
+      var node = getNode('Node 23');
+      assert(node, 'Node not found');
+      var plugins = node.querySelectorAll('tree-plugin .icon');
+      assert(plugins, 'Expander not found');
+
+      plugins[1].click();
+      plugins[2].click();
+      assert.strictEqual(testComponent.testPlugins,0);
+      plugins[0].click();
+      assert.strictEqual(testComponent.testPlugins,1);
+
+      var event = new Event('mousedown', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,1);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,2);
+
+      event = new Event('mouseenter', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,2);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,3);
+
+      event = new Event('mouseleave', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,3);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,4);
+
+      event = new Event('mousemove', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,4);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,5);
+
+      event = new Event('mouseover', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,5);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,6);
+
+      event = new Event('mouseout', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,6);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,7);
+
+      event = new Event('mouseup', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,7);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,8);
+
+      event = new Event('dragenter', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,8);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,9);
+
+      event = new Event('dragleave', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,9);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,10);
+
+      event = new Event('dragstart', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,10);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,11);
+
+      event = new Event('dragend', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,11);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,12);
+
+      event = new Event('dragover', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,12);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,13);
+
+      event = new Event('drop', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,13);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,14);
+
+      event = new Event('dblclick', { 'bubbles': true });
+      plugins[1].dispatchEvent(event);
+      plugins[2].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,14);
+      plugins[0].dispatchEvent(event);
+      assert.strictEqual(testComponent.testPlugins,15);
+    }));
   });
 
   describe('sortable same level', function() {
@@ -526,9 +768,11 @@ describe('tree', function() {
       getTestBed().resetTestingModule();
     });
 
-    it('should sort into same list first depth', () => {
+    it('should sort into same list first depth', fakeAsync(() => {
       var testComponent = fixture.componentInstance;
-      testComponent.sortable = true;
+      testComponent.plugins = ['checkox', 'sortable'];
+      fixture.detectChanges();
+      tick();
       fixture.detectChanges();
       var node = getNode('Node 2');
       assert(node, 'Node not found');
@@ -541,6 +785,8 @@ describe('tree', function() {
       handle.dispatchEvent(mouseDown);
       triggerEvent(node.parentNode, 'dragstart');
 
+      fixture.detectChanges();
+      tick();
       fixture.detectChanges();
 
       assert.strictEqual(ds.sortableContainer.sortableData, testComponent.nodes, 'should be defined');
@@ -555,11 +801,13 @@ describe('tree', function() {
 
       checkNodes(treeNodeLines, testComponent.nodes, 1);
 
-    });
+    }));
 
-    it('should sort into same list second depth and do nothing if sort into sup level', () => {
+    it('should sort into same list second depth and do nothing if sort into sup level', fakeAsync(() => {
       var testComponent = fixture.componentInstance;
-      testComponent.sortable = true;
+      testComponent.plugins = ['checkox', 'sortable'];
+      fixture.detectChanges();
+      tick();
       fixture.detectChanges();
       var node21 = getNode('Node 21');
       assert(node21, 'Node not found');
@@ -596,7 +844,7 @@ describe('tree', function() {
       treeNodeLines = document.querySelectorAll('.tree-node-line');
       checkNodes(treeNodeLines, testComponent.nodes, 1);
 
-    });
+    }));
   });
 
   describe('sortable in different level', function() {
@@ -621,10 +869,11 @@ describe('tree', function() {
       getTestBed().resetTestingModule();
     });
 
-    it('should sort from first depth to second depth', () => {
+    it('should sort from first depth to second depth', fakeAsync(() => {
       var testComponent = fixture.componentInstance;
-      testComponent.sortable = true;
-      testComponent.nested = true;
+      testComponent.plugins = ['checkox', 'nestedSortable'];
+      fixture.detectChanges();
+      tick();
       fixture.detectChanges();
       var node = getNode('Node 1');
       assert(node, 'Node not found');
@@ -649,12 +898,13 @@ describe('tree', function() {
 
       assert.strictEqual(testComponent.nodes.length, 3);
       assert.strictEqual(testComponent.nodes[0].children.length, 5);
-    });
+    }));
 
-    it('should sort from second depth to first depth', () => {
+    it('should sort from second depth to first depth', fakeAsync(() => {
       var testComponent = fixture.componentInstance;
-      testComponent.sortable = true;
-      testComponent.nested = true;
+      testComponent.plugins = ['checkox', 'nestedSortable'];
+      fixture.detectChanges();
+      tick();
       fixture.detectChanges();
       var node = getNode('Node 22');
       assert(node, 'Node not found');
@@ -679,12 +929,13 @@ describe('tree', function() {
       assert.strictEqual(testComponent.nodes.length, 5);
       assert.strictEqual(testComponent.nodes[2].children.length, 3);
 
-    });
+    }));
 
-    it('should close the current node if we sort an opened node', () => {
+    it('should close the current node if we sort an opened node', fakeAsync(() => {
       var testComponent = fixture.componentInstance;
-      testComponent.sortable = true;
-      testComponent.nested = true;
+      testComponent.plugins = ['checkox', 'nestedSortable'];
+      fixture.detectChanges();
+      tick();
       fixture.detectChanges();
       var node = getNode('Node 2');
       assert(node, 'Node not found');
@@ -702,6 +953,6 @@ describe('tree', function() {
       fixture.detectChanges();
 
       assert.strictEqual(testComponent.nodes[1].expanded, false, 'should not be expanded');
-    });
+    }));
   });
 });

@@ -721,7 +721,7 @@ describe('editor', function() {
     var insertImagePlugin = container.editor.first._toolbar[4][0];
     insertImagePlugin.instance.file = file;
 
-    button = document.querySelectorAll("atlui-modal-footer button")[1];
+    button = document.querySelectorAll(".insert-image atlui-modal-footer button")[0];
     button.click();
     tick(0);
     fixture.detectChanges();

@@ -192,10 +192,6 @@ export default class datepickerComponent {
       this.dayDateStart = "";
       this.beforeDayDateStart = "";
       this.afterDayDateStart = "";
-      // unselect previous value by remove active class
-      if (this.elementRef.nativeElement.querySelector('.active')) {
-        this.elementRef.nativeElement.querySelector('.active').classList.remove('active');
-      }
     }
 
   }
@@ -213,10 +209,6 @@ export default class datepickerComponent {
       this.dayDateEnd = "";
       this.beforeDayDateEnd = "";
       this.afterDayDateEnd = "";
-      // unselect previous value by remove active class
-      if (this.elementRef.nativeElement.querySelector('.active')) {
-        this.elementRef.nativeElement.querySelector('.active').classList.remove('active');
-      }
     }
 
   }
@@ -457,26 +449,21 @@ export default class datepickerComponent {
   }
 
   selectDateStart(date, style) {
-    var elementsActive = this.elementRef.nativeElement.querySelectorAll('.active');
-    Array.prototype.forEach.call(elementsActive, function(node) {
-      node.classList.remove('active');
-    });
     style.push('start-date');
     style.push('active');
     this._start = date.format(this.locale.format);
     this.startDate = date.format(this.locale.format);
+    this.refreshCalendar();
     this.refreshTextDateStart();
     this.focus = END;
     this.refreshCalendar();
   }
 
   selectDateEnd(date, style) {
-    if (this.elementRef.nativeElement.querySelector('.end-date')) {
-      this.elementRef.nativeElement.querySelector('.end-date').classList.remove('active');
-    }
     style.push('end-date');
     style.push('active');
     this._end = date.format(this.locale.format);
+    this.refreshCalendar();
     this.refreshTextDateEnd();
     this.hasErrorEnd = false;
     this.close();
