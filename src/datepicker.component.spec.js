@@ -60,7 +60,7 @@ describe('datepicker', function() {
     tick();
     fixture.detectChanges();
 
-    input = document.querySelectorAll("input")[1];
+    input = document.querySelectorAll(".atlui-datepicker input")[0];
 
     assert.strictEqual(moment(input.value, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment('2004-02-03').toString());
 
@@ -81,7 +81,7 @@ describe('datepicker', function() {
     tick();
     fixture.detectChanges();
 
-    var months = document.querySelectorAll("atlui-datepicker")[0].querySelectorAll(".calendar.calendar");
+    var months = document.querySelectorAll(".atlui-datepicker")[0].querySelectorAll(".calendar.calendar");
 
     assert.strictEqual(months.length, 3);
 
@@ -95,7 +95,7 @@ describe('datepicker', function() {
     tick();
     fixture.detectChanges();
 
-    months = document.querySelectorAll("atlui-datepicker")[1].querySelectorAll(".calendar.calendar");
+    months = document.querySelectorAll(".atlui-datepicker")[1].querySelectorAll(".calendar.calendar");
 
     assert.strictEqual(months.length, 5);
 

@@ -12,7 +12,7 @@ export default class insertImage extends pluginClass {
           (mousedown)="openModal($event)"
           [attr.title]="description">
         </button>
-        <atlui-modal [(show)]="showModal">
+        <atlui-modal class="insert-image" [(show)]="showModal">
           <atlui-modal-header>
             <h3 class="modal-title">
               {{text}}

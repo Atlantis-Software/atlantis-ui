@@ -595,6 +595,7 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     var input = document.querySelector('input');
+    console.log(input.type);
     var oldValue = input.value;
     input.value = "test";
     input.dispatchEvent(new Event('blur'));

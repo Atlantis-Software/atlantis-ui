@@ -69,7 +69,7 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin("css/atlantis-ui.css"),
-    new webpack.optimize.UglifyJsPlugin({minimize: true})
+    // new webpack.optimize.UglifyJsPlugin({minimize: true})
   ],
   externals: [
     {
