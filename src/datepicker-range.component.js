@@ -99,13 +99,11 @@ export default class datepickerComponent {
         //highlight the currently selected start date
         if (calendar[row][col].format(this.locale.format) == moment(this._start, this.locale.format).format(this.locale.format) && this.calendar[calendarNumber].month() == moment(this._start, this.locale.format).month()) {
           this.classes[calendarNumber][row][col].push('active', 'start-date');
-          this.activeStart = this.classes[calendarNumber][row][col];
         }
 
         //highlight the currently selected end date
         if (calendar[row][col].format(this.locale.format) == moment(this._end, this.locale.format).format(this.locale.format) && this.calendar[calendarNumber].month() == moment(this._end, this.locale.format).month()) {
           this.classes[calendarNumber][row][col].push('active', 'end-date');
-          this.activeEnd = this.classes[calendarNumber][row][col];
         }
 
         if (calendar[row][col].isAfter(moment(this._start, this.locale.format)) &&
@@ -194,11 +192,6 @@ export default class datepickerComponent {
       this.dayDateStart = "";
       this.beforeDayDateStart = "";
       this.afterDayDateStart = "";
-      // unselect previous value by remove active class
-      if (this.activeStart) {
-        var index = this.activeStart.indexOf('active');
-        this.activeStart.splice(index, 1);
-      }
     }
 
   }
@@ -216,11 +209,6 @@ export default class datepickerComponent {
       this.dayDateEnd = "";
       this.beforeDayDateEnd = "";
       this.afterDayDateEnd = "";
-      // unselect previous value by remove active class
-      if (this.activeEnd) {
-        var index = this.activeEnd.indexOf('active');
-        this.activeEnd.splice(index, 1);
-      }
     }
 
   }

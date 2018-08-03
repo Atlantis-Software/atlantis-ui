@@ -102,7 +102,6 @@ export default class datepickerComponent {
         //highlight the currently selected start date
         if (calendar[row][col].format(this.locale.format) == moment(this._val, [this.locale.format, "YYYY-MM-DD"]).format(this.locale.format) && this.calendar[calendarNumber].month() == moment(this._val, [this.locale.format, "YYYY-MM-DD"]).month()) {
           this.classes[calendarNumber][row][col].push('active');
-          this.active = this.classes[calendarNumber][row][col];
         }
 
         // all dates are available
@@ -199,11 +198,6 @@ export default class datepickerComponent {
       this.day = "";
       this.before = "";
       this.after = "";
-      // unselect previous value by remove active class
-      if (this.active) {
-        var index = this.active.indexOf('active');
-        this.active.splice(index, 1);
-      }
     }
 
   }
