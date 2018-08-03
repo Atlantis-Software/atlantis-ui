@@ -5,8 +5,11 @@ import {
   Optional,
   SkipSelf,
   Inject,
-  ViewChildren
+  ViewChildren,
+  KeyValueDiffers
 } from '@angular/core';
+
+import { Subject } from 'rxjs/Subject';
 
 export default class treeNodeComponent {
   static get annotations() {
@@ -15,9 +18,10 @@ export default class treeNodeComponent {
         selector: 'atlui-tree-node',
         template: require('./tree-node.html'),
         inputs: ['node', 'label', 'model', 'children', 'expanded', 'selectable', 'disabled',
-          'template', 'depth', 'selected', 'sortableZones', 'nestedSortable', 'isSortable'
+          'template', 'depth', 'selected', 'sortableZones', 'nestedSortable', 'isSortable', 'loading',
+          'nodeSelected', 'plugins'
         ],
-        outputs: ['expand', 'collapse', 'select', 'selectedChange', 'expandedChange'],
+        outputs: ['onExpand', 'onCollapse', 'check', 'selectedChange', 'expandedChange', 'onClickNode', 'onChecked', 'onUnchecked'],
         host: {
           '[class.selectable]': 'selectable'
         },
@@ -27,24 +31,41 @@ export default class treeNodeComponent {
       })
     ];
   }
-  constructor(ElementRef, treeNodeComponent) {
+  constructor(ElementRef, treeNodeComponent, differs) {
     this.elementRef = ElementRef;
-    this.expand = new EventEmitter();
-    this.collapse = new EventEmitter();
-    this.select = new EventEmitter();
+    this.onExpand = new EventEmitter();
+    this.onCollapse = new EventEmitter();
+    this.check = new EventEmitter();
     this.selectedChange = new EventEmitter();
     this.expandedChange = new EventEmitter();
+    this.onClickNode = new EventEmitter();
+    this.onChecked = new EventEmitter();
+    this.onUnchecked = new EventEmitter();
     this.indeterminate = false;
     this.parent = treeNodeComponent;
     this.expanded = false;
+    this.selected = false;
+    this.differ = differs.find({}).create(null);
+    this.change = new Subject();
+  }
+
+  onClickNodeCallback() {
+    this.onClickNode.emit(this.node);
   }
 
   updateTree() {
-    var treeNodeSorted = document.querySelectorAll(".tree-node-sorted");
+    var treeNodeSorted = this.elementRef.nativeElement.querySelectorAll(".tree-node-sorted");
     if (treeNodeSorted.length > 0) {
       treeNodeSorted.forEach((element) => {
         element.classList.remove("tree-node-sorted");
       });
+    }
+  }
+
+  ngDoCheck() {
+    var changes = this.differ.diff(this.node);
+    if (changes) {
+      this.change.next();
     }
   }
 
@@ -66,7 +87,7 @@ export default class treeNodeComponent {
     if (value) {
       element.classList.add("tree-node-sorted");
     } else {
-      var treeNodeSorted = document.querySelectorAll(".tree-node-sorted");
+      var treeNodeSorted = this.elementRef.nativeElement.querySelectorAll(".tree-node-sorted");
       if (treeNodeSorted.length > 0) {
         treeNodeSorted.forEach((element) => {
           element.classList.remove("tree-node-sorted");
@@ -136,7 +157,10 @@ export default class treeNodeComponent {
   ngAfterViewInit() {
     this.elementRef.nativeElement.querySelector('.tree-node-line').style.paddingLeft = 30 * this.depth + "px";
     this.nodeChildren.changes.subscribe(()=> {
-      this.onSelect();
+      this.nodeChildren.forEach((node) => {
+        node.selected = this.selected;
+      });
+      this.onCheck();
     });
   }
 
@@ -146,11 +170,16 @@ export default class treeNodeComponent {
       return;
     }
     this.expanded = !this.expanded;
-
+    if (this.children.length === 0) {
+      this.children.push({
+        label:'',
+        loading: true
+      });
+    }
     if (this.expanded) {
-      this.expand.emit(this.data);
-    } else if (!this.expand) {
-      this.collapse.emit(this.data);
+      this.onExpand.emit(this.node);
+    } else if (!this.expanded) {
+      this.onCollapse.emit(this.node);
     }
     this.expandedChange.emit(this.expanded);
 
@@ -171,11 +200,16 @@ export default class treeNodeComponent {
       });
     }
     this.selectedChange.emit(this.selected);
-    this.select.emit();
+    if (this.selected) {
+      this.onChecked.emit(this.node);
+    } else {
+      this.onUnchecked.emit(this.node);
+    }
+    this.check.emit();
   }
 
   //function call when a children selected value has changed
-  onSelect() {
+  onCheck() {
     if (this.disabled) {
       return;
     }
@@ -221,8 +255,8 @@ export default class treeNodeComponent {
     }
 
     this.selectedChange.emit(this.selected);
-    this.select.emit();
+    this.check.emit();
   }
 }
 
-treeNodeComponent.parameters = [ElementRef, [new Optional(), new SkipSelf(), new Inject(treeNodeComponent)]];
+treeNodeComponent.parameters = [ElementRef, [new Optional(), new SkipSelf(), new Inject(treeNodeComponent)], KeyValueDiffers];

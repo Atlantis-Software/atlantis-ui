@@ -6,8 +6,8 @@ export default class treeComponent {
       new Component({
         selector: 'atlui-tree',
         template: require('./tree.html'),
-        inputs: ['nodes', 'template', 'depth', 'nestedSortable', 'isSortable'],
-        outputs: ['expand', 'collapse', 'nodesChanges'],
+        inputs: ['nodes', 'nodeSelected: selection', 'plugins'],
+        outputs: ['onExpand', 'onCollapse', 'nodesChanges', 'onClick', 'onChecked', 'onUnchecked'],
         queries: {
           template: new ContentChild(TemplateRef),
         }
@@ -15,14 +15,22 @@ export default class treeComponent {
     ];
   }
   constructor(changeDetectorRef, ElementRef) {
-    this.expand = new EventEmitter();
-    this.collapse = new EventEmitter();
+    this.onExpand = new EventEmitter();
+    this.onCollapse = new EventEmitter();
     this.nodesChanges = new EventEmitter();
+    this.onClick = new EventEmitter();
+    this.onChecked = new EventEmitter();
+    this.onUnchecked = new EventEmitter();
     this.depth = 1;
     this.cdr = changeDetectorRef;
     this.dropZones = "zone" + Math.floor(Math.random() * 100000) + 1;
     this.isSortable = false;
-    this.ElementRef = ElementRef;
+    this.elementRef = ElementRef;
+    this.plugins = [];
+  }
+
+  onClickNode($event) {
+    this.onClick.emit($event);
   }
 
   onDragCallback(element, node, value) {
@@ -42,7 +50,7 @@ export default class treeComponent {
     if (value) {
       element.classList.add("tree-node-sorted");
     } else {
-      var treeNodeSorted = document.querySelectorAll(".tree-node-sorted");
+      var treeNodeSorted = this.elementRef.nativeElement.querySelectorAll(".tree-node-sorted");
       if (treeNodeSorted.length > 0) {
         treeNodeSorted.forEach((element) => {
           element.classList.remove("tree-node-sorted");
@@ -52,7 +60,6 @@ export default class treeComponent {
   }
 
   onDragOver(element, over) {
-    // console.log(node);
     if (over) {
       element.classList.add("tree-node-sorted");
     } else {
@@ -60,41 +67,51 @@ export default class treeComponent {
     }
   }
 
-  ngAfterViewInit() {
+  ngAfterViewChecked() {
     if (!this.nodes) {
       return;
+    }
+    if (this.plugins.indexOf('sortable') != -1) {
+      this.isSortable = true;
+    }
+    if (this.plugins.indexOf('nestedSortable') != -1) {
+      this.isSortable = this.nestedSortable = true;
     }
     if (this.nestedSortable) {
       this.dropZonesNested = this.dropZones;
     } else {
       this.dropZonesNested = undefined;
     }
-    var recursiveSetDropZones = function(node) {
-      node.selected = node.selected || false;
+    var recursiveSetDropZones = function(node, parentSelection) {
+      if (parentSelection) {
+        node.selected = parentSelection;
+      } else {
+        node.selected = node.selected || false;
+      }
       if (node.children) {
         node.children.forEach(function(child) {
-          recursiveSetDropZones(child);
+          recursiveSetDropZones(child, node.selected);
         });
       }
     };
     this.nodes.forEach(function(node) {
-      recursiveSetDropZones(node);
+      recursiveSetDropZones(node, false);
     });
     this.cdr.detectChanges();
   }
 
-  onSelect() {
+  onCheck() {
     this.nodesChanges.emit(this.nodes);
   }
 
   updateTree() {
-    var treeNodeSorted = document.querySelectorAll(".tree-node-sorted");
+    var treeNodeSorted = this.elementRef.nativeElement.querySelectorAll(".tree-node-sorted");
     if (treeNodeSorted.length > 0) {
       treeNodeSorted.forEach((element) => {
         element.classList.remove("tree-node-sorted");
       });
     }
-    this.onSelect();
+    this.onCheck();
   }
 
   ngOnChanges() {

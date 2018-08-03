@@ -11,7 +11,26 @@ export default  class TreeComponent {
   constructor(){
     this.nodesBasic = [
       {
-        label: 'Node without children'
+        label: 'Node without children',
+        selectable: false
+      },
+      {
+        label: 'Node with children',
+        children: [
+          {
+            label: 'Sub-node 1'
+          },
+          {
+            label: 'Sub-node 2'
+          }
+        ]
+      }
+    ];
+
+    this.nodesWithLazyLoading = [
+      {
+        label: 'Node with lazy loaded children',
+        children: []
       },
       {
         label: 'Node with children',
@@ -58,7 +77,8 @@ export default  class TreeComponent {
     ];
 
     this.nodesSortable = [
-      { label: 'Node 1',
+      {
+        label: 'Node 1',
       },
       {
         label: 'Node 2',
@@ -85,7 +105,8 @@ export default  class TreeComponent {
     ];
 
     this.nodesSortableNested = [
-      { label: 'Node 1',
+      {
+        label: 'Node 1',
       },
       {
         label: 'Node 2',
@@ -126,6 +147,49 @@ export default  class TreeComponent {
       }
     ];
 
+    this.plugins = [
+      {icon: 'check', description: 'check plugins', onDblclick: this.check, onChange: function(node){
+        if (node.selected) {
+          this.hide();
+        } else {
+          this.show();
+        }
+      }},
+      'checkbox'
+    ];
+  }
+
+  expandCallback(event) {
+    console.log("expand event on : ", event);
+    if (event.children[0].loading) {
+      setTimeout(() => {
+        event.children = [{
+          label: "lazy loaded children"
+        }];
+      }, 3000);
+    }
+  }
+
+  collapseCallback(event) {
+    console.log("collapse event on : ", event);
+  }
+
+  onClickCallback(event) {
+    this.selection = event;
+    console.log("click event on : ", event);
+  }
+
+  checkedCallback(event) {
+    console.log("checked event on : ", event);
+  }
+
+  uncheckedCallback(event) {
+    console.log("unchecked event on : ", event);
+  }
+
+  check(event) {
+    console.log("check : ", event);
+    this.disable();
   }
 
 }
