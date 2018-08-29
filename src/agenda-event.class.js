@@ -1,3 +1,4 @@
+// Class use for event for know if it's begin or end after a specific date or if it's the begin of event or begin of week
 export class agendaEvents {
   constructor(event, duration, moreEvents) {
     this.event = event;

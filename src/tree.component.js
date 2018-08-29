@@ -29,6 +29,7 @@ export default class treeComponent {
     this.plugins = [];
   }
 
+  // emit the node where we click
   onClickNode($event) {
     this.onClick.emit($event);
   }
@@ -37,6 +38,7 @@ export default class treeComponent {
     if (!this.nodes) {
       return;
     }
+    // Close the node expanded if it's open
     if (this.nestedSortable) {
       if (value && this.nodes[node].expanded) {
         this.nodes[node].oldExpanded = this.nodes[node].expanded;
@@ -59,6 +61,7 @@ export default class treeComponent {
     }
   }
 
+  // add or remove class on drag over
   onDragOver(element, over) {
     if (over) {
       element.classList.add("tree-node-sorted");
@@ -67,6 +70,7 @@ export default class treeComponent {
     }
   }
 
+  // Init the drop zones and the sortable plugins
   ngAfterViewChecked() {
     if (!this.nodes) {
       return;
@@ -100,6 +104,7 @@ export default class treeComponent {
     this.cdr.detectChanges();
   }
 
+  // Emit the checked or unchecked node
   onCheck(node) {
     this.nodesChanges.emit(this.nodes);
     if (!node) {
@@ -112,6 +117,7 @@ export default class treeComponent {
     }
   }
 
+  // update the tree when we sort the node
   updateTree() {
     var treeNodeSorted = this.elementRef.nativeElement.querySelectorAll(".tree-node-sorted");
     if (treeNodeSorted.length > 0) {
@@ -122,6 +128,7 @@ export default class treeComponent {
     this.onCheck();
   }
 
+  // Verify if we change the type of sortable plugins
   ngOnChanges() {
     if (this.nestedSortable) {
       this.dropZonesNested = this.dropZones;

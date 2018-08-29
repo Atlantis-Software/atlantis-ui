@@ -56,6 +56,7 @@ export default class gridBodyComponent {
     this.elementRef = elementRef;
   }
 
+  // Define size height of a line if headerFixed is true
   ngAfterViewChecked() {
     if (!this.headerFixed) {
       return;

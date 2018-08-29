@@ -1,5 +1,6 @@
 import { Directive, ElementRef, Renderer2, EventEmitter } from '@angular/core';
 
+// Directive allow to drag an element in a container
 export class draggableDirective {
   static get annotations() {
     return [
@@ -40,6 +41,7 @@ export class draggableDirective {
     }
   }
 
+  // move the element to x and y pixel
   moveTo(x, y) {
     if (this.origPos) {
       if (this.containment) {
@@ -76,6 +78,7 @@ export class draggableDirective {
     }
   }
 
+  // function call when the drag start, change the position of the element to relative per default
   dragStart() {
     this.oldZIndex = window.getComputedStyle(this.element).getPropertyValue("z-index");
     this.element.style.cursor = "move";
@@ -101,6 +104,7 @@ export class draggableDirective {
     }
   }
 
+  // function call when the drag end
   dragEnd() {
     if (this.oldZIndex) {
       this.renderer.setStyle(this.element, 'z-index', this.oldZIndex);
@@ -119,6 +123,7 @@ export class draggableDirective {
     }
   }
 
+  // Verify if the handle is define and if the click event is not right click.
   onMouseDown(event) {
     if (event.button == 2 || (this.handle !== undefined && !this.handle.contains(event.target) )) {
       return;
