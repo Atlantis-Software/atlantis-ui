@@ -1,6 +1,7 @@
 import { Component, EventEmitter } from '@angular/core';
 import { localeMomentService } from './localeMoment.service.js';
 
+// Component with the name of the month and year
 export class agendaMonthComponent {
 
   static get annotations() {

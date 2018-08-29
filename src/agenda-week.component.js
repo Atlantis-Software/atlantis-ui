@@ -1,5 +1,6 @@
 import { Component, EventEmitter } from '@angular/core';
 
+// Component define one week, load all day and all day-events
 export class agendaWeekComponent {
 
   static get annotations() {

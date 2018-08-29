@@ -1,6 +1,5 @@
 import { Component, ContentChildren, ElementRef } from '@angular/core';
 import { tabpanelDirective } from './tab-panel.component.js';
-//TODO Add custom scrollbar component
 
 export default class tabsComponent {
   static get annotations() {
@@ -14,7 +13,6 @@ export default class tabsComponent {
         inputs: ['height']
       })
     ];
-
   }
 
   constructor(ElementRef) {
@@ -23,6 +21,7 @@ export default class tabsComponent {
     this.elementRef = ElementRef;
   }
 
+  // function when we select a tab.
   select(tabpanelId) {
     let selectedpanel = this._getPanelById(tabpanelId);
     if (selectedpanel && !selectedpanel.disabled && this.activeId !== selectedpanel.id) {
@@ -34,6 +33,7 @@ export default class tabsComponent {
     }
   }
 
+  // Define the default panel active
   ngAfterContentChecked() {
     let activePanel = this._getPanelById(this.activeId);
     this.activeId = activePanel ? activePanel.id : ( this.tabpanels.length ? this.tabpanels.first.id : null);

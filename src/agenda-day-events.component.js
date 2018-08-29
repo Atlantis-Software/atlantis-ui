@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+//Component that show all event in one day
 export class agendaDayEventsComponent {
 
   static get annotations() {

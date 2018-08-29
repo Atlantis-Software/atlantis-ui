@@ -33,6 +33,8 @@ export default class gridHeaderComponent {
     this.isSortable = false;
   }
 
+  // emit the sort when we click on a sortable column
+  // We can define if we want multipleSort ou single sort
   onSort(column, id) {
     if (!column.isSortable) {
       return;

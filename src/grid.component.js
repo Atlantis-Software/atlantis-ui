@@ -55,6 +55,7 @@ export class gridComponent {
     this.originColumnsWidths = [];
     this.selectedRows = new EventEmitter();
     this.sort = new EventEmitter();
+    // Prepare the different pipe for sub component
     if (this.types) {
       this.types.forEach(function(type, i) {
         if (type.pipes) {
@@ -83,6 +84,7 @@ export class gridComponent {
     }
   }
 
+  //Initialize all column
   ngOnInit() {
     var self = this;
     this.origColumns = [...this.columns];
@@ -106,6 +108,7 @@ export class gridComponent {
     this.config.footer = "none" || this.config.footer;
   }
 
+  // emit the row where we select
   onSelect(row) {
     this.selectedRows.emit(row);
   }
@@ -133,6 +136,7 @@ export class gridComponent {
     }
   }
 
+  // redraw all line and all column width if we want headerFixed
   redraw() {
     if (!this.height) {
       this.height = "300px";

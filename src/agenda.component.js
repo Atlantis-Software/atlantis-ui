@@ -1,6 +1,7 @@
 import { Component, EventEmitter, ElementRef } from '@angular/core';
 import ResizeObserver from 'resize-observer-polyfill';
 
+// Component use by the dev to instantiate an agenda
 export class agendaComponent {
 
   static get annotations() {
@@ -56,6 +57,7 @@ export class agendaComponent {
     }
   }
 
+  // use resizeObserver for know when the agenda change and adapts all with that
   ngAfterViewInit() {
     this.ro = new ResizeObserver((entry)=>{
       this.agendaHeight = entry[0].contentRect.height;

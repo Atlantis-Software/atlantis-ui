@@ -47,10 +47,12 @@ export default class treeNodeComponent {
     this.change = new Subject();
   }
 
+  // emit the node where we click
   onClickNodeCallback() {
     this.onClickNode.emit(this.node);
   }
 
+  // update the tree on sort
   updateTree() {
     var treeNodeSorted = this.elementRef.nativeElement.querySelectorAll(".tree-node-sorted");
     if (treeNodeSorted.length > 0) {
@@ -60,6 +62,7 @@ export default class treeNodeComponent {
     }
   }
 
+  // verify if a changment occurs on a node and send to plugins the change
   ngDoCheck() {
     var changes = this.differ.diff(this.node);
     if (changes) {

@@ -1,7 +1,9 @@
 import { Component, EventEmitter } from '@angular/core';
 
+// component that show day case
 export class agendaDayComponent {
 
+  // Define the case date
   static get annotations() {
     return [
       new Component({
