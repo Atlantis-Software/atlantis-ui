@@ -188,15 +188,25 @@ export default class treeNodeComponent {
 
   //Callback for click on checkbox
   onClick() {
+    var self = this;
     if (this.disabled) {
       return;
     }
     this.selected = !this.selected;
     this.indeterminate = false;
+
+    var recursiveSetDropZones = function(node) {
+      node.selected = self.selected || false;
+      if (node.children) {
+        node.children.forEach(function(child) {
+          recursiveSetDropZones(child);
+        });
+      }
+    };
     if (this.children) {
       this.children.forEach((child) => {
         if (!child.disabled && !child.selectable) {
-          child.selected = this.selected;
+          recursiveSetDropZones(child);
         }
       });
     }
