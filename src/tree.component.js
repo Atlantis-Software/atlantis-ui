@@ -72,6 +72,7 @@ export default class treeComponent {
 
   // Init the drop zones and the sortable plugins
   ngAfterViewChecked() {
+
     if (!this.nodes) {
       return;
     }
@@ -87,11 +88,7 @@ export default class treeComponent {
       this.dropZonesNested = undefined;
     }
     var recursiveSetDropZones = function(node, parentSelection) {
-      if (parentSelection) {
-        node.selected = parentSelection;
-      } else {
-        node.selected = node.selected || false;
-      }
+      node.selected = parentSelection || false;
       if (node.children) {
         node.children.forEach(function(child) {
           recursiveSetDropZones(child, node.selected);
@@ -99,7 +96,7 @@ export default class treeComponent {
       }
     };
     this.nodes.forEach(function(node) {
-      recursiveSetDropZones(node, false);
+      recursiveSetDropZones(node, node.selected);
     });
     this.cdr.detectChanges();
   }
