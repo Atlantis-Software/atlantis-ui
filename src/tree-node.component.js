@@ -161,7 +161,6 @@ export default class treeNodeComponent {
       this.nodeChildren.forEach((node) => {
         node.selected = this.selected;
       });
-      this.onCheck(this.node);
     });
   }
 
