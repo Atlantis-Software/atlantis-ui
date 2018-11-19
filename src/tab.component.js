@@ -1,4 +1,4 @@
-import { Component, ContentChildren, ElementRef } from '@angular/core';
+import { Component, ContentChildren, ElementRef, EventEmitter } from '@angular/core';
 import { tabpanelDirective } from './tab-panel.component.js';
 //TODO Add custom scrollbar component
 
@@ -11,7 +11,8 @@ export default class tabsComponent {
         queries: {
           tabpanels: new ContentChildren(tabpanelDirective)
         },
-        inputs: ['height']
+        inputs: ['height', 'activeTab'],
+        outputs: ["activeTabChange"]
       })
     ];
 
@@ -21,6 +22,15 @@ export default class tabsComponent {
     this.activeId = 0;
     this.height = "150px";
     this.elementRef = ElementRef;
+    // input value
+    // output valueChange for the two way data binding works
+    this.activeTabChange = new EventEmitter();
+  }
+
+  ngOnChanges(changes) {
+    if (changes.activeTab && changes.activeTab.currentValue) {
+      this.select(changes.activeTab.currentValue);
+    }
   }
 
   select(tabpanelId) {
@@ -31,6 +41,10 @@ export default class tabsComponent {
       });
       this.activeId = tabpanelId;
       selectedpanel.active = true;
+      // two way data binding
+      // change value of activeTab
+      this.activeTab = selectedpanel.id;
+      this.activeTabChange.emit(this.activeTab);
     }
   }
 
