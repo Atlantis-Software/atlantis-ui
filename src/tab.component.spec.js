@@ -10,28 +10,36 @@ import { tabpanelDirective, tabPanelHeaderDirective } from './tab-panel.componen
 var assert = require('assert');
 
 class tabTestComponent {
-  constructor() {}
+  constructor() {
+    this.selectActiveTab = undefined;
+  }
+  onClick() {
+    this.selectActiveTab = 'tab3';
+  }
   static get annotations() {
     return [
       new Component({
         template: `
-        <atlui-tabs id="tab1">
-          <atlui-tab-panel title="simple">
+        <button id="btnTabSelect" class="btn btn-default" (click)="onClick()">
+          <i class="icon icon-check"></i>
+        </button>
+        <atlui-tabs id="tab1" [(activeTab)]="selectActiveTab">
+          <atlui-tab-panel title="simple" id="tab1">
             <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p><button class="btn btn-default">My button</button>
           </atlui-tab-panel>
-          <atlui-tab-panel>
+          <atlui-tab-panel id="tab2">
             <ng-template atlui-tab-panel-header>
               <span style="color:red">Fancy</span> title
             </ng-template>
             <p>Lorem ipsum</p>
           </atlui-tab-panel>
-          <atlui-tab-panel title="Title simple">
+          <atlui-tab-panel title="Title simple" id="tab3">
             <ng-template atlui-tab-panel-header>
               <span style="color:red">Fancy</span> title
             </ng-template>
             <p>Lorem ipsum</p>
           </atlui-tab-panel>
-          <atlui-tab-panel [disabled]="true" title="Disabled">
+          <atlui-tab-panel [disabled]="true" title="Disabled"  id="tab4">
             <p>Lorem ipsum</p>
           </atlui-tab-panel>
         </atlui-tabs>
@@ -65,6 +73,7 @@ describe('tabs', function() {
   afterEach(function() {
     getTestBed().resetTestingModule();
   });
+
 
   it('should render default value and available options', fakeAsync(function() {
     tick();
@@ -114,4 +123,22 @@ describe('tabs', function() {
     var tabContent = tab2.querySelector(".tab-content");
     assert.strictEqual(tabContent.style.height, "100px");
   }));
+
+  it('should render selected tab programmatically', fakeAsync(function() {
+    tick();
+    fixture.detectChanges();
+    var tab1 = document.querySelector("#tab1");
+    var panels = tab1.querySelectorAll('atlui-tab-panel');
+    var btnTabSelect = document.querySelector("#btnTabSelect");
+    btnTabSelect.click();
+    tick();
+    fixture.detectChanges();
+    assert.strictEqual(panels.length, 4);
+    assert.strictEqual(panels[0].classList.contains("active"), false);
+    assert.strictEqual(panels[1].classList.contains("active"), false);
+    assert.strictEqual(panels[2].classList.contains("active"), true);
+    assert.strictEqual(panels[3].classList.contains("active"), false);
+  }));
+
+
 });
