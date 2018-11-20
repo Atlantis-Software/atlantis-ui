@@ -56,8 +56,10 @@ export default class tabsComponent {
   }
 
   _getPanelById(id) {
-    let tabpanelsWithId = this.tabpanels.filter( panel=> panel.id === id);
-    return tabpanelsWithId.length ? tabpanelsWithId[0] : null;
+    if (this.tabpanels) {
+      let tabpanelsWithId = this.tabpanels.filter( panel=> panel.id === id);
+      return tabpanelsWithId.length ? tabpanelsWithId[0] : null;
+    }
   }
 
 }
