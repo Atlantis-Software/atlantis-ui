@@ -16,46 +16,69 @@ module.exports = {
     extensions: ['.less', '.js']
   },
   module: {
-    loaders: [{
-      test: /\.js/,
-      include: path.resolve('src'),
-      exclude: /\.spec/,
-      use: {
-        loader: 'istanbul-instrumenter-loader',
-        options: { esModules: true }
+    rules: [
+      {
+        test: /\.js$/,
+        include: path.resolve('src'),
+        exclude: /\.spec/,
+        use: [
+          {
+            loader: 'babel-loader'
+          }
+        ]
+      },
+      {
+        test: /\.js$/,
+        exclude: /(\/node_modules\/|\.spec\.js$)/,
+        use: [
+          { loader: 'babel-loader' }
+        ]
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader',
+            options: {
+              minimize: true,
+              removeAttributeQuotes: false,
+              caseSensitive: true,
+              customAttrSurround: [
+                [/#/, /(?:)/],
+                [/\*/, /(?:)/],
+                [/\[?\(?/, /(?:)/]
+              ],
+              customAttrAssign: [/\)?\]?=/]
+            }
+          }
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: [
+          'css-loader',
+          'less-loader'
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      },
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: [
+          'url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]&publicPath=../&outputPath=fonts/',
+        ]
+      },
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: [
+          'file-loader?name=[name].[ext]&publicPath=../&outputPath=fonts/'
+        ]
       }
-    },{
-      test: /\.js$/,
-      exclude: /(\/node_modules\/|\.spec\.js$)/,
-      loader: 'babel-loader'
-    }, {
-      test: /\.html$/,
-      use: [{
-        loader: "html-loader",
-        options: {
-          minimize: true,
-          removeAttributeQuotes: false,
-          caseSensitive: true,
-          customAttrSurround: [
-            [/#/, /(?:)/],
-            [/\*/, /(?:)/],
-            [/\[?\(?/, /(?:)/]
-          ],
-          customAttrAssign: [/\)?\]?=/]
-        }
-      }]
-    }, {
-      test: /\.less$/,
-      loader: "css-loader!less-loader"
-    }, {
-      test: /\.css$/,
-      loader: 'style-loader!css-loader'
-    }, {
-      test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]&publicPath=../&outputPath=fonts/"
-    }, {
-      test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: "file-loader?name=[name].[ext]&publicPath=../&outputPath=fonts/"
-    }]
+    ]
   },
 };
