@@ -1,7 +1,7 @@
 {
   "name": "atlantis-ui",
   "description": "framework for developing responsive, mobile first projects on the web.",
-  "version": "1.0.0-rc.10",
+  "version": "1.1.0",
   "keywords": [
     "css",
     "less",
@@ -19,7 +19,7 @@
     "test": "karma start",
     "lint": "eslint ./src"
   },
-  "style": "dist/css/atlantis-ui.css",
+  "style": "dist/atlantis.css",
   "less": "less/atlantis-ui.less",
   "main": "./dist/js/altantis-ui.js",
   "repository": {
@@ -30,6 +30,19 @@
     "url": "https://github.com/Atlantis-Software/atlantis-ui/issues"
   },
   "license": "MIT",
+  "dependencies": {
+    "@angular/common": "~7.0.4",
+    "@angular/compiler": "~7.0.4",
+    "@angular/core": "~7.0.4",
+    "@angular/forms": "~7.0.4",
+    "@angular/platform-browser": "~7.0.4",
+    "@angular/platform-browser-dynamic": "~7.0.4",
+    "resize-observer-polyfill": "~1.5.0",
+    "rxjs": "~6.3.3",
+    "rxjs-compat": "~6.3.3",
+    "stylelint": "~9.8.0",
+    "zone.js": "~0.8.26"
+  },
   "devDependencies": {
     "@babel/core": "~7.1.6",
     "@babel/preset-env": "~7.1.6",
@@ -69,18 +82,6 @@
     "less",
     "LICENSE"
   ],
-  "dependencies": {
-    "@angular/common": "~7.0.4",
-    "@angular/compiler": "~7.0.4",
-    "@angular/core": "~7.0.4",
-    "@angular/forms": "~7.0.4",
-    "@angular/platform-browser": "~7.0.4",
-    "@angular/platform-browser-dynamic": "~7.0.4",
-    "resize-observer-polyfill": "~1.5.0",
-    "rxjs": "~6.3.3",
-    "stylelint": "~9.8.0",
-    "zone.js": "~0.8.26"
-  },
   "nyc": {
     "include": [
       "src/**/*.js"

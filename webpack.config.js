@@ -73,7 +73,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin("css/atlantis-ui.css"),
+    new MiniCssExtractPlugin("atlantis.css"),
     // new webpack.optimize.UglifyJsPlugin({minimize: true})
   ],
   externals: [

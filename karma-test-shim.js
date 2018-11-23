@@ -13,7 +13,7 @@ require('zone.js/dist/fake-async-test');
 require('zone.js/dist/mocha-patch');
 
 require('./less/atlantis-ui.less');
-require('./dist/css/atlantis-ui.css');
+require('./dist/atlantis.css');
 
 global.moment = require('moment');
 
