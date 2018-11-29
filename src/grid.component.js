@@ -122,12 +122,17 @@ export class gridComponent {
     }
     this.redraw();
     this.ro = new ResizeObserver(()=>{
-      if (!this.cdr['destroyed']) {
-        this.redraw();
-      }
+      this.ngZone.run(() => {
+        if (!this.cdr['destroyed']) {
+          this.redraw();
+        }
+      });
     });
     this.gridRowCalc = this.elementRef.nativeElement.querySelector("atlui-grid-body .gridRowCalc");
-    this.ro.observe(this.gridRowCalc);
+    // https://github.com/que-etc/resize-observer-polyfill/issues/36
+    this.ngZone.runOutsideAngular(() => {
+      this.ro.observe(this.gridRowCalc);
+    });
   }
 
   ngOnDestroy() {

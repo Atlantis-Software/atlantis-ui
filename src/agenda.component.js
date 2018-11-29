@@ -60,10 +60,16 @@ export class agendaComponent {
   // use resizeObserver for know when the agenda change and adapts all with that
   ngAfterViewInit() {
     this.ro = new ResizeObserver((entry)=>{
-      this.agendaHeight = entry[0].contentRect.height;
+      this.ngZone.run(() => {
+        this.agendaHeight = entry[0].contentRect.height;
+      });
     });
     var div = this.elementRef.nativeElement.querySelector("atlui-agenda-calendar");
-    this.ro.observe(div);
+
+    // https://github.com/que-etc/resize-observer-polyfill/issues/36
+    this.ngZone.runOutsideAngular(() => {
+        this.ro.observe(div);
+    });
   }
 }
 
