@@ -1,4 +1,4 @@
-import { Component, EventEmitter, ElementRef } from '@angular/core';
+import { Component, EventEmitter, ElementRef, NgZone } from '@angular/core';
 import ResizeObserver from 'resize-observer-polyfill';
 
 // Component use by the dev to instantiate an agenda
@@ -27,7 +27,7 @@ export class agendaComponent {
       })
     ];
   }
-  constructor(ElementRef) {
+  constructor(ElementRef, NgZone) {
     this.events = [];
     this.date = moment();
     this.month = this.date.month();
@@ -35,6 +35,7 @@ export class agendaComponent {
     this.clickDayCallback = new EventEmitter();
     this.moreEventsCallback = new EventEmitter();
     this.elementRef = ElementRef;
+    this.ngZone = NgZone;
   }
 
   clickDay($event) {
@@ -73,4 +74,4 @@ export class agendaComponent {
   }
 }
 
-agendaComponent.parameters = [ElementRef];
+agendaComponent.parameters = [ElementRef, NgZone];

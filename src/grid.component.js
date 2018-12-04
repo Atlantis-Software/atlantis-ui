@@ -1,16 +1,5 @@
-import {
-  Component,
-  ElementRef,
-  Injector,
-  EventEmitter,
-  ChangeDetectorRef,
-  TemplateRef,
-  Directive,
-  ContentChild
-} from '@angular/core';
-import {
-  gridConfig
-} from './grid.config.js';
+import { Component, ElementRef, Injector, EventEmitter, ChangeDetectorRef, TemplateRef, Directive, ContentChild, NgZone } from '@angular/core';
+import { gridConfig } from './grid.config.js';
 import ResizeObserver from 'resize-observer-polyfill';
 
 export class gridComponent {
@@ -38,7 +27,7 @@ export class gridComponent {
     ];
   }
 
-  constructor(elementRef, gridConfig, injector, cdr) {
+  constructor(elementRef, gridConfig, injector, cdr, NgZone) {
     var self = this;
     this.headerTemplate = null;
     this.elementRef = elementRef;
@@ -55,6 +44,7 @@ export class gridComponent {
     this.originColumnsWidths = [];
     this.selectedRows = new EventEmitter();
     this.sort = new EventEmitter();
+    this.ngZone = NgZone;
     // Prepare the different pipe for sub component
     if (this.types) {
       this.types.forEach(function(type, i) {
@@ -187,7 +177,7 @@ export class gridComponent {
   }
 }
 
-gridComponent.parameters = [ElementRef, gridConfig, Injector, ChangeDetectorRef];
+gridComponent.parameters = [ElementRef, gridConfig, Injector, ChangeDetectorRef, NgZone];
 
 export class gridCellHeaderTemplate {
   static get annotations() {
