@@ -11,8 +11,8 @@ export default class tabsComponent {
         queries: {
           tabpanels: new ContentChildren(tabpanelDirective)
         },
-        inputs: ['height', 'activeTab'],
-        outputs: ["activeTabChange"]
+        inputs: ['height', 'selected'],
+        outputs: ["selectedChange"]
       })
     ];
 
@@ -24,41 +24,40 @@ export default class tabsComponent {
     this.elementRef = ElementRef;
     // input value
     // output valueChange for the two way data binding works
-    this.activeTabChange = new EventEmitter();
+    this.selectedChange = new EventEmitter();
   }
-
+  // executer lorsqu'une propriété de l'input est modifier (height ou selected)
   ngOnChanges(changes) {
-    if (changes.activeTab && changes.activeTab.currentValue) {
-      this.select(changes.activeTab.currentValue);
+    if (changes.selected && changes.selected.currentValue) {
+      let tabSelected = this._getPanelSelected(changes.selected.currentValue);
+      if (tabSelected) {
+        this.select(tabSelected);
+      }
     }
   }
 
-  select(tabpanelId) {
-    let selectedpanel = this._getPanelById(tabpanelId);
-    if (selectedpanel && !selectedpanel.disabled && this.activeId !== selectedpanel.id) {
+  select(tab) {
+    //let selectedpanel = this._getPanelById(tabpanelId);
+    if (!tab.disabled && !tab.active) {
       this.tabpanels.forEach((panel)=>{
         panel.active = false;
       });
-      this.activeId = tabpanelId;
-      selectedpanel.active = true;
-      // two way data binding
-      // change value of activeTab
-      this.activeTab = selectedpanel.id;
-      this.activeTabChange.emit(this.activeTab);
+      tab.active = true;
     }
   }
 
   ngAfterContentChecked() {
-    let activePanel = this._getPanelById(this.activeId);
-    this.activeId = activePanel ? activePanel.id : ( this.tabpanels.length ? this.tabpanels.first.id : null);
-    activePanel = this._getPanelById(this.activeId);
-    activePanel.active = true;
+    var index = this.selected || 0;
+    var tabSelected = this._getPanelSelected(index);
+    if (tabSelected) {
+      tabSelected.active = true;
+    }
+
   }
 
-  _getPanelById(id) {
-    if (this.tabpanels) {
-      let tabpanelsWithId = this.tabpanels.filter( panel=> panel.id === id);
-      return tabpanelsWithId.length ? tabpanelsWithId[0] : null;
+  _getPanelSelected(index) {
+    if (this.tabpanels && this.tabpanels._results && this.tabpanels._results[index]) {
+      return this.tabpanels._results[index];
     }
   }
 
