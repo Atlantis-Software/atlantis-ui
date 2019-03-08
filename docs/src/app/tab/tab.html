@@ -98,7 +98,12 @@
       master cleanse.</p>
     </atlui-tab-panel>
     <atlui-tab-panel [title]="'Oversize'">
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+         when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+         It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+         It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+         and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
     </atlui-tab-panel>
   </atlui-tabs>
   <textarea class="atlui-code">
@@ -109,30 +114,31 @@
   <p>
     By default the height will be 150px
   </p>
-</div>
-
-
-
-<h3>
-  Select tab programmatically
-</h3>
-<atlui-tabs [(selected)]="1">
-  <atlui-tab-panel [title]="'simple'">
-    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-    master cleanse.</p>
-  </atlui-tab-panel>
-  <atlui-tab-panel [title]="'Oversize'">
-    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-  </atlui-tab-panel>
-</atlui-tabs>
-<textarea class="atlui-code">
-
-<atlui-tabs [(selected)]="1">
-...
-</atlui-tabs>
-</textarea>
-<p>
-  You have to specify the value of seleted with the index of the tab you want to select.
-  In the exemple the tab oversize will be selected
-</p>
+  <h3>
+    Select tab programmatically
+  </h3>
+  <atlui-tabs [(selected)]="selectedTab">
+    <atlui-tab-panel [title]="'simple'">
+      <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
+      master cleanse.</p>
+    </atlui-tab-panel>
+    <atlui-tab-panel [title]="'Oversize'">
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+         when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+         It has survived not only five centuries, but also the leap into electronic typesetting,
+         remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+         and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    </atlui-tab-panel>
+  </atlui-tabs>
+  <textarea class="atlui-code">
+    this.selectedTab = 1;
+    <atlui-tabs [(selected)]="selectedTab">
+    ...
+    </atlui-tabs>
+  </textarea>
+  <p>
+    You have to specify the value of seleted with the index of the tab you want to select.
+    In the exemple the tab oversize will be selected
+  </p>
 </div>

@@ -9,5 +9,6 @@ export default  class TabComponent {
     ];
   }
   constructor(){
+    this.selectedTab = 1;
   }
 }
