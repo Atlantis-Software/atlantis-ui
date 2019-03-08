@@ -48,7 +48,7 @@ export default class treePlugin {
   constructor() {
     this.disabled = this.hidden = false;
   }
-
+  // function we can send in plugins on initialisation
   ngOnInit(){
     if (this.onChange) {
       var self = this;
@@ -63,7 +63,7 @@ export default class treePlugin {
     }
     this.onInit(this.node);
   }
-
+  // function we can send in plugins on destroy
   ngOnDestroy(){
     if (this.disabled) {
       return;
@@ -76,7 +76,7 @@ export default class treePlugin {
     }
     this.onDestroy(this.node);
   }
-
+  // methods we can use in plugins for disable/activate/show and hide plugins
   disable() {
     this.disabled = true;
   }
@@ -93,6 +93,7 @@ export default class treePlugin {
     this.hidden = true;
   }
 
+  // All function we can use in our plugins
   click(node) {
     if (this.disabled) {
       return;

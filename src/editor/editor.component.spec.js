@@ -515,8 +515,8 @@ describe('editor', function() {
     tick();
     fixture.detectChanges();
 
-    var input = plugin.querySelector("input");
-    var buttonValidate = plugin.querySelector("atlui-modal-footer button");
+    var input = document.querySelector(".create-link input");
+    var buttonValidate = document.querySelector(".create-link atlui-modal-footer button");
     input.value = "http://www.atlantis-software.net/";
     input.dispatchEvent(new Event('input'));
     tick();
@@ -721,7 +721,7 @@ describe('editor', function() {
     var insertImagePlugin = container.editor.first._toolbar[4][0];
     insertImagePlugin.instance.file = file;
 
-    button = plugin.querySelector("atlui-modal-footer button");
+    button = document.querySelectorAll(".insert-image atlui-modal-footer button")[0];
     button.click();
     tick(0);
     fixture.detectChanges();

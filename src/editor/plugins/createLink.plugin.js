@@ -12,7 +12,7 @@ export default class createLink extends pluginClass {
           (mousedown)="openModal($event)"
           [attr.title]="description">
         </button>
-        <atlui-modal [(show)]="showModal">
+        <atlui-modal class="create-link" [(show)]="showModal">
           <atlui-modal-header>
             <h3 class="modal-title">
               {{text}}

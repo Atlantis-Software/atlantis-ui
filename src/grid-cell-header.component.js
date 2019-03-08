@@ -21,7 +21,7 @@ export default class gridCellHeaderComponent {
     this.injector = injector;
     this.ctx = {};
   }
-
+  //Use pipe if necessary in our content before show content
   ngOnInit() {
     var index = -1;
     var self = this;

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+// Define the corner with more events button
 export class agendaMoreEventsComponent {
 
   static get annotations() {
