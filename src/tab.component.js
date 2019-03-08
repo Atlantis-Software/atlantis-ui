@@ -40,6 +40,10 @@ export default class tabsComponent {
         panel.active = false;
       });
       tab.active = true;
+      // récupération de l'index de la tab selecionné
+      if (this.tabpanels && this.tabpanels._results) {
+        this.selected = this.tabpanels._results.findIndex(tab => tab.active === true);
+      }
     }
   }
 
