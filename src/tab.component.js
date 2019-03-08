@@ -24,7 +24,7 @@ export default class tabsComponent {
     // output valueChange for the two way data binding works
     this.selectedChange = new EventEmitter();
   }
-  // executer lorsqu'une propriété de l'input est modifier (height ou selected)
+  // execute when a property of the input is modified ( height or selected )
   ngOnChanges(changes) {
     if (changes.selected && changes.selected.currentValue) {
       let tabSelected = this._getPanelSelected(changes.selected.currentValue);
@@ -40,21 +40,20 @@ export default class tabsComponent {
         panel.active = false;
       });
       tab.active = true;
-      // récupération de l'index de la tab selecionné
+      // get the index of the selected tab
       if (this.tabpanels && this.tabpanels._results) {
         this.selected = this.tabpanels._results.findIndex(tab => tab.active === true);
       }
     }
   }
 
-  // Define the default panel active
   ngAfterContentChecked() {
+    // if not tab selected by default tab with index 0 is selected
     var index = this.selected || 0;
     var tabSelected = this._getPanelSelected(index);
     if (tabSelected) {
       tabSelected.active = true;
     }
-
   }
 
   _getPanelSelected(index) {
