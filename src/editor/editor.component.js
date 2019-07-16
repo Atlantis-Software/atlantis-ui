@@ -68,6 +68,18 @@ export class editorComponent {
     this.cdr.detectChanges();
   }
 
+  ngOnDestroy() {
+    if (this._toolbar) {
+      this._toolbar.forEach((pluginsBlock)=> {
+        pluginsBlock.forEach((plugin)=> {
+          plugin.destroy();
+          plugin.null;
+        });
+      });
+      this._toolbar = [];
+    }
+  }
+
   commandState($event) {
     if (!$event.key || $event.key === "ArrowLeft" || $event.key === "ArrowUp" || $event.key === "ArrowRight" || $event.key === "ArrowDown") {
       this._toolbar.forEach((pluginBlock)=> {

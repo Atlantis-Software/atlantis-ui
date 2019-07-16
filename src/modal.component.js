@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Injector, ComponentFactoryResolver, ApplicationRef } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Injector, ComponentFactoryResolver, ApplicationRef, Renderer2 } from '@angular/core';
 import backdropComponent from './backdrop.component.js';
 import { modalService } from './modal.service.js';
 
@@ -21,7 +21,7 @@ export default class modalComponent {
     ];
   }
 
-  constructor(elementRef, Injector, ComponentFactoryResolver, ApplicationRef, modalService) {
+  constructor(elementRef, Injector, ComponentFactoryResolver, ApplicationRef, modalService, Renderer2) {
     this.showChange = new EventEmitter();
     this.onClose = new EventEmitter();
     this.elementRef = elementRef;
@@ -33,6 +33,7 @@ export default class modalComponent {
     this.backdrop = true;
     this.show = false;
     this.isClosable = false;
+    this.renderer = Renderer2;
     this.width = "600px";
   }
 
@@ -40,15 +41,17 @@ export default class modalComponent {
     return this.model;
   }
 
+  ngAfterViewInit() {
+    this.renderer.appendChild(document.querySelector('body'), this.elementRef.nativeElement);
+  }
+
   //set the variable show with input parameter and open or close modal.
   set show(val) {
     if (val !== this.model) {
       this.model = val;
       if (this.model) {
-        this.service.openModal();
         this.open();
       } else {
-        this.service.closeModal();
         this.close();
       }
     }
@@ -81,6 +84,9 @@ export default class modalComponent {
   ngOnDestroy() {
     if (this.backdropRef) {
       this.backdropRef.destroy();
+    }
+    if (this.elementRef.nativeElement) {
+      this.renderer.removeChild(document.querySelector("body"), this.elementRef.nativeElement);
     }
   }
 
@@ -121,4 +127,4 @@ export default class modalComponent {
   }
 }
 
-modalComponent.parameters = [ElementRef, Injector, ComponentFactoryResolver, ApplicationRef, modalService];
+modalComponent.parameters = [ElementRef, Injector, ComponentFactoryResolver, ApplicationRef, modalService, Renderer2];

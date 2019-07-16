@@ -22,42 +22,71 @@ module.exports = {
     extensions: ['.html', '.less', '.js', '.ts'],
     alias: {
       "moment": "moment/min/moment-with-locales.js",
-      "atlantis-ui-css": path.join(__dirname, "dist", "css", "atlantis-ui.css"),
+      "atlantis-ui-css": path.join(__dirname, "dist", "atlantis.css"),
       "atlantis-ui": path.join(__dirname, "dist", "js", "atlantis-ui.js")
     }
   },
   module: {
-    loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          { loader: "babel-loader" }
+        ]
+      },
       {
         test: /\.html$/,
-        loader: "html-loader",
-        options: {
-          minimize: true,
-          removeAttributeQuotes: false,
-          caseSensitive: true,
-          customAttrSurround: [
-            [/#/, /(?:)/],
-            [/\*/, /(?:)/],
-            [/\[?\(?/, /(?:)/]
-          ],
-          customAttrAssign: [/\)?\]?=/]
-        }
+        use: [
+          { loader: "html-loader",
+            options: {
+              minimize: true,
+              removeAttributeQuotes: false,
+              caseSensitive: true,
+              customAttrSurround: [
+                [/#/, /(?:)/],
+                [/\*/, /(?:)/],
+                [/\[?\(?/, /(?:)/]
+              ],
+              customAttrAssign: [/\)?\]?=/]
+            }
+          }
+        ]
+
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]&publicPath=compiled/fonts/&outputPath=fonts/"
+        use: [
+          { loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]&publicPath=compiled/fonts/&outputPath=fonts/" }
+        ]
       }, {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: "file-loader?name=[name].[ext]&publicPath=compiled/fonts/&outputPath=fonts/"
+        use: [
+          { loader: "file-loader?name=[name].[ext]&publicPath=compiled/fonts/&outputPath=fonts/" }
+        ]
       },
       {
         test: /\.less$/,
         include: /node_modules/,
-        loader: 'style-loader!css-loader!less-loader'
+        use: [
+          "style-loader",
+          "css-loader",
+          "less-loader",
+        ]
       },
-      { test: /\.css$/, loader: 'style-loader!css-loader' },
-      { test: /\.jpg$/, loader: "file-loader?name=[name].[ext]&publicPath=compiled/img/&outputPath=img/" }
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          "css-loader"
+        ]
+      },
+      {
+        test: /\.jpg$/,
+        use: [
+          { loader: "file-loader?name=[name].[ext]&publicPath=compiled/img/&outputPath=img/" }
+        ]
+      }
     ]
   },
   plugins: [

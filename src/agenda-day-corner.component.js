@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+// Define the corner with the number of date
 export class agendaDayCornerComponent {
 
   static get annotations() {

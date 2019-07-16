@@ -1,6 +1,7 @@
-import { Component, EventEmitter, ElementRef } from '@angular/core';
+import { Component, EventEmitter, ElementRef, NgZone } from '@angular/core';
 import ResizeObserver from 'resize-observer-polyfill';
 
+// Component use by the dev to instantiate an agenda
 export class agendaComponent {
 
   static get annotations() {
@@ -26,7 +27,7 @@ export class agendaComponent {
       })
     ];
   }
-  constructor(ElementRef) {
+  constructor(ElementRef, NgZone) {
     this.events = [];
     this.date = moment();
     this.month = this.date.month();
@@ -34,6 +35,7 @@ export class agendaComponent {
     this.clickDayCallback = new EventEmitter();
     this.moreEventsCallback = new EventEmitter();
     this.elementRef = ElementRef;
+    this.ngZone = NgZone;
   }
 
   clickDay($event) {
@@ -56,13 +58,20 @@ export class agendaComponent {
     }
   }
 
+  // use resizeObserver for know when the agenda change and adapts all with that
   ngAfterViewInit() {
     this.ro = new ResizeObserver((entry)=>{
-      this.agendaHeight = entry[0].contentRect.height;
+      this.ngZone.run(() => {
+        this.agendaHeight = entry[0].contentRect.height;
+      });
     });
     var div = this.elementRef.nativeElement.querySelector("atlui-agenda-calendar");
-    this.ro.observe(div);
+
+    // https://github.com/que-etc/resize-observer-polyfill/issues/36
+    this.ngZone.runOutsideAngular(() => {
+        this.ro.observe(div);
+    });
   }
 }
 
-agendaComponent.parameters = [ElementRef];
+agendaComponent.parameters = [ElementRef, NgZone];

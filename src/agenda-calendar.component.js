@@ -9,6 +9,7 @@ class dateEvent {
   }
 
   findEmptyEvent() {
+    // Find in the events array if an line is empty, if true return the index of empty line
     var i = 0;
     var indexEmpty = -1;
     while (i != this.events.length && indexEmpty == -1) {
@@ -20,6 +21,7 @@ class dateEvent {
     return indexEmpty;
   }
 
+  // define if in a day we need to add the more button
   lastNeedMoreEvents() {
     if (this.events.length === 0) {
       return false;
@@ -65,6 +67,7 @@ export class agendaCalendarComponent {
     this.moreEventsCallback.emit($event);
   }
 
+  // Sort the events on every change in events, that allow to have in correct order the list events
   ngOnChanges() {
     this.events.sort( (a, b)=> {
       if ( a.beginDate < b.beginDate) {
@@ -89,6 +92,7 @@ export class agendaCalendarComponent {
     this.cdr.detectChanges();
   }
 
+  // calc number of events we can display in one day before we need to hide events
   eventsPerDay() {
     var eventsHeightAvailable = this.elementRef.nativeElement.querySelector(".weekEvents").clientHeight;
     var fontSize = parseInt(window.getComputedStyle(this.elementRef.nativeElement.querySelector(".events")).fontSize);
@@ -166,6 +170,7 @@ export class agendaCalendarComponent {
     this.calendar = calendar;
   }
 
+  // Calc the position in calendar with the case number
   positionInCalendar(number) {
     return {
       row: Math.trunc(number/7),
@@ -173,6 +178,7 @@ export class agendaCalendarComponent {
     };
   }
 
+  // Reload all event in calendar
   reloadEvents() {
     this.calendar.forEach((row)=> {
       row.forEach((column) => {
@@ -183,6 +189,7 @@ export class agendaCalendarComponent {
     this.hideEvents();
   }
 
+  // Look all event for know if it need to be hide or show
   hideEvents() {
     this.calendar.forEach((row)=> {
       row.forEach((col)=> {

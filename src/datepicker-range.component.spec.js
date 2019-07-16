@@ -74,8 +74,8 @@ describe('datepicker-range', function() {
     tick();
     fixture.detectChanges();
 
-    var inputStart = document.querySelectorAll("input")[2];
-    var inputEnd = document.querySelectorAll("input")[3];
+    var inputStart = document.querySelectorAll(".atlui-datepicker-range input")[0];
+    var inputEnd = document.querySelectorAll(".atlui-datepicker-range input")[1];
 
     assert.strictEqual(moment(inputStart.value, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment('2004-02-03').toString());
     assert.strictEqual(moment(inputEnd.value, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment('2004-02-10').toString());
@@ -97,7 +97,7 @@ describe('datepicker-range', function() {
     tick();
     fixture.detectChanges();
 
-    var months = document.querySelectorAll('atlui-datepicker-range')[0].querySelectorAll(".calendar.calendar");
+    var months = document.querySelectorAll('.atlui-datepicker-range')[0].querySelectorAll(".calendar.calendar");
 
     assert.strictEqual(months.length, 3);
 
@@ -111,7 +111,7 @@ describe('datepicker-range', function() {
     tick();
     fixture.detectChanges();
 
-    months = document.querySelectorAll('atlui-datepicker-range')[1].querySelectorAll(".calendar.calendar");
+    months = document.querySelectorAll('.atlui-datepicker-range')[1].querySelectorAll(".calendar.calendar");
 
     assert.strictEqual(months.length, 5);
 
@@ -522,7 +522,7 @@ describe('datepicker-range', function() {
     tick();
     fixture.detectChanges();
 
-    var endInput = document.querySelectorAll('input')[3];
+    var endInput = document.querySelectorAll(".atlui-datepicker-range input")[1];
 
     endInput.dispatchEvent(new Event('focus'));
     tick();

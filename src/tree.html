@@ -20,8 +20,6 @@
     (onCollapse)="onCollapse.emit($event)"
     (check)="onCheck($event)"
     (onClickNode)="onClickNode($event)"
-    (onChecked)="onChecked.emit($event)"
-    (onUnchecked)="onUnchecked.emit($event)"
     [atlui-sortable]="isSortable"
     [sortableIndex]="i"
     (onDragStartCallback)="onDragCallback($event, i, true)"

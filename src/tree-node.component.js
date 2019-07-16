@@ -21,7 +21,7 @@ export default class treeNodeComponent {
           'template', 'depth', 'selected', 'sortableZones', 'nestedSortable', 'isSortable', 'loading',
           'nodeSelected', 'plugins'
         ],
-        outputs: ['onExpand', 'onCollapse', 'check', 'selectedChange', 'expandedChange', 'onClickNode', 'onChecked', 'onUnchecked'],
+        outputs: ['onExpand', 'onCollapse', 'check', 'selectedChange', 'expandedChange', 'onClickNode'],
         host: {
           '[class.selectable]': 'selectable'
         },
@@ -39,8 +39,6 @@ export default class treeNodeComponent {
     this.selectedChange = new EventEmitter();
     this.expandedChange = new EventEmitter();
     this.onClickNode = new EventEmitter();
-    this.onChecked = new EventEmitter();
-    this.onUnchecked = new EventEmitter();
     this.indeterminate = false;
     this.parent = treeNodeComponent;
     this.expanded = false;
@@ -49,10 +47,12 @@ export default class treeNodeComponent {
     this.change = new Subject();
   }
 
+  // emit the node where we click
   onClickNodeCallback() {
     this.onClickNode.emit(this.node);
   }
 
+  // update the tree on sort
   updateTree() {
     var treeNodeSorted = this.elementRef.nativeElement.querySelectorAll(".tree-node-sorted");
     if (treeNodeSorted.length > 0) {
@@ -62,6 +62,7 @@ export default class treeNodeComponent {
     }
   }
 
+  // verify if a changment occurs on a node and send to plugins the change
   ngDoCheck() {
     var changes = this.differ.diff(this.node);
     if (changes) {
@@ -160,7 +161,6 @@ export default class treeNodeComponent {
       this.nodeChildren.forEach((node) => {
         node.selected = this.selected;
       });
-      this.onCheck();
     });
   }
 
@@ -187,29 +187,34 @@ export default class treeNodeComponent {
 
   //Callback for click on checkbox
   onClick() {
+    var self = this;
     if (this.disabled) {
       return;
     }
     this.selected = !this.selected;
     this.indeterminate = false;
+
+    var recursiveSetDropZones = function(node) {
+      node.selected = self.selected || false;
+      if (node.children) {
+        node.children.forEach(function(child) {
+          recursiveSetDropZones(child);
+        });
+      }
+    };
     if (this.children) {
       this.children.forEach((child) => {
         if (!child.disabled && !child.selectable) {
-          child.selected = this.selected;
+          recursiveSetDropZones(child);
         }
       });
     }
     this.selectedChange.emit(this.selected);
-    if (this.selected) {
-      this.onChecked.emit(this.node);
-    } else {
-      this.onUnchecked.emit(this.node);
-    }
-    this.check.emit();
+    this.check.emit(this.node);
   }
 
   //function call when a children selected value has changed
-  onCheck() {
+  onCheck(node) {
     if (this.disabled) {
       return;
     }
@@ -255,7 +260,7 @@ export default class treeNodeComponent {
     }
 
     this.selectedChange.emit(this.selected);
-    this.check.emit();
+    this.check.emit(node);
   }
 }
 
