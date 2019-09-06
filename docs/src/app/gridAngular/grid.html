@@ -16,7 +16,7 @@
     Html :
   </h4>
   <textarea class="atlui-code">
-<atlui-grid class="table table-bordered" [headerFixed]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
+<atlui-grid class="table table-bordered" [headerFixed]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" (onModifyContent)="onModify($event)" [selected]="selection" (sort)="onSort($event)">
   <ng-template atlui-grid-cell-header let-columnName>
     <span>columnName | uppercase</span>
   </ng-template>
@@ -93,6 +93,17 @@
         </td>
         <td>
           Allow to collect what we select into widget
+        </td>
+      </tr>
+      <tr>
+        <td>
+          onModifyContent
+        </td>
+        <td>
+          Function with $event
+        </td>
+        <td>
+          Allow to get modified index an column cell after value change
         </td>
       </tr>
       <tr>
