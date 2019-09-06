@@ -11,12 +11,12 @@ export class gridComponent {
         <atlui-grid-header class="gridHeader" [headerTemplate]="headerTemplate" [columnsWidths]="columnsWidths" [columns]="columns" [pipes]="pipes" [multipleSort]="multipleSort" (sort)="sort.emit($event)">
         </atlui-grid-header>
         <atlui-grid-body [headerFixed]="headerFixed" class="gridBody" [style.height]="height" [columnsWidths]="columnsWidths" [types]="types" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected"
-          [multiple]='multiple' (selectedRows)="onSelect($event)">
+          [multiple]='multiple' (selectedRows)="onSelect($event)" (onModifyContent)="onModify($event)">
         </atlui-grid-body>
         <atlui-grid-footer class="gridFooter" *ngIf="config.footer !=='none'" [columns]="columns">
         </atlui-grid-footer>`,
         inputs: ['columns', 'rows', 'config', 'selected', 'multiple', 'headerFixed', 'height', 'multipleSort'],
-        outputs: ['selectedRows', 'sort'],
+        outputs: ['selectedRows', 'sort', 'onModifyContent'],
         host: {
           "[class.table-fixed]": "headerFixed"
         },
@@ -43,6 +43,7 @@ export class gridComponent {
     this.columnsWidths = [];
     this.originColumnsWidths = [];
     this.selectedRows = new EventEmitter();
+    this.onModifyContent = new EventEmitter();
     this.sort = new EventEmitter();
     this.ngZone = NgZone;
     // Prepare the different pipe for sub component
@@ -101,6 +102,10 @@ export class gridComponent {
   // emit the row where we select
   onSelect(row) {
     this.selectedRows.emit(row);
+  }
+
+  onModify(cell) {
+    this.onModifyContent.emit(cell);
   }
 
   ngAfterViewChecked() {
