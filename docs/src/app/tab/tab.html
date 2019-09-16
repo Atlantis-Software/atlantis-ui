@@ -90,9 +90,9 @@
   </textarea>
 
   <h3>
-    Define size
+    Define size and event on change tab
   </h3>
-  <atlui-tabs [height]="'100px'">
+  <atlui-tabs [height]="'100px'" (onChange)="onChangeTab($event)">
     <atlui-tab-panel [title]="'simple'">
       <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
       master cleanse.</p>
@@ -102,11 +102,18 @@
     </atlui-tab-panel>
   </atlui-tabs>
   <textarea class="atlui-code">
-<atlui-tabs [height]="'200px'">
+<atlui-tabs [height]="'200px'" (onChange)="onChangeTab($event)">
   ...
 </atlui-tabs>
   </textarea>
   <p>
     By default the height will be 150px
+    onChangeTab($event) : event is the selected tab
+    {
+      headerTemplate : undefined,
+      id : "atlui-tab-panel-7",
+      title : "simple",
+      _active : true
+    }
   </p>
 </div>
