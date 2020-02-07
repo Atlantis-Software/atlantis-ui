@@ -1,8 +1,10 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var webpack = require("webpack");
 
 module.exports = {
   context: __dirname,
+  target: 'web',
   entry: {
     atlantis : './index.js'
   },
@@ -16,11 +18,13 @@ module.exports = {
     extensions: ['.less','.js']
   },
   module : {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /(\/node_modules\/|\.spec\.js$)/,
-        loader: 'babel-loader'
+        use: [
+          { loader: 'babel-loader' }
+        ]
       }, {
         test: /\.html$/,
         use: [
@@ -35,40 +39,41 @@ module.exports = {
             }
           }
         ]
-      }, {
+      },
+      {
         test: /\.less$/,
-        loader: ExtractTextPlugin.extract({fallback: "style-loader", use: [
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "less-loader"
+        ]
+      }
+      , {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
           {
             loader: 'css-loader',
-            options: {
-              sourceMap: false,
-              minimize: true
-            },
-          },
-          {
-            loader: 'less-loader',
-            options: {
-              sourceMap: false,
-            },
-          },
-        ]})
-      }, {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader',
-        options: {
-          minimize: true
-        }
+            options: {  minimize: true }
+          }
+        ],
       }, {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]&publicPath=../fonts/&outputPath=fonts/"
+        use: [
+          { loader:'url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]&publicPath=../fonts/&outputPath=fonts/' }
+        ]
       }, {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: "file-loader?name=[name].[ext]&publicPath=../fonts/&outputPath=fonts/"
+        use: [
+          { loader:'file-loader?name=[name].[ext]&publicPath=../fonts/&outputPath=fonts/' }
+        ],
       }
     ]
   },
   plugins: [
-    new ExtractTextPlugin("css/atlantis-ui.css"),
+    new MiniCssExtractPlugin("atlantis.css"),
     // new webpack.optimize.UglifyJsPlugin({minimize: true})
   ],
   externals: [

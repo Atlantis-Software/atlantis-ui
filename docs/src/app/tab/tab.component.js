@@ -10,4 +10,8 @@ export default  class TabComponent {
   }
   constructor(){
   }
+
+  onChangeTab(selectedpanel) {
+    this.selectedpanel = selectedpanel;
+  }
 }

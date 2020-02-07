@@ -15,7 +15,7 @@ class tabTestComponent {
     return [
       new Component({
         template: `
-        <atlui-tabs id="tab1">
+        <atlui-tabs id="tab1" (onChange)="onChangeTab($event)">
           <atlui-tab-panel title="simple">
             <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p><button class="btn btn-default">My button</button>
           </atlui-tab-panel>
@@ -49,10 +49,16 @@ class tabTestComponent {
       })
     ];
   }
+  onChangeTab(selectedpanel) {
+    if (selectedpanel && selectedpanel.title) {
+      this.title = selectedpanel.title;
+    }
+  }
 }
 
 describe('tabs', function() {
   var fixture;
+  var testComponent;
   beforeEach(async(function() {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule],
@@ -92,19 +98,21 @@ describe('tabs', function() {
   }));
 
   it('should render selected tab', fakeAsync(function() {
+    testComponent = fixture.componentInstance;
     tick();
     fixture.detectChanges();
     var tab1 = document.querySelector("#tab1");
     var navItem = tab1.querySelectorAll('a');
     var panels = tab1.querySelectorAll('atlui-tab-panel');
-    navItem[1].click();
+    navItem[0].click();
     tick();
     fixture.detectChanges();
     assert.strictEqual(panels.length, 4);
-    assert.strictEqual(panels[0].classList.contains("active"), false);
-    assert.strictEqual(panels[1].classList.contains("active"), true);
+    assert.strictEqual(panels[0].classList.contains("active"), true);
+    assert.strictEqual(panels[1].classList.contains("active"), false);
     assert.strictEqual(panels[2].classList.contains("active"), false);
     assert.strictEqual(panels[3].classList.contains("active"), false);
+    assert.strictEqual(testComponent.title, "simple");
   }));
 
   it('should render correct size', fakeAsync(function() {
