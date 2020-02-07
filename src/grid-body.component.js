@@ -43,14 +43,14 @@ export default class gridBodyComponent {
           </div>
         </div>`,
         inputs: ['columns', 'rows', 'pipes', 'selected', 'types', 'multiple', 'headerFixed', 'columnsWidths'],
-        outputs: ['selectedRows', 'onModifyContent']
+        outputs: ['selectedRows', 'onCellChange']
       })
     ];
   }
 
   constructor(elementRef) {
     this.selectedRows = new EventEmitter();
-    this.onModifyContent = new EventEmitter();
+    this.onCellChange = new EventEmitter();
     this.previousSelectedIndex;
     this.isEditable = false;
     this.multiple = false;
@@ -156,7 +156,7 @@ export default class gridBodyComponent {
 
   enterModifyContent(e, i, y, validateChange) {
     this.modifyContent(e, i, y, validateChange);
-    this.onModifyContent.emit({index: i, column: this.columns[y].label});
+    this.onCellChange.emit({index: i, column: this.columns[y].label});
   }
 
   resetContent(e, i, y) {

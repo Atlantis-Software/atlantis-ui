@@ -6,7 +6,7 @@
     Example :
   </h3>
   <div class="row">
-    <atlui-grid class="table table-bordered" [headerFixed]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" (onModifyContent)="onModify($event)"  [selected]="selection" (sort)="onSort($event)" [height]="'200px'">
+    <atlui-grid class="table table-bordered" [headerFixed]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" (onCellChange)="onModify($event)"  [selected]="selection" (sort)="onSort($event)" [height]="'200px'">
       <ng-template atlui-grid-cell-header let-columnName>
         <span>{{ columnName | uppercase }}</span>
       </ng-template>
@@ -16,7 +16,7 @@
     Html :
   </h4>
   <textarea class="atlui-code">
-<atlui-grid class="table table-bordered" [headerFixed]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" (onModifyContent)="onModify($event)" [selected]="selection" (sort)="onSort($event)">
+<atlui-grid class="table table-bordered" [headerFixed]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" (onCellChange)="onModify($event)" [selected]="selection" (sort)="onSort($event)">
   <ng-template atlui-grid-cell-header let-columnName>
     <span>columnName | uppercase</span>
   </ng-template>
@@ -97,7 +97,7 @@
       </tr>
       <tr>
         <td>
-          onModifyContent
+          onCellChange
         </td>
         <td>
           Function with $event

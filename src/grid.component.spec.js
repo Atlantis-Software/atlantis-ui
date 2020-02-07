@@ -55,10 +55,10 @@ class gridTestComponent {
     return [
       new Component({
         template: `
-        <atlui-grid id="grid" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" (onModifyContent)="onModify($event)" [selected]="selection" (sort)="onSort($event)">
+        <atlui-grid id="grid" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" (onCellChange)="onModify($event)" [selected]="selection" (sort)="onSort($event)">
 
         </atlui-grid>
-        <atlui-grid [headerFixed]="headerFixed" id="templateHeader" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" (onModifyContent)="onModify($event)" [selected]="selection" (sort)="onSort($event)">
+        <atlui-grid [headerFixed]="headerFixed" id="templateHeader" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" (onCellChange)="onModify($event)" [selected]="selection" (sort)="onSort($event)">
           <ng-template atlui-grid-cell-header let-columnName>
             <span style="color:red;">{{columnName | uppercase}}</span>
           </ng-template>
