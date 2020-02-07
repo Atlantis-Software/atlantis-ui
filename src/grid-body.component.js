@@ -29,7 +29,7 @@ export default class gridBodyComponent {
               *ngIf="changingCellContent === i + '' + y"
               [ngModel]="row[column.label]"
               (blur)="modifyContent($event, i, y, true)"
-              (keyup.enter)="modifyContent($event, i, y, true)"
+              (keyup.enter)="enterModifyContent($event, i, y, true)"
               focus/>
             <label class="grid-label-error"
               *ngIf="errorCellContent === i + '' + y"
@@ -43,13 +43,14 @@ export default class gridBodyComponent {
           </div>
         </div>`,
         inputs: ['columns', 'rows', 'pipes', 'selected', 'types', 'multiple', 'headerFixed', 'columnsWidths'],
-        outputs: ['selectedRows']
+        outputs: ['selectedRows', 'onCellChange']
       })
     ];
   }
 
   constructor(elementRef) {
     this.selectedRows = new EventEmitter();
+    this.onCellChange = new EventEmitter();
     this.previousSelectedIndex;
     this.isEditable = false;
     this.multiple = false;
@@ -129,7 +130,7 @@ export default class gridBodyComponent {
     if (!this.columns[y].isEditable || (!validateChange && this.changingCellContent)) {
       return;
     }
-    var coordinate = i + '' + y;
+    this.coordinate = i + '' + y;
     if (validateChange) {
       var value = e.target.value;
       if (this.columns[y].type) {
@@ -149,9 +150,13 @@ export default class gridBodyComponent {
       }
     } else {
       this.oldContent = this.rows[i][this.columns[y].label];
-      this.changingCellContent = coordinate;
+      this.changingCellContent = this.coordinate;
     }
+  }
 
+  enterModifyContent(e, i, y, validateChange) {
+    this.modifyContent(e, i, y, validateChange);
+    this.onCellChange.emit({index: i, column: this.columns[y].label});
   }
 
   resetContent(e, i, y) {

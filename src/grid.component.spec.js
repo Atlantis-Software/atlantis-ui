@@ -55,10 +55,10 @@ class gridTestComponent {
     return [
       new Component({
         template: `
-        <atlui-grid id="grid" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
+        <atlui-grid id="grid" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" (onCellChange)="onModify($event)" [selected]="selection" (sort)="onSort($event)">
 
         </atlui-grid>
-        <atlui-grid [headerFixed]="headerFixed" id="templateHeader" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
+        <atlui-grid [headerFixed]="headerFixed" id="templateHeader" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" (onCellChange)="onModify($event)" [selected]="selection" (sort)="onSort($event)">
           <ng-template atlui-grid-cell-header let-columnName>
             <span style="color:red;">{{columnName | uppercase}}</span>
           </ng-template>
@@ -167,6 +167,11 @@ class gridTestComponent {
 
   selectionTest(row) {
     this.selection = row;
+  }
+
+  onModify(cell) {
+    this.index = cell.index;
+    this.column = cell.column;
   }
 
   onSort(sorting) {
@@ -625,6 +630,8 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     assert.equal(cells[1].querySelector('atlui-grid-cell').innerText, 123);
+    assert.strictEqual(typeof gridComponent.index, 'number');
+    assert.strictEqual(typeof gridComponent.column, 'string');
 
   }));
 
@@ -653,6 +660,8 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     assert.equal(cells[2].querySelector('atlui-grid-cell').innerText, "test");
+    assert.strictEqual(typeof gridComponent.index, 'number');
+    assert.strictEqual(typeof gridComponent.column, 'string');
 
     cells[2].dispatchEvent(doubleClick);
     tick();
@@ -664,6 +673,8 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     assert.equal(cells[2].querySelector('atlui-grid-cell').innerText, "123");
+    assert.strictEqual(typeof gridComponent.index, 'number');
+    assert.strictEqual(typeof gridComponent.column, 'string');
 
   }));
 
@@ -716,7 +727,8 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     assert.strictEqual(moment(cells[3].querySelector('atlui-grid-cell').innerText).toString(), moment("2003-03-03").toString());
-
+    assert.strictEqual(typeof gridComponent.index, 'number');
+    assert.strictEqual(typeof gridComponent.column, 'string');
   }));
 
   it('should render correct value when we modify content, type boolean', fakeAsync(() => {
@@ -744,6 +756,8 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     assert.equal(cells[4].querySelector('atlui-grid-cell').innerText, true);
+    assert.strictEqual(typeof gridComponent.index, 'number');
+    assert.strictEqual(typeof gridComponent.column, 'string');
 
     cells[4].dispatchEvent(doubleClick);
     tick();
@@ -755,6 +769,8 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     assert.equal(cells[4].querySelector('atlui-grid-cell').innerText, true);
+    assert.strictEqual(typeof gridComponent.index, 'number');
+    assert.strictEqual(typeof gridComponent.column, 'string');
 
     cells[4].dispatchEvent(doubleClick);
     tick();
@@ -766,6 +782,8 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     assert.equal(cells[4].querySelector('atlui-grid-cell').innerText, false);
+    assert.strictEqual(typeof gridComponent.index, 'number');
+    assert.strictEqual(typeof gridComponent.column, 'string');
 
     cells[4].dispatchEvent(doubleClick);
     tick();
@@ -777,6 +795,8 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     assert.equal(cells[4].querySelector('atlui-grid-cell').innerText, false);
+    assert.strictEqual(typeof gridComponent.index, 'number');
+    assert.strictEqual(typeof gridComponent.column, 'string');
 
   }));
 });
