@@ -110,8 +110,7 @@ export default class treeNodeComponent {
     return this.elementRef.nativeElement.querySelector('input[type="checkbox"]') || {};
   }
 
-  ngOnChanges() {
-
+  ngOnChanges(changes) {
     if (this.selectable !== true && this.selectable !== false) {
       this.selectable = true;
     }
@@ -133,26 +132,49 @@ export default class treeNodeComponent {
       return;
     }
 
-    if (!this.parent || this.parent.indeterminate) {
-      return;
-    }
-
-
-
-    var checkbox = this._getCheckbox();
-
-    this.indeterminate = false;
-    checkbox.indeterminate = false;
-
-    //if this tree-node have children we change their value selected with this value selected
-    if (this.children) {
-      this.children.forEach((child) => {
-        if (!child.disabled && !child.selectable) {
-          child.selected = this.selected;
+    if (changes.selected && !changes.selected.firstChange) {
+      if (!this.indeterminate) {
+        if (this.children) {
+          // on selectionne ou on déselectionne tous les enfants dans le cas ou le parent est coché ou décoché
+          this.children.forEach((child) => {
+            if (!child.disabled && !child.selectable) {
+              child.selected = this.selected || false;
+            }
+          });
         }
-      });
+      }
+
+      var nbChildrenChecked = 0;
+      if (this.parent && this.parent.children && this.parent.children.length > 0) {
+        this.parent.children.forEach((child) => {
+          if (child.selected) {
+            nbChildrenChecked++;
+          }
+        });
+        // cas aucun enfant coché => on décoche le parent
+        if (nbChildrenChecked === 0) {
+          if (this.parent.elementRef.nativeElement.querySelector('input[type="checkbox"]')) {
+            this.parent.elementRef.nativeElement.querySelector('input[type="checkbox"]').indeterminate = false;
+            this.parent.indeterminate = false;
+          }
+          this.parent.selected = false;
+          this.parent.node.selected = false;
+        } else {   // cas tous les enfants coché => on coche le parent
+          if (nbChildrenChecked === this.parent.children.length) {
+            this.parent.elementRef.nativeElement.querySelector('input[type="checkbox"]').indeterminate = false;
+            this.parent.indeterminate = false;
+            this.parent.selected = true;
+            this.parent.node.selected = true;
+          } else { // cas certains enfants sont coché mais pas tous => on met un tiret sur le parent
+            this.parent.selected = false;
+            this.parent.node.selected = false;
+            this.parent.indeterminate = true;
+            this.parent.node.indeterminate = true;
+            this.parent.elementRef.nativeElement.querySelector('input[type="checkbox"]').indeterminate = true;
+          }
+        }
+      }
     }
-    this.selectedChange.emit(this.selected);
   }
 
   ngAfterViewInit() {
@@ -185,82 +207,12 @@ export default class treeNodeComponent {
 
   }
 
-  //Callback for click on checkbox
   onClick() {
-    var self = this;
     if (this.disabled) {
       return;
     }
     this.selected = !this.selected;
-    this.indeterminate = false;
-
-    var recursiveSetDropZones = function(node) {
-      node.selected = self.selected || false;
-      if (node.children) {
-        node.children.forEach(function(child) {
-          recursiveSetDropZones(child);
-        });
-      }
-    };
-    if (this.children) {
-      this.children.forEach((child) => {
-        if (!child.disabled && !child.selectable) {
-          recursiveSetDropZones(child);
-        }
-      });
-    }
     this.selectedChange.emit(this.selected);
-    this.check.emit(this.node);
-  }
-
-  //function call when a children selected value has changed
-  onCheck(node) {
-    if (this.disabled) {
-      return;
-    }
-    var checkbox = this._getCheckbox();
-    var nbSelected = 0;
-    var isIndeterminate = false;
-    var childIsSelected = false;
-
-    this.nodeChildren.forEach((child) => {
-      if (child.selected) {
-        ++nbSelected;
-        childIsSelected = true;
-      }
-      if (child.disabled) {
-        ++nbSelected;
-      }
-      if (child.indeterminate) {
-        isIndeterminate = true;
-      }
-    });
-
-    if (!childIsSelected) {
-      nbSelected = 0;
-    }
-
-    //that define if this tree-node is checked, not checked or indeterminate
-    if (isIndeterminate) {
-      this.selected = false;
-      checkbox.indeterminate = true;
-      this.indeterminate = true;
-    } else if (!nbSelected) {
-      this.selected = false;
-      checkbox.indeterminate = false;
-      this.indeterminate = false;
-    } else if (nbSelected === this.nodeChildren.length) {
-      this.selected = true;
-      checkbox.indeterminate = false;
-      this.indeterminate = false;
-    } else {
-      this.selected = false;
-      checkbox.indeterminate = true;
-      this.indeterminate = true;
-    }
-
-    this.selectedChange.emit(this.selected);
-    this.check.emit(node);
   }
 }
 

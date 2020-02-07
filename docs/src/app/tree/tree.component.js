@@ -159,6 +159,14 @@ export default  class TreeComponent {
     ];
   }
 
+  checkBox() {
+    this.nodesWithLazyLoading[1].children[0].selected = true;
+  }
+
+  unCheckBox() {
+    this.nodesWithLazyLoading[1].children[0].selected = false;
+  }
+
   expandCallback(event) {
     console.log("expand event on : ", event);
     if (event.children[0].loading) {
