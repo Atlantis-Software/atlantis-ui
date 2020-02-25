@@ -104,15 +104,16 @@ describe('tabs', function() {
     var tab1 = document.querySelector("#tab1");
     var navItem = tab1.querySelectorAll('a');
     var panels = tab1.querySelectorAll('atlui-tab-panel');
-    navItem[0].click();
+    // select tab index 2 because by default tab with index 0 is selected
+    navItem[2].click();
     tick();
     fixture.detectChanges();
     assert.strictEqual(panels.length, 4);
-    assert.strictEqual(panels[0].classList.contains("active"), true);
+    assert.strictEqual(panels[0].classList.contains("active"), false);
     assert.strictEqual(panels[1].classList.contains("active"), false);
-    assert.strictEqual(panels[2].classList.contains("active"), false);
+    assert.strictEqual(panels[2].classList.contains("active"), true);
     assert.strictEqual(panels[3].classList.contains("active"), false);
-    assert.strictEqual(testComponent.title, "simple");
+    assert.strictEqual(testComponent.title, "Title simple");
   }));
 
   it('should render correct size', fakeAsync(function() {

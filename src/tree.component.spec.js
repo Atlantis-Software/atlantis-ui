@@ -1,4 +1,4 @@
-import { getTestBed, TestBed, async, fakeAsync, tick, inject } from '@angular/core/testing';
+import { getTestBed, TestBed, async, fakeAsync, tick, inject,flush} from '@angular/core/testing';
 
 import { dragAndDropSortableService, dragAndDropService } from './dragAndDrop.service.js';
 
@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { AtlantisUiModule } from './atlantis-ui.module.js';
+var _ = require('lodash');
 
 function triggerEvent(elem, eventType) {
   var event = new DragEvent(eventType);
@@ -194,10 +195,8 @@ describe('tree', function() {
 
     it('should render default value and available options', fakeAsync(() => {
       var fixture = TestBed.createComponent(treeTestComponent);
-
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
+      fixture.detectChanges(); // initialize controls
+      tick();  // wait registration controls
 
       var testComponent = fixture.componentInstance;
       var treeNodeLines = document.querySelectorAll('.tree-node-line');
@@ -211,9 +210,8 @@ describe('tree', function() {
 
     it('should render new selected value when clicking on deepest element', fakeAsync(() => {
       var fixture = TestBed.createComponent(treeTestComponent);
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
+      fixture.detectChanges(); // initialize controls
+      tick(); // wait registration controls
 
       var node = getNode('Node 2442');
       assert(node, 'Node not found');
@@ -221,11 +219,10 @@ describe('tree', function() {
       assert(checkbox, 'Checkbox not found');
 
       checkbox.click();
-      tick();
       fixture.detectChanges();
-
       var treeNodeLines = document.querySelectorAll('.tree-node-line');
       treeNodeLines.forEach((treeNodeLine) => {
+
         if (treeNodeLine.querySelector('.tree-node-label').innerText === 'Node 2442') {
           assert(treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node should be checked');
           return;
@@ -239,9 +236,8 @@ describe('tree', function() {
 
     it('should render new selected value when clicking on first element', fakeAsync(() => {
       var fixture = TestBed.createComponent(treeTestComponent);
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
+      fixture.detectChanges(); // initialize controls
+      tick(); // wait registration controls
 
       var node = getNode('Node 2');
       assert(node, 'Node not found');
@@ -249,8 +245,6 @@ describe('tree', function() {
       assert(checkbox, 'Checkbox not found');
 
       checkbox.click();
-      fixture.detectChanges();
-      tick();
       fixture.detectChanges();
 
       var treeNodeLines = document.querySelectorAll('.tree-node-line');
@@ -265,9 +259,8 @@ describe('tree', function() {
 
     it('should render new selected value when clicking on middle depth element', fakeAsync(() => {
       var fixture = TestBed.createComponent(treeTestComponent);
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
+      fixture.detectChanges(); // initialize controls
+      tick(); // wait registration controls
 
       var node = getNode('Node 24');
       assert(node, 'Node not found');
@@ -275,8 +268,6 @@ describe('tree', function() {
       assert(checkbox, 'Checkbox not found');
 
       checkbox.click();
-      fixture.detectChanges();
-      tick();
       fixture.detectChanges();
 
       var treeNodeLines = document.querySelectorAll('.tree-node-line');
@@ -294,9 +285,8 @@ describe('tree', function() {
 
     it('should render new selected value when clicking on parent element then on deepest children', fakeAsync(() => {
       var fixture = TestBed.createComponent(treeTestComponent);
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
+      fixture.detectChanges(); // initialize controls
+      tick(); // wait registration controls
 
       var node = getNode('Node 24');
       assert(node, 'Node not found');
@@ -304,8 +294,6 @@ describe('tree', function() {
       assert(checkbox, 'Checkbox not found');
 
       checkbox.click();
-      fixture.detectChanges();
-      tick();
       fixture.detectChanges();
 
       var treeNodeLines = document.querySelectorAll('.tree-node-line');
@@ -327,8 +315,6 @@ describe('tree', function() {
 
       checkbox.click();
       fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
 
       treeNodeLines = document.querySelectorAll('.tree-node-line');
       treeNodeLines.forEach((treeNodeLine) => {
@@ -346,9 +332,8 @@ describe('tree', function() {
 
     it('should render new selected value when clicking on parent then child', fakeAsync(() => {
       var fixture = TestBed.createComponent(treeTestComponent);
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
+      fixture.detectChanges();  // initialize controls
+      tick(); // wait registration controls
 
       var node = getNode('Node 24');
       assert(node, 'Node not found');
@@ -357,8 +342,6 @@ describe('tree', function() {
 
       checkbox.click();
       fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
 
       node = getNode('Node 244');
       assert(node, 'Node not found');
@@ -366,8 +349,6 @@ describe('tree', function() {
       assert(checkbox, 'Checkbox not found');
 
       checkbox.click();
-      fixture.detectChanges();
-      tick();
       fixture.detectChanges();
 
       var treeNodeLines = document.querySelectorAll('.tree-node-line');
@@ -387,9 +368,8 @@ describe('tree', function() {
 
     it('should render new selected value when clicking on child then parent', fakeAsync(() => {
       var fixture = TestBed.createComponent(treeTestComponent);
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
+      fixture.detectChanges();  // initialize controls
+      tick(); // wait registration controls
 
       var node = getNode('Node 244');
       assert(node, 'Node not found');
@@ -398,8 +378,6 @@ describe('tree', function() {
 
       checkbox.click();
       fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
 
       node = getNode('Node 24');
       assert(node, 'Node not found');
@@ -407,8 +385,6 @@ describe('tree', function() {
       assert(checkbox, 'Checkbox not found');
 
       checkbox.click();
-      fixture.detectChanges();
-      tick();
       fixture.detectChanges();
 
       var treeNodeLines = document.querySelectorAll('.tree-node-line');
@@ -426,41 +402,29 @@ describe('tree', function() {
 
     it('should render new selected value when clicking on parent then deepest child then parent again', fakeAsync(() => {
       var fixture = TestBed.createComponent(treeTestComponent);
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
+      fixture.detectChanges();  // initialize controls
+      tick(); // wait registration controls
 
-      var node = getNode('Node 24');
-      assert(node, 'Node not found');
-      var checkbox = node.querySelector('input[type="checkbox"]');
-      assert(checkbox, 'Checkbox not found');
-
-      checkbox.click();
+      var node_24 = getNode('Node 24');
+      assert(node_24, 'Node not found');
+      var checkbox_24 = node_24.querySelector('input[type="checkbox"]');
+      assert(checkbox_24, 'Checkbox not found');
+      checkbox_24.click();
       fixture.detectChanges();
-      tick();
+      var node_2443 = getNode('Node 2443');
+      assert(node_2443, 'Node not found');
+      var checkbox_2443 = node_2443.querySelector('input[type="checkbox"]');
+      assert(checkbox_2443, 'Checkbox not found');
+      checkbox_2443.click();
       fixture.detectChanges();
-
-      node = getNode('Node 2443');
-      assert(node, 'Node not found');
-      checkbox = node.querySelector('input[type="checkbox"]');
-      assert(checkbox, 'Checkbox not found');
-
-      checkbox.click();
+      var node_24_again = getNode('Node 24');
+      assert(node_24_again, 'Node not found');
+      var checkbox_24_again = node_24_again.querySelector('input[type="checkbox"]');
+      assert(checkbox_24_again, 'Checkbox not found');
+      checkbox_24_again.click();
       fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
-
-      node = getNode('Node 24');
-      assert(node, 'Node not found');
-      checkbox = node.querySelector('input[type="checkbox"]');
-      assert(checkbox, 'Checkbox not found');
-
-      checkbox.click();
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
-
       var treeNodeLines = document.querySelectorAll('.tree-node-line');
+
       treeNodeLines.forEach((treeNodeLine) => {
         if (treeNodeLine.querySelector('.tree-node-label').innerText.includes('Node 24')) {
           assert(treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node should be checked');
@@ -471,13 +435,14 @@ describe('tree', function() {
         }
         assert(!treeNodeLine.querySelector('input[type="checkbox"]').checked, 'Node shouldn\'t be checked');
       });
+
+
     }));
 
     it('should render new selected value when clicking on parent then deepest child then child\'s direct parent', fakeAsync(() => {
       var fixture = TestBed.createComponent(treeTestComponent);
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
+      fixture.detectChanges();  // initialize controls
+      tick();  // wait registration controls
 
       var node = getNode('Node 24');
       assert(node, 'Node not found');
@@ -485,8 +450,6 @@ describe('tree', function() {
       assert(checkbox, 'Checkbox not found');
 
       checkbox.click();
-      fixture.detectChanges();
-      tick();
       fixture.detectChanges();
 
       node = getNode('Node 2443');
@@ -496,8 +459,6 @@ describe('tree', function() {
 
       checkbox.click();
       fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
 
       node = getNode('Node 244');
       assert(node, 'Node not found');
@@ -505,8 +466,6 @@ describe('tree', function() {
       assert(checkbox, 'Checkbox not found');
 
       checkbox.click();
-      fixture.detectChanges();
-      tick();
       fixture.detectChanges();
 
       var treeNodeLines = document.querySelectorAll('.tree-node-line');
@@ -525,9 +484,8 @@ describe('tree', function() {
     it('should send callback', fakeAsync(() => {
       var fixture = TestBed.createComponent(treeTestComponent);
       var testComponent = fixture.componentInstance;
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
+      fixture.detectChanges(); // initialize controls
+      tick(); // wait registration controls
 
       assert.strictEqual(testComponent.expand, false);
       assert.strictEqual(testComponent.collapse, false);
@@ -539,13 +497,9 @@ describe('tree', function() {
 
       expander.click();
       fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
       assert.strictEqual(testComponent.expand, true);
 
       expander.click();
-      fixture.detectChanges();
-      tick();
       fixture.detectChanges();
       assert.strictEqual(testComponent.collapse, true);
 
@@ -553,22 +507,40 @@ describe('tree', function() {
       assert(label, 'Expander not found');
       label.click();
       fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
       assert.strictEqual(testComponent.onClick, true);
 
       var checkbox = node.querySelector('input[type="checkbox"]');
       checkbox.click();
       fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
-      assert.strictEqual(testComponent.checked, true);
+      (function searchNode(arrayNodes = testComponent.nodes) {
+        var node_23 = _.find(arrayNodes, function(n) { return n.label === 'Node 23'; });
+        if (node_23) {
+          assert.strictEqual(node_23.selected, true);
+          assert.strictEqual(node_23.indeterminate, false);
+        } else {
+          arrayNodes.forEach(function(node){
+            if (node.children && node.children.length > 0) {
+              searchNode(node.children);
+            }
+          });
+        }
+      }());
 
       checkbox.click();
       fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
-      assert.strictEqual(testComponent.unchecked, true);
+      (function searchNode(arrayNodes = testComponent.nodes) {
+        var node_23 = _.find(arrayNodes, function(n) { return n.label === 'Node 23'; });
+        if (node_23) {
+          assert.strictEqual(node_23.selected, false);
+          assert.strictEqual(node_23.indeterminate, false);
+        } else {
+          arrayNodes.forEach(function(node){
+            if (node.children && node.children.length > 0) {
+              searchNode(node.children);
+            }
+          });
+        }
+      }());
     }));
 
     it('should active all event on plugins', fakeAsync(() => {
@@ -633,7 +605,6 @@ describe('tree', function() {
       ];
       fixture.detectChanges();
       tick();
-      fixture.detectChanges();
 
       var node = getNode('Node 23');
       assert(node, 'Node not found');
@@ -773,7 +744,6 @@ describe('tree', function() {
       testComponent.plugins = ['checkox', 'sortable'];
       fixture.detectChanges();
       tick();
-      fixture.detectChanges();
       var node = getNode('Node 2');
       assert(node, 'Node not found');
       var handle = node.querySelector('span[atlui-sortable-handle]');
@@ -785,8 +755,6 @@ describe('tree', function() {
       handle.dispatchEvent(mouseDown);
       triggerEvent(node.parentNode, 'dragstart');
 
-      fixture.detectChanges();
-      tick();
       fixture.detectChanges();
 
       assert.strictEqual(ds.sortableContainer.sortableData, testComponent.nodes, 'should be defined');
@@ -808,7 +776,6 @@ describe('tree', function() {
       testComponent.plugins = ['checkox', 'sortable'];
       fixture.detectChanges();
       tick();
-      fixture.detectChanges();
       var node21 = getNode('Node 21');
       assert(node21, 'Node not found');
       var handle = node21.querySelector('span[atlui-sortable-handle]');
@@ -874,7 +841,6 @@ describe('tree', function() {
       testComponent.plugins = ['checkox', 'nestedSortable'];
       fixture.detectChanges();
       tick();
-      fixture.detectChanges();
       var node = getNode('Node 1');
       assert(node, 'Node not found');
       var handle = node.querySelector('span[atlui-sortable-handle]');
@@ -905,7 +871,6 @@ describe('tree', function() {
       testComponent.plugins = ['checkox', 'nestedSortable'];
       fixture.detectChanges();
       tick();
-      fixture.detectChanges();
       var node = getNode('Node 22');
       assert(node, 'Node not found');
       var handle = node.querySelector('span[atlui-sortable-handle]');
@@ -936,7 +901,6 @@ describe('tree', function() {
       testComponent.plugins = ['checkox', 'nestedSortable'];
       fixture.detectChanges();
       tick();
-      fixture.detectChanges();
       var node = getNode('Node 2');
       assert(node, 'Node not found');
       var handle = node.querySelector('span[atlui-sortable-handle]');

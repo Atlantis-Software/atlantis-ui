@@ -16,7 +16,7 @@ class circleProgessBarTestComponent {
     return [
       new Component({
         template: `
-        <atlui-circle-progress-bar [value]="test">
+        <atlui-circle-progress-bar class="circle-progress-bar-success" [value]="test">
         </atlui-circle-progress-bar>
         <input id="percent" type="number" [(ngModel)]="test">`
       })
@@ -46,8 +46,7 @@ describe('Circle progress bar', function() {
     fixture.detectChanges();
     testComponent = fixture.componentInstance;
     var percent = document.querySelector('.circle-progress-bar');
-
-    assert.strictEqual(percent.dataset.percent, "50");
+    assert.strictEqual(percent.getAttribute('data-percent'), "50");
   }));
 
   it('should render selected value', fakeAsync(function() {
