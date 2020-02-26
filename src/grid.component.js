@@ -1,16 +1,5 @@
-import {
-  Component,
-  ElementRef,
-  Injector,
-  EventEmitter,
-  ChangeDetectorRef,
-  TemplateRef,
-  Directive,
-  ContentChild
-} from '@angular/core';
-import {
-  gridConfig
-} from './grid.config.js';
+import { Component, ElementRef, Injector, EventEmitter, ChangeDetectorRef, TemplateRef, Directive, ContentChild, NgZone } from '@angular/core';
+import { gridConfig } from './grid.config.js';
 import ResizeObserver from 'resize-observer-polyfill';
 
 export class gridComponent {
@@ -22,12 +11,12 @@ export class gridComponent {
         <atlui-grid-header class="gridHeader" [headerTemplate]="headerTemplate" [columnsWidths]="columnsWidths" [columns]="columns" [pipes]="pipes" [multipleSort]="multipleSort" (sort)="sort.emit($event)">
         </atlui-grid-header>
         <atlui-grid-body [headerFixed]="headerFixed" class="gridBody" [style.height]="height" [columnsWidths]="columnsWidths" [types]="types" [columns]="columns" [rows]="rows" [pipes]="pipes" [selected]="selected"
-          [multiple]='multiple' (selectedRows)="onSelect($event)">
+          [multiple]='multiple' (selectedRows)="onSelect($event)" (onCellChange)="onModify($event)">
         </atlui-grid-body>
         <atlui-grid-footer class="gridFooter" *ngIf="config.footer !=='none'" [columns]="columns">
         </atlui-grid-footer>`,
         inputs: ['columns', 'rows', 'config', 'selected', 'multiple', 'headerFixed', 'height', 'multipleSort'],
-        outputs: ['selectedRows', 'sort'],
+        outputs: ['selectedRows', 'sort', 'onCellChange'],
         host: {
           "[class.table-fixed]": "headerFixed"
         },
@@ -38,7 +27,7 @@ export class gridComponent {
     ];
   }
 
-  constructor(elementRef, gridConfig, injector, cdr) {
+  constructor(elementRef, gridConfig, injector, cdr, NgZone) {
     var self = this;
     this.headerTemplate = null;
     this.elementRef = elementRef;
@@ -54,7 +43,9 @@ export class gridComponent {
     this.columnsWidths = [];
     this.originColumnsWidths = [];
     this.selectedRows = new EventEmitter();
+    this.onCellChange = new EventEmitter();
     this.sort = new EventEmitter();
+    this.ngZone = NgZone;
     // Prepare the different pipe for sub component
     if (this.types) {
       this.types.forEach(function(type, i) {
@@ -113,6 +104,10 @@ export class gridComponent {
     this.selectedRows.emit(row);
   }
 
+  onModify(cell) {
+    this.onCellChange.emit(cell);
+  }
+
   ngAfterViewChecked() {
     if (!this.headerFixed) {
       return;
@@ -122,12 +117,17 @@ export class gridComponent {
     }
     this.redraw();
     this.ro = new ResizeObserver(()=>{
-      if (!this.cdr['destroyed']) {
-        this.redraw();
-      }
+      this.ngZone.run(() => {
+        if (!this.cdr['destroyed']) {
+          this.redraw();
+        }
+      });
     });
     this.gridRowCalc = this.elementRef.nativeElement.querySelector("atlui-grid-body .gridRowCalc");
-    this.ro.observe(this.gridRowCalc);
+    // https://github.com/que-etc/resize-observer-polyfill/issues/36
+    this.ngZone.runOutsideAngular(() => {
+      this.ro.observe(this.gridRowCalc);
+    });
   }
 
   ngOnDestroy() {
@@ -182,7 +182,7 @@ export class gridComponent {
   }
 }
 
-gridComponent.parameters = [ElementRef, gridConfig, Injector, ChangeDetectorRef];
+gridComponent.parameters = [ElementRef, gridConfig, Injector, ChangeDetectorRef, NgZone];
 
 export class gridCellHeaderTemplate {
   static get annotations() {

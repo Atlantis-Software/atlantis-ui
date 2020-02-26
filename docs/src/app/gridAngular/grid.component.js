@@ -164,11 +164,16 @@ export default  class GridAngularComponent {
     this.rows = [...this.originalRows];
 
     this.selection = [];
-
+    this.cell;
   }
 
   selectionTest(row) {
     this.selection = row;
+  }
+
+  onModify(cell) {
+    this.index = cell.index;
+    this.column = cell.column;
   }
 
   onSort(sorting) {
