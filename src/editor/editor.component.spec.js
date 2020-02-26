@@ -730,9 +730,6 @@ describe('editor', function() {
     initEditor(editor, "Test "+ pluginName +" plugin", 5, 5 + pluginName.length, fixture);
 
     var plugin = document.querySelector("atlui-plugin-"+pluginName);
-
-    //console.log("document all",     util.inspect(    document.documentElement.innerHTML, false,5,true));
-
     var button = plugin.querySelector("button");
     button.dispatchEvent(mousedown);
     tick();

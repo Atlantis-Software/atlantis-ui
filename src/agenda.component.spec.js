@@ -152,7 +152,6 @@ describe('agenda', function() {
 
   it('should show events correctly', fakeAsync(function() {
     var agendaDay = document.querySelectorAll("atlui-agenda-day");
-   // console.log("agendaDay", agendaDay);
     for (var propt in agendaDay){
       if (agendaDay[propt]) {
         var day = agendaDay[propt];

@@ -631,7 +631,7 @@ describe('grid', function() {
     fixture.detectChanges();
     input = document.querySelector('input');
     input.value = 123;
-    // permet de déclancher l'évenement onCellChange
+    //  allows to trigger onCellChange event
     input.dispatchEvent(
       new KeyboardEvent('keyup', { bubbles: true, cancelable: true, key: 'Enter' })
     );

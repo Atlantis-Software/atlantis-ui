@@ -78,7 +78,7 @@ export default class treeNodeComponent {
       changesNode.forEachAddedItem((record) => this.changeNode());
       changesNode.forEachRemovedItem((record) => this.changeNode());
     }
-	}
+  }
 
   //close the tree-node we drag if the nestedSortable is activate and if this tree-node has child
   onDragCallback(element, node, value) {
@@ -142,16 +142,14 @@ export default class treeNodeComponent {
       return;
     }
 
-    //if (!this.indeterminate) {
-      if (this.children) {
-        // we select or deselect all children if the parent is checked or unchecked
-        this.children.forEach((child) => {
-          if (!child.disabled && !child.selectable) {
-            child.selected = this.selected || false;
-          }
-        });
-      }
-   // }
+    if (this.children) {
+      // we select or deselect all children if the parent is checked or unchecked
+      this.children.forEach((child) => {
+        if (!child.disabled && !child.selectable) {
+          child.selected = this.selected || false;
+        }
+      });
+    }
     this.updateParents();
   }
 
