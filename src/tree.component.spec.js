@@ -1,4 +1,4 @@
-import { getTestBed, TestBed, async, fakeAsync, tick, inject,flush} from '@angular/core/testing';
+import { getTestBed, TestBed, async, fakeAsync, tick, inject} from '@angular/core/testing';
 
 import { dragAndDropSortableService, dragAndDropService } from './dragAndDrop.service.js';
 
