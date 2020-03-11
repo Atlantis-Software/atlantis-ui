@@ -202,8 +202,6 @@ describe('timepicker', function() {
     input_hour.dispatchEvent(new Event('input'));
     fixture.detectChanges();
     tick();
-   // fixture.detectChanges();
-
 
     var input_minute = document.querySelector('.atlui-timepicker input[name="minute"]');
     input_minute.value = 9;
@@ -228,7 +226,6 @@ describe('timepicker', function() {
 
     var select_hour = document.querySelectorAll('atlui-selectpicker');
     var options_hour = select_hour[0].querySelectorAll('a');
-    console.log("  options_hour[9]",   options_hour[9]);
     options_hour[9].click();
     tick();
     fixture.detectChanges();
@@ -237,22 +234,17 @@ describe('timepicker', function() {
     var select_minute = document.querySelectorAll('atlui-selectpicker');
     var options_minute = select_minute[1].querySelectorAll('a');
     options_minute[12].click();
-    console.log("  options_minute[12]",   options_minute[12]);
     tick();
     fixture.detectChanges();
-
 
 
     var select_am_pm = document.querySelectorAll('atlui-selectpicker');
     var options_am_pm = select_am_pm[2].querySelectorAll('a');
-    console.log("  options_am_pm[1]",   options_am_pm[1]);
     options_am_pm[1].click();
     tick();
     fixture.detectChanges();
 
-
     var timepicker = document.querySelector('#data');
-    console.log("should render new value when select new time in local en", timepicker.textContent);
     assert.strictEqual(timepicker.textContent, moment('20:11', 'kk:mm').toString());
   }));
 
@@ -270,19 +262,16 @@ describe('timepicker', function() {
     var select_hour = document.querySelectorAll('atlui-selectpicker');
     var options_hour = select_hour[0].querySelectorAll('a');
     options_hour[9].click();
-    console.log("  options_hour[9]",   options_hour);
     tick();
     fixture.detectChanges();
 
     var select_minute = document.querySelectorAll('atlui-selectpicker');
     var options_minute = select_minute[1].querySelectorAll('a');
     options_minute[12].click();
-    console.log("  options_hour[12]",   options_hour[12]);
     tick();
     fixture.detectChanges();
 
     var timepicker = document.querySelector('#data');
-    console.log("should render new value when select new time in local es", timepicker.textContent);
     assert.strictEqual(timepicker.textContent, moment('08:11', 'kk:mm').toString());
   }));
 
@@ -302,7 +291,6 @@ describe('timepicker', function() {
     fixture.detectChanges();
 
     var timepicker = document.querySelector('#data');
-    console.log("(timepicker.textContent now ", timepicker.textContent);
     assert.strictEqual(moment(timepicker.textContent).format('kk:mm').toString(), moment().format('kk:mm').toString());
   }));
 });
