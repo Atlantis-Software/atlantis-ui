@@ -1,0 +1,70 @@
+atlui-timepicker, .atlui-timepicker {
+  .timepicker-date-input {
+    position: relative;
+  }
+  .timepicker-input {
+    background-color: @input-bg !important;
+    color: @input-color !important;
+    border-color: @input-border-color !important;
+    cursor: pointer;
+  }
+  .timepicker-label-remove {
+    position: absolute;
+    top: 4px;
+    right: 12px;
+    z-index: 2;
+  }
+
+  .timepicker-label-remove:before {
+    color: @input-reset;
+    font-family: "FontAwesome";
+    content: "\f00d";
+    font-size: @font-size-base + 2;
+  }
+
+  .modal-body {
+    background-color: @background;
+    .form-inline atlui-selectpicker{
+      min-width: 80px;
+    }
+  }
+
+  .timepicker {
+    color: inherit;
+    padding: @datepicker-padding;
+  }
+
+  atlui-timepicker.timepicker-sm {
+    input {
+      &:extend(.input-sm);
+    }
+  }
+
+  atlui-timepicker.timepicker-lg {
+    input {
+      &:extend(.input-lg);
+    }
+  }
+
+  atlui-timepicker.atlui-selectpicker{
+    min-width: 80px;
+  }
+
+  .modal-header {
+    background-color: @primary;
+    min-height: 200px;
+    padding-bottom: 0px;
+    .timepicker-text {
+      min-height: 150px;
+      display: flex;
+      align-items: center;
+    }
+    .date-letter span {
+      color: @primary-text-color;
+      font-size: @font-size-date-number;
+      line-height: @font-size-date-number - 10;
+      display: inline-block;
+      width: 100%;
+    }
+  }
+}
