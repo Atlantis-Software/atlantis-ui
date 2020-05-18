@@ -29,19 +29,88 @@ export default  class TreeComponent {
 
     this.nodesWithLazyLoading = [
       {
-        label: 'Node with lazy loaded children',
-        children: []
+        label: 'Node 1'
       },
       {
-        label: 'Node with children',
+        label: 'Node 2',
+        expanded: true,
         children: [
           {
-            label: 'Sub-node 1'
+            label: 'Node 21'
           },
           {
-            label: 'Sub-node 2'
+            label: 'Node 22'
+          },
+          {
+            label: 'Node 23',
+            expanded: false,
+            children: [
+              {
+                label: 'Node 231'
+              },
+              {
+                label: 'Node 232'
+              },
+              {
+                label: 'Node 233'
+              },
+              {
+                label: 'Node 234'
+              }
+            ]
+          },
+          {
+            label: 'Node 24',
+            expanded: true,
+            children: [
+              {
+                label: 'Node 241'
+              },
+              {
+                label: 'Node 242'
+              },
+              {
+                label: 'Node 243'
+              },
+              {
+                label: 'Node 244',
+                expanded: true,
+                children: [
+                  {
+                    label: 'Node 2441'
+                  },
+                  {
+                    label: 'Node 2442'
+                  },
+                  {
+                    label: 'Node 2443'
+                  }
+                ]
+              }
+            ]
           }
         ]
+      },
+      {
+        label: 'Node 3'
+      },
+      {
+        label: 'Node 4',
+        children: [
+          {
+            label: 'Node 41'
+          },
+          {
+            label: 'Node 42'
+          },
+          {
+            label: 'Node 43'
+          },
+          {
+            label: 'Node 44'
+          }
+        ],
+        expandable: true
       }
     ];
 
@@ -157,6 +226,14 @@ export default  class TreeComponent {
       }},
       'checkbox'
     ];
+  }
+
+  checkBox() {
+    this.nodesWithLazyLoading[1].children[0].selected = true;
+  }
+
+  unCheckBox() {
+    this.nodesWithLazyLoading[1].children[0].selected = false;
   }
 
   expandCallback(event) {

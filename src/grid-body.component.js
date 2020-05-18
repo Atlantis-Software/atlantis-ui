@@ -29,7 +29,7 @@ export default class gridBodyComponent {
               *ngIf="changingCellContent === i + '' + y"
               [ngModel]="row[column.label]"
               (blur)="modifyContent($event, i, y, true)"
-              (keyup.enter)="modifyContent($event, i, y, true)"
+              (keyup.enter)="enterModifyContent($event, i, y, true)"
               focus/>
             <label class="grid-label-error"
               *ngIf="errorCellContent === i + '' + y"
@@ -43,13 +43,14 @@ export default class gridBodyComponent {
           </div>
         </div>`,
         inputs: ['columns', 'rows', 'pipes', 'selected', 'types', 'multiple', 'headerFixed', 'columnsWidths'],
-        outputs: ['selectedRows']
+        outputs: ['selectedRows', 'onCellChange']
       })
     ];
   }
 
   constructor(elementRef) {
     this.selectedRows = new EventEmitter();
+    this.onCellChange = new EventEmitter();
     this.previousSelectedIndex;
     this.isEditable = false;
     this.multiple = false;
@@ -62,19 +63,27 @@ export default class gridBodyComponent {
       return;
     }
     var rows = this.elementRef.nativeElement.querySelectorAll(".gridRow");
-    rows.forEach((row)=> {
-      row.style.height = "unset";
-      var cells = row.querySelectorAll(".gridCell");
-      var maxCellHeight = 0;
-      cells.forEach((cell)=> {
-        var cellStyle = window.getComputedStyle(cell, null);
-        var cellHeight = parseInt(cellStyle.getPropertyValue("height"));
-        if (cellHeight > maxCellHeight) {
-          maxCellHeight = cellHeight;
+    for (var prop in rows) {
+      if (Object.prototype.hasOwnProperty.call(rows, prop)) {
+        var row = rows[prop];
+        if (row) {
+          row.style.height = "unset";
+          var cells = row.querySelectorAll(".gridCell");
+          var maxCellHeight = 0;
+          for (var propCell in cells) {
+            var cell = cells[propCell];
+            if (Object.prototype.hasOwnProperty.call(cells, propCell)) {
+              var cellStyle = window.getComputedStyle(cell, null);
+              var cellHeight = parseInt(cellStyle.getPropertyValue("height"));
+              if (cellHeight > maxCellHeight) {
+                maxCellHeight = cellHeight;
+              }
+            }
+          }
+          row.style.height = maxCellHeight+"px";
         }
-      });
-      row.style.height = maxCellHeight+"px";
-    });
+      }
+    }
   }
 
   //Function launch when we select different row
@@ -129,7 +138,7 @@ export default class gridBodyComponent {
     if (!this.columns[y].isEditable || (!validateChange && this.changingCellContent)) {
       return;
     }
-    var coordinate = i + '' + y;
+    this.coordinate = i + '' + y;
     if (validateChange) {
       var value = e.target.value;
       if (this.columns[y].type) {
@@ -149,9 +158,13 @@ export default class gridBodyComponent {
       }
     } else {
       this.oldContent = this.rows[i][this.columns[y].label];
-      this.changingCellContent = coordinate;
+      this.changingCellContent = this.coordinate;
     }
+  }
 
+  enterModifyContent(e, i, y, validateChange) {
+    this.modifyContent(e, i, y, validateChange);
+    this.onCellChange.emit({index: i, column: this.columns[y].label});
   }
 
   resetContent(e, i, y) {

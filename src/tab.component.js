@@ -1,4 +1,4 @@
-import { Component, ContentChildren, ElementRef } from '@angular/core';
+import { Component, ContentChildren, ElementRef, EventEmitter } from '@angular/core';
 import { tabpanelDirective } from './tab-panel.component.js';
 
 export default class tabsComponent {
@@ -10,7 +10,8 @@ export default class tabsComponent {
         queries: {
           tabpanels: new ContentChildren(tabpanelDirective)
         },
-        inputs: ['height']
+        inputs: ['height'],
+        outputs: ['onChange']
       })
     ];
   }
@@ -19,6 +20,7 @@ export default class tabsComponent {
     this.activeId = 0;
     this.height = "150px";
     this.elementRef = ElementRef;
+    this.onChange = new EventEmitter();
   }
 
   // function when we select a tab.
@@ -30,6 +32,7 @@ export default class tabsComponent {
       });
       this.activeId = tabpanelId;
       selectedpanel.active = true;
+      this.onChange.emit(selectedpanel);
     }
   }
 
