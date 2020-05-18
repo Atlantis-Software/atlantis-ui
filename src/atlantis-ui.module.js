@@ -53,6 +53,7 @@ import { popoverComponent, popoverDirective } from './popover.component.js';
 import { tooltipComponent, tooltipDirective } from './tooltip.component.js';
 
 import focusDirective from './focus.directive.js';
+import indeterminateDirective from './indeterminate.directive.js';
 
 import { sortableContainer, sortableComponents, sortableHandler } from './sortable.component.js';
 
@@ -155,7 +156,7 @@ AtlantisUiModule.annotations = [
   new NgModule({
     imports: [CommonModule, FormsModule],
     declarations: [pagination, datepickerComponent, datepickerrangeComponent, timepickerComponent, selectpickerComponent,
-      selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective,
+      selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective, indeterminateDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
       carouselItemComponent, accordionComponent, accordionPanelComponent, accordionPanelHeaderDirective, dropdownComponent, dropdownOptionComponent,
       dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, gridComponent, gridCellHeaderTemplate,
@@ -169,7 +170,7 @@ AtlantisUiModule.annotations = [
       italic, justifyLeft, justifyRight, justifyCenter, justifyFull, outdent, redo, removeFormat, selectAll,
       strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName, tabComponent, tabpanelDirective, tabPanelHeaderDirective, safeHtmlPipe],
     exports: [pagination, datepickerComponent, datepickerrangeComponent, timepickerComponent, selectpickerComponent,
-      selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective,
+      selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective, indeterminateDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
       carouselItemComponent, accordionComponent, accordionPanelComponent, accordionPanelHeaderDirective, dropdownComponent, dropdownOptionComponent,
       dropdownDividerComponent, dropdownHeaderComponent, circleProgessBarComponent, gridComponent, gridCellHeaderTemplate,

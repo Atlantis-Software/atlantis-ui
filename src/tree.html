@@ -2,6 +2,7 @@
   <atlui-tree-node *ngFor="let node of nodes; let i = index"
     [(expanded)]="node.expanded"
     [(selected)]="node.selected"
+    [(indeterminate)]="node.indeterminate"
     [node]="node"
     [label]="node.label"
     [model]="node.model"

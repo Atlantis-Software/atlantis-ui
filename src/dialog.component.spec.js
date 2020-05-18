@@ -294,12 +294,16 @@ describe('dialog', function() {
     var draggableStyle1 = window.getComputedStyle(dlg);
 
     assert.strictEqual(draggableStyle1.getPropertyValue('z-index'), '99999');
-    var top = parseInt(draggableStyle1.getPropertyValue('top'));
-    var left = parseInt(draggableStyle1.getPropertyValue('left'));
+    var top = draggableStyle1.getPropertyValue('top');
+    var left = draggableStyle1.getPropertyValue('left');
 
-    var mouseMove = new Event('mousemove', { 'bubbles': true });
-    mouseMove.clientX = 50;
-    mouseMove.clientY = 20;
+    var mouseMove = new Event('mousemove', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+      clientX: 50,
+      clientY: 20
+    });
 
     draggable.dispatchEvent(mouseMove);
     fixture.detectChanges();
@@ -309,9 +313,12 @@ describe('dialog', function() {
     fixture.detectChanges();
     var draggableTop1 = draggableStyle1.getPropertyValue("top");
     var draggableLeft1 = draggableStyle1.getPropertyValue("left");
-    assert.strictEqual(draggableTop1, (top+15)+"px");
-    assert.strictEqual(draggableLeft1, (left+40)+"px");
+
+    assert.strictEqual(draggableTop1, top);
+    assert.strictEqual(draggableLeft1, left);
     assert.strictEqual(draggableStyle1.getPropertyValue('z-index'), '980');
+
+
 
   });
 

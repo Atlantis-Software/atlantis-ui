@@ -39,10 +39,11 @@ export default class circleProgessBarComponent {
     this.circleBackground.setAttribute("r", this.r);
     this.circleBackground.setAttribute("cx", this.c);
     this.circleBackground.setAttribute("cy", this.c);
-
-    this.style.forEach((style)=>{
-      this.content.classList.add(style);
-    });
+    for (var prop in this.style){
+      if (Object.prototype.hasOwnProperty.call(this.style, prop)) {
+        this.content.classList.add(this.style[prop]);
+      }
+    }
 
     if (typeof this.value !== "number" || this.value === "") {
       this.value = 0;
