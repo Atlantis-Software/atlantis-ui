@@ -63,19 +63,27 @@ export default class gridBodyComponent {
       return;
     }
     var rows = this.elementRef.nativeElement.querySelectorAll(".gridRow");
-    rows.forEach((row)=> {
-      row.style.height = "unset";
-      var cells = row.querySelectorAll(".gridCell");
-      var maxCellHeight = 0;
-      cells.forEach((cell)=> {
-        var cellStyle = window.getComputedStyle(cell, null);
-        var cellHeight = parseInt(cellStyle.getPropertyValue("height"));
-        if (cellHeight > maxCellHeight) {
-          maxCellHeight = cellHeight;
+    for (var prop in rows) {
+      if (Object.prototype.hasOwnProperty.call(rows, prop)) {
+        var row = rows[prop];
+        if (row) {
+          row.style.height = "unset";
+          var cells = row.querySelectorAll(".gridCell");
+          var maxCellHeight = 0;
+          for (var propCell in cells) {
+            var cell = cells[propCell];
+            if (Object.prototype.hasOwnProperty.call(cells, propCell)) {
+              var cellStyle = window.getComputedStyle(cell, null);
+              var cellHeight = parseInt(cellStyle.getPropertyValue("height"));
+              if (cellHeight > maxCellHeight) {
+                maxCellHeight = cellHeight;
+              }
+            }
+          }
+          row.style.height = maxCellHeight+"px";
         }
-      });
-      row.style.height = maxCellHeight+"px";
-    });
+      }
+    }
   }
 
   //Function launch when we select different row

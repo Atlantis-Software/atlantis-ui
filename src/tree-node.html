@@ -44,6 +44,7 @@
   <atlui-tree-node *ngFor="let child of children; let i = index"
     [(expanded)]="child.expanded"
     [(selected)]="child.selected"
+    [(indeterminate)]="child.indeterminate"
     [node]="child"
     [label]="child.label"
     [model]="child.model"

@@ -143,6 +143,7 @@ describe('agenda', function() {
     var agendaMonth = document.querySelector("atlui-agenda-month");
     var agendaWeek = document.querySelectorAll("atlui-agenda-week");
     var agendaDay = document.querySelectorAll("atlui-agenda-day");
+
     var month = container.month;
     assert.strictEqual(agendaMonth.textContent.trim(), month.toUpperCase()+" 2018");
     assert.strictEqual(agendaWeek.length, 6);
@@ -151,22 +152,26 @@ describe('agenda', function() {
 
   it('should show events correctly', fakeAsync(function() {
     var agendaDay = document.querySelectorAll("atlui-agenda-day");
-    agendaDay.forEach((day) => {
-      if (day.classList.contains("duringEvent")) {
-        day.click();
-        assert(container.event.events.length > 0, "should have event if class is duringEvent");
-        if (container.event.events.length > 3) {
-          container.event.events.forEach((event, index) => {
-            if (index < 2) {
-              assert(!event.moreEvents, "should show this events");
-            } else {
-              assert(event.moreEvents, "should not show this events");
-            }
-          });
-          assert(day.querySelector(".line-more-events"), "should have more event div if superior to max events per line");
+    for (var propt in agendaDay){
+      if (agendaDay[propt]) {
+        var day = agendaDay[propt];
+        if (day.classList && day.classList.contains("duringEvent")) {
+          day.click();
+          assert(container.event.events.length > 0, "should have event if class is duringEvent");
+          if (container.event.events.length > 3) {
+            container.event.events.forEach((event, index) => {
+              if (index < 2) {
+                assert(!event.moreEvents, "should show this events");
+              } else {
+                assert(event.moreEvents, "should not show this events");
+              }
+            });
+            assert(day.querySelector(".line-more-events"), "should have more event div if superior to max events per line");
+          }
         }
       }
-    });
+
+    }
   }));
 
   it('should show correct events when we grow agenda', fakeAsync(function() {
@@ -181,8 +186,9 @@ describe('agenda', function() {
     tick();
     fixture.detectChanges();
     var agendaDay = document.querySelectorAll("atlui-agenda-day");
-    agendaDay.forEach((day) => {
-      if (day.classList.contains("duringEvent")) {
+    for (var propt in agendaDay){
+      var day  = agendaDay[propt];
+      if (day.classList && day.classList.contains("duringEvent")) {
         day.click();
         assert(container.event.events.length > 0, "should have event if class is duringEvent");
         if (container.event.events.length > 5) {
@@ -196,7 +202,7 @@ describe('agenda', function() {
           assert(day.querySelector(".line-more-events"), "should have more event div if superior to max events per line");
         }
       }
-    });
+    }
   }));
 
   it('should show correct events when we shrink agenda', fakeAsync(function() {
@@ -211,12 +217,14 @@ describe('agenda', function() {
     tick();
     fixture.detectChanges();
     var agendaDay = document.querySelectorAll("atlui-agenda-day");
-    agendaDay.forEach((day) => {
-      if (day.classList.contains("duringEvent")) {
+    for (var propt in agendaDay){
+      var day  = agendaDay[propt];
+      if (day.classList && day.classList.contains("duringEvent")) {
         day.click();
         assert(container.event.events.length > 0, "should have event if class is duringEvent");
         if (container.event.events.length > 2) {
           container.event.events.forEach((event, index) => {
+
             if (index < 1) {
               assert(!event.moreEvents, "should show this events");
             } else {
@@ -226,6 +234,6 @@ describe('agenda', function() {
           assert(day.querySelector(".line-more-events"), "should have more event div if superior to max events per line");
         }
       }
-    });
+    }
   }));
 });

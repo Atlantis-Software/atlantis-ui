@@ -5,7 +5,7 @@ export default class insertImage extends pluginClass {
   static get annotations() {
     return [
       new Component({
-        selector: 'atlui-plugin-image',
+        selector: 'atlui-plugin-insertImage',
         template: `
         <button
           class="btn btn-default icon icon-picture"

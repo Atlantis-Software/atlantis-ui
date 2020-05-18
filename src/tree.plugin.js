@@ -27,7 +27,7 @@ export default class treePlugin {
         <ng-container *ngIf="node.selectable !== false">
           <div *ngIf="plugin === 'checkbox'" class="tree-node-checkbox">
             <div class="checkbox">
-              <input type="checkbox" [ngModel]="node.selected" (click)="selectedChange()" [attr.disabled]="node.disabled">
+              <input type="checkbox" [checked]="node.selected"  [indeterminate]="node.indeterminated" (click)="selectedChange()" [attr.disabled]="node.disabled">
               <label>
                 &nbsp;
               </label>
@@ -63,6 +63,7 @@ export default class treePlugin {
     }
     this.onInit(this.node);
   }
+
   // function we can send in plugins on destroy
   ngOnDestroy(){
     if (this.disabled) {
