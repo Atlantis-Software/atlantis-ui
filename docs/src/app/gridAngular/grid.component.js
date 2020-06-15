@@ -48,8 +48,6 @@ export default  class GridAngularComponent {
         testBoolean: 0
       },
       {
-
-
         test : "6",
         testNumber : 3,
         testText : "7",
