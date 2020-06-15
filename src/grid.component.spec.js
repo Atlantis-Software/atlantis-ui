@@ -106,14 +106,16 @@ class gridTestComponent {
         testNumber: 2,
         testText: "1",
         testDate: moment('2012-10-10').format("YYYY-MM-DD"),
-        testBoolean: 0
+        testBoolean: 0,
+        background_color: "red"
       },
       {
         test: "2",
         testNumber: 6,
         testText: "5",
         testDate: moment('1970-01-01').format("YYYY-MM-DD"),
-        testBoolean: 1
+        testBoolean: 1,
+        color: "green"
       },
       {
         test: "3",
@@ -232,7 +234,8 @@ describe('grid', function() {
 
     var columns = document.querySelectorAll('#grid .gridHead');
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
-
+    assert.strictEqual(rows[0].style.backgroundColor, "red");
+    assert.strictEqual(rows[1].style.color, "green");
     assert.strictEqual(columns.length, 5);
 
     Object.keys(columns).forEach(function(key,index) {
