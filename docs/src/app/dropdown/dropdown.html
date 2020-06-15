@@ -5,7 +5,7 @@
   <h3>Exemple : </h3>
   <div class="form-group">
     <div class="row container-fluid">
-      <atlui-dropdown title="Menu A">
+      <atlui-dropdown title="Menu A" maxHeight="800px" autoOpen="true">
         <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
         <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
         <atlui-dropdown-divider></atlui-dropdown-divider>
@@ -16,7 +16,7 @@
     </div>
   </div>
   <textarea class="atlui-code">
-<atlui-dropdown title="Menu A">
+<atlui-dropdown title="Menu A" maxHeight="800px" autoOpen="true">
   <atlui-dropdown-option><a>Sub-menu A</a></atlui-dropdown-option>
   <atlui-dropdown-option><a>Sub-menu B</a></atlui-dropdown-option>
   <atlui-dropdown-divider></atlui-dropdown-divider>
@@ -219,6 +219,41 @@ this.dropdownoptions = [
         </td>
         <td>
           Per default : left
+        </td>
+      </tr>
+      <tr>
+        <td>
+          maxHeight
+        </td>
+        <td>
+          String
+        </td>
+        <td>
+          Define the height of menu
+        </td>
+        <td>
+          value in px or %
+        </td>
+        <td>
+          Per default : 200px
+        </td>
+      </tr>
+      <tr>
+        <td>
+          autoOpen
+        </td>
+        <td>
+          boolean
+        </td>
+        <td>
+          Define if the menu is open on mouse hover
+          if not is open on click
+        </td>
+        <td>
+          true or false
+        </td>
+        <td>
+          Per default : false
         </td>
       </tr>
     </tbody>
