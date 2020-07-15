@@ -5,10 +5,13 @@ import {
   fakeAsync,
   tick
 } from '@angular/core/testing';
-import { Component } from '@angular/core';
-import { CommonModule, DatePipe, UpperCasePipe } from '@angular/common';
+import { Component, LOCALE_ID } from '@angular/core';
+import { CommonModule, DatePipe, UpperCasePipe, registerLocaleData } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AtlantisUiModule } from './atlantis-ui.module.js';
+
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr-FR');
 
 var assert = require('assert');
 
@@ -17,7 +20,7 @@ var types = [
     type: "date",
     alignment: "right",
     pipes: [DatePipe],
-    optionsPipe: ['yyyy-MM-dd'],
+    optionsPipe: ['shortDate'],
     transformation: function(val) {
       if (moment(val, moment.ISO_8601).isValid()) {
         return moment(val).toString();
@@ -97,6 +100,20 @@ class gridTestComponent {
         type: 'boolean',
         isEditable: true,
         isSortable: true
+      },
+      {
+        label: "testDateMedium",
+        type: 'date',
+        isEditable: true,
+        isSortable: true,
+        format: 'mediumDate'
+      },
+      {
+        label: "testDateFormat",
+        type: 'date',
+        isEditable: true,
+        isSortable: true,
+        format: 'yyyy-MM-dd'
       }
     ];
 
@@ -105,57 +122,73 @@ class gridTestComponent {
         test: "1",
         testNumber: 2,
         testText: "1",
-        testDate: moment('2012-10-10').format("YYYY-MM-DD"),
-        testBoolean: 0
+        testDate: new Date('10/10/2012'),
+        testBoolean: 0,
+        testDateMedium: new Date('10/10/2012'),
+        testDateFormat: new Date('10/10/2012')
       },
       {
         test: "2",
         testNumber: 6,
         testText: "5",
-        testDate: moment('1970-01-01').format("YYYY-MM-DD"),
-        testBoolean: 1
+        testDate: new Date('01/01/1970'),
+        testBoolean: 1,
+        testDateMedium: new Date('01/01/1970'),
+        testDateFormat: new Date('01/01/1970')
       },
       {
         test: "3",
         testNumber: 5,
         testText: '4',
-        testDate: moment('2012-10-10').format("YYYY-MM-DD"),
-        testBoolean: 1
+        testDate:  new Date('10/10/2012'),
+        testBoolean: 1,
+        testDateMedium: new Date('10/10/2012'),
+        testDateFormat: new Date('10/10/2012')
       },
       {
         test: "4",
         testNumber: 42,
         testText: "8",
-        testDate: moment('2005-09-05').format("YYYY-MM-DD"),
-        testBoolean: 1
+        testDate: new Date('05/09/2005'),
+        testBoolean: 1,
+        testDateMedium: new Date('05/09/2005'),
+        testDateFormat: new Date('05/09/2005')
       },
       {
         test: "5",
         testNumber: 27,
         testText: "4",
-        testDate: moment('1999-04-06').format("YYYY-MM-DD"),
-        testBoolean: 0
+        testDate: new Date('06/04/1999'),
+        testBoolean: 0,
+        testDateMedium: new Date('06/04/1999'),
+        testDateFormat: new Date('06/04/1999')
       },
       {
         test: "6",
         testNumber: 3,
         testText: "7",
-        testDate: moment('2003-03-07').format("YYYY-MM-DD"),
-        testBoolean: 0
+        testDate: new Date('07/03/2003'),
+        testBoolean: 0,
+        testDateMedium: new Date('07/03/2003'),
+        testDateFormat: new Date('07/03/2003')
       },
       {
         test: "7",
         testNumber: 27,
         testText: "9",
-        testDate: moment('2005-09-05').format("YYYY-MM-DD"),
-        testBoolean: 0
+        testDate: new Date('05/09/2005'),
+        testBoolean: 0,
+        testDateMedium: new Date('05/09/2005'),
+        testDateFormat: new Date('05/09/2005')
       },
       {
         test: "8",
         testNumber: 152,
         testText: '32',
-        testDate: moment('2003-08-10').format("YYYY-MM-DD"),
-        testBoolean: 1
+        testDate: new Date('10/02/2003'),
+        testBoolean: 1,
+        testDateMedium: new Date('10/02/2003'),
+        testDateFormat: new Date('10/02/2003')
       }
     ];
 
@@ -209,11 +242,12 @@ class gridTestComponent {
 describe('grid', function() {
 
   var gridComponent;
+
   beforeEach(async(function() {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule, AtlantisUiModule.forRoot(types)],
       declarations: [gridTestComponent],
-      providers: [DatePipe, UpperCasePipe]
+      providers: [DatePipe, UpperCasePipe, { provide: LOCALE_ID, useValue: 'fr-FR'}]
     });
     TestBed.compileComponents();
   }));
@@ -233,7 +267,7 @@ describe('grid', function() {
     var columns = document.querySelectorAll('#grid .gridHead');
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
 
-    assert.strictEqual(columns.length, 5);
+    assert.strictEqual(columns.length, 7);
 
     Object.keys(columns).forEach(function(key,index) {
 
@@ -243,11 +277,10 @@ describe('grid', function() {
     Object.keys(rows).forEach(function(key,indexRow) {
       var cells = rows[key].querySelectorAll('.gridCell');
       Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date') {
-          assert.strictEqual(moment(cells[keyCell].querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
+        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
+          assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
           return;
         }
-        assert.equal(cells[keyCell].querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       });
     });
 
@@ -385,7 +418,7 @@ describe('grid', function() {
     var columns = document.querySelectorAll('#grid .gridHead');
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
 
-    assert.strictEqual(columns.length, 5);
+    assert.strictEqual(columns.length, 7);
 
 
     Object.keys(columns).forEach(function(keyC,indexC) {
@@ -401,11 +434,10 @@ describe('grid', function() {
     Object.keys(rows).forEach(function(keyRow,indexRow) {
       var cells = rows[keyRow].querySelectorAll('.gridCell');
       Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date') {
-          assert.strictEqual(moment(cells[keyCell].querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
+        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
+          assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
           return;
         }
-        assert.equal(cells[keyCell].querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       });
     });
 
@@ -417,11 +449,10 @@ describe('grid', function() {
     Object.keys(rows).forEach(function(keyRow,indexRow) {
       var cells = rows[keyRow].querySelectorAll('.gridCell');
       Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date') {
-          assert.strictEqual(moment(cells[keyCell].querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
+        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
+          assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
           return;
         }
-        assert.equal(cells[keyCell].querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       });
     });
   }));
@@ -437,7 +468,7 @@ describe('grid', function() {
     var columns = document.querySelectorAll('#grid .gridHead');
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
 
-    assert.strictEqual(columns.length, 5);
+    assert.strictEqual(columns.length, 7);
 
 
     Object.keys(columns).forEach(function(key,indexColumn) {
@@ -452,11 +483,10 @@ describe('grid', function() {
     Object.keys(rows).forEach(function(keyRow,indexRow) {
       var cells = rows[keyRow].querySelectorAll('.gridCell');
       Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date') {
-          assert.strictEqual(moment(cells[keyCell].querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
+        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
+          assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
           return;
         }
-        assert.equal(cells[keyCell].querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       });
     });
 
@@ -468,11 +498,10 @@ describe('grid', function() {
     Object.keys(rows).forEach(function(keyRow,indexRow) {
       var cells = rows[keyRow].querySelectorAll('.gridCell');
       Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date') {
-          assert.strictEqual(moment(cells[keyCell].querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
+        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
+          assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
           return;
         }
-        assert.equal(cells[keyCell].querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       });
     });
   }));
@@ -488,7 +517,7 @@ describe('grid', function() {
     var columns = document.querySelectorAll('#grid .gridHead');
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
 
-    assert.strictEqual(columns.length, 5);
+    assert.strictEqual(columns.length, 7);
 
     Object.keys(columns).forEach(function(key,indexColumn) {
       assert.strictEqual(columns[key].querySelector('span').innerText, gridComponent.columns[indexColumn].label);
@@ -503,11 +532,10 @@ describe('grid', function() {
     Object.keys(rows).forEach(function(keyRow,indexRow) {
       var cells = rows[keyRow].querySelectorAll('.gridCell');
       Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date') {
-          assert.strictEqual(moment(cells[keyCell].querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
+        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
+          assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
           return;
         }
-        assert.equal(cells[keyCell].querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       });
     });
 
@@ -520,11 +548,68 @@ describe('grid', function() {
     Object.keys(rows).forEach(function(keyRow,indexRow) {
       var cells = rows[keyRow].querySelectorAll('.gridCell');
       Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date') {
-          assert.strictEqual(moment(cells[keyCell].querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
+        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
+          assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText , moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
           return;
         }
-        assert.equal(cells[keyCell].querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
+      });
+    });
+  }));
+
+  it('should render default format type date', fakeAsync(() => {
+    var fixture = TestBed.createComponent(gridTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    gridComponent = fixture.componentInstance;
+    var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
+    Object.keys(rows).forEach(function(keyRow,indexRow) {
+      var cells = rows[keyRow].querySelectorAll('.gridCell');
+      Object.keys(cells).forEach(function(keyCell,indexCell) {
+        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
+          assert.strictEqual(moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L') , cells[keyCell].querySelector('atlui-grid-cell').innerText);
+        }
+      });
+    });
+  }));
+
+
+  it('should render format mediumDate type date', fakeAsync(() => {
+    var fixture = TestBed.createComponent(gridTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    gridComponent = fixture.componentInstance;
+    var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
+    Object.keys(rows).forEach(function(keyRow,indexRow) {
+      var cells = rows[keyRow].querySelectorAll('.gridCell');
+      Object.keys(cells).forEach(function(keyCell,indexCell) {
+        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateMedium') {
+          assert.strictEqual(moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('D MMM YYYY') , cells[keyCell].querySelector('atlui-grid-cell').innerText);
+        }
+      });
+    });
+  }));
+
+  it('should render format yyyy-MM-dd type date', fakeAsync(() => {
+    var fixture = TestBed.createComponent(gridTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    gridComponent = fixture.componentInstance;
+    var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
+    Object.keys(rows).forEach(function(keyRow,indexRow) {
+      var cells = rows[keyRow].querySelectorAll('.gridCell');
+      Object.keys(cells).forEach(function(keyCell,indexCell) {
+        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateFormat') {
+          assert.strictEqual(moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('YYYY-MM-DD') , cells[keyCell].querySelector('atlui-grid-cell').innerText);
+        }
       });
     });
   }));
@@ -540,7 +625,7 @@ describe('grid', function() {
     var columns = document.querySelectorAll('#grid .gridHead');
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
 
-    assert.strictEqual(columns.length, 5);
+    assert.strictEqual(columns.length, 7);
 
 
     Object.keys(columns).forEach(function(key,indexColumn) {
@@ -556,11 +641,10 @@ describe('grid', function() {
     Object.keys(rows).forEach(function(keyRow,indexRow) {
       var cells = rows[keyRow].querySelectorAll('.gridCell');
       Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date') {
-          assert.strictEqual(moment(cells[keyCell].querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
+        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
+          assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
           return;
         }
-        assert.equal(cells[keyCell].querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       });
     });
 
@@ -573,11 +657,10 @@ describe('grid', function() {
     Object.keys(rows).forEach(function(keyRow,indexRow) {
       var cells = rows[keyRow].querySelectorAll('.gridCell');
       Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date') {
-          assert.strictEqual(moment(cells[keyCell].querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
+        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
+          assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
           return;
         }
-        assert.equal(cells[keyCell].querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       });
     });
   }));
@@ -641,11 +724,6 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     assert.equal(cells[1].querySelector('atlui-grid-cell').innerText, 123);
-    assert.strictEqual(typeof gridComponent.index, 'number');
-    assert.strictEqual(typeof gridComponent.column, 'string');
-
-
-
   }));
 
   it('should render correct value when we modify content, type text', fakeAsync(() => {
@@ -677,8 +755,6 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     assert.equal(cells[2].querySelector('atlui-grid-cell').innerText, "test");
-    assert.strictEqual(typeof gridComponent.index, 'number');
-    assert.strictEqual(typeof gridComponent.column, 'string');
 
     cells[2].dispatchEvent(doubleClick);
     tick();
@@ -690,9 +766,6 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     assert.equal(cells[2].querySelector('atlui-grid-cell').innerText, "123");
-    assert.strictEqual(typeof gridComponent.index, 'number');
-    assert.strictEqual(typeof gridComponent.column, 'string');
-
   }));
 
   it('should render correct value when we modify content, type date', fakeAsync(() => {
@@ -704,52 +777,42 @@ describe('grid', function() {
 
     gridComponent = fixture.componentInstance;
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
+
     var cells = rows[0].querySelectorAll('.gridCell');
 
     var doubleClick = new Event("dblclick", { 'bubbles': true });
     doubleClick.shiftKey = true;
 
     cells[3].dispatchEvent(doubleClick);
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-    var input = document.querySelector('input');
-    var oldValue = input.value;
-    input.value = "123456789";
-    input.dispatchEvent(new Event('blur'));
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-    assert.strictEqual(input.value, "123456789");
 
-    var cancel = document.querySelector('.grid-label-error');
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var cancel = document.querySelector('.datepicker-label-remove');
     cancel.click();
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-    assert.equal(input.value, oldValue);
+    var input = document.querySelector('input');
 
     input.dispatchEvent(new Event('blur'));
     tick();
     fixture.detectChanges();
-    assert.equal(moment(cells[3].querySelector('atlui-grid-cell').innerText).toString(), moment(oldValue).toString());
+    assert.equal(cells[3].querySelector('atlui-grid-cell').innerText, moment("2012-10-10").format('L'));
+
 
     cells[3].dispatchEvent(doubleClick);
     tick();
     fixture.detectChanges();
-    input = document.querySelector('input');
-    input.value = "2003-03-03";
-    // allows to trigger onCellChange event
-    input.dispatchEvent(
-      new KeyboardEvent('keyup', { bubbles: true, cancelable: true, key: 'Enter' })
-    );
-    input.dispatchEvent(new Event('blur'));
-    fixture.detectChanges();
+    input = document.querySelector('.datepicker-date-input').querySelector('input');
+    input.click();
     tick();
     fixture.detectChanges();
-    assert.strictEqual(moment(cells[3].querySelector('atlui-grid-cell').innerText).toString(), moment("2003-03-03").toString());
-    assert.strictEqual(typeof gridComponent.index, 'number');
-    assert.strictEqual(typeof gridComponent.column, 'string');
+
+    var firstAvailable = document.querySelector('.available');
+    firstAvailable.click();
+
+    tick();
+    fixture.detectChanges();
+    assert.strictEqual(cells[3].querySelector('atlui-grid-cell').innerText, moment("2012-10-01").format('L'));
   }));
 
   it('should render correct value when we modify content, type boolean', fakeAsync(() => {
@@ -781,8 +844,6 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     assert.equal(cells[4].querySelector('atlui-grid-cell').innerText, true);
-    assert.strictEqual(typeof gridComponent.index, 'number');
-    assert.strictEqual(typeof gridComponent.column, 'string');
 
     cells[4].dispatchEvent(doubleClick);
     tick();
@@ -794,8 +855,6 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     assert.equal(cells[4].querySelector('atlui-grid-cell').innerText, true);
-    assert.strictEqual(typeof gridComponent.index, 'number');
-    assert.strictEqual(typeof gridComponent.column, 'string');
 
     cells[4].dispatchEvent(doubleClick);
     tick();
@@ -807,8 +866,6 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     assert.equal(cells[4].querySelector('atlui-grid-cell').innerText, false);
-    assert.strictEqual(typeof gridComponent.index, 'number');
-    assert.strictEqual(typeof gridComponent.column, 'string');
 
     cells[4].dispatchEvent(doubleClick);
     tick();
@@ -820,8 +877,5 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     assert.equal(cells[4].querySelector('atlui-grid-cell').innerText, false);
-    assert.strictEqual(typeof gridComponent.index, 'number');
-    assert.strictEqual(typeof gridComponent.column, 'string');
-
   }));
 });
