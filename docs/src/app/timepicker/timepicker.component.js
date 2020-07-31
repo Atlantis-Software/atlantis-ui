@@ -9,7 +9,7 @@ export default  class DatepickerComponent {
     ];
   }
   constructor(){
-    this.valueTimePicker = moment('13:20', 'kk:mm');
+    this.valueTimePicker = "13:20";
   }
 }
 

@@ -1,7 +1,8 @@
 
 <div class="input-group col-md-2">
   <div class="timepicker-date-input">
-    <input class="form-control hour timepicker-input" [ngModel]="display_time" type="text" (click)="open($event,'hour')" readonly/>
+    <input class="form-control hour timepicker-input" [ngModel]="time" type="text" (click)="open($event,'hour')" readonly/>
+    <label class="timepicker-label-remove" *ngIf="time" (click)="resetTime()"></label>
   </div>
 </div>
 
@@ -23,7 +24,7 @@
         </div>
 
         <span class="input-group-btn" *ngIf="hour_list && hour_list.length > 0">
-          <atlui-selectpicker name="selectPredefinedHour" [ngModel]="predefinedHour" (ngModelChange)="onChangeHour($event)">
+          <atlui-selectpicker name="selectPredefinedHour" [(ngModel)]="predefinedHour" (ngModelChange)="onChangeHour($event)">
             <atlui-selectpicker-option  [value]="null"></atlui-selectpicker-option>
             <atlui-selectpicker-option *ngFor="let _hour of hour_list" [value]="_hour">{{ _hour | number:'2.0' }}</atlui-selectpicker-option>
           </atlui-selectpicker>
@@ -38,7 +39,7 @@
           (keyup.enter)="closeAfterCheck($event)" (click)="focusMinute($event, inputminute, true)" (ngModelChange)="setMinute($event)">
         </div>
         <span class="input-group-btn" *ngIf="minute_list && minute_list.length > 0">
-          <atlui-selectpicker name="selectPredefinedMinute" [ngModel]="predefinedMinute" (ngModelChange)="onChangeMinute($event)">
+          <atlui-selectpicker name="selectPredefinedMinute" [(ngModel)]="predefinedMinute" (ngModelChange)="onChangeMinute($event)">
             <atlui-selectpicker-option  [innerHTML]="&nbsp;" [value]="null"></atlui-selectpicker-option>
             <atlui-selectpicker-option *ngFor="let _minute of minute_list" [value]="_minute">{{ _minute | number:'2.0' }}</atlui-selectpicker-option>
           </atlui-selectpicker>

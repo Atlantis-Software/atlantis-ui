@@ -72,17 +72,18 @@ export default class timepickerComponent {
     // setimeout to defer this code to another Javascript Virtual Machine turn
     setTimeout(() => {
       if (!this.time) {
-        this.time = moment();
+        this.time = moment().format("kk:mm");
         this.timeChange.emit(this.time);
       }
+      var time = moment(this.time, "h:mm");
       if (this.language === "en") {
-        this.hour = parseInt(this.time.format('hh'));
-        this.am_pm = this.time.format('A');
+        this.hour = parseInt(time.format('hh'));
+        this.am_pm = time.format('A');
       } else {
-        this.hour = parseInt(this.time.format('kk'));
+        this.hour = parseInt(time.format('kk'));
       }
 
-      this.minute = this.time.minute();
+      this.minute = parseInt(time.format('mm'));
       this.onChanges();
     });
   }
@@ -150,7 +151,7 @@ export default class timepickerComponent {
         string_time += " " + this.am_pm;
         format = "hh:mm A";
       }
-      this.time =  moment(string_time, format);
+      this.time =  moment(string_time, format).format("kk:mm");
       this.timeChange.emit(this.time);
       this.display_time = moment(string_time, format).format('LT');
     }
@@ -164,6 +165,8 @@ export default class timepickerComponent {
   }
 
   setNowTime() {
+    delete this.predefinedHour;
+    delete this.predefinedMinute;
     this.minute = moment().minute();
     if (this.language === "en") {
       this.hour = parseInt( moment().format('hh'));
@@ -203,6 +206,14 @@ export default class timepickerComponent {
     if (!end) {
       input.focus();
     }
+  }
+
+  resetTime() {
+    delete this.time;
+    delete this.hour;
+    delete this.predefinedHour;
+    delete this.minute;
+    delete this.predefinedMinute;
   }
 }
 
