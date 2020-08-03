@@ -24,7 +24,7 @@ class tabTestComponent {
         <button id="btnTabSelect" class="btn btn-default" (click)="onClick()">
           <i class="icon icon-check"></i>
         </button>
-        <atlui-tabs id="tabsExemple" [(selected)]="selectedTab" (onChange)="onChangeTab($event)">
+        <atlui-tabs id="tabsExample" [(selected)]="selectedTab" (onChange)="onChangeTab($event)">
           <atlui-tab-panel title="simple" id="tab1">
             <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p><button class="btn btn-default">My button</button>
           </atlui-tab-panel>
@@ -85,9 +85,9 @@ describe('tabs', function() {
   it('should render default value and available options', fakeAsync(function() {
     tick();
     fixture.detectChanges();
-    var tabsExemple = document.querySelector("#tabsExemple");
-    var navItem = tabsExemple.querySelectorAll('li');
-    var panels = tabsExemple.querySelectorAll('atlui-tab-panel');
+    var tabsExample = document.querySelector("#tabsExample");
+    var navItem = tabsExample.querySelectorAll('li');
+    var panels = tabsExample.querySelectorAll('atlui-tab-panel');
 
     assert.strictEqual(navItem.length, 4);
     assert.strictEqual(navItem[0].classList.contains("active"), true);
@@ -111,9 +111,9 @@ describe('tabs', function() {
     testComponent = fixture.componentInstance;
     tick();
     fixture.detectChanges();
-    var tabsExemple = document.querySelector("#tabsExemple");
-    var navItem = tabsExemple.querySelectorAll('a');
-    var panels = tabsExemple.querySelectorAll('atlui-tab-panel');
+    var tabsExample = document.querySelector("#tabsExample");
+    var navItem = tabsExample.querySelectorAll('a');
+    var panels = tabsExample.querySelectorAll('atlui-tab-panel');
     // select tab index 2 because by default tab with index 0 is selected
     navItem[2].click();
     tick();
@@ -137,8 +137,8 @@ describe('tabs', function() {
   it('should render selected tab programmatically', fakeAsync(function() {
     tick();
     fixture.detectChanges();
-    var tabsExemple = document.querySelector("#tabsExemple");
-    var panels = tabsExemple.querySelectorAll('atlui-tab-panel');
+    var tabsExample = document.querySelector("#tabsExample");
+    var panels = tabsExample.querySelectorAll('atlui-tab-panel');
     var btnTabSelect = document.querySelector("#btnTabSelect");
     btnTabSelect.click();
     tick();
