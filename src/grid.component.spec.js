@@ -107,7 +107,7 @@ class gridTestComponent {
         testText: "1",
         testDate: moment('2012-10-10').format("YYYY-MM-DD"),
         testBoolean: 0,
-        background_color: "red"
+        style: { 'background-color': 'red' }
       },
       {
         test: "2",
@@ -115,7 +115,7 @@ class gridTestComponent {
         testText: "5",
         testDate: moment('1970-01-01').format("YYYY-MM-DD"),
         testBoolean: 1,
-        color: "green"
+        style: { 'color': 'green' }
       },
       {
         test: "3",

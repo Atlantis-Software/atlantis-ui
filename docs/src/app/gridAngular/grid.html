@@ -333,7 +333,7 @@ this.originalRows = [
     testBoolean: 1
   },
   {
-    background_color: "#ee00ff",
+    style: { 'background-color': '#ee00ff' }
     test : "4",
     testNumber : 42,
     testText : "8",
@@ -341,7 +341,7 @@ this.originalRows = [
     testBoolean: 1
   },
   {
-    background_color: "red",
+    style: { 'background-color': 'red' }
     test : "5",
     testNumber : 27,
     testText : "4",
@@ -354,7 +354,7 @@ this.originalRows = [
     testText : "7",
     testDate : new Date('07/03/2015'),
     testBoolean: 0,
-    color: "green"
+    style: { 'color': 'green' }
   },
   {
     test : "7",
@@ -398,33 +398,16 @@ this.originalRows = [
     <tbody>
       <tr>
         <td>
-          background_color
+          style
         </td>
         <td>
-          string
+          object
         </td>
         <td>
-          color for exemple green or # format (#ee00ff)
+          style for exemple  : {{ '{' }}  'color': 'green' {{ '}' }}
         </td>
         <td>
-          background color of the row
-        </td>
-        <td>
-          Nothing
-        </td>
-      </tr>
-      <tr>
-        <td>
-          color
-        </td>
-        <td>
-          string
-        </td>
-        <td>
-          color for exemple green or # format (#ee00ff)
-        </td>
-        <td>
-          text color of the row
+          style of the row
         </td>
         <td>
           Nothing
