@@ -24,7 +24,7 @@ class tabTestComponent {
         <button id="btnTabSelect" class="btn btn-default" (click)="onClick()">
           <i class="icon icon-check"></i>
         </button>
-        <atlui-tabs id="tab1" [(selected)]="selectedTab">
+        <atlui-tabs id="tabsExemple" [(selected)]="selectedTab">
           <atlui-tab-panel title="simple" id="tab1">
             <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p><button class="btn btn-default">My button</button>
           </atlui-tab-panel>
