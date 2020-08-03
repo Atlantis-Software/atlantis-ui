@@ -55,10 +55,10 @@ class gridTestComponent {
     return [
       new Component({
         template: `
-        <atlui-grid id="grid" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
+        <atlui-grid id="grid" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" (onCellChange)="onModify($event)" [selected]="selection" (sort)="onSort($event)">
 
         </atlui-grid>
-        <atlui-grid [headerFixed]="headerFixed" id="templateHeader" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" [selected]="selection" (sort)="onSort($event)">
+        <atlui-grid [headerFixed]="headerFixed" id="templateHeader" class="table table-bordered" [multiple]="true" [columns]= "columns" [rows]= "rows" (selectedRows)="selectionTest($event)" (onCellChange)="onModify($event)" [selected]="selection" (sort)="onSort($event)">
           <ng-template atlui-grid-cell-header let-columnName>
             <span style="color:red;">{{columnName | uppercase}}</span>
           </ng-template>
@@ -169,6 +169,11 @@ class gridTestComponent {
     this.selection = row;
   }
 
+  onModify(cell) {
+    this.index = cell.index;
+    this.column = cell.column;
+  }
+
   onSort(sorting) {
     if (!sorting.length) {
       return this.rows = [...this.originalRows];
@@ -230,18 +235,19 @@ describe('grid', function() {
 
     assert.strictEqual(columns.length, 5);
 
-    columns.forEach((column, index) => {
-      assert.strictEqual(column.querySelector('span').innerText, gridComponent.columns[index].label);
+    Object.keys(columns).forEach(function(key,index) {
+
+      assert.strictEqual(columns[key].querySelector('span').innerText, gridComponent.columns[index].label);
     });
 
-    rows.forEach((row, indexRow) => {
-      var cells = row.querySelectorAll('.gridCell');
-      cells.forEach((cell, indexCell) => {
+    Object.keys(rows).forEach(function(key,indexRow) {
+      var cells = rows[key].querySelectorAll('.gridCell');
+      Object.keys(cells).forEach(function(keyCell,indexCell) {
         if (gridComponent.columns[indexCell].type === 'date') {
-          assert.strictEqual(moment(cell.querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
+          assert.strictEqual(moment(cells[keyCell].querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
           return;
         }
-        assert.equal(cell.querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
+        assert.equal(cells[keyCell].querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       });
     });
 
@@ -381,8 +387,9 @@ describe('grid', function() {
 
     assert.strictEqual(columns.length, 5);
 
-    columns.forEach((column, index) => {
-      assert.strictEqual(column.querySelector('span').innerText, gridComponent.columns[index].label);
+
+    Object.keys(columns).forEach(function(keyC,indexC) {
+      assert.strictEqual(columns[keyC].querySelector('span').innerText, gridComponent.columns[indexC].label);
     });
 
     columns[1].click();
@@ -391,14 +398,14 @@ describe('grid', function() {
 
     rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
 
-    rows.forEach((row, indexRow) => {
-      var cells = row.querySelectorAll('.gridCell');
-      cells.forEach((cell, indexCell) => {
+    Object.keys(rows).forEach(function(keyRow,indexRow) {
+      var cells = rows[keyRow].querySelectorAll('.gridCell');
+      Object.keys(cells).forEach(function(keyCell,indexCell) {
         if (gridComponent.columns[indexCell].type === 'date') {
-          assert.strictEqual(moment(cell.querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
+          assert.strictEqual(moment(cells[keyCell].querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
           return;
         }
-        assert.equal(cell.querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
+        assert.equal(cells[keyCell].querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       });
     });
 
@@ -407,15 +414,14 @@ describe('grid', function() {
     fixture.detectChanges();
 
     rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
-
-    rows.forEach((row, indexRow) => {
-      var cells = row.querySelectorAll('.gridCell');
-      cells.forEach((cell, indexCell) => {
+    Object.keys(rows).forEach(function(keyRow,indexRow) {
+      var cells = rows[keyRow].querySelectorAll('.gridCell');
+      Object.keys(cells).forEach(function(keyCell,indexCell) {
         if (gridComponent.columns[indexCell].type === 'date') {
-          assert.strictEqual(moment(cell.querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
+          assert.strictEqual(moment(cells[keyCell].querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
           return;
         }
-        assert.equal(cell.querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
+        assert.equal(cells[keyCell].querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       });
     });
   }));
@@ -433,8 +439,9 @@ describe('grid', function() {
 
     assert.strictEqual(columns.length, 5);
 
-    columns.forEach((column, index) => {
-      assert.strictEqual(column.querySelector('span').innerText, gridComponent.columns[index].label);
+
+    Object.keys(columns).forEach(function(key,indexColumn) {
+      assert.strictEqual(columns[key].querySelector('span').innerText, gridComponent.columns[indexColumn].label);
     });
 
     columns[1].click();
@@ -442,15 +449,14 @@ describe('grid', function() {
     fixture.detectChanges();
 
     rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
-
-    rows.forEach((row, indexRow) => {
-      var cells = row.querySelectorAll('.gridCell');
-      cells.forEach((cell, indexCell) => {
+    Object.keys(rows).forEach(function(keyRow,indexRow) {
+      var cells = rows[keyRow].querySelectorAll('.gridCell');
+      Object.keys(cells).forEach(function(keyCell,indexCell) {
         if (gridComponent.columns[indexCell].type === 'date') {
-          assert.strictEqual(moment(cell.querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
+          assert.strictEqual(moment(cells[keyCell].querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
           return;
         }
-        assert.equal(cell.querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
+        assert.equal(cells[keyCell].querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       });
     });
 
@@ -459,15 +465,14 @@ describe('grid', function() {
     fixture.detectChanges();
 
     rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
-
-    rows.forEach((row, indexRow) => {
-      var cells = row.querySelectorAll('.gridCell');
-      cells.forEach((cell, indexCell) => {
+    Object.keys(rows).forEach(function(keyRow,indexRow) {
+      var cells = rows[keyRow].querySelectorAll('.gridCell');
+      Object.keys(cells).forEach(function(keyCell,indexCell) {
         if (gridComponent.columns[indexCell].type === 'date') {
-          assert.strictEqual(moment(cell.querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
+          assert.strictEqual(moment(cells[keyCell].querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
           return;
         }
-        assert.equal(cell.querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
+        assert.equal(cells[keyCell].querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       });
     });
   }));
@@ -485,8 +490,8 @@ describe('grid', function() {
 
     assert.strictEqual(columns.length, 5);
 
-    columns.forEach((column, index) => {
-      assert.strictEqual(column.querySelector('span').innerText, gridComponent.columns[index].label);
+    Object.keys(columns).forEach(function(key,indexColumn) {
+      assert.strictEqual(columns[key].querySelector('span').innerText, gridComponent.columns[indexColumn].label);
     });
 
     columns[1].click();
@@ -495,14 +500,14 @@ describe('grid', function() {
 
     rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
 
-    rows.forEach((row, indexRow) => {
-      var cells = row.querySelectorAll('.gridCell');
-      cells.forEach((cell, indexCell) => {
+    Object.keys(rows).forEach(function(keyRow,indexRow) {
+      var cells = rows[keyRow].querySelectorAll('.gridCell');
+      Object.keys(cells).forEach(function(keyCell,indexCell) {
         if (gridComponent.columns[indexCell].type === 'date') {
-          assert.strictEqual(moment(cell.querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
+          assert.strictEqual(moment(cells[keyCell].querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
           return;
         }
-        assert.equal(cell.querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
+        assert.equal(cells[keyCell].querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       });
     });
 
@@ -512,14 +517,14 @@ describe('grid', function() {
 
     rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
 
-    rows.forEach((row, indexRow) => {
-      var cells = row.querySelectorAll('.gridCell');
-      cells.forEach((cell, indexCell) => {
+    Object.keys(rows).forEach(function(keyRow,indexRow) {
+      var cells = rows[keyRow].querySelectorAll('.gridCell');
+      Object.keys(cells).forEach(function(keyCell,indexCell) {
         if (gridComponent.columns[indexCell].type === 'date') {
-          assert.strictEqual(moment(cell.querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
+          assert.strictEqual(moment(cells[keyCell].querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
           return;
         }
-        assert.equal(cell.querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
+        assert.equal(cells[keyCell].querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       });
     });
   }));
@@ -537,8 +542,9 @@ describe('grid', function() {
 
     assert.strictEqual(columns.length, 5);
 
-    columns.forEach((column, index) => {
-      assert.strictEqual(column.querySelector('span').innerText, gridComponent.columns[index].label);
+
+    Object.keys(columns).forEach(function(key,indexColumn) {
+      assert.strictEqual(columns[key].querySelector('span').innerText, gridComponent.columns[indexColumn].label);
     });
 
     columns[1].click();
@@ -547,14 +553,14 @@ describe('grid', function() {
 
     rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
 
-    rows.forEach((row, indexRow) => {
-      var cells = row.querySelectorAll('.gridCell');
-      cells.forEach((cell, indexCell) => {
+    Object.keys(rows).forEach(function(keyRow,indexRow) {
+      var cells = rows[keyRow].querySelectorAll('.gridCell');
+      Object.keys(cells).forEach(function(keyCell,indexCell) {
         if (gridComponent.columns[indexCell].type === 'date') {
-          assert.strictEqual(moment(cell.querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
+          assert.strictEqual(moment(cells[keyCell].querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
           return;
         }
-        assert.equal(cell.querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
+        assert.equal(cells[keyCell].querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       });
     });
 
@@ -564,14 +570,14 @@ describe('grid', function() {
 
     rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
 
-    rows.forEach((row, indexRow) => {
-      var cells = row.querySelectorAll('.gridCell');
-      cells.forEach((cell, indexCell) => {
+    Object.keys(rows).forEach(function(keyRow,indexRow) {
+      var cells = rows[keyRow].querySelectorAll('.gridCell');
+      Object.keys(cells).forEach(function(keyCell,indexCell) {
         if (gridComponent.columns[indexCell].type === 'date') {
-          assert.strictEqual(moment(cell.querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
+          assert.strictEqual(moment(cells[keyCell].querySelector('atlui-grid-cell').innerText).toString(), moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).toString());
           return;
         }
-        assert.equal(cell.querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
+        assert.equal(cells[keyCell].querySelector('atlui-grid-cell').innerText, gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]);
       });
     });
   }));
@@ -596,7 +602,12 @@ describe('grid', function() {
     fixture.detectChanges();
     var input = document.querySelector('input');
     var oldValue = input.value;
+
     input.value = "test";
+    input.dispatchEvent(
+      new KeyboardEvent('keyup', { bubbles: true, cancelable: true, key: 'Enter' })
+    );
+
     input.dispatchEvent(new Event('blur'));
     fixture.detectChanges();
     tick();
@@ -620,11 +631,20 @@ describe('grid', function() {
     fixture.detectChanges();
     input = document.querySelector('input');
     input.value = 123;
+    //  allows to trigger onCellChange event
+    input.dispatchEvent(
+      new KeyboardEvent('keyup', { bubbles: true, cancelable: true, key: 'Enter' })
+    );
+
     input.dispatchEvent(new Event('blur'));
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
     assert.equal(cells[1].querySelector('atlui-grid-cell').innerText, 123);
+    assert.strictEqual(typeof gridComponent.index, 'number');
+    assert.strictEqual(typeof gridComponent.column, 'string');
+
+
 
   }));
 
@@ -648,11 +668,17 @@ describe('grid', function() {
     fixture.detectChanges();
     var input = document.querySelector('input');
     input.value = "test";
+    // allows to trigger onCellChange event
+    input.dispatchEvent(
+      new KeyboardEvent('keyup', { bubbles: true, cancelable: true, key: 'Enter' })
+    );
     input.dispatchEvent(new Event('blur'));
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
     assert.equal(cells[2].querySelector('atlui-grid-cell').innerText, "test");
+    assert.strictEqual(typeof gridComponent.index, 'number');
+    assert.strictEqual(typeof gridComponent.column, 'string');
 
     cells[2].dispatchEvent(doubleClick);
     tick();
@@ -664,6 +690,8 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     assert.equal(cells[2].querySelector('atlui-grid-cell').innerText, "123");
+    assert.strictEqual(typeof gridComponent.index, 'number');
+    assert.strictEqual(typeof gridComponent.column, 'string');
 
   }));
 
@@ -711,12 +739,17 @@ describe('grid', function() {
     fixture.detectChanges();
     input = document.querySelector('input');
     input.value = "2003-03-03";
+    // allows to trigger onCellChange event
+    input.dispatchEvent(
+      new KeyboardEvent('keyup', { bubbles: true, cancelable: true, key: 'Enter' })
+    );
     input.dispatchEvent(new Event('blur'));
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
     assert.strictEqual(moment(cells[3].querySelector('atlui-grid-cell').innerText).toString(), moment("2003-03-03").toString());
-
+    assert.strictEqual(typeof gridComponent.index, 'number');
+    assert.strictEqual(typeof gridComponent.column, 'string');
   }));
 
   it('should render correct value when we modify content, type boolean', fakeAsync(() => {
@@ -739,11 +772,17 @@ describe('grid', function() {
     fixture.detectChanges();
     var input = document.querySelector('input');
     input.value = "test";
+    // allows to trigger onCellChange event
+    input.dispatchEvent(
+      new KeyboardEvent('keyup', { bubbles: true, cancelable: true, key: 'Enter' })
+    );
     input.dispatchEvent(new Event('blur'));
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
     assert.equal(cells[4].querySelector('atlui-grid-cell').innerText, true);
+    assert.strictEqual(typeof gridComponent.index, 'number');
+    assert.strictEqual(typeof gridComponent.column, 'string');
 
     cells[4].dispatchEvent(doubleClick);
     tick();
@@ -755,6 +794,8 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     assert.equal(cells[4].querySelector('atlui-grid-cell').innerText, true);
+    assert.strictEqual(typeof gridComponent.index, 'number');
+    assert.strictEqual(typeof gridComponent.column, 'string');
 
     cells[4].dispatchEvent(doubleClick);
     tick();
@@ -766,6 +807,8 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     assert.equal(cells[4].querySelector('atlui-grid-cell').innerText, false);
+    assert.strictEqual(typeof gridComponent.index, 'number');
+    assert.strictEqual(typeof gridComponent.column, 'string');
 
     cells[4].dispatchEvent(doubleClick);
     tick();
@@ -777,6 +820,8 @@ describe('grid', function() {
     tick();
     fixture.detectChanges();
     assert.equal(cells[4].querySelector('atlui-grid-cell').innerText, false);
+    assert.strictEqual(typeof gridComponent.index, 'number');
+    assert.strictEqual(typeof gridComponent.column, 'string');
 
   }));
 });

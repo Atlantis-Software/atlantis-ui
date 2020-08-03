@@ -11,7 +11,7 @@ export default class tabsComponent {
           tabpanels: new ContentChildren(tabpanelDirective)
         },
         inputs: ['height', 'selected'],
-        outputs: ["selectedChange"]
+        outputs: ["selectedChange", "onChange"]
       })
     ];
   }
@@ -23,43 +23,50 @@ export default class tabsComponent {
     // input value
     // output valueChange for the two way data binding works
     this.selectedChange = new EventEmitter();
+    this.onChange = new EventEmitter();
+  }
+
+  // function when we select a tab.
+  select(tabpanelId) {
+    let selectedpanel = this._getPanelById(tabpanelId);
+    if (selectedpanel && !selectedpanel.disabled && this.activeId !== selectedpanel.id) {
+      this.tabpanels.forEach((panel)=>{
+        panel.active = false;
+      });
+      this.activeId = tabpanelId;
+      selectedpanel.active = true;
+      this.selected = selectedpanel;
+      this.onChange.emit(selectedpanel);
+    }
   }
   // execute when a property of the input is modified ( height or selected )
   ngOnChanges(changes) {
     if (changes.selected && changes.selected.currentValue) {
       let tabSelected = this._getPanelSelected(changes.selected.currentValue);
-      if (tabSelected) {
-        this.select(tabSelected);
+      if (tabSelected && tabSelected.id) {
+        this.select(tabSelected.id);
       }
     }
   }
 
-  select(tab) {
-    if (!tab.disabled && !tab.active) {
-      this.tabpanels.forEach((panel)=>{
-        panel.active = false;
-      });
-      tab.active = true;
-      // get the index of the selected tab
-      if (this.tabpanels && this.tabpanels._results) {
-        this.selected = this.tabpanels._results.findIndex(tab => tab.active === true);
-      }
-    }
-  }
-
+  // Define the default panel active
   ngAfterContentChecked() {
-    // if not tab selected by default tab with index 0 is selected
-    var index = this.selected || 0;
-    var tabSelected = this._getPanelSelected(index);
-    if (tabSelected) {
-      tabSelected.active = true;
-    }
+    let activePanel = this._getPanelById(this.activeId);
+    this.activeId = activePanel ? activePanel.id : ( this.tabpanels.length ? this.tabpanels.first.id : null);
+    activePanel = this._getPanelById(this.activeId);
+    activePanel.active = true;
   }
 
   _getPanelSelected(index) {
     if (this.tabpanels && this.tabpanels._results && this.tabpanels._results[index]) {
       return this.tabpanels._results[index];
     }
+  }
+
+
+  _getPanelById(id) {
+    let tabpanelsWithId = this.tabpanels.filter( panel=> panel.id === id);
+    return tabpanelsWithId.length ? tabpanelsWithId[0] : null;
   }
 
 }

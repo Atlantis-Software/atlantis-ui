@@ -90,9 +90,9 @@
   </textarea>
 
   <h3>
-    Define size
+    Define size and event on change tab
   </h3>
-  <atlui-tabs [height]="'100px'">
+  <atlui-tabs [height]="'100px'" (onChange)="onChangeTab($event)">
     <atlui-tab-panel [title]="'simple'">
       <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
       master cleanse.</p>
@@ -107,12 +107,13 @@
     </atlui-tab-panel>
   </atlui-tabs>
   <textarea class="atlui-code">
-<atlui-tabs [height]="'200px'">
+<atlui-tabs [height]="'200px'" (onChange)="onChangeTab($event)">
   ...
 </atlui-tabs>
   </textarea>
-  <p>
+  <pre>
     By default the height will be 150px
+<<<<<<< HEAD
   </p>
   <h3>
     Select tab programmatically
@@ -141,4 +142,14 @@
     You have to specify the value of seleted with the index of the tab you want to select.
     In the exemple the tab oversize will be selected
   </p>
+=======
+    onChangeTab($event) : event is the selected tab
+    {{ '{' }}
+      headerTemplate : undefined,
+      id : "atlui-tab-panel-7",
+      title : "simple",
+      _active : true
+   {{ '}' }}
+  </pre>
+>>>>>>> e5366b5c341aab9496943830e4d60cc6999a29c0
 </div>

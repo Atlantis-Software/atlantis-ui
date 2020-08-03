@@ -24,7 +24,7 @@ class tabTestComponent {
         <button id="btnTabSelect" class="btn btn-default" (click)="onClick()">
           <i class="icon icon-check"></i>
         </button>
-        <atlui-tabs id="tabsExemple" [(selected)]="selectedTab">
+        <atlui-tabs id="tabsExemple" [(selected)]="selectedTab" (onChange)="onChangeTab($event)">
           <atlui-tab-panel title="simple" id="tab1">
             <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p><button class="btn btn-default">My button</button>
           </atlui-tab-panel>
@@ -58,10 +58,16 @@ class tabTestComponent {
       })
     ];
   }
+  onChangeTab(selectedpanel) {
+    if (selectedpanel && selectedpanel.title) {
+      this.title = selectedpanel.title;
+    }
+  }
 }
 
 describe('tabs', function() {
   var fixture;
+  var testComponent;
   beforeEach(async(function() {
     TestBed.configureTestingModule({
       imports: [CommonModule, FormsModule],
@@ -79,9 +85,9 @@ describe('tabs', function() {
   it('should render default value and available options', fakeAsync(function() {
     tick();
     fixture.detectChanges();
-    var tab1 = document.querySelector("#tab1");
-    var navItem = tab1.querySelectorAll('li');
-    var panels = tab1.querySelectorAll('atlui-tab-panel');
+    var tabsExemple = document.querySelector("#tabsExemple");
+    var navItem = tabsExemple.querySelectorAll('li');
+    var panels = tabsExemple.querySelectorAll('atlui-tab-panel');
 
     assert.strictEqual(navItem.length, 4);
     assert.strictEqual(navItem[0].classList.contains("active"), true);
@@ -102,19 +108,22 @@ describe('tabs', function() {
   }));
 
   it('should render selected tab', fakeAsync(function() {
+    testComponent = fixture.componentInstance;
     tick();
     fixture.detectChanges();
-    var tab1 = document.querySelector("#tab1");
-    var navItem = tab1.querySelectorAll('a');
-    var panels = tab1.querySelectorAll('atlui-tab-panel');
-    navItem[1].click();
+    var tabsExemple = document.querySelector("#tabsExemple");
+    var navItem = tabsExemple.querySelectorAll('a');
+    var panels = tabsExemple.querySelectorAll('atlui-tab-panel');
+    // select tab index 2 because by default tab with index 0 is selected
+    navItem[2].click();
     tick();
     fixture.detectChanges();
     assert.strictEqual(panels.length, 4);
     assert.strictEqual(panels[0].classList.contains("active"), false);
-    assert.strictEqual(panels[1].classList.contains("active"), true);
-    assert.strictEqual(panels[2].classList.contains("active"), false);
+    assert.strictEqual(panels[1].classList.contains("active"), false);
+    assert.strictEqual(panels[2].classList.contains("active"), true);
     assert.strictEqual(panels[3].classList.contains("active"), false);
+    assert.strictEqual(testComponent.title, "Title simple");
   }));
 
   it('should render correct size', fakeAsync(function() {
@@ -128,8 +137,8 @@ describe('tabs', function() {
   it('should render selected tab programmatically', fakeAsync(function() {
     tick();
     fixture.detectChanges();
-    var tab1 = document.querySelector("#tab1");
-    var panels = tab1.querySelectorAll('atlui-tab-panel');
+    var tabsExemple = document.querySelector("#tabsExemple");
+    var panels = tabsExemple.querySelectorAll('atlui-tab-panel');
     var btnTabSelect = document.querySelector("#btnTabSelect");
     btnTabSelect.click();
     tick();
@@ -140,6 +149,4 @@ describe('tabs', function() {
     assert.strictEqual(panels[2].classList.contains("active"), true);
     assert.strictEqual(panels[3].classList.contains("active"), false);
   }));
-
-
 });

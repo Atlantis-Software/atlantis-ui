@@ -6,7 +6,8 @@ import {
   SkipSelf,
   Inject,
   ViewChildren,
-  KeyValueDiffers
+  KeyValueDiffers,
+  ChangeDetectorRef
 } from '@angular/core';
 
 import { Subject } from 'rxjs/Subject';
@@ -17,11 +18,11 @@ export default class treeNodeComponent {
       new Component({
         selector: 'atlui-tree-node',
         template: require('./tree-node.html'),
-        inputs: ['node', 'label', 'model', 'children', 'expanded', 'selectable', 'disabled',
+        inputs: ['node', 'label', 'model', 'children', 'expanded', 'selectable', 'indeterminate', 'disabled',
           'template', 'depth', 'selected', 'sortableZones', 'nestedSortable', 'isSortable', 'loading',
           'nodeSelected', 'plugins'
         ],
-        outputs: ['onExpand', 'onCollapse', 'check', 'selectedChange', 'expandedChange', 'onClickNode'],
+        outputs: ['onExpand', 'onCollapse', 'check', 'selectedChange', 'expandedChange', 'indeterminateChange', 'onClickNode'],
         host: {
           '[class.selectable]': 'selectable'
         },
@@ -31,12 +32,13 @@ export default class treeNodeComponent {
       })
     ];
   }
-  constructor(ElementRef, treeNodeComponent, differs) {
+  constructor(ElementRef, treeNodeComponent, differs, changeDetectorRef) {
     this.elementRef = ElementRef;
     this.onExpand = new EventEmitter();
     this.onCollapse = new EventEmitter();
     this.check = new EventEmitter();
     this.selectedChange = new EventEmitter();
+    this.indeterminateChange = new EventEmitter();
     this.expandedChange = new EventEmitter();
     this.onClickNode = new EventEmitter();
     this.indeterminate = false;
@@ -45,6 +47,7 @@ export default class treeNodeComponent {
     this.selected = false;
     this.differ = differs.find({}).create(null);
     this.change = new Subject();
+    this.cdr = changeDetectorRef;
   }
 
   // emit the node where we click
@@ -62,11 +65,18 @@ export default class treeNodeComponent {
     }
   }
 
-  // verify if a changment occurs on a node and send to plugins the change
+  ngOnInit() {
+    // if not we have a error
+    this.updateParents();
+  }
+
+// verify if a changment occurs on a node and send to plugins the change
   ngDoCheck() {
-    var changes = this.differ.diff(this.node);
-    if (changes) {
-      this.change.next();
+    var changesNode = this.differ.diff(this.node);
+    if (changesNode) {
+      changesNode.forEachChangedItem((record) => this.changeNode());
+      changesNode.forEachAddedItem((record) => this.changeNode());
+      changesNode.forEachRemovedItem((record) => this.changeNode());
     }
   }
 
@@ -110,8 +120,7 @@ export default class treeNodeComponent {
     return this.elementRef.nativeElement.querySelector('input[type="checkbox"]') || {};
   }
 
-  ngOnChanges() {
-
+  changeNode() {
     if (this.selectable !== true && this.selectable !== false) {
       this.selectable = true;
     }
@@ -133,26 +142,69 @@ export default class treeNodeComponent {
       return;
     }
 
-    if (!this.parent || this.parent.indeterminate) {
-      return;
-    }
-
-
-
-    var checkbox = this._getCheckbox();
-
-    this.indeterminate = false;
-    checkbox.indeterminate = false;
-
-    //if this tree-node have children we change their value selected with this value selected
     if (this.children) {
+      // we select or deselect all children if the parent is checked or unchecked
       this.children.forEach((child) => {
         if (!child.disabled && !child.selectable) {
-          child.selected = this.selected;
+          child.selected = this.selected || false;
         }
       });
     }
-    this.selectedChange.emit(this.selected);
+    this.updateParents();
+  }
+
+  updateParents() {
+    var self = this;
+    (function updateParent(indeterminate = self.indeterminate, parent = self.parent) {
+      var nbChildrenChecked = 0;
+      if (parent && parent.children && parent.children.length > 0) {
+        parent.children.forEach((child) => {
+          if (child.selected) {
+            nbChildrenChecked++;
+          }
+        });
+        // case no child checked
+        if (nbChildrenChecked === 0) {
+          // if current node is indeterminate => parent is also indeterminate
+          if (indeterminate) {
+            parent.indeterminate = true;
+            parent.node.indeterminate = true;
+          } else {
+            parent.indeterminate = false;
+            parent.node.indeterminate = false;
+          }
+          // parent is not checked
+          parent.selected = false;
+          parent.node.selected = false;
+        } else {   // case all children checked => parent is checked
+          if (nbChildrenChecked === parent.children.length) {
+            parent.indeterminate = false;
+            parent.node.indeterminate = false;
+            parent.selected = true;
+            parent.node.selected = true;
+          } else { // case somme children are checked but not all => parent is indeterminate
+            parent.selected = false;
+            parent.node.selected = false;
+            parent.indeterminate = true;
+            parent.node.indeterminate = true;
+          }
+        }
+        // if parent in node parent => update parent
+        if (parent.parent) {
+          updateParent(parent.indeterminate, parent.parent);
+        }
+
+      }
+    }());
+  }
+  ngAfterViewChecked() {
+    // if not we have a error => detect change
+    var changesNode = this.differ.diff(this.node);
+    if (changesNode) {
+      changesNode.forEachChangedItem(() =>  this.cdr.detectChanges());
+      changesNode.forEachAddedItem(() =>  this.cdr.detectChanges());
+      changesNode.forEachRemovedItem(() =>  this.cdr.detectChanges());
+    }
   }
 
   ngAfterViewInit() {
@@ -163,6 +215,7 @@ export default class treeNodeComponent {
       });
     });
   }
+
 
   //callback for click on expand icon
   ExpandClick() {
@@ -185,83 +238,15 @@ export default class treeNodeComponent {
 
   }
 
-  //Callback for click on checkbox
   onClick() {
-    var self = this;
     if (this.disabled) {
       return;
     }
     this.selected = !this.selected;
+    this.selectedChange.emit(this.selected);
     this.indeterminate = false;
-
-    var recursiveSetDropZones = function(node) {
-      node.selected = self.selected || false;
-      if (node.children) {
-        node.children.forEach(function(child) {
-          recursiveSetDropZones(child);
-        });
-      }
-    };
-    if (this.children) {
-      this.children.forEach((child) => {
-        if (!child.disabled && !child.selectable) {
-          recursiveSetDropZones(child);
-        }
-      });
-    }
-    this.selectedChange.emit(this.selected);
-    this.check.emit(this.node);
-  }
-
-  //function call when a children selected value has changed
-  onCheck(node) {
-    if (this.disabled) {
-      return;
-    }
-    var checkbox = this._getCheckbox();
-    var nbSelected = 0;
-    var isIndeterminate = false;
-    var childIsSelected = false;
-
-    this.nodeChildren.forEach((child) => {
-      if (child.selected) {
-        ++nbSelected;
-        childIsSelected = true;
-      }
-      if (child.disabled) {
-        ++nbSelected;
-      }
-      if (child.indeterminate) {
-        isIndeterminate = true;
-      }
-    });
-
-    if (!childIsSelected) {
-      nbSelected = 0;
-    }
-
-    //that define if this tree-node is checked, not checked or indeterminate
-    if (isIndeterminate) {
-      this.selected = false;
-      checkbox.indeterminate = true;
-      this.indeterminate = true;
-    } else if (!nbSelected) {
-      this.selected = false;
-      checkbox.indeterminate = false;
-      this.indeterminate = false;
-    } else if (nbSelected === this.nodeChildren.length) {
-      this.selected = true;
-      checkbox.indeterminate = false;
-      this.indeterminate = false;
-    } else {
-      this.selected = false;
-      checkbox.indeterminate = true;
-      this.indeterminate = true;
-    }
-
-    this.selectedChange.emit(this.selected);
-    this.check.emit(node);
+    this.indeterminateChange.emit(this.indeterminate);
   }
 }
 
-treeNodeComponent.parameters = [ElementRef, [new Optional(), new SkipSelf(), new Inject(treeNodeComponent)], KeyValueDiffers];
+treeNodeComponent.parameters = [ElementRef, [new Optional(), new SkipSelf(), new Inject(treeNodeComponent)], KeyValueDiffers, ChangeDetectorRef];

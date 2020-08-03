@@ -725,6 +725,19 @@ this.nodesWithParameters = [
     </div>
   </div>
   <br>
+  <div class="row">
+    <div class="col-md-2">
+      <button class="btn btn-default" (click)="checkBox()">
+        <i class="icon icon-check"></i>check checkbox
+      </button>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-default" (click)="unCheckBox()">
+        <i class="icon icon-check"></i>uncheck checkbox
+      </button>
+    </div>
+  </div>
+  <br />
   <textarea class="atlui-code">
     <atlui-tree [plugins]="['checkbox']" (onChecked)="checkedCallback($event)" (onUnchecked)="uncheckedCallback($event)" (onExpand)="expandCallback($event)" (onCollapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesWithLazyLoading" [selection]="selection"></atlui-tree>
   </textarea>
