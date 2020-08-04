@@ -8,6 +8,8 @@ import pagination from './pagination.component.js';
 import datepickerComponent from './datepicker.component.js';
 import datepickerrangeComponent from './datepicker-range.component.js';
 
+import timepickerComponent from './timepicker.component.js';
+
 import selectpickerComponent from './selectpicker.component.js';
 import selectpickeroptionComponent from './selectpicker-option.component.js';
 
@@ -153,7 +155,7 @@ export class AtlantisUiModule {
 AtlantisUiModule.annotations = [
   new NgModule({
     imports: [CommonModule, FormsModule],
-    declarations: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent,
+    declarations: [pagination, datepickerComponent, datepickerrangeComponent, timepickerComponent, selectpickerComponent,
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective, indeterminateDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
       carouselItemComponent, accordionComponent, accordionPanelComponent, accordionPanelHeaderDirective, dropdownComponent, dropdownOptionComponent,
@@ -167,7 +169,7 @@ AtlantisUiModule.annotations = [
       inputFileDirective, editorComponent, blockquote, bold, createLink, format, foreColor, indent, insertImage, insertOrderedList, insertUnorderedList,
       italic, justifyLeft, justifyRight, justifyCenter, justifyFull, outdent, redo, removeFormat, selectAll,
       strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName, tabComponent, tabpanelDirective, tabPanelHeaderDirective, safeHtmlPipe],
-    exports: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent,
+    exports: [pagination, datepickerComponent, datepickerrangeComponent, timepickerComponent, selectpickerComponent,
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective, indeterminateDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
       carouselItemComponent, accordionComponent, accordionPanelComponent, accordionPanelHeaderDirective, dropdownComponent, dropdownOptionComponent,
