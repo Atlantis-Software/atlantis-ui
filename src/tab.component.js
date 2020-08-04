@@ -1,4 +1,4 @@
-import { Component, ContentChildren, ElementRef, EventEmitter } from '@angular/core';
+import { Component, ContentChildren, ElementRef, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { tabpanelDirective } from './tab-panel.component.js';
 
 export default class tabsComponent {
@@ -11,19 +11,19 @@ export default class tabsComponent {
           tabpanels: new ContentChildren(tabpanelDirective)
         },
         inputs: ['height', 'selected'],
-        outputs: ["selectedChange", "onChange"]
+        outputs: ["selectedChange"]
       })
     ];
   }
 
-  constructor(ElementRef) {
+  constructor(ElementRef, changeDetectorRef) {
     this.activeId = 0;
     this.height = "150px";
     this.elementRef = ElementRef;
+    this.cdr = changeDetectorRef;
     // input value
     // output valueChange for the two way data binding works
     this.selectedChange = new EventEmitter();
-    this.onChange = new EventEmitter();
   }
 
   // function when we select a tab.
@@ -35,17 +35,21 @@ export default class tabsComponent {
       });
       this.activeId = tabpanelId;
       selectedpanel.active = true;
-      this.selected = selectedpanel;
-      this.onChange.emit(selectedpanel);
+      this.selected = tabpanelId;
+      this.cdr.detectChanges();
+      this.selectedChange.emit(selectedpanel.id);
     }
+  }
+
+  ngAfterViewChecked()
+  {
+    this.cdr.detectChanges();
   }
   // execute when a property of the input is modified ( height or selected )
   ngOnChanges(changes) {
     if (changes.selected && changes.selected.currentValue) {
-      let tabSelected = this._getPanelSelected(changes.selected.currentValue);
-      if (tabSelected && tabSelected.id) {
-        this.select(tabSelected.id);
-      }
+      let id = changes.selected.currentValue;
+      this.select(id);
     }
   }
 
@@ -57,18 +61,11 @@ export default class tabsComponent {
     activePanel.active = true;
   }
 
-  _getPanelSelected(index) {
-    if (this.tabpanels && this.tabpanels._results && this.tabpanels._results[index]) {
-      return this.tabpanels._results[index];
-    }
-  }
-
-
   _getPanelById(id) {
-    let tabpanelsWithId = this.tabpanels.filter( panel=> panel.id === id);
-    return tabpanelsWithId.length ? tabpanelsWithId[0] : null;
+    let tabpanelsWithId = this.tabpanels.find( panel=> panel.id === id);
+    return tabpanelsWithId;
   }
 
 }
 
-tabsComponent.parameters = [ElementRef];
+tabsComponent.parameters = [ElementRef, ChangeDetectorRef];

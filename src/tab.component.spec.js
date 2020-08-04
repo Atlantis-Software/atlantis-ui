@@ -15,7 +15,7 @@ class tabTestComponent {
   }
   onClick() {
     // selection du tab3
-    this.selectedTab = 2;
+    this.selectedTab = "tab2";
   }
   static get annotations() {
     return [
@@ -24,7 +24,7 @@ class tabTestComponent {
         <button id="btnTabSelect" class="btn btn-default" (click)="onClick()">
           <i class="icon icon-check"></i>
         </button>
-        <atlui-tabs id="tabsExample" [(selected)]="selectedTab" (onChange)="onChangeTab($event)">
+        <atlui-tabs id="tabsExample" [(selected)]="selectedTab" (selectedChange)="onChangeTab($event)">
           <atlui-tab-panel title="simple" id="tab1">
             <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p><button class="btn btn-default">My button</button>
           </atlui-tab-panel>
@@ -58,7 +58,8 @@ class tabTestComponent {
       })
     ];
   }
-  onChangeTab(selectedpanel) {
+  onChangeTab(selectedpanelID) {
+    var selectedpanel = document.querySelector("#"+ selectedpanelID);
     if (selectedpanel && selectedpanel.title) {
       this.title = selectedpanel.title;
     }
@@ -145,8 +146,8 @@ describe('tabs', function() {
     fixture.detectChanges();
     assert.strictEqual(panels.length, 4);
     assert.strictEqual(panels[0].classList.contains("active"), false);
-    assert.strictEqual(panels[1].classList.contains("active"), false);
-    assert.strictEqual(panels[2].classList.contains("active"), true);
+    assert.strictEqual(panels[1].classList.contains("active"), true);
+    assert.strictEqual(panels[2].classList.contains("active"), false);
     assert.strictEqual(panels[3].classList.contains("active"), false);
   }));
 });
