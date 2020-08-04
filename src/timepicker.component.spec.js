@@ -10,7 +10,7 @@ var assert = require('assert');
 
 class timepickerTestEsComponent {
   constructor() {
-    this.testTime = moment('13:20', 'kk:mm');
+    this.testTime = '13:20';
     this.noTime;
   }
   static get annotations() {
@@ -27,7 +27,7 @@ class timepickerTestEsComponent {
 
 class timepickerTestEnComponent {
   constructor() {
-    this.testTime = moment('13:20', 'hh:mm');
+    this.testTime = '13:20';
     this.noTime;
   }
   static get annotations() {
@@ -63,8 +63,8 @@ describe('timepicker', function() {
     fixture.detectChanges();
     var timepicker = document.querySelector('#data');
     var timepicker2 = document.querySelector('#data2');
-    assert.strictEqual(timepicker.textContent.toString(), moment('13:20', 'kk:mm').toString());
-    assert.strictEqual(moment(timepicker2.textContent).format('kk:mm').toString(), moment().format('kk:mm').toString());
+    assert.strictEqual(timepicker.textContent,  moment('13:20', 'kk:mm').format('kk:mm'));
+    assert.strictEqual(timepicker2.textContent, moment().format('kk:mm'));
   }));
 
   it('should render default values local en', fakeAsync(function() {
@@ -74,8 +74,8 @@ describe('timepicker', function() {
     fixture.detectChanges();
     var timepicker = document.querySelector('#data');
     var timepicker2 = document.querySelector('#data2');
-    assert.strictEqual(timepicker.textContent.toString(), moment('13:20', 'kk:mm').toString());
-    assert.strictEqual(moment(timepicker2.textContent).format('kk:mm').toString(), moment().format('kk:mm').toString());
+    assert.strictEqual(timepicker.textContent, moment('13:20', 'kk:mm').format('kk:mm'));
+    assert.strictEqual(timepicker2.textContent, moment().format('kk:mm'));
   }));
 
   it('should render correct values into input timepicker modal local es', fakeAsync(function() {
@@ -211,7 +211,7 @@ describe('timepicker', function() {
 
     var timepicker = document.querySelector('#data');
 
-    assert.strictEqual(timepicker.textContent, moment('09:09', 'kk:mm').toString());
+    assert.strictEqual(timepicker.textContent,  moment('09:09', 'kk:mm').format('kk:mm'));
   }));
 
   it('should render new value when select new time in local en', fakeAsync(function() {
@@ -245,7 +245,7 @@ describe('timepicker', function() {
     fixture.detectChanges();
 
     var timepicker = document.querySelector('#data');
-    assert.strictEqual(timepicker.textContent, moment('20:11', 'kk:mm').toString());
+    assert.strictEqual(timepicker.textContent, moment('20:11', 'kk:mm').format('kk:mm'));
   }));
 
 
@@ -272,7 +272,7 @@ describe('timepicker', function() {
     fixture.detectChanges();
 
     var timepicker = document.querySelector('#data');
-    assert.strictEqual(timepicker.textContent, moment('08:11', 'kk:mm').toString());
+    assert.strictEqual(timepicker.textContent, moment('08:11', 'kk:mm').format('kk:mm'));
   }));
 
   it('should render time now when click on now button', fakeAsync(function() {
@@ -291,6 +291,6 @@ describe('timepicker', function() {
     fixture.detectChanges();
 
     var timepicker = document.querySelector('#data');
-    assert.strictEqual(moment(timepicker.textContent).format('kk:mm').toString(), moment().format('kk:mm').toString());
+    assert.strictEqual(timepicker.textContent, moment().format('kk:mm'));
   }));
 });
