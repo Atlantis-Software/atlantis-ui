@@ -90,9 +90,9 @@
   </textarea>
 
   <h3>
-    Define size and event on change tab
+    Define size
   </h3>
-  <atlui-tabs [height]="'100px'" (onChange)="onChangeTab($event)">
+  <atlui-tabs [height]="'100px'">
     <atlui-tab-panel [title]="'simple'">
       <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
       master cleanse.</p>
@@ -107,30 +107,20 @@
     </atlui-tab-panel>
   </atlui-tabs>
   <textarea class="atlui-code">
-<atlui-tabs [height]="'200px'" (onChange)="onChangeTab($event)">
+<atlui-tabs [height]="'200px'">
   ...
 </atlui-tabs>
   </textarea>
-  <pre>
-    By default the height will be 150px
-      onChangeTab($event) : event is the selected tab
-      {{ '{' }}
-        headerTemplate : undefined,
-        id : "atlui-tab-panel-7",
-        title : "simple",
-        _active : true
-      {{ '}' }}
-  </pre>
   </p>
   <h3>
     Select tab programmatically
   </h3>
   <atlui-tabs [(selected)]="selectedTab">
-    <atlui-tab-panel [title]="'simple'">
+    <atlui-tab-panel [title]="'simple'" id="tabSimple">
       <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
       master cleanse.</p>
     </atlui-tab-panel>
-    <atlui-tab-panel [title]="'Oversize'">
+    <atlui-tab-panel [title]="'Oversize'" id="tabOversize">
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
          when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -140,7 +130,10 @@
     </atlui-tab-panel>
   </atlui-tabs>
   <textarea class="atlui-code">
-    this.selectedTab = 1;
+    ngAfterViewChecked() {
+      this.selectedTab = "tabOversize";
+      this.cdr.detectChanges();
+    }
     <atlui-tabs [(selected)]="selectedTab">
     ...
     </atlui-tabs>

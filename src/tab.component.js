@@ -1,6 +1,8 @@
 import { Component, ContentChildren, ElementRef, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { tabpanelDirective } from './tab-panel.component.js';
 
+var _ = require('lodash');
+
 export default class tabsComponent {
   static get annotations() {
     return [
@@ -62,8 +64,10 @@ export default class tabsComponent {
   }
 
   _getPanelById(id) {
-    let tabpanelsWithId = this.tabpanels.find( panel=> panel.id === id);
-    return tabpanelsWithId;
+    if (this.tabpanels) {
+      let tabpanelsWithId = _.find(this.tabpanels._results, function(panel) { return panel.id === id; });
+      return tabpanelsWithId;
+    }
   }
 
 }

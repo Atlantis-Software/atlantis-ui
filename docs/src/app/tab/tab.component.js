@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ChangeDetectorRef} from '@angular/core';
 
 export default  class TabComponent {
   static get annotations() {
@@ -8,11 +8,15 @@ export default  class TabComponent {
       })
     ];
   }
-  constructor(){
-    this.selectedTab = 1;
+
+  constructor(changeDetectorRef) {
+    this.cdr = changeDetectorRef;
   }
 
-  onChangeTab(selectedpanel) {
-    this.selectedpanel = selectedpanel;
+  ngAfterViewChecked() {
+    this.selectedTab = "tabOversize";
+    this.cdr.detectChanges();
   }
 }
+
+TabComponent.parameters = [ChangeDetectorRef];
