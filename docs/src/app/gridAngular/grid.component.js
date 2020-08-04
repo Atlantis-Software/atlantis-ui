@@ -125,6 +125,7 @@ export default  class GridAngularComponent {
         testBoolean: 1
       },
       {
+        style: { 'background-color': '#ee00ff' },
         test : "4",
         testNumber : 42,
         testText : "8",
@@ -132,6 +133,7 @@ export default  class GridAngularComponent {
         testBoolean: 1
       },
       {
+        style: { 'background-color': 'red' },
         test : "5",
         testNumber : 27,
         testText : "4",
@@ -143,7 +145,8 @@ export default  class GridAngularComponent {
         testNumber : 3,
         testText : "7",
         testDate : new Date('07/03/2015'),
-        testBoolean: 0
+        testBoolean: 0,
+        style: { 'color': 'green' }
       },
       {
         test : "7",
