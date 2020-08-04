@@ -14,6 +14,7 @@ export default class gridBodyComponent {
         <div class="gridRow"
           *ngFor="let row of rows; let i = index"
           (click)="!changingCellContent && selectRow(row, $event, i)"
+          [ngStyle]="row.style"
           [class.active]='!changingCellContent && selected.includes(row)'>
           <div class="gridCell"
             *ngFor="let column of columns; let y = index"
