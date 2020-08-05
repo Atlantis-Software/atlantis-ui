@@ -37,6 +37,7 @@ export default  class GridAngularComponent {
         test1Date : new Date(),
       },
       {
+        style: { 'background-color': '#ee00ff' },
         test : "4",
         testNumber : 42,
         testText : "8",
@@ -45,6 +46,7 @@ export default  class GridAngularComponent {
         test1Date : new Date('05/09/2005')
       },
       {
+        style: { 'background-color': 'red' },
         test : "5",
         testNumber : 27,
         testText : "4",
@@ -143,6 +145,7 @@ export default  class GridAngularComponent {
         test1Date : new Date(),
       },
       {
+        style: { 'background-color': '#ee00ff' },
         test : "4",
         testNumber : 42,
         testText : "8",
@@ -151,6 +154,7 @@ export default  class GridAngularComponent {
         test1Date : new Date('05/09/2005')
       },
       {
+        style: { 'background-color': 'red' },
         test : "5",
         testNumber : 27,
         testText : "4",
@@ -163,7 +167,8 @@ export default  class GridAngularComponent {
         testText : "7",
         testDate : new Date('07/03/2015'),
         testBoolean: 0,
-        test1Date : new Date('07/03/2015')
+        test1Date : new Date('07/03/2015'),
+        style: { 'color': 'green' }
       },
       {
         test : "7",

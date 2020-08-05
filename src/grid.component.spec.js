@@ -131,7 +131,8 @@ class gridTestComponent {
         testDate: new Date('04/27/2012'),
         testBoolean: 0,
         testDateMedium: new Date('04/27/2012'),
-        testDateFormat: new Date('04/27/2012')
+        testDateFormat: new Date('04/27/2012'),
+        style: { 'background-color': 'red' }
       },
       {
         test: "2",
@@ -140,7 +141,8 @@ class gridTestComponent {
         testDate: new Date('01/01/1970'),
         testBoolean: 1,
         testDateMedium: new Date('01/01/1970'),
-        testDateFormat: new Date('01/01/1970')
+        testDateFormat: new Date('01/01/1970'),
+        style: { 'color': 'green' }
       },
       {
         test: "3",
@@ -273,8 +275,9 @@ describe('grid', function() {
 
     var columns = document.querySelectorAll('#grid .gridHead');
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
-
     assert.strictEqual(columns.length, 7);
+    assert.strictEqual(rows[0].style.backgroundColor, "red");
+    assert.strictEqual(rows[1].style.color, "green");
 
     Object.keys(columns).forEach(function(key,index) {
 

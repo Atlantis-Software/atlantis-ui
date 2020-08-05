@@ -10,6 +10,8 @@ import HomeComponent from './home/home.component.js';
 
 import DatepickerComponent from './datepicker/datepicker.component';
 
+import TimepickerComponent from './timepicker/timepicker.component';
+
 import AgendaComponent from './agenda/agenda.component';
 
 import PaginationComponent from './pagination/pagination.component.js';
@@ -110,6 +112,7 @@ AppModule.annotations = [
       AppComponent,
       HomeComponent,
       DatepickerComponent,
+      TimepickerComponent,
       PaginationComponent,
       SelectpickerComponent,
       SlidepickerComponent,
