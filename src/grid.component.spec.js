@@ -16,6 +16,9 @@ import localeES from '@angular/common/locales/es';
 registerLocaleData(localeES, 'es-ES');
 import localeDe from '@angular/common/locales/de';
 registerLocaleData(localeDe, 'de');
+import localeEn from '@angular/common/locales/en';
+registerLocaleData(localeEn, 'en');
+
 
 var assert = require('assert');
 
@@ -1027,6 +1030,70 @@ describe('grid', function() {
       Object.keys(cells).forEach(function(keyCell,indexCell) {
         if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateFormat') {
           assert.strictEqual(moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).locale('de').format('YYYY-MM-DD') , cells[keyCell].querySelector('atlui-grid-cell').innerText);
+        }
+      });
+    });
+  }));
+
+  it('locale english :  should render default format type date', fakeAsync(() => {
+    TestBed.overrideProvider(LOCALE_ID, {useValue: 'en-US'});
+    TestBed.compileComponents();
+    var fixture = TestBed.createComponent(gridTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    gridComponent = fixture.componentInstance;
+    var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
+    Object.keys(rows).forEach(function(keyRow,indexRow) {
+      var cells = rows[keyRow].querySelectorAll('.gridCell');
+      Object.keys(cells).forEach(function(keyCell,indexCell) {
+        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
+          assert.strictEqual(moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).locale('en').format('M/D/YY') , cells[keyCell].querySelector('atlui-grid-cell').innerText);
+        }
+      });
+    });
+  }));
+
+
+  it('locale english : should render format mediumDate type date', fakeAsync(() => {
+    TestBed.overrideProvider(LOCALE_ID, {useValue: 'en-US'});
+    TestBed.compileComponents();
+    var fixture = TestBed.createComponent(gridTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    gridComponent = fixture.componentInstance;
+    var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
+    Object.keys(rows).forEach(function(keyRow,indexRow) {
+      var cells = rows[keyRow].querySelectorAll('.gridCell');
+      Object.keys(cells).forEach(function(keyCell,indexCell) {
+        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateMedium') {
+          assert.strictEqual(moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).locale('en').format('MMM D, YYYY') , cells[keyCell].querySelector('atlui-grid-cell').innerText);
+        }
+      });
+    });
+  }));
+
+  it('locale english : should render format yyyy-MM-dd type date', fakeAsync(() => {
+    TestBed.overrideProvider(LOCALE_ID, {useValue: 'en-US'});
+    TestBed.compileComponents();
+    var fixture = TestBed.createComponent(gridTestComponent);
+
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    gridComponent = fixture.componentInstance;
+    var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
+    Object.keys(rows).forEach(function(keyRow,indexRow) {
+      var cells = rows[keyRow].querySelectorAll('.gridCell');
+      Object.keys(cells).forEach(function(keyCell,indexCell) {
+        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateFormat') {
+          assert.strictEqual(moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).locale('en').format('YYYY-MM-DD') , cells[keyCell].querySelector('atlui-grid-cell').innerText);
         }
       });
     });
