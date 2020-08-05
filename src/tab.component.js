@@ -13,7 +13,7 @@ export default class tabsComponent {
           tabpanels: new ContentChildren(tabpanelDirective)
         },
         inputs: ['height', 'selected'],
-        outputs: ["selectedChange"]
+        outputs: ["selectedChange", "onChange"]
       })
     ];
   }
@@ -26,6 +26,7 @@ export default class tabsComponent {
     // input value
     // output valueChange for the two way data binding works
     this.selectedChange = new EventEmitter();
+    this.onChange = new EventEmitter();
   }
 
   // function when we select a tab.
@@ -40,6 +41,7 @@ export default class tabsComponent {
       this.selected = tabpanelId;
       this.cdr.detectChanges();
       this.selectedChange.emit(selectedpanel.id);
+      this.onChange.emit(selectedpanel);
     }
   }
 

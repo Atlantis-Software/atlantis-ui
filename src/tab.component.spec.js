@@ -24,7 +24,7 @@ class tabTestComponent {
         <button id="btnTabSelect" class="btn btn-default" (click)="onClick()">
           <i class="icon icon-check"></i>
         </button>
-        <atlui-tabs id="tabsExample" [(selected)]="selectedTab" (selectedChange)="onChangeTab($event)">
+        <atlui-tabs id="tabsExample" [(selected)]="selectedTab" (onChange)="onChangeTab($event)">
           <atlui-tab-panel title="simple" id="tab1">
             <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p><button class="btn btn-default">My button</button>
           </atlui-tab-panel>
@@ -58,8 +58,7 @@ class tabTestComponent {
       })
     ];
   }
-  onChangeTab(selectedpanelID) {
-    var selectedpanel = document.querySelector("#"+ selectedpanelID);
+  onChangeTab(selectedpanel) {
     if (selectedpanel && selectedpanel.title) {
       this.title = selectedpanel.title;
     }

@@ -17,6 +17,10 @@ export default  class TabComponent {
     this.selectedTab = "tabOversize";
     this.cdr.detectChanges();
   }
+
+  onChangeTab(selectedpanel) {
+    this.selectedpanel = selectedpanel;
+  }
 }
 
 TabComponent.parameters = [ChangeDetectorRef];
