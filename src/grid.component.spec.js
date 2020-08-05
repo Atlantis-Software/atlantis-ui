@@ -15,10 +15,7 @@ registerLocaleData(localeFr, 'fr-FR');
 import localeES from '@angular/common/locales/es';
 registerLocaleData(localeES, 'es-ES');
 import localeDe from '@angular/common/locales/de';
-registerLocaleData(localeDe, 'de');
-import localeEn from '@angular/common/locales/en';
-registerLocaleData(localeEn, 'en');
-
+registerLocaleData(localeDe, 'de-DE');
 
 var assert = require('assert');
 
@@ -586,13 +583,11 @@ describe('grid', function() {
 
     gridComponent = fixture.componentInstance;
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
-    Object.keys(rows).forEach(function(keyRow,indexRow) {
-      var cells = rows[keyRow].querySelectorAll('.gridCell');
-      Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
-          assert.strictEqual(moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).locale('fr').format('L') , cells[keyCell].querySelector('atlui-grid-cell').innerText);
-        }
-      });
+    var cells = rows[1].querySelectorAll('.gridCell');
+    Object.keys(cells).forEach(function(keyCell,indexCell) {
+      if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
+        assert.strictEqual('01/01/1970', cells[keyCell].querySelector('atlui-grid-cell').innerText);
+      }
     });
   }));
 
@@ -607,13 +602,11 @@ describe('grid', function() {
 
     gridComponent = fixture.componentInstance;
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
-    Object.keys(rows).forEach(function(keyRow,indexRow) {
-      var cells = rows[keyRow].querySelectorAll('.gridCell');
-      Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateMedium') {
-          assert.strictEqual(moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).locale('fr').format('D MMM YYYY') , cells[keyCell].querySelector('atlui-grid-cell').innerText);
-        }
-      });
+    var cells = rows[1].querySelectorAll('.gridCell');
+    Object.keys(cells).forEach(function(keyCell,indexCell) {
+      if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateMedium') {
+        assert.strictEqual('1 janv. 1970' , cells[keyCell].querySelector('atlui-grid-cell').innerText);
+      }
     });
   }));
 
@@ -627,13 +620,11 @@ describe('grid', function() {
 
     gridComponent = fixture.componentInstance;
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
-    Object.keys(rows).forEach(function(keyRow,indexRow) {
-      var cells = rows[keyRow].querySelectorAll('.gridCell');
-      Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateFormat') {
-          assert.strictEqual(moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).locale('fr').format('YYYY-MM-DD') , cells[keyCell].querySelector('atlui-grid-cell').innerText);
-        }
-      });
+    var cells = rows[1].querySelectorAll('.gridCell');
+    Object.keys(cells).forEach(function(keyCell,indexCell) {
+      if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateFormat') {
+        assert.strictEqual('1970-01-01', cells[keyCell].querySelector('atlui-grid-cell').innerText);
+      }
     });
   }));
 
@@ -918,13 +909,11 @@ describe('grid', function() {
 
     gridComponent = fixture.componentInstance;
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
-    Object.keys(rows).forEach(function(keyRow,indexRow) {
-      var cells = rows[keyRow].querySelectorAll('.gridCell');
-      Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
-          assert.strictEqual(moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).locale('es').format('D/M/YY') , cells[keyCell].querySelector('atlui-grid-cell').innerText);
-        }
-      });
+    var cells = rows[1].querySelectorAll('.gridCell');
+    Object.keys(cells).forEach(function(keyCell,indexCell) {
+      if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
+        assert.strictEqual('1/1/70' , cells[keyCell].querySelector('atlui-grid-cell').innerText);
+      }
     });
   }));
 
@@ -940,13 +929,11 @@ describe('grid', function() {
 
     gridComponent = fixture.componentInstance;
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
-    Object.keys(rows).forEach(function(keyRow,indexRow) {
-      var cells = rows[keyRow].querySelectorAll('.gridCell');
-      Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateMedium') {
-          assert.strictEqual(moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).locale('es').format('D MMM YYYY') , cells[keyCell].querySelector('atlui-grid-cell').innerText);
-        }
-      });
+    var cells = rows[1].querySelectorAll('.gridCell');
+    Object.keys(cells).forEach(function(keyCell,indexCell) {
+      if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateMedium') {
+        assert.strictEqual('1 ene. 1970' , cells[keyCell].querySelector('atlui-grid-cell').innerText);
+      }
     });
   }));
 
@@ -961,13 +948,11 @@ describe('grid', function() {
 
     gridComponent = fixture.componentInstance;
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
-    Object.keys(rows).forEach(function(keyRow,indexRow) {
-      var cells = rows[keyRow].querySelectorAll('.gridCell');
-      Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateFormat') {
-          assert.strictEqual(moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).locale('es').format('YYYY-MM-DD') , cells[keyCell].querySelector('atlui-grid-cell').innerText);
-        }
-      });
+    var cells = rows[1].querySelectorAll('.gridCell');
+    Object.keys(cells).forEach(function(keyCell,indexCell) {
+      if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateFormat') {
+        assert.strictEqual('1970-01-01' , cells[keyCell].querySelector('atlui-grid-cell').innerText);
+      }
     });
   }));
 
@@ -982,13 +967,11 @@ describe('grid', function() {
 
     gridComponent = fixture.componentInstance;
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
-    Object.keys(rows).forEach(function(keyRow,indexRow) {
-      var cells = rows[keyRow].querySelectorAll('.gridCell');
-      Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
-          assert.strictEqual(moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).locale('de').format('DD.MM.YY') , cells[keyCell].querySelector('atlui-grid-cell').innerText);
-        }
-      });
+    var cells = rows[1].querySelectorAll('.gridCell');
+    Object.keys(cells).forEach(function(keyCell,indexCell) {
+      if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
+        assert.strictEqual('01.01.70' , cells[keyCell].querySelector('atlui-grid-cell').innerText);
+      }
     });
   }));
 
@@ -1004,13 +987,11 @@ describe('grid', function() {
 
     gridComponent = fixture.componentInstance;
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
-    Object.keys(rows).forEach(function(keyRow,indexRow) {
-      var cells = rows[keyRow].querySelectorAll('.gridCell');
-      Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateMedium') {
-          assert.strictEqual(moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).locale('de').format('DD.MM.YYYY') , cells[keyCell].querySelector('atlui-grid-cell').innerText);
-        }
-      });
+    var cells = rows[1].querySelectorAll('.gridCell');
+    Object.keys(cells).forEach(function(keyCell,indexCell) {
+      if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateMedium') {
+        assert.strictEqual('01.01.1970' , cells[keyCell].querySelector('atlui-grid-cell').innerText);
+      }
     });
   }));
 
@@ -1025,13 +1006,11 @@ describe('grid', function() {
 
     gridComponent = fixture.componentInstance;
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
-    Object.keys(rows).forEach(function(keyRow,indexRow) {
-      var cells = rows[keyRow].querySelectorAll('.gridCell');
-      Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateFormat') {
-          assert.strictEqual(moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).locale('de').format('YYYY-MM-DD') , cells[keyCell].querySelector('atlui-grid-cell').innerText);
-        }
-      });
+    var cells = rows[1].querySelectorAll('.gridCell');
+    Object.keys(cells).forEach(function(keyCell,indexCell) {
+      if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateFormat') {
+        assert.strictEqual('1970-01-01', cells[keyCell].querySelector('atlui-grid-cell').innerText);
+      }
     });
   }));
 
@@ -1046,13 +1025,11 @@ describe('grid', function() {
 
     gridComponent = fixture.componentInstance;
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
-    Object.keys(rows).forEach(function(keyRow,indexRow) {
-      var cells = rows[keyRow].querySelectorAll('.gridCell');
-      Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
-          assert.strictEqual(moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).locale('en').format('M/D/YY') , cells[keyCell].querySelector('atlui-grid-cell').innerText);
-        }
-      });
+    var cells = rows[1].querySelectorAll('.gridCell');
+    Object.keys(cells).forEach(function(keyCell,indexCell) {
+      if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
+        assert.strictEqual('1/1/70', cells[keyCell].querySelector('atlui-grid-cell').innerText);
+      }
     });
   }));
 
@@ -1068,13 +1045,11 @@ describe('grid', function() {
 
     gridComponent = fixture.componentInstance;
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
-    Object.keys(rows).forEach(function(keyRow,indexRow) {
-      var cells = rows[keyRow].querySelectorAll('.gridCell');
-      Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateMedium') {
-          assert.strictEqual(moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).locale('en').format('MMM D, YYYY') , cells[keyCell].querySelector('atlui-grid-cell').innerText);
-        }
-      });
+    var cells = rows[1].querySelectorAll('.gridCell');
+    Object.keys(cells).forEach(function(keyCell,indexCell) {
+      if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateMedium') {
+        assert.strictEqual('Jan 1, 1970', cells[keyCell].querySelector('atlui-grid-cell').innerText);
+      }
     });
   }));
 
@@ -1089,13 +1064,11 @@ describe('grid', function() {
 
     gridComponent = fixture.componentInstance;
     var rows = document.querySelector('atlui-grid-body').querySelectorAll('.gridRow');
-    Object.keys(rows).forEach(function(keyRow,indexRow) {
-      var cells = rows[keyRow].querySelectorAll('.gridCell');
-      Object.keys(cells).forEach(function(keyCell,indexCell) {
-        if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateFormat') {
-          assert.strictEqual(moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).locale('en').format('YYYY-MM-DD') , cells[keyCell].querySelector('atlui-grid-cell').innerText);
-        }
-      });
+    var cells = rows[1].querySelectorAll('.gridCell');
+    Object.keys(cells).forEach(function(keyCell,indexCell) {
+      if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDateFormat') {
+        assert.strictEqual('1970-01-01' , cells[keyCell].querySelector('atlui-grid-cell').innerText);
+      }
     });
   }));
 });
