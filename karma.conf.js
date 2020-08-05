@@ -33,11 +33,6 @@ module.exports = function (config) {
     browsers : ['Firefox', 'Chrome'],
 
     singleRun: true,
-
-    // pour pouvoir affichier les console.log dans les tests
-    browserConsoleLogOptions: {
-      level: 'log'
-    },
     autoWatch: true,
     autoWatchBatchDelay: 5000,
 
