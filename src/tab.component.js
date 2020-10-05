@@ -1,5 +1,7 @@
-import { Component, ContentChildren, ElementRef, EventEmitter } from '@angular/core';
+import { Component, ContentChildren, ElementRef, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { tabpanelDirective } from './tab-panel.component.js';
+
+var _ = require('lodash');
 
 export default class tabsComponent {
   static get annotations() {
@@ -10,16 +12,20 @@ export default class tabsComponent {
         queries: {
           tabpanels: new ContentChildren(tabpanelDirective)
         },
-        inputs: ['height'],
-        outputs: ['onChange']
+        inputs: ['height', 'selected'],
+        outputs: ["selectedChange", "onChange"]
       })
     ];
   }
 
-  constructor(ElementRef) {
+  constructor(ElementRef, changeDetectorRef) {
     this.activeId = 0;
     this.height = "150px";
     this.elementRef = ElementRef;
+    this.cdr = changeDetectorRef;
+    // input value
+    // output valueChange for the two way data binding works
+    this.selectedChange = new EventEmitter();
     this.onChange = new EventEmitter();
   }
 
@@ -32,7 +38,22 @@ export default class tabsComponent {
       });
       this.activeId = tabpanelId;
       selectedpanel.active = true;
+      this.selected = tabpanelId;
+      this.cdr.detectChanges();
+      this.selectedChange.emit(selectedpanel.id);
       this.onChange.emit(selectedpanel);
+    }
+  }
+
+  ngAfterViewChecked()
+  {
+    this.cdr.detectChanges();
+  }
+  // execute when a property of the input is modified ( height or selected )
+  ngOnChanges(changes) {
+    if (changes.selected && changes.selected.currentValue) {
+      let id = changes.selected.currentValue;
+      this.select(id);
     }
   }
 
@@ -45,10 +66,12 @@ export default class tabsComponent {
   }
 
   _getPanelById(id) {
-    let tabpanelsWithId = this.tabpanels.filter( panel=> panel.id === id);
-    return tabpanelsWithId.length ? tabpanelsWithId[0] : null;
+    if (this.tabpanels) {
+      let tabpanelsWithId = _.find(this.tabpanels._results, function(panel) { return panel.id === id; });
+      return tabpanelsWithId;
+    }
   }
 
 }
 
-tabsComponent.parameters = [ElementRef];
+tabsComponent.parameters = [ElementRef, ChangeDetectorRef];
