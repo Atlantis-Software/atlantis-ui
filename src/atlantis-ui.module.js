@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 
@@ -118,6 +118,23 @@ import { tabpanelDirective, tabPanelHeaderDirective } from './tab-panel.componen
 
 import safeHtmlPipe from './safeHtmlPipe.pipe.js';
 
+import { locale } from './locale';
+
+import localeFr from '@angular/common/locales/fr';
+import localeDe from '@angular/common/locales/de';
+import localeEs from '@angular/common/locales/es';
+
+switch (locale) {
+  case 'fr-FR':
+    registerLocaleData(localeFr, 'fr');
+    break;
+  case 'es-ES':
+    registerLocaleData(localeEs, 'es');
+    break;
+  case 'de-DE':
+    registerLocaleData(localeDe, 'de');
+}
+
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export class AtlantisUiModule {
@@ -125,6 +142,7 @@ export class AtlantisUiModule {
     return {
       ngModule: AtlantisUiModule,
       providers: [
+        {provide: LOCALE_ID, useValue: locale},
         { provide: gridConfig, useValue: config },
         { provide: dragAndDropService, useFactory: dragDropServiceFactory },
         { provide: dragAndDropSortableService, useFactory: dragDropSortableServiceFactory },
@@ -140,6 +158,7 @@ export class AtlantisUiModule {
     return {
       ngModule: AtlantisUiModule,
       providers: [
+        { provide: LOCALE_ID, useValue: locale},
         { provide: gridConfig, useValue: config },
         { provide: dragAndDropService, useFactory: dragDropServiceFactory },
         { provide: dragAndDropSortableService, useFactory: dragDropSortableServiceFactory },

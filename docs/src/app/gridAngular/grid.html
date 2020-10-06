@@ -175,6 +175,13 @@ this.columns= [
     label:"testBoolean",
     type: 'boolean',
     isEditable: true
+  },
+  {
+    label:"test1Date",
+    type: 'date',
+    isSortable: true,
+    isEditable: true,
+    format: "mediumDate"
   }
 ];
   </textarea>
@@ -304,6 +311,24 @@ this.columns= [
           false
         </td>
       </tr>
+      <tr>
+        <td>
+          format
+        </td>
+        <td>
+          string
+        </td>
+        <td>
+          dd/MM/yyyy or full for example
+        </td>
+        <td>
+          The date/time components to include, using predefined options or a custom format string.
+          Default is 'shortDate'
+        </td>
+        <td>
+          shortDate
+        </td>
+      </tr>
     </tbody>
   </table>
   <h4>
@@ -316,21 +341,24 @@ this.originalRows = [
     testNumber : 2,
     testText : "1",
     testDate : new Date(),
-    testBoolean: 0
+    testBoolean: 0,
+    test1Date : new Date(),
   },
   {
     test: "2",
     testNumber : 6,
     testText : "5",
     testDate : new Date(0),
-    testBoolean: 1
+    testBoolean: 1,
+    test1Date : new Date(),
   },
   {
     test : "3",
     testNumber : 5,
     testText : '4',
     testDate : new Date(),
-    testBoolean: 1
+    testBoolean: 1,
+    test1Date : new Date(),
   },
   {
     style: { 'background-color': '#ee00ff' }
@@ -338,7 +366,8 @@ this.originalRows = [
     testNumber : 42,
     testText : "8",
     testDate : new Date('05/09/2005'),
-    testBoolean: 1
+    testBoolean: 1,
+    test1Date : new Date('05/09/2005')
   },
   {
     style: { 'background-color': 'red' }
@@ -354,6 +383,7 @@ this.originalRows = [
     testText : "7",
     testDate : new Date('07/03/2015'),
     testBoolean: 0,
+    test1Date : new Date('07/03/2015'),
     style: { 'color': 'green' }
   },
   {
@@ -361,14 +391,16 @@ this.originalRows = [
     testNumber : 27,
     testText : "9",
     testDate : new Date('05/09/2005'),
-    testBoolean: 0
+    testBoolean: 0,
+    test1Date : new Date('05/09/2005')
   },
   {
     test : "8",
     testNumber : 152,
     testText : '32',
     testDate : new Date(),
-    testBoolean: 1
+    testBoolean: 1,
+    test1Date : new Date(),
   }
 ]
   </textarea>

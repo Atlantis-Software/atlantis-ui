@@ -1,6 +1,7 @@
 import { Component, ElementRef, Injector, EventEmitter, ChangeDetectorRef, TemplateRef, Directive, ContentChild, NgZone } from '@angular/core';
 import { gridConfig } from './grid.config.js';
 import ResizeObserver from 'resize-observer-polyfill';
+import { LOCALE_ID } from '@angular/core';
 
 export class gridComponent {
   static get annotations() {
@@ -22,7 +23,10 @@ export class gridComponent {
         },
         queries: {
           headerTemplate: new ContentChild(gridCellHeaderTemplate),
-        }
+        },
+        providers: [{
+          provide: LOCALE_ID
+        }]
       })
     ];
   }

@@ -10,7 +10,7 @@ export default class gridCellComponent {
       new Component({
         selector: 'atlui-grid-cell',
         template: `{{content}}`,
-        inputs: ['content', 'type', 'pipes']
+        inputs: ['content', 'type', 'format', 'pipes']
       })
     ];
   }
@@ -35,14 +35,16 @@ export default class gridCellComponent {
         this.pipes[index].forEach(function(pipeType) {
           pipeType.pipeInjected = self.injector.get(pipeType.pipe, null);
           if (pipeType.pipeInjected !== null) {
-            var args = [self.content].concat(pipeType.option);
+            var option = self.format || pipeType.option;
+            var args = [self.content].concat(option);
             self.content = pipeType.pipeInjected.transform.apply(pipeType.pipeInjected, args);
           }
         });
       } else {
         self.pipes[index].pipeInjected = self.injector.get(self.pipe[index], null);
         if (self.pipes[index].pipeInjected !== null) {
-          var args = [self.content].concat(self.pipes[index].option);
+          var option = self.format || self.pipes[index].option;
+          var args = [self.content].concat(option);
           self.content = self.pipes[index].pipeInjected.transform.apply(self.pipes[index].pipeInjected, args);
         }
       }
