@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 
@@ -7,6 +7,8 @@ import pagination from './pagination.component.js';
 
 import datepickerComponent from './datepicker.component.js';
 import datepickerrangeComponent from './datepicker-range.component.js';
+
+import timepickerComponent from './timepicker.component.js';
 
 import selectpickerComponent from './selectpicker.component.js';
 import selectpickeroptionComponent from './selectpicker-option.component.js';
@@ -116,6 +118,23 @@ import { tabpanelDirective, tabPanelHeaderDirective } from './tab-panel.componen
 
 import safeHtmlPipe from './safeHtmlPipe.pipe.js';
 
+import { locale } from './locale';
+
+import localeFr from '@angular/common/locales/fr';
+import localeDe from '@angular/common/locales/de';
+import localeEs from '@angular/common/locales/es';
+
+switch (locale) {
+  case 'fr-FR':
+    registerLocaleData(localeFr, 'fr');
+    break;
+  case 'es-ES':
+    registerLocaleData(localeEs, 'es');
+    break;
+  case 'de-DE':
+    registerLocaleData(localeDe, 'de');
+}
+
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export class AtlantisUiModule {
@@ -123,6 +142,7 @@ export class AtlantisUiModule {
     return {
       ngModule: AtlantisUiModule,
       providers: [
+        {provide: LOCALE_ID, useValue: locale},
         { provide: gridConfig, useValue: config },
         { provide: dragAndDropService, useFactory: dragDropServiceFactory },
         { provide: dragAndDropSortableService, useFactory: dragDropSortableServiceFactory },
@@ -138,6 +158,7 @@ export class AtlantisUiModule {
     return {
       ngModule: AtlantisUiModule,
       providers: [
+        { provide: LOCALE_ID, useValue: locale},
         { provide: gridConfig, useValue: config },
         { provide: dragAndDropService, useFactory: dragDropServiceFactory },
         { provide: dragAndDropSortableService, useFactory: dragDropSortableServiceFactory },
@@ -153,7 +174,7 @@ export class AtlantisUiModule {
 AtlantisUiModule.annotations = [
   new NgModule({
     imports: [CommonModule, FormsModule],
-    declarations: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent,
+    declarations: [pagination, datepickerComponent, datepickerrangeComponent, timepickerComponent, selectpickerComponent,
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective, indeterminateDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
       carouselItemComponent, accordionComponent, accordionPanelComponent, accordionPanelHeaderDirective, dropdownComponent, dropdownOptionComponent,
@@ -167,7 +188,7 @@ AtlantisUiModule.annotations = [
       inputFileDirective, editorComponent, blockquote, bold, createLink, format, foreColor, indent, insertImage, insertOrderedList, insertUnorderedList,
       italic, justifyLeft, justifyRight, justifyCenter, justifyFull, outdent, redo, removeFormat, selectAll,
       strikethrough, underline, undo, unlink, hiliteColor, fontSize, fontName, tabComponent, tabpanelDirective, tabPanelHeaderDirective, safeHtmlPipe],
-    exports: [pagination, datepickerComponent, datepickerrangeComponent, selectpickerComponent,
+    exports: [pagination, datepickerComponent, datepickerrangeComponent, timepickerComponent, selectpickerComponent,
       selectpickeroptionComponent, slidepickerComponent, slidepickeroptionComponent, focusDirective, indeterminateDirective,
       modalComponent, modalHeaderComponent, modalBodyComponent, modalFooterComponent, carouselComponent,
       carouselItemComponent, accordionComponent, accordionPanelComponent, accordionPanelHeaderDirective, dropdownComponent, dropdownOptionComponent,

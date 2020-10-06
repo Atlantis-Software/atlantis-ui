@@ -17,30 +17,36 @@ export default  class GridAngularComponent {
         testNumber : 2,
         testText : "1",
         testDate : new Date(),
-        testBoolean: 0
+        testBoolean: 0,
+        test1Date : new Date(),
       },
       {
         test: "2",
         testNumber : 6,
         testText : "5",
         testDate : new Date(0),
-        testBoolean: 1
+        testBoolean: 1,
+        test1Date : new Date(),
       },
       {
         test : "3",
         testNumber : 5,
         testText : '4',
         testDate : new Date(),
-        testBoolean: 1
+        testBoolean: 1,
+        test1Date : new Date(),
       },
       {
+        style: { 'background-color': '#ee00ff' },
         test : "4",
         testNumber : 42,
         testText : "8",
         testDate : new Date('05/09/2005'),
-        testBoolean: 1
+        testBoolean: 1,
+        test1Date : new Date('05/09/2005')
       },
       {
+        style: { 'background-color': 'red' },
         test : "5",
         testNumber : 27,
         testText : "4",
@@ -52,21 +58,24 @@ export default  class GridAngularComponent {
         testNumber : 3,
         testText : "7",
         testDate : new Date('07/03/2015'),
-        testBoolean: 0
+        testBoolean: 0,
+        test1Date : new Date('07/03/2015')
       },
       {
         test : "7",
         testNumber : 27,
         testText : "9",
         testDate : new Date('05/09/2005'),
-        testBoolean: 0
+        testBoolean: 0,
+        test1Date : new Date('05/09/2005')
       },
       {
         test : "8",
         testNumber : 152,
         testText : '32',
         testDate : new Date(),
-        testBoolean: 1
+        testBoolean: 1,
+        test1Date : new Date(),
       }
     ];
 
@@ -93,12 +102,20 @@ export default  class GridAngularComponent {
         label:"testDate",
         type: 'date',
         isSortable: true,
-        isEditable: true
+        isEditable: true,
+        format: "full"
       },
       {
         label:"testBoolean",
         type: 'boolean',
         isEditable: true
+      },
+      {
+        label:"test1Date",
+        type: 'date',
+        isSortable: true,
+        isEditable: true,
+        format: "mediumDate"
       }
     ];
 
@@ -108,30 +125,36 @@ export default  class GridAngularComponent {
         testNumber : 2,
         testText : "1",
         testDate : new Date(),
-        testBoolean: 0
+        testBoolean: 0,
+        test1Date : new Date(),
       },
       {
         test: "2",
         testNumber : 6,
         testText : "5",
         testDate : new Date(0),
-        testBoolean: 1
+        testBoolean: 1,
+        test1Date : new Date(),
       },
       {
         test : "3",
         testNumber : 5,
         testText : '4',
         testDate : new Date(),
-        testBoolean: 1
+        testBoolean: 1,
+        test1Date : new Date(),
       },
       {
+        style: { 'background-color': '#ee00ff' },
         test : "4",
         testNumber : 42,
         testText : "8",
         testDate : new Date('05/09/2005'),
-        testBoolean: 1
+        testBoolean: 1,
+        test1Date : new Date('05/09/2005')
       },
       {
+        style: { 'background-color': 'red' },
         test : "5",
         testNumber : 27,
         testText : "4",
@@ -143,21 +166,25 @@ export default  class GridAngularComponent {
         testNumber : 3,
         testText : "7",
         testDate : new Date('07/03/2015'),
-        testBoolean: 0
+        testBoolean: 0,
+        test1Date : new Date('07/03/2015'),
+        style: { 'color': 'green' }
       },
       {
         test : "7",
         testNumber : 27,
         testText : "9",
         testDate : new Date('05/09/2005'),
-        testBoolean: 0
+        testBoolean: 0,
+        test1Date : new Date('05/09/2005')
       },
       {
         test : "8",
         testNumber : 152,
         testText : '32',
         testDate : new Date(),
-        testBoolean: 1
+        testBoolean: 1,
+        test1Date : new Date(),
       }
     ];
 

@@ -33,7 +33,6 @@ module.exports = function (config) {
     browsers : ['Firefox', 'Chrome'],
 
     singleRun: true,
-
     autoWatch: true,
     autoWatchBatchDelay: 5000,
 

@@ -1,0 +1,58 @@
+
+<div class="container">
+  <h2>
+    Timepicker
+  </h2>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="timePicker">Example</label>
+        <atlui-timepicker [(time)]="valueTimePicker"></atlui-timepicker>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="Binding1">Binding</label>
+      <input name="Binding1" class="form-control" type="text" [(ngModel)]="valueTimePicker"></input>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <label>Code : </label>
+    </div>
+  </div>
+  <textarea class="atlui-code">
+    <atlui-timepicker [(time)]="valueTimePicker"></atlui-timepicker>
+  </textarea>
+
+  <div class="row">
+    <div class="col-md-4">
+      <label>Variables : </label>
+    </div>
+  </div>
+  <pre>
+    this.valueTimePicker = "13:20"; <br />
+    or this.valueTimePicker = moment();
+  </pre>
+
+  <blockquote>
+    <p>valueTimePicker is the binded value (time value or string format hh:mm), if you no put value by default it will be time now.</p>
+  </blockquote>
+
+  <h4>
+    Example without value
+  </h4>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="timePicker">Example</label>
+        <atlui-timepicker [(time)]="valueTimePicker2"></atlui-timepicker>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="Binding1">Binding</label>
+      <input name="Binding1" class="form-control" type="text" [(ngModel)]="valueTimePicker2"></input>
+    </div>
+  </div>
+</div>

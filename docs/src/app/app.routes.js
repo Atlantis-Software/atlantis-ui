@@ -1,5 +1,6 @@
 import HomeComponent from './home/home.component';
 import DatepickerComponent from './datepicker/datepicker.component';
+import TimepickerComponent from './timepicker/timepicker.component';
 
 import AgendaComponent from './agenda/agenda.component';
 
@@ -54,6 +55,8 @@ export default [
   { path: 'home', component: HomeComponent },
 
   { path: 'datepicker', component: DatepickerComponent },
+
+  { path: 'timepicker', component: TimepickerComponent },
 
   { path: 'pagination', component: PaginationComponent },
 

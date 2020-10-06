@@ -14,6 +14,7 @@ export default class gridBodyComponent {
         <div class="gridRow"
           *ngFor="let row of rows; let i = index"
           (click)="!changingCellContent && selectRow(row, $event, i)"
+          [ngStyle]="row.style"
           [class.active]='!changingCellContent && selected.includes(row)'>
           <div class="gridCell"
             *ngFor="let column of columns; let y = index"
@@ -26,11 +27,12 @@ export default class gridBodyComponent {
             (dblclick)="!changingCellContent && modifyContent($event, i, y)">
             <input class="grid-input-change form-control"
               type="text"
-              *ngIf="changingCellContent === i + '' + y"
+              *ngIf="changingCellContent === i + '' + y && column.type !== 'date'"
               [ngModel]="row[column.label]"
               (blur)="modifyContent($event, i, y, true)"
               (keyup.enter)="enterModifyContent($event, i, y, true)"
               focus/>
+            <atlui-datepicker *ngIf="changingCellContent === i + '' + y && column.type === 'date'" [ngModel]="row[column.label]" (ngModelChange)="saveValueDate(i, y, $event)"></atlui-datepicker>
             <label class="grid-label-error"
               *ngIf="errorCellContent === i + '' + y"
               (click)="resetContent($event, i, y)"></label>
@@ -38,6 +40,7 @@ export default class gridBodyComponent {
               *ngIf="changingCellContent !== i + '' + y"
               [content]="row[column.label]"
               [type]="column.type"
+              [format]="column.format"
               [pipes]="pipes">
             </atlui-grid-cell>
           </div>
@@ -143,6 +146,7 @@ export default class gridBodyComponent {
       var value = e.target.value;
       if (this.columns[y].type) {
         this.types.forEach((type) => {
+
           if (type.type === this.columns[y].type && type.transformation) {
             //we launch the transformation for the type of the column.
             value = type.transformation(value);
@@ -159,6 +163,19 @@ export default class gridBodyComponent {
     } else {
       this.oldContent = this.rows[i][this.columns[y].label];
       this.changingCellContent = this.coordinate;
+    }
+  }
+
+  saveValueDate(i, y, event) {
+    if (event && moment(this.rows[i][this.columns[y].label]).format('YYYY-MM-DD') != event) {
+      this.oldContent = this.rows[i][this.columns[y].label];
+      this.rows[i][this.columns[y].label] = new Date(event);
+      this.changingCellContent = false;
+      this.errorCellContent = false;
+    } else if (!event) {
+      this.rows[i][this.columns[y].label] = this.oldContent;
+      this.changingCellContent = false;
+      this.errorCellContent = false;
     }
   }
 

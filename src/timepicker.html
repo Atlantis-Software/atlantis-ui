@@ -1,0 +1,61 @@
+
+<div class="input-group col-md-2">
+  <div class="timepicker-date-input">
+    <input class="form-control hour timepicker-input" [ngModel]="time" type="text" (click)="open($event,'hour')" readonly/>
+    <label class="timepicker-label-remove" *ngIf="time" (click)="resetTime()"></label>
+  </div>
+</div>
+
+<atlui-modal class="atlui-timepicker" orientation="right" [(show)]="visible" [isClosable]="true">
+    <atlui-modal-header [close]="true">
+      <div class="row timepicker-text">
+        <div class="col-md-12 text-center date-letter mt-5">
+          <span *ngIf="time">{{ display_time }}<span>
+        </div>
+      </div>
+  </atlui-modal-header>
+  <atlui-modal-body>
+    <div class="form-inline">
+      <div class="input-group col-md-2">
+        <div class="form-group" [ngClass]="{'has-error': hasErrorHour }">
+          <input type="number" class="form-control input-md col-md-5" [ngModel]="hour | number:'2.0'" name="hour" [min]="start_hour" [max]="end_hour" (ngModelChange)=setHour($event) (focus)="selectInputHour()"
+          (keydown.tab)="focusEnd($event, inputminute); false" [ngClass]="{'active': (focus === 'hour') }" (keyup.enter)="closeAfterCheck($event)"
+          (click)="focusHour($event, inputhour)">
+        </div>
+
+        <span class="input-group-btn" *ngIf="hour_list && hour_list.length > 0">
+          <atlui-selectpicker name="selectPredefinedHour" [(ngModel)]="predefinedHour" (ngModelChange)="onChangeHour($event)">
+            <atlui-selectpicker-option  [value]="null"></atlui-selectpicker-option>
+            <atlui-selectpicker-option *ngFor="let _hour of hour_list" [value]="_hour">{{ _hour | number:'2.0' }}</atlui-selectpicker-option>
+          </atlui-selectpicker>
+        </span>
+      </div>
+      <div class="input-group">
+        <span class="input-group-text ml-4 mr-4">:</span>
+      </div>
+      <div class="input-group col-md-2">
+        <div class="form-group" [ngClass]="{'has-error': hasErrorMinute }">
+          <input  id="inputminute" type="number" class="form-control input-md" [ngModel]="minute | number:'2.0'"  name="minute" [min]="start_minute" [max]="end_minute" (focus)="selectInputMinute()" [ngClass]="{'active': (focus === 'minute')}"
+          (keyup.enter)="closeAfterCheck($event)" (click)="focusMinute($event, inputminute, true)" (ngModelChange)="setMinute($event)">
+        </div>
+        <span class="input-group-btn" *ngIf="minute_list && minute_list.length > 0">
+          <atlui-selectpicker name="selectPredefinedMinute" [(ngModel)]="predefinedMinute" (ngModelChange)="onChangeMinute($event)">
+            <atlui-selectpicker-option  [innerHTML]="&nbsp;" [value]="null"></atlui-selectpicker-option>
+            <atlui-selectpicker-option *ngFor="let _minute of minute_list" [value]="_minute">{{ _minute | number:'2.0' }}</atlui-selectpicker-option>
+          </atlui-selectpicker>
+        </span>
+      </div>
+      <div class="input-group"  *ngIf="language === 'en'">
+        <atlui-selectpicker name="selectPredefinedMinute" [ngModel]="am_pm" (ngModelChange)="onChangeAM_PM($event)">
+          <atlui-selectpicker-option value="AM">AM</atlui-selectpicker-option>
+          <atlui-selectpicker-option value="PM">PM</atlui-selectpicker-option>
+        </atlui-selectpicker>
+      </div>
+      <div class="input-group">
+        <button id="now" class="btn btn-primary pull-right" (click)="setNowTime()">{{ i18n[language]["now"] }}</button>
+      </div>
+    </div>
+  </atlui-modal-body>
+  <atlui-modal-footer>
+  </atlui-modal-footer>
+</atlui-modal>
