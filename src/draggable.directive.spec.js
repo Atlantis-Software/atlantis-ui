@@ -192,8 +192,8 @@ describe('Draggable', function() {
     assert.strictEqual(draggableStyle1.getPropertyValue('z-index'), '99999');
 
     var mouseMove = new Event('mousemove', { 'bubbles': true });
-    mouseMove.clientX = 800;
-    mouseMove.clientY = 1000;
+    mouseMove.clientX = 500;
+    mouseMove.clientY = 500;
 
     draggable.dispatchEvent(mouseMove);
     tick();
@@ -205,8 +205,8 @@ describe('Draggable', function() {
     fixture.detectChanges();
     var draggableTop1 = draggableStyle1.getPropertyValue("top");
     var draggableLeft1 = draggableStyle1.getPropertyValue("left");
-    assert.strictEqual(draggableTop1, "499px");
-    assert.strictEqual(draggableLeft1, "699px");
+    assert.strictEqual(draggableTop1, "495px");
+    assert.strictEqual(draggableLeft1, "490px");
     assert.strictEqual(draggableStyle1.getPropertyValue('z-index'), 'auto');
 
   }));
