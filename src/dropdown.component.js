@@ -7,17 +7,17 @@ export default class dropdownComponent {
       new Component({
         selector: 'atlui-dropdown',
         template: `
-          <button *ngIf="!parentIsLi" class="btn btn-default" type="button">
+          <button *ngIf="!parentIsLi" class="btn btn-default" type="button" (click)="!autoOpen && toggleClick($event)" (mouseenter)="autoOpen && toggleClick($event)" (mouseleave)="autoOpen && closeMenu()">
             <i *ngIf="icon" class="icon" [ngClass]="'icon-'+icon"></i>
             {{title}}
             <span class="caret"></span>
           </button>
-          <a *ngIf="parentIsLi" href="#">
+          <a *ngIf="parentIsLi" (click)="!autoOpen && toggleClick($event)" (mouseenter)="autoOpen && toggleClick($event)" (mouseleave)="autoOpen && closeMenu()">
             <i *ngIf="icon" class="icon" [ngClass]="'icon-'+icon"></i>
             {{title}}
             <span class="caret"></span>
           </a>
-          <div class="dropdown-menu">
+          <div class="dropdown-menu" (mouseenter)="autoOpen && toggleClick($event)" (mouseleave)="autoOpen && closeMenu()">
             <ng-content>
             </ng-content>
           </div>`,
@@ -59,17 +59,6 @@ export default class dropdownComponent {
     if (this.dropdown.parentElement.nodeName === "LI") {
       this.parentIsLi = true;
     }
-    var menu = this.elementRef.nativeElement.querySelector("button, a");
-
-    // cas option autoOpen defini à true: ouverture du menu au survol
-    if (this.autoOpen) {
-      menu.addEventListener('mouseenter', this.toggleClick.bind(this));
-      menu.addEventListener('mouseleave', this.closeMenu.bind(this));
-      dropdownMenu.addEventListener('mouseenter', this.toggleClick.bind(this));
-      dropdownMenu.addEventListener('mouseleave', this.closeMenu.bind(this));
-    } else {
-      menu.addEventListener('click', this.toggleClick.bind(this));
-    }
 
     var liste_drowdown_menu = this.elementRef.nativeElement.getElementsByClassName("dropdown-menu");
     Array.from(liste_drowdown_menu).forEach((dropdown) => {
@@ -103,7 +92,6 @@ export default class dropdownComponent {
     this.open = !self.open;
     this.dropdown.classList.toggle("open");
     e.preventDefault();
-
   }
 
   closeMenu() {
