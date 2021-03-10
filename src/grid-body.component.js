@@ -21,6 +21,7 @@ export default class gridBodyComponent {
             [class.changeContent]="changingCellContent === i + '' + y"
             [class.errorContent]="errorCellContent === i + '' + y"
             [ngClass]="column.class"
+            [ngStyle]="row.style_fields && row.style_fields[column.label]"
             [attr.align]="column.alignment"
             [style.verticalAlign]="column.vertical_alignment"
             [style.width]="columnsWidths[y] || column.width"

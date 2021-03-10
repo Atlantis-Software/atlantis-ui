@@ -151,7 +151,8 @@ class gridTestComponent {
         testDate:  new Date('10/10/2012'),
         testBoolean: 1,
         testDateMedium: new Date('10/10/2012'),
-        testDateFormat: new Date('10/10/2012')
+        testDateFormat: new Date('10/10/2012'),
+        style_fields: {test: { 'color': 'red' }, testDate: { 'background-color': 'green' }}
       },
       {
         test: "4",
@@ -278,9 +279,11 @@ describe('grid', function() {
     assert.strictEqual(columns.length, 7);
     assert.strictEqual(rows[0].style.backgroundColor, "red");
     assert.strictEqual(rows[1].style.color, "green");
+    var cells = rows[2].querySelectorAll('.gridCell');
+    assert.strictEqual(cells[0].style.color, "red");
+    assert.strictEqual(cells[3].style.backgroundColor, "green");
 
     Object.keys(columns).forEach(function(key,index) {
-
       assert.strictEqual(columns[key].querySelector('span').innerText, gridComponent.columns[index].label);
     });
 

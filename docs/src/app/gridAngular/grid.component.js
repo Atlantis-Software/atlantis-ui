@@ -137,6 +137,7 @@ export default  class GridAngularComponent {
         test1Date : new Date(),
       },
       {
+        style: { 'background-color': '#ee00ff' },
         test : "3",
         testNumber : 5,
         testText : '4',
@@ -145,7 +146,7 @@ export default  class GridAngularComponent {
         test1Date : new Date(),
       },
       {
-        style: { 'background-color': '#ee00ff' },
+        style_fields: {test: { 'background-color': '#ee00ff' }, testDate: {'color': 'red'}},
         test : "4",
         testNumber : 42,
         testText : "8",
