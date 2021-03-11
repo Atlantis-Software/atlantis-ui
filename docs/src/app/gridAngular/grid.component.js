@@ -146,11 +146,16 @@ export default  class GridAngularComponent {
         test1Date : new Date(),
       },
       {
-        style_fields: {test: { 'background-color': '#ee00ff' }, testDate: {'color': 'red'}},
-        test : "4",
+        test : {
+          value: "4",
+          style: { 'background-color': '#ee00ff' }
+        },
         testNumber : 42,
         testText : "8",
-        testDate : new Date('05/09/2005'),
+        testDate : {
+          value: new Date('05/09/2005'),
+          style: {'color': 'red'}
+        },
         testBoolean: 1,
         test1Date : new Date('05/09/2005')
       },

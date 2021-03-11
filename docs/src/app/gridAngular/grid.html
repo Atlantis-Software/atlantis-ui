@@ -337,8 +337,11 @@ this.columns= [
   <textarea class="atlui-code">
 this.originalRows = [
   {
-    style_fields: {test: { 'background-color': '#ee00ff' }, testDate: {'color': 'red'}},
-    test: "1",
+    {
+      test: {
+      value: "1",
+      style: {'background-color': '#ee00ff' },
+    },
     testNumber : 2,
     testText : "1",
     testDate : new Date(),
@@ -448,16 +451,16 @@ this.originalRows = [
       </tr>
       <tr>
         <td>
-          style_fields
+          value and style
         </td>
         <td>
           object
         </td>
         <td>
-          style for each field ( for exemple  : {{ '{' }} test: {{ '{' }}  'color': 'green' {{ '}' }} , testDate: {{ '{' }}  'background-color': 'red' {{ '}' }} )
+          style and value for each field ( for exemple  : test : {{ '{' }} value : "3" , style : {{ '{' }}  'color': 'green' {{ '}' }} {{ '}' }} )
         </td>
         <td>
-          style of each field of the row
+          style and value for a field of the row
         </td>
         <td>
           Nothing
