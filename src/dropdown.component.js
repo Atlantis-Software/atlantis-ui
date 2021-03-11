@@ -89,6 +89,13 @@ export default class dropdownComponent {
     if (this.disabled) {
       return;
     }
+    // we close all dropdown menu
+    var listDropdowns = document.querySelectorAll('atlui-dropdown');
+    if (listDropdowns.length > 0) {
+      listDropdowns.forEach((element) => {
+        element.classList.remove("open");
+      });
+    }
     this.open = !self.open;
     this.dropdown.classList.toggle("open");
     e.preventDefault();

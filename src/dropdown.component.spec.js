@@ -108,8 +108,11 @@ describe('dropdown', function() {
     fixture.detectChanges();
 
     var dropdown = document.querySelector("atlui-dropdown");
-
     assert.strictEqual(dropdown.classList[1], "open");
+    var list_dropdowns = document.querySelectorAll('atlui-dropdown');
+    assert.strictEqual(list_dropdowns[1].classList[1], void 0);
+    assert.strictEqual(list_dropdowns[2].classList[1], void 0);
+    assert.strictEqual(list_dropdowns[3].classList[1], void 0);
 
     var option = document.querySelector('atlui-dropdown-option');
     option.click();
