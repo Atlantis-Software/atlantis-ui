@@ -21,6 +21,7 @@ export default class gridBodyComponent {
             [class.changeContent]="changingCellContent === i + '' + y"
             [class.errorContent]="errorCellContent === i + '' + y"
             [ngClass]="column.class"
+            [ngStyle]="row[column.label] && row[column.label].style"
             [attr.align]="column.alignment"
             [style.verticalAlign]="column.vertical_alignment"
             [style.width]="columnsWidths[y] || column.width"
@@ -28,17 +29,17 @@ export default class gridBodyComponent {
             <input class="grid-input-change form-control"
               type="text"
               *ngIf="changingCellContent === i + '' + y && column.type !== 'date'"
-              [ngModel]="row[column.label]"
+              [ngModel]="row[column.label] && row[column.label].value ? row[column.label].value : row[column.label]"
               (blur)="modifyContent($event, i, y, true)"
               (keyup.enter)="enterModifyContent($event, i, y, true)"
               focus/>
-            <atlui-datepicker *ngIf="changingCellContent === i + '' + y && column.type === 'date'" [ngModel]="row[column.label]" (ngModelChange)="saveValueDate(i, y, $event)"></atlui-datepicker>
+            <atlui-datepicker *ngIf="changingCellContent === i + '' + y && column.type === 'date'" [ngModel]="row[column.label] && row[column.label].value ? row[column.label].value : row[column.label]" (ngModelChange)="saveValueDate(i, y, $event)"></atlui-datepicker>
             <label class="grid-label-error"
               *ngIf="errorCellContent === i + '' + y"
               (click)="resetContent($event, i, y)"></label>
             <atlui-grid-cell
               *ngIf="changingCellContent !== i + '' + y"
-              [content]="row[column.label]"
+              [content]="row[column.label] && row[column.label].value ? row[column.label].value : row[column.label]"
               [type]="column.type"
               [format]="column.format"
               [pipes]="pipes">
