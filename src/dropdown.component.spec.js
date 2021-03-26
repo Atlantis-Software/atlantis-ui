@@ -125,6 +125,22 @@ describe('dropdown', function() {
 
   }));
 
+  it('should handle document click', fakeAsync(function() {
+    var fixture = TestBed.createComponent(dropdownTestComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+    var button = document.querySelector('button');
+    button.click();
+    tick();
+    fixture.detectChanges();
+
+    var dropdown = document.querySelector("atlui-dropdown");
+    assert.strictEqual(dropdown.classList[1], "open");
+    document.dispatchEvent(new MouseEvent('click'));
+    assert.strictEqual(dropdown.classList[1], void 0);
+  }));
+
   it('should render the correct element according to the parent HTML element', fakeAsync(function() {
     var fixture = TestBed.createComponent(dropdownTestComponent);
     fixture.detectChanges();
