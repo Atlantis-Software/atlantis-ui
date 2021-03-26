@@ -21,7 +21,10 @@ export default class dropdownComponent {
             <ng-content>
             </ng-content>
           </div>`,
-        inputs: ["title", "orientation", "alignement", 'icon', 'maxHeight', 'autoOpen']
+        inputs: ["title", "orientation", "alignement", 'icon', 'maxHeight', 'autoOpen'],
+        host: {
+          '(document:click)': 'clickOut($event)'
+        }
       })
     ];
   }
@@ -33,6 +36,12 @@ export default class dropdownComponent {
     this.cdr = ChangeDetectorRef;
     this.title = "";
     this.renderer = renderer;
+  }
+
+  clickOut(event) {
+    if (!this.elementRef.nativeElement.contains(event.target)) {
+      this.closeMenu();
+    }
   }
 
   ngOnDestroy() {
