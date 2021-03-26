@@ -145,10 +145,16 @@ class gridTestComponent {
         style: { 'color': 'green' }
       },
       {
-        test: "3",
+        test: {
+          value: "3",
+          style:  { 'color': 'red' }
+        },
         testNumber: 5,
         testText: '4',
-        testDate:  new Date('10/10/2012'),
+        testDate:  {
+          value: new Date('10/10/2012'),
+          style : { 'background-color': 'green' }
+        },
         testBoolean: 1,
         testDateMedium: new Date('10/10/2012'),
         testDateFormat: new Date('10/10/2012')
@@ -278,9 +284,11 @@ describe('grid', function() {
     assert.strictEqual(columns.length, 7);
     assert.strictEqual(rows[0].style.backgroundColor, "red");
     assert.strictEqual(rows[1].style.color, "green");
+    var cells = rows[2].querySelectorAll('.gridCell');
+    assert.strictEqual(cells[0].style.color, "red");
+    assert.strictEqual(cells[3].style.backgroundColor, "green");
 
     Object.keys(columns).forEach(function(key,index) {
-
       assert.strictEqual(columns[key].querySelector('span').innerText, gridComponent.columns[index].label);
     });
 
@@ -288,7 +296,11 @@ describe('grid', function() {
       var cells = rows[key].querySelectorAll('.gridCell');
       Object.keys(cells).forEach(function(keyCell,indexCell) {
         if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
-          assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
+          if (gridComponent.rows[indexRow][gridComponent.columns[indexCell].label] && gridComponent.rows[indexRow][gridComponent.columns[indexCell].label].value) {
+            assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label].value).format('L'));
+          } else {
+            assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
+          }
           return;
         }
       });
@@ -449,7 +461,11 @@ describe('grid', function() {
       var cells = rows[keyRow].querySelectorAll('.gridCell');
       Object.keys(cells).forEach(function(keyCell,indexCell) {
         if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
-          assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
+          if (gridComponent.rows[indexRow][gridComponent.columns[indexCell].label] && gridComponent.rows[indexRow][gridComponent.columns[indexCell].label].value) {
+            assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label].value).format('L'));
+          } else {
+            assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
+          }
           return;
         }
       });
@@ -464,7 +480,11 @@ describe('grid', function() {
       var cells = rows[keyRow].querySelectorAll('.gridCell');
       Object.keys(cells).forEach(function(keyCell,indexCell) {
         if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
-          assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
+          if (gridComponent.rows[indexRow][gridComponent.columns[indexCell].label] && gridComponent.rows[indexRow][gridComponent.columns[indexCell].label].value) {
+            assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label].value).format('L'));
+          } else {
+            assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
+          }
           return;
         }
       });
@@ -499,7 +519,11 @@ describe('grid', function() {
       var cells = rows[keyRow].querySelectorAll('.gridCell');
       Object.keys(cells).forEach(function(keyCell,indexCell) {
         if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
-          assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
+          if (gridComponent.rows[indexRow][gridComponent.columns[indexCell].label] && gridComponent.rows[indexRow][gridComponent.columns[indexCell].label].value) {
+            assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label].value).format('L'));
+          } else {
+            assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
+          }
           return;
         }
       });
@@ -514,7 +538,11 @@ describe('grid', function() {
       var cells = rows[keyRow].querySelectorAll('.gridCell');
       Object.keys(cells).forEach(function(keyCell,indexCell) {
         if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
-          assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
+          if (gridComponent.rows[indexRow][gridComponent.columns[indexCell].label] && gridComponent.rows[indexRow][gridComponent.columns[indexCell].label].value) {
+            assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label].value).format('L'));
+          } else {
+            assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
+          }
           return;
         }
       });
@@ -549,7 +577,11 @@ describe('grid', function() {
       var cells = rows[keyRow].querySelectorAll('.gridCell');
       Object.keys(cells).forEach(function(keyCell,indexCell) {
         if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
-          assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
+          if (gridComponent.rows[indexRow][gridComponent.columns[indexCell].label] && gridComponent.rows[indexRow][gridComponent.columns[indexCell].label].value) {
+            assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label].value).format('L'));
+          } else {
+            assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
+          }
           return;
         }
       });
@@ -565,7 +597,11 @@ describe('grid', function() {
       var cells = rows[keyRow].querySelectorAll('.gridCell');
       Object.keys(cells).forEach(function(keyCell,indexCell) {
         if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
-          assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText , moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
+          if (gridComponent.rows[indexRow][gridComponent.columns[indexCell].label] && gridComponent.rows[indexRow][gridComponent.columns[indexCell].label].value) {
+            assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText , moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label].value).format('L'));
+          } else {
+            assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText , moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
+          }
           return;
         }
       });
@@ -657,7 +693,11 @@ describe('grid', function() {
       var cells = rows[keyRow].querySelectorAll('.gridCell');
       Object.keys(cells).forEach(function(keyCell,indexCell) {
         if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
-          assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
+          if (gridComponent.rows[indexRow][gridComponent.columns[indexCell].label] && gridComponent.rows[indexRow][gridComponent.columns[indexCell].label].value) {
+            assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label].value).format('L'));
+          } else {
+            assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
+          }
           return;
         }
       });
@@ -673,7 +713,11 @@ describe('grid', function() {
       var cells = rows[keyRow].querySelectorAll('.gridCell');
       Object.keys(cells).forEach(function(keyCell,indexCell) {
         if (gridComponent.columns[indexCell].type === 'date' && gridComponent.columns[indexCell].label === 'testDate') {
-          assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
+          if (gridComponent.rows[indexRow][gridComponent.columns[indexCell].label] && gridComponent.rows[indexRow][gridComponent.columns[indexCell].label].value) {
+            assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label].value).format('L'));
+          } else {
+            assert.strictEqual(cells[keyCell].querySelector('atlui-grid-cell').innerText, moment(gridComponent.rows[indexRow][gridComponent.columns[indexCell].label]).format('L'));
+          }
           return;
         }
       });

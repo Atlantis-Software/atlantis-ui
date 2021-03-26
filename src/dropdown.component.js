@@ -7,17 +7,17 @@ export default class dropdownComponent {
       new Component({
         selector: 'atlui-dropdown',
         template: `
-          <button *ngIf="!parentIsLi" class="btn btn-default" type="button">
+          <button *ngIf="!parentIsLi" class="btn btn-default" type="button" (click)="!autoOpen && toggleClick($event)" (mouseenter)="autoOpen && toggleClick($event)" (mouseleave)="autoOpen && closeMenu()">
             <i *ngIf="icon" class="icon" [ngClass]="'icon-'+icon"></i>
             {{title}}
             <span class="caret"></span>
           </button>
-          <a *ngIf="parentIsLi" href="#">
+          <a *ngIf="parentIsLi" (click)="!autoOpen && toggleClick($event)" (mouseenter)="autoOpen && toggleClick($event)" (mouseleave)="autoOpen && closeMenu()">
             <i *ngIf="icon" class="icon" [ngClass]="'icon-'+icon"></i>
             {{title}}
             <span class="caret"></span>
           </a>
-          <div class="dropdown-menu">
+          <div class="dropdown-menu" (mouseenter)="autoOpen && toggleClick($event)" (mouseleave)="autoOpen && closeMenu()">
             <ng-content>
             </ng-content>
           </div>`,
@@ -39,13 +39,17 @@ export default class dropdownComponent {
     var menu = this.elementRef.nativeElement.querySelector("button, a");
     if (this.autoOpen) {
       var dropdownMenu = this.elementRef.nativeElement.getElementsByClassName("dropdown-menu")[0];
-      menu.removeEventListener('mouseover', this.toggleMouseOver.bind(this));
-      menu.removeEventListener('onmouseout', this.toggleMouseOut.bind(this));
-      dropdownMenu.removeEventListener('mouseover', this.toggleMouseOver.bind(this));
-      dropdownMenu.removeEventListener('onmouseout', this.toggleMouseOut.bind(this));
+      menu.removeEventListener('mouseover', this.toggleClick.bind(this));
+      menu.removeEventListener('onmouseout', this.closeMenu.bind(this));
+      dropdownMenu.removeEventListener('mouseover', this.toggleClick.bind(this));
+      dropdownMenu.removeEventListener('onmouseout', this.closeMenu.bind(this));
     } else {
       menu.removeEventListener('click', this.toggleClick.bind(this));
     }
+    var liste_drowdown_menu = this.elementRef.nativeElement.getElementsByClassName("dropdown-menu");
+    Array.from(liste_drowdown_menu).forEach((dropdown) => {
+      dropdown.removeEventListener('click', this.closeMenu.bind(this));
+    });
   }
 
   //Change options of dropdown with the inputs parameters
@@ -55,16 +59,11 @@ export default class dropdownComponent {
     if (this.dropdown.parentElement.nodeName === "LI") {
       this.parentIsLi = true;
     }
-    var menu = this.elementRef.nativeElement.querySelector("button, a");
-    // cas option autoOpen defini à true: ouverture du menu au survol
-    if (this.autoOpen) {
-      menu.addEventListener('mouseenter', this.toggleMouseOver.bind(this));
-      menu.addEventListener('mouseleave', this.toggleMouseOut.bind(this));
-      dropdownMenu.addEventListener('mouseenter', this.toggleMouseOver.bind(this));
-      dropdownMenu.addEventListener('mouseleave', this.toggleMouseOut.bind(this));
-    } else {
-      menu.addEventListener('click', this.toggleClick.bind(this));
-    }
+
+    var liste_drowdown_menu = this.elementRef.nativeElement.getElementsByClassName("dropdown-menu");
+    Array.from(liste_drowdown_menu).forEach((dropdown) => {
+      dropdown.addEventListener('click', this.closeMenu.bind(this));
+    });
 
     if (this.dropdown.parentElement.classList.contains("disabled")) {
       this.disabled = true;
@@ -85,25 +84,24 @@ export default class dropdownComponent {
     this.cdr.detectChanges();
   }
 
+
   toggleClick(e) {
     if (this.disabled) {
       return;
     }
-    this.open = !self.open;
-    this.dropdown.classList.toggle("open");
-    e.preventDefault();
-
-  }
-  toggleMouseOver(e) {
-    if (this.disabled) {
-      return;
+    // we close all dropdown menu
+    var listDropdowns = document.querySelectorAll('atlui-dropdown');
+    if (listDropdowns.length > 0) {
+      listDropdowns.forEach((element) => {
+        element.classList.remove("open");
+      });
     }
     this.open = !self.open;
     this.dropdown.classList.toggle("open");
     e.preventDefault();
   }
 
-  toggleMouseOut() {
+  closeMenu() {
     if (this.disabled) {
       return;
     }

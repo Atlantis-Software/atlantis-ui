@@ -27,10 +27,16 @@ class dropdownTestComponent {
           <atlui-dropdown-header>menu</atlui-dropdown-header>
           <atlui-dropdown-option><a>Sub-menu separated B</a></atlui-dropdown-option>
         </atlui-dropdown>
-        <atlui-dropdown orientation="up" title="Menu A">
+        <atlui-dropdown orientation="up" title="Menu A" autoOpen="true">
         </atlui-dropdown>
         <atlui-dropdown alignement="right" title="Menu A">
-        </atlui-dropdown>`
+        </atlui-dropdown>
+        <ul>
+          <li>
+            <atlui-dropdown title="Menu A">
+            </atlui-dropdown>
+          </li>
+        </ul>`
       })
     ];
   }
@@ -62,14 +68,17 @@ describe('dropdown', function() {
     var divider = dropdown[0].querySelector('atlui-dropdown-divider');
     var header = dropdown[0].querySelector('atlui-dropdown-header');
 
-    assert.strictEqual(dropdown.length, 3);
+    assert.strictEqual(dropdown.length, 4);
     assert.strictEqual(dropdown[0].classList[0], 'dropdown');
     assert.strictEqual(dropdown[1].classList[0], 'dropup');
     assert.strictEqual(dropdown[2].classList[0], 'dropdown');
+    assert.strictEqual(dropdown[3].classList[0], 'dropdown');
+
 
     assert.strictEqual(dropdownMenu[0].classList[1], void 0);
     assert.strictEqual(dropdownMenu[1].classList[1], void 0);
     assert.strictEqual(dropdownMenu[2].classList[1], 'dropdown-menu-right');
+    assert.strictEqual(dropdownMenu[3].classList[1], void 0);
 
     assert.strictEqual(options.length, 4);
     assert.strictEqual(options[0].querySelector('a').textContent, "Sub-menu A");
@@ -99,8 +108,11 @@ describe('dropdown', function() {
     fixture.detectChanges();
 
     var dropdown = document.querySelector("atlui-dropdown");
-
     assert.strictEqual(dropdown.classList[1], "open");
+    var list_dropdowns = document.querySelectorAll('atlui-dropdown');
+    assert.strictEqual(list_dropdowns[1].classList[1], void 0);
+    assert.strictEqual(list_dropdowns[2].classList[1], void 0);
+    assert.strictEqual(list_dropdowns[3].classList[1], void 0);
 
     var option = document.querySelector('atlui-dropdown-option');
     option.click();
@@ -113,4 +125,45 @@ describe('dropdown', function() {
 
   }));
 
+  it('should render the correct element according to the parent HTML element', fakeAsync(function() {
+    var fixture = TestBed.createComponent(dropdownTestComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var dropdown = document.querySelectorAll("atlui-dropdown");
+    assert.strictEqual(dropdown[3].firstElementChild.nodeName, "A");
+    assert.strictEqual(dropdown[0].firstElementChild.nodeName, "BUTTON");
+
+  }));
+
+  it('should check the autoOpen class', fakeAsync(function() {
+    var fixture = TestBed.createComponent(dropdownTestComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    var dropdown = document.querySelectorAll("atlui-dropdown")[1];
+    var button = dropdown.querySelector('button');
+    let event = new Event('mouseenter');
+    button.dispatchEvent(event);
+    tick();
+    fixture.detectChanges();
+
+    dropdown = document.querySelectorAll("atlui-dropdown")[1];
+    assert.strictEqual(dropdown.classList[1], "open");
+
+    event = new Event('mouseleave');
+    button.dispatchEvent(event);
+    tick();
+    fixture.detectChanges();
+
+    dropdown = document.querySelectorAll("atlui-dropdown")[1];
+    assert.strictEqual(dropdown.classList[1], undefined);
+
+
+  }));
+
 });
+
+
