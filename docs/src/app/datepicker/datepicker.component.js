@@ -9,9 +9,9 @@ export default  class DatepickerComponent {
     ];
   }
   constructor(){
-    this.valueDatePicker = new Date("2004-02-03");
-    this.start1 = "2017-05-01";
-    this.end1 = "2017-05-22";
+    this.valueDatePicker = "2021-08-16T22:00:00.000Z";
+    this.start1 = "2021-08-22T22:00:00.000Z";
+    this.end1 = "30/08/2021";
   }
 }
 

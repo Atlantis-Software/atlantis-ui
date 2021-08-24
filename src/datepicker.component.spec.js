@@ -11,6 +11,8 @@ class datepickerTestComponent {
   constructor() {
     this.testDate = moment('2004-02-03').format("YYYY-MM-DD");
     this.noDate;
+    this.testDateBDD = "2021-08-16T22:00:00.000Z";
+    this.testDateFrench = "20/08/2021";
   }
   static get annotations() {
     return [
@@ -18,7 +20,11 @@ class datepickerTestComponent {
         template: `<atlui-datepicker id="datepicker" [(ngModel)]="testDate"></atlui-datepicker>
         <div id="data">{{testDate}}</div>
         <atlui-datepicker [(ngModel)]="noDate" [numberOfMonths]="5"></atlui-datepicker>
-        <div id="data2">{{noDate}}</div>`
+        <div id="data2">{{noDate}}</div>
+        <atlui-datepicker [(ngModel)]="testDateBDD"></atlui-datepicker>
+        <div id="data3">{{testDateBDD}}</div>
+        <atlui-datepicker [(ngModel)]="testDateFrench"></atlui-datepicker>
+        <div id="data4">{{testDateFrench}}</div>`
       })
     ];
   }
@@ -45,9 +51,13 @@ describe('datepicker', function() {
     fixture.detectChanges();
     var datepicker = document.querySelector('#data');
     var datepicker2 = document.querySelector('#data2');
+    var datepicker3 = document.querySelector('#data3');
+    var datepicker4 = document.querySelector('#data4');
 
     assert.strictEqual(moment(datepicker.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment('2004-02-03').toString());
     assert.strictEqual(datepicker2.textContent, "");
+    assert.strictEqual(moment(datepicker3.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment('2021-08-17').toString());
+    assert.strictEqual(moment(datepicker4.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment('2021-08-20').toString());
   }));
 
   it('should render correct value into input datepicker modal', fakeAsync(function() {

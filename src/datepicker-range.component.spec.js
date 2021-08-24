@@ -1,4 +1,4 @@
-import { getTestBed, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
+import { getTestBed, TestBed, async, fakeAsync, tick , flush} from '@angular/core/testing';
 import { Component } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
@@ -9,10 +9,8 @@ var assert = require('assert');
 
 class datepickerRangeTestComponent {
   constructor() {
-    var date = moment('2004-02-03').format('YYYY-MM-DD');
-    this.startDate = date;
-    var date2 = moment('2004-02-10').format('YYYY-MM-DD');
-    this.endDate = date2;
+    this.startDate = "2021-08-22T22:00:00.000Z";
+    this.endDate = "30/08/2021";
   }
   static get annotations() {
     return [
@@ -57,9 +55,10 @@ describe('datepicker-range', function() {
 
     var datepicker2Start = document.querySelector('#data2Start');
     var datepicker2End = document.querySelector('#data2End');
-
-    assert.strictEqual(moment(datepickerStart.textContent).toString(), moment('2004-02-03').toString());
-    assert.strictEqual(moment(datepickerEnd.textContent).toString(), moment('2004-02-10').toString());
+    //Simulates the asynchronous passage of time for the timers in the fakeAsync zone by draining the macrotask queue until it is empty.
+    flush();
+    assert.strictEqual(moment(datepickerStart.textContent).toString(), moment('2021-08-23').toString());
+    assert.strictEqual(moment(datepickerEnd.textContent).toString(), moment('2021-08-30').toString());
     assert.strictEqual(datepicker2Start.textContent, "");
     assert.strictEqual(datepicker2End.textContent, "");
   }));
@@ -76,9 +75,10 @@ describe('datepicker-range', function() {
 
     var inputStart = document.querySelectorAll(".atlui-datepicker-range input")[0];
     var inputEnd = document.querySelectorAll(".atlui-datepicker-range input")[1];
-
-    assert.strictEqual(moment(inputStart.value, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment('2004-02-03').toString());
-    assert.strictEqual(moment(inputEnd.value, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment('2004-02-10').toString());
+    //Simulates the asynchronous passage of time for the timers in the fakeAsync zone by draining the macrotask queue until it is empty.
+    flush();
+    assert.strictEqual(moment(inputStart.value, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment('2021-08-23').toString());
+    assert.strictEqual(moment(inputEnd.value, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment('2021-08-30').toString());
 
     var closeButton = document.querySelector(".close");
     closeButton.click();
@@ -144,9 +144,10 @@ describe('datepicker-range', function() {
 
     var datepickerStart = document.querySelector('#dataStart');
     var datepickerEnd = document.querySelector('#dataEnd');
-
-    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-02-01").toString());
-    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-02-02").toString());
+    //Simulates the asynchronous passage of time for the timers in the fakeAsync zone by draining the macrotask queue until it is empty.
+    flush();
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2021-08-01").toString());
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2021-08-02").toString());
 
 
   }));
@@ -173,7 +174,7 @@ describe('datepicker-range', function() {
     tick();
     fixture.detectChanges();
 
-    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-02-04").toString());
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2021-08-04").toString());
 
     input = document.querySelectorAll('input')[0];
     input.click();
@@ -192,9 +193,10 @@ describe('datepicker-range', function() {
     closeButton.click();
     tick();
     fixture.detectChanges();
-
-    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-02-01").toString());
-    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-02-10").toString());
+    //Simulates the asynchronous passage of time for the timers in the fakeAsync zone by draining the macrotask queue until it is empty.
+    flush();
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2021-08-01").toString());
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2021-08-30").toString());
 
 
   }));
@@ -226,9 +228,10 @@ describe('datepicker-range', function() {
     var datepickerEnd = document.querySelector('#dataEnd');
 
     var modal = document.querySelector('.modal');
-
-    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-01-01").toString());
-    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-01-01").toString());
+    //Simulates the asynchronous passage of time for the timers in the fakeAsync zone by draining the macrotask queue until it is empty.
+    flush();
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2021-07-01").toString());
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2021-07-01").toString());
 
     assert.strictEqual(modal.classList[3], void 0);
   }));
@@ -265,9 +268,10 @@ describe('datepicker-range', function() {
     var datepickerEnd = document.querySelector('#dataEnd');
 
     var modal = document.querySelector('.modal');
-
-    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-03-01").toString());
-    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2004-03-01").toString());
+    //Simulates the asynchronous passage of time for the timers in the fakeAsync zone by draining the macrotask queue until it is empty.
+    flush();
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2021-09-01").toString());
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).toString(), moment("2021-09-01").toString());
 
     assert.strictEqual(modal.classList[3], void 0);
   }));
@@ -294,7 +298,8 @@ describe('datepicker-range', function() {
 
     var datepickerStart = document.querySelector('#dataStart');
     var datepickerEnd = document.querySelector('#dataEnd');
-
+    //Simulates the asynchronous passage of time for the timers in the fakeAsync zone by draining the macrotask queue until it is empty.
+    flush();
     var modal = document.querySelector('.modal');
 
     assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format("YYYY-MM-DD"), moment().format('YYYY-MM-DD'));
@@ -325,7 +330,8 @@ describe('datepicker-range', function() {
 
     var datepickerStart = document.querySelector('#dataStart');
     var datepickerEnd = document.querySelector('#dataEnd');
-
+    //Simulates the asynchronous passage of time for the timers in the fakeAsync zone by draining the macrotask queue until it is empty.
+    flush();
     var modal = document.querySelector('.modal');
 
     assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format("YYYY-MM-DD"), moment().subtract(1, 'weeks').startOf('isoweek').format('YYYY-MM-DD'));
@@ -358,7 +364,8 @@ describe('datepicker-range', function() {
     var datepickerEnd = document.querySelector('#dataEnd');
 
     var modal = document.querySelector('.modal');
-
+    //Simulates the asynchronous passage of time for the timers in the fakeAsync zone by draining the macrotask queue until it is empty.
+    flush();
     assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format("YYYY-MM-DD"),  moment().subtract(1, 'months').startOf('months').format('YYYY-MM-DD'));
     assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'),  moment().subtract(1, 'months').endOf('months').format('YYYY-MM-DD'));
 
@@ -389,7 +396,8 @@ describe('datepicker-range', function() {
     var datepickerEnd = document.querySelector('#dataEnd');
 
     var modal = document.querySelector('.modal');
-
+    //Simulates the asynchronous passage of time for the timers in the fakeAsync zone by draining the macrotask queue until it is empty.
+    flush();
     assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format("YYYY-MM-DD"), moment().subtract(1, 'weeks').format('YYYY-MM-DD'));
     assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));
 
@@ -420,7 +428,8 @@ describe('datepicker-range', function() {
     var datepickerEnd = document.querySelector('#dataEnd');
 
     var modal = document.querySelector('.modal');
-
+    //Simulates the asynchronous passage of time for the timers in the fakeAsync zone by draining the macrotask queue until it is empty.
+    flush();
     assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format("YYYY-MM-DD"), moment().subtract(1, 'months').format('YYYY-MM-DD'));
     assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));
 
@@ -451,7 +460,8 @@ describe('datepicker-range', function() {
     var datepickerEnd = document.querySelector('#dataEnd');
 
     var modal = document.querySelector('.modal');
-
+    //Simulates the asynchronous passage of time for the timers in the fakeAsync zone by draining the macrotask queue until it is empty.
+    flush();
     assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format("YYYY-MM-DD"), moment().subtract(1, 'years').startOf('year').format('YYYY-MM-DD'));
     assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment().subtract(1, 'years').endOf('year').format('YYYY-MM-DD'));
 
@@ -475,9 +485,10 @@ describe('datepicker-range', function() {
 
     var datepickerStart = document.querySelector('#dataStart');
     var datepickerEnd = document.querySelector('#dataEnd');
-
-    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2004-02-03").format('YYYY-MM-DD'));
-    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2004-02-10").format('YYYY-MM-DD'));
+    //Simulates the asynchronous passage of time for the timers in the fakeAsync zone by draining the macrotask queue until it is empty.
+    flush();
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2021-08-23").format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2021-08-30").format('YYYY-MM-DD'));
 
     var closeButton = document.querySelector(".close");
     closeButton.click();
@@ -504,9 +515,10 @@ describe('datepicker-range', function() {
     var datepickerEnd = document.querySelector('#dataEnd');
 
     var modal = document.querySelector('.modal');
-
-    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2004-02-03").format('YYYY-MM-DD'));
-    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2004-02-07").format('YYYY-MM-DD'));
+    //Simulates the asynchronous passage of time for the timers in the fakeAsync zone by draining the macrotask queue until it is empty.
+    flush();
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2021-08-23").format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2021-08-30").format('YYYY-MM-DD'));
 
     assert.strictEqual(modal.classList[3], void 0);
 
@@ -538,9 +550,10 @@ describe('datepicker-range', function() {
     var datepickerEnd = document.querySelector('#dataEnd');
 
     var modal = document.querySelector('.modal');
-
-    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2004-02-03").format('YYYY-MM-DD'));
-    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2004-02-07").format('YYYY-MM-DD'));
+   //Simulates the asynchronous passage of time for the timers in the fakeAsync zone by draining the macrotask queue until it is empty.
+    flush();
+    assert.strictEqual(moment(datepickerStart.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2021-08-23").format('YYYY-MM-DD'));
+    assert.strictEqual(moment(datepickerEnd.textContent, [moment.localeData().longDateFormat('L'), "YYYY-MM-DD"]).format('YYYY-MM-DD'), moment("2021-08-30").format('YYYY-MM-DD'));
     assert.strictEqual(modal.classList[3], void 0);
 
   }));
