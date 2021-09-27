@@ -166,6 +166,20 @@
           Callback when we uncheck plugins <code>checkbox</code> on a node
         </td>
       </tr>
+      <tr>
+        <td>
+           nodeChange
+        </td>
+        <td>
+          function
+        </td>
+        <td>
+          node: define node where change occurs
+        </td>
+        <td>
+          Callback when a node changes
+        </td>
+      </tr>
     </tbody>
   </table>
   <h4>
@@ -721,7 +735,7 @@ this.nodesWithParameters = [
   </h4>
   <div class="row container-fluid form-group">
     <div class="col-md-4">
-      <atlui-tree [plugins]="['checkbox']" (onChecked)="checkedCallback($event)" (onUnchecked)="uncheckedCallback($event)" (onExpand)="expandCallback($event)" (onCollapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesWithLazyLoading" [selection]="selection"></atlui-tree>
+      <atlui-tree [plugins]="['checkbox']" (nodeChange)="nodeChangeCallback($event)" (onChecked)="checkedCallback($event)" (onUnchecked)="uncheckedCallback($event)" (onExpand)="expandCallback($event)" (onCollapse)="collapseCallback($event)" (onClick)="onClickCallback($event)" [nodes]="nodesWithLazyLoading" [selection]="selection"></atlui-tree>
     </div>
   </div>
   <br>

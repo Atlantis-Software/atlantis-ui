@@ -7,7 +7,7 @@ export default class treeComponent {
         selector: 'atlui-tree',
         template: require('./tree.html'),
         inputs: ['nodes', 'nodeSelected: selection', 'plugins'],
-        outputs: ['onExpand', 'onCollapse', 'nodesChanges', 'onClick', 'onChecked', 'onUnchecked'],
+        outputs: ['onExpand', 'onCollapse', 'onClick', 'onChecked', 'onUnchecked', 'nodeChange'],
         queries: {
           template: new ContentChild(TemplateRef),
         }
@@ -17,9 +17,9 @@ export default class treeComponent {
   constructor(changeDetectorRef, ElementRef) {
     this.onExpand = new EventEmitter();
     this.onCollapse = new EventEmitter();
-    this.nodesChanges = new EventEmitter();
     this.onClick = new EventEmitter();
     this.onChecked = new EventEmitter();
+    this.nodeChange = new EventEmitter();
     this.onUnchecked = new EventEmitter();
     this.depth = 1;
     this.cdr = changeDetectorRef;
@@ -106,7 +106,6 @@ export default class treeComponent {
 
   // Emit the checked or unchecked node
   onCheck(node) {
-    this.nodesChanges.emit(this.nodes);
     if (!node) {
       return;
     }
