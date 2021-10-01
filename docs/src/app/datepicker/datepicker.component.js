@@ -9,7 +9,7 @@ export default  class DatepickerComponent {
     ];
   }
   constructor(){
-    this.valueDatePicker = "2021-08-16T22:00:00.000Z";
+    this.valueDatePicker = "2021-02-10T23:00:00.000Z";
     this.start1 = "2021-08-22T22:00:00.000Z";
     this.end1 = "30/08/2021";
   }
