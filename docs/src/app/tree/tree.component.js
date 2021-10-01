@@ -260,6 +260,11 @@ export default  class TreeComponent {
     console.log("checked event on : ", event);
   }
 
+
+  nodeChangeCallback(event) {
+    console.log("nodes changes event on : ", event);
+  }
+
   uncheckedCallback(event) {
     console.log("unchecked event on : ", event);
   }

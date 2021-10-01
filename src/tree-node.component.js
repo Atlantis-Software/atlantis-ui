@@ -22,7 +22,7 @@ export default class treeNodeComponent {
           'template', 'depth', 'selected', 'sortableZones', 'nestedSortable', 'isSortable', 'loading',
           'nodeSelected', 'plugins'
         ],
-        outputs: ['onExpand', 'onCollapse', 'check', 'selectedChange', 'expandedChange', 'indeterminateChange', 'onClickNode'],
+        outputs: ['onExpand', 'onCollapse', 'check','selectedChange', 'expandedChange', 'indeterminateChange', 'onClickNode', 'nodeChange'],
         host: {
           '[class.selectable]': 'selectable'
         },
@@ -41,6 +41,7 @@ export default class treeNodeComponent {
     this.indeterminateChange = new EventEmitter();
     this.expandedChange = new EventEmitter();
     this.onClickNode = new EventEmitter();
+    this.nodeChange = new EventEmitter();
     this.indeterminate = false;
     this.parent = treeNodeComponent;
     this.expanded = false;
@@ -49,6 +50,7 @@ export default class treeNodeComponent {
     this.change = new Subject();
     this.cdr = changeDetectorRef;
   }
+
 
   // emit the node where we click
   onClickNodeCallback() {
@@ -121,6 +123,7 @@ export default class treeNodeComponent {
   }
 
   changeNode() {
+    var self = this;
     if (this.selectable !== true && this.selectable !== false) {
       this.selectable = true;
     }
@@ -141,7 +144,6 @@ export default class treeNodeComponent {
     if (this.selected === void 0) {
       return;
     }
-
     if (this.children) {
       // we select or deselect all children if the parent is checked or unchecked
       this.children.forEach((child) => {
@@ -193,7 +195,6 @@ export default class treeNodeComponent {
         if (parent.parent) {
           updateParent(parent.indeterminate, parent.parent);
         }
-
       }
     }());
   }
@@ -238,12 +239,19 @@ export default class treeNodeComponent {
 
   }
 
+  ngOnChanges(changes) {
+    if (changes.selected && !changes.selected.firstChange && changes.selected.currentValue !== changes.selected.previousValue) {
+      this.nodeChange.emit(this.node);
+    }
+  }
+
   onClick() {
     if (this.disabled) {
       return;
     }
     this.selected = !this.selected;
     this.selectedChange.emit(this.selected);
+    this.check.emit(this.node);
     this.indeterminate = false;
     this.indeterminateChange.emit(this.indeterminate);
   }
