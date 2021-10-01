@@ -7,8 +7,11 @@ const END = 'end';
 export default class datepickerComponent {
 
   constructor(elementRef, differs, changeDetectorRef) {
-    this.startChange = new EventEmitter();
-    this.endChange = new EventEmitter();
+    // option true to have an asynchronous behavior
+    // does not go through verification loop when values are updated asynchronously
+    // avoid having the error ExpressionChangedAfterItHasBeenCheckedError
+    this.startChange = new EventEmitter(true);
+    this.endChange = new EventEmitter(true);
     this.elementRef = elementRef;
     this.language = language;
     this.differ = differs.find([]).create(null);
@@ -31,7 +34,6 @@ export default class datepickerComponent {
       })
     ];
   }
-
 
   // render calendar in 6 rows and 7 cols
   renderCalendar(calendarNumber) {
@@ -147,17 +149,17 @@ export default class datepickerComponent {
       firstDay: moment.localeData().firstDayOfWeek(),
       separator: '-'
     };
+    this.formats = [this.locale.format, "YYYY-MM-DD HH:mm Z", "YYYY-MM-DD"];
     if (this.start) {
       // if we have a default value
-      this.startDate = moment(this.start, [this.locale.format, "YYYY-MM-DD"]);
+      this.startDate = moment(this.start, this.formats);
       this.start = this._start = this.startDate.format(this.locale.format);
     } else {
       this.startDate = moment();
     }
-
     if (this.end) {
       // if we have a default value
-      this.endDate = moment(this.end, [this.locale.format, "YYYY-MM-DD"]);
+      this.endDate = moment(this.end, this.formats);
       this.end = this._end = this.endDate.format(this.locale.format);
     } else {
       this.endDate = moment();
@@ -175,6 +177,16 @@ export default class datepickerComponent {
     this.refreshCalendar();
     this.refreshTextDateStart();
     this.refreshTextDateEnd();
+    if (this._start) {
+      this.startChange.emit(moment(this._start,this.locale.format).format("YYYY-MM-DD"));
+    } else {
+      this.startChange.emit("");
+    }
+    if (this._end) {
+      this.endChange.emit(moment(this._end,this.locale.format).format("YYYY-MM-DD"));
+    } else {
+      this.endChange.emit("");
+    }
   }
 
   // refresh text date
@@ -493,7 +505,7 @@ export default class datepickerComponent {
     }
     if (this.start) {
       // if we have a default value
-      this.startDate = moment(this.start, [this.locale.format, "YYYY-MM-DD"]);
+      this.startDate = moment(this.start, this.formats);
       this.start = this._start = this.startDate.format(this.locale.format);
     } else {
       this.startDate = moment();
@@ -501,7 +513,7 @@ export default class datepickerComponent {
 
     if (this.end) {
       // if we have a default value
-      this.endDate = moment(this.end, [this.locale.format, "YYYY-MM-DD"]);
+      this.endDate = moment(this.end, this.formats);
       this.end = this._end = this.endDate.format(this.locale.format);
     } else {
       this.endDate = moment();
